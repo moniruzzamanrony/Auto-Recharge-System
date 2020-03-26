@@ -5,6 +5,7 @@
  */
 package auto.recharge.system;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,21 +40,22 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         bg = new javax.swing.JPanel();
         nevPanel = new javax.swing.JPanel();
-        nevItemOne = new javax.swing.JPanel();
+        nevHome = new javax.swing.JPanel();
         homeLabel = new javax.swing.JLabel();
         homeTextLabel = new javax.swing.JLabel();
-        nevItemOne2 = new javax.swing.JPanel();
+        nevBalence = new javax.swing.JPanel();
         homeLabel2 = new javax.swing.JLabel();
         homeTextLabel2 = new javax.swing.JLabel();
-        nevItemOne3 = new javax.swing.JPanel();
+        nevReseller = new javax.swing.JPanel();
         homeLabel3 = new javax.swing.JLabel();
         homeTextLabel3 = new javax.swing.JLabel();
-        nevItemOne4 = new javax.swing.JPanel();
+        nevAddingSomething = new javax.swing.JPanel();
         homeLabel4 = new javax.swing.JLabel();
         homeTextLabel4 = new javax.swing.JLabel();
-        nevItemOne5 = new javax.swing.JPanel();
+        nevSetting = new javax.swing.JPanel();
         homeLabel5 = new javax.swing.JLabel();
         homeTextLabel5 = new javax.swing.JLabel();
         appName = new javax.swing.JLabel();
@@ -62,23 +65,52 @@ public class Home extends javax.swing.JFrame {
         getNumberPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         getMobileNumber = new javax.swing.JTextField();
-        preOrPostCheck = new javax.swing.JComboBox<>();
-        amount = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        getPreOrPostCheck = new javax.swing.JComboBox<>();
+        getAmount = new javax.swing.JTextField();
+        getSandTimes = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        send = new javax.swing.JButton();
-        clear = new javax.swing.JButton();
+        sendBut = new javax.swing.JButton();
+        clearBut = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         statusTable = new javax.swing.JTable();
+        simDetailsPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        simOne = new javax.swing.JLabel();
+        simtwo = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        simThree = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        simFour = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        simFive = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        simSix = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 0));
 
         nevPanel.setBackground(new java.awt.Color(80, 55, 145));
 
-        nevItemOne.setBackground(new java.awt.Color(136, 107, 212));
+        nevHome.setBackground(new java.awt.Color(136, 107, 212));
+        nevHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                setHomeClicked(evt);
+            }
+        });
 
         homeLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         homeLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -90,32 +122,46 @@ public class Home extends javax.swing.JFrame {
         homeTextLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeTextLabel.setText("Home");
 
-        javax.swing.GroupLayout nevItemOneLayout = new javax.swing.GroupLayout(nevItemOne);
-        nevItemOne.setLayout(nevItemOneLayout);
-        nevItemOneLayout.setHorizontalGroup(
-            nevItemOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nevItemOneLayout.createSequentialGroup()
+        javax.swing.GroupLayout nevHomeLayout = new javax.swing.GroupLayout(nevHome);
+        nevHome.setLayout(nevHomeLayout);
+        nevHomeLayout.setHorizontalGroup(
+            nevHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nevHomeLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLabel)
                 .addGap(42, 42, 42)
                 .addComponent(homeTextLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        nevItemOneLayout.setVerticalGroup(
-            nevItemOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevItemOneLayout.createSequentialGroup()
+        nevHomeLayout.setVerticalGroup(
+            nevHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevHomeLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(nevItemOneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nevHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(homeLabel)
                     .addComponent(homeTextLabel))
                 .addGap(24, 24, 24))
         );
 
-        nevItemOne2.setBackground(new java.awt.Color(97, 77, 148));
+        nevBalence.setBackground(new java.awt.Color(97, 77, 148));
+        nevBalence.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                nevBalenceAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        nevBalence.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                myBalenceClick(evt);
+            }
+        });
 
         homeLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         homeLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        homeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/home_icon.png"))); // NOI18N
+        homeLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/money_icon.png"))); // NOI18N
 
         homeTextLabel2.setBackground(new java.awt.Color(255, 255, 255));
         homeTextLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -123,32 +169,37 @@ public class Home extends javax.swing.JFrame {
         homeTextLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeTextLabel2.setText("My Balence");
 
-        javax.swing.GroupLayout nevItemOne2Layout = new javax.swing.GroupLayout(nevItemOne2);
-        nevItemOne2.setLayout(nevItemOne2Layout);
-        nevItemOne2Layout.setHorizontalGroup(
-            nevItemOne2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nevItemOne2Layout.createSequentialGroup()
+        javax.swing.GroupLayout nevBalenceLayout = new javax.swing.GroupLayout(nevBalence);
+        nevBalence.setLayout(nevBalenceLayout);
+        nevBalenceLayout.setHorizontalGroup(
+            nevBalenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nevBalenceLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLabel2)
                 .addGap(42, 42, 42)
                 .addComponent(homeTextLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        nevItemOne2Layout.setVerticalGroup(
-            nevItemOne2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevItemOne2Layout.createSequentialGroup()
+        nevBalenceLayout.setVerticalGroup(
+            nevBalenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevBalenceLayout.createSequentialGroup()
                 .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(nevItemOne2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nevBalenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(homeLabel2)
                     .addComponent(homeTextLabel2))
                 .addGap(24, 24, 24))
         );
 
-        nevItemOne3.setBackground(new java.awt.Color(97, 77, 148));
+        nevReseller.setBackground(new java.awt.Color(97, 77, 148));
+        nevReseller.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                setReselleNevClicked(evt);
+            }
+        });
 
         homeLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         homeLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        homeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/home_icon.png"))); // NOI18N
+        homeLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/reseller_icon.png"))); // NOI18N
 
         homeTextLabel3.setBackground(new java.awt.Color(255, 255, 255));
         homeTextLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -156,32 +207,37 @@ public class Home extends javax.swing.JFrame {
         homeTextLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeTextLabel3.setText("My Reseller");
 
-        javax.swing.GroupLayout nevItemOne3Layout = new javax.swing.GroupLayout(nevItemOne3);
-        nevItemOne3.setLayout(nevItemOne3Layout);
-        nevItemOne3Layout.setHorizontalGroup(
-            nevItemOne3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nevItemOne3Layout.createSequentialGroup()
+        javax.swing.GroupLayout nevResellerLayout = new javax.swing.GroupLayout(nevReseller);
+        nevReseller.setLayout(nevResellerLayout);
+        nevResellerLayout.setHorizontalGroup(
+            nevResellerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nevResellerLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLabel3)
                 .addGap(42, 42, 42)
                 .addComponent(homeTextLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        nevItemOne3Layout.setVerticalGroup(
-            nevItemOne3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevItemOne3Layout.createSequentialGroup()
+        nevResellerLayout.setVerticalGroup(
+            nevResellerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevResellerLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(nevItemOne3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nevResellerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(homeLabel3)
                     .addComponent(homeTextLabel3))
                 .addGap(24, 24, 24))
         );
 
-        nevItemOne4.setBackground(new java.awt.Color(97, 77, 148));
+        nevAddingSomething.setBackground(new java.awt.Color(97, 77, 148));
+        nevAddingSomething.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                setAddPackageNevClicked(evt);
+            }
+        });
 
         homeLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         homeLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        homeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/home_icon.png"))); // NOI18N
+        homeLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/add_icon.png"))); // NOI18N
 
         homeTextLabel4.setBackground(new java.awt.Color(255, 255, 255));
         homeTextLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -189,32 +245,37 @@ public class Home extends javax.swing.JFrame {
         homeTextLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeTextLabel4.setText("Add Package & Offer");
 
-        javax.swing.GroupLayout nevItemOne4Layout = new javax.swing.GroupLayout(nevItemOne4);
-        nevItemOne4.setLayout(nevItemOne4Layout);
-        nevItemOne4Layout.setHorizontalGroup(
-            nevItemOne4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nevItemOne4Layout.createSequentialGroup()
+        javax.swing.GroupLayout nevAddingSomethingLayout = new javax.swing.GroupLayout(nevAddingSomething);
+        nevAddingSomething.setLayout(nevAddingSomethingLayout);
+        nevAddingSomethingLayout.setHorizontalGroup(
+            nevAddingSomethingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nevAddingSomethingLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLabel4)
                 .addGap(42, 42, 42)
                 .addComponent(homeTextLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        nevItemOne4Layout.setVerticalGroup(
-            nevItemOne4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevItemOne4Layout.createSequentialGroup()
+        nevAddingSomethingLayout.setVerticalGroup(
+            nevAddingSomethingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevAddingSomethingLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(nevItemOne4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nevAddingSomethingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(homeLabel4)
                     .addComponent(homeTextLabel4))
                 .addGap(24, 24, 24))
         );
 
-        nevItemOne5.setBackground(new java.awt.Color(97, 77, 148));
+        nevSetting.setBackground(new java.awt.Color(97, 77, 148));
+        nevSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                setSettingNevClicked(evt);
+            }
+        });
 
         homeLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         homeLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        homeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/home_icon.png"))); // NOI18N
+        homeLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/setting_icon.png"))); // NOI18N
 
         homeTextLabel5.setBackground(new java.awt.Color(255, 255, 255));
         homeTextLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -222,22 +283,22 @@ public class Home extends javax.swing.JFrame {
         homeTextLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeTextLabel5.setText("Settings");
 
-        javax.swing.GroupLayout nevItemOne5Layout = new javax.swing.GroupLayout(nevItemOne5);
-        nevItemOne5.setLayout(nevItemOne5Layout);
-        nevItemOne5Layout.setHorizontalGroup(
-            nevItemOne5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nevItemOne5Layout.createSequentialGroup()
+        javax.swing.GroupLayout nevSettingLayout = new javax.swing.GroupLayout(nevSetting);
+        nevSetting.setLayout(nevSettingLayout);
+        nevSettingLayout.setHorizontalGroup(
+            nevSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nevSettingLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLabel5)
                 .addGap(42, 42, 42)
                 .addComponent(homeTextLabel5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        nevItemOne5Layout.setVerticalGroup(
-            nevItemOne5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevItemOne5Layout.createSequentialGroup()
+        nevSettingLayout.setVerticalGroup(
+            nevSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevSettingLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(nevItemOne5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(nevSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(homeLabel5)
                     .addComponent(homeTextLabel5))
                 .addGap(24, 24, 24))
@@ -259,32 +320,33 @@ public class Home extends javax.swing.JFrame {
         nevPanel.setLayout(nevPanelLayout);
         nevPanelLayout.setHorizontalGroup(
             nevPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nevItemOne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nevItemOne2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nevItemOne3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nevItemOne4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nevItemOne5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nevHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nevBalence, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nevReseller, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nevAddingSomething, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nevSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(nevPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(nevPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nevPanelLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(appName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevPanelLayout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addGap(39, 39, 39)))
+                        .addGap(35, 35, 35)
+                        .addGroup(nevPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nevPanelLayout.createSequentialGroup()
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(39, 39, 39))))
+                    .addGroup(nevPanelLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(appName)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         nevPanelLayout.setVerticalGroup(
             nevPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(nevPanelLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(61, 61, 61)
                 .addComponent(appName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(nevPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nevPanelLayout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,15 +356,15 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(nevItemOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nevHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nevItemOne2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nevBalence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nevItemOne3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nevReseller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nevItemOne4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nevAddingSomething, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nevItemOne5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nevSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -314,31 +376,31 @@ public class Home extends javax.swing.JFrame {
 
         getMobileNumber.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
 
-        preOrPostCheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        preOrPostCheck.setForeground(new java.awt.Color(255, 255, 255));
-        preOrPostCheck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prepaid", "Postpaid" }));
+        getPreOrPostCheck.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getPreOrPostCheck.setForeground(new java.awt.Color(255, 255, 255));
+        getPreOrPostCheck.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prepaid", "Postpaid" }));
 
-        amount.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        amount.setText("100");
+        getAmount.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        getAmount.setText("100");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 X", "2 X", "3 X", "4 X" }));
+        getSandTimes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        getSandTimes.setForeground(new java.awt.Color(255, 255, 255));
+        getSandTimes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 X", "2 X", "3 X", "4 X" }));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Amount :");
 
-        send.setBackground(new java.awt.Color(153, 255, 0));
-        send.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        send.setText("Send");
+        sendBut.setBackground(new java.awt.Color(153, 255, 0));
+        sendBut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        sendBut.setText("Send");
 
-        clear.setBackground(new java.awt.Color(255, 102, 102));
-        clear.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        clear.setText("Clear all");
-        clear.addActionListener(new java.awt.event.ActionListener() {
+        clearBut.setBackground(new java.awt.Color(255, 102, 102));
+        clearBut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        clearBut.setText("Clear all");
+        clearBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearActionPerformed(evt);
+                clearButActionPerformed(evt);
             }
         });
 
@@ -355,14 +417,14 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(getMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(getNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(preOrPostCheck, 0, 130, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(getPreOrPostCheck, 0, 130, Short.MAX_VALUE)
+                                    .addComponent(getSandTimes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getNumberPanelLayout.createSequentialGroup()
-                                .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(getAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                 .addGroup(getNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(send, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(sendBut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(clearBut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(getNumberPanelLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(getNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,24 +443,24 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(getMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(getNumberPanelLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(preOrPostCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(getPreOrPostCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1)))
+                        .addComponent(getSandTimes)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(getNumberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(getNumberPanelLayout.createSequentialGroup()
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sendBut, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(clearBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         statusTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
+                { new Integer(1), "01988841890", "100", "success", "10-10-20", "prepaid"},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
@@ -424,6 +486,95 @@ public class Home extends javax.swing.JFrame {
             statusTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        simDetailsPanel.setBackground(new java.awt.Color(80, 55, 145));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        simOne.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simOne.setForeground(new java.awt.Color(255, 255, 255));
+        simOne.setText("No SIM");
+
+        simtwo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simtwo.setForeground(new java.awt.Color(255, 255, 255));
+        simtwo.setText("No SIM");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        simThree.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simThree.setForeground(new java.awt.Color(255, 255, 255));
+        simThree.setText("No SIM");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        simFour.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simFour.setForeground(new java.awt.Color(255, 255, 255));
+        simFour.setText("No SIM");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        simFive.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simFive.setForeground(new java.awt.Color(255, 255, 255));
+        simFive.setText("No SIM");
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        simSix.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        simSix.setForeground(new java.awt.Color(255, 255, 255));
+        simSix.setText("No SIM");
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_icon_s.png"))); // NOI18N
+
+        javax.swing.GroupLayout simDetailsPanelLayout = new javax.swing.GroupLayout(simDetailsPanel);
+        simDetailsPanel.setLayout(simDetailsPanelLayout);
+        simDetailsPanelLayout.setHorizontalGroup(
+            simDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(simDetailsPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simOne)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simtwo)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simThree)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simFour)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simFive)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(simSix)
+                .addGap(25, 25, 25))
+        );
+        simDetailsPanelLayout.setVerticalGroup(
+            simDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(simDetailsPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(simDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(simSix)
+                    .addComponent(jLabel9)
+                    .addComponent(simFive)
+                    .addComponent(jLabel8)
+                    .addComponent(simFour)
+                    .addComponent(jLabel7)
+                    .addComponent(simThree)
+                    .addComponent(jLabel6)
+                    .addComponent(simtwo)
+                    .addComponent(jLabel5)
+                    .addComponent(simOne)
+                    .addComponent(jLabel4))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -433,13 +584,18 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(getNumberPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)))
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(simDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(nevPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bgLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(23, 23, 23)
+                .addComponent(simDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(getNumberPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,9 +616,60 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+    private void clearButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_clearActionPerformed
+    }//GEN-LAST:event_clearButActionPerformed
+
+    private void nevBalenceAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_nevBalenceAncestorAdded
+      
+    }//GEN-LAST:event_nevBalenceAncestorAdded
+
+    private void myBalenceClick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBalenceClick
+         
+          //Nev Selection
+          nevHome.setBackground(new Color(97,77,148));
+          nevBalence.setBackground(new Color(136,107,212));
+          nevAddingSomething.setBackground(new Color(97,77,148));
+          nevReseller.setBackground(new Color(97,77,148));
+          nevSetting.setBackground(new Color(97,77,148));
+    }//GEN-LAST:event_myBalenceClick
+
+    private void setHomeClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setHomeClicked
+          
+          //Nev Selection
+          nevHome.setBackground(new Color(136,107,212));
+          nevBalence.setBackground(new Color(97,77,148));
+          nevAddingSomething.setBackground(new Color(97,77,148));
+          nevReseller.setBackground(new Color(97,77,148));
+          nevSetting.setBackground(new Color(97,77,148));
+    }//GEN-LAST:event_setHomeClicked
+
+    private void setReselleNevClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setReselleNevClicked
+           //Nev Selection
+          nevHome.setBackground(new Color(97,77,148));
+          nevBalence.setBackground(new Color(97,77,148));
+          nevAddingSomething.setBackground(new Color(97,77,148));
+          nevReseller.setBackground(new Color(136,107,212));
+          nevSetting.setBackground(new Color(97,77,148));
+    }//GEN-LAST:event_setReselleNevClicked
+
+    private void setAddPackageNevClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setAddPackageNevClicked
+         //Nev Selection
+          nevHome.setBackground(new Color(97,77,148));
+          nevBalence.setBackground(new Color(97,77,148));
+          nevAddingSomething.setBackground(new Color(136,107,212));
+          nevReseller.setBackground(new Color(97,77,148));
+          nevSetting.setBackground(new Color(97,77,148));
+    }//GEN-LAST:event_setAddPackageNevClicked
+
+    private void setSettingNevClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setSettingNevClicked
+        //Nev Selection
+          nevHome.setBackground(new Color(97,77,148));
+          nevBalence.setBackground(new Color(97,77,148));
+          nevAddingSomething.setBackground(new Color(97,77,148));
+          nevReseller.setBackground(new Color(97,77,148));
+          nevSetting.setBackground(new Color(136,107,212));
+    }//GEN-LAST:event_setSettingNevClicked
 
     /**
      * @param args the command line arguments
@@ -507,48 +714,59 @@ public class Home extends javax.swing.JFrame {
                 home.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 home.setTitle(properties.getProperty("appName"));
                 home.setIconImage(new ImageIcon("images/auto_r_s_icon.png").getImage());
-               // appTitle.setHorizontalAlignment(JLabel.LEFT);
-                //appTitle.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge <font color='red'>S</font>ystem</html>");
+              
+                appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField amount;
-    private javax.swing.JLabel appName;
+    private static javax.swing.JLabel appName;
     private javax.swing.JPanel bg;
-    private javax.swing.JButton clear;
+    private javax.swing.JButton clearBut;
+    private javax.swing.JTextField getAmount;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JPanel getNumberPanel;
+    private javax.swing.JComboBox<String> getPreOrPostCheck;
+    private javax.swing.JComboBox<String> getSandTimes;
     private javax.swing.JLabel homeLabel;
-    private javax.swing.JLabel homeLabel1;
     private javax.swing.JLabel homeLabel2;
     private javax.swing.JLabel homeLabel3;
     private javax.swing.JLabel homeLabel4;
     private javax.swing.JLabel homeLabel5;
     private javax.swing.JLabel homeTextLabel;
-    private javax.swing.JLabel homeTextLabel1;
     private javax.swing.JLabel homeTextLabel2;
     private javax.swing.JLabel homeTextLabel3;
     private javax.swing.JLabel homeTextLabel4;
     private javax.swing.JLabel homeTextLabel5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel nevItemOne;
-    private javax.swing.JPanel nevItemOne1;
-    private javax.swing.JPanel nevItemOne2;
-    private javax.swing.JPanel nevItemOne3;
-    private javax.swing.JPanel nevItemOne4;
-    private javax.swing.JPanel nevItemOne5;
+    private javax.swing.JPanel nevAddingSomething;
+    private javax.swing.JPanel nevBalence;
+    private javax.swing.JPanel nevHome;
     private javax.swing.JPanel nevPanel;
-    private javax.swing.JComboBox<String> preOrPostCheck;
-    private javax.swing.JButton send;
+    private javax.swing.JPanel nevReseller;
+    private javax.swing.JPanel nevSetting;
+    private javax.swing.JButton sendBut;
+    private javax.swing.JPanel simDetailsPanel;
+    private javax.swing.JLabel simFive;
+    private javax.swing.JLabel simFour;
+    private javax.swing.JLabel simOne;
+    private javax.swing.JLabel simSix;
+    private javax.swing.JLabel simThree;
+    private javax.swing.JLabel simtwo;
     private javax.swing.JTable statusTable;
     // End of variables declaration//GEN-END:variables
 }
