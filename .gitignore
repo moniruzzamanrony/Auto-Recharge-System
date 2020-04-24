@@ -1,1 +1,16 @@
 /dist/
+.idea/
+build/built-jar.properties
+build/classes/resources/images/Bkash.jpeg
+build/classes/resources/images/Manu.png
+build/classes/resources/images/add_offer_body.png
+build/classes/resources/images/body_bill_payment.png
+build/classes/resources/images/body_mobile_recharge.png
+build/classes/resources/images/body_my_balence.png
+build/classes/resources/images/close.png
+build/classes/resources/images/minimize.png
+build/classes/resources/images/minus.png
+build/classes/resources/images/network_bar.png
+build/empty/
+build/generated-sources/
+test/

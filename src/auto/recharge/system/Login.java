@@ -300,8 +300,8 @@ public class Login extends javax.swing.JFrame {
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
        this.setVisible(false);
        Home home = new Home();
-       home.showHomePage();
-       home.setExtendedState(JFrame.MAXIMIZED_BOTH);
+       home.showDeshBoardPage();
+      
     }//GEN-LAST:event_loginButMouseClicked
 
     /**
