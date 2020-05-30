@@ -1,22 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package auto.recharge.system;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author monirozzamanroni
- */
 public class Home extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AddOfferAndReseller
-     */
     public Home() {
         initComponents();
     }
@@ -24,10 +12,15 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addOfferMenuBerClick = new javax.swing.JLabel();
-        billPaymentBut = new javax.swing.JLabel();
-        menu = new javax.swing.JLabel();
-        networkBar = new javax.swing.JLabel();
+        subTitleOfUserName = new javax.swing.JLabel();
+        LoggedUserName = new javax.swing.JLabel();
+        clickSetting = new javax.swing.JLabel();
+        clickPaymentDetails = new javax.swing.JLabel();
+        clickMyBalence = new javax.swing.JLabel();
+        clickAddOfferAndReseller = new javax.swing.JLabel();
+        clickBillPayment = new javax.swing.JLabel();
+        clickMobileRecharge = new javax.swing.JLabel();
+        menuBody = new javax.swing.JLabel();
         body_bg = new javax.swing.JLabel();
         body_jpanel = new javax.swing.JPanel();
 
@@ -36,27 +29,61 @@ public class Home extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        addOfferMenuBerClick.setText("jLabel1");
-        addOfferMenuBerClick.addMouseListener(new java.awt.event.MouseAdapter() {
+        subTitleOfUserName.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        subTitleOfUserName.setForeground(new java.awt.Color(255, 255, 255));
+        subTitleOfUserName.setText("Owner,Al Telecom");
+        getContentPane().add(subTitleOfUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 160, -1));
+
+        LoggedUserName.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        LoggedUserName.setForeground(new java.awt.Color(255, 255, 255));
+        LoggedUserName.setText("Moniruzzaman Rony");
+        getContentPane().add(LoggedUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 150, -1));
+
+        clickSetting.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addOfferMenuBerClickMouseClicked(evt);
+                clickSettingMouseClicked(evt);
             }
         });
-        getContentPane().add(addOfferMenuBerClick, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 230, 40));
+        getContentPane().add(clickSetting, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 230, 50));
 
-        billPaymentBut.addMouseListener(new java.awt.event.MouseAdapter() {
+        clickPaymentDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                billPaymentButMouseClicked(evt);
+                clickPaymentDetailsMouseClicked(evt);
             }
         });
-        getContentPane().add(billPaymentBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 240, 40));
+        getContentPane().add(clickPaymentDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 406, 240, 40));
 
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Manu.png"))); // NOI18N
-        menu.setText("jLabel1");
-        getContentPane().add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 256, 720));
+        clickMyBalence.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickMyBalenceMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickMyBalence, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 336, 240, 50));
 
-        networkBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_bar.png"))); // NOI18N
-        getContentPane().add(networkBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 461, 95));
+        clickAddOfferAndReseller.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickAddOfferAndResellerMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickAddOfferAndReseller, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 230, 40));
+
+        clickBillPayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickBillPaymentMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickBillPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 210, 230, 40));
+
+        clickMobileRecharge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickMobileRechargeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickMobileRecharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 240, 40));
+
+        menuBody.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Manu.png"))); // NOI18N
+        menuBody.setText("jLabel1");
+        getContentPane().add(menuBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 256, 720));
 
         body_bg.setBackground(new java.awt.Color(255, 255, 255));
         body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_mobile_recharge.png"))); // NOI18N
@@ -71,44 +98,33 @@ public class Home extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void billPaymentButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentButMouseClicked
-        
-    }//GEN-LAST:event_billPaymentButMouseClicked
+    private void clickMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileRechargeMouseClicked
+        System.out.println("auto.recharge.system.Home.clickMobileRechargeMouseClicked()");
+    }//GEN-LAST:event_clickMobileRechargeMouseClicked
 
-    private void addOfferMenuBerClickMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOfferMenuBerClickMouseClicked
+    private void clickAddOfferAndResellerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickAddOfferAndResellerMouseClicked
         updateLabel("add_offer_body");
         System.out.println("auto.recharge.system.Home.addOfferMenuBerClickMouseClicked()");
-    }//GEN-LAST:event_addOfferMenuBerClickMouseClicked
+    }//GEN-LAST:event_clickAddOfferAndResellerMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
+        System.out.println("auto.recharge.system.Home.clickBillPaymentMouseClicked()");
+    }//GEN-LAST:event_clickBillPaymentMouseClicked
+
+    private void clickMyBalenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMyBalenceMouseClicked
+        System.out.println("auto.recharge.system.Home.clickMyBalenceMouseClicked()");
+    }//GEN-LAST:event_clickMyBalenceMouseClicked
+
+    private void clickPaymentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickPaymentDetailsMouseClicked
+        System.out.println("auto.recharge.system.Home.clickPaymentDetailsMouseClicked()");
+    }//GEN-LAST:event_clickPaymentDetailsMouseClicked
+
+    private void clickSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSettingMouseClicked
+        System.out.println("auto.recharge.system.Home.clickSettingMouseClicked()");
+    }//GEN-LAST:event_clickSettingMouseClicked
+
+ 
     public void showDeshBoardPage() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Home().setVisible(true);
@@ -117,22 +133,26 @@ public class Home extends javax.swing.JFrame {
     }
     
     protected void updateLabel(String name) {
-            ImageIcon imageIcon = new ImageIcon("images/"+name+".png");         
+            ImageIcon imageIcon = new ImageIcon("images/"+name+".png");  
+            
             body_bg.setSize(1280, 720);
             body_bg.setIcon(imageIcon);
             body_bg.setText(null);
-            //Add this : 
             body_bg.revalidate();
-            body_bg.repaint();
-      
+            body_bg.repaint();     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addOfferMenuBerClick;
-    private javax.swing.JLabel billPaymentBut;
+    private javax.swing.JLabel LoggedUserName;
     private javax.swing.JLabel body_bg;
     private javax.swing.JPanel body_jpanel;
-    private javax.swing.JLabel menu;
-    private javax.swing.JLabel networkBar;
+    private javax.swing.JLabel clickAddOfferAndReseller;
+    private javax.swing.JLabel clickBillPayment;
+    private javax.swing.JLabel clickMobileRecharge;
+    private javax.swing.JLabel clickMyBalence;
+    private javax.swing.JLabel clickPaymentDetails;
+    private javax.swing.JLabel clickSetting;
+    private javax.swing.JLabel menuBody;
+    private javax.swing.JLabel subTitleOfUserName;
     // End of variables declaration//GEN-END:variables
 }
