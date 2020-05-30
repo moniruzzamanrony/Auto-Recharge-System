@@ -20,9 +20,11 @@ public class Home extends javax.swing.JFrame {
         clickAddOfferAndReseller = new javax.swing.JLabel();
         clickBillPayment = new javax.swing.JLabel();
         clickMobileRecharge = new javax.swing.JLabel();
+        clickClose = new javax.swing.JLabel();
+        clickMinimize = new javax.swing.JLabel();
+        networkBar = new javax.swing.JLabel();
         menuBody = new javax.swing.JLabel();
         body_bg = new javax.swing.JLabel();
-        body_jpanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
@@ -81,18 +83,32 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().add(clickMobileRecharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 240, 40));
 
+        clickClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCloseMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 0, 30, 20));
+
+        clickMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickMinimizeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clickMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 0, 30, 20));
+
+        networkBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_bar.png"))); // NOI18N
+        getContentPane().add(networkBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, -1, -1));
+
         menuBody.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Manu.png"))); // NOI18N
         menuBody.setText("jLabel1");
         getContentPane().add(menuBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 256, 720));
 
         body_bg.setBackground(new java.awt.Color(255, 255, 255));
-        body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_mobile_recharge.png"))); // NOI18N
+        body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_my_balence.png"))); // NOI18N
         body_bg.setText("frgdfgh");
         body_bg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(body_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 1025, 720));
-
-        body_jpanel.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(body_jpanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 2, 1025, 720));
 
         pack();
         setLocationRelativeTo(null);
@@ -123,6 +139,15 @@ public class Home extends javax.swing.JFrame {
         System.out.println("auto.recharge.system.Home.clickSettingMouseClicked()");
     }//GEN-LAST:event_clickSettingMouseClicked
 
+    private void clickCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCloseMouseClicked
+        this.dispose();
+        System.out.println("auto.recharge.system.Home.clickCloseMouseClicked()");
+    }//GEN-LAST:event_clickCloseMouseClicked
+
+    private void clickMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMinimizeMouseClicked
+        System.out.println("auto.recharge.system.Home.clickMinimizeMouseClicked()");
+    }//GEN-LAST:event_clickMinimizeMouseClicked
+
  
     public void showDeshBoardPage() {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -145,14 +170,16 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LoggedUserName;
     private javax.swing.JLabel body_bg;
-    private javax.swing.JPanel body_jpanel;
     private javax.swing.JLabel clickAddOfferAndReseller;
     private javax.swing.JLabel clickBillPayment;
+    private javax.swing.JLabel clickClose;
+    private javax.swing.JLabel clickMinimize;
     private javax.swing.JLabel clickMobileRecharge;
     private javax.swing.JLabel clickMyBalence;
     private javax.swing.JLabel clickPaymentDetails;
     private javax.swing.JLabel clickSetting;
     private javax.swing.JLabel menuBody;
+    private javax.swing.JLabel networkBar;
     private javax.swing.JLabel subTitleOfUserName;
     // End of variables declaration//GEN-END:variables
 }
