@@ -22,8 +22,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class BuyNow extends javax.swing.JFrame {
-
+  private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+ 
     public BuyNow() {
         initComponents();
     }
@@ -247,7 +250,8 @@ public class BuyNow extends javax.swing.JFrame {
       String userEmail = getEmail.getText();
       String selectedPackage = getPackageName.getSelectedItem().toString().trim();
       String paymentTrsId = getTransactionId.getText();
-        System.out.println();                  
+      Pattern pattern = Pattern.compile(regex); 
+      Matcher matcher = pattern.matcher(userEmail);
       if(userName.equals("")){
           changeBorderColorForTextFeild(getName,"#FF2D00");  //#FF2D00 is Red Color
       }if(userPhoneNo.equals("")){
@@ -256,13 +260,15 @@ public class BuyNow extends javax.swing.JFrame {
           changeBorderColorForTextFeild(getEmail,"#FF2D00");  
       }if(paymentTrsId.equals("")){
           changeBorderColorForTextFeild(getTransactionId,"#FF2D00");  
+      }if(!matcher.matches()){
+          changeBorderColorForTextFeild(getEmail,"#FF2D00");  
       }else{
          genarateQRCode(userName,userPhoneNo,userEmail,selectedPackage,paymentTrsId);
       }if(!userName.equals("")){
           changeBorderColorForTextFeild(getName,"#DCDADA");  //#FF2D00 is deep black
       }if(!userPhoneNo.equals("")){
           changeBorderColorForTextFeild(getPhoneNumber,"#DCDADA");  
-      }if(!userEmail.equals("")){
+      }if(matcher.matches()){
           changeBorderColorForTextFeild(getEmail,"#DCDADA");  
       }if(!paymentTrsId.equals("")){
           changeBorderColorForTextFeild(getTransactionId,"#DCDADA");  
@@ -331,13 +337,10 @@ public class BuyNow extends javax.swing.JFrame {
                          .lastIndexOf('.') + 1), new File(filePath));
                  if(Configaration.netIsAvailable())
                  {
-                 sendMailToAuthority();
-               
+                 sendMailToAuthority(userPhoneNo,userEmail,userName,selectedPackage,paymentTrsId);
                  }
-                 else{
-             
-                 Popup.error("No INTERNET CONNECTION");
-                 
+                 else{            
+                 Popup.error("No INTERNET CONNECTION");                
                  }
                  
              } catch (Exception e) {
@@ -350,8 +353,10 @@ public class BuyNow extends javax.swing.JFrame {
         }
     }
      
-    private void sendMailToAuthority() {
-        Mail.send();
+    private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId) {
+        
+        Mail.send(fileName,"eproni29@gmail.com",userName,selectedPackage,paymentTrsId);
+        Mail.send(email,userName,selectedPackage,paymentTrsId);
     }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

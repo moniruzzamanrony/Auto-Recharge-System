@@ -18,10 +18,10 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Mail {
     
- public static void send() {
+ public static void send(String fileName, String email, String userName, String selectedPackage, String paymentTrsId) {
      
-    final String username = "itvillage029@gmail.com";
-    final String password = "ITvillage428854";
+    final String username = "itvillage29@gmail.com";
+    final String password = "itvillage428854@#";
 
     Properties props = new Properties();
     props.put("mail.smtp.auth", true);
@@ -38,11 +38,11 @@ public class Mail {
     try {
 
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("eproni29@gmail.com"));
+        message.setFrom(new InternetAddress(email));
         message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("eproni29@gmail.com"));
-        message.setSubject("Testing Subject");
-        message.setText("PFA");
+                InternetAddress.parse(email));
+        message.setSubject("Auto Recharge System");
+        message.setText("PFghfghfghfghA");
 
         MimeBodyPart messageBodyPart = new MimeBodyPart();
 
@@ -50,10 +50,9 @@ public class Mail {
 
         messageBodyPart = new MimeBodyPart();
         String file = "path of file to be attached";
-        String fileName = "attachmentName";
         DataSource source = new FileDataSource("01988841890.png");
         messageBodyPart.setDataHandler(new DataHandler(source));
-        messageBodyPart.setFileName(fileName);
+        messageBodyPart.setFileName(fileName+".png");
         multipart.addBodyPart(messageBodyPart);
 
         message.setContent(multipart);
@@ -61,7 +60,48 @@ public class Mail {
         System.out.println("Sending");
 
         Transport.send(message);
-        Popup.info("Thanks! Buying Processing\nAs soon as possible our team connect to you");
+       
+        System.out.println(" to send ADMIN");
+
+    } catch (MessagingException e) {
+        Popup.error("Somthing Wrong..\n  Try Again");
+        e.printStackTrace();
+    }
+  }
+
+    public static void send(String email, String userName, String selectedPackage, String paymentTrsId) {
+     
+    final String username = "itvillage29@gmail.com";
+    final String password = "itvillage428854@#";
+
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", true);
+    props.put("mail.smtp.starttls.enable", true);
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props,new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
+    try {
+
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(email));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(email));
+        message.setSubject("Auto Recharge System");
+        message.setText(userName);
+
+     
+        System.out.println("Sending");
+
+        Transport.send(message);
+      
+        Popup.info("Thanks!\n Buying Processing\nAs soon as possible our team connect to you");
+        
         System.out.println("Done");
 
     } catch (MessagingException e) {
