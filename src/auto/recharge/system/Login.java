@@ -312,7 +312,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_getPhoneNumberActionPerformed
 
     private void buyingRequest(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyingRequest
-        System.out.println("auto.recharge.system.Login.buyingRequest()");
+       this.setVisible(false);
+       BuyNow buyNow = new BuyNow();
+       buyNow.setVisible(true);
     }//GEN-LAST:event_buyingRequest
 
     private void exitLoginPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLoginPanel
