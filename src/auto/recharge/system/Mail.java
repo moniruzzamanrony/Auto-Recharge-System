@@ -146,7 +146,7 @@ public class Mail {
                 preparedStatement.setString(3, phoneNo);
                 preparedStatement.setString(4, "");
                 preparedStatement.setString(5, "");
-                preparedStatement.setString(6, "admin");
+                preparedStatement.setString(6, AES.encrypt("admin", PropertiesFile.getValueByKey("secretKey")));
                 preparedStatement.setString(7, selectedPackage);
                 preparedStatement.setString(8, computerMacAddress);
                 preparedStatement.setString(9, email);
@@ -191,7 +191,7 @@ public class Mail {
          String computerMacAddress;
         try {
             computerMacAddress = getMacAddress().replace(":", "");
-             return AES.encrypt(computerMacAddress, "itvillage428854");
+             return AES.encrypt(computerMacAddress, PropertiesFile.getValueByKey("secretKey"));
         } catch (UnknownHostException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SocketException ex) {

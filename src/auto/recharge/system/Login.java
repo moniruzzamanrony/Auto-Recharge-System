@@ -5,6 +5,13 @@
  */
 package auto.recharge.system;
 
+import com.itvillage.AES;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -322,12 +329,40 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-       this.setVisible(false);
-       Home home = new Home();
-       home.showDeshBoardPage();
+             String userId;
+             String phoneNo = null;
+             String password = null;
+             String macAddress;
+        try {
+            Connection conn= DbConnection.connect();
+            String sql = "SELECT user_id,phone_no,password,mac_address FROM user_info";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs= preparedStatement.executeQuery();
+            while (rs.next()) {
+                userId = rs.getString("user_id");
+                phoneNo = rs.getString("phone_no");
+                password = rs.getString("password");
+                macAddress = rs.getString("mac_address");
+            }
+           if(phoneNo.equals(getPhoneNumber.getText().trim()) && AES.decrypt(password, PropertiesFile.getValueByKey("secretKey")).equals(getPassword.getText().trim()))
+           {
+            this.setVisible(false);
+            Home home = new Home();
+            home.showDeshBoardPage();
+           }
+           else{
+              Popup.error("Try again\nWrong Phone Number Or Password");
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
     }//GEN-LAST:event_loginButMouseClicked
-
+    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress)
+        {
+           return false;
+        }
     /**
      * @param args the command line arguments
      */
