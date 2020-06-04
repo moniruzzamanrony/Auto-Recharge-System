@@ -22,10 +22,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-/**
- *
- * @author monirozzamanroni
- */
+
+
 public class Mail {
     private static Connection conn;
    
@@ -48,31 +46,33 @@ public class Mail {
             });
 
     try {
-
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(email));
         message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(email));
-        message.setSubject("Auto Recharge System");
-        message.setText("PFghfghfghfghA");
 
-        MimeBodyPart messageBodyPart = new MimeBodyPart();
-
-        Multipart multipart = new MimeMultipart();
-
+         message.setSubject("Thanks for applying");      
+        MimeMultipart multipart = new MimeMultipart("related");      
+        BodyPart messageBodyPart = new MimeBodyPart();
+       
+        String htmlText = "<b>Hello Employer</b> <br>Our company had recived "
+                + "your BUYING request.<br><h3 style=\"color:Red;\">Request Details</h3>.<br>User Id: "+getUserId()
+                +"<br>User name: "+userName+"<br>Email: "+email+"<br>Requested Package: "
+                +selectedPackage+"<br>TnxId: "+paymentTrsId+"<br>Phone NO: "+fileName;
+        
+        messageBodyPart.setContent(htmlText, "text/html");        
+        multipart.addBodyPart(messageBodyPart);      
         messageBodyPart = new MimeBodyPart();
-        String file = "path of file to be attached";
+        
         DataSource source = new FileDataSource(fileName+".png");
         messageBodyPart.setDataHandler(new DataHandler(source));
         messageBodyPart.setFileName(fileName+".png");
+
         multipart.addBodyPart(messageBodyPart);
-
         message.setContent(multipart);
-
-        System.out.println("Sending");
-
         Transport.send(message);
         DbConnection.delete("user_info");
+        
       if(!saveToDbUserInfo(fileName,email,userName,selectedPackage,paymentTrsId)){
        System.out.println("User Info Table Inserted");
        }
@@ -103,20 +103,27 @@ public class Mail {
 
     try {
 
-        Message message = new MimeMessage(session);
+      Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(email));
         message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(email));
-        message.setSubject("Auto Recharge System");
-        message.setText(userName);
 
-     
-        System.out.println("Sending");
-
-        Transport.send(message);
-      
-        Popup.info("Thanks!\n Buying Processing\nAs soon as possible our team connect to you");
         
+         message.setSubject("Buying Request from "+userName);         
+         MimeMultipart multipart = new MimeMultipart("related");
+        
+         BodyPart messageBodyPart = new MimeBodyPart();
+         String htmlText = "<b>Hello </b>"+ userName+"<br>We are recived your "
+                 + "BUYING request.Our team recently connect with you.<br>Your "
+                 + "user Id: "+getUserId()+"<br><h2 style=\"color:DodgerBlue;\">Helpline</h2>"
+                 +"<br><h3 style=\"color:Red;\">01988841890(Afser)</h3><br>";
+         messageBodyPart.setContent(htmlText, "text/html");      
+         multipart.addBodyPart(messageBodyPart);     
+         message.setContent(multipart);
+         
+        System.out.println("Sending");
+        Transport.send(message);   
+        Popup.info("Thanks!\n Buying Processing\nAs soon as possible our team connect to you");      
         System.out.println("Done");
 
     } catch (MessagingException e) {
@@ -129,21 +136,18 @@ public class Mail {
             String userName, String selectedPackage, String paymentTrsId) {
         conn = DbConnection.connect();
         try {
-            
-            String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
-            String computerMacAddress = getMacAddress().replace(":", "");
-            
+                                             
             String sql= "INSERT INTO user_info(user_id,name,phone_no,shop_name,address,password,active_package,mac_address,email) VALUES(?,?,?,?,?,?,?,?,?)";
-            
+            String computerMacAddress = getMacAddress().replace(":", "");
             try {
                PreparedStatement  preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, AES.encrypt(computerMacAddress, "itvillage428854"));
+                preparedStatement.setString(1, getUserId());
                 preparedStatement.setString(2, userName);
                 preparedStatement.setString(3, phoneNo);
                 preparedStatement.setString(4, "");
                 preparedStatement.setString(5, "");
                 preparedStatement.setString(6, "admin");
-                preparedStatement.setString(7, "");
+                preparedStatement.setString(7, selectedPackage);
                 preparedStatement.setString(8, computerMacAddress);
                 preparedStatement.setString(9, email);
                return preparedStatement.execute();
@@ -180,5 +184,19 @@ public class Mail {
             }
         }
         return macAddressBuilder.toString();
+    }
+    
+    public  static String getUserId()
+    {
+         String computerMacAddress;
+        try {
+            computerMacAddress = getMacAddress().replace(":", "");
+             return AES.encrypt(computerMacAddress, "itvillage428854");
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SocketException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return "User Not Found";
     }
 }

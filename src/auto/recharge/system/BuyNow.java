@@ -327,7 +327,8 @@ public class BuyNow extends javax.swing.JFrame {
              String computerMacAddress = getMacAddress().replace(":", "");
             
              try {
-                 String qrCodeData = userPhoneNo+"."+loggedUserNameOfComputer+"."+computerMacAddress;
+                 //Mobile NO.Camputer User Name.Computer Mac Address.User Id
+                 String qrCodeData = userPhoneNo+"."+loggedUserNameOfComputer+"."+computerMacAddress+"."+User.getUserId();
                  String filePath = userPhoneNo+".png";
                  String charset = "UTF-8"; // or "ISO-8859-1"
                  Map < EncodeHintType, ErrorCorrectionLevel > hintMap = new HashMap < EncodeHintType, ErrorCorrectionLevel > ();
