@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package auto.recharge.system;
 
 import java.awt.Color;
@@ -24,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 public class BuyNow extends javax.swing.JFrame {
   private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
  
@@ -244,7 +241,11 @@ public class BuyNow extends javax.swing.JFrame {
     }//GEN-LAST:event_getTransactionIdActionPerformed
 
     private void clickBuyNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickBuyNowActionPerformed
-     
+      int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+       if(result == 1){
+       
+       }
+       else{
       String userName = getName.getText();
       String userPhoneNo = getPhoneNumber.getText();
       String userEmail = getEmail.getText();
@@ -264,7 +265,9 @@ public class BuyNow extends javax.swing.JFrame {
           changeBorderColorForTextFeild(getEmail,"#FF2D00");  
       }else{
          genarateQRCode(userName,userPhoneNo,userEmail,selectedPackage,paymentTrsId);
-      }if(!userName.equals("")){
+      }
+      
+      if(!userName.equals("")){
           changeBorderColorForTextFeild(getName,"#DCDADA");  //#FF2D00 is deep black
       }if(!userPhoneNo.equals("")){
           changeBorderColorForTextFeild(getPhoneNumber,"#DCDADA");  
@@ -273,7 +276,7 @@ public class BuyNow extends javax.swing.JFrame {
       }if(!paymentTrsId.equals("")){
           changeBorderColorForTextFeild(getTransactionId,"#DCDADA");  
       }
-      
+    }
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -319,8 +322,7 @@ public class BuyNow extends javax.swing.JFrame {
     }
      private void genarateQRCode(String userName, String userPhoneNo, String userEmail, String selectedPackage, String paymentTrsId) {
         
-         try {
-          
+         try {          
              String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
              String computerMacAddress = getMacAddress().replace(":", "");
             
