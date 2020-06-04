@@ -241,11 +241,9 @@ public class BuyNow extends javax.swing.JFrame {
     }//GEN-LAST:event_getTransactionIdActionPerformed
 
     private void clickBuyNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickBuyNowActionPerformed
-      int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-       if(result == 1){
-       
-       }
-       else{
+      
+    
+           
       String userName = getName.getText();
       String userPhoneNo = getPhoneNumber.getText();
       String userEmail = getEmail.getText();
@@ -264,7 +262,15 @@ public class BuyNow extends javax.swing.JFrame {
       }if(!matcher.matches()){
           changeBorderColorForTextFeild(getEmail,"#FF2D00");  
       }else{
-         genarateQRCode(userName,userPhoneNo,userEmail,selectedPackage,paymentTrsId);
+        clickBuyNow.setText("Please Wait..");
+       int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+       if(result == 1){
+         clickBuyNow.setText("Buy Now");
+       }
+       else{
+          clickBuyNow.setText("Buy Now");
+          genarateQRCode(userName,userPhoneNo,userEmail,selectedPackage,paymentTrsId);
+       }
       }
       
       if(!userName.equals("")){
@@ -276,7 +282,7 @@ public class BuyNow extends javax.swing.JFrame {
       }if(!paymentTrsId.equals("")){
           changeBorderColorForTextFeild(getTransactionId,"#DCDADA");  
       }
-    }
+    
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
