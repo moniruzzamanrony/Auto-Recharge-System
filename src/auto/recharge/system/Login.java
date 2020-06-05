@@ -138,6 +138,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Forgot Password ?");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout inputPanelLayout = new javax.swing.GroupLayout(inputPanel);
         inputPanel.setLayout(inputPanelLayout);
@@ -317,7 +322,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_buyingRequest
 
     private void exitLoginPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLoginPanel
-       this.dispose();
+       System.exit(0);
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
@@ -325,6 +330,10 @@ public class Login extends javax.swing.JFrame {
         login();
 
     }//GEN-LAST:event_loginButMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+      Popup.info("Please,\nCall us to password reset\n"+PropertiesFile.getValueByKey("number1")+","+PropertiesFile.getValueByKey("number2"));
+    }//GEN-LAST:event_jLabel4MouseClicked
     
 
 
