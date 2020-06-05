@@ -2,17 +2,24 @@
 package auto.recharge.system;
 
 import com.itvillage.AES;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 
 
 public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
+        keyListener();
+        setHint();
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +30,7 @@ public class Login extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         inputPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        getPassword = new javax.swing.JTextField();
+        getPasswordBypt = new javax.swing.JPasswordField();
         getPhoneNumber = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -57,6 +64,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
+
+        getPasswordBypt.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
 
         getPhoneNumber.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         getPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
@@ -139,10 +148,10 @@ public class Login extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(getPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(getPasswordBypt)
+                .addGap(30, 30, 30))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inputPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -171,16 +180,16 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getPhoneNumber))
                 .addGap(18, 18, 18)
-                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(getPassword))
+                .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getPasswordBypt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(69, 69, 69))
         );
 
         brandingPanel.setBackground(new java.awt.Color(133, 47, 209));
@@ -312,59 +321,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-             String userId;
-             String phoneNo = null;
-             String password = null;
-             String macAddress;
-        try {
-            Connection conn= DbConnection.connect();
-            String sql = "SELECT user_id,phone_no,password,mac_address FROM user_info";
             
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet rs= preparedStatement.executeQuery();
-            while (rs.next()) {
-                userId = rs.getString("user_id");
-                phoneNo = rs.getString("phone_no");
-                password = rs.getString("password");
-                macAddress = rs.getString("mac_address");
-            }
-           if(phoneNo.equals(getPhoneNumber.getText().trim()) 
-                   && AES.decrypt(password, PropertiesFile.getValueByKey("secretKey"))
-                           .equals(getPassword.getText().trim()))
-           {
-            this.setVisible(false);
-            Home home = new Home();
-            home.showDeshBoardPage();
-           }
-           else{
-              Popup.error("Try again\nWrong Phone Number Or Password");
-           }
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      
+        login();
+
     }//GEN-LAST:event_loginButMouseClicked
     
-     /**
-     * TODO: Verify Serial key validation
-     */
-    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress)
-      {
-         
-         return false;
-      }
-   
-    public static void main(String args[]) {
-    
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-                 
-                 appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
-                 buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JLabel appName;
@@ -372,7 +334,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel brandingPanel;
     private static javax.swing.JLabel buyNowText;
     private javax.swing.JLabel exitBut;
-    private javax.swing.JTextField getPassword;
+    private javax.swing.JPasswordField getPasswordBypt;
     private javax.swing.JTextField getPhoneNumber;
     private javax.swing.JPanel inputPanel;
     private javax.swing.JLabel jLabel1;
@@ -389,4 +351,103 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel loginBut;
     // End of variables declaration//GEN-END:variables
+
+    private void login() {     
+             String userId;
+             String phoneNo = null;
+             String password = null;
+             String macAddress;
+        try {
+            Connection conn= DbConnection.connect();
+            String sql = "SELECT user_id,phone_no,password,mac_address FROM user_info";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs= preparedStatement.executeQuery();
+            while (rs.next()) {
+                userId = rs.getString("user_id");
+                phoneNo = rs.getString("phone_no");
+                password = rs.getString("password");
+                macAddress = rs.getString("mac_address");
+            }
+            System.out.println(phoneNo);
+           if(getPhoneNumber.getText().trim().equals(""))
+           {
+           getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red,4));
+           }
+           if(getPasswordBypt.getText().trim().equals(""))
+           {
+           getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red,4));
+           }else{
+           
+               if(phoneNo.equals(getPhoneNumber.getText().trim()) 
+                   && AES.decrypt(password, PropertiesFile.getValueByKey("secretKey"))
+                           .equals(getPasswordBypt.getText().trim()))
+           {
+            this.setVisible(false);
+            Home home = new Home();
+            home.showDeshBoardPage();
+           }
+           else{
+              Popup.error("Try again\nWrong Phone Number Or Password");
+           }
+          }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     /**
+     * TODO: Verify Serial key validation
+     */
+    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress)
+      {
+         
+         return false;
+      }
+   
+    public static void main(String args[]) {
+    
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);                 
+                 appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
+                 buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
+                 
+                 //SET Hint HERE
+                 
+                 
+            }
+        });
+    }
+    
+    public void keyListener()
+    {
+    
+      getPhoneNumber.addKeyListener(new KeyAdapter() {
+          @Override
+          public void keyPressed(KeyEvent ke) {
+             if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+             {
+                getPasswordBypt.requestFocusInWindow();
+               
+             }
+          }         
+       });
+      
+      getPasswordBypt.addKeyListener(new KeyAdapter() {
+          @Override
+          public void keyPressed(KeyEvent ke) {
+             if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+             {          
+               login();
+             }
+          }     
+      });
+ 
+    }
+
+    private void setHint() {
+        getPhoneNumber.setUI(new HintTextFieldUI("01XX-XXXXXXX"));
+       
+    }
 }

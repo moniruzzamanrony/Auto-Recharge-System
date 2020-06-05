@@ -303,9 +303,8 @@ public class BuyNow extends javax.swing.JFrame {
        jTextField.setBorder(BorderFactory.createLineBorder(Color.decode(colorCode)));
     }
     
-    public String getMacAddress() throws UnknownHostException,
-            SocketException
-    {
+    public String getMacAddress() throws UnknownHostException,SocketException{
+        
         InetAddress ipAddress = InetAddress.getLocalHost();
         NetworkInterface networkInterface = NetworkInterface
                 .getByInetAddress(ipAddress);
@@ -333,8 +332,13 @@ public class BuyNow extends javax.swing.JFrame {
              String computerMacAddress = getMacAddress().replace(":", "");
             
              try {
-                 //Mobile NO.Camputer User Name.Computer Mac Address.User Id
-                 String qrCodeData = userPhoneNo+"."+loggedUserNameOfComputer+"."+computerMacAddress+"."+User.getUserId();
+                 /*
+                 * mobileNO.camputerUserName.computerMacAddress.userId.packageName in All LOWER CASE
+                 */
+                 String qrCodeData = userPhoneNo+"."+loggedUserNameOfComputer.toLowerCase()
+                         +"."+computerMacAddress.toLowerCase()+"."+User.getUserId().toLowerCase()
+                         +"."+selectedPackage.trim().toLowerCase();
+                 
                  String filePath = userPhoneNo+".png";
                  String charset = "UTF-8"; // or "ISO-8859-1"
                  Map < EncodeHintType, ErrorCorrectionLevel > hintMap = new HashMap < EncodeHintType, ErrorCorrectionLevel > ();
