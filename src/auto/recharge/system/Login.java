@@ -326,8 +326,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-            
-        login();
+           this.setVisible(false);
+            Home home = new Home();
+            home.showDeshBoardPage();  
+       // login();
 
     }//GEN-LAST:event_loginButMouseClicked
 

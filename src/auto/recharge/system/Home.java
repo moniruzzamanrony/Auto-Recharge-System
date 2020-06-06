@@ -1,15 +1,22 @@
 
 package auto.recharge.system;
 
-import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 
 
 public class Home extends javax.swing.JFrame {
-
+   
     public Home() {
         initComponents();
         popupMenu.add(confirmPopUp);
+        setFocus();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,13 +38,18 @@ public class Home extends javax.swing.JFrame {
         mobileRechargePanel = new javax.swing.JPanel();
         rechargeDetailsTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        clickClose = new javax.swing.JLabel();
+        clickMinimize = new javax.swing.JLabel();
+        networkBar = new javax.swing.JLabel();
+        helpBar = new javax.swing.JLabel();
+        clickGroupLoad = new javax.swing.JButton();
+        clickUssdDail = new javax.swing.JButton();
         getPrepaidOrPostpaid = new javax.swing.JComboBox<>();
         getAmmountInTk = new javax.swing.JTextField();
         getMobileNumber = new javax.swing.JTextField();
         clickContactList = new javax.swing.JLabel();
         clickSend = new javax.swing.JLabel();
         selectedSimOperatorIcon = new javax.swing.JLabel();
-        networkBar = new javax.swing.JLabel();
         body_bg = new javax.swing.JLabel();
         billPaymentPanel = new javax.swing.JPanel();
         getPrepaidOrPostpaid1 = new javax.swing.JComboBox<>();
@@ -156,17 +168,17 @@ public class Home extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "TrxId", "Mobile No.", "Ammount", "Date & Time"
+                "Id", "Mobile No.", "Ammount", "Date & Time", "Status", "TrxId"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -175,14 +187,40 @@ public class Home extends javax.swing.JFrame {
         });
         jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         rechargeDetailsTable.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("TrxId");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Mobile No.");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Ammount");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Date & Time");
-        }
 
         mobileRechargePanel.add(rechargeDetailsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 960, 140));
+
+        clickClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCloseMouseClicked(evt);
+            }
+        });
+        mobileRechargePanel.add(clickClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 5, 20, 30));
+
+        clickMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickMinimizeMouseClicked(evt);
+            }
+        });
+        mobileRechargePanel.add(clickMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 5, 20, 30));
+
+        networkBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_bar.png"))); // NOI18N
+        mobileRechargePanel.add(networkBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 5, -1, -1));
+
+        helpBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/HelplineBar.png"))); // NOI18N
+        helpBar.setText("jLabel3");
+        mobileRechargePanel.add(helpBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 0, 260, 112));
+
+        clickGroupLoad.setText("Group Load");
+        mobileRechargePanel.add(clickGroupLoad, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 270, 120, 40));
+
+        clickUssdDail.setText("Ussd Dail");
+        clickUssdDail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickUssdDailActionPerformed(evt);
+            }
+        });
+        mobileRechargePanel.add(clickUssdDail, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 220, 120, 40));
 
         getPrepaidOrPostpaid.setBackground(new java.awt.Color(255, 255, 255));
         getPrepaidOrPostpaid.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -201,11 +239,21 @@ public class Home extends javax.swing.JFrame {
         getAmmountInTk.setForeground(new java.awt.Color(0, 0, 0));
         getAmmountInTk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getAmmountInTk.setBorder(null);
+        getAmmountInTk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                getAmmountInTkMouseClicked(evt);
+            }
+        });
         mobileRechargePanel.add(getAmmountInTk, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 520, 90));
 
         getMobileNumber.setFont(new java.awt.Font("Arial", 1, 100)); // NOI18N
         getMobileNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getMobileNumber.setBorder(null);
+        getMobileNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getMobileNumberActionPerformed(evt);
+            }
+        });
         mobileRechargePanel.add(getMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 670, 90));
 
         clickContactList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -226,10 +274,7 @@ public class Home extends javax.swing.JFrame {
         selectedSimOperatorIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         selectedSimOperatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/sim.png"))); // NOI18N
         selectedSimOperatorIcon.setToolTipText("");
-        mobileRechargePanel.add(selectedSimOperatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 50, 40));
-
-        networkBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_bar.png"))); // NOI18N
-        mobileRechargePanel.add(networkBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        mobileRechargePanel.add(selectedSimOperatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 50, 50));
 
         body_bg.setBackground(new java.awt.Color(255, 255, 255));
         body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_mobile_recharge.png"))); // NOI18N
@@ -473,7 +518,6 @@ public class Home extends javax.swing.JFrame {
         settingPanel.add(myProfile1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 1010, 40));
 
         buyOfferPack.setText("Buy Offer Pack");
-        buyOfferPack.setActionCommand("Buy Offer Pack");
         buyOfferPack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyOfferPackActionPerformed(evt);
@@ -539,9 +583,20 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getPrepaidOrPostpaidActionPerformed
 
     private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
-      
-       
-        popupMenu.setVisible(true);
+       String phoneNumberRequested = getMobileNumber.getText();
+       String ammountRequested = getAmmountInTk.getText();
+           
+       if(!phoneNumberRequested.equals("")  && !ammountRequested.equals("") 
+               && phoneNumberRequested.matches("[0-9]+") 
+               && ammountRequested.matches("[0-9]+")){
+           
+           recharge();
+       }
+       else{
+       getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
+       getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
+       }
+           
     }//GEN-LAST:event_clickSendMouseClicked
 
     private void getPrepaidOrPostpaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPrepaidOrPostpaid1ActionPerformed
@@ -596,6 +651,26 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_softwareSettingActionPerformed
 
+    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getMobileNumberActionPerformed
+
+    private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickUssdDailActionPerformed
+
+    private void clickCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCloseMouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_clickCloseMouseClicked
+
+    private void clickMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMinimizeMouseClicked
+       this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_clickMinimizeMouseClicked
+
+    private void getAmmountInTkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_getAmmountInTkMouseClicked
+        setOperatorIcon();
+    }//GEN-LAST:event_getAmmountInTkMouseClicked
+
  
     public void showDeshBoardPage() {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -634,7 +709,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel clickAddOfferAndReseller;
     private javax.swing.JLabel clickAdvanceSearch;
     private javax.swing.JLabel clickBillPayment;
+    private javax.swing.JLabel clickClose;
     private javax.swing.JLabel clickContactList;
+    private javax.swing.JButton clickGroupLoad;
+    private javax.swing.JLabel clickMinimize;
     private javax.swing.JLabel clickMobileRecharge;
     private javax.swing.JLabel clickMyBalence;
     private javax.swing.JLabel clickNewReseller;
@@ -646,6 +724,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel clickSend4;
     private javax.swing.JLabel clickSetting;
     private javax.swing.JLabel clickSimOffer;
+    private javax.swing.JButton clickUssdDail;
     private javax.swing.JPanel confirmPopUp;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getMobileNumber;
@@ -655,6 +734,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getSelectedSimOperator;
     private javax.swing.JLabel header;
     private javax.swing.JLabel header1;
+    private javax.swing.JLabel helpBar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -684,4 +764,123 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton softwareSetting;
     private javax.swing.JLabel subTitleOfUserName;
     // End of variables declaration//GEN-END:variables
+
+    private void recharge() {      
+       int result= Popup.display("Recharge Confirmation",getMobileNumber.getText()
+                ,getAmmountInTk.getText()+" tk | "+getPrepaidOrPostpaid.getSelectedItem().toString(),"OK","Edit");
+       
+       if(result == Popup.OK)
+       {
+            rechargeDoneProcess();
+       }
+       else if(result == Popup.EXIT)
+       {
+           Icon icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
+           selectedSimOperatorIcon.setIcon(icon);
+           getMobileNumber.setText("");
+           getAmmountInTk.setText("");
+           getMobileNumber.requestFocusInWindow();
+           
+       }       
+       
+    }
+    
+    public void setFocus()
+    {
+      getMobileNumber.addKeyListener(new KeyAdapter() {
+               @Override
+               public void keyPressed(KeyEvent ke) {
+                   if(ke.getKeyCode() == KeyEvent.VK_ENTER){                 
+                     setOperatorIcon();
+                    }
+                    else{
+                                                  
+                    }                  
+               }               
+            });
+      getAmmountInTk.addKeyListener(new KeyAdapter() {
+               @Override
+               public void keyPressed(KeyEvent ke) {
+                   if(ke.getKeyCode() == KeyEvent.VK_ENTER)
+                   { 
+                       if(!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+"))
+                       {
+                      recharge();
+                      getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                       }
+                       else{
+                          getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                       }
+                   }
+               }
+               
+            });      
+    }
+    
+    private void setOperatorIcon() {        
+       if(getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+"))
+              {
+              getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
+              }
+              else{
+                Icon icon;         
+                   switch(getMobileNumber.getText().substring(0, 3))
+                    {
+                            case "019" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            case "014" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+
+                                break;
+                            case "017" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            case "013" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            case "018" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/robi_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            case "015" :
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/tele_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            case "016" : 
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                icon = new ImageIcon(getClass().getResource("/resources/images/airtel_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getAmmountInTk.requestFocusInWindow();
+                                break;
+                            default:
+                                icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
+                                 break;
+            }
+     }
+   }   
+
+    private void rechargeDoneProcess() {
+       String phoneNumberRequested = getMobileNumber.getText();
+       String ammountRequested = getAmmountInTk.getText();
+       String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+    }
 }
