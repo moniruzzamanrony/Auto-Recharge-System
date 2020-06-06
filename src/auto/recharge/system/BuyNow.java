@@ -26,6 +26,7 @@ public class BuyNow extends javax.swing.JFrame {
  
     public BuyNow() {
         initComponents();
+        new BuyNow().setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -371,13 +372,7 @@ public class BuyNow extends javax.swing.JFrame {
         Mail.send(fileName,"eproni29@gmail.com",userName,selectedPackage,paymentTrsId);
         Mail.send(email,userName,selectedPackage,paymentTrsId);
     }
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuyNow().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
