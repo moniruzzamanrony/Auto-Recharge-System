@@ -26,7 +26,7 @@ public class BuyNow extends javax.swing.JFrame {
  
     public BuyNow() {
         initComponents();
-        new BuyNow().setVisible(true);
+       // new BuyNow().setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
