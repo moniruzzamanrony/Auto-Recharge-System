@@ -40,6 +40,7 @@ public class Mail {
     props.put("mail.smtp.port", "587");
 
     Session session = Session.getInstance(props,new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(USERNAME, PASSWORD);
                 }
@@ -80,14 +81,13 @@ public class Mail {
 
     } catch (MessagingException e) {
         Popup.error("Somthing Wrong..\n  Try Again");
-        e.printStackTrace();
     }
   }
 
     public static void send(String email, String userName, String selectedPackage, String paymentTrsId) {
      
-    final String username = "itvillage29@gmail.com";
-    final String password = "itvillage428854@#";
+    final String username = Configaration.getPropertiesValueByKey("senderMail");
+    final String password = Configaration.getPropertiesValueByKey("senderMailPassword");
 
     Properties props = new Properties();
     props.put("mail.smtp.auth", true);
@@ -96,6 +96,7 @@ public class Mail {
     props.put("mail.smtp.port", "587");
 
     Session session = Session.getInstance(props,new javax.mail.Authenticator() {
+                @Override
                 protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication(username, password);
                 }
@@ -128,7 +129,6 @@ public class Mail {
 
     } catch (MessagingException e) {
         Popup.error("Somthing Wrong..\n  Try Again");
-        e.printStackTrace();
     }
   }
 
@@ -146,7 +146,7 @@ public class Mail {
                 preparedStatement.setString(3, phoneNo);
                 preparedStatement.setString(4, "");
                 preparedStatement.setString(5, "");
-                preparedStatement.setString(6, AES.encrypt("admin", PropertiesFile.getValueByKey("secretKey")));
+                preparedStatement.setString(6, AES.encrypt("admin", Configaration.getPropertiesValueByKey("secretKey")));
                 preparedStatement.setString(7, selectedPackage);
                 preparedStatement.setString(8, computerMacAddress);
                 preparedStatement.setString(9, email);
@@ -156,9 +156,7 @@ public class Mail {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SocketException ex) {
+        } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
@@ -191,10 +189,8 @@ public class Mail {
          String computerMacAddress;
         try {
             computerMacAddress = getMacAddress().replace(":", "");
-             return AES.encrypt(computerMacAddress, PropertiesFile.getValueByKey("secretKey"));
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SocketException ex) {
+             return AES.encrypt(computerMacAddress, Configaration.getPropertiesValueByKey("secretKey"));
+        } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
        return "User Not Found";

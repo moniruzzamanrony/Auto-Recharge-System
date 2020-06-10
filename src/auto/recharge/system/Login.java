@@ -1,11 +1,9 @@
-
 package auto.recharge.system;
 
 import com.itvillage.AES;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 
-
 public class Login extends javax.swing.JFrame {
+
     public Login() {
         initComponents();
         keyListener();
@@ -316,27 +314,26 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_getPhoneNumberActionPerformed
 
     private void buyingRequest(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyingRequest
-       this.setVisible(false);
-       BuyNow buyNow = new BuyNow();
-       buyNow.setVisible(true);
+        this.setVisible(false);
+        BuyNow buyNow = new BuyNow();
+        buyNow.setVisible(true);
     }//GEN-LAST:event_buyingRequest
 
     private void exitLoginPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLoginPanel
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-           this.setVisible(false);
-            Home home = new Home();
-            home.showDeshBoardPage();  
-       // login();
+        this.setVisible(false);
+        Home home = new Home();
+        home.showDeshBoardPage();
+        // login();
 
     }//GEN-LAST:event_loginButMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-      Popup.info("Please,\nCall us to password reset\n"+PropertiesFile.getValueByKey("number1")+","+PropertiesFile.getValueByKey("number2"));
+        Popup.info("Please,\nCall us to password reset\n" + Configaration.getPropertiesValueByKey("number1") + "," + Configaration.getPropertiesValueByKey("number2"));
     }//GEN-LAST:event_jLabel4MouseClicked
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -362,18 +359,19 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel loginBut;
     // End of variables declaration//GEN-END:variables
+//    ---------------------------------- Custom Methods ----------------------------------------------------
 
-    private void login() {     
-             String userId;
-             String phoneNo = null;
-             String password = null;
-             String macAddress;
+    private void login() {
+        String userId;
+        String phoneNo = null;
+        String password = null;
+        String macAddress;
         try {
-            Connection conn= DbConnection.connect();
+            Connection conn = DbConnection.connect();
             String sql = "SELECT user_id,phone_no,password,mac_address FROM user_info";
-            
+
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            ResultSet rs= preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 userId = rs.getString("user_id");
                 phoneNo = rs.getString("phone_no");
@@ -381,80 +379,76 @@ public class Login extends javax.swing.JFrame {
                 macAddress = rs.getString("mac_address");
             }
             System.out.println(phoneNo);
-           if(getPhoneNumber.getText().trim().equals(""))
-           {
-           getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red,4));
-           }
-           if(getPasswordBypt.getText().trim().equals(""))
-           {
-           getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red,4));
-           }else{
-           
-               if(phoneNo.equals(getPhoneNumber.getText().trim()) 
-                   && AES.decrypt(password, PropertiesFile.getValueByKey("secretKey"))
-                           .equals(getPasswordBypt.getText().trim()))
-           {
-            this.setVisible(false);
-            Home home = new Home();
-            home.showDeshBoardPage();
-           }
-           else{
-              Popup.error("Try again\nWrong Phone Number Or Password");
-           }
-          }
+            if (getPhoneNumber.getText().trim().equals("")) {
+                getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+            }
+            if (getPasswordBypt.getText().trim().equals("")) {
+                getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+            } else {
+
+                if (phoneNo.equals(getPhoneNumber.getText().trim())
+                        && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
+                                .equals(getPasswordBypt.getText().trim())) {
+                    this.setVisible(false);
+                    Home home = new Home();
+                    home.showDeshBoardPage();
+                } else {
+                    Popup.error("Try again\nWrong Phone Number Or Password");
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-     /**
+
+    /**
      * TODO: Verify Serial key validation
+     * @param userId
+     * @param phoneNO
+     * @param macAddress
+     * @return 
      */
-    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress)
-      {
-         
-         return false;
-      }
-   
+    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress) {
+
+        return false;
+    }
+
     public static void main(String args[]) {
-    
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);                 
-                 appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
-                 buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");              
+                new Login().setVisible(true);
+                appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
+                buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
             }
         });
     }
-    
-    public void keyListener()
-    {
-    
-      getPhoneNumber.addKeyListener(new KeyAdapter() {
-          @Override
-          public void keyPressed(KeyEvent ke) {
-             if(ke.getKeyCode() == KeyEvent.VK_ENTER)
-             {
-                getPasswordBypt.requestFocusInWindow();
-               
-             }
-          }         
-       });
-      
-      getPasswordBypt.addKeyListener(new KeyAdapter() {
-          @Override
-          public void keyPressed(KeyEvent ke) {
-             if(ke.getKeyCode() == KeyEvent.VK_ENTER)
-             {          
-               login();
-             }
-          }     
-      });
- 
+
+    public void keyListener() {
+
+        getPhoneNumber.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getPasswordBypt.requestFocusInWindow();
+
+                }
+            }
+        });
+
+        getPasswordBypt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    login();
+                }
+            }
+        });
+
     }
 
     private void setHint() {
         getPhoneNumber.setUI(new HintTextFieldUI("01XX-XXXXXXX"));
-       
+
     }
 }

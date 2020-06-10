@@ -1,4 +1,3 @@
-
 package auto.recharge.system;
 
 import java.awt.Color;
@@ -8,7 +7,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter; 
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
@@ -21,12 +20,14 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+
 public class BuyNow extends javax.swing.JFrame {
-  private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
- 
+
+    private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
     public BuyNow() {
         initComponents();
-       // new BuyNow().setVisible(true);
+        // new BuyNow().setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -242,48 +243,52 @@ public class BuyNow extends javax.swing.JFrame {
     }//GEN-LAST:event_getTransactionIdActionPerformed
 
     private void clickBuyNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickBuyNowActionPerformed
-      
-    
-           
-      String userName = getName.getText();
-      String userPhoneNo = getPhoneNumber.getText();
-      String userEmail = getEmail.getText();
-      String selectedPackage = getPackageName.getSelectedItem().toString().trim();
-      String paymentTrsId = getTransactionId.getText();
-      Pattern pattern = Pattern.compile(regex); 
-      Matcher matcher = pattern.matcher(userEmail);
-      if(userName.equals("")){
-          changeBorderColorForTextFeild(getName,"#FF2D00");  //#FF2D00 is Red Color
-      }if(userPhoneNo.equals("")){
-          changeBorderColorForTextFeild(getPhoneNumber,"#FF2D00");  
-      }if(userEmail.equals("")){
-          changeBorderColorForTextFeild(getEmail,"#FF2D00");  
-      }if(paymentTrsId.equals("")){
-          changeBorderColorForTextFeild(getTransactionId,"#FF2D00");  
-      }if(!matcher.matches()){
-          changeBorderColorForTextFeild(getEmail,"#FF2D00");  
-      }else{
-        clickBuyNow.setText("Please Wait..");
-       int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-       if(result == 1){
-         clickBuyNow.setText("Buy Now");
-       }
-       else{
-          clickBuyNow.setText("Buy Now");
-          genarateQRCode(userName,userPhoneNo,userEmail,selectedPackage,paymentTrsId);
-       }
-      }
-      
-      if(!userName.equals("")){
-          changeBorderColorForTextFeild(getName,"#DCDADA");  //#FF2D00 is deep black
-      }if(!userPhoneNo.equals("")){
-          changeBorderColorForTextFeild(getPhoneNumber,"#DCDADA");  
-      }if(matcher.matches()){
-          changeBorderColorForTextFeild(getEmail,"#DCDADA");  
-      }if(!paymentTrsId.equals("")){
-          changeBorderColorForTextFeild(getTransactionId,"#DCDADA");  
-      }
-    
+
+        String userName = getName.getText();
+        String userPhoneNo = getPhoneNumber.getText();
+        String userEmail = getEmail.getText();
+        String selectedPackage = getPackageName.getSelectedItem().toString().trim();
+        String paymentTrsId = getTransactionId.getText();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(userEmail);
+        if (userName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getName, "#FF2D00");  //#FF2D00 is Red Color
+        }
+        if (userPhoneNo.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#FF2D00");
+        }
+        if (userEmail.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
+        }
+        if (paymentTrsId.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getTransactionId, "#FF2D00");
+        }
+        if (!matcher.matches()) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
+        } else {
+            clickBuyNow.setText("Please Wait..");
+            int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (result == 1) {
+                clickBuyNow.setText("Buy Now");
+            } else {
+                clickBuyNow.setText("Buy Now");
+                genarateQRCode(userName, userPhoneNo, userEmail, selectedPackage, paymentTrsId);
+            }
+        }
+
+        if (!userName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getName, "#DCDADA");  //#FF2D00 is deep black
+        }
+        if (!userPhoneNo.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#DCDADA");
+        }
+        if (matcher.matches()) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#DCDADA");
+        }
+        if (!paymentTrsId.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getTransactionId, "#DCDADA");
+        }
+
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -291,88 +296,15 @@ public class BuyNow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void clickBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBackMouseClicked
-      this.setVisible(false);
-      Login login = new Login();
-      login.setVisible(true);
+        this.setVisible(false);
+        Login login = new Login();
+        login.setVisible(true);
     }//GEN-LAST:event_clickBackMouseClicked
 
     private void getSelectedPackage(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getSelectedPackage
-       
+
     }//GEN-LAST:event_getSelectedPackage
-    
-    private void changeBorderColorForTextFeild(javax.swing.JTextField jTextField,String colorCode) {
-       jTextField.setBorder(BorderFactory.createLineBorder(Color.decode(colorCode)));
-    }
-    
-    public String getMacAddress() throws UnknownHostException,SocketException{
-        
-        InetAddress ipAddress = InetAddress.getLocalHost();
-        NetworkInterface networkInterface = NetworkInterface
-                .getByInetAddress(ipAddress);
-        byte[] macAddressBytes = networkInterface.getHardwareAddress();
-        StringBuilder macAddressBuilder = new StringBuilder();
 
-        for (int macAddressByteIndex = 0; macAddressByteIndex < macAddressBytes.length; macAddressByteIndex++)
-        {
-            String macAddressHexByte = String.format("%02X",
-                    macAddressBytes[macAddressByteIndex]);
-            macAddressBuilder.append(macAddressHexByte);
-
-            if (macAddressByteIndex != macAddressBytes.length - 1)
-            {
-                macAddressBuilder.append(":");
-            }
-        }
-
-        return macAddressBuilder.toString();
-    }
-     private void genarateQRCode(String userName, String userPhoneNo, String userEmail, String selectedPackage, String paymentTrsId) {
-        
-         try {          
-             String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
-             String computerMacAddress = getMacAddress().replace(":", "");
-            
-             try {
-                 /*
-                 * mobileNO.camputerUserName.computerMacAddress.userId.packageName in All LOWER CASE
-                 */
-                 String qrCodeData = userPhoneNo+"."+loggedUserNameOfComputer.toLowerCase()
-                         +"."+computerMacAddress.toLowerCase()+"."+User.getUserId().toLowerCase()
-                         +"."+selectedPackage.trim().toLowerCase();
-                 
-                 String filePath = userPhoneNo+".png";
-                 String charset = "UTF-8"; // or "ISO-8859-1"
-                 Map < EncodeHintType, ErrorCorrectionLevel > hintMap = new HashMap < EncodeHintType, ErrorCorrectionLevel > ();
-                 hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-                 BitMatrix matrix = new MultiFormatWriter().encode(
-                         new String(qrCodeData.getBytes(charset), charset),
-                         BarcodeFormat.QR_CODE, 200, 200, hintMap);
-                 MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
-                         .lastIndexOf('.') + 1), new File(filePath));
-                 if(Configaration.netIsAvailable())
-                 {
-                 sendMailToAuthority(userPhoneNo,userEmail,userName,selectedPackage,paymentTrsId);
-                 }
-                 else{            
-                 Popup.error("No INTERNET CONNECTION");                
-                 }
-                 
-             } catch (Exception e) {
-                 System.err.println(e);
-             }
-         } catch (UnknownHostException ex) {
-            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null,ex);
-        } catch (SocketException ex) {
-            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-     
-    private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId) {
-        
-        Mail.send(fileName,"eproni29@gmail.com",userName,selectedPackage,paymentTrsId);
-        Mail.send(email,userName,selectedPackage,paymentTrsId);
-    }
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -407,9 +339,71 @@ public class BuyNow extends javax.swing.JFrame {
     private javax.swing.JLabel qrCode;
     // End of variables declaration//GEN-END:variables
 
- 
+//    ---------------------------------- Custom Methods ----------------------------------------------------
+    
+    public String getMacAddress() throws UnknownHostException, SocketException {
 
-   
+        InetAddress ipAddress = InetAddress.getLocalHost();
+        NetworkInterface networkInterface = NetworkInterface
+                .getByInetAddress(ipAddress);
+        byte[] macAddressBytes = networkInterface.getHardwareAddress();
+        StringBuilder macAddressBuilder = new StringBuilder();
 
-  
+        for (int macAddressByteIndex = 0; macAddressByteIndex < macAddressBytes.length; macAddressByteIndex++) {
+            String macAddressHexByte = String.format("%02X",
+                    macAddressBytes[macAddressByteIndex]);
+            macAddressBuilder.append(macAddressHexByte);
+
+            if (macAddressByteIndex != macAddressBytes.length - 1) {
+                macAddressBuilder.append(":");
+            }
+        }
+
+        return macAddressBuilder.toString();
+    }
+
+    private void genarateQRCode(String userName, String userPhoneNo, String userEmail, String selectedPackage, String paymentTrsId) {
+
+        try {
+            String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
+            String computerMacAddress = getMacAddress().replace(":", "");
+
+            try {
+                /*
+                 * mobileNO.camputerUserName.computerMacAddress.userId.packageName in All LOWER CASE
+                 */
+                String qrCodeData = userPhoneNo + "." + loggedUserNameOfComputer.toLowerCase()
+                        + "." + computerMacAddress.toLowerCase() + "." + User.getUserId().toLowerCase()
+                        + "." + selectedPackage.trim().toLowerCase();
+
+                String filePath = userPhoneNo + ".png";
+                String charset = "UTF-8"; // or "ISO-8859-1"
+                Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap< EncodeHintType, ErrorCorrectionLevel>();
+                hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+                BitMatrix matrix = new MultiFormatWriter().encode(
+                        new String(qrCodeData.getBytes(charset), charset),
+                        BarcodeFormat.QR_CODE, 200, 200, hintMap);
+                MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
+                        .lastIndexOf('.') + 1), new File(filePath));
+                if (Configaration.netIsAvailable()) {
+                    sendMailToAuthority(userPhoneNo, userEmail, userName, selectedPackage, paymentTrsId);
+                } else {
+                    Popup.error("No INTERNET CONNECTION");
+                }
+
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SocketException ex) {
+            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId) {
+
+        Mail.send(fileName, Configaration.getPropertiesValueByKey("companyEmail"), userName, selectedPackage, paymentTrsId);
+        Mail.send(email, userName, selectedPackage, paymentTrsId);
+    }
 }

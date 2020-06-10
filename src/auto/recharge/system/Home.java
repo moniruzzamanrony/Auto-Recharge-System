@@ -1,10 +1,6 @@
-
 package auto.recharge.system;
 
 import static auto.recharge.system.Mail.getMacAddress;
-import static auto.recharge.system.Mail.getUserId;
-import com.itvillage.AES;
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Point;
@@ -31,22 +27,20 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
-
 
 public class Home extends javax.swing.JFrame {
-   private Connection conn;
-   private String imagePath= "No Image";
+
+    private Connection conn;
+    private String imagePath = "No Image";
+
     public Home() {
         initComponents();
         popupMenu.add(confirmPopUp);
         setFocus();
         loadContractListInTable();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1036,37 +1030,37 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clickMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileRechargeMouseClicked
-        
+
         switchPanelViaMenu(mobileRechargePanel);
         System.out.println("Switch to Mobile Recharge Panel");
     }//GEN-LAST:event_clickMobileRechargeMouseClicked
 
     private void clickAddOfferAndResellerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickAddOfferAndResellerMouseClicked
-        
+
         switchPanelViaMenu(addOfferAndResellerPanel);
         System.out.println("Switch to Add Offer Panel Panel");
     }//GEN-LAST:event_clickAddOfferAndResellerMouseClicked
 
     private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
-        
+
         switchPanelViaMenu(billPaymentPanel);
         System.out.println("Switch to Bill Payment Panel");
     }//GEN-LAST:event_clickBillPaymentMouseClicked
 
     private void clickMyBalenceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMyBalenceMouseClicked
-       
+
         switchPanelViaMenu(myBalencePanel);
         System.out.println("Switch to My Balence Panel");
     }//GEN-LAST:event_clickMyBalenceMouseClicked
 
     private void clickPaymentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickPaymentDetailsMouseClicked
-        
+
         switchPanelViaMenu(paymentDetailsPanel);
         System.out.println("Switch to Payment Details Panel");
     }//GEN-LAST:event_clickPaymentDetailsMouseClicked
 
     private void clickSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSettingMouseClicked
-       
+
         switchPanelViaMenu(settingPanel);
         System.out.println("Switch to Setting Panel");
     }//GEN-LAST:event_clickSettingMouseClicked
@@ -1076,20 +1070,19 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getPrepaidOrPostpaidActionPerformed
 
     private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
-       String phoneNumberRequested = getMobileNumber.getText();
-       String ammountRequested = getAmmountInTk.getText();
-           
-       if(!phoneNumberRequested.equals("")  && !ammountRequested.equals("") 
-               && phoneNumberRequested.matches("[0-9]+") 
-               && ammountRequested.matches("[0-9]+")){
-           
-           recharge();
-       }
-       else{
-       getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
-       getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
-       }
-           
+        String phoneNumberRequested = getMobileNumber.getText();
+        String ammountRequested = getAmmountInTk.getText();
+
+        if (!phoneNumberRequested.equals("") && !ammountRequested.equals("")
+                && phoneNumberRequested.matches("[0-9]+")
+                && ammountRequested.matches("[0-9]+")) {
+
+            recharge();
+        } else {
+            getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+            getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+        }
+
     }//GEN-LAST:event_clickSendMouseClicked
 
     private void getPrepaidOrPostpaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPrepaidOrPostpaid1ActionPerformed
@@ -1133,11 +1126,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_newServiceAddingActionPerformed
 
     private void setDefaultSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDefaultSettingActionPerformed
-     
+
     }//GEN-LAST:event_setDefaultSettingActionPerformed
 
     private void editManagmentSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editManagmentSettingActionPerformed
-       
+
         loadValuesForUssdManagementTable();
     }//GEN-LAST:event_editManagmentSettingActionPerformed
 
@@ -1150,11 +1143,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickUssdDailActionPerformed
 
     private void clickCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCloseMouseClicked
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_clickCloseMouseClicked
 
     private void clickMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMinimizeMouseClicked
-       this.setState(Frame.ICONIFIED);
+        this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_clickMinimizeMouseClicked
 
     private void getAmmountInTkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_getAmmountInTkMouseClicked
@@ -1222,28 +1215,21 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToUssdManengementPanelMouseClicked
 
     private void clickAddContract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract1ActionPerformed
-      
-      String rechargeUssdPartern = getRechargeUssdPartern.getText();
-      String operatorName = getOperatorName.getText();
-      String operatorCode = getOperatorCode.getText();
-      String actionFor = getSeletedAction.getSelectedItem().toString();
-      String balenceUssdPartern = getBalenceUssdPartern1.getText();
-     if(!rechargeUssdPartern.equals("") 
-             && !operatorName.equals("") 
-             && !operatorCode.equals(""))
-            
-     {
-        if(saveToDbCommand())
-        {
-            System.out.println("Adding Successfull");
-           
+
+        String rechargeUssdPartern = getRechargeUssdPartern.getText();
+        String operatorName = getOperatorName.getText();
+        String operatorCode = getOperatorCode.getText();
+        String actionFor = getSeletedAction.getSelectedItem().toString();
+        String balenceUssdPartern = getBalenceUssdPartern1.getText();
+        if (!rechargeUssdPartern.equals("")
+                && !operatorName.equals("")
+                && !operatorCode.equals("")) {
+            if (saveToDbCommand()) {
+                System.out.println("Adding Successfull");
+            }
+        } else {
+            Popup.error("Empty Field");
         }
-     
-     }
-     else
-     {
-         Popup.error("Empty Field");
-     } 
     }//GEN-LAST:event_clickAddContract1ActionPerformed
 
     private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
@@ -1255,53 +1241,34 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getRechargeUssdParternActionPerformed
 
     private void clickChooseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIconActionPerformed
-      
-      String rechargeUssdPartern = getRechargeUssdPartern.getText();
-      String operatorName = getOperatorName.getText();
-      String operatorCode = getOperatorCode.getText();
-      String actionFor = getSeletedAction.getSelectedItem().toString();
-      String balenceUssdPartern = getBalenceUssdPartern1.getText();
-     if(!rechargeUssdPartern.equals("") 
-             && !operatorName.equals("") 
-             && !operatorCode.equals(""))
-            
-     {
-          JFileChooser fc = new JFileChooser();
-        int result = fc.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            String sname = file.getAbsolutePath(); //THIS WAS THE PROBLEM
-           // System.out.println(copy(sname,operatorName));
-            imagePath= copy(sname,operatorName);  
-            System.out.println("======================="+imagePath);
+
+        String rechargeUssdPartern = getRechargeUssdPartern.getText();
+        String operatorName = getOperatorName.getText();
+        String operatorCode = getOperatorCode.getText();
+        String actionFor = getSeletedAction.getSelectedItem().toString();
+        String balenceUssdPartern = getBalenceUssdPartern1.getText();
+        if (!rechargeUssdPartern.equals("")
+                && !operatorName.equals("")
+                && !operatorCode.equals("")) {
+            JFileChooser fc = new JFileChooser();
+            int result = fc.showOpenDialog(null);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                String sname = file.getAbsolutePath(); //THIS WAS THE PROBLEM
+                // System.out.println(copy(sname,operatorName));
+                imagePath = copy(sname, operatorName);
+                System.out.println("=======================" + imagePath);
+            }
+
+        } else {
+            Popup.error("Empty Field");
         }
-     
-     }
-     else
-     {
-         Popup.error("Empty Field");
-     } 
     }//GEN-LAST:event_clickChooseIconActionPerformed
 
     private void getBalenceUssdPartern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getBalenceUssdPartern1ActionPerformed
 
- 
-    public void showDeshBoardPage() { 
-                new Home().setVisible(true);    
-    }
-    
-    protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
-        basePanel.removeAll();
-        basePanel.repaint();
-        basePanel.revalidate();
-        
-        basePanel.add(requestedPanel);
-        basePanel.repaint();
-        basePanel.revalidate();
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CurrencyType;
@@ -1444,195 +1411,182 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable ussdSettedTable;
     // End of variables declaration//GEN-END:variables
 
-    private void recharge() {      
-       int result= Popup.display("Recharge Confirmation",getMobileNumber.getText()
-                ,getAmmountInTk.getText()+" tk | "+getPrepaidOrPostpaid.getSelectedItem().toString(),"OK","Edit");
-       
-       if(result == Popup.OK)
-       {
-            rechargeDoneProcess();
-       }
-       else if(result == Popup.EXIT)
-       {
-           Icon icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
-           selectedSimOperatorIcon.setIcon(icon);
-           getMobileNumber.setText("");
-           getAmmountInTk.setText("");
-           getMobileNumber.requestFocusInWindow();
-           
-       }       
-       
-    }
-    
-    public void setFocus()
-    {
-      getMobileNumber.addKeyListener(new KeyAdapter() {
-               @Override
-               public void keyPressed(KeyEvent ke) {
-                   if(ke.getKeyCode() == KeyEvent.VK_ENTER){                 
-                     setOperatorIcon();
-                    }
-                    else{
-                                                  
-                    }                  
-               }               
-            });
-      getAmmountInTk.addKeyListener(new KeyAdapter() {
-               @Override
-               public void keyPressed(KeyEvent ke) {
-                   if(ke.getKeyCode() == KeyEvent.VK_ENTER)
-                   { 
-                       if(!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+"))
-                       {
-                             recharge();
-                             getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                       }
-                       else{
-                          getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                       }
-                   }
-               }
-               
-            });      
-    }
-    
-    private void setOperatorIcon() {        
-       if(getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+"))
-              {
-              getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
-              }
-              else{
-                Icon icon;         
-                   switch(getMobileNumber.getText().substring(0, 3))
-                    {
-                            case "019" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            case "014" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
+//    ---------------------------------- Custom Methods ----------------------------------------------------
+    private void recharge() {
+        int result = Popup.display("Recharge Confirmation", getMobileNumber.getText(),
+                getAmmountInTk.getText() + " tk | " + getPrepaidOrPostpaid.getSelectedItem().toString(), "OK", "Edit");
 
-                                break;
-                            case "017" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            case "013" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            case "018" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/robi_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            case "015" :
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/tele_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            case "016" : 
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                icon = new ImageIcon(getClass().getResource("/resources/images/airtel_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getAmmountInTk.requestFocusInWindow();
-                                break;
-                            default:
-                                icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00"))); 
-                                 break;
+        if (result == Popup.OK) {
+            rechargeDoneProcess();
+        } else if (result == Popup.EXIT) {
+            Icon icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
+            selectedSimOperatorIcon.setIcon(icon);
+            getMobileNumber.setText("");
+            getAmmountInTk.setText("");
+            getMobileNumber.requestFocusInWindow();
+
+        }
+
+    }
+
+    public void setFocus() {
+        getMobileNumber.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    setOperatorIcon();
+                } else {
+
+                }
             }
-     }
-   }   
+        });
+        getAmmountInTk.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+")) {
+                        recharge();
+                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    } else {
+                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                    }
+                }
+            }
+
+        });
+    }
+
+    private void setOperatorIcon() {
+        if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
+            getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+        } else {
+            Icon icon;
+            switch (getMobileNumber.getText().substring(0, 3)) {
+                case "019":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                case "014":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/bl_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+
+                    break;
+                case "017":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                case "013":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/gp_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                case "018":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/robi_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                case "015":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/tele_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                case "016":
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    icon = new ImageIcon(getClass().getResource("/resources/images/airtel_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getAmmountInTk.requestFocusInWindow();
+                    break;
+                default:
+                    icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
+                    selectedSimOperatorIcon.setIcon(icon);
+                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                    break;
+            }
+        }
+    }
 
     private void rechargeDoneProcess() {
-       String phoneNumberRequested = getMobileNumber.getText();
-       String ammountRequested = getAmmountInTk.getText();
-       String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+        String phoneNumberRequested = getMobileNumber.getText();
+        String ammountRequested = getAmmountInTk.getText();
+        String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
     }
-    
-    private void loadContractListInTable()
-    {
+
+    private void loadContractListInTable() {
         Object[][] values = new Object[20][20];
-        
-       DefaultTableModel contractpaymentDetailsTableModel = (DefaultTableModel) tableContractLIst.getModel();
-       contractpaymentDetailsTableModel.setDataVector(new Object [][] {
-                {"gfgh", "fg", "4534", "dfgdg"},
-        {"1", "fg", "4534", "dfgdg"}},
-            new String [] {
-                "No", "Name", "Phone No.", "From"
-            });
-       tableContractLIst.setEnabled(false);
-       
-       tableContractLIst.addMouseListener(new MouseAdapter() {
-           
-             public void mouseClicked(MouseEvent me) {
-                    if (me.getClickCount() == 2) {     // to detect doble click events
-                      Point point = me.getPoint();
-                  int column = tableContractLIst.columnAtPoint(point);
-                  int row = tableContractLIst.rowAtPoint(point);
-                  
-                //  Popup.info(message);
-             int result= JOptionPane.showConfirmDialog(null,"Delete now ?","Confirmation",JOptionPane.YES_NO_OPTION);
-              
-              if(result == Popup.OK)
-              {
-                  System.err.println(tableContractLIst.getValueAt(row, 0));
-              }
-           }
-        }
-     });
 
+        DefaultTableModel contractpaymentDetailsTableModel = (DefaultTableModel) tableContractLIst.getModel();
+        contractpaymentDetailsTableModel.setDataVector(new Object[][]{
+            {"gfgh", "fg", "4534", "dfgdg"},
+            {"1", "fg", "4534", "dfgdg"}},
+                new String[]{
+                    "No", "Name", "Phone No.", "From"
+                });
+        tableContractLIst.setEnabled(false);
+
+        tableContractLIst.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                if (me.getClickCount() == 2) {     // to detect doble click events
+                    Point point = me.getPoint();
+                    int column = tableContractLIst.columnAtPoint(point);
+                    int row = tableContractLIst.rowAtPoint(point);
+
+                    //  Popup.info(message);
+                    int result = JOptionPane.showConfirmDialog(null, "Delete now ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+                    if (result == Popup.OK) {
+                        System.err.println(tableContractLIst.getValueAt(row, 0));
+                    }
+                }
+            }
+        });
     }
 
-    private String copy(String sourcePath,String operatorIconName) {
-        
-        
-        String[] newNames = { operatorIconName+".jpg"};
+    private String copy(String sourcePath, String operatorIconName) {
+
+        String[] newNames = {operatorIconName + ".jpg"};
         Path source = Paths.get(sourcePath); //original file
         clickChooseIcon.setText(source.toString());
-        Path targetDir = Paths.get("images/target"); 
+        Path targetDir = Paths.get("images/target");
         try {
             Files.createDirectories(targetDir);//in case target directory didn't exist
             for (String name : newNames) {
-            Path target = targetDir.resolve(name);// create new path ending with `name` content
-            System.out.println("copying into " + target);
-            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-           
+                Path target = targetDir.resolve(name);// create new path ending with `name` content
+                System.out.println("copying into " + target);
+                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+
             }
-            
-           return targetDir+"\\"+newNames[0];
+
+            return targetDir + "\\" + newNames[0];
         } catch (IOException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Image not found";
     }
-    
-    private  boolean saveToDbCommand() {
-      String rechargeUssdPartern = getRechargeUssdPartern.getText();
-      String operatorName = getOperatorName.getText();
-      String operatorCode = getOperatorCode.getText();
-      String actionFor = getSeletedAction.getSelectedItem().toString();
-      String balenceUssdPartern = getBalenceUssdPartern1.getText();
+
+    private boolean saveToDbCommand() {
+        String rechargeUssdPartern = getRechargeUssdPartern.getText();
+        String operatorName = getOperatorName.getText();
+        String operatorCode = getOperatorCode.getText();
+        String actionFor = getSeletedAction.getSelectedItem().toString();
+        String balenceUssdPartern = getBalenceUssdPartern1.getText();
         conn = DbConnection.connect();
         try {
-                                             
-            String sql= "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code,b_s_ussd_code,icon) VALUES(?,?,?,?,?,?)";
+
+            String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code,b_s_ussd_code,icon) VALUES(?,?,?,?,?,?)";
             String computerMacAddress = getMacAddress().replace(":", "");
             try {
-               PreparedStatement  preparedStatement = conn.prepareStatement(sql);
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
                 preparedStatement.setString(1, operatorName);
                 preparedStatement.setString(2, operatorCode);
                 preparedStatement.setString(3, actionFor);
@@ -1640,59 +1594,71 @@ public class Home extends javax.swing.JFrame {
                 preparedStatement.setString(5, balenceUssdPartern);
                 preparedStatement.setString(6, imagePath);
                 switchPanelViaMenu(settingPanel);
-               return preparedStatement.execute();
-               
+                return preparedStatement.execute();
+
             } catch (SQLException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SocketException ex) {
+
+        } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    }  
+    }
 
     private void loadValuesForUssdManagementTable() {
-               try {
-          DefaultTableModel model = new DefaultTableModel( new String [] {
-                 "Operator Name", "Operator Code", "Action for", "Recharge USSD Code", "Show Balence Ussd Code", "icon"
+        try {
+            DefaultTableModel model = new DefaultTableModel(new String[]{
+                "Operator Name", "Operator Code", "Action for", "Recharge USSD Code", "Show Balence Ussd Code", "icon"
             }, 0);
-           switchPanelViaMenu(USSDManagementPanel);
-         
-           ResultSet rs = DbConnection.retrieveAll("command");
-           while(rs.next())
-           {
-               
+            switchPanelViaMenu(USSDManagementPanel);
+
+            ResultSet rs = DbConnection.retrieveAll("command");
+            while (rs.next()) {
+
                 String operator_name = rs.getString("operator_name");
                 String operator_code = rs.getString("operator_code");
                 String action_for = rs.getString("action_for");
                 String r_ussd_code = rs.getString("r_ussd_code");
                 String b_s_ussd_code = rs.getString("b_s_ussd_code");
                 String icon = rs.getString("icon");
-                model.addRow(new Object[]{operator_name,operator_code,action_for,r_ussd_code,b_s_ussd_code,icon});
+                model.addRow(new Object[]{operator_name, operator_code, action_for, r_ussd_code, b_s_ussd_code, icon});
 
-           }
-          ussdSettedTable.setModel(model);
-          ussdSettedTable.setEnabled(false);
-          ussdSettedTable.addMouseListener(new MouseAdapter() {
-              
-         public void mouseClicked(MouseEvent me) {
-           
-                Point point = me.getPoint();
-                int column = ussdSettedTable.columnAtPoint(point);
-                int row = ussdSettedTable.rowAtPoint(point);
-                if(me.getClickCount() == 2){
-                 Popup.info("Do you delete "+ussdSettedTable.getValueAt(row, 0).toString());
-                 DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-                }                     
+            }
+            ussdSettedTable.setModel(model);
+            ussdSettedTable.setEnabled(false);
+            ussdSettedTable.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent me) {
+
+                    Point point = me.getPoint();
+                    int column = ussdSettedTable.columnAtPoint(point);
+                    int row = ussdSettedTable.rowAtPoint(point);
+                    if (me.getClickCount() == 2) {
+                        Popup.info("Do you delete " + ussdSettedTable.getValueAt(row, 0).toString());
+                        DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
+                    }
+                }
+            });
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-     });
-         
-       } catch (SQLException ex) {
-           Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-       }
     }
-  
+
+    public void showDeshBoardPage() {
+        new Home().setVisible(true);
+    }
+
+    protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
+        basePanel.removeAll();
+        basePanel.repaint();
+        basePanel.revalidate();
+
+        basePanel.add(requestedPanel);
+        basePanel.repaint();
+        basePanel.revalidate();
+
+    }
 }
