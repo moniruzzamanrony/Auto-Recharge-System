@@ -1,6 +1,8 @@
 package auto.recharge.system;
 
 import static auto.recharge.system.Mail.getMacAddress;
+import auto.recharge.system.dto.ModemInfoList;
+import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Point;
@@ -20,8 +22,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,16 +36,18 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Home extends javax.swing.JFrame {
+public final class Home extends javax.swing.JFrame {
 
     private Connection conn;
     private String imagePath = "No Image";
+    private LoadingScreen l;
 
     public Home() {
         initComponents();
         popupMenu.add(confirmPopUp);
         setFocus();
         loadContractListInTable();
+        setCuurentActiveNetworkAndBalenceFromModem();
     }
 
     @SuppressWarnings("unchecked")
@@ -60,8 +69,10 @@ public class Home extends javax.swing.JFrame {
         menuBody = new javax.swing.JLabel();
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
+        clickShowMyBalence = new javax.swing.JButton();
         rechargeDetailsTable = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        currentNetworkName = new javax.swing.JLabel();
         clickClose = new javax.swing.JLabel();
         clickMinimize = new javax.swing.JLabel();
         networkBar = new javax.swing.JLabel();
@@ -183,6 +194,28 @@ public class Home extends javax.swing.JFrame {
         clickChooseIcon = new javax.swing.JButton();
         getBalenceUssdPartern1 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
+        updateAddedManagementPanel = new javax.swing.JPanel();
+        backToUssdManengementPanel1 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        clickAddContract2 = new javax.swing.JButton();
+        getOperatorName1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        getOperatorCode1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        getSeletedAction1 = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        getRechargeUssdPartern1 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        clickChooseIcon1 = new javax.swing.JButton();
+        getBalenceUssdPartern2 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        BalenceShowPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        clickCross = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tableShowSimBalence = new javax.swing.JTable();
 
         jLabel4.setText("jLabel4");
         confirmPopUp.add(jLabel4);
@@ -256,6 +289,17 @@ public class Home extends javax.swing.JFrame {
 
         mobileRechargePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        clickShowMyBalence.setBackground(new java.awt.Color(153, 153, 255));
+        clickShowMyBalence.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        clickShowMyBalence.setForeground(new java.awt.Color(255, 255, 255));
+        clickShowMyBalence.setText("Show Current Balence");
+        clickShowMyBalence.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickShowMyBalenceActionPerformed(evt);
+            }
+        });
+        mobileRechargePanel.add(clickShowMyBalence, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, 170, 40));
+
         jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -281,6 +325,11 @@ public class Home extends javax.swing.JFrame {
         rechargeDetailsTable.setViewportView(jTable1);
 
         mobileRechargePanel.add(rechargeDetailsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 960, 140));
+
+        currentNetworkName.setFont(new java.awt.Font("Agency FB", 3, 24)); // NOI18N
+        currentNetworkName.setForeground(new java.awt.Color(0, 102, 255));
+        currentNetworkName.setText("No SIM Avaiable");
+        mobileRechargePanel.add(currentNetworkName, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 40, 390, 40));
 
         clickClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -376,6 +425,11 @@ public class Home extends javax.swing.JFrame {
         body_bg.setBackground(new java.awt.Color(255, 255, 255));
         body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_mobile_recharge.png"))); // NOI18N
         body_bg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        body_bg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                body_bgMouseClicked(evt);
+            }
+        });
         mobileRechargePanel.add(body_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1025, 720));
 
         jToolBar1.setRollover(true);
@@ -962,11 +1016,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
         addNewManagementPanel.add(clickAddContract1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 150, 40));
+
+        getOperatorName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         addNewManagementPanel.add(getOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
 
         jLabel15.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel15.setText("Operator Name");
         addNewManagementPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 98, -1, -1));
+
+        getOperatorCode.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         addNewManagementPanel.add(getOperatorCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 470, 40));
 
         jLabel16.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
@@ -977,6 +1035,7 @@ public class Home extends javax.swing.JFrame {
         jLabel17.setText("Action For");
         addNewManagementPanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 238, -1, -1));
 
+        getSeletedAction.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         getSeletedAction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mobile Recharge" }));
         getSeletedAction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -989,6 +1048,7 @@ public class Home extends javax.swing.JFrame {
         jLabel18.setText("Recharge USSD Code Pattern");
         addNewManagementPanel.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 318, -1, -1));
 
+        getRechargeUssdPartern.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdPartern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getRechargeUssdParternActionPerformed(evt);
@@ -1010,6 +1070,7 @@ public class Home extends javax.swing.JFrame {
         });
         addNewManagementPanel.add(clickChooseIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 470, 30));
 
+        getBalenceUssdPartern1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getBalenceUssdPartern1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getBalenceUssdPartern1ActionPerformed(evt);
@@ -1022,6 +1083,151 @@ public class Home extends javax.swing.JFrame {
         addNewManagementPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         basePanel.add(addNewManagementPanel, "card2");
+
+        updateAddedManagementPanel.setBackground(new java.awt.Color(255, 255, 255));
+        updateAddedManagementPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backToUssdManengementPanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        backToUssdManengementPanel1.setText("jLabel3");
+        backToUssdManengementPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backToUssdManengementPanel1MouseClicked(evt);
+            }
+        });
+        updateAddedManagementPanel.add(backToUssdManengementPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
+
+        jLabel21.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel21.setText("Update USSD Command ");
+        updateAddedManagementPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
+
+        clickAddContract2.setBackground(new java.awt.Color(102, 153, 0));
+        clickAddContract2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        clickAddContract2.setForeground(new java.awt.Color(255, 255, 255));
+        clickAddContract2.setText("Update");
+        clickAddContract2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 153, 153), null, new java.awt.Color(204, 204, 204)));
+        clickAddContract2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickAddContract2ActionPerformed(evt);
+            }
+        });
+        updateAddedManagementPanel.add(clickAddContract2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 150, 40));
+
+        getOperatorName1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        getOperatorName1.setFocusable(false);
+        updateAddedManagementPanel.add(getOperatorName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
+
+        jLabel22.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel22.setText("Operator Name");
+        updateAddedManagementPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 98, -1, -1));
+
+        getOperatorCode1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        updateAddedManagementPanel.add(getOperatorCode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 470, 40));
+
+        jLabel23.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel23.setText("Operator Code");
+        updateAddedManagementPanel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 168, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel24.setText("Action For");
+        updateAddedManagementPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 238, -1, -1));
+
+        getSeletedAction1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        getSeletedAction1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mobile Recharge" }));
+        getSeletedAction1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSeletedAction1ActionPerformed(evt);
+            }
+        });
+        updateAddedManagementPanel.add(getSeletedAction1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 470, 40));
+
+        jLabel25.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel25.setText("Recharge USSD Code Pattern");
+        updateAddedManagementPanel.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 318, -1, -1));
+
+        getRechargeUssdPartern1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        getRechargeUssdPartern1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getRechargeUssdPartern1ActionPerformed(evt);
+            }
+        });
+        updateAddedManagementPanel.add(getRechargeUssdPartern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 470, 40));
+
+        jLabel26.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel26.setText("Icon");
+        updateAddedManagementPanel.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
+
+        clickChooseIcon1.setBackground(new java.awt.Color(255, 255, 255));
+        clickChooseIcon1.setForeground(new java.awt.Color(102, 102, 255));
+        clickChooseIcon1.setText("::::::Choose Icon(40px X 30px):::::::");
+        clickChooseIcon1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickChooseIcon1ActionPerformed(evt);
+            }
+        });
+        updateAddedManagementPanel.add(clickChooseIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 470, 30));
+
+        getBalenceUssdPartern2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        getBalenceUssdPartern2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getBalenceUssdPartern2ActionPerformed(evt);
+            }
+        });
+        updateAddedManagementPanel.add(getBalenceUssdPartern2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 410, 470, 40));
+
+        jLabel27.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel27.setText("Balence show USSD Code Pattern");
+        updateAddedManagementPanel.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+
+        basePanel.add(updateAddedManagementPanel, "card2");
+
+        BalenceShowPanel.setBackground(new java.awt.Color(255, 255, 255));
+        BalenceShowPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel28.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("Current Balance");
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+
+        clickCross.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/cross.png"))); // NOI18N
+        clickCross.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickCrossMouseClicked(evt);
+            }
+        });
+        jPanel1.add(clickCross, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 10, -1, -1));
+
+        BalenceShowPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 110));
+
+        tableShowSimBalence.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tableShowSimBalence.setForeground(new java.awt.Color(51, 51, 255));
+        tableShowSimBalence.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Operator Name", "Current Ammount"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tableShowSimBalence.setAlignmentX(1.0F);
+        tableShowSimBalence.setAlignmentY(1.0F);
+        tableShowSimBalence.setSelectionForeground(new java.awt.Color(255, 153, 153));
+        jScrollPane5.setViewportView(tableShowSimBalence);
+
+        BalenceShowPanel.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 1000, -1));
+
+        basePanel.add(BalenceShowPanel, "card2");
 
         getContentPane().add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 1020, 720));
 
@@ -1107,6 +1313,7 @@ public class Home extends javax.swing.JFrame {
 
     private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
         switchPanelViaMenu(contractListPanel);
+        setContractInTable();
     }//GEN-LAST:event_clickContactListMouseClicked
 
     private void getSearchViaPhoneNoAndTrnIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSearchViaPhoneNoAndTrnIdActionPerformed
@@ -1130,7 +1337,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_setDefaultSettingActionPerformed
 
     private void editManagmentSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editManagmentSettingActionPerformed
-
+        Home home = new Home();
         loadValuesForUssdManagementTable();
     }//GEN-LAST:event_editManagmentSettingActionPerformed
 
@@ -1224,6 +1431,7 @@ public class Home extends javax.swing.JFrame {
         if (!rechargeUssdPartern.equals("")
                 && !operatorName.equals("")
                 && !operatorCode.equals("")) {
+
             if (saveToDbCommand()) {
                 System.out.println("Adding Successfull");
             }
@@ -1242,7 +1450,7 @@ public class Home extends javax.swing.JFrame {
 
     private void clickChooseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIconActionPerformed
 
-        String rechargeUssdPartern = getRechargeUssdPartern.getText();
+        String rechargeUssdPartern = getRechargeUssdPartern1.getText();
         String operatorName = getOperatorName.getText();
         String operatorCode = getOperatorCode.getText();
         String actionFor = getSeletedAction.getSelectedItem().toString();
@@ -1250,15 +1458,7 @@ public class Home extends javax.swing.JFrame {
         if (!rechargeUssdPartern.equals("")
                 && !operatorName.equals("")
                 && !operatorCode.equals("")) {
-            JFileChooser fc = new JFileChooser();
-            int result = fc.showOpenDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                String sname = file.getAbsolutePath(); //THIS WAS THE PROBLEM
-                // System.out.println(copy(sname,operatorName));
-                imagePath = copy(sname, operatorName);
-                System.out.println("=======================" + imagePath);
-            }
+            loadImageIcon(getOperatorName.getText());
 
         } else {
             Popup.error("Empty Field");
@@ -1269,8 +1469,58 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getBalenceUssdPartern1ActionPerformed
 
+    private void backToUssdManengementPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1MouseClicked
+        switchPanelViaMenu(settingPanel);
+    }//GEN-LAST:event_backToUssdManengementPanel1MouseClicked
+
+    private void clickAddContract2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract2ActionPerformed
+        updateToDbCommandByOperator_name();
+    }//GEN-LAST:event_clickAddContract2ActionPerformed
+
+    private void getSeletedAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedAction1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSeletedAction1ActionPerformed
+
+    private void getRechargeUssdPartern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdPartern1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdPartern1ActionPerformed
+
+    private void clickChooseIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIcon1ActionPerformed
+        String rechargeUssdPartern = getRechargeUssdPartern1.getText();
+        String operatorName = getOperatorName1.getText();
+        String operatorCode = getOperatorCode1.getText();
+        String actionFor = getSeletedAction1.getSelectedItem().toString();
+        String balenceUssdPartern = getBalenceUssdPartern2.getText();
+        if (!rechargeUssdPartern.equals("")
+                && !operatorName.equals("")
+                && !operatorCode.equals("")) {
+            loadImageIcon(getOperatorName1.getText());
+
+        } else {
+            Popup.error("Empty Field");
+        }
+    }//GEN-LAST:event_clickChooseIcon1ActionPerformed
+
+    private void getBalenceUssdPartern2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getBalenceUssdPartern2ActionPerformed
+
+    private void body_bgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_body_bgMouseClicked
+
+    }//GEN-LAST:event_body_bgMouseClicked
+
+    private void clickShowMyBalenceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickShowMyBalenceActionPerformed
+        switchPanelViaMenu(BalenceShowPanel);
+        addBalenceInBalenceShowTable();
+    }//GEN-LAST:event_clickShowMyBalenceActionPerformed
+
+    private void clickCrossMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickCrossMouseClicked
+        switchPanelViaMenu(mobileRechargePanel);
+    }//GEN-LAST:event_clickCrossMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BalenceShowPanel;
     private javax.swing.JLabel CurrencyType;
     private javax.swing.JLabel CurrencyType1;
     private javax.swing.JLabel LoggedUserName;
@@ -1285,6 +1535,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel backToMobileRechargeFromGroupREcharge;
     private javax.swing.JLabel backToSetting;
     private javax.swing.JLabel backToUssdManengementPanel;
+    private javax.swing.JLabel backToUssdManengementPanel1;
     private javax.swing.JLabel balenceDetails;
     private javax.swing.JPanel basePanel;
     private javax.swing.JPanel billPaymentPanel;
@@ -1298,13 +1549,16 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickAdd;
     private javax.swing.JButton clickAddContract;
     private javax.swing.JButton clickAddContract1;
+    private javax.swing.JButton clickAddContract2;
     private javax.swing.JButton clickAddNewManagement;
     private javax.swing.JLabel clickAddOfferAndReseller;
     private javax.swing.JLabel clickAdvanceSearch;
     private javax.swing.JLabel clickBillPayment;
     private javax.swing.JButton clickChooseIcon;
+    private javax.swing.JButton clickChooseIcon1;
     private javax.swing.JLabel clickClose;
     private javax.swing.JLabel clickContactList;
+    private javax.swing.JLabel clickCross;
     private javax.swing.JButton clickGroupLoad;
     private javax.swing.JLabel clickMinimize;
     private javax.swing.JLabel clickMobileRecharge;
@@ -1321,30 +1575,37 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel clickSerch;
     private javax.swing.JLabel clickSerch1;
     private javax.swing.JLabel clickSetting;
+    private javax.swing.JButton clickShowMyBalence;
     private javax.swing.JLabel clickSimOffer;
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend;
     private javax.swing.JPanel confirmPopUp;
     private javax.swing.JPanel contractListPanel;
+    private javax.swing.JLabel currentNetworkName;
     private javax.swing.JButton editManagmentSetting;
     private javax.swing.JTextField getAmmountEachNumber;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getBalenceUssdPartern1;
+    private javax.swing.JTextField getBalenceUssdPartern2;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getName;
     private javax.swing.JTextField getNameForSearch;
     private javax.swing.JTextField getOperatorCode;
+    private javax.swing.JTextField getOperatorCode1;
     private javax.swing.JTextField getOperatorName;
+    private javax.swing.JTextField getOperatorName1;
     private javax.swing.JTextField getPhoneNO;
     private javax.swing.JTextField getPhoneNo;
     private javax.swing.JComboBox<String> getPreOrPostSelection;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid1;
     private javax.swing.JTextField getRechargeUssdPartern;
+    private javax.swing.JTextField getRechargeUssdPartern1;
     private javax.swing.JTextField getSearchViaPhoneNoAndTrnId;
     private javax.swing.JComboBox<String> getSelectedSim;
     private javax.swing.JComboBox<String> getSelectedSimOperator;
     private javax.swing.JComboBox<String> getSeletedAction;
+    private javax.swing.JComboBox<String> getSeletedAction1;
     private javax.swing.JComboBox<String> getSeletedStorage;
     private javax.swing.JTextField getUssdCode;
     private javax.swing.JTable groupRechargeListTable;
@@ -1368,6 +1629,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1375,10 +1644,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
@@ -1407,6 +1678,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton softwareSetting1;
     private javax.swing.JLabel subTitleOfUserName;
     private javax.swing.JTable tableContractLIst;
+    private javax.swing.JTable tableShowSimBalence;
+    private javax.swing.JPanel updateAddedManagementPanel;
     private javax.swing.JPanel ussdDialPanel;
     private javax.swing.JTable ussdSettedTable;
     // End of variables declaration//GEN-END:variables
@@ -1550,6 +1823,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
+
     }
 
     private String copy(String sourcePath, String operatorIconName) {
@@ -1575,6 +1849,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private boolean saveToDbCommand() {
+
         String rechargeUssdPartern = getRechargeUssdPartern.getText();
         String operatorName = getOperatorName.getText();
         String operatorCode = getOperatorCode.getText();
@@ -1587,14 +1862,15 @@ public class Home extends javax.swing.JFrame {
             String computerMacAddress = getMacAddress().replace(":", "");
             try {
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, operatorName);
+                preparedStatement.setString(1, operatorName.toUpperCase());
                 preparedStatement.setString(2, operatorCode);
                 preparedStatement.setString(3, actionFor);
                 preparedStatement.setString(4, rechargeUssdPartern);
                 preparedStatement.setString(5, balenceUssdPartern);
                 preparedStatement.setString(6, imagePath);
+                preparedStatement.execute();
                 switchPanelViaMenu(settingPanel);
-                return preparedStatement.execute();
+                return true;
 
             } catch (SQLException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
@@ -1604,9 +1880,11 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+
     }
 
     private void loadValuesForUssdManagementTable() {
+
         try {
             DefaultTableModel model = new DefaultTableModel(new String[]{
                 "Operator Name", "Operator Code", "Action for", "Recharge USSD Code", "Show Balence Ussd Code", "icon"
@@ -1631,13 +1909,34 @@ public class Home extends javax.swing.JFrame {
 
                 @Override
                 public void mouseClicked(MouseEvent me) {
-
+                    int seletedOption = 3;
                     Point point = me.getPoint();
-                    int column = ussdSettedTable.columnAtPoint(point);
                     int row = ussdSettedTable.rowAtPoint(point);
+                    Configaration.setErrorLog(me.getClickCount());
                     if (me.getClickCount() == 2) {
-                        Popup.info("Do you delete " + ussdSettedTable.getValueAt(row, 0).toString());
-                        DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
+                        Object[] options = {"Delete", "Edit"};
+                        seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                        Configaration.setLog(seletedOption);
+                    }
+
+                    switch (seletedOption) {
+                        case 0:
+                            DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
+                            Home home = new Home();
+                            home.showDeshBoardPage();
+
+                            break;
+                        case 1:
+
+                            switchPanelViaMenu(updateAddedManagementPanel);
+                            getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
+
+                            break;
+                        default:
+                            Configaration.setErrorLog("JOption selection not match");
+
+                            break;
                     }
                 }
             });
@@ -1647,8 +1946,9 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    public void showDeshBoardPage() {
+    public static void showDeshBoardPage() {
         new Home().setVisible(true);
+
     }
 
     protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
@@ -1660,5 +1960,100 @@ public class Home extends javax.swing.JFrame {
         basePanel.repaint();
         basePanel.revalidate();
 
+    }
+
+    private boolean updateToDbCommandByOperator_name() {
+        String operatorName = getOperatorName1.getText();
+        String rechargeUssdPartern = getRechargeUssdPartern1.getText();
+        String operatorCode = getOperatorCode1.getText();
+        String actionFor = getSeletedAction1.getSelectedItem().toString();
+        String balenceUssdPartern = getBalenceUssdPartern2.getText();
+        conn = DbConnection.connect();
+        try {
+            String sql = "UPDATE command SET  operator_code= ?,action_for = ?, r_ussd_code= ?, b_s_ussd_code= ?, icon= ? WHERE operator_name = \"" + operatorName + "\"";
+            System.out.println(sql);
+            String computerMacAddress = getMacAddress().replace(":", "");
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, operatorCode);
+                preparedStatement.setString(2, actionFor);
+                preparedStatement.setString(3, rechargeUssdPartern);
+                preparedStatement.setString(4, balenceUssdPartern);
+                preparedStatement.setString(5, imagePath);
+                preparedStatement.execute();
+                Home home = new Home();
+                home.showDeshBoardPage();
+                return true;
+
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+
+        } catch (UnknownHostException | SocketException ex) {
+            System.err.println(ex);
+        }
+        return false;
+    }
+
+    private void loadImageIcon(String fileName) {
+        JFileChooser fc = new JFileChooser();
+        int result = fc.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            String sname = file.getAbsolutePath();
+            imagePath = copy(sname, fileName);
+            Configaration.setLog("Icon Load Successful");
+        }
+    }
+
+    private void setContractInTable() {
+        DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"No", "Name", "Phone no", "From"}, 0);
+        contractListTableMOdel.addRow(new Object[]{"1", "Roni", "01988841890", "Phone"});
+        contractListTableMOdel.addRow(new Object[]{"2", "Roni", "01988841890", "Phone"});
+        tableContractLIst.setModel(contractListTableMOdel);
+    }
+
+    private void setCuurentActiveNetworkAndBalenceFromModem() {
+
+        String operatorNames = "";
+        currentNetworkName.setText("Please wait");
+
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            operatorNames = operatorNames + simOperatorIdentifierDto.getOperatorName() + " | ";
+            System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName());
+        }
+        currentNetworkName.setText(operatorNames);
+    }
+
+    private void addBalenceInBalenceShowTable() {
+        List<String> balancePaseList = new ArrayList<>();
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"SIM Operator", "Current Balence", "Today Load", "Profit"}, 0);
+        ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
+            try {
+                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                DbConnection.connect();
+                ResultSet rs = DbConnection.retrieveAll("command");
+                while (rs.next()) {
+                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+                        String[] value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15").split(",");
+                        String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
+                        Pattern p = Pattern.compile("\\d+");
+                        Matcher m = p.matcher(balance);
+                        while (m.find()) {
+                            balancePaseList.add(m.group());
+                            System.out.println(m.group());
+                        }
+                       
+                        defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0)+" Tk", "2000Tk", "1000TK"});
+                    }
+                }
+                com.moniruzzaman.Modem.disconnect();
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+
+        tableShowSimBalence.setRowHeight(30);
+        tableShowSimBalence.setModel(defaultTableModel);
     }
 }

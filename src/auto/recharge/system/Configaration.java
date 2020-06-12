@@ -1,10 +1,14 @@
 package auto.recharge.system;
 
+import com.moniruzzaman.Modem;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.swing.BorderFactory;
 
@@ -47,4 +51,36 @@ public class Configaration {
         }
         return "Not Found";
     }
+
+    public static void setErrorLog(String mgs) {
+        System.err.println(mgs);
+    }
+
+    public static void setLog(String mgs) {
+        System.out.println(mgs);
+    }
+
+    public static void setErrorLog(int mgs) {
+        System.err.println(mgs);
+    }
+
+    public static void setLog(int mgs) {
+        System.out.println(mgs);
+    }
+
+    public static String haxToStringConvert(String haxValue) {
+        byte[] bytes = hexStringToByteArray(haxValue);
+        return new String(bytes, StandardCharsets.UTF_16);
+    }
+
+    private static byte[] hexStringToByteArray(String hex) {
+        int l = hex.length();
+        byte[] data = new byte[l / 2];
+        for (int i = 0; i < l; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) << 4)
+                    + Character.digit(hex.charAt(i + 1), 16));
+        }
+        return data;
+    }
+
 }

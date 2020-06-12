@@ -1,6 +1,9 @@
 package auto.recharge.system;
 
+import auto.recharge.system.dto.ModemInfoList;
+import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import com.itvillage.AES;
+
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -13,6 +16,8 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 
 public class Login extends javax.swing.JFrame {
+
+    private LoadingScreen loadingScreen;
 
     public Login() {
         initComponents();
@@ -325,8 +330,12 @@ public class Login extends javax.swing.JFrame {
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
         this.setVisible(false);
-        Home home = new Home();
-        home.showDeshBoardPage();
+        // Home home = new Home();
+        // home.showDeshBoardPage();
+        loadingScreen = new LoadingScreen();
+        loadingScreen.setVisible(true);
+        Popup.info("Please wait..\nWe need some time to ready your software");
+        getSIMOperatorInfo();
         // login();
 
     }//GEN-LAST:event_loginButMouseClicked
@@ -403,10 +412,11 @@ public class Login extends javax.swing.JFrame {
 
     /**
      * TODO: Verify Serial key validation
+     *
      * @param userId
      * @param phoneNO
      * @param macAddress
-     * @return 
+     * @return
      */
     public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress) {
 
@@ -451,4 +461,20 @@ public class Login extends javax.swing.JFrame {
         getPhoneNumber.setUI(new HintTextFieldUI("01XX-XXXXXXX"));
 
     }
+
+    private void getSIMOperatorInfo() {
+        if(Modem.getActivePortsList().isEmpty())
+        {
+        Popup.error("Modem Not Found..");
+        }
+        else{
+            ModemInfoList.portsList = Modem.getActivePortsList();
+            ModemInfoList.simOperatorIdentifiers =  Modem.getSimInfo(ModemInfoList.portsList);   
+        }
+   
+        loadingScreen.dispose();
+        Home.showDeshBoardPage();
+    }
+
+
 }
