@@ -25,6 +25,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -37,22 +39,26 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public final class Home extends javax.swing.JFrame {
-    
+
     private Connection conn;
     private String imagePath = "No Image";
     private LoadingScreen l;
     private String selectedSimOperatorName;
-    
+    private String[] rowOfContractlist;
+    private String trxId;
+    private ResultSet rs;
+
+    ;
     public Home() {
         initComponents();
         popupMenu.add(confirmPopUp);
         setFocus();
         loadContractListInTable();
         setCuurentActiveNetworkAndBalenceFromModem();
-        
+        initialValueInTableRechargeDetails();
         refrash();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -61,6 +67,8 @@ public final class Home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         popupMenu = new javax.swing.JPopupMenu();
         jButton1 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         subTitleOfUserName = new javax.swing.JLabel();
         LoggedUserName = new javax.swing.JLabel();
         clickSetting = new javax.swing.JLabel();
@@ -72,9 +80,9 @@ public final class Home extends javax.swing.JFrame {
         menuBody = new javax.swing.JLabel();
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tableRechargeDetailsShow = new javax.swing.JTable();
         clickShowMyBalence = new javax.swing.JButton();
-        rechargeDetailsTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         currentNetworkName = new javax.swing.JLabel();
         clickClose = new javax.swing.JLabel();
         clickMinimize = new javax.swing.JLabel();
@@ -89,7 +97,6 @@ public final class Home extends javax.swing.JFrame {
         clickSend = new javax.swing.JLabel();
         selectedSimOperatorIcon = new javax.swing.JLabel();
         body_bg = new javax.swing.JLabel();
-        jToolBar1 = new javax.swing.JToolBar();
         billPaymentPanel = new javax.swing.JPanel();
         getPrepaidOrPostpaid1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -156,13 +163,14 @@ public final class Home extends javax.swing.JFrame {
         ussdDialPanel = new javax.swing.JPanel();
         backToMobileRecharge = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        clickUssdDailDorSend = new javax.swing.JButton();
+        clickUssdSessionClose = new javax.swing.JButton();
         getSelectedSim = new javax.swing.JComboBox<>();
         getUssdCode = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         setResponseShowFromUssd = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
+        clickUssdDailDorSend1 = new javax.swing.JButton();
         groupRechargePanel1 = new javax.swing.JPanel();
         clickAdd = new javax.swing.JButton();
         getPreOrPostSelection = new javax.swing.JComboBox<>();
@@ -232,6 +240,19 @@ public final class Home extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 1280, 720));
         setUndecorated(true);
@@ -297,6 +318,30 @@ public final class Home extends javax.swing.JFrame {
 
         mobileRechargePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tableRechargeDetailsShow.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"dfdsgdg", null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tableRechargeDetailsShow.setFocusable(false);
+        jScrollPane7.setViewportView(tableRechargeDetailsShow);
+
+        mobileRechargePanel.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 533, 1000, 180));
+
         clickShowMyBalence.setBackground(new java.awt.Color(153, 153, 255));
         clickShowMyBalence.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         clickShowMyBalence.setForeground(new java.awt.Color(255, 255, 255));
@@ -307,32 +352,6 @@ public final class Home extends javax.swing.JFrame {
             }
         });
         mobileRechargePanel.add(clickShowMyBalence, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 110, 170, 40));
-
-        jTable1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Mobile No.", "Ammount", "Date & Time", "Status", "TrxId"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        rechargeDetailsTable.setViewportView(jTable1);
-
-        mobileRechargePanel.add(rechargeDetailsTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 960, 140));
 
         currentNetworkName.setFont(new java.awt.Font("Agency FB", 3, 24)); // NOI18N
         currentNetworkName.setForeground(new java.awt.Color(0, 102, 255));
@@ -439,9 +458,6 @@ public final class Home extends javax.swing.JFrame {
             }
         });
         mobileRechargePanel.add(body_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1025, 720));
-
-        jToolBar1.setRollover(true);
-        mobileRechargePanel.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
 
         basePanel.add(mobileRechargePanel, "card2");
 
@@ -717,8 +733,15 @@ public final class Home extends javax.swing.JFrame {
         contractListPanel.setBackground(new java.awt.Color(255, 255, 255));
         contractListPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        getNameForSearch.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getNameForSearch.setBorder(null);
         contractListPanel.add(getNameForSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 164, 340, 45));
+
+        clickSerch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickSerchMouseClicked(evt);
+            }
+        });
         contractListPanel.add(clickSerch, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 160, 60, 50));
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
@@ -838,17 +861,17 @@ public final class Home extends javax.swing.JFrame {
         jLabel7.setText("USSD Dail");
         ussdDialPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
-        clickUssdDailDorSend.setBackground(new java.awt.Color(102, 153, 0));
-        clickUssdDailDorSend.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        clickUssdDailDorSend.setForeground(new java.awt.Color(255, 255, 255));
-        clickUssdDailDorSend.setText("Send");
-        clickUssdDailDorSend.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 153, 153), null, new java.awt.Color(204, 204, 204)));
-        clickUssdDailDorSend.addActionListener(new java.awt.event.ActionListener() {
+        clickUssdSessionClose.setBackground(new java.awt.Color(255, 102, 102));
+        clickUssdSessionClose.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        clickUssdSessionClose.setForeground(new java.awt.Color(255, 255, 255));
+        clickUssdSessionClose.setText("Reset");
+        clickUssdSessionClose.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 153, 153), null, new java.awt.Color(204, 204, 204)));
+        clickUssdSessionClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickUssdDailDorSendActionPerformed(evt);
+                clickUssdSessionCloseActionPerformed(evt);
             }
         });
-        ussdDialPanel.add(clickUssdDailDorSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 150, 40));
+        ussdDialPanel.add(clickUssdSessionClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 150, 40));
 
         ussdDialPanel.add(getSelectedSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 470, 40));
 
@@ -869,6 +892,18 @@ public final class Home extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jLabel12.setText("Select SIM:");
         ussdDialPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+
+        clickUssdDailDorSend1.setBackground(new java.awt.Color(102, 153, 0));
+        clickUssdDailDorSend1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        clickUssdDailDorSend1.setForeground(new java.awt.Color(255, 255, 255));
+        clickUssdDailDorSend1.setText("Send");
+        clickUssdDailDorSend1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 153, 153), null, new java.awt.Color(204, 204, 204)));
+        clickUssdDailDorSend1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickUssdDailDorSend1ActionPerformed(evt);
+            }
+        });
+        ussdDialPanel.add(clickUssdDailDorSend1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 150, 40));
 
         basePanel.add(ussdDialPanel, "card2");
 
@@ -1270,6 +1305,7 @@ public final class Home extends javax.swing.JFrame {
     private void clickMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileRechargeMouseClicked
         refrash();
         switchPanelViaMenu(mobileRechargePanel);
+        initialValueInTableRechargeDetails();
         System.out.println("Switch to Mobile Recharge Panel");
     }//GEN-LAST:event_clickMobileRechargeMouseClicked
 
@@ -1310,11 +1346,11 @@ public final class Home extends javax.swing.JFrame {
     private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
         String phoneNumberRequested = getMobileNumber.getText();
         String ammountRequested = getAmmountInTk.getText();
-        
+
         if (!phoneNumberRequested.equals("") && !ammountRequested.equals("")
                 && phoneNumberRequested.matches("[0-9]+")
                 && ammountRequested.matches("[0-9]+")) {
-            
+
             recharge();
         } else {
             getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
@@ -1417,15 +1453,10 @@ public final class Home extends javax.swing.JFrame {
         switchPanelViaMenu(mobileRechargePanel);
     }//GEN-LAST:event_backToMobileRechargeMouseClicked
 
-    private void clickUssdDailDorSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSendActionPerformed
-        
-        if (getUssdCode.getText().equals("")) {
-            getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-        } else {
-            ussdDial();
-            getUssdCode.setText("");
-        }
-    }//GEN-LAST:event_clickUssdDailDorSendActionPerformed
+    private void clickUssdSessionCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdSessionCloseActionPerformed
+        closeUssdSession();
+
+    }//GEN-LAST:event_clickUssdSessionCloseActionPerformed
 
     private void backToMobileRechargeFromGroupREchargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRechargeFromGroupREchargeMouseClicked
         switchPanelViaMenu(mobileRechargePanel);
@@ -1457,7 +1488,7 @@ public final class Home extends javax.swing.JFrame {
 
     private void clickAddNewManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddNewManagementActionPerformed
         switchPanelViaMenu(addNewManagementPanel);
-        
+
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             dropdownOperatorName.addItem(simOperatorIdentifierDto.getOperatorName());
         }
@@ -1468,7 +1499,7 @@ public final class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToUssdManengementPanelMouseClicked
 
     private void clickAddContract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract1ActionPerformed
-        
+
         String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
         String operatorName = dropdownOperatorName.getSelectedItem().toString();
         String operatorCode = getOperatorCode.getText();
@@ -1477,8 +1508,8 @@ public final class Home extends javax.swing.JFrame {
         if (!rechargeUssdPartern.equals("")
                 && !operatorName.equals("")
                 && !operatorCode.equals("")) {
-            
-            if (saveToDbCommand()) {
+
+            if (saveToDbCommandInCommand()) {
                 System.out.println("Adding Successfull");
             }
         } else {
@@ -1495,7 +1526,7 @@ public final class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getRechargeUssdParternPrePaidActionPerformed
 
     private void clickChooseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIconActionPerformed
-        
+
         loadImageIcon(dropdownOperatorName.getSelectedItem().toString().toLowerCase());
     }//GEN-LAST:event_clickChooseIconActionPerformed
 
@@ -1529,7 +1560,7 @@ public final class Home extends javax.swing.JFrame {
                 && !operatorName.equals("")
                 && !operatorCode.equals("")) {
             loadImageIcon(getOperatorName1.getText());
-            
+
         } else {
             Popup.error("Empty Field");
         }
@@ -1555,6 +1586,19 @@ public final class Home extends javax.swing.JFrame {
     private void getRechargeUssdParternPostPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPostPaidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getRechargeUssdParternPostPaidActionPerformed
+
+    private void clickUssdDailDorSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSend1ActionPerformed
+        if (getUssdCode.getText().equals("")) {
+            getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+        } else {
+            ussdDial();
+            getUssdCode.setText("");
+        }
+    }//GEN-LAST:event_clickUssdDailDorSend1ActionPerformed
+
+    private void clickSerchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSerchMouseClicked
+        searchByName(rowOfContractlist, getNameForSearch.getText());
+    }//GEN-LAST:event_clickSerchMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1617,7 +1661,8 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickShowMyBalence;
     private javax.swing.JLabel clickSimOffer;
     private javax.swing.JButton clickUssdDail;
-    private javax.swing.JButton clickUssdDailDorSend;
+    private javax.swing.JButton clickUssdDailDorSend1;
+    private javax.swing.JButton clickUssdSessionClose;
     private javax.swing.JPanel confirmPopUp;
     private javax.swing.JPanel contractListPanel;
     private javax.swing.JLabel currentNetworkName;
@@ -1693,9 +1738,10 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel menuBody;
     private javax.swing.JPanel mobileRechargePanel;
     private javax.swing.JPanel myBalencePanel;
@@ -1711,7 +1757,6 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JPanel paymentDetailsPanel;
     private javax.swing.JTable paymentDetailsTable;
     private javax.swing.JPopupMenu popupMenu;
-    private javax.swing.JScrollPane rechargeDetailsTable;
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JButton setDefaultSetting;
     private javax.swing.JTextArea setResponseShowFromUssd;
@@ -1721,6 +1766,7 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton softwareSetting1;
     private javax.swing.JLabel subTitleOfUserName;
     private javax.swing.JTable tableContractLIst;
+    private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JPanel updateAddedManagementPanel;
     private javax.swing.JPanel ussdDialPanel;
@@ -1729,9 +1775,10 @@ public final class Home extends javax.swing.JFrame {
 
 //    ---------------------------------- Custom Methods ----------------------------------------------------
     private void recharge() {
+
         int result = Popup.display("Recharge Confirmation", getMobileNumber.getText(),
                 getAmmountInTk.getText() + " tk | " + getPrepaidOrPostpaid.getSelectedItem().toString(), "OK", "Edit");
-        
+
         if (result == Popup.OK) {
             rechargeDoneProcess();
         } else if (result == Popup.EXIT) {
@@ -1740,57 +1787,30 @@ public final class Home extends javax.swing.JFrame {
             getMobileNumber.setText("");
             getAmmountInTk.setText("");
             getMobileNumber.requestFocusInWindow();
-            
+
         }
-        
+
     }
-    
-    public void setFocus() {
-        getMobileNumber.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    setOperatorIcon();
-                } else {
-                    
-                }
-            }
-        });
-        getAmmountInTk.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+")) {
-                        recharge();
-                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                    } else {
-                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                    }
-                }
-            }
-            
-        });
-    }
-    
+
     private void setOperatorIcon() {
         if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
             getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
         } else {
             try {
                 Icon icon;
-                
+
                 ResultSet rs = DbConnection.retrieveAll("command");
                 while (rs.next()) {
                     if (rs.getString("operator_code").equals(getMobileNumber.getText().substring(0, 3))) {
                         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                            
+
                             if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
                                 selectedSimOperatorName = rs.getString("operator_name");
                                 getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
                                 icon = new ImageIcon(rs.getString("icon"));
                                 selectedSimOperatorIcon.setIcon(icon);
                                 getAmmountInTk.requestFocusInWindow();
-                                
+
                             } else {
                                 icon = new ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"));
                                 selectedSimOperatorIcon.setIcon(icon);
@@ -1805,16 +1825,17 @@ public final class Home extends javax.swing.JFrame {
                             switchPanelViaMenu(addNewManagementPanel);
                         }
                     }
-                    
+
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }
-    
+
     private void rechargeDoneProcess() {
+        int responseCount = 0;
         try {
             String phoneNumberRequested = getMobileNumber.getText();
             String ammountRequested = getAmmountInTk.getText();
@@ -1823,31 +1844,40 @@ public final class Home extends javax.swing.JFrame {
             while (rs.next()) {
                 if (rs.getString("operator_code").equals(getMobileNumber.getText().substring(0, 3))) {
                     for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                        
+
                         if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
-                            
+
                             com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
                             if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                                 String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                         .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                                System.out.println(com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15"));
+                                String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                                responseCount = response.split(",").length;
+
                             } else {
                                 String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
                                         .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                                 System.out.println(com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15"));
                             }
                             com.moniruzzaman.Modem.disconnect();
-                            
+
                         }
                     }
                 }
-                
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        if (responseCount == 3) {
+           saveToDbCommandInRechargeAdmin();
+        } else {
+            Popup.error("Try Again\n Something is wrong");
+        }
+        initialValueInTableRechargeDetails();
     }
-    
+
     private void loadContractListInTable() {
         DefaultTableModel contractpaymentDetailsTableModel = (DefaultTableModel) tableContractLIst.getModel();
         contractpaymentDetailsTableModel.setDataVector(new Object[][]{
@@ -1858,29 +1888,28 @@ public final class Home extends javax.swing.JFrame {
                 });
         tableContractLIst.setEnabled(false);
         tableContractLIst.addMouseListener(new MouseAdapter() {
-            
+
             @Override
             public void mouseClicked(MouseEvent me) {
                 if (me.getClickCount() == 2) {     // to detect doble click events
                     Point point = me.getPoint();
                     int column = tableContractLIst.columnAtPoint(point);
                     int row = tableContractLIst.rowAtPoint(point);
-                    
+
                     int result = JOptionPane.showConfirmDialog(null, "Delete now ?", "Confirmation", JOptionPane.YES_NO_OPTION);
-                    
+
                     if (result == Popup.OK) {
                         System.err.println(tableContractLIst.getValueAt(row, 0));
                     }
                 }
             }
         });
-        
+
     }
-    
+
     private String copy(String sourcePath, String operatorIconName) {
-        
+
         String[] pathParse = sourcePath.split("\\\\");
-        System.out.println("auto.recharge.system.Home.copy()              " + pathParse.length);
         String[] newNames = {pathParse[pathParse.length - 1]};
         Path source = Paths.get(sourcePath); //original file
         clickChooseIcon.setText(source.toString());
@@ -1891,18 +1920,18 @@ public final class Home extends javax.swing.JFrame {
                 Path target = targetDir.resolve(name);// create new path ending with `name` content
                 System.out.println("copying into " + target);
                 Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-                
+
             }
-            
+
             return targetDir + "\\" + newNames[0];
         } catch (IOException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "Image not found";
     }
-    
-    private boolean saveToDbCommand() {
-        
+
+    private boolean saveToDbCommandInCommand() {
+
         String rechargeUssdParternPre = getRechargeUssdParternPrePaid.getText().toLowerCase();
         String rechargeUssdParternPost = getRechargeUssdParternPostPaid.getText().toLowerCase();
         String operatorName = dropdownOperatorName.getSelectedItem().toString();
@@ -1912,7 +1941,7 @@ public final class Home extends javax.swing.JFrame {
         String acPassword = accountPassword.getText();
         conn = DbConnection.connect();
         try {
-            
+
             String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon) VALUES(?,?,?,?,?,?,?,?)";
             String computerMacAddress = getMacAddress().replace(":", "");
             try {
@@ -1928,29 +1957,82 @@ public final class Home extends javax.swing.JFrame {
                 preparedStatement.execute();
                 switchPanelViaMenu(settingPanel);
                 return true;
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn != null) {
+                    try {
+                        conn.close(); // <-- This is important
+                    } catch (SQLException e) {
+                        /* handle exception */
+                    }
+                }
             }
-            
+
         } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-        
+
     }
-    
+
+    private boolean saveToDbCommandInRechargeAdmin() {
+
+        String getMobileNumberText = getMobileNumber.getText().toLowerCase();
+        String getAmmountInTkText = getAmmountInTk.getText().toLowerCase();
+        String getPrepaidOrPostpaidText = getPrepaidOrPostpaid.getSelectedItem().toString();
+        trxId = UUID.randomUUID().toString();
+        String dateTime = Configaration.getCurrentDateAndTime();
+
+        Connection conn1 = DbConnection.connect();
+        try {
+
+            String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type) VALUES(?,?,?,?,?,?)";
+            String computerMacAddress = getMacAddress().replace(":", "");
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, getMobileNumberText);
+                preparedStatement.setString(2, getAmmountInTkText);
+                preparedStatement.setString(3, dateTime);
+                preparedStatement.setString(4, "Success");
+                preparedStatement.setString(5, trxId);
+                preparedStatement.setString(6, getPrepaidOrPostpaidText);
+                preparedStatement.execute();
+                switchPanelViaMenu(mobileRechargePanel);
+
+                return true;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close(); // <-- This is important
+                    } catch (SQLException e) {
+                        /* handle exception */
+                    }
+                }
+            }
+
+        } catch (UnknownHostException | SocketException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+
     private void loadValuesForUssdManagementTable() {
-        
+
         try {
             DefaultTableModel model = new DefaultTableModel(new String[]{
                 "Operator Name", "Operator Code", "Action for", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
             }, 0);
             switchPanelViaMenu(USSDManagementPanel);
-            
-            ResultSet rs = DbConnection.retrieveAll("command");
+
+            rs = DbConnection.retrieveAll("command");
             while (rs.next()) {
-                
+
                 String operator_name = rs.getString("operator_name");
                 String operator_code = rs.getString("operator_code");
                 String action_for = rs.getString("action_for");
@@ -1959,12 +2041,12 @@ public final class Home extends javax.swing.JFrame {
                 String b_s_ussd_code = rs.getString("b_s_ussd_code");
                 String icon = rs.getString("icon");
                 model.addRow(new Object[]{operator_name, operator_code, action_for, r_ussd_code_pre, r_ussd_code_post, b_s_ussd_code, icon});
-                
+
             }
             ussdSettedTable.setModel(model);
             ussdSettedTable.setEnabled(false);
             ussdSettedTable.addMouseListener(new MouseAdapter() {
-                
+
                 @Override
                 public void mouseClicked(MouseEvent me) {
                     int seletedOption = 3;
@@ -1977,49 +2059,57 @@ public final class Home extends javax.swing.JFrame {
                                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
                         Configaration.setLog(seletedOption);
                     }
-                    
+
                     switch (seletedOption) {
                         case 0:
                             DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
                             Home home = new Home();
-                            home.showDeshBoardPage();
-                            
+                            Home.showDeshBoardPage();
+
                             break;
                         case 1:
-                            
+
                             switchPanelViaMenu(updateAddedManagementPanel);
                             getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-                            
+
                             break;
                         default:
                             Configaration.setErrorLog("JOption selection not match");
-                            
+
                             break;
                     }
                 }
             });
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
         }
     }
-    
+
     public static void showDeshBoardPage() {
         new Home().setVisible(true);
-        
+
     }
-    
+
     protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
+
         basePanel.removeAll();
         basePanel.repaint();
         basePanel.revalidate();
-        
+
         basePanel.add(requestedPanel);
         basePanel.repaint();
         basePanel.revalidate();
-        
+
     }
-    
+
     private boolean updateToDbCommandByOperator_name() {
         String operatorName = getOperatorName1.getText();
         String rechargeUssdPartern = getRechargeUssdPartern1.getText();
@@ -2039,20 +2129,27 @@ public final class Home extends javax.swing.JFrame {
                 preparedStatement.setString(4, balenceUssdPartern);
                 preparedStatement.setString(5, imagePath);
                 preparedStatement.execute();
-                Home home = new Home();
-                home.showDeshBoardPage();
+
+                Home.showDeshBoardPage();
                 return true;
-                
+
             } catch (SQLException ex) {
                 System.err.println(ex);
+            } finally {
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException e) {
+                    }
+                }
             }
-            
+
         } catch (UnknownHostException | SocketException ex) {
             System.err.println(ex);
         }
         return false;
     }
-    
+
     private void loadImageIcon(String fileName) {
         JFileChooser fc = new JFileChooser();
         int result = fc.showOpenDialog(null);
@@ -2063,44 +2160,51 @@ public final class Home extends javax.swing.JFrame {
             Configaration.setLog("Icon Load Successful");
         }
     }
-    
+
     private void setContractInTable() {
         int count = 0;
-        String[] rowOfContractlist = null;
+        String contractName = null;
+        String contractNumber = null;
+        String from = null;
         DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"No", "Name", "Phone no", "From"}, 0);
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+        ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
             com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
-            //  System.out.println(com.moniruzzaman.Modem.sendATCommand("AT+CPBR=1,99"));
+            return simOperatorIdentifierDto;
+        }).map((_item) -> {
             rowOfContractlist = com.moniruzzaman.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
-            
+            return _item;
+        }).forEachOrdered((_item) -> {
             com.moniruzzaman.Modem.disconnect();
-        }
-        
+        });
+
         for (String contract : rowOfContractlist) {
             String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
-                    .replaceAll("\"", "").replaceAll(" ", "").split(",");
-            
+                    .replaceAll("\"", "").split(",");
+
             for (int i = 1; i < contractPerseDetails.length; i++) {
-                contractListTableMOdel.addRow(new Object[]{count++, contractPerseDetails[2], contractPerseDetails[4], "Phone"});
+                contractName = contractPerseDetails[4];
+                contractNumber = contractPerseDetails[2];
+                from = "SIM";
+
             }
-            
+            contractListTableMOdel.addRow(new Object[]{count++, contractName, contractNumber, from});
         }
+
         tableContractLIst.setRowHeight(25);
         tableContractLIst.setModel(contractListTableMOdel);
     }
-    
+
     private void setCuurentActiveNetworkAndBalenceFromModem() {
-        
         String operatorNames = "";
         currentNetworkName.setText("Please wait");
-        
+
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             operatorNames = operatorNames + simOperatorIdentifierDto.getOperatorName() + " | ";
             System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName());
         }
         currentNetworkName.setText(operatorNames);
     }
-    
+
     private void addBalenceInBalenceShowTable() {
         List<String> balancePaseList = new ArrayList<>();
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"SIM Operator", "Current Balence", "Today Load", "Profit"}, 0);
@@ -2108,7 +2212,7 @@ public final class Home extends javax.swing.JFrame {
             try {
                 com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
                 DbConnection.connect();
-                ResultSet rs = DbConnection.retrieveAll("command");
+                rs = DbConnection.retrieveAll("command");
                 while (rs.next()) {
                     if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
                         String[] value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15").split(",");
@@ -2126,13 +2230,192 @@ public final class Home extends javax.swing.JFrame {
                 com.moniruzzaman.Modem.disconnect();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                    }
+                }
             }
         });
-        
+
         tableShowSimBalence.setRowHeight(30);
         tableShowSimBalence.setModel(defaultTableModel);
     }
-    
+
+    private void ussdDial() {
+        setResponseShowFromUssd.setText("");
+        setResponseShowFromUssd.setFocusable(false);
+        String response = null;
+        String[] responses = null;
+        String getOperator = getSelectedSim.getSelectedItem().toString();
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
+                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                String value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
+                responses = value.split(",");
+                // response = Configaration.haxToStringConvert(value[1]);
+                System.err.println(value);
+                com.moniruzzaman.Modem.disconnect();
+                //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+            }
+
+        }
+        System.out.println(responses.length);
+        if (responses.length == 3) {
+            for (int i = 0; i < responses.length; i++) {
+                response = responses[1].replaceAll("\"", "");
+            }
+            setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+        }
+    }
+
+    private void closeUssdSession() {
+        setResponseShowFromUssd.setText("");
+        setResponseShowFromUssd.setFocusable(false);
+        String response = null;
+        String[] responses = null;
+        String getOperator = getSelectedSim.getSelectedItem().toString();
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
+                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                String value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"#xxx#\",15");
+                responses = value.split(",");
+                // response = Configaration.haxToStringConvert(value[1]);
+                System.err.println(value);
+                com.moniruzzaman.Modem.disconnect();
+                //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+            }
+
+        }
+        System.out.println(responses.length);
+        if (responses.length == 3) {
+            for (String response1 : responses) {
+                response = responses[1].replaceAll("\"", "");
+            }
+            setResponseShowFromUssd.setText("Reset Successful");
+        }
+    }
+
+    private void searchByName(String[] list, String serchValue) {
+        DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"No", "Name", "Phone no", "From"}, 0);
+        int count = 0;
+        String contractName = null;
+        String contractNumber = null;
+        String from = null;
+        for (String contract : list) {
+
+            String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
+                    .replaceAll("\"", "").split(",");
+
+            for (int i = 1; i < contractPerseDetails.length; i++) {
+
+                if (contractPerseDetails[4].substring(0, 1).toLowerCase().equals(serchValue.toLowerCase())) {
+                    contractName = contractPerseDetails[4];
+                    contractNumber = contractPerseDetails[2];
+                    from = "SIM";
+                    contractListTableMOdel.addRow(new Object[]{count++, contractName, contractNumber, from});
+                    System.out.println(contractPerseDetails[4]);
+                    System.out.println(contractPerseDetails[2]);
+                } else if (contractPerseDetails[2].substring(0, 1).toLowerCase().equals(serchValue.toLowerCase())) {
+                    contractName = contractPerseDetails[4];
+                    contractNumber = contractPerseDetails[2];
+                    from = "SIM";
+                    contractListTableMOdel.addRow(new Object[]{count++, contractName, contractNumber, from});
+                    System.out.println(contractPerseDetails[4]);
+                    System.out.println(contractPerseDetails[2]);
+                } else if (contractPerseDetails[4].substring(0, 2).toLowerCase().equals(serchValue.toLowerCase())) {
+                    contractName = contractPerseDetails[4];
+                    contractNumber = contractPerseDetails[2];
+                    from = "SIM";
+                    contractListTableMOdel.addRow(new Object[]{count++, contractName, contractNumber, from});
+                    System.out.println(contractPerseDetails[4]);
+                    System.out.println(contractPerseDetails[2]);
+                }
+
+            }
+
+        }
+        tableContractLIst.setRowHeight(25);
+        tableContractLIst.setModel(contractListTableMOdel);
+    }
+
+    public void initialValueInTableRechargeDetails() {
+        int count = 1;
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"id", "Mobile No", "Type", "Amount(TK)", "Date & Time", "Trx Id", "Status",}, 0);
+        try {
+
+            rs = DbConnection.retrieveAll("recharge_admin");
+            while (rs.next()) {
+                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+                if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
+                    defaultTableModel.addRow(new Object[]{count++, rs.getString("mobile_no"),
+                        rs.getString("type"), rs.getString("amount"),
+                        rs.getString("date_time"), rs.getString("trx_id"),
+                        rs.getString("status"), rs.getString("status")});
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        tableRechargeDetailsShow.setFocusable(false);
+        tableRechargeDetailsShow.setRowHeight(30);
+        tableRechargeDetailsShow.setModel(defaultTableModel);
+    }
+//    private boolean updateToDbCommandByRechargeAdminStatus(String trx_id) {
+//      
+//        conn = DbConnection.connect();
+//        String sql = "UPDATE recharge_admin SET  status= ? WHERE trx_id = \"" + trx_id + "\"";
+//        try {
+//            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+//            preparedStatement.setString(1, "Success");
+//            preparedStatement.execute();
+//            
+//            Home.showDeshBoardPage();
+//            return true;
+//            
+//        } catch (SQLException ex) {
+//            System.err.println(ex);
+//        }
+//        return false;
+//    }
+
+    public void setFocus() {
+        getMobileNumber.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    setOperatorIcon();
+                } else {
+
+                }
+            }
+        });
+        getAmmountInTk.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+")) {
+                        recharge();
+                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                    } else {
+                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                    }
+                }
+            }
+
+        });
+    }
+
     private void refrash() {
         getAmmountEachNumber.setText("");
         getAmmountInTk.setText("");
@@ -2150,33 +2433,6 @@ public final class Home extends javax.swing.JFrame {
         getRechargeUssdParternPostPaid.setText("");
         getSearchViaPhoneNoAndTrnId.setText("");
         getUssdCode.setText("");
-        
-    }
-    
-    private void ussdDial() {
-        setResponseShowFromUssd.setText("");
-        setResponseShowFromUssd.setFocusable(false);
-        String response = null;
-        String[] responses = null;
-        String getOperator = getSelectedSim.getSelectedItem().toString();
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
-                String value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
-                responses = value.split(",");
-                // response = Configaration.haxToStringConvert(value[1]);
-                System.err.println(value);
-                com.moniruzzaman.Modem.disconnect();
-                //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
-            }
-            
-        }
-        System.out.println(responses.length);
-        if(responses.length == 3){
-        for (int i = 0; i < responses.length; i++) {
-            response = responses[1].replaceAll("\"", "");
-        }
-        setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
-        }
+
     }
 }

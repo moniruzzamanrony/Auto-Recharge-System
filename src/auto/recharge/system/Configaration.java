@@ -7,7 +7,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 import javax.swing.BorderFactory;
@@ -81,6 +84,12 @@ public class Configaration {
                     + Character.digit(hex.charAt(i + 1), 16));
         }
         return data;
+    }
+
+    static String getCurrentDateAndTime() {
+       DateFormat df = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
+        Calendar calobj = Calendar.getInstance();
+        return df.format(calobj.getTime());
     }
 
 }
