@@ -1,7 +1,6 @@
 package auto.recharge.system;
 
 import auto.recharge.system.dto.ModemInfoList;
-import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import com.itvillage.AES;
 
 import java.awt.Color;
@@ -329,13 +328,23 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-        this.setVisible(false);
+        
         // Home home = new Home();
         // home.showDeshBoardPage();
+        this.setVisible(false);
         loadingScreen = new LoadingScreen();
         loadingScreen.setVisible(true);
-        Popup.info("Please wait..\nWe need some time to ready your software");
-        getSIMOperatorInfo();
+        if(Popup.customInfo("Need Some times To ready Your Software") <0)
+        {
+            this.setVisible(true);
+            loadingScreen.setVisible(false);
+        }
+        else{
+            
+            getSIMOperatorInfo();
+        }
+       
+        
         // login();
 
     }//GEN-LAST:event_loginButMouseClicked

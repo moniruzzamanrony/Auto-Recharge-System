@@ -55,6 +55,7 @@ public final class Home extends javax.swing.JFrame {
         setFocus();
         loadContractListInTable();
         setCuurentActiveNetworkAndBalenceFromModem();
+        loadActiveOperatorNameInComboBox();
         initialValueInTableRechargeDetails();
         refrash();
     }
@@ -80,6 +81,7 @@ public final class Home extends javax.swing.JFrame {
         menuBody = new javax.swing.JLabel();
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
+        setSeletedOperatorName = new javax.swing.JComboBox<>();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableRechargeDetailsShow = new javax.swing.JTable();
         clickShowMyBalence = new javax.swing.JButton();
@@ -318,6 +320,8 @@ public final class Home extends javax.swing.JFrame {
 
         mobileRechargePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mobileRechargePanel.add(setSeletedOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 300, 120, -1));
+
         tableRechargeDetailsShow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"dfdsgdg", null, null, null},
@@ -385,7 +389,7 @@ public final class Home extends javax.swing.JFrame {
                 clickGroupLoadMouseClicked(evt);
             }
         });
-        mobileRechargePanel.add(clickGroupLoad, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 270, 120, 40));
+        mobileRechargePanel.add(clickGroupLoad, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 255, 120, 40));
 
         clickUssdDail.setText("Ussd Dail");
         clickUssdDail.addActionListener(new java.awt.event.ActionListener() {
@@ -393,7 +397,7 @@ public final class Home extends javax.swing.JFrame {
                 clickUssdDailActionPerformed(evt);
             }
         });
-        mobileRechargePanel.add(clickUssdDail, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 220, 120, 40));
+        mobileRechargePanel.add(clickUssdDail, new org.netbeans.lib.awtextra.AbsoluteConstraints(884, 210, 120, 40));
 
         getPrepaidOrPostpaid.setBackground(new java.awt.Color(255, 255, 255));
         getPrepaidOrPostpaid.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -450,6 +454,7 @@ public final class Home extends javax.swing.JFrame {
         mobileRechargePanel.add(selectedSimOperatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 50, 50));
 
         body_bg.setBackground(new java.awt.Color(255, 255, 255));
+        body_bg.setForeground(new java.awt.Color(255, 51, 0));
         body_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/body_mobile_recharge.png"))); // NOI18N
         body_bg.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         body_bg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1760,6 +1765,7 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JButton setDefaultSetting;
     private javax.swing.JTextArea setResponseShowFromUssd;
+    private javax.swing.JComboBox<String> setSeletedOperatorName;
     private javax.swing.JPanel settingPanel;
     private javax.swing.JLabel showingAmmountInTk;
     private javax.swing.JLabel showingAmmountInTk1;
@@ -1777,7 +1783,7 @@ public final class Home extends javax.swing.JFrame {
     private void recharge() {
 
         int result = Popup.display("Recharge Confirmation", getMobileNumber.getText(),
-                getAmmountInTk.getText() + " tk | " + getPrepaidOrPostpaid.getSelectedItem().toString(), "OK", "Edit");
+                getAmmountInTk.getText() + " tk", getPrepaidOrPostpaid.getSelectedItem().toString(), "Edit");
 
         if (result == Popup.OK) {
             rechargeDoneProcess();
@@ -1809,6 +1815,7 @@ public final class Home extends javax.swing.JFrame {
                                 getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
                                 icon = new ImageIcon(rs.getString("icon"));
                                 selectedSimOperatorIcon.setIcon(icon);
+                                setSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
                                 getAmmountInTk.requestFocusInWindow();
 
                             } else {
@@ -1846,18 +1853,21 @@ public final class Home extends javax.swing.JFrame {
                     for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
                         if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
-
+                            System.out.println("-------------------" + setSeletedOperatorName.getSelectedItem());
                             com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
                             if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                                 String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                         .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                                 String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                                 responseCount = response.split(",").length;
-
+                                Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
                             } else {
                                 String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
                                         .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                                System.out.println(com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15"));
+                                String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                                responseCount = response.split(",").length;
+
+                                Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
                             }
                             com.moniruzzaman.Modem.disconnect();
 
@@ -1869,9 +1879,9 @@ public final class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         if (responseCount == 3) {
-           saveToDbCommandInRechargeAdmin();
+            saveToDbCommandInRechargeAdmin();
         } else {
             Popup.error("Try Again\n Something is wrong");
         }
@@ -1940,38 +1950,31 @@ public final class Home extends javax.swing.JFrame {
         String balenceUssdPartern = getBalenceUssdPartern1.getText();
         String acPassword = accountPassword.getText();
         conn = DbConnection.connect();
+        String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon) VALUES(?,?,?,?,?,?,?,?)";
         try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, operatorName.toUpperCase());
+            preparedStatement.setString(2, operatorCode);
+            preparedStatement.setString(3, actionFor);
+            preparedStatement.setString(4, rechargeUssdParternPre);
+            preparedStatement.setString(5, rechargeUssdParternPost);
+            preparedStatement.setString(6, balenceUssdPartern);
+            preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
+            preparedStatement.setString(8, imagePath);
+            preparedStatement.execute();
+            switchPanelViaMenu(settingPanel);
+            return true;
 
-            String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon) VALUES(?,?,?,?,?,?,?,?)";
-            String computerMacAddress = getMacAddress().replace(":", "");
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, operatorName.toUpperCase());
-                preparedStatement.setString(2, operatorCode);
-                preparedStatement.setString(3, actionFor);
-                preparedStatement.setString(4, rechargeUssdParternPre);
-                preparedStatement.setString(5, rechargeUssdParternPost);
-                preparedStatement.setString(6, balenceUssdPartern);
-                preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
-                preparedStatement.setString(8, imagePath);
-                preparedStatement.execute();
-                switchPanelViaMenu(settingPanel);
-                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn != null) {
-                    try {
-                        conn.close(); // <-- This is important
-                    } catch (SQLException e) {
-                        /* handle exception */
-                    }
                 }
             }
-
-        } catch (UnknownHostException | SocketException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
 
@@ -2008,9 +2011,9 @@ public final class Home extends javax.swing.JFrame {
             } finally {
                 if (conn1 != null) {
                     try {
-                        conn1.close(); // <-- This is important
+                        conn1.close();
                     } catch (SQLException e) {
-                        /* handle exception */
+
                     }
                 }
             }
@@ -2063,7 +2066,6 @@ public final class Home extends javax.swing.JFrame {
                     switch (seletedOption) {
                         case 0:
                             DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-                            Home home = new Home();
                             Home.showDeshBoardPage();
 
                             break;
@@ -2223,7 +2225,7 @@ public final class Home extends javax.swing.JFrame {
                             balancePaseList.add(m.group());
                             System.out.println(m.group());
                         }
-                        
+
                         defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk", "2000Tk", "1000TK"});
                     }
                 }
@@ -2433,6 +2435,13 @@ public final class Home extends javax.swing.JFrame {
         getRechargeUssdParternPostPaid.setText("");
         getSearchViaPhoneNoAndTrnId.setText("");
         getUssdCode.setText("");
+
+    }
+
+    public void loadActiveOperatorNameInComboBox() {
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            setSeletedOperatorName.addItem(simOperatorIdentifierDto.getOperatorName());
+        }
 
     }
 }
