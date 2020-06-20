@@ -81,7 +81,7 @@ public class DbConnection {
             String sql = "SELECT * FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
             return st.executeQuery(sql);
         } catch (SQLException ex) {
-            Configaration.setErrorLog("Value Not Found");
+            Configaration.setErrorLog("Value Not Found"+ex);
             return null;
         }
     }

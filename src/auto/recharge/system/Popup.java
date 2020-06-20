@@ -102,33 +102,7 @@ public class Popup {
     }
 
     public static int display(String heading, String phnNumber, String ammount, String prepaidOrPostPaid, String payBy) {
-//        JLabel title = new JLabel(heading);
-//        title.setFont(new Font("Arial", Font.BOLD, 50));
-//        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-//        title.setForeground(Color.WHITE);
-//        Dimension size = title.getPreferredSize();
-//        title.setBounds(100, 100, size.height, size.height);
-//        title.setBorder(new EmptyBorder(10, 10, 10, 10));
-//
-//        JLabel subTtile1 = new JLabel(message1);
-//        subTtile1.setFont(new Font("Dialog", Font.BOLD, 80));
-//        subTtile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-//        subTtile1.setForeground(Color.decode("#00ffff"));
-//        Dimension subTtilesize1 = subTtile1.getPreferredSize();
-//        subTtile1.setBounds(100, 100, subTtilesize1.height, subTtilesize1.height);
-//
-//        JLabel subTtile2 = new JLabel(message2);
-//        subTtile2.setFont(new Font("Dialog", Font.BOLD, 60));
-//        subTtile2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-//        subTtile2.setForeground(Color.decode("#00ffff"));
-//        Dimension subTtilesize2 = subTtile2.getPreferredSize();
-//        subTtile2.setBounds(100, 100, subTtilesize2.height, subTtilesize2.height);
-//
-//        JPanel panel = new JPanel(new GridLayout(3, 1));
-//        panel.add(title);
-//        panel.add(subTtile1);
-//        panel.add(subTtile2);
-//        panel.setBackground(Color.decode("#852FD1"));
+
 
         /**
          * Exit = -1 OK = 0 Cancel= 2

@@ -64,7 +64,7 @@ public class RechargeConfirmationDialogUI extends javax.swing.JPanel {
         jLabel5.setText("Pay From:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
 
-        setPayOpetratorName.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        setPayOpetratorName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         setPayOpetratorName.setForeground(new java.awt.Color(255, 255, 255));
         setPayOpetratorName.setText("Banglalink");
         jPanel1.add(setPayOpetratorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 190, 40));

@@ -334,7 +334,7 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         loadingScreen = new LoadingScreen();
         loadingScreen.setVisible(true);
-        if(Popup.customInfo("Need Some times To ready Your Software") <0)
+        if(Popup.customInfo("Need some times to ready your software.") <0)
         {
             this.setVisible(true);
             loadingScreen.setVisible(false);
