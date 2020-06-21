@@ -408,8 +408,8 @@ public class Login extends javax.swing.JFrame {
                         && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
                                 .equals(getPasswordBypt.getText().trim())) {
                     this.setVisible(false);
-                    Home home = new Home();
-                    home.showDeshBoardPage();
+                  
+                    Home.showDeshBoardPage();
                 } else {
                     Popup.error("Try again\nWrong Phone Number Or Password");
                 }
@@ -482,7 +482,7 @@ public class Login extends javax.swing.JFrame {
         }
    
         loadingScreen.dispose();
-        Home.showDeshBoardPage();
+         Home.showDeshBoardPage();
     }
 
 
