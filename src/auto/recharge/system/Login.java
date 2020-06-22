@@ -482,7 +482,7 @@ public class Login extends javax.swing.JFrame {
         }
    
         loadingScreen.dispose();
-         Home.showDeshBoardPage();
+        Home.showDeshBoardPage();
     }
 
 

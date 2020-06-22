@@ -44,6 +44,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Home extends javax.swing.JFrame {
@@ -63,7 +64,8 @@ public class Home extends javax.swing.JFrame {
         setCuurentActiveNetworkAndBalenceFromModem();
         loadActiveOperatorNameInComboBox();
         initialValueInTableRechargeDetails();
-        refrash();        
+        refrash();      
+        placeHoderSetter();
     }
 
     @SuppressWarnings("unchecked")
@@ -71,6 +73,8 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         menuPanel = new javax.swing.JPanel();
+        logoPanel = new javax.swing.JPanel();
+        jLabel55 = new javax.swing.JLabel();
         mobileRechargeTab = new javax.swing.JPanel();
         icon = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
@@ -132,7 +136,36 @@ public class Home extends javax.swing.JFrame {
         resellerPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         detailsPanel = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tableMyRechargeDetails = new javax.swing.JTable();
+        searchPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        getPhoneNoForSearch = new javax.swing.JTextField();
+        clickSearchedByPhoneNoBut = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel51 = new javax.swing.JLabel();
+        getTrxIdForSearch = new javax.swing.JTextField();
+        clickSearchedByNameBut = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel52 = new javax.swing.JLabel();
+        getNameeForSearch = new javax.swing.JTextField();
+        jSeparator6 = new javax.swing.JSeparator();
+        clickSearchedByTrxIdBut = new javax.swing.JButton();
+        jLabel53 = new javax.swing.JLabel();
+        getFromDateForSearch = new javax.swing.JTextField();
+        clickSearchedfromToBut = new javax.swing.JButton();
+        getToDateForSearch = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel56 = new javax.swing.JLabel();
+        clickSearchedReportDownload = new javax.swing.JButton();
+        clickTodayReportDownload = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        setMgsDetails = new javax.swing.JTextArea();
+        jComboBox4 = new javax.swing.JComboBox<>();
         settingsPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         myProfile = new javax.swing.JLabel();
@@ -241,10 +274,37 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        menuPanel.setBackground(new java.awt.Color(255, 255, 255));
+        menuPanel.setBackground(new java.awt.Color(204, 204, 255));
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        mobileRechargeTab.setBackground(new java.awt.Color(255, 255, 255));
+        logoPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/map.png"))); // NOI18N
+
+        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
+        logoPanel.setLayout(logoPanelLayout);
+        logoPanelLayout.setHorizontalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(logoPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        logoPanelLayout.setVerticalGroup(
+            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(logoPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(47, Short.MAX_VALUE)))
+        );
+
+        mobileRechargeTab.setBackground(new java.awt.Color(204, 204, 255));
+        mobileRechargeTab.setForeground(new java.awt.Color(153, 153, 255));
         mobileRechargeTab.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 mobileRechargeTabMouseMoved(evt);
@@ -264,6 +324,11 @@ public class Home extends javax.swing.JFrame {
 
         icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/payment_color.png"))); // NOI18N
+        icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconMouseClicked(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         title.setForeground(new java.awt.Color(133, 47, 209));
@@ -275,7 +340,7 @@ public class Home extends javax.swing.JFrame {
         mobileRechargeTabLayout.setHorizontalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mobileRechargeTabLayout.setVerticalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +350,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        billPaymentTab.setBackground(new java.awt.Color(255, 255, 255));
+        billPaymentTab.setBackground(new java.awt.Color(204, 204, 255));
         billPaymentTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 billPaymentTabMouseClicked(evt);
@@ -322,7 +387,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        resellerTab.setBackground(new java.awt.Color(255, 255, 255));
+        resellerTab.setBackground(new java.awt.Color(204, 204, 255));
         resellerTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 resellerTabMouseClicked(evt);
@@ -359,7 +424,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        detailsTab.setBackground(new java.awt.Color(255, 255, 255));
+        detailsTab.setBackground(new java.awt.Color(204, 204, 255));
         detailsTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 detailsTabMouseClicked(evt);
@@ -397,7 +462,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        settingTab.setBackground(new java.awt.Color(255, 255, 255));
+        settingTab.setBackground(new java.awt.Color(204, 204, 255));
         settingTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingTabMouseClicked(evt);
@@ -433,7 +498,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        helplineTab.setBackground(new java.awt.Color(255, 255, 255));
+        helplineTab.setBackground(new java.awt.Color(204, 204, 255));
         helplineTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 helplineTabMouseClicked(evt);
@@ -473,18 +538,19 @@ public class Home extends javax.swing.JFrame {
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(mobileRechargeTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(billPaymentTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(resellerTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(detailsTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(settingTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(helplineTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mobileRechargeTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billPaymentTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(resellerTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addComponent(logoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(mobileRechargeTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(billPaymentTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,7 +562,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(settingTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(helplineTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
 
         bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -545,6 +611,11 @@ public class Home extends javax.swing.JFrame {
         getSeletedOperatorName.setBackground(new java.awt.Color(255, 255, 255));
         getSeletedOperatorName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         getSeletedOperatorName.setForeground(new java.awt.Color(204, 0, 0));
+        getSeletedOperatorName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSeletedOperatorNameActionPerformed(evt);
+            }
+        });
         mobileRechargePanel.add(getSeletedOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(1075, 180, 116, -1));
 
         clickSend.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -561,11 +632,33 @@ public class Home extends javax.swing.JFrame {
         mobileRechargePanel.add(getPrepaidOrPostpaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 210, 200, 40));
 
         getAmmountInTk.setFont(new java.awt.Font("Arial", 1, 100)); // NOI18N
+        getAmmountInTk.setBorder(null);
+        getAmmountInTk.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                getAmmountInTkFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                getAmmountInTkFocusLost(evt);
+            }
+        });
+        getAmmountInTk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getAmmountInTkActionPerformed(evt);
+            }
+        });
         mobileRechargePanel.add(getAmmountInTk, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 530, 100));
 
         getMobileNumber.setFont(new java.awt.Font("Arial", 1, 100)); // NOI18N
         getMobileNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getMobileNumber.setBorder(null);
+        getMobileNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                getMobileNumberFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                getMobileNumberFocusLost(evt);
+            }
+        });
         mobileRechargePanel.add(getMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 670, 100));
         mobileRechargePanel.add(selectedSimOperatorIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 50, 50));
 
@@ -705,6 +798,7 @@ public class Home extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tableRechargeDetailsShow.setFocusable(false);
         jScrollPane2.setViewportView(tableRechargeDetailsShow);
 
         mobileRechargePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 407, 1153, 450));
@@ -812,14 +906,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(billPayPanelLayout.createSequentialGroup()
                 .addGap(566, 566, 566)
                 .addComponent(jLabel2)
-                .addContainerGap(964, Short.MAX_VALUE))
+                .addContainerGap(966, Short.MAX_VALUE))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel2)
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
 
         basePanel.add(billPayPanel, "card2");
@@ -835,37 +929,262 @@ public class Home extends javax.swing.JFrame {
             .addGroup(resellerPanelLayout.createSequentialGroup()
                 .addGap(566, 566, 566)
                 .addComponent(jLabel3)
-                .addContainerGap(956, Short.MAX_VALUE))
+                .addContainerGap(958, Short.MAX_VALUE))
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resellerPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel3)
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
 
         basePanel.add(resellerPanel, "card2");
 
         detailsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setText("details panel");
+        tableMyRechargeDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(tableMyRechargeDetails);
+
+        searchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
+
+        jLabel4.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Search");
+
+        jLabel50.setText("Phone Number: ");
+
+        clickSearchedByPhoneNoBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
+        clickSearchedByPhoneNoBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickSearchedByPhoneNoButActionPerformed(evt);
+            }
+        });
+
+        jLabel51.setText("Trx Id");
+
+        clickSearchedByNameBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
+        clickSearchedByNameBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickSearchedByNameButActionPerformed(evt);
+            }
+        });
+
+        jLabel52.setText("Name");
+
+        clickSearchedByTrxIdBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
+        clickSearchedByTrxIdBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickSearchedByTrxIdButActionPerformed(evt);
+            }
+        });
+
+        jLabel53.setText("From");
+
+        getFromDateForSearch.setToolTipText("");
+
+        clickSearchedfromToBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
+        clickSearchedfromToBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickSearchedfromToButActionPerformed(evt);
+            }
+        });
+
+        jLabel54.setText("To");
+
+        jLabel56.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel56.setText("Download Reports");
+
+        clickSearchedReportDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/download.png"))); // NOI18N
+        clickSearchedReportDownload.setText("Searched Report");
+        clickSearchedReportDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickSearchedReportDownloadActionPerformed(evt);
+            }
+        });
+
+        clickTodayReportDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/download.png"))); // NOI18N
+        clickTodayReportDownload.setText("Today Report");
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator3)
+            .addComponent(jSeparator4)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(getPhoneNoForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(clickSearchedByPhoneNoBut))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addComponent(getTrxIdForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(clickSearchedByTrxIdBut)))
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel52)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(getNameeForSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clickSearchedByNameBut)))
+                        .addContainerGap())
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel54)
+                        .addGap(339, 339, 339)
+                        .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel51)
+                            .addComponent(jLabel53))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jSeparator7)
+            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSeparator6)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(clickTodayReportDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(clickSearchedReportDownload)
+                .addGap(21, 21, 21))
+            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getFromDateForSearch)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addComponent(getToDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(clickSearchedByPhoneNoBut)
+                    .addComponent(getPhoneNoForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(getTrxIdForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clickSearchedByTrxIdBut))
+                .addGap(27, 27, 27)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(getNameeForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clickSearchedByNameBut))
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel53)
+                .addGap(7, 7, 7)
+                .addComponent(getFromDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getToDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clickSearchedfromToBut))
+                .addGap(31, 31, 31)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel56)
+                .addGap(84, 84, 84)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clickSearchedReportDownload)
+                    .addComponent(clickTodayReportDownload))
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+
+        setMgsDetails.setColumns(20);
+        setMgsDetails.setForeground(new java.awt.Color(255, 102, 102));
+        setMgsDetails.setRows(5);
+        jScrollPane7.setViewportView(setMgsDetails);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
+        );
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inbox", "My Recharge" }));
 
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addGap(566, 566, 566)
-                .addComponent(jLabel4)
-                .addContainerGap(931, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(detailsPanelLayout.createSequentialGroup()
+                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1095, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelLayout.setVerticalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(jLabel4)
-                .addContainerGap(663, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(detailsPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         basePanel.add(detailsPanel, "card2");
@@ -898,14 +1217,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel16)
-                .addContainerGap(808, Short.MAX_VALUE))
+                .addContainerGap(810, Short.MAX_VALUE))
         );
         myProfilePanelLayout.setVerticalGroup(
             myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel16)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(myProfilePanel, "card2");
@@ -921,14 +1240,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel17)
-                .addContainerGap(759, Short.MAX_VALUE))
+                .addContainerGap(761, Short.MAX_VALUE))
         );
         systemBackupPanelLayout.setVerticalGroup(
             systemBackupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel17)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(systemBackupPanel, "card2");
@@ -944,14 +1263,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel18)
-                .addContainerGap(759, Short.MAX_VALUE))
+                .addContainerGap(761, Short.MAX_VALUE))
         );
         passwordChangePanelLayout.setVerticalGroup(
             passwordChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel18)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(passwordChangePanel, "card2");
@@ -967,14 +1286,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel19)
-                .addContainerGap(745, Short.MAX_VALUE))
+                .addContainerGap(747, Short.MAX_VALUE))
         );
         trustedEmployeePanelLayout.setVerticalGroup(
             trustedEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel19)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(trustedEmployeePanel, "card2");
@@ -1037,7 +1356,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(rechargeSettingsPanelLayout.createSequentialGroup()
                         .addGap(940, 940, 940)
                         .addComponent(clickSerch1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 254, Short.MAX_VALUE))))
+                        .addGap(0, 256, Short.MAX_VALUE))))
         );
         rechargeSettingsPanelLayout.setVerticalGroup(
             rechargeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1067,14 +1386,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel21)
-                .addContainerGap(781, Short.MAX_VALUE))
+                .addContainerGap(783, Short.MAX_VALUE))
         );
         MobileBankingSettingsPanelLayout.setVerticalGroup(
             MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel21)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(MobileBankingSettingsPanel, "card2");
@@ -1090,14 +1409,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel22)
-                .addContainerGap(734, Short.MAX_VALUE))
+                .addContainerGap(736, Short.MAX_VALUE))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel22)
-                .addContainerGap(619, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(rechargeOfferPanel, "card2");
@@ -1362,14 +1681,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(566, 566, 566)
                 .addComponent(jLabel8)
-                .addContainerGap(959, Short.MAX_VALUE))
+                .addContainerGap(961, Short.MAX_VALUE))
         );
         helplinePanelLayout.setVerticalGroup(
             helplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel8)
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addContainerGap(674, Short.MAX_VALUE))
         );
 
         basePanel.add(helplinePanel, "card2");
@@ -1513,7 +1832,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(clickNewContract, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contractListPanelLayout.createSequentialGroup()
-                        .addContainerGap(517, Short.MAX_VALUE)
+                        .addContainerGap(549, Short.MAX_VALUE)
                         .addComponent(serchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -1822,15 +2141,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_mobileRechargeTabMouseExited
 
     private void mobileRechargeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseClicked
-        switchPanelViaMenu(mobileRechargePanel, title, icon, "payment_color", "Mobile Recharge");
 
-        colorSwitcherWithRegular(title1, icon1, "money");
-        colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title3, icon3, "details");
-        colorSwitcherWithRegular(title4, icon4, "settings_1");
-        colorSwitcherWithRegular(title5, icon5, "helpline");
-        
-        setFocusInMobileRechargePanel();
     }//GEN-LAST:event_mobileRechargeTabMouseClicked
 
     private void billPaymentTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseEntered
@@ -2107,13 +2418,63 @@ public class Home extends javax.swing.JFrame {
         addBalenceInBalenceShowTable();
     }//GEN-LAST:event_clickRefrashActionPerformed
 
-    public static void main(String args[]) {
+    private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
+       removePlaceHolder(getMobileNumber,"01XXXXXXX");
+    }//GEN-LAST:event_getMobileNumberFocusGained
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
+    private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
+       setPlaceHolder(getMobileNumber,"01XXXXXXX");
+    }//GEN-LAST:event_getMobileNumberFocusLost
+
+    private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
+        removePlaceHolder(getAmmountInTk, "Tk");
+    }//GEN-LAST:event_getAmmountInTkFocusGained
+
+    private void getAmmountInTkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusLost
+        setPlaceHolder(getAmmountInTk, "Tk");
+    }//GEN-LAST:event_getAmmountInTkFocusLost
+
+    private void clickSearchedByPhoneNoButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByPhoneNoButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickSearchedByPhoneNoButActionPerformed
+
+    private void clickSearchedByNameButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByNameButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickSearchedByNameButActionPerformed
+
+    private void clickSearchedByTrxIdButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByTrxIdButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickSearchedByTrxIdButActionPerformed
+
+    private void clickSearchedfromToButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedfromToButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickSearchedfromToButActionPerformed
+
+    private void clickSearchedReportDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedReportDownloadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickSearchedReportDownloadActionPerformed
+
+    private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
+        switchPanelViaMenu(mobileRechargePanel, title, icon, "payment_color", "Mobile Recharge");
+
+        colorSwitcherWithRegular(title1, icon1, "money");
+        colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title3, icon3, "details");
+        colorSwitcherWithRegular(title4, icon4, "settings_1");
+        colorSwitcherWithRegular(title5, icon5, "helpline");
+        
+        setFocusInMobileRechargePanel();
+    }//GEN-LAST:event_iconMouseClicked
+
+    private void getSeletedOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedOperatorNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
+
+    private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getAmmountInTkActionPerformed
+    public static void main(String[] args) {
+        new Home().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2143,9 +2504,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickNewContract;
     private javax.swing.JButton clickRefrash;
     private javax.swing.JButton clickSIMOffer;
+    private javax.swing.JButton clickSearchedByNameBut;
+    private javax.swing.JButton clickSearchedByPhoneNoBut;
+    private javax.swing.JButton clickSearchedByTrxIdBut;
+    private javax.swing.JButton clickSearchedReportDownload;
+    private javax.swing.JButton clickSearchedfromToBut;
     private javax.swing.JLabel clickSend;
     private javax.swing.JLabel clickSerch;
     private javax.swing.JLabel clickSerch1;
+    private javax.swing.JButton clickTodayReportDownload;
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend1;
     private javax.swing.JButton clickUssdSessionClose;
@@ -2157,15 +2524,18 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getBalenceUssdPartern1;
     private javax.swing.JTextField getBalenceUssdPartern2;
+    private javax.swing.JTextField getFromDateForSearch;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getName;
     private javax.swing.JTextField getNameForSearch;
+    private javax.swing.JTextField getNameeForSearch;
     private javax.swing.JComboBox<String> getOparetorNameInDropDown;
     private javax.swing.JTextField getOperatorCode;
     private javax.swing.JTextField getOperatorCode1;
     private javax.swing.JTextField getOperatorName;
     private javax.swing.JTextField getOperatorName1;
     private javax.swing.JTextField getPhoneNO;
+    private javax.swing.JTextField getPhoneNoForSearch;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
     private javax.swing.JTextField getRechargeUssdParternPostPaid;
     private javax.swing.JTextField getRechargeUssdParternPostPaid1;
@@ -2176,6 +2546,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getSeletedAction1;
     private javax.swing.JComboBox<String> getSeletedOperatorName;
     private javax.swing.JComboBox<String> getSeletedStorage;
+    private javax.swing.JTextField getToDateForSearch;
+    private javax.swing.JTextField getTrxIdForSearch;
     private javax.swing.JTextField getUssdCode;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
@@ -2191,6 +2563,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2236,17 +2609,33 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JPanel logoPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel mobileBankingSettings;
     private javax.swing.JPanel mobileRechargePanel;
@@ -2264,8 +2653,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel reportGeneratePanel;
     private javax.swing.JPanel resellerPanel;
     private javax.swing.JPanel resellerTab;
+    private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JPanel serchBar;
+    private javax.swing.JTextArea setMgsDetails;
     private javax.swing.JTextArea setResponseShowFromUssd;
     private javax.swing.JPanel settingBasePanel;
     private javax.swing.JPanel settingTab;
@@ -2273,6 +2664,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel systemBackup;
     private javax.swing.JPanel systemBackupPanel;
     private javax.swing.JTable tableContractLIst;
+    private javax.swing.JTable tableMyRechargeDetails;
     private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JLabel title;
@@ -2330,7 +2722,7 @@ public class Home extends javax.swing.JFrame {
     public void colorSwitcherWithRegular(JLabel title, JLabel icon, String iconName) {
         ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/" + iconName + ".png"));
         icon.setIcon(image);
-        Color color = new Color(153, 153, 153);
+        Color color = new Color(153,153,153);
         title.setForeground(color);
     }
 
@@ -2345,7 +2737,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void hoverRemove(JPanel panel) {
-        Color color = new Color(255, 255, 255);
+        Color color = new Color(204,204,255);
         panel.setBackground(color);
     }
 
@@ -2521,7 +2913,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private boolean saveToDbCommandInRechargeAdmin() {
-
+        
         String getMobileNumberText = getMobileNumber.getText().toLowerCase();
         String getAmmountInTkText = getAmmountInTk.getText().toLowerCase();
         String getPrepaidOrPostpaidText = getPrepaidOrPostpaid.getSelectedItem().toString();
@@ -2531,16 +2923,18 @@ public class Home extends javax.swing.JFrame {
         Connection conn1 = DbConnection.connect();
         try {
 
-            String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type) VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
             String computerMacAddress = getMacAddress().replace(":", "");
             try {
                 PreparedStatement preparedStatement = conn1.prepareStatement(sql);
                 preparedStatement.setString(1, getMobileNumberText);
                 preparedStatement.setString(2, getAmmountInTkText);
                 preparedStatement.setString(3, dateTime);
-                preparedStatement.setString(4, "Success");
+                preparedStatement.setString(4, "Panding");
                 preparedStatement.setString(5, trxId);
                 preparedStatement.setString(6, getPrepaidOrPostpaidText);
+                preparedStatement.setString(7, getSeletedOperatorName.getSelectedItem().toString());
+                preparedStatement.setString(8, "Panding");
                 preparedStatement.execute();
                 switchPanelViaMenu(mobileRechargePanel);
 
@@ -2907,17 +3301,22 @@ public class Home extends javax.swing.JFrame {
 
     public void initialValueInTableRechargeDetails() {
         int count = 1;
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"id", "Mobile No", "Type", "Amount(TK)", "Date & Time", "Trx Id", "Status",}, 0);
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance","Status",}, 0);
         try {
 
             rs = DbConnection.retrieveAll("recharge_admin");
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                    defaultTableModel.addRow(new Object[]{count++, rs.getString("mobile_no"),
-                        rs.getString("type"), rs.getString("amount"),
-                        rs.getString("date_time"), rs.getString("trx_id"),
-                        rs.getString("status"), rs.getString("status")});
+                    defaultTableModel.addRow(new Object[]{
+                        rs.getString("trx_id"), 
+                        rs.getString("date_time"),
+                        rs.getString("type"),
+                        rs.getString("mobile_no"),
+                        rs.getString("amount"),
+                        rs.getString("from_sp"),
+                        rs.getString("current_balance"),
+                        rs.getString("status")});
                 }
             }
 
@@ -2931,12 +3330,13 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
-        tableRechargeDetailsShow.setFocusable(false);
+        tableRechargeDetailsShow.setEnabled(false);
         tableRechargeDetailsShow.setRowHeight(30);
         tableRechargeDetailsShow.setModel(defaultTableModel);
     }
 
     public void setFocusInMobileRechargePanel() {
+        
         getMobileNumber.requestFocusInWindow();
         getMobileNumber.addKeyListener(new KeyAdapter() {
             @Override
@@ -2964,6 +3364,8 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
+        
+
     }
 
     private void refrash() {
@@ -2994,6 +3396,27 @@ public class Home extends javax.swing.JFrame {
             getSeletedOperatorName.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase());
         });
 
+    }
+
+    private void removePlaceHolder(JTextField editText, String value) {
+       if(editText.getText().equals(value))
+       {
+           editText.setText("");
+           Color color= new Color(51,51,51);
+           editText.setForeground(color);
+       }
+    }
+     private void setPlaceHolder(JTextField editText, String value) {
+       if(editText.getText().equals(""))
+       {
+           editText.setText(value);
+           Color color= new Color(153,153,153);
+           editText.setForeground(color);
+       }
+    }
+
+    private void placeHoderSetter() {
+       setPlaceHolder(getAmmountInTk, "Tk");
     }
 }
 

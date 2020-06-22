@@ -14,7 +14,15 @@ public class SimOperatorIdentifierDto {
     private int id;
     private String operatorName;
     private String portName;
+    private String simCurrentBalance;
 
+    public String getSimCurrentBalance() {
+        return simCurrentBalance;
+    }
+
+    public void setSimCurrentBalance(String simCurrentBalance) {
+        this.simCurrentBalance = simCurrentBalance;
+    }
     public String getOperatorName() {
         return operatorName;
     }
