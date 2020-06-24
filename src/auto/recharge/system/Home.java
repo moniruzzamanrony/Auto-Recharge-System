@@ -137,7 +137,13 @@ public class Home extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         billPayPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        clickBkash = new javax.swing.JLabel();
+        clickRocket = new javax.swing.JLabel();
+        clickNogot = new javax.swing.JLabel();
+        clickUCash = new javax.swing.JLabel();
+        clickMyCash = new javax.swing.JLabel();
+        clickNogot1 = new javax.swing.JLabel();
+        clickMyCash1 = new javax.swing.JLabel();
         resellerPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         detailsPanel = new javax.swing.JPanel();
@@ -899,23 +905,77 @@ public class Home extends javax.swing.JFrame {
 
         billPayPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("bill pay");
+        clickBkash.setBackground(new java.awt.Color(255, 102, 102));
+        clickBkash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickBkash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/bkash_logo_edited.png"))); // NOI18N
+        clickBkash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickRocket.setBackground(new java.awt.Color(51, 51, 255));
+        clickRocket.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickRocket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/surecash_logo_edited.png"))); // NOI18N
+        clickRocket.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickNogot.setBackground(new java.awt.Color(255, 102, 102));
+        clickNogot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickNogot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/nogot_logo_edited.png"))); // NOI18N
+        clickNogot.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickUCash.setBackground(new java.awt.Color(153, 0, 255));
+        clickUCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickUCash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/rocket_icon_edited.png"))); // NOI18N
+        clickUCash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickMyCash.setBackground(new java.awt.Color(51, 204, 0));
+        clickMyCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickMyCash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mycash_icon_edited.png"))); // NOI18N
+        clickMyCash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickNogot1.setBackground(new java.awt.Color(204, 0, 51));
+        clickNogot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickNogot1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/tcash_icon_edited.png"))); // NOI18N
+        clickNogot1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        clickMyCash1.setBackground(new java.awt.Color(204, 204, 0));
+        clickMyCash1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickMyCash1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/uxasg_icon_edited.png"))); // NOI18N
+        clickMyCash1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout billPayPanelLayout = new javax.swing.GroupLayout(billPayPanel);
         billPayPanel.setLayout(billPayPanelLayout);
         billPayPanelLayout.setHorizontalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
-                .addGap(566, 566, 566)
-                .addComponent(jLabel2)
-                .addContainerGap(966, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(clickBkash, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clickRocket, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(clickUCash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(137, 137, 137)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clickMyCash)
+                    .addComponent(clickNogot1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(152, 152, 152)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clickNogot, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(clickMyCash1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(jLabel2)
-                .addContainerGap(674, Short.MAX_VALUE))
+                .addGap(115, 115, 115)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clickMyCash1)
+                    .addComponent(clickRocket)
+                    .addComponent(clickMyCash)
+                    .addComponent(clickBkash))
+                .addGap(122, 122, 122)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clickUCash)
+                    .addComponent(clickNogot1)
+                    .addComponent(clickNogot))
+                .addContainerGap(393, Short.MAX_VALUE))
         );
 
         basePanel.add(billPayPanel, "card2");
@@ -931,14 +991,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(resellerPanelLayout.createSequentialGroup()
                 .addGap(566, 566, 566)
                 .addComponent(jLabel3)
-                .addContainerGap(958, Short.MAX_VALUE))
+                .addContainerGap(970, Short.MAX_VALUE))
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resellerPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel3)
-                .addContainerGap(674, Short.MAX_VALUE))
+                .addContainerGap(680, Short.MAX_VALUE))
         );
 
         basePanel.add(resellerPanel, "card2");
@@ -1179,14 +1239,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel16)
-                .addContainerGap(810, Short.MAX_VALUE))
+                .addContainerGap(822, Short.MAX_VALUE))
         );
         myProfilePanelLayout.setVerticalGroup(
             myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel16)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(myProfilePanel, "card2");
@@ -1202,14 +1262,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel17)
-                .addContainerGap(761, Short.MAX_VALUE))
+                .addContainerGap(773, Short.MAX_VALUE))
         );
         systemBackupPanelLayout.setVerticalGroup(
             systemBackupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel17)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(systemBackupPanel, "card2");
@@ -1225,14 +1285,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel18)
-                .addContainerGap(761, Short.MAX_VALUE))
+                .addContainerGap(773, Short.MAX_VALUE))
         );
         passwordChangePanelLayout.setVerticalGroup(
             passwordChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel18)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(passwordChangePanel, "card2");
@@ -1248,14 +1308,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel19)
-                .addContainerGap(747, Short.MAX_VALUE))
+                .addContainerGap(759, Short.MAX_VALUE))
         );
         trustedEmployeePanelLayout.setVerticalGroup(
             trustedEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel19)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(trustedEmployeePanel, "card2");
@@ -1318,7 +1378,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(rechargeSettingsPanelLayout.createSequentialGroup()
                         .addGap(940, 940, 940)
                         .addComponent(clickSerch1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 256, Short.MAX_VALUE))))
+                        .addGap(0, 268, Short.MAX_VALUE))))
         );
         rechargeSettingsPanelLayout.setVerticalGroup(
             rechargeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1348,14 +1408,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel21)
-                .addContainerGap(783, Short.MAX_VALUE))
+                .addContainerGap(795, Short.MAX_VALUE))
         );
         MobileBankingSettingsPanelLayout.setVerticalGroup(
             MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel21)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(MobileBankingSettingsPanel, "card2");
@@ -1371,14 +1431,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addGap(417, 417, 417)
                 .addComponent(jLabel22)
-                .addContainerGap(736, Short.MAX_VALUE))
+                .addContainerGap(748, Short.MAX_VALUE))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel22)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(636, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(rechargeOfferPanel, "card2");
@@ -1643,14 +1703,14 @@ public class Home extends javax.swing.JFrame {
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(566, 566, 566)
                 .addComponent(jLabel8)
-                .addContainerGap(961, Short.MAX_VALUE))
+                .addContainerGap(973, Short.MAX_VALUE))
         );
         helplinePanelLayout.setVerticalGroup(
             helplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(jLabel8)
-                .addContainerGap(674, Short.MAX_VALUE))
+                .addContainerGap(680, Short.MAX_VALUE))
         );
 
         basePanel.add(helplinePanel, "card2");
@@ -1794,7 +1854,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(clickNewContract, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contractListPanelLayout.createSequentialGroup()
-                        .addContainerGap(549, Short.MAX_VALUE)
+                        .addContainerGap(561, Short.MAX_VALUE)
                         .addComponent(serchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -2472,13 +2532,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickAddContract1;
     private javax.swing.JButton clickAddContract2;
     private javax.swing.JButton clickAddNewManagement;
+    private javax.swing.JLabel clickBkash;
     private javax.swing.JButton clickChooseIcon;
     private javax.swing.JButton clickChooseIcon1;
     private javax.swing.JLabel clickContactList;
     private javax.swing.JButton clickGroupLoad;
+    private javax.swing.JLabel clickMyCash;
+    private javax.swing.JLabel clickMyCash1;
     private javax.swing.JButton clickNewContract;
+    private javax.swing.JLabel clickNogot;
+    private javax.swing.JLabel clickNogot1;
     private javax.swing.JButton clickRefrash;
     private javax.swing.JButton clickResetBut;
+    private javax.swing.JLabel clickRocket;
     private javax.swing.JButton clickSIMOffer;
     private javax.swing.JButton clickSearchedByPhoneNoBut;
     private javax.swing.JButton clickSearchedReportDownload;
@@ -2486,6 +2552,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel clickSend;
     private javax.swing.JLabel clickSerch;
     private javax.swing.JLabel clickSerch1;
+    private javax.swing.JLabel clickUCash;
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend1;
     private javax.swing.JButton clickUssdSessionClose;
@@ -2545,7 +2612,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
