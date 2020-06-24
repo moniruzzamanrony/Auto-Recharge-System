@@ -56,15 +56,20 @@ public class Home extends javax.swing.JFrame {
     private String[] rowOfContractlist;
     private String trxId;
     private ResultSet rs;
+    private boolean inboxIsActive;
+    private String[] perseByCommaInInbox;
+    private String[] splitedByCMDValueForInbox = null;
+    private String detailsSelectedItems;
+
     public Home() {
         initComponents();
-       // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-      //  popupMenu.add(confirmPopUp);
+        // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //  popupMenu.add(confirmPopUp);
         setFocusInMobileRechargePanel();
         setCuurentActiveNetworkAndBalenceFromModem();
         loadActiveOperatorNameInComboBox();
         initialValueInTableRechargeDetails();
-        refrash();      
+        refrash();
         placeHoderSetter();
     }
 
@@ -137,35 +142,27 @@ public class Home extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         detailsPanel = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tableMyRechargeDetails = new javax.swing.JTable();
+        tableForDetails = new javax.swing.JTable();
         searchPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         getPhoneNoForSearch = new javax.swing.JTextField();
         clickSearchedByPhoneNoBut = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
-        jLabel51 = new javax.swing.JLabel();
-        getTrxIdForSearch = new javax.swing.JTextField();
-        clickSearchedByNameBut = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
-        jLabel52 = new javax.swing.JLabel();
-        getNameeForSearch = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
-        clickSearchedByTrxIdBut = new javax.swing.JButton();
         jLabel53 = new javax.swing.JLabel();
-        getFromDateForSearch = new javax.swing.JTextField();
         clickSearchedfromToBut = new javax.swing.JButton();
-        getToDateForSearch = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel56 = new javax.swing.JLabel();
         clickSearchedReportDownload = new javax.swing.JButton();
-        clickTodayReportDownload = new javax.swing.JButton();
+        clickResetBut = new javax.swing.JButton();
+        fromDateChooser = new com.toedter.calendar.JDateChooser();
+        toDateChooser = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         setMgsDetails = new javax.swing.JTextArea();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        getSelectedOptionFroTable = new javax.swing.JComboBox<>();
         settingsPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         myProfile = new javax.swing.JLabel();
@@ -276,6 +273,11 @@ public class Home extends javax.swing.JFrame {
 
         menuPanel.setBackground(new java.awt.Color(204, 204, 255));
         menuPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menuPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuPanelMouseClicked(evt);
+            }
+        });
 
         logoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -943,7 +945,7 @@ public class Home extends javax.swing.JFrame {
 
         detailsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        tableMyRechargeDetails.setModel(new javax.swing.table.DefaultTableModel(
+        tableForDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -954,7 +956,7 @@ public class Home extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(tableMyRechargeDetails);
+        jScrollPane6.setViewportView(tableForDetails);
 
         searchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
 
@@ -971,27 +973,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel51.setText("Trx Id");
-
-        clickSearchedByNameBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
-        clickSearchedByNameBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSearchedByNameButActionPerformed(evt);
-            }
-        });
-
-        jLabel52.setText("Name");
-
-        clickSearchedByTrxIdBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
-        clickSearchedByTrxIdBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSearchedByTrxIdButActionPerformed(evt);
-            }
-        });
-
         jLabel53.setText("From");
-
-        getFromDateForSearch.setToolTipText("");
 
         clickSearchedfromToBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
         clickSearchedfromToBut.addActionListener(new java.awt.event.ActionListener() {
@@ -1007,134 +989,109 @@ public class Home extends javax.swing.JFrame {
         jLabel56.setText("Download Reports");
 
         clickSearchedReportDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/download.png"))); // NOI18N
-        clickSearchedReportDownload.setText("Searched Report");
+        clickSearchedReportDownload.setText("Export This Recharge Report ");
         clickSearchedReportDownload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clickSearchedReportDownloadActionPerformed(evt);
             }
         });
 
-        clickTodayReportDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/download.png"))); // NOI18N
-        clickTodayReportDownload.setText("Today Report");
+        clickResetBut.setBackground(new java.awt.Color(255, 102, 102));
+        clickResetBut.setForeground(new java.awt.Color(255, 255, 255));
+        clickResetBut.setText("Refrash");
+        clickResetBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickResetButActionPerformed(evt);
+            }
+        });
+
+        fromDateChooser.setDateFormatString("yy/MM/dd");
+
+        toDateChooser.setDateFormatString("yy/MM/dd");
 
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator3)
-            .addComponent(jSeparator4)
+            .addComponent(jSeparator7)
+            .addComponent(jSeparator6)
+            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(getPhoneNoForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(clickSearchedByPhoneNoBut))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(getTrxIdForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(clickSearchedByTrxIdBut)))
-                        .addGap(9, 9, 9))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, searchPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel52)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(getNameeForSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clickSearchedByNameBut)))
-                        .addContainerGap())
                     .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel54)
-                        .addGap(339, 339, 339)
-                        .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addGap(0, 29, Short.MAX_VALUE)
+                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(clickResetBut)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(clickSearchedReportDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20))))
                     .addGroup(searchPanelLayout.createSequentialGroup()
                         .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel50)
-                            .addComponent(jLabel51)
-                            .addComponent(jLabel53))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jSeparator7)
-            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator6)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(clickTodayReportDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(clickSearchedReportDownload)
-                .addGap(21, 21, 21))
-            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(getFromDateForSearch)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addComponent(getToDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
+                                .addComponent(getPhoneNoForSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clickSearchedByPhoneNoBut))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel54)
+                                    .addComponent(toDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(searchPanelLayout.createSequentialGroup()
+                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel50)
+                                    .addComponent(jLabel53))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(fromDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         searchPanelLayout.setVerticalGroup(
             searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(1, 1, 1)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clickResetBut)
+                    .addComponent(jLabel4))
+                .addGap(8, 8, 8)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel50)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(clickSearchedByPhoneNoBut)
                     .addComponent(getPhoneNoForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel51)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(getTrxIdForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clickSearchedByTrxIdBut))
-                .addGap(27, 27, 27)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel52)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(getNameeForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clickSearchedByNameBut))
-                .addGap(26, 26, 26)
+                .addGap(33, 33, 33)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel53)
                 .addGap(7, 7, 7)
-                .addComponent(getFromDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fromDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel54)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(getToDateForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clickSearchedfromToBut))
-                .addGap(31, 31, 31)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(toDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(160, 160, 160)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel56)
-                .addGap(84, 84, 84)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clickSearchedReportDownload)
-                    .addComponent(clickTodayReportDownload))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(clickSearchedReportDownload)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         setMgsDetails.setColumns(20);
+        setMgsDetails.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         setMgsDetails.setForeground(new java.awt.Color(255, 102, 102));
         setMgsDetails.setRows(5);
+        setMgsDetails.setText("ghbfgh");
         jScrollPane7.setViewportView(setMgsDetails);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1154,7 +1111,12 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inbox", "My Recharge" }));
+        getSelectedOptionFroTable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "My Recharge", "Inbox" }));
+        getSelectedOptionFroTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSelectedOptionFroTableActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
@@ -1163,7 +1125,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(detailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getSelectedOptionFroTable, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(detailsPanelLayout.createSequentialGroup()
                         .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1095, Short.MAX_VALUE)
@@ -1176,7 +1138,7 @@ public class Home extends javax.swing.JFrame {
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailsPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(getSelectedOptionFroTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2086,6 +2048,9 @@ public class Home extends javax.swing.JFrame {
         colorSwitcherWithRegular(title2, icon2, "reseller");
         colorSwitcherWithRegular(title4, icon4, "settings_1");
         colorSwitcherWithRegular(title5, icon5, "helpline");
+
+        loadRechargeDetailsInDetailsTable();
+        getSelectedOptionFroTable.setSelectedItem("My Recharge");
     }//GEN-LAST:event_detailsTabMouseClicked
 
     private void settingTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseClicked
@@ -2109,7 +2074,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_helplineTabMouseClicked
 
     private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
-              switchPanelViaMenu(ussdDialPanel);
+        switchPanelViaMenu(ussdDialPanel);
         refrash();
         ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
             getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName());
@@ -2237,8 +2202,8 @@ public class Home extends javax.swing.JFrame {
         trustedEmployee.setForeground(Color.black);
         mobileBankingSettings.setForeground(Color.black);
         rechargeOffers.setForeground(Color.black);
-        
-         loadValuesForUssdManagementTable();
+
+        loadValuesForUssdManagementTable();
     }//GEN-LAST:event_rechargeSettingsMouseClicked
 
     private void mobileBankingSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingSettingsMouseClicked
@@ -2266,13 +2231,13 @@ public class Home extends javax.swing.JFrame {
         ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
             getOparetorNameInDropDown.addItem(simOperatorIdentifierDto.getOperatorName());
         });
-        switchPanelViaSettings(addNewManagementPanelSettings,rechargeSettings);
+        switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
     }//GEN-LAST:event_clickAddNewManagementActionPerformed
 
     private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
         String phoneNumberRequested = getMobileNumber.getText();
         String ammountRequested = getAmmountInTk.getText();
-        System.err.println(getSeletedOperatorName.getSelectedIndex());
+
         if (!phoneNumberRequested.equals("") && !ammountRequested.equals("") && getSeletedOperatorName.getSelectedIndex() != -1
                 && phoneNumberRequested.matches("[0-9]+")
                 && ammountRequested.matches("[0-9]+")) {
@@ -2326,8 +2291,8 @@ public class Home extends javax.swing.JFrame {
         String actionFor = getSeletedAction.getSelectedItem().toString();
         String balenceUssdPartern = getBalenceUssdPartern1.getText();
         if (!rechargeUssdPartern.equals("")
-            && !operatorName.equals("")
-            && !operatorCode.equals("")) {
+                && !operatorName.equals("")
+                && !operatorCode.equals("")) {
 
             if (saveToDbCommandInCommand()) {
                 System.out.println("Adding Successfull");
@@ -2367,7 +2332,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickAddContractActionPerformed
 
     private void backToUssdManengementPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1MouseClicked
-       switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
+        switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
     }//GEN-LAST:event_backToUssdManengementPanel1MouseClicked
 
     private void clickAddContract2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract2ActionPerformed
@@ -2376,7 +2341,7 @@ public class Home extends javax.swing.JFrame {
         String operatorCode = getOperatorCode1.getText();
         String actionFor = getSeletedAction1.getSelectedItem().toString();
         String balenceUssdPartern = getBalenceUssdPartern2.getText();
-        System.err.println(rechargeUssdPartern+ " "+ operatorName +"  "+operatorCode);
+        System.err.println(rechargeUssdPartern + " " + operatorName + "  " + operatorCode);
         if (!rechargeUssdPartern.equals("")
                 && !operatorName.equals("")
                 && !operatorCode.equals("")) {
@@ -2398,7 +2363,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getRechargeUssdParternPrePaid1ActionPerformed
 
     private void clickChooseIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIcon1ActionPerformed
-         loadImageIcon(getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase());
+        loadImageIcon(getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase());
     }//GEN-LAST:event_clickChooseIcon1ActionPerformed
 
     private void getBalenceUssdPartern2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern2ActionPerformed
@@ -2419,11 +2384,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickRefrashActionPerformed
 
     private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
-       removePlaceHolder(getMobileNumber,"01XXXXXXX");
+        removePlaceHolder(getMobileNumber, "01XXXXXXX");
     }//GEN-LAST:event_getMobileNumberFocusGained
 
     private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
-       setPlaceHolder(getMobileNumber,"01XXXXXXX");
+        setPlaceHolder(getMobileNumber, "01XXXXXXX");
     }//GEN-LAST:event_getMobileNumberFocusLost
 
     private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
@@ -2434,26 +2399,6 @@ public class Home extends javax.swing.JFrame {
         setPlaceHolder(getAmmountInTk, "Tk");
     }//GEN-LAST:event_getAmmountInTkFocusLost
 
-    private void clickSearchedByPhoneNoButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByPhoneNoButActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickSearchedByPhoneNoButActionPerformed
-
-    private void clickSearchedByNameButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByNameButActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickSearchedByNameButActionPerformed
-
-    private void clickSearchedByTrxIdButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByTrxIdButActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickSearchedByTrxIdButActionPerformed
-
-    private void clickSearchedfromToButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedfromToButActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickSearchedfromToButActionPerformed
-
-    private void clickSearchedReportDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedReportDownloadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickSearchedReportDownloadActionPerformed
-
     private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
         switchPanelViaMenu(mobileRechargePanel, title, icon, "payment_color", "Mobile Recharge");
 
@@ -2462,7 +2407,7 @@ public class Home extends javax.swing.JFrame {
         colorSwitcherWithRegular(title3, icon3, "details");
         colorSwitcherWithRegular(title4, icon4, "settings_1");
         colorSwitcherWithRegular(title5, icon5, "helpline");
-        
+
         setFocusInMobileRechargePanel();
     }//GEN-LAST:event_iconMouseClicked
 
@@ -2473,8 +2418,38 @@ public class Home extends javax.swing.JFrame {
     private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getAmmountInTkActionPerformed
+
+    private void getSelectedOptionFroTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedOptionFroTableActionPerformed
+        loadValuesInTableForDetails(getSelectedOptionFroTable.getSelectedItem().toString());
+    }//GEN-LAST:event_getSelectedOptionFroTableActionPerformed
+
+    private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPanelMouseClicked
+
+    private void clickResetButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickResetButActionPerformed
+        resetSearchItems();
+    }//GEN-LAST:event_clickResetButActionPerformed
+
+    private void clickSearchedReportDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedReportDownloadActionPerformed
+        Configaration.export(tableForDetails);
+    }//GEN-LAST:event_clickSearchedReportDownloadActionPerformed
+
+    private void clickSearchedfromToButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedfromToButActionPerformed
+        if (fromDateChooser.getDate() == null && toDateChooser.getDate() == null) {
+            Popup.customError("Date Is Empty");
+        } else {
+            searchByDate(Configaration.getJustDate(fromDateChooser.getDate()), Configaration.getJustDate(toDateChooser.getDate()));
+        }
+
+    }//GEN-LAST:event_clickSearchedfromToButActionPerformed
+
+    private void clickSearchedByPhoneNoButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByPhoneNoButActionPerformed
+        searchByPhoneNumber();
+    }//GEN-LAST:event_clickSearchedByPhoneNoButActionPerformed
     public static void main(String[] args) {
-        new Home().setVisible(true);
+        Home h = new Home();
+        h.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2503,16 +2478,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickGroupLoad;
     private javax.swing.JButton clickNewContract;
     private javax.swing.JButton clickRefrash;
+    private javax.swing.JButton clickResetBut;
     private javax.swing.JButton clickSIMOffer;
-    private javax.swing.JButton clickSearchedByNameBut;
     private javax.swing.JButton clickSearchedByPhoneNoBut;
-    private javax.swing.JButton clickSearchedByTrxIdBut;
     private javax.swing.JButton clickSearchedReportDownload;
     private javax.swing.JButton clickSearchedfromToBut;
     private javax.swing.JLabel clickSend;
     private javax.swing.JLabel clickSerch;
     private javax.swing.JLabel clickSerch1;
-    private javax.swing.JButton clickTodayReportDownload;
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend1;
     private javax.swing.JButton clickUssdSessionClose;
@@ -2521,14 +2494,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel detailsPanel;
     private javax.swing.JPanel detailsTab;
     private javax.swing.JComboBox<String> dropdownOperatorName;
+    private com.toedter.calendar.JDateChooser fromDateChooser;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getBalenceUssdPartern1;
     private javax.swing.JTextField getBalenceUssdPartern2;
-    private javax.swing.JTextField getFromDateForSearch;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getName;
     private javax.swing.JTextField getNameForSearch;
-    private javax.swing.JTextField getNameeForSearch;
     private javax.swing.JComboBox<String> getOparetorNameInDropDown;
     private javax.swing.JTextField getOperatorCode;
     private javax.swing.JTextField getOperatorCode1;
@@ -2541,13 +2513,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getRechargeUssdParternPostPaid1;
     private javax.swing.JTextField getRechargeUssdParternPrePaid;
     private javax.swing.JTextField getRechargeUssdParternPrePaid1;
+    private javax.swing.JComboBox<String> getSelectedOptionFroTable;
     private javax.swing.JComboBox<String> getSelectedSim;
     private javax.swing.JComboBox<String> getSeletedAction;
     private javax.swing.JComboBox<String> getSeletedAction1;
     private javax.swing.JComboBox<String> getSeletedOperatorName;
     private javax.swing.JComboBox<String> getSeletedStorage;
-    private javax.swing.JTextField getToDateForSearch;
-    private javax.swing.JTextField getTrxIdForSearch;
     private javax.swing.JTextField getUssdCode;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
@@ -2563,7 +2534,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2610,8 +2580,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
@@ -2631,8 +2599,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JPanel logoPanel;
@@ -2664,7 +2630,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel systemBackup;
     private javax.swing.JPanel systemBackupPanel;
     private javax.swing.JTable tableContractLIst;
-    private javax.swing.JTable tableMyRechargeDetails;
+    private javax.swing.JTable tableForDetails;
     private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JLabel title;
@@ -2673,6 +2639,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel title3;
     private javax.swing.JLabel title4;
     private javax.swing.JLabel title5;
+    private com.toedter.calendar.JDateChooser toDateChooser;
     private javax.swing.JLabel trustedEmployee;
     private javax.swing.JPanel trustedEmployeePanel;
     private javax.swing.JPanel ussdDialPanel;
@@ -2722,13 +2689,13 @@ public class Home extends javax.swing.JFrame {
     public void colorSwitcherWithRegular(JLabel title, JLabel icon, String iconName) {
         ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/" + iconName + ".png"));
         icon.setIcon(image);
-        Color color = new Color(153,153,153);
+        Color color = new Color(153, 153, 153);
         title.setForeground(color);
     }
 
     public static void showDeshBoardPage() {
-        new Home().setVisible(true);
-
+        Home h = new Home();
+        h.setVisible(true);
     }
 
     private void hover(JPanel panel) {
@@ -2737,7 +2704,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void hoverRemove(JPanel panel) {
-        Color color = new Color(204,204,255);
+        Color color = new Color(204, 204, 255);
         panel.setBackground(color);
     }
 
@@ -2894,7 +2861,7 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
             preparedStatement.setString(8, imagePath);
             preparedStatement.execute();
-            switchPanelViaSettings(myProfilePanel,myProfile);
+            switchPanelViaSettings(myProfilePanel, myProfile);
             return true;
 
         } catch (SQLException ex) {
@@ -2913,7 +2880,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private boolean saveToDbCommandInRechargeAdmin() {
-        
+
         String getMobileNumberText = getMobileNumber.getText().toLowerCase();
         String getAmmountInTkText = getAmmountInTk.getText().toLowerCase();
         String getPrepaidOrPostpaidText = getPrepaidOrPostpaid.getSelectedItem().toString();
@@ -2965,7 +2932,7 @@ public class Home extends javax.swing.JFrame {
             DefaultTableModel model = new DefaultTableModel(new String[]{
                 "Operator Name", "Operator Code", "Action for", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
             }, 0);
-            switchPanelViaSettings(rechargeSettingsPanel,rechargeSettings);
+            switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
 
             rs = DbConnection.retrieveAll("command");
             while (rs.next()) {
@@ -3005,9 +2972,8 @@ public class Home extends javax.swing.JFrame {
                             break;
                         case 1:
 
-                          //  switchPanelViaMenu(updateAddedManagementPanel);
-                          //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-
+                            //  switchPanelViaMenu(updateAddedManagementPanel);
+                            //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
                             break;
                         default:
                             Configaration.setErrorLog("JOption selection not match");
@@ -3028,8 +2994,6 @@ public class Home extends javax.swing.JFrame {
             }
         }
     }
-
- 
 
     protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
 
@@ -3082,7 +3046,6 @@ public class Home extends javax.swing.JFrame {
 //        }
 //        return false;
 //    }
-
     private void loadImageIcon(String fileName) {
         JFileChooser fc = new JFileChooser();
         int result = fc.showOpenDialog(null);
@@ -3301,7 +3264,7 @@ public class Home extends javax.swing.JFrame {
 
     public void initialValueInTableRechargeDetails() {
         int count = 1;
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance","Status",}, 0);
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
         try {
 
             rs = DbConnection.retrieveAll("recharge_admin");
@@ -3309,7 +3272,7 @@ public class Home extends javax.swing.JFrame {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     defaultTableModel.addRow(new Object[]{
-                        rs.getString("trx_id"), 
+                        rs.getString("trx_id"),
                         rs.getString("date_time"),
                         rs.getString("type"),
                         rs.getString("mobile_no"),
@@ -3336,7 +3299,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void setFocusInMobileRechargePanel() {
-        
+
         getMobileNumber.requestFocusInWindow();
         getMobileNumber.addKeyListener(new KeyAdapter() {
             @Override
@@ -3364,7 +3327,6 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
-        
 
     }
 
@@ -3373,18 +3335,18 @@ public class Home extends javax.swing.JFrame {
         //getAmmountEachNumber.setText("");
         getAmmountInTk.setText("");
         getBalenceUssdPartern1.setText("");
-      //  getBalenceUssdPartern2.setText("");
+        //  getBalenceUssdPartern2.setText("");
         getMobileNumber.setText("");
         getName.setText("");
         getNameForSearch.setText("");
         getOperatorCode.setText("");
-       // getOperatorCode1.setText("");
+        // getOperatorCode1.setText("");
         getOperatorName.setText("");
-       // getOperatorName1.setText("");
+        // getOperatorName1.setText("");
         getPhoneNO.setText("");
-       //getRechargeUssdPartern1.setText("");
+        //getRechargeUssdPartern1.setText("");
         getRechargeUssdParternPostPaid.setText("");
-       // getSearchViaPhoneNoAndTrnId.setText("");
+        // getSearchViaPhoneNoAndTrnId.setText("");
         getUssdCode.setText("");
         //switchPanelViaMenu(basePanel);
 
@@ -3399,25 +3361,426 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void removePlaceHolder(JTextField editText, String value) {
-       if(editText.getText().equals(value))
-       {
-           editText.setText("");
-           Color color= new Color(51,51,51);
-           editText.setForeground(color);
-       }
+        if (editText.getText().equals(value)) {
+            editText.setText("");
+            Color color = new Color(51, 51, 51);
+            editText.setForeground(color);
+        }
     }
-     private void setPlaceHolder(JTextField editText, String value) {
-       if(editText.getText().equals(""))
-       {
-           editText.setText(value);
-           Color color= new Color(153,153,153);
-           editText.setForeground(color);
-       }
+
+    private void setPlaceHolder(JTextField editText, String value) {
+        if (editText.getText().equals("")) {
+            editText.setText(value);
+            Color color = new Color(153, 153, 153);
+            editText.setForeground(color);
+        }
     }
 
     private void placeHoderSetter() {
-       setPlaceHolder(getAmmountInTk, "Tk");
+        setPlaceHolder(getAmmountInTk, "Tk");
     }
+
+    private void loadValuesInTableForDetails(String selectedItem) {
+        if (selectedItem.equals("Inbox")) {
+            loadIndoxInDetailsTable();
+            System.err.println(selectedItem);
+        } else if (selectedItem.equals("My Recharge")) {
+            loadRechargeDetailsInDetailsTable();
+
+        } else {
+            System.err.println("Selected Items Not Found");
+
+        }
+
+    }
+
+    private void loadIndoxInDetailsTable() {
+        inboxIsActive = true;
+        detailsSelectedItems = "inbox";
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+
+        int count = 0;
+        String from = null, dateTime = null, mgs = null;
+
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+
+            com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+            // TODO: Move those code in setup Apllication
+            com.moniruzzaman.Modem.sendATCommand("AT+CMGF=1");
+            Configaration.wait(1000);
+            com.moniruzzaman.Modem.sendATCommand("AT+CMGF=?");
+            Configaration.wait(1000);
+            com.moniruzzaman.Modem.sendATCommand("AT+CPMS=\"SM\"");
+            Configaration.wait(1000);
+            String result = com.moniruzzaman.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "");
+            splitedByCMDValueForInbox = result.split("\\+CMGL:");
+            com.moniruzzaman.Modem.disconnect();
+        }
+        for (String value : splitedByCMDValueForInbox) {
+
+            perseByCommaInInbox = value.replaceAll("OK", "").split(",");
+            for (int i = 1; i < perseByCommaInInbox.length; i++) {
+                //2--phn number
+                //4-5 date time
+                //6 mgs
+
+                from = perseByCommaInInbox[2];
+                if (from.length() >= 13) {
+                    from = from.substring(2, 13);
+                }
+                dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+                if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+                    mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+                } else {
+                    mgs = perseByCommaInInbox[6];
+                }
+
+            }
+            defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+        }
+        tableForDetails.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                if (inboxIsActive) {
+                    Point point = me.getPoint();
+                    int row = tableForDetails.rowAtPoint(point);
+                    Configaration.setErrorLog(me.getClickCount());
+                    setMgsDetails.setText("");
+                    String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+                            + "Date & Time: "
+                            + tableForDetails.getValueAt(row, 2).toString()
+                            + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+                    setMgsDetails.setText(showableMgs);
+                }
+            }
+        });
+        tableForDetails.setEnabled(false);
+        tableForDetails.setRowHeight(30);
+        tableForDetails.setModel(defaultTableModel);
+
+    }
+
+    private void loadRechargeDetailsInDetailsTable() {
+        inboxIsActive = false;
+        detailsSelectedItems = "recharge";
+        setMgsDetails.setText("");
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+        try {
+
+            rs = DbConnection.retrieveAll("recharge_admin");
+            while (rs.next()) {
+                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+
+                defaultTableModel.addRow(new Object[]{
+                    rs.getString("trx_id"),
+                    rs.getString("date_time"),
+                    rs.getString("type"),
+                    rs.getString("mobile_no"),
+                    rs.getString("amount"),
+                    rs.getString("from_sp"),
+                    rs.getString("current_balance"),
+                    rs.getString("status")});
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        tableForDetails.setEnabled(false);
+        tableForDetails.setRowHeight(30);
+        tableForDetails.setModel(defaultTableModel);
+    }
+
+    private void searchByPhoneNumber() {
+
+        if (getPhoneNoForSearch.getText().equals("")) {
+            Popup.customError("Empty Field Found..");
+        } else {
+            int count = 0;
+            String from = null, dateTime = null, mgs = null, fromSearch = null;
+            if (detailsSelectedItems.equals("inbox")) {
+                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+                for (String value : splitedByCMDValueForInbox) {
+
+                    perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+                    for (int i = 1; i < perseByCommaInInbox.length; i++) {
+                        //2--phn number
+                        //4-5 date time
+                        //6 mgs
+                        System.out.println("---" + perseByCommaInInbox[6]);
+                        from = perseByCommaInInbox[2];
+                        if (from.length() >= 13) {
+                            from = from.substring(2, 13);
+                        }
+                        if (from.equals(getPhoneNoForSearch.getText())) {
+                            fromSearch = from;
+                            dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+                            if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+                                mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+                            } else {
+                                mgs = perseByCommaInInbox[6];
+                            }
+
+                        }
+
+                    }
+
+                    defaultTableModel.addRow(new Object[]{count++, fromSearch, dateTime, mgs});
+
+                }
+                tableForDetails.addMouseListener(new MouseAdapter() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent me) {
+                        if (inboxIsActive) {
+                            Point point = me.getPoint();
+                            int row = tableForDetails.rowAtPoint(point);
+                            Configaration.setErrorLog(me.getClickCount());
+                            setMgsDetails.setText("");
+                            String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+                                    + "Date & Time: "
+                                    + tableForDetails.getValueAt(row, 2).toString()
+                                    + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+                            setMgsDetails.setText(showableMgs);
+                        }
+                    }
+                });
+
+                tableForDetails.setEnabled(false);
+                tableForDetails.setRowHeight(30);
+                tableForDetails.setModel(defaultTableModel);
+            } else if (detailsSelectedItems.equals("recharge")) {
+                String phnNo = null;
+
+                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+                try {
+
+                    rs = DbConnection.retrieveAll("recharge_admin");
+                    while (rs.next()) {
+                        System.err.println("--"+Configaration.getCurrentDateAndTime().substring(0, 8));
+                        
+                        if (rs.getString("mobile_no").equals(getPhoneNoForSearch.getText())) {
+                            defaultTableModel.addRow(new Object[]{
+                                rs.getString("trx_id"),
+                                rs.getString("date_time"),
+                                rs.getString("type"),
+                                rs.getString("mobile_no"),
+                                rs.getString("amount"),
+                                rs.getString("from_sp"),
+                                rs.getString("current_balance"),
+                                rs.getString("status")});
+                        }
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    if (rs != null) {
+                        try {
+                            rs.close();
+                        } catch (SQLException e) {
+                        }
+                    }
+                }
+                tableForDetails.setEnabled(false);
+                tableForDetails.setRowHeight(30);
+                tableForDetails.setModel(defaultTableModel);
+
+            }
+        }
+    }
+
+    private void resetSearchItems() {
+        getPhoneNoForSearch.setText("");
+        fromDateChooser.setDate(null);
+        toDateChooser.setDate(null);
+        int count = 0;
+        String from = null, dateTime = null, mgs = null, fromSearch = null;
+        if (detailsSelectedItems.equals("inbox")) {
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+            for (String value : splitedByCMDValueForInbox) {
+
+                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+                for (int i = 1; i < perseByCommaInInbox.length; i++) {
+                    //2--phn number
+                    //4-5 date time
+                    //6 mgs
+
+                    from = perseByCommaInInbox[2];
+                    if (from.length() >= 13) {
+                        from = from.substring(2, 13);
+                    }
+
+                    dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+                    if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+                        mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+                    } else {
+                        mgs = perseByCommaInInbox[6];
+                    }
+
+                }
+                defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+            }
+            tableForDetails.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent me) {
+                    if (inboxIsActive) {
+                        Point point = me.getPoint();
+                        int row = tableForDetails.rowAtPoint(point);
+                        Configaration.setErrorLog(me.getClickCount());
+                        setMgsDetails.setText("");
+                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+                                + "Date & Time: "
+                                + tableForDetails.getValueAt(row, 2).toString()
+                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+                        setMgsDetails.setText(showableMgs);
+                    }
+                }
+            });
+            tableForDetails.setEnabled(false);
+            tableForDetails.setRowHeight(30);
+            tableForDetails.setModel(defaultTableModel);
+        }
+        else if (detailsSelectedItems.equals("recharge")) {
+                inboxIsActive = false;
+        detailsSelectedItems = "recharge";
+        setMgsDetails.setText("");
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+        try {
+
+            rs = DbConnection.retrieveAll("recharge_admin");
+            while (rs.next()) {
+                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+
+                defaultTableModel.addRow(new Object[]{
+                    rs.getString("trx_id"),
+                    rs.getString("date_time"),
+                    rs.getString("type"),
+                    rs.getString("mobile_no"),
+                    rs.getString("amount"),
+                    rs.getString("from_sp"),
+                    rs.getString("current_balance"),
+                    rs.getString("status")});
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        tableForDetails.setEnabled(false);
+        tableForDetails.setRowHeight(30);
+        tableForDetails.setModel(defaultTableModel);
+        
+        }
+    }
+
+    private void searchByDate(String stratDate, String endDate) {
+        int count = 0;
+        String from = null, dateTime = null, mgs = null, fromSearch = null;
+        if (detailsSelectedItems.equals("inbox")) {
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+            for (String value : splitedByCMDValueForInbox) {
+
+                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+                for (int i = 1; i < perseByCommaInInbox.length; i++) {
+                    //2--phn number
+                    //4-5 date time
+                    //6 mgs
+
+                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(perseByCommaInInbox[4]))
+                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(perseByCommaInInbox[4]))) {
+                        from = perseByCommaInInbox[2];
+                        if (from.length() >= 13) {
+                            from = from.substring(2, 13);
+                        }
+                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+                        } else {
+                            mgs = perseByCommaInInbox[6];
+                        }
+                        defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+                    }
+
+                }
+
+            }
+            tableForDetails.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent me) {
+                    if (inboxIsActive) {
+                        Point point = me.getPoint();
+                        int row = tableForDetails.rowAtPoint(point);
+                        Configaration.setErrorLog(me.getClickCount());
+                        setMgsDetails.setText("");
+                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+                                + "Date & Time: "
+                                + tableForDetails.getValueAt(row, 2).toString()
+                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+                        setMgsDetails.setText(showableMgs);
+                    }
+                }
+            });
+            tableForDetails.setEnabled(false);
+            tableForDetails.setRowHeight(30);
+            tableForDetails.setModel(defaultTableModel);
+        } else if (detailsSelectedItems.equals("recharge")) {
+  
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+        try {
+
+            rs = DbConnection.retrieveAll("recharge_admin");
+            while (rs.next()) {
+                System.out.println("----->"+rs.getString("date_time").substring(0,8));
+                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(rs.getString("date_time").substring(0,8)))
+                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(rs.getString("date_time").substring(0,8)))) {
+                defaultTableModel.addRow(new Object[]{
+                    
+                    rs.getString("trx_id"),
+                    rs.getString("date_time"),
+                    rs.getString("type"),
+                    rs.getString("mobile_no"),
+                    rs.getString("amount"),
+                    rs.getString("from_sp"),
+                    rs.getString("current_balance"),
+                    rs.getString("status")});
+
+            }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+        tableForDetails.setEnabled(false);
+        tableForDetails.setRowHeight(30);
+        tableForDetails.setModel(defaultTableModel);
+        }
+    }
+
 }
-
-

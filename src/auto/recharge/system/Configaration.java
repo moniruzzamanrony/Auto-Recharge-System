@@ -1,21 +1,36 @@
 package auto.recharge.system;
 
-import com.moniruzzaman.Modem;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
 
 public class Configaration {
+
+    private static final Pattern HEXADECIMAL_PATTERN = Pattern.compile("\\p{XDigit}+");
 
     public static boolean netIsAvailable() {
         try {
@@ -87,9 +102,80 @@ public class Configaration {
     }
 
     static String getCurrentDateAndTime() {
-       DateFormat df = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("yy/MM/dd hh:mm:ss");
         Calendar calobj = Calendar.getInstance();
         return df.format(calobj.getTime());
     }
 
+    public static boolean isHexadecimal(String input) {
+        final Matcher matcher = HEXADECIMAL_PATTERN.matcher(input);
+        return matcher.matches();
+    }
+
+    public static void export(JTable jTable) {
+        try {
+            JFileChooser f = new JFileChooser();
+            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            f.showSaveDialog(null);
+
+            System.out.println(f.getCurrentDirectory());
+            System.out.println(f.getSelectedFile());
+
+            Document document = new Document();
+
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(f.getSelectedFile() + "/ARS-" +Math.random() + ".pdf"));
+                document.open();
+              
+                PdfPTable pdfPTable = new PdfPTable(8);
+                pdfPTable.setWidthPercentage(100);
+                
+                pdfPTable.addCell("TrxId");
+                pdfPTable.addCell("Date & Time");
+                pdfPTable.addCell("Type");
+                pdfPTable.addCell("Mobile No");
+                pdfPTable.addCell("Ammount");
+                pdfPTable.addCell("From");
+                pdfPTable.addCell("Current Balance");
+                pdfPTable.addCell("Status");
+
+                for (int i = 0; i < jTable.getRowCount(); i++) {
+                    pdfPTable.addCell(jTable.getValueAt(i, 0).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 1).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 2).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 3).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 4).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 5).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 6).toString());
+                    pdfPTable.addCell(jTable.getValueAt(i, 7).toString());
+
+                }
+                
+                document.add(pdfPTable);
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Configaration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.close();
+        } catch (DocumentException ex) {
+            Logger.getLogger(Configaration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Popup.customSuccess();
+        System.out.println("******** PDF Created ***************");
+    }
+    public static String getJustDate(Date date) {
+        SimpleDateFormat dateOnly = new SimpleDateFormat("yy/MM/dd");
+        return dateOnly.format(date);
+    }
+    
+    public static Date stringToDateType(String date) {
+        Date dateType = null;
+        try {  
+           dateType=new SimpleDateFormat("yy/MM/dd").parse(date);
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(Configaration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  dateType;
+    }
 }
