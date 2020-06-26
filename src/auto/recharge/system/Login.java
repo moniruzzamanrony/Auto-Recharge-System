@@ -334,7 +334,7 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         loadingScreen = new LoadingScreen();
         loadingScreen.setVisible(true);
-        if(Popup.customInfo("Need some times to ready your software.") <0)
+        if(Popup.customInfo("Need some times to ready your software.") < 0)
         {
             this.setVisible(true);
             loadingScreen.setVisible(false);
@@ -470,6 +470,7 @@ public class Login extends javax.swing.JFrame {
 
     private void setHint() {
         getPhoneNumber.setUI(new HintTextFieldUI("01XX-XXXXXXX"));
+        
 
     }
 
@@ -484,7 +485,8 @@ public class Login extends javax.swing.JFrame {
         }
    
         loadingScreen.dispose();
-        Home.showDeshBoardPage();
+        Home home= new Home();
+        home.setVisible(true);
     }
 
 

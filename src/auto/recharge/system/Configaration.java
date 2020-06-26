@@ -1,5 +1,7 @@
 package auto.recharge.system;
 
+import auto.recharge.system.dto.ModemInfoList;
+import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -124,12 +126,12 @@ public class Configaration {
             Document document = new Document();
 
             try {
-                PdfWriter.getInstance(document, new FileOutputStream(f.getSelectedFile() + "/ARS-" +Math.random() + ".pdf"));
+                PdfWriter.getInstance(document, new FileOutputStream(f.getSelectedFile() + "/ARS-" + Math.random() + ".pdf"));
                 document.open();
-              
+
                 PdfPTable pdfPTable = new PdfPTable(8);
                 pdfPTable.setWidthPercentage(100);
-                
+
                 pdfPTable.addCell("TrxId");
                 pdfPTable.addCell("Date & Time");
                 pdfPTable.addCell("Type");
@@ -150,7 +152,7 @@ public class Configaration {
                     pdfPTable.addCell(jTable.getValueAt(i, 7).toString());
 
                 }
-                
+
                 document.add(pdfPTable);
 
             } catch (FileNotFoundException ex) {
@@ -163,19 +165,28 @@ public class Configaration {
         Popup.customSuccess();
         System.out.println("******** PDF Created ***************");
     }
+
     public static String getJustDate(Date date) {
         SimpleDateFormat dateOnly = new SimpleDateFormat("yy/MM/dd");
         return dateOnly.format(date);
     }
-    
+
     public static Date stringToDateType(String date) {
         Date dateType = null;
-        try {  
-           dateType=new SimpleDateFormat("yy/MM/dd").parse(date);
-            
+        try {
+            dateType = new SimpleDateFormat("yy/MM/dd").parse(date);
+
         } catch (ParseException ex) {
             Logger.getLogger(Configaration.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return  dateType;
+        return dateType;
+    }
+
+    public static void closeUssdSession(String port) {
+
+        com.moniruzzaman.Modem.connect(port);
+        System.out.println(com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"#xxx#\",15"));
+        com.moniruzzaman.Modem.disconnect();
+
     }
 }

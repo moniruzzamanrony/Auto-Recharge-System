@@ -8,8 +8,10 @@ package auto.recharge.system;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 /**
  *
@@ -17,7 +19,7 @@ import javax.swing.UIManager;
  */
 public class Popup {
 
-    public static final int OK = 0;
+    public static final int OK = 1;
     public static final int EXIT = -1;
     public static final int CANCEL = 2;
 
@@ -90,17 +92,42 @@ public class Popup {
     }
 
     public static int display(String heading, String phnNumber, String ammount, String prepaidOrPostPaid, String payBy) {
-
-
         /**
-         * Exit = -1 OK = 0 Cancel= 2
+         * Exit = -1 OK = 1 Cancel= 2
          */
-        RechargeConfirmationDialogUI ui = new RechargeConfirmationDialogUI(heading,phnNumber,ammount,prepaidOrPostPaid,payBy);
-        UIManager.put("OptionPane.cancelButtonText", "Edit");
-        int result = JOptionPane.showConfirmDialog(null, ui, "Auto Recharge System",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int result;
+        RechargeConfirmationDialogUI ui = new RechargeConfirmationDialogUI(heading, phnNumber, ammount, prepaidOrPostPaid, payBy);
 
-        return result;
+        JDialog jDialog = new JDialog();
+        jDialog.add(ui);
+        jDialog.setSize(1400, 941);
+        jDialog.setLocationRelativeTo(null);
+        jDialog.setUndecorated(true);
+        jDialog.setVisible(true);
+
+        ui.getClickClose().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+            }
+
+        });
+
+        ui.getClickConfirm().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                jDialog.setVisible(false);
+            }
+
+        });
+        ui.getClickEdit().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+
+            }
+
+        });
+        return 11;
     }
     private static final Toolkit AWT_TOOLKIT = Toolkit.getDefaultToolkit();
     private static final Clipboard CLIPBOARD = AWT_TOOLKIT.getSystemClipboard();
