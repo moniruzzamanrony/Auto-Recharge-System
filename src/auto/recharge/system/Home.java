@@ -42,7 +42,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -76,6 +75,7 @@ public class Home extends javax.swing.JFrame {
     private String search;
     private DefaultListModel defaultListModel = new DefaultListModel();
     private Set<ContractResponse> contractList;
+    private final String[] SIM_OPERATORS_NAME = new String[]{"BANKLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
 
     public Home() {
         initComponents();
@@ -245,7 +245,19 @@ public class Home extends javax.swing.JFrame {
         tCashSettingPanel4 = new javax.swing.JPanel();
         nogodSettingPanel5 = new javax.swing.JPanel();
         rechargeOfferPanel = new javax.swing.JPanel();
+        getRechargeAmountInSetting = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
+        getOfferNameInSeting = new javax.swing.JTextField();
+        jLabel44 = new javax.swing.JLabel();
+        getRechargeAmmountInSeetings = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
+        getValidityInSetting = new javax.swing.JTextField();
+        jLabel64 = new javax.swing.JLabel();
+        getDescriptionInSetting = new javax.swing.JTextField();
+        getSelectedValidityTimeTypeSetting = new javax.swing.JComboBox<>();
+        saveNewOfferInSettrings = new javax.swing.JButton();
+        jLabel65 = new javax.swing.JLabel();
+        getSIMOperatorName = new javax.swing.JComboBox<>();
         addNewManagementPanelSettings = new javax.swing.JPanel();
         backToUssdManengementPanel1 = new javax.swing.JLabel();
         getOparetorNameInDropDown = new javax.swing.JComboBox<>();
@@ -2011,23 +2023,134 @@ public class Home extends javax.swing.JFrame {
 
         rechargeOfferPanel.setToolTipText("");
 
-        jLabel22.setText("rechargeOfferPanel");
+        getRechargeAmountInSetting.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel22.setFont(new java.awt.Font("Cambria", 1, 23)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Offer Name");
+
+        getOfferNameInSeting.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+
+        jLabel44.setFont(new java.awt.Font("Cambria", 1, 23)); // NOI18N
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setText("Recharge Amount");
+
+        getRechargeAmmountInSeetings.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+
+        jLabel63.setFont(new java.awt.Font("Cambria", 1, 23)); // NOI18N
+        jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel63.setText("Validity");
+
+        getValidityInSetting.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+
+        jLabel64.setFont(new java.awt.Font("Cambria", 1, 23)); // NOI18N
+        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel64.setText("Description");
+
+        getDescriptionInSetting.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+
+        getSelectedValidityTimeTypeSetting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hours", "Days", "Years" }));
+
+        saveNewOfferInSettrings.setBackground(new java.awt.Color(51, 204, 0));
+        saveNewOfferInSettrings.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        saveNewOfferInSettrings.setForeground(new java.awt.Color(255, 255, 255));
+        saveNewOfferInSettrings.setText("Save");
+        saveNewOfferInSettrings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveNewOfferInSettringsActionPerformed(evt);
+            }
+        });
+
+        jLabel65.setFont(new java.awt.Font("Cambria", 1, 23)); // NOI18N
+        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel65.setText("SIM Operator");
+
+        javax.swing.GroupLayout getRechargeAmountInSettingLayout = new javax.swing.GroupLayout(getRechargeAmountInSetting);
+        getRechargeAmountInSetting.setLayout(getRechargeAmountInSettingLayout);
+        getRechargeAmountInSettingLayout.setHorizontalGroup(
+            getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveNewOfferInSettrings, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(318, 318, 318))
+            .addGroup(getRechargeAmountInSettingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
+                                .addComponent(getOfferNameInSeting, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(140, 140, 140))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
+                                .addComponent(getValidityInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(getSelectedValidityTimeTypeSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139))))
+                    .addGroup(getRechargeAmountInSettingLayout.createSequentialGroup()
+                        .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel63, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
+                                .addGap(144, 144, 144)
+                                .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(getRechargeAmmountInSeetings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(getDescriptionInSetting, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(128, 128, 128)))
+                        .addContainerGap())))
+            .addGroup(getRechargeAmountInSettingLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(getSIMOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        getRechargeAmountInSettingLayout.setVerticalGroup(
+            getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(getRechargeAmountInSettingLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(jLabel65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getSIMOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getOfferNameInSeting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getRechargeAmmountInSeetings, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(getValidityInSetting)
+                    .addComponent(getSelectedValidityTimeTypeSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getDescriptionInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(saveNewOfferInSettrings, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout rechargeOfferPanelLayout = new javax.swing.GroupLayout(rechargeOfferPanel);
         rechargeOfferPanel.setLayout(rechargeOfferPanelLayout);
         rechargeOfferPanelLayout.setHorizontalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
-                .addGap(417, 417, 417)
-                .addComponent(jLabel22)
-                .addContainerGap(759, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeOfferPanelLayout.createSequentialGroup()
+                .addContainerGap(233, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabel22)
-                .addContainerGap(636, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         settingBasePanel.add(rechargeOfferPanel, "card2");
@@ -3012,6 +3135,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_mobileBankingSettingsMouseClicked
 
     private void rechargeOffersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechargeOffersMouseClicked
+
         switchPanelViaSettings(rechargeOfferPanel, rechargeOffers);
         myProfile.setForeground(Color.black);
         systemBackup.setForeground(Color.black);
@@ -3019,6 +3143,12 @@ public class Home extends javax.swing.JFrame {
         trustedEmployee.setForeground(Color.black);
         rechargeSettings.setForeground(Color.black);
         mobileBankingSettings.setForeground(Color.black);
+
+        getSIMOperatorName.removeAllItems();
+        for (String string : SIM_OPERATORS_NAME) {
+            getSIMOperatorName.addItem(string);
+
+        }
     }//GEN-LAST:event_rechargeOffersMouseClicked
 
     private void clickAddNewManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddNewManagementActionPerformed
@@ -3427,6 +3557,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_clickContactListMouseEntered
 
+    private void saveNewOfferInSettringsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewOfferInSettringsActionPerformed
+        saveSIMOffer();
+    }//GEN-LAST:event_saveNewOfferInSettringsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MobileBankingSettingsPanel;
@@ -3488,9 +3622,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getBalenceUssdPartern1;
     private javax.swing.JTextField getBalenceUssdPartern3;
+    private javax.swing.JTextField getDescriptionInSetting;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getNameForContract;
     private javax.swing.JTextField getNameForSearch;
+    private javax.swing.JTextField getOfferNameInSeting;
     private javax.swing.JComboBox<String> getOparetorNameInDropDown;
     private javax.swing.JTextField getOperatorCode;
     private javax.swing.JTextField getOperatorCode1;
@@ -3499,19 +3635,24 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getPhoneNOForContract;
     private javax.swing.JTextField getPhoneNoForSearch;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
+    private javax.swing.JTextField getRechargeAmmountInSeetings;
+    private javax.swing.JPanel getRechargeAmountInSetting;
     private javax.swing.JTextField getRechargeUssdParternPostPaid;
     private javax.swing.JTextField getRechargeUssdParternPostPaid1;
     private javax.swing.JTextField getRechargeUssdParternPrePaid;
     private javax.swing.JTextField getRechargeUssdParternPrePaid1;
     private javax.swing.JTextField getRechargeUssdParternSkitto;
+    private javax.swing.JComboBox<String> getSIMOperatorName;
     private javax.swing.JComboBox<String> getSelectedOptionFroTable;
     private javax.swing.JComboBox<String> getSelectedSIMNameCombo;
     private javax.swing.JComboBox<String> getSelectedServiceCombo;
     private javax.swing.JComboBox<String> getSelectedSim;
+    private javax.swing.JComboBox<String> getSelectedValidityTimeTypeSetting;
     private javax.swing.JComboBox<String> getSeletedAction;
     private javax.swing.JComboBox<String> getSeletedOperatorName;
     private javax.swing.JComboBox<String> getSeletedStorage;
     private javax.swing.JTextField getUssdCode;
+    private javax.swing.JTextField getValidityInSetting;
     private javax.swing.JPasswordField getbKashPIN;
     private javax.swing.JTextField getprofitIn1k;
     private javax.swing.JLabel headerLabel;
@@ -3575,6 +3716,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
@@ -3595,6 +3737,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -3639,6 +3784,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel resellerPanel;
     private javax.swing.JPanel resellerTab;
     private javax.swing.JPanel rocketSettingPanel;
+    private javax.swing.JButton saveNewOfferInSettrings;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JPanel serchBar;
@@ -4232,58 +4378,88 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void simSimOfferDialog() {
-        JDialog offerDialog = new JDialog();
-        SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
-        DefaultTableModel defaultTableModelBL,defaultTableModelGP,defaultTableModelRobi,defaultTableModelAirtel,defaultTableModelTeletalk;
-         ui.getCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                offerDialog.setVisible(false);
+        try {
+            JDialog offerDialog = new JDialog();
+            SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
+            DefaultTableModel defaultTableModelBL, defaultTableModelGP, defaultTableModelRobi, defaultTableModelAirtel, defaultTableModelTeletalk;
+            ui.getCross().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent me) {
+                    offerDialog.setVisible(false);
+                }
+
+            });
+
+            defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+            
+            defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+            
+            defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+            
+            defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+            
+            defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+            
+            DbConnection.connect();
+            ResultSet rs = DbConnection.retrieveAll("recharge_offers");
+            while (rs.next()) {
+
+                switch (rs.getString("sim_name")) {
+                    case "BANKLALINK":
+                        defaultTableModelBL.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        break;
+                    case "GP":
+                         defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        break;
+                    case "ROBI":
+                         defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        break;
+                    case "AIRTEL":
+                         defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        break;
+                    case "TELETALK":
+                         defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        break;
+                }
+
             }
+                        
+            addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(), offerDialog);
+            ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
+            
+            
+            addTableUIDesignForOfferDialog(ui.getTableGpOffers(), offerDialog);
+            ui.getTableGpOffers().setModel(defaultTableModelGP);
+            
 
-        });
-         
-       defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-       defaultTableModelBL.addRow(new String[]{"Combo Pack", "200", "30days", "3GB+200Mins(On Net)"});
+            addTableUIDesignForOfferDialog(ui.getTableRobiOffers(), offerDialog);
+            ui.getTableRobiOffers().setModel(defaultTableModelRobi);
+            
 
-        addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(),offerDialog);
-        ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
+            addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(), offerDialog);
+            ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
+            
 
-        
-       defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-       defaultTableModelGP.addRow(new String[]{"Combo Pack", "200", "30days", "3GB+200Mins(On Net)"});
-
-        addTableUIDesignForOfferDialog(ui.getTableGpOffers(),offerDialog);
-        ui.getTableGpOffers().setModel(defaultTableModelGP);
-        
-       defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-       defaultTableModelRobi.addRow(new String[]{"Combo Pack", "200", "30days", "3GB+200Mins(On Net)"});
-
-        addTableUIDesignForOfferDialog(ui.getTableRobiOffers(),offerDialog);
-        ui.getTableRobiOffers().setModel(defaultTableModelRobi);
-        
-        
-       defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-       defaultTableModelAirtel.addRow(new String[]{"Combo Pack", "200", "30days", "3GB+200Mins(On Net)"});
-
-        addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(),offerDialog);
-        ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
-        
-        
-       defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-       defaultTableModelTeletalk.addRow(new String[]{"Combo Pack", "200", "30days", "3GB+200Mins(On Net)"});
-
-        addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(),offerDialog);
-        ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
-        
-        
-        offerDialog.add(ui);
-        offerDialog.setSize(1000, 800);
-        offerDialog.setLocationRelativeTo(null);
-        offerDialog.setUndecorated(true);
-        offerDialog.setVisible(true);
+            addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(), offerDialog);
+            ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
+            
+            
+            offerDialog.add(ui);
+            offerDialog.setSize(1000, 800);
+            offerDialog.setLocationRelativeTo(null);
+            offerDialog.setUndecorated(true);
+            offerDialog.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    private void addTableUIDesignForOfferDialog(JTable jTable,JDialog jDialog) {
+
+    private void addTableUIDesignForOfferDialog(JTable jTable, JDialog jDialog) {
         jTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
         jTable.getTableHeader().setOpaque(false);
         jTable.getTableHeader().setBackground(new Color(133, 47, 209));
@@ -4293,22 +4469,23 @@ public class Home extends javax.swing.JFrame {
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         jTable.setEnabled(false);
         jTable.setRowHeight(25);
-        
+
         jTable.addMouseListener(new MouseAdapter() {
 
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    String ammount;
-                    Point point = me.getPoint();
-                    int column = jTable.columnAtPoint(point);
-                    int row = jTable.rowAtPoint(point);
-                    ammount = jTable.getValueAt(row, 1).toString();
-                    getAmmountInTk.setText(ammount);
-                    getAmmountInTk.setForeground(Color.black);
-                    jDialog.setVisible(false);
-                }
-            });
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                String ammount;
+                Point point = me.getPoint();
+                int column = jTable.columnAtPoint(point);
+                int row = jTable.rowAtPoint(point);
+                ammount = jTable.getValueAt(row, 1).toString();
+                getAmmountInTk.setText(ammount);
+                getAmmountInTk.setForeground(Color.black);
+                jDialog.setVisible(false);
+            }
+        });
     }
+
     /*
     
     ------------------------ SETTING PANEL--------------------------------------
@@ -4506,6 +4683,45 @@ public class Home extends javax.swing.JFrame {
             imagePath = copy(sname, fileName);
             Configaration.setLog("Icon Load Successful");
             clickChooseIcon1.setText(fileName);
+        }
+    }
+
+    private void saveSIMOffer() {
+
+        String offerName = getOfferNameInSeting.getText();
+        String rechargeAmount = getRechargeAmmountInSeetings.getText();
+        String validity = getValidityInSetting.getText() + " " + getSelectedValidityTimeTypeSetting.getSelectedItem();
+        String description = getDescriptionInSetting.getText();
+        String simOperator = getSIMOperatorName.getSelectedItem().toString().toUpperCase();
+
+        conn = DbConnection.connect();
+        String sql = "INSERT INTO recharge_offers(offer_name,recharge_amt,validity,description,sim_name) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, offerName);
+            preparedStatement.setString(2, rechargeAmount);
+            preparedStatement.setString(3, validity);
+            preparedStatement.setString(4, description);
+            preparedStatement.setString(5, simOperator);
+            preparedStatement.execute();
+
+            Popup.customSuccess();
+
+            getOfferNameInSeting.setText("");
+            getRechargeAmmountInSeetings.setText("");
+            getValidityInSetting.setText("");
+            getDescriptionInSetting.setText("");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+
+                }
+            }
         }
     }
 
@@ -5243,7 +5459,5 @@ public class Home extends javax.swing.JFrame {
         jComboBox.removeAllItems();
 
     }
-
-
 
 }
