@@ -434,14 +434,12 @@ public class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Login login= new Login();
-                login.setVisible(true);
-                //new Login().setVisible(true);
-                appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
-                buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            Login login= new Login();
+            login.setVisible(true);
+            //new Login().setVisible(true);
+            appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
+            buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
         });
     }
 
