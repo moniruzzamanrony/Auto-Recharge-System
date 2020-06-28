@@ -57,7 +57,7 @@ public class DbConnection {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-       
+
     }
 
     public static boolean deleteRow(String tableName, String columeName, String value) {
@@ -81,8 +81,20 @@ public class DbConnection {
             String sql = "SELECT * FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
             return st.executeQuery(sql);
         } catch (SQLException ex) {
-            Configaration.setErrorLog("Value Not Found"+ex);
+            Configaration.setErrorLog("Value Not Found" + ex);
             return null;
         }
     }
+
+    public static void disconnect() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+
+            }
+        }
+
+    }
+
 }

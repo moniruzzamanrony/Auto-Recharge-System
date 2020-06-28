@@ -7,6 +7,7 @@ package auto.recharge.system;
 
 import static auto.recharge.system.Mail.getMacAddress;
 import auto.recharge.system.dto.ContractResponse;
+import auto.recharge.system.dto.GroupRechargeResponse;
 import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import com.itvillage.AES;
@@ -75,7 +76,7 @@ public class Home extends javax.swing.JFrame {
     private String search;
     private DefaultListModel defaultListModel = new DefaultListModel();
     private Set<ContractResponse> contractList;
-    private final String[] SIM_OPERATORS_NAME = new String[]{"BANKLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
+    private final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
 
     public Home() {
         initComponents();
@@ -349,6 +350,24 @@ public class Home extends javax.swing.JFrame {
         comboBoxActiveSIM = new javax.swing.JComboBox<>();
         baseInformationPanel = new javax.swing.JPanel();
         jComboBox4 = new javax.swing.JComboBox<>();
+        groupLoadPanel = new javax.swing.JPanel();
+        backToMobileRecharge1 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        tableGroupRecharge = new javax.swing.JTable();
+        sendAllRechargeBut = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel67 = new javax.swing.JLabel();
+        getPhoneNumberInGroupRecharge = new javax.swing.JTextField();
+        jLabel68 = new javax.swing.JLabel();
+        getAmountGroupRecharge = new javax.swing.JTextField();
+        jLabel69 = new javax.swing.JLabel();
+        addButInGroupRecharge = new javax.swing.JButton();
+        jLabel70 = new javax.swing.JLabel();
+        getSelectedTypeGroupRecharge = new javax.swing.JComboBox<>();
+        getSelectedSimInGroupRecharge1 = new javax.swing.JComboBox<>();
+        jLabel71 = new javax.swing.JLabel();
+        sendingLogLabel = new javax.swing.JLabel();
 
         suggestPanel.setPreferredSize(new java.awt.Dimension(670, 471));
 
@@ -2857,6 +2876,136 @@ public class Home extends javax.swing.JFrame {
 
         basePanel.add(addBillPaymentDetailsPanel, "card2");
 
+        groupLoadPanel.setBackground(new java.awt.Color(255, 255, 255));
+        groupLoadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backToMobileRecharge1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        backToMobileRecharge1.setText("jLabel3");
+        backToMobileRecharge1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backToMobileRecharge1MouseClicked(evt);
+            }
+        });
+        groupLoadPanel.add(backToMobileRecharge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
+
+        jLabel66.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel66.setText("Group Load");
+        groupLoadPanel.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        tableGroupRecharge.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(tableGroupRecharge);
+
+        groupLoadPanel.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 990, 600));
+
+        sendAllRechargeBut.setText("Send All Recharge");
+        sendAllRechargeBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendAllRechargeButActionPerformed(evt);
+            }
+        });
+        groupLoadPanel.add(sendAllRechargeBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 70, 160, 30));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 51), null));
+
+        jLabel67.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel67.setText("Add Recharge");
+
+        getPhoneNumberInGroupRecharge.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+
+        jLabel68.setText("Phone No.");
+
+        getAmountGroupRecharge.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+
+        jLabel69.setText("Amount");
+
+        addButInGroupRecharge.setText("Add");
+        addButInGroupRecharge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButInGroupRechargeActionPerformed(evt);
+            }
+        });
+
+        jLabel70.setText("Type");
+
+        getSelectedTypeGroupRecharge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pre-paid", "Post-paid", "Skitoo" }));
+
+        jLabel71.setText("Send By");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(addButInGroupRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(getPhoneNumberInGroupRecharge)
+                    .addComponent(getAmountGroupRecharge)
+                    .addComponent(getSelectedTypeGroupRecharge, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(getSelectedSimInGroupRecharge1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel68)
+                            .addComponent(jLabel69)
+                            .addComponent(jLabel70)
+                            .addComponent(jLabel71))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getPhoneNumberInGroupRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getAmountGroupRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel70)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getSelectedTypeGroupRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel71)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(getSelectedSimInGroupRecharge1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(addButInGroupRecharge)
+                .addContainerGap(281, Short.MAX_VALUE))
+        );
+
+        groupLoadPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 70, 300, 640));
+
+        sendingLogLabel.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
+        sendingLogLabel.setForeground(new java.awt.Color(204, 0, 51));
+        sendingLogLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sendingLogLabel.setText("Please Wait...");
+        groupLoadPanel.add(sendingLogLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 370, -1));
+
+        basePanel.add(groupLoadPanel, "card2");
+
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
@@ -2984,7 +3133,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickUssdDailActionPerformed
 
     private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
-        // TODO add your handling code here:
+        switchPanelViaMenu(groupLoadPanel);
+        for (String value : SIM_OPERATORS_NAME) {
+            getSelectedSimInGroupRecharge1.addItem(value);
+
+        }
+        sendingLogLabel.setVisible(false);
+        loadDataInGroupRechargeTable();
+        focusAndKeyboardUsedInGroupRecharge();
     }//GEN-LAST:event_clickGroupLoadActionPerformed
 
     private void clickSIMOfferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOfferActionPerformed
@@ -3561,6 +3717,31 @@ public class Home extends javax.swing.JFrame {
         saveSIMOffer();
     }//GEN-LAST:event_saveNewOfferInSettringsActionPerformed
 
+    private void backToMobileRecharge1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRecharge1MouseClicked
+        switchPanelViaMenu(mobileRechargePanel);
+    }//GEN-LAST:event_backToMobileRecharge1MouseClicked
+
+    private void sendAllRechargeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendAllRechargeButActionPerformed
+        sendingLogLabel.setVisible(true);
+        sendAllRechargeBut.setFocusable(false);
+        int res = Popup.customWarning("Be carefull\n Can't cencel it");
+        if (res == 0) {
+            sendGroupRecharge();
+
+        } else {
+            sendingLogLabel.setVisible(false);
+            sendAllRechargeBut.setFocusable(true);
+        }
+    }//GEN-LAST:event_sendAllRechargeButActionPerformed
+
+    private void addButInGroupRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButInGroupRechargeActionPerformed
+        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
+            Popup.customError("Empty field found..");
+        } else {
+            addInGroupRechargeTable();
+        }
+    }//GEN-LAST:event_addButInGroupRechargeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MobileBankingSettingsPanel;
@@ -3568,6 +3749,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPasswordField accountPassword;
     private javax.swing.JPasswordField accountPassword1;
     private javax.swing.JPanel addBillPaymentDetailsPanel;
+    private javax.swing.JButton addButInGroupRecharge;
     private javax.swing.JPanel addNewContractPanel;
     private javax.swing.JPanel addNewManagementPanel;
     private javax.swing.JPanel addNewManagementPanelSettings;
@@ -3577,6 +3759,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel back43;
     private javax.swing.JLabel backToBillPayment;
     private javax.swing.JLabel backToMobileRecharge;
+    private javax.swing.JLabel backToMobileRecharge1;
     private javax.swing.JLabel backToUssdManengementPanel;
     private javax.swing.JLabel backToUssdManengementPanel1;
     private javax.swing.JPanel baseInformationPanel;
@@ -3620,6 +3803,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel errorMgsInBalencePanel;
     private com.toedter.calendar.JDateChooser fromDateChooser;
     private javax.swing.JTextField getAmmountInTk;
+    private javax.swing.JTextField getAmountGroupRecharge;
     private javax.swing.JTextField getBalenceUssdPartern1;
     private javax.swing.JTextField getBalenceUssdPartern3;
     private javax.swing.JTextField getDescriptionInSetting;
@@ -3634,6 +3818,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getOperatorName1;
     private javax.swing.JTextField getPhoneNOForContract;
     private javax.swing.JTextField getPhoneNoForSearch;
+    private javax.swing.JTextField getPhoneNumberInGroupRecharge;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
     private javax.swing.JTextField getRechargeAmmountInSeetings;
     private javax.swing.JPanel getRechargeAmountInSetting;
@@ -3647,6 +3832,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getSelectedSIMNameCombo;
     private javax.swing.JComboBox<String> getSelectedServiceCombo;
     private javax.swing.JComboBox<String> getSelectedSim;
+    private javax.swing.JComboBox<String> getSelectedSimInGroupRecharge1;
+    private javax.swing.JComboBox<String> getSelectedTypeGroupRecharge;
     private javax.swing.JComboBox<String> getSelectedValidityTimeTypeSetting;
     private javax.swing.JComboBox<String> getSeletedAction;
     private javax.swing.JComboBox<String> getSeletedOperatorName;
@@ -3655,6 +3842,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getValidityInSetting;
     private javax.swing.JPasswordField getbKashPIN;
     private javax.swing.JTextField getprofitIn1k;
+    private javax.swing.JPanel groupLoadPanel;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel helplinePanel;
@@ -3740,12 +3928,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -3787,6 +3983,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton saveNewOfferInSettrings;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectedSimOperatorIcon;
+    private javax.swing.JButton sendAllRechargeBut;
+    private javax.swing.JLabel sendingLogLabel;
     private javax.swing.JPanel serchBar;
     private javax.swing.JTextArea setMgsDetails;
     private javax.swing.JTextArea setResponseShowFromUssd;
@@ -3801,6 +3999,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel tCashSettingPanel4;
     private javax.swing.JTable tableContractLIst;
     private javax.swing.JTable tableForDetails;
+    private javax.swing.JTable tableGroupRecharge;
     private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JLabel title;
@@ -3886,6 +4085,11 @@ public class Home extends javax.swing.JFrame {
      */
     private void recharge() {
 
+        String phoneNumberRequested = getMobileNumber.getText();
+        String ammountRequested = getAmmountInTk.getText();
+        String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+        String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+
         RechargeConfirmationDialogUI ui
                 = new RechargeConfirmationDialogUI("Recharge Confirmation",
                         getMobileNumber.getText(),
@@ -3937,7 +4141,7 @@ public class Home extends javax.swing.JFrame {
 
         ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
 
-            rechargeDoneProcess();
+            rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
             refrash();
             jDialog.setVisible(false);
 
@@ -3947,7 +4151,7 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rechargeDoneProcess();
+                    rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
                     refrash();
                     jDialog.setVisible(false);
                 }
@@ -4024,14 +4228,11 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    void rechargeDoneProcess() {
+    void rechargeDoneProcess(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
         int responseCount = 0;
 
         try {
-            String phoneNumberRequested = getMobileNumber.getText();
-            String ammountRequested = getAmmountInTk.getText();
-            String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-            String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+
             ResultSet rs = DbConnection.findByColume("command", "operator_name", selectedPayableSIM);
             while (rs.next()) {
 
@@ -4060,7 +4261,7 @@ public class Home extends javax.swing.JFrame {
                 }
 
             }
-            saveToDbCommandInRechargeAdmin();
+            saveToDbCommandInRechargeAdmin(phoneNumberRequested, ammountRequested, preOrPostRequested);
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4392,19 +4593,14 @@ public class Home extends javax.swing.JFrame {
 
             defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            
             defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            
             defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            
             defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            
             defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            
             DbConnection.connect();
             ResultSet rs = DbConnection.retrieveAll("recharge_offers");
             while (rs.next()) {
@@ -4414,41 +4610,36 @@ public class Home extends javax.swing.JFrame {
                         defaultTableModelBL.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
                         break;
                     case "GP":
-                         defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
                         break;
                     case "ROBI":
-                         defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
                         break;
                     case "AIRTEL":
-                         defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
                         break;
                     case "TELETALK":
-                         defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                        defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
                         break;
                 }
 
             }
-                        
+
             addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(), offerDialog);
             ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
-            
-            
+
             addTableUIDesignForOfferDialog(ui.getTableGpOffers(), offerDialog);
             ui.getTableGpOffers().setModel(defaultTableModelGP);
-            
 
             addTableUIDesignForOfferDialog(ui.getTableRobiOffers(), offerDialog);
             ui.getTableRobiOffers().setModel(defaultTableModelRobi);
-            
 
             addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(), offerDialog);
             ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
-            
 
             addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(), offerDialog);
             ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
-            
-            
+
             offerDialog.add(ui);
             offerDialog.setSize(1000, 800);
             offerDialog.setLocationRelativeTo(null);
@@ -4484,6 +4675,168 @@ public class Home extends javax.swing.JFrame {
                 jDialog.setVisible(false);
             }
         });
+    }
+
+    private void addInGroupRechargeTable() {
+        String number = getPhoneNumberInGroupRecharge.getText();
+        String amountInTk = getAmountGroupRecharge.getText();
+        String requestSIMName = getSelectedSimInGroupRecharge1.getSelectedItem().toString();
+        String simType = getSelectedTypeGroupRecharge.getSelectedItem().toString();
+
+        conn = DbConnection.connect();
+        String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, number);
+            preparedStatement.setString(2, amountInTk);
+            preparedStatement.setString(3, requestSIMName);
+            preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
+            preparedStatement.setString(5, simType);
+            preparedStatement.execute();
+            int res = Popup.customSuccess();
+            if (res == 0) {
+                loadDataInGroupRechargeTable();
+                getPhoneNumberInGroupRecharge.setText("");
+                getAmountGroupRecharge.setText("");
+                getPhoneNumberInGroupRecharge.requestFocusInWindow();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect();
+        }
+    }
+
+    private void focusAndKeyboardUsedInGroupRecharge() {
+        getPhoneNumberInGroupRecharge.requestFocusInWindow();
+        getPhoneNumberInGroupRecharge.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        getAmountGroupRecharge.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        getAmountGroupRecharge.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        getSelectedTypeGroupRecharge.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        getSelectedTypeGroupRecharge.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        getSelectedSimInGroupRecharge1.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        getSelectedSimInGroupRecharge1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        addButInGroupRecharge.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        addButInGroupRecharge.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
+                            Popup.customError("Empty field found..");
+                        } else {
+                            addInGroupRechargeTable();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+    }
+
+    private void loadDataInGroupRechargeTable() {
+        try {
+            DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
+                "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
+            DbConnection.connect();
+            ResultSet rs = DbConnection.retrieveAll("group_recharge");
+
+            while (rs.next()) {
+                groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
+
+            }
+
+            tableGroupRecharge.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+            tableGroupRecharge.getTableHeader().setOpaque(false);
+            tableGroupRecharge.getTableHeader().setBackground(new Color(133, 47, 209));
+            tableGroupRecharge.getTableHeader().setForeground(new Color(255, 255, 255));
+
+            //For jTable contant in center
+            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableGroupRecharge.getDefaultRenderer(String.class);
+            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+            tableGroupRecharge.setEnabled(false);
+
+            tableGroupRecharge.setRowHeight(25);
+            tableGroupRecharge.setModel(groupRechargeTableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void sendGroupRecharge() {
+
+        List<GroupRechargeResponse> groupRechargeResponsesList = new ArrayList<>();
+        try {
+            DbConnection.connect();
+            ResultSet rs = DbConnection.retrieveAll("group_recharge");
+
+            while (rs.next()) {
+                GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
+                groupRechargeResponse.setPhoneNumber(rs.getString("phone_number"));
+                groupRechargeResponse.setAmount(rs.getString("amount"));
+                groupRechargeResponse.setSimType(rs.getString("type"));
+                groupRechargeResponse.setPayBy(rs.getString("send_by"));
+                groupRechargeResponsesList.add(groupRechargeResponse);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect();
+        }
+        groupRechargeResponsesList.stream().forEach(values -> {
+            rechargeDoneProcess(values.getPhoneNumber(), values.getAmount(), values.getSimType(), values.getPayBy());
+            Configaration.wait(1000);
+
+        });
+
+        DbConnection.connect();
+        DbConnection.delete("group_recharge");
+        DbConnection.disconnect();
+
     }
 
     /*
@@ -4556,11 +4909,8 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private boolean saveToDbCommandInRechargeAdmin() {
+    private boolean saveToDbCommandInRechargeAdmin(String getMobileNumberText, String getAmmountInTkText, String getPrepaidOrPostpaidText) {
 
-        String getMobileNumberText = getMobileNumber.getText().toLowerCase();
-        String getAmmountInTkText = getAmmountInTk.getText().toLowerCase();
-        String getPrepaidOrPostpaidText = getPrepaidOrPostpaid.getSelectedItem().toString();
         trxId = UUID.randomUUID().toString();
         String dateTime = Configaration.getCurrentDateAndTime();
 

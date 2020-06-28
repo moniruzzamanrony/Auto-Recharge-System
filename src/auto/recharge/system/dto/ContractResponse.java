@@ -11,10 +11,10 @@ package auto.recharge.system.dto;
  */
 public class ContractResponse {
 
-    int id;
-    String name;
-    String phoneNo;
-    String storage;
+   private int id;
+   private String name;
+   private String phoneNo;
+   private String storage;
 
     public String getName() {
         return name;

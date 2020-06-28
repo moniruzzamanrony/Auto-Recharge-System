@@ -50,6 +50,7 @@ public class SimOfferViewPanelUi extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
 
+        tableBanglalinkOffers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         tableBanglalinkOffers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -68,6 +69,7 @@ public class SimOfferViewPanelUi extends javax.swing.JPanel {
         banglalinkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banglalinkLabel.setText("Banglalink");
 
+        tableGpOffers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         tableGpOffers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -86,6 +88,7 @@ public class SimOfferViewPanelUi extends javax.swing.JPanel {
         banglalinkLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banglalinkLabel1.setText("Grameen Phone");
 
+        tableRobiOffers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         tableRobiOffers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -104,6 +107,7 @@ public class SimOfferViewPanelUi extends javax.swing.JPanel {
         banglalinkLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banglalinkLabel2.setText("ROBI");
 
+        tableAirtelOffers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         tableAirtelOffers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -122,6 +126,7 @@ public class SimOfferViewPanelUi extends javax.swing.JPanel {
         banglalinkLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         banglalinkLabel3.setText("AIRTEL");
 
+        tableTeletalkOffers.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
         tableTeletalkOffers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

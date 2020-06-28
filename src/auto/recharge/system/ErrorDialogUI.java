@@ -33,7 +33,7 @@ public class ErrorDialogUI extends javax.swing.JPanel {
 
         setSubTitle.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         setSubTitle.setForeground(new java.awt.Color(0, 0, 0));
-        setSubTitle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        setSubTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         setSubTitle.setText("Something is worr");
         add(setSubTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 290, 50));
     }// </editor-fold>//GEN-END:initComponents
