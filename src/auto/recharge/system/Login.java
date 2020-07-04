@@ -328,23 +328,20 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-        
+
         // Home home = new Home();
         // home.showDeshBoardPage();
         this.setVisible(false);
         loadingScreen = new LoadingScreen();
         loadingScreen.setVisible(true);
-        if(Popup.customInfo("Need some times to ready your software.") < 0)
-        {
+        if (Popup.customInfo("Need some times to ready your software.") < 0) {
             this.setVisible(true);
             loadingScreen.setVisible(false);
-        }
-        else{
-            
+        } else {
+
             getSIMOperatorInfo();
         }
-       
-        
+
         // login();
 
     }//GEN-LAST:event_loginButMouseClicked
@@ -408,7 +405,7 @@ public class Login extends javax.swing.JFrame {
                         && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
                                 .equals(getPasswordBypt.getText().trim())) {
                     this.setVisible(false);
-                  
+
                     Home.showDeshBoardPage();
                 } else {
                     Popup.error("Try again\nWrong Phone Number Or Password");
@@ -435,7 +432,7 @@ public class Login extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(() -> {
-            Login login= new Login();
+            Login login = new Login();
             login.setVisible(true);
             //new Login().setVisible(true);
             appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
@@ -468,24 +465,23 @@ public class Login extends javax.swing.JFrame {
 
     private void setHint() {
         getPhoneNumber.setUI(new HintTextFieldUI("01XX-XXXXXXX"));
-        
 
     }
 
     private void getSIMOperatorInfo() {
-        if(Modem.getActivePortsList().isEmpty())
-        {
-        Popup.error("Modem Not Found..");
-        }
-        else{
+        if (Modem.getActivePortsList().isEmpty()) {
+            int res = Popup.customError("Modem Not Found..");
+            if (res == 0) {
+                System.exit(0);
+            }
+        } else {
             ModemInfoList.portsList = Modem.getActivePortsList();
-            ModemInfoList.simOperatorIdentifiers =  Modem.getSimInfo(ModemInfoList.portsList);   
+            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
         }
-   
+
         loadingScreen.dispose();
-        Home home= new Home();
+        Home home = new Home();
         home.setVisible(true);
     }
-
 
 }

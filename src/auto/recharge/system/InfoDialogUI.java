@@ -33,7 +33,7 @@ public class InfoDialogUI extends javax.swing.JPanel {
         setMgs.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         setMgs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         setMgs.setText("jLabel3");
-        add(setMgs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 290, 80));
+        add(setMgs, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 290, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
