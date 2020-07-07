@@ -190,9 +190,9 @@ public class Configaration {
 
     public static void closeUssdSession(String port) {
 
-        com.moniruzzaman.Modem.connect(port);
-        System.out.println(com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"#xxx#\",15"));
-        com.moniruzzaman.Modem.disconnect();
+        auto.recharge.system.config.Modem.connect(port);
+        System.out.println(auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"#xxx#\",15"));
+        auto.recharge.system.config.Modem.disconnect();
 
     }
 
@@ -234,6 +234,6 @@ public class Configaration {
     }
 
     public static void closeUssdSession() {
-        com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=2");
+        auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
     }
 }

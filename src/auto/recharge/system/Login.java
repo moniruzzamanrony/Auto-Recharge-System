@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -469,13 +470,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void getSIMOperatorInfo() {
-        if (Modem.getActivePortsList().isEmpty()) {
+        List<String> ports = Modem.getActivePortsList();
+        if (ports.isEmpty()) {
             int res = Popup.customError("Modem Not Found..");
             if (res == 0) {
                 System.exit(0);
             }
         } else {
-            ModemInfoList.portsList = Modem.getActivePortsList();
+            ModemInfoList.portsList = ports;
             ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
         }
 

@@ -17,22 +17,22 @@ import java.util.List;
 public class Modem {
 
     public static List<String> getActivePortsList() {
-        List<String> a = com.moniruzzaman.Modem.getActiveModemsPorts();
+        List<String> a = auto.recharge.system.config.Modem.getActiveModemsPorts();
         a.remove("COM156");
         System.err.println(a);
         List<String> selectedActivePortsList = new ArrayList<>();
         List<String> activePortsList = new ArrayList<>();
         a.stream().map((port) -> {
-            com.moniruzzaman.Modem.connect(port);
+            auto.recharge.system.config.Modem.connect(port);
             return port;
         }).forEachOrdered((port) -> {
-            if (com.moniruzzaman.Modem.sendATCommand("AT").replaceAll("\\s+OK\\s+", "").replaceAll("\n", ",").replaceAll("\r", "").replaceAll(",", "").equals("OK")) {
+            if (auto.recharge.system.config.Modem.sendATCommand("AT").replaceAll("\\s+OK\\s+", "").replaceAll("\n", ",").replaceAll("\r", "").replaceAll(",", "").equals("OK")) {
                 activePortsList.add(port);
 
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.disconnect();
             } else {
                 System.err.println("Inactive Port");
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.disconnect();
             }
         });
         return activePortsList;
@@ -43,13 +43,13 @@ public class Modem {
             int count=0;
             for(String port: ports)
             {
-                com.moniruzzaman.Modem.connect(port);
+                auto.recharge.system.config.Modem.connect(port);
                 SimOperatorIdentifierDto simOperatorIdentifierDto= new SimOperatorIdentifierDto();
                 simOperatorIdentifierDto.setId(count++);
-                simOperatorIdentifierDto.setOperatorName(com.moniruzzaman.Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
+                simOperatorIdentifierDto.setOperatorName(auto.recharge.system.config.Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
                         .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", ""));
                 simOperatorIdentifierDto.setPortName(port);
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.disconnect();
                 
                 simOperatorIdentifierDtos.add(simOperatorIdentifierDto);
             }

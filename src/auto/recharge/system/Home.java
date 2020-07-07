@@ -56,6 +56,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.border.DropShadowBorder;
@@ -3446,7 +3447,7 @@ public class Home extends javax.swing.JFrame {
         detailsTab.setBackground(new Color(133, 47, 209));
         settingTab.setBackground(new Color(133, 47, 209));
         helplineTab.setBackground(new Color(133, 47, 209));
-        
+
         processtingLoderDialog.setVisible(true);
     }//GEN-LAST:event_resellerTabMouseClicked
 
@@ -3467,7 +3468,7 @@ public class Home extends javax.swing.JFrame {
 
         loadRechargeDetailsInDetailsTable();
         getSelectedOptionFroTable.setSelectedItem("My Recharge");
-        
+
         processtingLoderDialog.setVisible(false);
     }//GEN-LAST:event_detailsTabMouseClicked
 
@@ -4565,10 +4566,25 @@ public class Home extends javax.swing.JFrame {
 
             ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
 
-                rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-                refrash();
-                initialValueInTableRechargeDetails();
-                jDialog.setVisible(false);
+                SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        jDialog.setVisible(false);
+                        processtingLoderDialog.setVisible(true);
+                        rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        refrash();
+                        initialValueInTableRechargeDetails();
+                        processtingLoderDialog.setVisible(false);
+                    }
+
+                };
+                worker.execute();
 
             });
 
@@ -4580,6 +4596,7 @@ public class Home extends javax.swing.JFrame {
                         refrash();
                         initialValueInTableRechargeDetails();
                         jDialog.setVisible(false);
+
                     }
                     if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
                         ui.getClickEdit().requestFocusInWindow();
@@ -4611,6 +4628,22 @@ public class Home extends javax.swing.JFrame {
 
                     }
                 }
+            });
+
+            ui.getClickConfirm().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent me) {
+                    System.err.println("press");
+
+                }
+
+                @Override
+                public void mousePressed(MouseEvent me) {
+                    System.err.println("press");
+                    processtingLoderDialog.setVisible(true);
+                    jDialog.setVisible(false);
+                }
+
             });
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -4669,11 +4702,11 @@ public class Home extends javax.swing.JFrame {
 
                     if (selectedPayableSIM.toUpperCase().equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
 
-                        com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                        auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4689,7 +4722,7 @@ public class Home extends javax.swing.JFrame {
                         } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
                             String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4705,7 +4738,7 @@ public class Home extends javax.swing.JFrame {
                         } else {
                             String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            String response = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4720,7 +4753,7 @@ public class Home extends javax.swing.JFrame {
                             Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
                         }
                         Configaration.closeUssdSession();
-                        com.moniruzzaman.Modem.disconnect();
+                        auto.recharge.system.config.Modem.disconnect();
 
                     }
                 }
@@ -4739,7 +4772,6 @@ public class Home extends javax.swing.JFrame {
     private boolean saveToDbCommandInRechargeAdmin(String getMobileNumberText,
             String getAmmountInTkText, String getPrepaidOrPostpaidText,
             String ckeckRechargeSuccessStatus, String currentBalance) {
-        System.err.println("____________________________" + currentBalance);
 
         trxId = UUID.randomUUID().toString();
         String dateTime = Configaration.getCurrentDateAndTime();
@@ -4779,26 +4811,26 @@ public class Home extends javax.swing.JFrame {
         String balance;
         switch (operatorName) {
             case "BANGLALINK":
-                balance= sendUssdForBalance("*124#");
+                balance = sendUssdForBalance("*124#");
                 break;
-               
+
             case "GP":
-                balance= sendUssdForBalance("*566#");
+                balance = sendUssdForBalance("*566#");
                 break;
             case "GRAMEENPHONE":
-                balance= sendUssdForBalance("*566#");
+                balance = sendUssdForBalance("*566#");
                 break;
             case "ROBI":
-                balance= sendUssdForBalance("*222#");
+                balance = sendUssdForBalance("*222#");
                 break;
             case "AIRTEL":
-                balance= sendUssdForBalance("*778#");
+                balance = sendUssdForBalance("*778#");
                 break;
             case "TELETALK":
-                balance= sendUssdForBalance("*152#");
-                break;              
+                balance = sendUssdForBalance("*152#");
+                break;
             default:
-                balance= "Unknown operator";
+                balance = "Unknown operator";
                 break;
 
         }
@@ -4808,7 +4840,7 @@ public class Home extends javax.swing.JFrame {
 
     private String sendUssdForBalance(String code) {
         List<String> balancePaseList = new ArrayList<>();
-        String[] value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15").split(",");
+        String[] value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15").split(",");
 
         System.out.println(value.length);
         if (value.length == 1) {
@@ -4838,9 +4870,9 @@ public class Home extends javax.swing.JFrame {
         String getOperator = getSelectedSim.getSelectedItem().toString();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
-                String value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
-                System.out.println(com.moniruzzaman.Modem.disconnect());
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
+                System.out.println(auto.recharge.system.config.Modem.disconnect());
                 responses = value.split(",");
                 // response = Configaration.haxToStringConvert(value[1]);
                 System.err.println(value);
@@ -4901,6 +4933,7 @@ public class Home extends javax.swing.JFrame {
         tableRechargeDetailsShow.setEnabled(false);
         tableRechargeDetailsShow.setRowHeight(35);
         tableRechargeDetailsShow.setModel(defaultTableModel);
+
     }
 
     public void setFocusInMobileRechargePanel() {
@@ -5046,14 +5079,14 @@ public class Home extends javax.swing.JFrame {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
         ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
             try {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 DbConnection.connect();
                 rs = DbConnection.retrieveAll("command");
                 while (rs.next()) {
                     if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
-                        String[] value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15").split(",");
+                        String[] value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15").split(",");
                         Configaration.closeUssdSession();
-                        System.out.println(com.moniruzzaman.Modem.disconnect());
+                        System.out.println(auto.recharge.system.config.Modem.disconnect());
                         System.out.println(value.length);
                         if (value.length == 1) {
                             errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
@@ -5108,9 +5141,9 @@ public class Home extends javax.swing.JFrame {
         String getOperator = getSelectedSim.getSelectedItem().toString();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
-                String value = com.moniruzzaman.Modem.dialUSSDCode("AT+CUSD=2");
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
+                auto.recharge.system.config.Modem.disconnect();
                 responses = value.split(",");
                 // response = Configaration.haxToStringConvert(value[1]);
                 System.err.println("---------------" + value);
@@ -5640,14 +5673,14 @@ public class Home extends javax.swing.JFrame {
             contractList = new HashSet<>();
             DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
             ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 return simOperatorIdentifierDto;
             }).map((_item) -> {
-                rowOfContractlist = com.moniruzzaman.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
+                rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
 
                 return _item;
             }).forEachOrdered((_item) -> {
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.disconnect();
             });
 
             for (String contract : rowOfContractlist) {
@@ -5825,9 +5858,9 @@ public class Home extends javax.swing.JFrame {
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
             if (simOperatorIdentifierDto.getOperatorName().toUpperCase().equals(storage.toUpperCase())) {
-                com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
-                result = com.moniruzzaman.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
-                com.moniruzzaman.Modem.disconnect();
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                result = auto.recharge.system.config.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
+                auto.recharge.system.config.Modem.disconnect();
 
             }
 
@@ -5866,32 +5899,32 @@ public class Home extends javax.swing.JFrame {
         String from = null, dateTime = null, mgs = null;
 
         ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
-            com.moniruzzaman.Modem.connect(simOperatorIdentifierDto.getPortName());
+            auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
             return simOperatorIdentifierDto;
         }).map((_item) -> {
             // TODO: Move those code in setup Apllication
-            com.moniruzzaman.Modem.sendATCommand("AT+CMGF=1");
+            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=1");
             return _item;
         }).map((_item) -> {
             Configaration.wait(1000);
             return _item;
         }).map((_item) -> {
-            com.moniruzzaman.Modem.sendATCommand("AT+CMGF=?");
+            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=?");
             return _item;
         }).map((_item) -> {
             Configaration.wait(1000);
             return _item;
         }).map((_item) -> {
-            com.moniruzzaman.Modem.sendATCommand("AT+CPMS=\"SM\"");
+            auto.recharge.system.config.Modem.sendATCommand("AT+CPMS=\"SM\"");
             return _item;
         }).map((_item) -> {
             Configaration.wait(1000);
             return _item;
-        }).map((_item) -> com.moniruzzaman.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
+        }).map((_item) -> auto.recharge.system.config.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
             splitedByCMDValueForInbox = result.split("\\+CMGL:");
             return result;
         }).forEachOrdered((_item) -> {
-            com.moniruzzaman.Modem.disconnect();
+            auto.recharge.system.config.Modem.disconnect();
         });
         for (String value : splitedByCMDValueForInbox) {
 
@@ -6322,15 +6355,15 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void processingLoderDialog() {
-            
-            ProcesseingLoderUI processeingLoderUI= new ProcesseingLoderUI();
 
-            processtingLoderDialog = new JDialog();
-            processtingLoderDialog.add(processeingLoderUI);
-            processtingLoderDialog.setSize(1400, 941);
-            processtingLoderDialog.setLocationRelativeTo(null);
-            processtingLoderDialog.setUndecorated(true);
-            
+        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
+
+        processtingLoderDialog = new JDialog();
+        processtingLoderDialog.add(processeingLoderUI);
+        processtingLoderDialog.setSize(1400, 941);
+        processtingLoderDialog.setLocationRelativeTo(null);
+        processtingLoderDialog.setUndecorated(true);
+
     }
 
 }
