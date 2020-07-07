@@ -166,20 +166,10 @@ public class Home extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         billPayPanel = new javax.swing.JPanel();
-        clickBkash = new javax.swing.JLabel();
-        clickSureCash = new javax.swing.JLabel();
-        clickNogot = new javax.swing.JLabel();
-        clickRocket1 = new javax.swing.JLabel();
-        clickMyCash = new javax.swing.JLabel();
-        clicktCash = new javax.swing.JLabel();
-        clickUCash1 = new javax.swing.JLabel();
+        clickMobileBanking = new javax.swing.JLabel();
+        clickBillPayment = new javax.swing.JLabel();
         hoverViewbKash = new javax.swing.JPanel();
-        hoverViewMyCash = new javax.swing.JPanel();
-        hoverViewSureCash = new javax.swing.JPanel();
         hoverViewrocket = new javax.swing.JPanel();
-        hoverViewUCash = new javax.swing.JPanel();
-        hoverViewnogot = new javax.swing.JPanel();
-        hoverViewTCash = new javax.swing.JPanel();
         resellerPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         detailsPanel = new javax.swing.JPanel();
@@ -385,10 +375,26 @@ public class Home extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         getSeletedStorage = new javax.swing.JComboBox<>();
         addBillPaymentDetailsPanel = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        cashOutSendMoneyPanel = new javax.swing.JPanel();
-        billPaymentPanel = new javax.swing.JPanel();
-        cashOutSendMoneyPanel1 = new javax.swing.JPanel();
+        clickSandInMB = new javax.swing.JLabel();
+        getSimOperatorName = new javax.swing.JComboBox<>();
+        getPhoneNumberInBillPayment = new javax.swing.JTextField();
+        getAmmountInBillPayment = new javax.swing.JTextField();
+        selectedSimOperatorIcon1 = new javax.swing.JLabel();
+        clickContactList1 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        getServiceName = new javax.swing.JComboBox<>();
+        jLabel83 = new javax.swing.JLabel();
+        getOperationType = new javax.swing.JComboBox<>();
+        rechargeBalencePanel1 = new javax.swing.JPanel();
+        errorMgsInBalencePanel1 = new javax.swing.JLabel();
+        jLabel81 = new javax.swing.JLabel();
+        clickRefrash1 = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tableShowSimBalence1 = new javax.swing.JTable();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tableMobileBankingDetails = new javax.swing.JTable();
+        jLabel84 = new javax.swing.JLabel();
         groupLoadPanel = new javax.swing.JPanel();
         backToMobileRecharge1 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
@@ -1154,115 +1160,35 @@ public class Home extends javax.swing.JFrame {
 
         billPayPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        clickBkash.setBackground(new java.awt.Color(255, 102, 102));
-        clickBkash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickBkash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/bkash_logo_edited.png"))); // NOI18N
-        clickBkash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickBkash.addMouseListener(new java.awt.event.MouseAdapter() {
+        clickMobileBanking.setBackground(new java.awt.Color(255, 102, 102));
+        clickMobileBanking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickMobileBanking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mobile_banking.jpg"))); // NOI18N
+        clickMobileBanking.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        clickMobileBanking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickBkashMouseClicked(evt);
+                clickMobileBankingMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickBkashMouseEntered(evt);
+                clickMobileBankingMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickBkashMouseExited(evt);
+                clickMobileBankingMouseExited(evt);
             }
         });
 
-        clickSureCash.setBackground(new java.awt.Color(51, 51, 255));
-        clickSureCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickSureCash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/surecash_logo_edited.png"))); // NOI18N
-        clickSureCash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickSureCash.addMouseListener(new java.awt.event.MouseAdapter() {
+        clickBillPayment.setBackground(new java.awt.Color(153, 0, 255));
+        clickBillPayment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clickBillPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/bill_payment_edit.png"))); // NOI18N
+        clickBillPayment.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        clickBillPayment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickSureCashMouseClicked(evt);
+                clickBillPaymentMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickSureCashMouseEntered(evt);
+                clickBillPaymentMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickSureCashMouseExited(evt);
-            }
-        });
-
-        clickNogot.setBackground(new java.awt.Color(255, 102, 102));
-        clickNogot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickNogot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/nogot_logo_edited.png"))); // NOI18N
-        clickNogot.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickNogot.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickNogotMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickNogotMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickNogotMouseExited(evt);
-            }
-        });
-
-        clickRocket1.setBackground(new java.awt.Color(153, 0, 255));
-        clickRocket1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickRocket1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/rocket_icon_edited.png"))); // NOI18N
-        clickRocket1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickRocket1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickRocket1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickRocket1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickRocket1MouseExited(evt);
-            }
-        });
-
-        clickMyCash.setBackground(new java.awt.Color(51, 204, 0));
-        clickMyCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickMyCash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mycash_icon_edited.png"))); // NOI18N
-        clickMyCash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickMyCash.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickMyCashMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickMyCashMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickMyCashMouseExited(evt);
-            }
-        });
-
-        clicktCash.setBackground(new java.awt.Color(204, 0, 51));
-        clicktCash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clicktCash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/tcash_icon_edited.png"))); // NOI18N
-        clicktCash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clicktCash.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clicktCashMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clicktCashMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                clicktCashMouseExited(evt);
-            }
-        });
-
-        clickUCash1.setBackground(new java.awt.Color(204, 204, 0));
-        clickUCash1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clickUCash1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/uxasg_icon_edited.png"))); // NOI18N
-        clickUCash1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        clickUCash1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clickUCash1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                clickUCash1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                clickUCash1MouseExited(evt);
+                clickBillPaymentMouseExited(evt);
             }
         });
 
@@ -1280,34 +1206,6 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        hoverViewMyCash.setBackground(new java.awt.Color(255, 255, 255));
-        hoverViewMyCash.setPreferredSize(new java.awt.Dimension(206, 5));
-
-        javax.swing.GroupLayout hoverViewMyCashLayout = new javax.swing.GroupLayout(hoverViewMyCash);
-        hoverViewMyCash.setLayout(hoverViewMyCashLayout);
-        hoverViewMyCashLayout.setHorizontalGroup(
-            hoverViewMyCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        hoverViewMyCashLayout.setVerticalGroup(
-            hoverViewMyCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        hoverViewSureCash.setBackground(new java.awt.Color(255, 255, 255));
-        hoverViewSureCash.setPreferredSize(new java.awt.Dimension(0, 5));
-
-        javax.swing.GroupLayout hoverViewSureCashLayout = new javax.swing.GroupLayout(hoverViewSureCash);
-        hoverViewSureCash.setLayout(hoverViewSureCashLayout);
-        hoverViewSureCashLayout.setHorizontalGroup(
-            hoverViewSureCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        hoverViewSureCashLayout.setVerticalGroup(
-            hoverViewSureCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
         hoverViewrocket.setBackground(new java.awt.Color(255, 255, 255));
         hoverViewrocket.setPreferredSize(new java.awt.Dimension(0, 5));
 
@@ -1322,48 +1220,6 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        hoverViewUCash.setBackground(new java.awt.Color(255, 255, 255));
-        hoverViewUCash.setPreferredSize(new java.awt.Dimension(0, 5));
-
-        javax.swing.GroupLayout hoverViewUCashLayout = new javax.swing.GroupLayout(hoverViewUCash);
-        hoverViewUCash.setLayout(hoverViewUCashLayout);
-        hoverViewUCashLayout.setHorizontalGroup(
-            hoverViewUCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        hoverViewUCashLayout.setVerticalGroup(
-            hoverViewUCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        hoverViewnogot.setBackground(new java.awt.Color(255, 255, 255));
-        hoverViewnogot.setPreferredSize(new java.awt.Dimension(0, 5));
-
-        javax.swing.GroupLayout hoverViewnogotLayout = new javax.swing.GroupLayout(hoverViewnogot);
-        hoverViewnogot.setLayout(hoverViewnogotLayout);
-        hoverViewnogotLayout.setHorizontalGroup(
-            hoverViewnogotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
-        );
-        hoverViewnogotLayout.setVerticalGroup(
-            hoverViewnogotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        hoverViewTCash.setBackground(new java.awt.Color(255, 255, 255));
-        hoverViewTCash.setPreferredSize(new java.awt.Dimension(0, 5));
-
-        javax.swing.GroupLayout hoverViewTCashLayout = new javax.swing.GroupLayout(hoverViewTCash);
-        hoverViewTCash.setLayout(hoverViewTCashLayout);
-        hoverViewTCashLayout.setHorizontalGroup(
-            hoverViewTCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        hoverViewTCashLayout.setVerticalGroup(
-            hoverViewTCashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout billPayPanelLayout = new javax.swing.GroupLayout(billPayPanel);
         billPayPanel.setLayout(billPayPanelLayout);
         billPayPanelLayout.setHorizontalGroup(
@@ -1372,57 +1228,25 @@ public class Home extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(clicktCash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(clickBkash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hoverViewTCash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+                    .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hoverViewnogot, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(clickNogot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clickRocket1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                    .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(hoverViewrocket, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
-                .addGap(147, 147, 147)
-                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hoverViewSureCash, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                    .addComponent(clickSureCash, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-                .addGap(144, 144, 144)
-                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickMyCash, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(hoverViewMyCash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(99, 99, 99)
-                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickUCash1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(hoverViewUCash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(997, 997, 997))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickBkash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clickRocket1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(clickUCash1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(clickMyCash, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(clickSureCash, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                    .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(billPayPanelLayout.createSequentialGroup()
-                        .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hoverViewbKash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hoverViewrocket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hoverViewSureCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hoverViewMyCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(66, 66, 66)
-                        .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(clicktCash, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(clickNogot, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
-                    .addComponent(hoverViewUCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hoverViewTCash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(hoverViewnogot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(330, Short.MAX_VALUE))
+                    .addComponent(hoverViewbKash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(hoverViewrocket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(596, Short.MAX_VALUE))
         );
 
         basePanel.add(billPayPanel, "card2");
@@ -3185,70 +3009,155 @@ public class Home extends javax.swing.JFrame {
         basePanel.add(addNewContractPanel, "card2");
 
         addBillPaymentDetailsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        addBillPaymentDetailsPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        addBillPaymentDetailsPanel.add(clickSandInMB, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 200, 50));
 
-        javax.swing.GroupLayout cashOutSendMoneyPanelLayout = new javax.swing.GroupLayout(cashOutSendMoneyPanel);
-        cashOutSendMoneyPanel.setLayout(cashOutSendMoneyPanelLayout);
-        cashOutSendMoneyPanelLayout.setHorizontalGroup(
-            cashOutSendMoneyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1565, Short.MAX_VALUE)
-        );
-        cashOutSendMoneyPanelLayout.setVerticalGroup(
-            cashOutSendMoneyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 856, Short.MAX_VALUE)
-        );
+        getSimOperatorName.setBackground(new java.awt.Color(255, 255, 255));
+        getSimOperatorName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        addBillPaymentDetailsPanel.add(getSimOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, 190, 40));
 
-        jTabbedPane2.addTab("Basic", cashOutSendMoneyPanel);
+        getPhoneNumberInBillPayment.setFont(new java.awt.Font("Cambria", 1, 100)); // NOI18N
+        getPhoneNumberInBillPayment.setText("1");
+        addBillPaymentDetailsPanel.add(getPhoneNumberInBillPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 740, 100));
 
-        javax.swing.GroupLayout cashOutSendMoneyPanel1Layout = new javax.swing.GroupLayout(cashOutSendMoneyPanel1);
-        cashOutSendMoneyPanel1.setLayout(cashOutSendMoneyPanel1Layout);
-        cashOutSendMoneyPanel1Layout.setHorizontalGroup(
-            cashOutSendMoneyPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1565, Short.MAX_VALUE)
-        );
-        cashOutSendMoneyPanel1Layout.setVerticalGroup(
-            cashOutSendMoneyPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 856, Short.MAX_VALUE)
-        );
+        getAmmountInBillPayment.setFont(new java.awt.Font("Cambria", 0, 100)); // NOI18N
+        getAmmountInBillPayment.setText("jTextField5");
+        addBillPaymentDetailsPanel.add(getAmmountInBillPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 530, 100));
+        addBillPaymentDetailsPanel.add(selectedSimOperatorIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 50, 50));
 
-        javax.swing.GroupLayout billPaymentPanelLayout = new javax.swing.GroupLayout(billPaymentPanel);
-        billPaymentPanel.setLayout(billPaymentPanelLayout);
-        billPaymentPanelLayout.setHorizontalGroup(
-            billPaymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1565, Short.MAX_VALUE)
-            .addGroup(billPaymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(billPaymentPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(cashOutSendMoneyPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        billPaymentPanelLayout.setVerticalGroup(
-            billPaymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 856, Short.MAX_VALUE)
-            .addGroup(billPaymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(billPaymentPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(cashOutSendMoneyPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        clickContactList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clickContactList1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                clickContactList1MouseEntered(evt);
+            }
+        });
+        addBillPaymentDetailsPanel.add(clickContactList1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 50, 50));
 
-        jTabbedPane2.addTab("Bill Payment", billPaymentPanel);
+        jLabel80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mobile_banking.png"))); // NOI18N
+        addBillPaymentDetailsPanel.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 1025, 347));
 
-        javax.swing.GroupLayout addBillPaymentDetailsPanelLayout = new javax.swing.GroupLayout(addBillPaymentDetailsPanel);
-        addBillPaymentDetailsPanel.setLayout(addBillPaymentDetailsPanelLayout);
-        addBillPaymentDetailsPanelLayout.setHorizontalGroup(
-            addBillPaymentDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addBillPaymentDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2)
+        getServiceName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getServiceName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getServiceNameActionPerformed(evt);
+            }
+        });
+        addBillPaymentDetailsPanel.add(getServiceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 300, 40));
+
+        jLabel83.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel83.setForeground(new java.awt.Color(102, 0, 255));
+        jLabel83.setText("Service:");
+        addBillPaymentDetailsPanel.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 40));
+
+        getOperationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getOperationType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getOperationTypeActionPerformed(evt);
+            }
+        });
+        addBillPaymentDetailsPanel.add(getOperationType, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 350, 40));
+
+        rechargeBalencePanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        errorMgsInBalencePanel1.setBackground(new java.awt.Color(255, 0, 51));
+        errorMgsInBalencePanel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        errorMgsInBalencePanel1.setForeground(new java.awt.Color(255, 0, 0));
+        errorMgsInBalencePanel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMgsInBalencePanel1.setText("-------  Reload Now  ---------");
+
+        jLabel81.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel81.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel81.setText("Amount panel");
+
+        clickRefrash1.setBackground(new java.awt.Color(255, 0, 0));
+        clickRefrash1.setForeground(new java.awt.Color(255, 255, 255));
+        clickRefrash1.setText("Refrash");
+        clickRefrash1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickRefrash1ActionPerformed(evt);
+            }
+        });
+
+        jSeparator8.setForeground(new java.awt.Color(133, 47, 209));
+
+        tableShowSimBalence1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Operator Name", "Cuurent Amount"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane12.setViewportView(tableShowSimBalence1);
+
+        javax.swing.GroupLayout rechargeBalencePanel1Layout = new javax.swing.GroupLayout(rechargeBalencePanel1);
+        rechargeBalencePanel1.setLayout(rechargeBalencePanel1Layout);
+        rechargeBalencePanel1Layout.setHorizontalGroup(
+            rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator8)
+            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeBalencePanel1Layout.createSequentialGroup()
+                        .addGap(0, 108, Short.MAX_VALUE)
+                        .addComponent(jLabel81)
+                        .addGap(105, 105, 105)
+                        .addComponent(clickRefrash1))
+                    .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(errorMgsInBalencePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        addBillPaymentDetailsPanelLayout.setVerticalGroup(
-            addBillPaymentDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addBillPaymentDetailsPanelLayout.createSequentialGroup()
+        rechargeBalencePanel1Layout.setVerticalGroup(
+            rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
-                .addContainerGap())
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel81)
+                    .addComponent(clickRefrash1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(errorMgsInBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        addBillPaymentDetailsPanel.add(rechargeBalencePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 30, 430, 420));
+
+        tableMobileBankingDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane13.setViewportView(tableMobileBankingDetails);
+
+        addBillPaymentDetailsPanel.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 1550, 350));
+
+        jLabel84.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel84.setForeground(new java.awt.Color(102, 0, 255));
+        jLabel84.setText("Operation:");
+        addBillPaymentDetailsPanel.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, 40));
 
         basePanel.add(addBillPaymentDetailsPanel, "card2");
 
@@ -3605,9 +3514,28 @@ public class Home extends javax.swing.JFrame {
 
     private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
         switchPanelViaMenu(contractListPanel);
-        setContractListInJTable();
-        getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-        getNameForSearch.requestFocusInWindow();
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                processtingLoderDialog.setVisible(true);
+                setContractListInJTable();
+                System.out.println("Contract Searching...");
+                return null;
+            }
+
+            @Override
+            protected void done() {
+
+                getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+                getNameForSearch.requestFocusInWindow();
+                processtingLoderDialog.setVisible(false);
+                System.out.println("Fatching Successful...");
+            }
+
+        };
+        swingWorker.execute();
+
+
     }//GEN-LAST:event_clickContactListMouseClicked
 
     private void myProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myProfileMouseClicked
@@ -3720,20 +3648,75 @@ public class Home extends javax.swing.JFrame {
 
     private void backToMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRechargeMouseClicked
         switchPanelViaMenu(mobileRechargePanel);
-        closeUssdSession();
+        processtingLoderDialog.setVisible(true);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                closeUssdSession();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+            }
+
+        };
+        swingWorker.execute();
+
+
     }//GEN-LAST:event_backToMobileRechargeMouseClicked
 
     private void clickUssdSessionCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdSessionCloseActionPerformed
-        closeUssdSession();
+        processtingLoderDialog.setVisible(true);
+        clickUssdSessionClose.setEnabled(false);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                closeUssdSession();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+                clickUssdSessionClose.setEnabled(true);
+            }
+
+        };
+        swingWorker.execute();
+
+
     }//GEN-LAST:event_clickUssdSessionCloseActionPerformed
 
     private void clickUssdDailDorSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSend1ActionPerformed
-        if (getUssdCode.getText().equals("")) {
-            getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-        } else {
-            ussdDial();
-            getUssdCode.setText("");
-        }
+        clickUssdDailDorSend1.setEnabled(false);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                if (getUssdCode.getText().equals("")) {
+                    getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                } else {
+                    processtingLoderDialog.setVisible(true);
+                    ussdDial();
+                    getUssdCode.setText("");
+                }
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+                clickUssdDailDorSend1.setEnabled(true);
+            }
+
+        };
+        swingWorker.execute();
+
+
     }//GEN-LAST:event_clickUssdDailDorSend1ActionPerformed
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
@@ -3852,7 +3835,24 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToUssdManengementPanel1AncestorAdded
 
     private void clickRefrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickRefrashActionPerformed
-        addBalenceInBalenceShowTable();
+        errorMgsInBalencePanel.setText("Processing...");
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                addBalenceInBalenceShowTable();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+
+                errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
+            }
+
+        };
+        swingWorker.execute();
+
     }//GEN-LAST:event_clickRefrashActionPerformed
 
     private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
@@ -3908,90 +3908,30 @@ public class Home extends javax.swing.JFrame {
         searchByPhoneNumber();
     }//GEN-LAST:event_clickSearchedByPhoneNoButActionPerformed
 
-    private void clickBkashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBkashMouseEntered
+    private void clickMobileBankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseEntered
         hoverInBillPayPanel(hoverViewbKash);
 
-    }//GEN-LAST:event_clickBkashMouseEntered
+    }//GEN-LAST:event_clickMobileBankingMouseEntered
 
-    private void clickBkashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBkashMouseExited
+    private void clickMobileBankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseExited
         hoverRemoveInBillPayPanel(hoverViewbKash);
-    }//GEN-LAST:event_clickBkashMouseExited
+    }//GEN-LAST:event_clickMobileBankingMouseExited
 
-    private void clickSureCashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSureCashMouseEntered
-        hoverInBillPayPanel(hoverViewSureCash);
-    }//GEN-LAST:event_clickSureCashMouseEntered
-
-    private void clickSureCashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSureCashMouseExited
-        hoverRemoveInBillPayPanel(hoverViewSureCash);
-    }//GEN-LAST:event_clickSureCashMouseExited
-
-    private void clickNogotMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickNogotMouseEntered
-        hoverInBillPayPanel(hoverViewnogot);
-    }//GEN-LAST:event_clickNogotMouseEntered
-
-    private void clickNogotMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickNogotMouseExited
-        hoverRemoveInBillPayPanel(hoverViewnogot);
-    }//GEN-LAST:event_clickNogotMouseExited
-
-    private void clickRocket1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickRocket1MouseEntered
+    private void clickBillPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseEntered
         hoverInBillPayPanel(hoverViewrocket);
-    }//GEN-LAST:event_clickRocket1MouseEntered
+    }//GEN-LAST:event_clickBillPaymentMouseEntered
 
-    private void clickRocket1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickRocket1MouseExited
+    private void clickBillPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseExited
         hoverRemoveInBillPayPanel(hoverViewrocket);
-    }//GEN-LAST:event_clickRocket1MouseExited
+    }//GEN-LAST:event_clickBillPaymentMouseExited
 
-    private void clickMyCashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMyCashMouseEntered
-        hoverInBillPayPanel(hoverViewMyCash);
-    }//GEN-LAST:event_clickMyCashMouseEntered
-
-    private void clickMyCashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMyCashMouseExited
-        hoverRemoveInBillPayPanel(hoverViewMyCash);
-    }//GEN-LAST:event_clickMyCashMouseExited
-
-    private void clicktCashMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clicktCashMouseEntered
-        hoverInBillPayPanel(hoverViewTCash);
-    }//GEN-LAST:event_clicktCashMouseEntered
-
-    private void clicktCashMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clicktCashMouseExited
-        hoverRemoveInBillPayPanel(hoverViewTCash);
-    }//GEN-LAST:event_clicktCashMouseExited
-
-    private void clickUCash1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickUCash1MouseEntered
-        hoverInBillPayPanel(hoverViewUCash);
-    }//GEN-LAST:event_clickUCash1MouseEntered
-
-    private void clickUCash1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickUCash1MouseExited
-        hoverRemoveInBillPayPanel(hoverViewUCash);
-    }//GEN-LAST:event_clickUCash1MouseExited
-
-    private void clickBkashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBkashMouseClicked
+    private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
         switchBillPaymentDetailsPaenl("bkash");
-    }//GEN-LAST:event_clickBkashMouseClicked
+    }//GEN-LAST:event_clickMobileBankingMouseClicked
 
-    private void clickSureCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSureCashMouseClicked
-        switchBillPaymentDetailsPaenl("surecash");
-    }//GEN-LAST:event_clickSureCashMouseClicked
-
-    private void clickNogotMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickNogotMouseClicked
-        switchBillPaymentDetailsPaenl("nogot");
-    }//GEN-LAST:event_clickNogotMouseClicked
-
-    private void clickRocket1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickRocket1MouseClicked
-        switchBillPaymentDetailsPaenl("rocket");
-    }//GEN-LAST:event_clickRocket1MouseClicked
-
-    private void clickMyCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMyCashMouseClicked
-        switchBillPaymentDetailsPaenl("mycash");
-    }//GEN-LAST:event_clickMyCashMouseClicked
-
-    private void clicktCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clicktCashMouseClicked
-        switchBillPaymentDetailsPaenl("tcash");
-    }//GEN-LAST:event_clicktCashMouseClicked
-
-    private void clickUCash1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickUCash1MouseClicked
-        switchBillPaymentDetailsPaenl("ucash");
-    }//GEN-LAST:event_clickUCash1MouseClicked
+    private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
+        System.out.println("auto.recharge.system.Home.clickBillPaymentMouseClicked()");
+    }//GEN-LAST:event_clickBillPaymentMouseClicked
 
     private void getSelectedServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedServiceComboActionPerformed
         // TODO add your handling code here:
@@ -4118,6 +4058,26 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getEmployeeNameTEmployeeActionPerformed
 
+    private void clickContactList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList1MouseClicked
+
+    private void clickContactList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList1MouseEntered
+
+    private void getServiceNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getServiceNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getServiceNameActionPerformed
+
+    private void getOperationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOperationTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getOperationTypeActionPerformed
+
+    private void clickRefrash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickRefrash1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickRefrash1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MobileBankingSettingsPanel;
@@ -4141,40 +4101,35 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel backToUssdManengementPanel1;
     private javax.swing.JPanel basePanel;
     private javax.swing.JPanel billPayPanel;
-    private javax.swing.JPanel billPaymentPanel;
     private javax.swing.JPanel billPaymentTab;
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JPanel cashOutSendMoneyPanel;
-    private javax.swing.JPanel cashOutSendMoneyPanel1;
     private javax.swing.JButton clickAddContract;
     private javax.swing.JButton clickAddContract1;
     private javax.swing.JButton clickAddContract2;
     private javax.swing.JButton clickAddNewManagement;
-    private javax.swing.JLabel clickBkash;
+    private javax.swing.JLabel clickBillPayment;
     private javax.swing.JButton clickChooseIcon;
     private javax.swing.JButton clickChooseIcon1;
     private javax.swing.JLabel clickContactList;
+    private javax.swing.JLabel clickContactList1;
     private javax.swing.JButton clickDatabaseBackup;
     private javax.swing.JLabel clickEditInProfile;
     private javax.swing.JButton clickGroupLoad;
-    private javax.swing.JLabel clickMyCash;
+    private javax.swing.JLabel clickMobileBanking;
     private javax.swing.JButton clickNewContract;
-    private javax.swing.JLabel clickNogot;
     private javax.swing.JButton clickRefrash;
+    private javax.swing.JButton clickRefrash1;
     private javax.swing.JButton clickResetBut;
-    private javax.swing.JLabel clickRocket1;
     private javax.swing.JButton clickSIMOffer;
+    private javax.swing.JLabel clickSandInMB;
     private javax.swing.JButton clickSearchedByPhoneNoBut;
     private javax.swing.JButton clickSearchedReportDownload;
     private javax.swing.JButton clickSearchedfromToBut;
     private javax.swing.JLabel clickSend;
     private javax.swing.JLabel clickSerch1;
-    private javax.swing.JLabel clickSureCash;
-    private javax.swing.JLabel clickUCash1;
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend1;
     private javax.swing.JButton clickUssdSessionClose;
-    private javax.swing.JLabel clicktCash;
     private javax.swing.JPanel contractListPanel;
     private javax.swing.JLabel currentNetworkName;
     private javax.swing.JLabel designationInProfilePanel;
@@ -4183,8 +4138,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel detailsTab;
     private javax.swing.JComboBox<String> dropdownOperatorName;
     private javax.swing.JLabel errorMgsInBalencePanel;
+    private javax.swing.JLabel errorMgsInBalencePanel1;
     private javax.swing.JLabel expiryDateInProfile;
     private com.toedter.calendar.JDateChooser fromDateChooser;
+    private javax.swing.JTextField getAmmountInBillPayment;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getAmountGroupRecharge;
     private javax.swing.JTextField getBalenceUssdPartern1;
@@ -4198,6 +4155,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getNameForSearch;
     private javax.swing.JTextField getOfferNameInSeting;
     private javax.swing.JComboBox<String> getOparetorNameInDropDown;
+    private javax.swing.JComboBox<String> getOperationType;
     private javax.swing.JTextField getOperatorCode;
     private javax.swing.JTextField getOperatorCode1;
     private javax.swing.JTextField getOperatorName;
@@ -4205,6 +4163,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getPasswordTEmployee;
     private javax.swing.JTextField getPhoneNOForContract;
     private javax.swing.JTextField getPhoneNoForSearch;
+    private javax.swing.JTextField getPhoneNumberInBillPayment;
     private javax.swing.JTextField getPhoneNumberInGroupRecharge;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
     private javax.swing.JTextField getRechargeAmmountInSeetings;
@@ -4225,6 +4184,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getSeletedAction;
     private javax.swing.JComboBox<String> getSeletedOperatorName;
     private javax.swing.JComboBox<String> getSeletedStorage;
+    private javax.swing.JComboBox<String> getServiceName;
+    private javax.swing.JComboBox<String> getSimOperatorName;
     private javax.swing.JTextField getUssdCode;
     private javax.swing.JTextField getValidityInSetting;
     private javax.swing.JPasswordField getbKashPIN;
@@ -4234,12 +4195,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel helplinePanel;
     private javax.swing.JPanel helplineTab;
-    private javax.swing.JPanel hoverViewMyCash;
-    private javax.swing.JPanel hoverViewSureCash;
-    private javax.swing.JPanel hoverViewTCash;
-    private javax.swing.JPanel hoverViewUCash;
     private javax.swing.JPanel hoverViewbKash;
-    private javax.swing.JPanel hoverViewnogot;
     private javax.swing.JPanel hoverViewrocket;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon1;
@@ -4332,6 +4288,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -4344,6 +4304,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -4359,8 +4321,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -4381,6 +4343,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popupForSuggestManu;
     private javax.swing.JLabel profile_pic;
     private javax.swing.JPanel rechargeBalencePanel;
+    private javax.swing.JPanel rechargeBalencePanel1;
     private javax.swing.JPanel rechargeOfferPanel;
     private javax.swing.JLabel rechargeOffers;
     private javax.swing.JLabel rechargeSettings;
@@ -4393,6 +4356,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton saveNewOfferInSettrings;
     private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectedSimOperatorIcon;
+    private javax.swing.JLabel selectedSimOperatorIcon1;
     private javax.swing.JButton sendAllRechargeBut;
     private javax.swing.JLabel sendingLogLabel;
     private javax.swing.JPanel serchBar;
@@ -4410,8 +4374,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable tableContractLIst;
     private javax.swing.JTable tableForDetails;
     private javax.swing.JTable tableGroupRecharge;
+    private javax.swing.JTable tableMobileBankingDetails;
     private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
+    private javax.swing.JTable tableShowSimBalence1;
     private javax.swing.JTable tableTrustedEmployees;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
@@ -4565,11 +4531,12 @@ public class Home extends javax.swing.JFrame {
             });
 
             ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
+                clickSend.setEnabled(false);
                 SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                     @Override
                     protected Void doInBackground() throws Exception {
                         jDialog.setVisible(false);
+                        clickSend.setVisible(false);
                         processtingLoderDialog.setVisible(true);
                         rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
 
@@ -4580,6 +4547,7 @@ public class Home extends javax.swing.JFrame {
                     protected void done() {
                         refrash();
                         initialValueInTableRechargeDetails();
+                        clickSend.setVisible(true);
                         processtingLoderDialog.setVisible(false);
                     }
 
@@ -4592,10 +4560,28 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 public void keyPressed(KeyEvent ke) {
                     if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                        rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-                        refrash();
-                        initialValueInTableRechargeDetails();
-                        jDialog.setVisible(false);
+                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                            @Override
+                            protected Void doInBackground() throws Exception {
+                                jDialog.setVisible(false);
+                                clickSend.setVisible(false);
+                                processtingLoderDialog.setVisible(true);
+                                rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+
+                                return null;
+                            }
+
+                            @Override
+                            protected void done() {
+                                refrash();
+                                initialValueInTableRechargeDetails();
+                                clickSend.setVisible(true);
+                                processtingLoderDialog.setVisible(false);
+
+                            }
+
+                        };
+                        worker.execute();
 
                     }
                     if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -4707,6 +4693,7 @@ public class Home extends javax.swing.JFrame {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            Configaration.closeUssdSession();
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4723,6 +4710,7 @@ public class Home extends javax.swing.JFrame {
                             String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            Configaration.closeUssdSession();
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4739,6 +4727,7 @@ public class Home extends javax.swing.JFrame {
                             String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                                Configaration.closeUssdSession();
                             if (response.contains(",")) {
                                 responseArray = response.split(",");
                                 System.err.println();
@@ -4752,8 +4741,6 @@ public class Home extends javax.swing.JFrame {
 
                             Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
                         }
-                        Configaration.closeUssdSession();
-                        auto.recharge.system.config.Modem.disconnect();
 
                     }
                 }
@@ -4763,6 +4750,8 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        auto.recharge.system.config.Modem.disconnect();
         initialValueInTableRechargeDetails();
         saveToDbCommandInRechargeAdmin(phoneNumberRequested, ammountRequested, preOrPostRequested,
                 statusMgs, cBalance);
@@ -4839,10 +4828,13 @@ public class Home extends javax.swing.JFrame {
     }
 
     private String sendUssdForBalance(String code) {
-        List<String> balancePaseList = new ArrayList<>();
-        String[] value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15").split(",");
+        
 
-        System.out.println(value.length);
+        List<String> balancePaseList = new ArrayList<>();
+        String res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
+        String[] value = res.split(",");
+
+        System.out.println("===================="+res);
         if (value.length == 1) {
             System.err.println("Balance enquiry failed");
 
@@ -5092,7 +5084,7 @@ public class Home extends javax.swing.JFrame {
                             errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
                             errorMgsInBalencePanel.setVisible(true);
                         } else {
-                            errorMgsInBalencePanel.setVisible(false);
+
                             String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
                             Pattern p = Pattern.compile("\\d+");
                             Matcher m = p.matcher(balance);
@@ -6272,17 +6264,7 @@ public class Home extends javax.swing.JFrame {
 
     private void switchBillPaymentDetailsPaenl(String optionName) {
         switchPanelViaMenu(addBillPaymentDetailsPanel);
-//        headerLabel.setText("Payment Details");
-//
-//        ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-//            comboBoxActiveSIM.addItem(simOperatorIdentifierDto.getOperatorName());
-//        });
-//        switch (optionName) {
-//            case "bkash":
-//
-//                break;
-//
-//        }
+
     }
 
     /*
@@ -6360,7 +6342,7 @@ public class Home extends javax.swing.JFrame {
 
         processtingLoderDialog = new JDialog();
         processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(1400, 941);
+        processtingLoderDialog.setSize(214, 138);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 

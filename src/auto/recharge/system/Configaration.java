@@ -1,7 +1,5 @@
 package auto.recharge.system;
 
-import auto.recharge.system.dto.ModemInfoList;
-import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -33,13 +31,14 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 
 public class Configaration {
 
     private static final Pattern HEXADECIMAL_PATTERN = Pattern.compile("\\p{XDigit}+");
-
+    private static JDialog processtingLoderDialog;
     public static boolean netIsAvailable() {
         try {
             final URL url = new URL("http://www.google.com");
@@ -53,6 +52,11 @@ public class Configaration {
             return false;
         }
     }
+
+    public Configaration() {
+        processingLoderDialog();
+    }
+    
 
     public static void wait(int ms) {
         try {
@@ -236,4 +240,27 @@ public class Configaration {
     public static void closeUssdSession() {
         auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
     }
+    
+        private void processingLoderDialog() {
+
+        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
+
+        processtingLoderDialog = new JDialog();
+        processtingLoderDialog.add(processeingLoderUI);
+        processtingLoderDialog.setSize(214, 138);
+        processtingLoderDialog.setLocationRelativeTo(null);
+        processtingLoderDialog.setUndecorated(true);
+
+    }
+        
+        public static void showProcessingBar()
+        {
+        processtingLoderDialog.setVisible(true);
+        
+        }
+        public static void disposeProcessingBar()
+        {
+        processtingLoderDialog.setVisible(true);
+        
+        }
 }

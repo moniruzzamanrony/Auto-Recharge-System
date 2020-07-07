@@ -14,15 +14,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.SwingWorker;
 
 public class Login extends javax.swing.JFrame {
 
     private LoadingScreen loadingScreen;
+    private JDialog processtingLoderDialog;
 
     public Login() {
         initComponents();
         keyListener();
         setHint();
+        processingLoderDialog();
     }
 
     @SuppressWarnings("unchecked")
@@ -329,19 +333,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-
-        // Home home = new Home();
-        // home.showDeshBoardPage();
         this.setVisible(false);
-        loadingScreen = new LoadingScreen();
-        loadingScreen.setVisible(true);
-        if (Popup.customInfo("Need some times to ready your software.") < 0) {
-            this.setVisible(true);
-            loadingScreen.setVisible(false);
-        } else {
 
-            getSIMOperatorInfo();
-        }
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                System.out.println("Login Processing..");
+                processtingLoderDialog.setVisible(true);
+                getSIMOperatorInfo();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                System.out.println("Login Done..");
+
+                processtingLoderDialog.setVisible(false);
+            }
+
+        };
+
+        swingWorker.execute();
 
         // login();
 
@@ -480,10 +492,20 @@ public class Login extends javax.swing.JFrame {
             ModemInfoList.portsList = ports;
             ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
         }
-
-        loadingScreen.dispose();
         Home home = new Home();
         home.setVisible(true);
+        //  loadingScreen.dispose();
     }
 
+    private void processingLoderDialog() {
+
+        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
+
+        processtingLoderDialog = new JDialog();
+        processtingLoderDialog.add(processeingLoderUI);
+        processtingLoderDialog.setSize(214, 138);
+        processtingLoderDialog.setLocationRelativeTo(null);
+        processtingLoderDialog.setUndecorated(true);
+
+    }
 }
