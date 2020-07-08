@@ -5650,24 +5650,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
         
-        ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseReleased(MouseEvent me) {
-                jDialog.setVisible(false);
-                clickSandInMB.setVisible(false);
-                processtingLoderDialog.setVisible(true);
-                sendMobileBankingRequest();
-                
-            }
-            
-            @Override
-            public void mousePressed(MouseEvent me) {
-                refrash();
-                clickSandInMB.setVisible(true);
-                processtingLoderDialog.setVisible(false);
-            }
-            
-        });
+
     }
 
     /*
