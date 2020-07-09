@@ -239,6 +239,7 @@ public class Configaration {
 
     public static void closeUssdSession() {
         auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
+        System.out.println("Session closed.");
     }
     
         private void processingLoderDialog() {

@@ -32,6 +32,7 @@ public class Modem {
     }
 
     public static String disconnect() {
+        System.out.println("Port disconnected");
         return modemUtils.disconnect();
     }
 
