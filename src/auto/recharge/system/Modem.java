@@ -15,7 +15,7 @@ import java.util.List;
  * @author monirozzamanroni
  */
 public class Modem {
-
+private static final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
     public static List<String> getActivePortsList() {
         List<String> a = auto.recharge.system.config.Modem.getActiveModemsPorts();
         a.remove("COM156");
@@ -46,8 +46,38 @@ public class Modem {
                 auto.recharge.system.config.Modem.connect(port);
                 SimOperatorIdentifierDto simOperatorIdentifierDto= new SimOperatorIdentifierDto();
                 simOperatorIdentifierDto.setId(count++);
-                simOperatorIdentifierDto.setOperatorName(auto.recharge.system.config.Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
-                        .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", ""));
+                String opName = auto.recharge.system.config.Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
+                        .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", "");
+                if(opName.toUpperCase().contains(SIM_OPERATORS_NAME[0]))
+                {
+                
+                simOperatorIdentifierDto.setOperatorName(SIM_OPERATORS_NAME[0]);
+                }
+                else if(opName.toUpperCase().contains(SIM_OPERATORS_NAME[1]))
+                {
+                
+                simOperatorIdentifierDto.setOperatorName(SIM_OPERATORS_NAME[1]);
+                }
+                else if(opName.toUpperCase().contains(SIM_OPERATORS_NAME[2]))
+                {
+                
+                simOperatorIdentifierDto.setOperatorName(SIM_OPERATORS_NAME[2]);
+                }
+                else if(opName.toUpperCase().contains(SIM_OPERATORS_NAME[3]))
+                {
+                
+                simOperatorIdentifierDto.setOperatorName(SIM_OPERATORS_NAME[3]);
+                }
+                else if(opName.toUpperCase().contains(SIM_OPERATORS_NAME[4]))
+                {
+                 simOperatorIdentifierDto.setOperatorName(SIM_OPERATORS_NAME[4]);
+
+                
+                }
+                else{
+                Popup.customError("Modem Power is off in "+port);
+                
+                }
                 simOperatorIdentifierDto.setPortName(port);
                 auto.recharge.system.config.Modem.disconnect();
                 

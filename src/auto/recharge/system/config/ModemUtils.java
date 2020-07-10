@@ -304,7 +304,7 @@ public class ModemUtils {
 	private void printValue(String value) {
 
 		responseAdd = responseAdd+value+",";
-		//System.out.println("325--->" + value);
+		System.out.println("325--->" + value);
 
 	}
 
@@ -314,7 +314,7 @@ public class ModemUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		wait(1500);
+		wait(2000);
 		return response;
 	}
 

@@ -823,6 +823,11 @@ public class Home extends javax.swing.JFrame {
                 getMobileNumberFocusLost(evt);
             }
         });
+        getMobileNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getMobileNumberActionPerformed(evt);
+            }
+        });
         getMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 getMobileNumberKeyReleased(evt);
@@ -3807,7 +3812,7 @@ public class Home extends javax.swing.JFrame {
             @Override
             protected void done() {
 
-                errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
+                
             }
 
         };
@@ -4135,6 +4140,10 @@ public class Home extends javax.swing.JFrame {
     private void getPhoneNumberInBillPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getPhoneNumberInBillPaymentActionPerformed
+
+    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getMobileNumberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -4526,7 +4535,7 @@ public class Home extends javax.swing.JFrame {
             ResultSet rs = DbConnection.findByColume("recharge_offers", "recharge_amt", ammountRequested);
 
             while (rs.next()) {
-                if (rs.getString("sim_name").toUpperCase().equals(selectedPayableSIM.toUpperCase())) {
+                if (rs.getString("sim_name").toUpperCase().contains(selectedPayableSIM.toUpperCase())) {
                     int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
                     if (res == -1) {
                         //Cross
@@ -4706,7 +4715,7 @@ public class Home extends javax.swing.JFrame {
                     if (rs.getString("operator_code").equals(getMobileNumber.getText().substring(0, 3))) {
                         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-                            if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+                            if (rs.getString("operator_name").contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
                                 selectedSimOperatorName = rs.getString("operator_name");
                                 getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
                                 icon = new ImageIcon(rs.getString("icon"));
@@ -4740,7 +4749,7 @@ public class Home extends javax.swing.JFrame {
 
                 for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-                    if (selectedPayableSIM.toUpperCase().equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+                    if (selectedPayableSIM.toUpperCase().contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
 
                         auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
@@ -4914,7 +4923,7 @@ public class Home extends javax.swing.JFrame {
         String[] responses = null;
         String getOperator = getSelectedSim.getSelectedItem().toString();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
+            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
                 System.out.println(auto.recharge.system.config.Modem.disconnect());
@@ -5120,6 +5129,12 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void addBalenceInBalenceShowTable() {
+//        auto.recharge.system.config.Modem.connect("COM142");
+//        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"*222#\",15");
+//        
+//        System.err.println(balanceMgs);
+//        //Configaration.closeUssdSession();
+//        System.out.println(auto.recharge.system.config.Modem.disconnect());
         List<String> balancePaseList = new ArrayList<>();
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
         ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
@@ -5129,15 +5144,14 @@ public class Home extends javax.swing.JFrame {
                 rs = DbConnection.retrieveAll("command");
                 while (rs.next()) {
                     if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
-                        String[] value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15").split(",");
-                        Configaration.closeUssdSession();
-                        System.out.println(auto.recharge.system.config.Modem.disconnect());
+                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
+                        String[] value = balanceMgs.split(",");
+
                         System.out.println(value.length);
                         if (value.length == 1) {
                             errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
                             errorMgsInBalencePanel.setVisible(true);
                         } else {
-
                             String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
                             Pattern p = Pattern.compile("\\d+");
                             Matcher m = p.matcher(balance);
@@ -5145,12 +5159,13 @@ public class Home extends javax.swing.JFrame {
                                 balancePaseList.add(m.group());
                                 System.out.println(m.group());
                             }
-
+                            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
                             defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk"});
                         }
                     }
                 }
-
+                Configaration.closeUssdSession();
+                System.out.println(auto.recharge.system.config.Modem.disconnect());
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
@@ -5185,7 +5200,7 @@ public class Home extends javax.swing.JFrame {
         String[] responses = null;
         String getOperator = getSelectedSim.getSelectedItem().toString();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().equals(getOperator.toLowerCase())) {
+            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
                 auto.recharge.system.config.Modem.disconnect();
@@ -5514,7 +5529,7 @@ public class Home extends javax.swing.JFrame {
         responseList.clear();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().equals(sim.toUpperCase())) {
+            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(sim.toUpperCase())) {
                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
                      
@@ -6300,7 +6315,7 @@ public class Home extends javax.swing.JFrame {
         String result = null;
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().equals(storage.toUpperCase())) {
+            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(storage.toUpperCase())) {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 result = auto.recharge.system.config.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
                 auto.recharge.system.config.Modem.disconnect();
