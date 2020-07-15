@@ -5,7 +5,6 @@
  */
 package auto.recharge.system;
 
-
 import auto.recharge.system.dto.ContractResponse;
 import auto.recharge.system.dto.GroupRechargeResponse;
 import auto.recharge.system.dto.ModemInfoList;
@@ -82,8 +81,6 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
-        // this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //  popupMenu.add(confirmPopUp);
         setFocusInMobileRechargePanel();
         setCuurentActiveNetworkAndBalenceFromModem();
         loadActiveOperatorNameInComboBox();
@@ -94,9 +91,6 @@ public class Home extends javax.swing.JFrame {
         suggList.setModel(defaultListModel);
         popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-        System.err.println("------------------"+UserInfo.userId);
-        System.err.println("------------------"+UserInfo.phoneNo);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -1024,6 +1018,11 @@ public class Home extends javax.swing.JFrame {
         tableRechargeDetailsShow.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableRechargeDetailsShow.setShowVerticalLines(false);
         tableRechargeDetailsShow.getTableHeader().setReorderingAllowed(false);
+        tableRechargeDetailsShow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableRechargeDetailsShowMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableRechargeDetailsShow);
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -3236,7 +3235,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel70.setText("Type");
 
-        getSelectedTypeGroupRecharge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pre-paid", "Post-paid", "Skitoo" }));
+        getSelectedTypeGroupRecharge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pre-paid", "Post-paid", "Skitto" }));
 
         jLabel71.setText("Send By");
 
@@ -4415,7 +4414,6 @@ public class Home extends javax.swing.JFrame {
         int res = Popup.customWarning("Be carefull\n Can't cencel it");
         if (res == 0) {
             sendGroupRecharge();
-
         } else {
             sendingLogLabel.setVisible(false);
             sendAllRechargeBut.setFocusable(true);
@@ -4426,7 +4424,27 @@ public class Home extends javax.swing.JFrame {
         if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
             Popup.customError("Empty field found..");
         } else {
-            addInGroupRechargeTable();
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    addInGroupRechargeTable();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    loadDataInGroupRechargeTable();
+                    getPhoneNumberInGroupRecharge.setText("");
+                    getAmountGroupRecharge.setText("");
+                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
+                    System.err.println("Number Add In Recharge List @Done...");
+                }
+
+            };
+            swingWorker.execute();
+
         }
     }//GEN-LAST:event_addButInGroupRechargeActionPerformed
 
@@ -4554,8 +4572,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickBillPaymentMouseEntered
 
     private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
-    switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);  
-    loadInBillPaymentDetailsByBillNo();
+        switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);
+        loadInBillPaymentDetailsByBillNo();
     }//GEN-LAST:event_clickBillPaymentMouseClicked
 
     private void clickMobileBankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseExited
@@ -4570,7 +4588,7 @@ public class Home extends javax.swing.JFrame {
         switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
 
         Set<String> serviceNames = new HashSet<>();
-        try {           
+        try {
             getServiceName.addItem("------ Select Service -------");
             rs = DbConnection.retrieveAll("mobile_banking");
             while (rs.next()) {
@@ -4588,9 +4606,9 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
-        
+
         for (String serviceName : serviceNames) {
-            
+
             getServiceName.addItem(serviceName);
         }
         getSimOperatorName.removeAllItems();
@@ -4631,25 +4649,24 @@ public class Home extends javax.swing.JFrame {
     private void clickTabUsingBillNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingBillNOActionPerformed
         switchPanelInBillPayment(usingBillNoPanel);
         loadInBillPaymentDetailsByBillNo();
-        
-        
-        
+
+
     }//GEN-LAST:event_clickTabUsingBillNOActionPerformed
 
     private void clickTabUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingCustomerIdActionPerformed
         switchPanelInBillPayment(UsingCustomerId);
         loadInBillPaymentDetailsByCustomerId();
-        
+
     }//GEN-LAST:event_clickTabUsingCustomerIdActionPerformed
 
     private void payInUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payInUsingCustomerIdActionPerformed
 
-               SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 processtingLoderDialog.setVisible(true);
                 payBillByCustomerId();
-                
+
                 return null;
             }
 
@@ -4662,18 +4679,18 @@ public class Home extends javax.swing.JFrame {
 
         };
         swingWorker.execute();
-        
-        
+
+
     }//GEN-LAST:event_payInUsingCustomerIdActionPerformed
 
     private void clickPayIUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickPayIUsingBillActionPerformed
 
-       SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 processtingLoderDialog.setVisible(true);
                 payBillByBillNo();
-                
+
                 return null;
             }
 
@@ -4686,16 +4703,66 @@ public class Home extends javax.swing.JFrame {
 
         };
         swingWorker.execute();
-        
+
     }//GEN-LAST:event_clickPayIUsingBillActionPerformed
 
     private void clickResetPayInUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickResetPayInUsingBillActionPerformed
-       resetBillByBillNo();
+        resetBillByBillNo();
     }//GEN-LAST:event_clickResetPayInUsingBillActionPerformed
 
     private void resetnUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetnUsingCustomerIdActionPerformed
         resetBillByCustomerId();
     }//GEN-LAST:event_resetnUsingCustomerIdActionPerformed
+
+    private void tableRechargeDetailsShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRechargeDetailsShowMouseClicked
+        String mgs, userId;
+        Point point = evt.getPoint();
+        int column = tableRechargeDetailsShow.columnAtPoint(point);
+        int row = tableRechargeDetailsShow.rowAtPoint(point);
+        mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
+        userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
+
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs);
+
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 231);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickDelete().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                deleteColumeFromRechargeDetails(userId);
+                mgsDialog.setVisible(false);
+            }
+
+        });
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
+    }//GEN-LAST:event_tableRechargeDetailsShowMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -5194,7 +5261,7 @@ public class Home extends javax.swing.JFrame {
                         jDialog.setVisible(false);
                         clickSend.setVisible(false);
                         processtingLoderDialog.setVisible(true);
-                        rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+                        rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
                         jDialog.setVisible(false);
                         return null;
                     }
@@ -5222,7 +5289,7 @@ public class Home extends javax.swing.JFrame {
                                 jDialog.setVisible(false);
                                 clickSend.setVisible(false);
                                 processtingLoderDialog.setVisible(true);
-                                rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+                                rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
                                 jDialog.setVisible(false);
                                 return null;
                             }
@@ -5331,7 +5398,7 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    void rechargeDoneProcess(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
+    void rechargeDoneProcess(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM, String rechargeType) {
         String[] responseArray;
         String cBalance = null;
         String statusMgs = null;
@@ -5348,6 +5415,7 @@ public class Home extends javax.swing.JFrame {
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
                             if (response.contains(",")) {
@@ -5365,6 +5433,7 @@ public class Home extends javax.swing.JFrame {
                         } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
                             String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
                             if (response.contains(",")) {
@@ -5379,9 +5448,10 @@ public class Home extends javax.swing.JFrame {
                             }
 
                             Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                        } else {
+                        } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
                             if (response.contains(",")) {
@@ -5396,6 +5466,9 @@ public class Home extends javax.swing.JFrame {
                             }
 
                             Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
+                        } else {
+                            Popup.customError("Something is wrong.");
+                            Log.error("5398", "SIM Type Not Match.");
                         }
 
                     }
@@ -5409,8 +5482,14 @@ public class Home extends javax.swing.JFrame {
 
         auto.recharge.system.config.Modem.disconnect();
         initialValueInTableRechargeDetails();
-        saveToDbCommandInRechargeAdmin(phoneNumberRequested, ammountRequested, preOrPostRequested,
-                statusMgs, cBalance);
+        saveToDbCommandInRechargeAdmin(phoneNumberRequested, ammountRequested, preOrPostRequested, statusMgs, cBalance);
+        if (rechargeType.equals("group")) {
+            Log.mgs("5492", "Group Rechargeing...");
+        } else {
+            rechargeConfirmMessageDialog(statusMgs);
+            switchPanelViaMenu(mobileRechargePanel);
+            Log.mgs("5492", "Single Rechargeing...");
+        }
         getMobileNumber.requestFocusInWindow();
     }
 
@@ -5421,31 +5500,29 @@ public class Home extends javax.swing.JFrame {
         trxId = UUID.randomUUID().toString();
         String dateTime = Configaration.getCurrentDateAndTime();
 
-      
-            conn = DbConnection.connect();
-            String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
-            
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, getMobileNumberText);
-                preparedStatement.setString(2, getAmmountInTkText);
-                preparedStatement.setString(3, dateTime);
-                preparedStatement.setString(4, ckeckRechargeSuccessStatus);
-                preparedStatement.setString(5, trxId);
-                preparedStatement.setString(6, getPrepaidOrPostpaidText);
-                preparedStatement.setString(7, getSeletedOperatorName.getSelectedItem().toString());
-                preparedStatement.setString(8, currentBalance);
-                preparedStatement.execute();
-                switchPanelViaMenu(mobileRechargePanel);
-                preparedStatement.close();
-                conn.close();
-                return true;
+        conn = DbConnection.connect();
+        String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, getMobileNumberText);
+            preparedStatement.setString(2, getAmmountInTkText);
+            preparedStatement.setString(3, dateTime);
+            preparedStatement.setString(4, ckeckRechargeSuccessStatus);
+            preparedStatement.setString(5, trxId);
+            preparedStatement.setString(6, getPrepaidOrPostpaidText);
+            preparedStatement.setString(7, getSeletedOperatorName.getSelectedItem().toString());
+            preparedStatement.setString(8, currentBalance);
+            preparedStatement.execute();
 
-      
+            preparedStatement.close();
+            conn.close();
+            return true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return false;
 
     }
@@ -5485,9 +5562,8 @@ public class Home extends javax.swing.JFrame {
 
         List<String> balancePaseList = new ArrayList<>();
         String res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
+        Configaration.closeUssdSession();
         String[] value = res.split(",");
-
-        System.out.println("====================" + res);
         if (value.length == 1) {
             System.err.println("Balance enquiry failed");
 
@@ -5500,7 +5576,8 @@ public class Home extends javax.swing.JFrame {
                 balancePaseList.add(m.group());
                 System.out.println(m.group());
             }
-            System.err.println("------------------------------" + balancePaseList.get(0));
+            Log.mgs("5579","Current Balence "+ balancePaseList.get(0));
+            
             return balancePaseList.get(0);
 
         }
@@ -5539,10 +5616,8 @@ public class Home extends javax.swing.JFrame {
         int count = 1;
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
         try {
-
             rs = DbConnection.retrieveAll("recharge_admin");
             while (rs.next()) {
-                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     defaultTableModel.addRow(new Object[]{
                         rs.getString("trx_id"),
@@ -5566,19 +5641,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
-       tableRechargeDetailsShow.addMouseListener(new MouseAdapter() {
 
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    String getMgsDetails;
-                    Point point = me.getPoint();
-                    int column = tableRechargeDetailsShow.columnAtPoint(point);
-                    int row = tableRechargeDetailsShow.rowAtPoint(point);
-                    getMgsDetails = tableRechargeDetailsShow.getValueAt(row, 7).toString();
-                    
-
-                }
-            });
         tableRechargeDetailsShow.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
         tableRechargeDetailsShow.getTableHeader().setOpaque(false);
         tableRechargeDetailsShow.getTableHeader().setBackground(new Color(133, 47, 209));
@@ -5591,6 +5654,15 @@ public class Home extends javax.swing.JFrame {
         tableRechargeDetailsShow.setEnabled(false);
         tableRechargeDetailsShow.setRowHeight(35);
         tableRechargeDetailsShow.setModel(defaultTableModel);
+
+    }
+
+    private void deleteColumeFromRechargeDetails(String userId) {
+        DbConnection.connect();
+        DbConnection.deleteRow("recharge_admin", "trx_id", userId);
+        DbConnection.disconnect();
+
+        initialValueInTableRechargeDetails();
 
     }
 
@@ -5938,13 +6010,6 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
             preparedStatement.setString(5, simType);
             preparedStatement.execute();
-            int res = Popup.customSuccess();
-            if (res == 0) {
-                loadDataInGroupRechargeTable();
-                getPhoneNumberInGroupRecharge.setText("");
-                getAmountGroupRecharge.setText("");
-                getPhoneNumberInGroupRecharge.requestFocusInWindow();
-            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
@@ -6011,7 +6076,26 @@ public class Home extends javax.swing.JFrame {
                         if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
                             Popup.customError("Empty field found..");
                         } else {
-                            addInGroupRechargeTable();
+                            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                                @Override
+                                protected Void doInBackground() throws Exception {
+                                    processtingLoderDialog.setVisible(true);
+                                    addInGroupRechargeTable();
+                                    return null;
+                                }
+
+                                @Override
+                                protected void done() {
+                                    processtingLoderDialog.setVisible(false);
+                                    loadDataInGroupRechargeTable();
+                                    getPhoneNumberInGroupRecharge.setText("");
+                                    getAmountGroupRecharge.setText("");
+                                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
+                                    System.err.println("Number Add In Recharge List @Done...");
+                                }
+
+                            };
+                            swingWorker.execute();
                         }
                         break;
                     default:
@@ -6072,15 +6156,31 @@ public class Home extends javax.swing.JFrame {
         } finally {
             DbConnection.disconnect();
         }
-        groupRechargeResponsesList.stream().forEach(values -> {
-            rechargeDoneProcess(values.getPhoneNumber(), values.getAmount(), values.getSimType(), values.getPayBy());
-            Configaration.wait(1000);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                processtingLoderDialog.setVisible(true);
+                groupRechargeResponsesList.stream().forEach(values -> {
+                    rechargeDoneProcess(values.getPhoneNumber(), values.getAmount(), values.getSimType(), values.getPayBy(), "group");
+                    Configaration.wait(1000);
 
-        });
+                });
+                return null;
+            }
 
-        DbConnection.connect();
-        DbConnection.delete("group_recharge");
-        DbConnection.disconnect();
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+                switchPanelViaMenu(mobileRechargePanel);
+                DbConnection.connect();
+                initialValueInTableRechargeDetails();
+                DbConnection.delete("group_recharge");
+                DbConnection.disconnect();
+                System.err.println("Recharge Done...");
+            }
+
+        };
+        swingWorker.execute();
 
     }
 
@@ -6740,8 +6840,7 @@ public class Home extends javax.swing.JFrame {
                         getMobileNumber.requestFocusInWindow();
                         getMobileNumber.setForeground(Color.BLACK);
                         getMobileNumber.setText(selectedNumber.substring(3, 14));
-                        
-                        
+
                         System.err.println(selectedNumber.substring(3, 14));
                         System.out.println(selectedNumber);
                     } else {
@@ -7308,6 +7407,7 @@ public class Home extends javax.swing.JFrame {
         basePanel.revalidate();
 
     }
+
     protected void switchPanelInBillPayment(javax.swing.JPanel requestedPanel) {
 
         baseBillPayment.removeAll();
@@ -7319,6 +7419,7 @@ public class Home extends javax.swing.JFrame {
         baseBillPayment.revalidate();
 
     }
+
     private void refrash() {
         selectedSimOperatorIcon.setIcon(null);
         //getAmmountEachNumber.setText("");
@@ -7438,137 +7539,127 @@ public class Home extends javax.swing.JFrame {
 
     //-------------------------------- Bill Pay Panel------------------------------------
     private void payBillByBillNo() {
-        String sim= getSimName.getSelectedItem().toString();
-        String getServiceType=getServiceTypeInBillPay.getSelectedItem().toString();
-        String billNo= getBillNO.getText();
-        String password= getPasswordInBillPay.getText();
-        
-       
-        if(billNo.equals("") || password.equals(""))
-        {
-        Popup.customError("Empty Field Found");
-        
-        }
-        else{
-             String ussdCode = "*727*2*"+billNo+"*"+password+"#";
-             String status = billPayUssdCodeDial(sim,ussdCode);
-             saveIntobill_pay_bill_no(status);
-             loadInBillPaymentDetailsByBillNo();
-        
+        String sim = getSimName.getSelectedItem().toString();
+        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
+        String billNo = getBillNO.getText();
+        String password = getPasswordInBillPay.getText();
+
+        if (billNo.equals("") || password.equals("")) {
+            Popup.customError("Empty Field Found");
+
+        } else {
+            String ussdCode = "*727*2*" + billNo + "*" + password + "#";
+            String status = billPayUssdCodeDial(sim, ussdCode);
+            saveIntobill_pay_bill_no(status);
+            loadInBillPaymentDetailsByBillNo();
+
         }
     }
 
     private void resetBillByBillNo() {
-       getBillNO.setText("");
-       
+        getBillNO.setText("");
+
     }
 
     private void payBillByCustomerId() {
-        
-        
-        String sim= getSimName.getSelectedItem().toString();
-        String getServiceType=getServiceTypeInBillPay.getSelectedItem().toString();
-        String customerId= getCustomerId.getText();
-        String monthName= getMonthNo.getSelectedItem().toString();
-        String year= getyear.getSelectedItem().toString();
-        String password= getPassword.getText();
+
+        String sim = getSimName.getSelectedItem().toString();
+        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
+        String customerId = getCustomerId.getText();
+        String monthName = getMonthNo.getSelectedItem().toString();
+        String year = getyear.getSelectedItem().toString();
+        String password = getPassword.getText();
         String monthNo = null;
-        
-        switch(monthName.toLowerCase())
-        {
-                case "january":
-                monthNo= "1";
+
+        switch (monthName.toLowerCase()) {
+            case "january":
+                monthNo = "1";
                 break;
-                case "february":
-                monthNo= "2";
+            case "february":
+                monthNo = "2";
                 break;
-                case "march":
-                monthNo= "3";
+            case "march":
+                monthNo = "3";
                 break;
-                case "april":
-                monthNo= "4";
+            case "april":
+                monthNo = "4";
                 break;
-                case "may":
-                monthNo= "5";
+            case "may":
+                monthNo = "5";
                 break;
-                case "june":
-                monthNo= "6";
+            case "june":
+                monthNo = "6";
                 break;
-                case "july":
-                monthNo= "7";
+            case "july":
+                monthNo = "7";
                 break;
-                case "august":
-                monthNo= "8";
+            case "august":
+                monthNo = "8";
                 break;
-                case "september":
-                monthNo= "9";
+            case "september":
+                monthNo = "9";
                 break;
-                case "october":
-                monthNo= "10";
+            case "october":
+                monthNo = "10";
                 break;
-                case "november":
-                monthNo= "11";
+            case "november":
+                monthNo = "11";
                 break;
-                case "december":
-                monthNo= "12";
+            case "december":
+                monthNo = "12";
                 break;
-                default:
-                    Popup.customError("Month Not Found");
+            default:
+                Popup.customError("Month Not Found");
                 break;
         }
-       if(customerId.equals("") || password.equals(""))
-        {
-        Popup.customError("Empty Field Found");
-        
+        if (customerId.equals("") || password.equals("")) {
+            Popup.customError("Empty Field Found");
+
+        } else {
+            String ussdCode = "*727*2*" + customerId + "*" + monthNo + "*" + year + "*" + password + "#";
+            String status = billPayUssdCodeDial(sim, ussdCode);
+            System.err.println(status);
+            saveIntobill_payment_customer_id(status);
+            loadInBillPaymentDetailsByCustomerId();
+
         }
-        else{
-             String ussdCode = "*727*2*"+customerId+"*"+monthNo+"*"+year+"*"+password+"#";
-             String status = billPayUssdCodeDial(sim,ussdCode);
-             System.err.println(status);
-             saveIntobill_payment_customer_id(status);
-             loadInBillPaymentDetailsByCustomerId();
-        
-        }
-        
+
     }
 
     private void resetBillByCustomerId() {
         getCustomerId.setText("");
-        
+
     }
 
-    private String  billPayUssdCodeDial(String sim,String code) {
+    private String billPayUssdCodeDial(String sim, String code) {
         String res = null;
-        boolean isPay =false;
-           for(SimOperatorIdentifierDto simOperatorIdentifierDto: ModemInfoList.simOperatorIdentifiers)
-            {
-            if(simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase()))
-            {
-                  auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                  res= auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
-                  auto.recharge.system.config.Modem.disconnect();
-                  isPay=true;
+        boolean isPay = false;
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase())) {
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
+                auto.recharge.system.config.Modem.disconnect();
+                isPay = true;
             }
-            
-            }
-           if(!isPay)
-           {
-           Popup.customError("Teletalk SIM Not Found");
-           }
-           return res;
+
+        }
+        if (!isPay) {
+            Popup.customError("Teletalk SIM Not Found");
+        }
+        return res;
     }
 
     private void saveIntobill_pay_bill_no(String status) {
 
-        String getServiceType=getServiceTypeInBillPay.getSelectedItem().toString();
-        String billNo= getBillNO.getText();
+        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
+        String billNo = getBillNO.getText();
 
         Connection conn1 = DbConnection.connect();
         String sql = "INSERT INTO bill_pay_bill_no(TrxId,bill_no,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn1.prepareStatement(sql);
             preparedStatement.setString(1, Configaration.getUUID());
-            preparedStatement.setString(2, billNo); 
+            preparedStatement.setString(2, billNo);
             preparedStatement.setString(3, Configaration.getCurrentDateAndTime());
             preparedStatement.setString(4, "6");
             preparedStatement.setString(5, getServiceType);
@@ -7585,14 +7676,14 @@ public class Home extends javax.swing.JFrame {
 
                 }
             }
-        }  
+        }
     }
-    private void saveIntobill_payment_customer_id(String status) {
-        String getServiceType=getServiceTypeInBillPay.getSelectedItem().toString();
-        String customerId= getCustomerId.getText();
-        String monthName= getMonthNo.getSelectedItem().toString();
-        String year= getyear.getSelectedItem().toString();
 
+    private void saveIntobill_payment_customer_id(String status) {
+        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
+        String customerId = getCustomerId.getText();
+        String monthName = getMonthNo.getSelectedItem().toString();
+        String year = getyear.getSelectedItem().toString();
 
         Connection conn1 = DbConnection.connect();
         String sql = "INSERT INTO bill_payment_customer_id(TrxId,customer_id,bill_month,bill_year,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?,?,?)";
@@ -7618,83 +7709,120 @@ public class Home extends javax.swing.JFrame {
 
                 }
             }
-        }  
+        }
     }
+
     private void loadInBillPaymentDetailsByBillNo() {
-                    DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Bill No","Current balance", "Status"}, 0);
-            try {
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Bill No", "Current balance", "Status"}, 0);
+        try {
 
-                rs = DbConnection.retrieveAll("bill_pay_bill_no");
-                while (rs.next()) {
-                     defaultTableModel.addRow(new String[]{rs.getString("TrxId"),rs.getString("time_date"),
-                         rs.getString("bill_type"),rs.getString("bill_no"),rs.getString("c_balance"),
-                         rs.getString("status")});
-                }
+            rs = DbConnection.retrieveAll("bill_pay_bill_no");
+            while (rs.next()) {
+                defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
+                    rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
+                    rs.getString("status")});
+            }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                    }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
                 }
             }
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-            tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-            tableBillPaymentDetails.getTableHeader().setOpaque(false);
-            tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
-            tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-            tableBillPaymentDetails.setEnabled(false);
-            tableBillPaymentDetails.setRowHeight(30);
-            tableBillPaymentDetails.setModel(defaultTableModel);
+        }
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        tableBillPaymentDetails.getTableHeader().setOpaque(false);
+        tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
+        tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
+        tableBillPaymentDetails.setEnabled(false);
+        tableBillPaymentDetails.setRowHeight(30);
+        tableBillPaymentDetails.setModel(defaultTableModel);
     }
 
     private void loadInBillPaymentDetailsByCustomerId() {
-                           DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Customer ID","Month","Year","Current balance", "Status"}, 0);
-            try {
+        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Customer ID", "Month", "Year", "Current balance", "Status"}, 0);
+        try {
 
-                rs = DbConnection.retrieveAll("bill_payment_customer_id");
-                while (rs.next()) {
-                     defaultTableModel.addRow(new String[]{rs.getString("TrxId"),rs.getString("time_date"),
-                         rs.getString("bill_type"),rs.getString("customer_id"),rs.getString("bill_month"),rs.getString("bill_year"),rs.getString("c_balance"),
-                         rs.getString("status")});
-                }
+            rs = DbConnection.retrieveAll("bill_payment_customer_id");
+            while (rs.next()) {
+                defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
+                    rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
+                    rs.getString("status")});
+            }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                    }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
                 }
             }
-                        //For jTable contant in center
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-            tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-            tableBillPaymentDetails.getTableHeader().setOpaque(false);
-            tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
-            tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-            tableBillPaymentDetails.setEnabled(false);
-            tableBillPaymentDetails.setRowHeight(30);
-            tableBillPaymentDetails.setModel(defaultTableModel);
+        }
+        //For jTable contant in center
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        tableBillPaymentDetails.getTableHeader().setOpaque(false);
+        tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
+        tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
+        tableBillPaymentDetails.setEnabled(false);
+        tableBillPaymentDetails.setRowHeight(30);
+        tableBillPaymentDetails.setModel(defaultTableModel);
     }
 
     private void setDataInProfilePanel() {
-       nameInProfilePanel1.setText(UserInfo.name);
-       designationInProfilePanel1.setText("Owner");
-       companyNameInProfilePanel.setText(UserInfo.shopName);
-       userIdInProfile.setText(UserInfo.userId);
-       activePackageNameInProfile.setText(UserInfo.activePackage);
-       activeDateInProfile.setText(UserInfo.activeDate);
-       expiryDateInProfile.setText(UserInfo.expireDate);
-       remainDaysInProfile.setText(UserInfo.name);
-       
+        nameInProfilePanel1.setText(UserInfo.name);
+        designationInProfilePanel1.setText("Owner");
+        companyNameInProfilePanel.setText(UserInfo.shopName);
+        userIdInProfile.setText(UserInfo.userId);
+        activePackageNameInProfile.setText(UserInfo.activePackage);
+        activeDateInProfile.setText(UserInfo.activeDate);
+        expiryDateInProfile.setText(UserInfo.expireDate);
+        remainDaysInProfile.setText(UserInfo.name);
+
+    }
+
+    private void rechargeConfirmMessageDialog(String mgs) {
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs);
+
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 231);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickDelete().setVisible(false);
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
     }
 
 }

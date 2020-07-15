@@ -1154,6 +1154,9 @@
                           <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableRechargeDetailsShowMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -5354,7 +5357,7 @@
                           <StringArray count="3">
                             <StringItem index="0" value="Pre-paid"/>
                             <StringItem index="1" value="Post-paid"/>
-                            <StringItem index="2" value="Skitoo"/>
+                            <StringItem index="2" value="Skitto"/>
                           </StringArray>
                         </Property>
                       </Properties>

@@ -62,8 +62,7 @@ public class DbConnection {
 
     public static boolean deleteRow(String tableName, String columeName, String value) {
         conn = DbConnection.connect();
-        String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
-        System.err.println(sql);
+        String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";       
         try {
             Statement st = conn.createStatement();
             return st.execute(sql);

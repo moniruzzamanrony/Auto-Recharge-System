@@ -369,8 +369,6 @@ public class Login extends javax.swing.JFrame {
 
         swingWorker.execute();
 
-        // login();
-
     }//GEN-LAST:event_loginButMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -556,7 +554,7 @@ public class Login extends javax.swing.JFrame {
             ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
 
         }
-        System.err.println("Hommeeeee");
+       
         Home home = new Home();
         home.setVisible(true);
     }
