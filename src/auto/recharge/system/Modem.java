@@ -17,26 +17,8 @@ import java.util.List;
 public class Modem {
 private static final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
     public static List<String> getActivePortsList() {
-        List<String> a = auto.recharge.system.config.Modem.getActiveModemsPorts();
-        a.remove("COM156");
-        System.err.println(a);
-        List<String> selectedActivePortsList = new ArrayList<>();
-        List<String> activePortsList = new ArrayList<>();
-        a.stream().map((port) -> {
-            auto.recharge.system.config.Modem.connect(port);
-            return port;
-        }).forEachOrdered((port) -> {
-            if (auto.recharge.system.config.Modem.sendATCommand("AT").replaceAll("\\s+OK\\s+", "").replaceAll("\n", ",").replaceAll("\r", "").replaceAll(",", "").equals("OK")) {
-                activePortsList.add(port);
-
-                auto.recharge.system.config.Modem.disconnect();
-            } else {
-                System.err.println("Inactive Port");
-                auto.recharge.system.config.Modem.disconnect();
-            }
-        });
-        return activePortsList;
-    }
+        return auto.recharge.system.config.Modem.getActiveModemsPorts();
+   }
 
     public static List<SimOperatorIdentifierDto> getSimInfo(List<String> ports) {
             List<SimOperatorIdentifierDto> simOperatorIdentifierDtos= new ArrayList<>();

@@ -1,11 +1,16 @@
 package auto.recharge.system;
 
 import auto.recharge.system.dto.ModemInfoList;
+import auto.recharge.system.dto.UserInfo;
 import com.itvillage.AES;
 
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +21,11 @@ import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.SwingWorker;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
 
 public class Login extends javax.swing.JFrame {
 
@@ -333,14 +343,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-        this.setVisible(false);
 
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
-                getSIMOperatorInfo();
+                if (login()) {
+                    getSIMOperatorInfo();
+                } else {
+                   Log.error("355", "Login Failed");
+                }
+
                 return null;
             }
 
@@ -389,14 +403,15 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 //    ---------------------------------- Custom Methods ----------------------------------------------------
 
-    private void login() {
-        String userId;
+    private boolean login() {
+        String userId = null;
         String phoneNo = null;
         String password = null;
-        String macAddress;
+        String macAddress = null;
+        boolean isAuthUser = false;
         try {
             Connection conn = DbConnection.connect();
-            String sql = "SELECT user_id,phone_no,password,mac_address FROM user_info";
+            String sql = "SELECT * FROM user_info WHERE active_status = 'true'";
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
@@ -405,28 +420,53 @@ public class Login extends javax.swing.JFrame {
                 phoneNo = rs.getString("phone_no");
                 password = rs.getString("password");
                 macAddress = rs.getString("mac_address");
+                UserInfo.activePackage = rs.getString("active_package");
+                UserInfo.email = rs.getString("email");
+                UserInfo.activeDate = rs.getString("active_date");
+                UserInfo.expireDate = rs.getString("expire_date");
+                UserInfo.activeStatus = rs.getString("active_status");
+                UserInfo.shopName = rs.getString("shop_name");
+                UserInfo.address = rs.getString("address");
+                UserInfo.name = rs.getString("name");
+                UserInfo.role = rs.getString("role");
+
             }
-            System.out.println(phoneNo);
-            if (getPhoneNumber.getText().trim().equals("")) {
-                getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red, 4));
-            }
-            if (getPasswordBypt.getText().trim().equals("")) {
-                getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+            UserInfo.userId = userId;
+            UserInfo.phoneNo = phoneNo;
+            UserInfo.password = password;
+            UserInfo.macAddress = macAddress;
+            if (phoneNo == null) {
+                Popup.customError("Licence not found.");
             } else {
-
-                if (phoneNo.equals(getPhoneNumber.getText().trim())
-                        && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
-                                .equals(getPasswordBypt.getText().trim())) {
-                    this.setVisible(false);
-
-                    Home.showDeshBoardPage();
+                System.out.println(phoneNo);
+                if (getPhoneNumber.getText().trim().equals("")) {
+                    getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+                }
+                if (getPasswordBypt.getText().trim().equals("")) {
+                    getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red, 4));
                 } else {
-                    Popup.error("Try again\nWrong Phone Number Or Password");
+
+                    if (phoneNo.equals(getPhoneNumber.getText().trim())
+                            && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
+                                    .equals(getPasswordBypt.getText().trim())) {
+
+                        if (isAuthrizeMacAddress(macAddress)) {
+                            this.setVisible(false);
+                            isAuthUser = true;
+                        } else {
+                            Popup.error("Unverified Device");
+                        }
+
+                    } else {
+                        Popup.error("Invalid Phone Number Or Password!!");
+                    }
+
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return isAuthUser;
     }
 
     /**
@@ -469,7 +509,30 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    login();
+                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            System.out.println("Login Processing..");
+                            processtingLoderDialog.setVisible(true);
+                            if (login()) {
+                                getSIMOperatorInfo();
+                            } else {
+                                Popup.error("Login Failed!!");
+                            }
+
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            System.out.println("Login Done..");
+
+                            processtingLoderDialog.setVisible(false);
+                        }
+
+                    };
+
+                    swingWorker.execute();
                 }
             }
         });
@@ -491,10 +554,11 @@ public class Login extends javax.swing.JFrame {
         } else {
             ModemInfoList.portsList = ports;
             ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
+
         }
+        System.err.println("Hommeeeee");
         Home home = new Home();
         home.setVisible(true);
-        //  loadingScreen.dispose();
     }
 
     private void processingLoderDialog() {
@@ -508,4 +572,17 @@ public class Login extends javax.swing.JFrame {
         processtingLoderDialog.setUndecorated(true);
 
     }
+
+    private boolean isAuthrizeMacAddress(String macAddreassFromSQL) {
+        boolean isAuthrizeMacAddress = false;
+
+        String computerMacAddress = Configaration.getMacAddress().replace(":", "");
+        System.err.println(computerMacAddress + "  " + macAddreassFromSQL);
+        if (computerMacAddress.equals(macAddreassFromSQL)) {
+            isAuthrizeMacAddress = true;
+        }
+
+        return isAuthrizeMacAddress;
+    }
+
 }

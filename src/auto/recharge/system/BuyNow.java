@@ -1,32 +1,48 @@
 package auto.recharge.system;
 
-import java.awt.Color;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.BorderFactory;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.itvillage.AES;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
 
 public class BuyNow extends javax.swing.JFrame {
 
     private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    private final DBMySQLConnection mySQLConnection = new DBMySQLConnection();
+    private JDialog processtingLoderDialog;
 
     public BuyNow() {
         initComponents();
+        processingLoderDialog();
         // new BuyNow().setVisible(true);
     }
 
@@ -43,7 +59,6 @@ public class BuyNow extends javax.swing.JFrame {
         getEmail = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         getPackageName = new javax.swing.JComboBox<>();
-        getTransactionId = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -52,8 +67,9 @@ public class BuyNow extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         clickBuyNow = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        getShopName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -82,12 +98,15 @@ public class BuyNow extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         getName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        getName.setText("fdhgfdh");
         jPanel3.add(getName, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 105, 310, 30));
 
         getPhoneNumber.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        getPhoneNumber.setText("01988851678");
         jPanel3.add(getPhoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 310, 30));
 
         getEmail.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        getEmail.setText("eproni29@gmail.com");
         getEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getEmailActionPerformed(evt);
@@ -99,21 +118,13 @@ public class BuyNow extends javax.swing.JFrame {
         jTextField5.setText("jTextField2");
         jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 310, 30));
 
-        getPackageName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trial Package @ 7days", "Silver Package @ 1year", "Gold Package @ 2years", "Diamond Package @3years", "Premium Package @Lifetime" }));
+        getPackageName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trial Package @ 7days", "Monthly Package @1month", "Monthly Package @6month", "Silver Package @ 1year", "Gold Package @ 2years", "Diamond Package @3years", "Premium Package @Lifetime" }));
         getPackageName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 getSelectedPackage(evt);
             }
         });
-        jPanel3.add(getPackageName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 240, -1));
-
-        getTransactionId.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        getTransactionId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getTransactionIdActionPerformed(evt);
-            }
-        });
-        jPanel3.add(getTransactionId, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 310, 30));
+        jPanel3.add(getPackageName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 240, -1));
 
         jSeparator3.setForeground(new java.awt.Color(255, 0, 51));
         jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 410, -1));
@@ -145,11 +156,7 @@ public class BuyNow extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         jLabel11.setText("Select Package: ");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
-        jLabel12.setText("bKash Transection Id: ");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         clickBuyNow.setBackground(new java.awt.Color(0, 153, 51));
         clickBuyNow.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
@@ -161,6 +168,19 @@ public class BuyNow extends javax.swing.JFrame {
             }
         });
         jPanel3.add(clickBuyNow, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 200, 40));
+
+        jLabel14.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
+        jLabel14.setText("Shop Name:");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
+
+        getShopName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        getShopName.setText("IT Village");
+        getShopName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getShopNameActionPerformed(evt);
+            }
+        });
+        jPanel3.add(getShopName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 310, 30));
 
         bg.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 430, 390));
 
@@ -238,20 +258,18 @@ public class BuyNow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getEmailActionPerformed
 
-    private void getTransactionIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getTransactionIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getTransactionIdActionPerformed
-
     private void clickBuyNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickBuyNowActionPerformed
 
-        String userName = getName.getText();
+        String clientName = getName.getText();
         String userPhoneNo = getPhoneNumber.getText();
         String userEmail = getEmail.getText();
         String selectedPackage = getPackageName.getSelectedItem().toString().trim();
-        String paymentTrsId = getTransactionId.getText();
+        String shopName = getShopName.getText();
+        String userId = User.getUserId().toLowerCase();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(userEmail);
-        if (userName.equals("")) {
+
+        if (clientName.equals("")) {
             Configaration.changeBorderColorForTextFeild(getName, "#FF2D00");  //#FF2D00 is Red Color
         }
         if (userPhoneNo.equals("")) {
@@ -260,23 +278,57 @@ public class BuyNow extends javax.swing.JFrame {
         if (userEmail.equals("")) {
             Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
         }
-        if (paymentTrsId.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getTransactionId, "#FF2D00");
+        if (shopName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getShopName, "#FF2D00");
         }
         if (!matcher.matches()) {
             Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
         } else {
-            clickBuyNow.setText("Please Wait..");
-            int result = JOptionPane.showConfirmDialog(bg, "Careful !!\n All Registration will delete.", "Auto Recharge System", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            if (result == 1) {
-                clickBuyNow.setText("Buy Now");
+            if (Configaration.netIsAvailable()) {
+
+                int result = JOptionPane.showConfirmDialog(bg, "Are you sure?", "Auto Recharge System", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (result == 1) {
+                    getName.setText("");
+                    getPhoneNumber.setText("");
+                    getEmail.setText("");
+                    getShopName.setText("");
+                    Log.mgs("272", "Reset Done.");
+                } else {
+                    Log.mgs("274", "Start Swing Worker.");
+                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            Log.mgs("269", "Clicked.");
+                            clickBuyNow.setText("Please Wait..");
+                            clickBuyNow.setEnabled(false);
+                            processtingLoderDialog.setVisible(true);
+                            genarateQRCode(clientName, userPhoneNo, userEmail, selectedPackage, shopName, userId);
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            clickBuyNow.setText("Buy Now");
+                            clickBuyNow.setEnabled(true);
+                            getName.setText("");
+                            getPhoneNumber.setText("");
+                            getEmail.setText("");
+                            getShopName.setText("");
+                            processtingLoderDialog.setVisible(false);
+                            Log.mgs("275", "Task Completed.");
+                        }
+
+                    };
+                    swingWorker.execute();
+
+                }
             } else {
-                clickBuyNow.setText("Buy Now");
-                genarateQRCode(userName, userPhoneNo, userEmail, selectedPackage, paymentTrsId);
+                Popup.error("No INTERNET CONNECTION");
             }
+
         }
 
-        if (!userName.equals("")) {
+        if (!clientName.equals("")) {
             Configaration.changeBorderColorForTextFeild(getName, "#DCDADA");  //#FF2D00 is deep black
         }
         if (!userPhoneNo.equals("")) {
@@ -285,14 +337,33 @@ public class BuyNow extends javax.swing.JFrame {
         if (matcher.matches()) {
             Configaration.changeBorderColorForTextFeild(getEmail, "#DCDADA");
         }
-        if (!paymentTrsId.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getTransactionId, "#DCDADA");
+        if (!shopName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getShopName, "#DCDADA");
         }
 
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                System.out.println("Verifing...");
+                processtingLoderDialog.setVisible(true);
+                verifySerialKey();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                System.out.println("Login Done..");
+
+                processtingLoderDialog.setVisible(false);
+            }
+
+        };
+
+        swingWorker.execute();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void clickBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBackMouseClicked
@@ -305,6 +376,10 @@ public class BuyNow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_getSelectedPackage
 
+    private void getShopNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getShopNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getShopNameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -315,13 +390,13 @@ public class BuyNow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getPackageName;
     private javax.swing.JTextField getPhoneNumber;
     private javax.swing.JTextField getSerialKey;
-    private javax.swing.JTextField getTransactionId;
+    private javax.swing.JTextField getShopName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -340,70 +415,191 @@ public class BuyNow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 //    ---------------------------------- Custom Methods ----------------------------------------------------
-    
-    public String getMacAddress() throws UnknownHostException, SocketException {
+    private void genarateQRCode(String clientName, String userPhoneNo, String userEmail, String selectedPackage, String shopName, String userId) {
+        Log.mgs("389", "Genarating QR COde");
 
-        InetAddress ipAddress = InetAddress.getLocalHost();
-        NetworkInterface networkInterface = NetworkInterface
-                .getByInetAddress(ipAddress);
-        byte[] macAddressBytes = networkInterface.getHardwareAddress();
-        StringBuilder macAddressBuilder = new StringBuilder();
-
-        for (int macAddressByteIndex = 0; macAddressByteIndex < macAddressBytes.length; macAddressByteIndex++) {
-            String macAddressHexByte = String.format("%02X",
-                    macAddressBytes[macAddressByteIndex]);
-            macAddressBuilder.append(macAddressHexByte);
-
-            if (macAddressByteIndex != macAddressBytes.length - 1) {
-                macAddressBuilder.append(":");
-            }
-        }
-
-        return macAddressBuilder.toString();
-    }
-
-    private void genarateQRCode(String userName, String userPhoneNo, String userEmail, String selectedPackage, String paymentTrsId) {
+        // String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
+        String computerMacAddress = Configaration.getMacAddress().replace(":", "");
+        System.err.println(computerMacAddress);
 
         try {
-            String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
-            String computerMacAddress = getMacAddress().replace(":", "");
 
-            try {
-                /*
-                 * mobileNO.camputerUserName.computerMacAddress.userId.packageName in All LOWER CASE
-                 */
-                String qrCodeData = userPhoneNo + "." + loggedUserNameOfComputer.toLowerCase()
-                        + "." + computerMacAddress.toLowerCase() + "." + User.getUserId().toLowerCase()
-                        + "." + selectedPackage.trim().toLowerCase();
+            String qrCodeData = userPhoneNo + "," + clientName
+                    + "," + computerMacAddress.toLowerCase() + "," + userId
+                    + "," + selectedPackage + "," + userEmail + "," + shopName;
+            String encryptQrCodeData = AES.encrypt(qrCodeData, Configaration.getPropertiesValueByKey("secretKey"));
+            String filePath = userPhoneNo + ".png";
+            String charset = "UTF-8";
+            Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap< EncodeHintType, ErrorCorrectionLevel>();
+            hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+            BitMatrix matrix = new MultiFormatWriter().encode(
+                    new String(encryptQrCodeData.getBytes(charset), charset),
+                    BarcodeFormat.QR_CODE, 200, 200, hintMap);
+            MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
+                    .lastIndexOf('.') + 1), new File(filePath));
+            Log.mgs("463", "Genarating QR COde Success");
+            sendMailToAuthority(userPhoneNo, userEmail, clientName, selectedPackage, shopName, userId);
+        } catch (Exception e) {
+            System.err.println("458--->" + e.getMessage());
+        }
 
-                String filePath = userPhoneNo + ".png";
-                String charset = "UTF-8"; // or "ISO-8859-1"
-                Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap< EncodeHintType, ErrorCorrectionLevel>();
-                hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-                BitMatrix matrix = new MultiFormatWriter().encode(
-                        new String(qrCodeData.getBytes(charset), charset),
-                        BarcodeFormat.QR_CODE, 200, 200, hintMap);
-                MatrixToImageWriter.writeToFile(matrix, filePath.substring(filePath
-                        .lastIndexOf('.') + 1), new File(filePath));
-                if (Configaration.netIsAvailable()) {
-                    sendMailToAuthority(userPhoneNo, userEmail, userName, selectedPackage, paymentTrsId);
-                } else {
-                    Popup.error("No INTERNET CONNECTION");
+    }
+
+    private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId, String userId) {
+        Log.mgs("428", "Mail Send Method.");
+        Mail mail = new Mail(userId);
+        mail.send(fileName, Configaration.getPropertiesValueByKey("companyEmail"), userName, selectedPackage, paymentTrsId, email);
+        mail.send(email, userName, selectedPackage, paymentTrsId);
+    }
+
+    private void verifySerialKey() {
+
+        String userIdFromSQL = null, nameFromSQL = null, phoneNoFromSQL = null, shopNameFromSQL = null,
+                addessFromSQL = null, passwordFromSQL = null, activePackageFromSQL = null,
+                macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, expireDateFromSQL = null, packageValidity = null,role=null;
+        String serialKey = getSerialKey.getText();
+        String encryptedSerialKey = AES.decrypt(serialKey, Configaration.getPropertiesValueByKey("scKeyForActive"));
+        String[] values = encryptedSerialKey.split(",");
+        String userId = values[1];
+        if (isUserIdIsExist(userId)) {
+            Popup.customError("Invalid Serial Key");
+        } else {
+            Log.mgs("User Id:", userId);
+            if (!serialKey.equals("")) {
+                try {
+                    Connection conn = mySQLConnection.connect();
+                    String query = "SELECT * from user_info WHERE user_id=\'" + userId + "\'";
+                    PreparedStatement stm = conn.prepareStatement(query);
+                    ResultSet rs = stm.executeQuery();
+                    while (rs.next()) {
+                        userIdFromSQL = rs.getString("user_id");
+                        nameFromSQL = rs.getString("client_name");
+                        phoneNoFromSQL = rs.getString("phone_no");
+                        shopNameFromSQL = rs.getString("shop_name");
+                        addessFromSQL = rs.getString("shop_address");
+                        passwordFromSQL = rs.getString("initial_password");
+                        activePackageFromSQL = rs.getString("package_name");
+                        macAddreassFromSQL = rs.getString("mac_address");
+                        emailFromSQL = rs.getString("email");
+                        activeDateFromSQL = rs.getString("active_date");
+                        expireDateFromSQL = rs.getString("expaied_date");
+                        packageValidity = rs.getString("package_validity");
+                        role= rs.getString("role");
+                        System.out.println("Username : " + userIdFromSQL + "\n" + "Password : " + passwordFromSQL);
+
+                    }
+                    mySQLConnection.disconnect();
+                    if (isAuthrizeMacAddress(macAddreassFromSQL)) {
+                        saveToDbUserInfo(userIdFromSQL, nameFromSQL, phoneNoFromSQL, shopNameFromSQL,
+                                addessFromSQL, passwordFromSQL, activePackageFromSQL, macAddreassFromSQL, emailFromSQL, activeDateFromSQL, expireDateFromSQL, packageValidity,role);
+                    } else {
+                        Popup.customError("Unauthrize Computer");
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-            } catch (Exception e) {
-                System.err.println(e);
+            } else {
+                Configaration.changeBorderColorForTextFeild(getSerialKey, "#FF2D00");
             }
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SocketException ex) {
-            Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId) {
+    private boolean isUserIdIsExist(String userId) {
+        boolean isExist = false;
+        try {
+            Connection conn = DbConnection.connect();
+            String query = "SELECT * from user_info WHERE user_id=\'" + userId + "\'";
+            PreparedStatement stm = conn.prepareStatement(query);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                String userName = rs.getString("user_id");
+                // String password = rs.getString("phone_no");
 
-        Mail.send(fileName, Configaration.getPropertiesValueByKey("companyEmail"), userName, selectedPackage, paymentTrsId);
-        Mail.send(email, userName, selectedPackage, paymentTrsId);
+                System.out.println("Username ---------------------------: " + userName);
+                isExist = true;
+            }
+            DbConnection.disconnect();
+        } catch (SQLException ex) {
+            Log.error("SQLException", ex.toString());
+            isExist = false;
+        }
+        return isExist;
+
+    }
+
+    private void saveToDbUserInfo(String userIdFromSQL, String nameFromSQL,
+            String phoneNoFromSQL, String shopNameFromSQL, String addessFromSQL,
+            String passwordFromSQL, String activePackageFromSQL,
+            String macAddreassFromSQL, String emailFromSQL,
+            String activeDateFromSQL, String expireDateFromSQL,
+            String packageValidity,String role) {
+
+        String activeDate = Configaration.getCurrentDate();
+        int packageValidityInt = Integer.parseInt(packageValidity);
+        String expairedDate = addDays(Configaration.stringToDateType(activeDate), packageValidityInt);
+
+        Connection conn = DbConnection.connect();
+        String sql = "INSERT INTO user_info(user_id,name,phone_no,shop_name,address,password,active_package,mac_address,email,active_date,expire_date,active_status,role) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, userIdFromSQL);
+            preparedStatement.setString(2, nameFromSQL);
+            preparedStatement.setString(3, phoneNoFromSQL);
+            preparedStatement.setString(4, shopNameFromSQL);
+            preparedStatement.setString(5, addessFromSQL);
+            preparedStatement.setString(6, AES.encrypt(passwordFromSQL, Configaration.getPropertiesValueByKey("secretKey")));
+            preparedStatement.setString(7, activePackageFromSQL);
+            preparedStatement.setString(8, macAddreassFromSQL);
+            preparedStatement.setString(9, emailFromSQL);
+            preparedStatement.setString(10, activeDate);
+            preparedStatement.setString(11, expairedDate);
+            preparedStatement.setString(12, "true");
+            preparedStatement.setString(13, role);
+            preparedStatement.execute();
+            Popup.customSuccess();
+            getSerialKey.setText("");
+            this.setVisible(false);
+            Login login = new Login();
+            login.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public String addDays(Date d, int days) {
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DAY_OF_MONTH, days);
+
+        return Configaration.getJustDate(c.getTime());
+    }
+
+    private boolean isAuthrizeMacAddress(String macAddreassFromSQL) {
+        boolean isAuthrizeMacAddress = false;
+
+        String computerMacAddress = Configaration.getMacAddress().replace(":", "");
+        System.err.println(computerMacAddress + "  " + macAddreassFromSQL);
+        if (computerMacAddress.equals(macAddreassFromSQL)) {
+            isAuthrizeMacAddress = true;
+        }
+
+        return isAuthrizeMacAddress;
+    }
+
+    private void processingLoderDialog() {
+
+        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
+
+        processtingLoderDialog = new JDialog();
+        processtingLoderDialog.add(processeingLoderUI);
+        processtingLoderDialog.setSize(214, 138);
+        processtingLoderDialog.setLocationRelativeTo(null);
+        processtingLoderDialog.setUndecorated(true);
+
     }
 }

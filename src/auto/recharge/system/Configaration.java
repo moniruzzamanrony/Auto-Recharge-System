@@ -6,11 +6,16 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
@@ -18,10 +23,12 @@ import static java.rmi.server.LogStream.log;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -34,11 +41,15 @@ import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
+import oshi.SystemInfo;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.HardwareAbstractionLayer;
 
 public class Configaration {
 
     private static final Pattern HEXADECIMAL_PATTERN = Pattern.compile("\\p{XDigit}+");
     private static JDialog processtingLoderDialog;
+
     public static boolean netIsAvailable() {
         try {
             final URL url = new URL("http://www.google.com");
@@ -56,7 +67,6 @@ public class Configaration {
     public Configaration() {
         processingLoderDialog();
     }
-    
 
     public static void wait(int ms) {
         try {
@@ -115,6 +125,12 @@ public class Configaration {
 
     static String getCurrentDateAndTime() {
         DateFormat df = new SimpleDateFormat("yy/MM/dd hh:mm:ss");
+        Calendar calobj = Calendar.getInstance();
+        return df.format(calobj.getTime());
+    }
+
+    static String getCurrentDate() {
+        DateFormat df = new SimpleDateFormat("yy/MM/dd");
         Calendar calobj = Calendar.getInstance();
         return df.format(calobj.getTime());
     }
@@ -241,8 +257,8 @@ public class Configaration {
         auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
         System.out.println("Session closed.");
     }
-    
-        private void processingLoderDialog() {
+
+    private void processingLoderDialog() {
 
         ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
 
@@ -253,15 +269,59 @@ public class Configaration {
         processtingLoderDialog.setUndecorated(true);
 
     }
-        
-        public static void showProcessingBar()
-        {
+
+    public static void showProcessingBar() {
         processtingLoderDialog.setVisible(true);
-        
-        }
-        public static void disposeProcessingBar()
-        {
+
+    }
+
+    public static void disposeProcessingBar() {
         processtingLoderDialog.setVisible(true);
+
+    }
+
+    public static String getUUID() {
+        UUID uuid = UUID.randomUUID();
+
+        return uuid.toString();
+    }
+
+    public static String getMacAddress() {
+        String motherBoard_SerialNumber = getWindowsMotherboard_SerialNumber().replace(" ", "").toLowerCase();
         
+        return motherBoard_SerialNumber;
+    }
+      private static String getWindowsMotherboard_SerialNumber() {
+        String result = "";
+        try {
+            File file = File.createTempFile("realhowto",".vbs");
+            file.deleteOnExit();
+            FileWriter fw = new java.io.FileWriter(file);
+
+            String vbs =
+            "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
+              + "Set colItems = objWMIService.ExecQuery _ \n"
+              + "   (\"Select * from Win32_BaseBoard\") \n"
+              + "For Each objItem in colItems \n"
+              + "    Wscript.Echo objItem.SerialNumber \n"
+              + "    exit for  ' do the first cpu only! \n"
+              + "Next \n";
+
+            fw.write(vbs);
+            fw.close();
+
+            Process p = Runtime.getRuntime().exec("cscript //NoLogo " + file.getPath());
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = input.readLine()) != null) {
+               result += line;
+            }
+            input.close();
         }
+        catch(Exception E){
+             System.err.println("Windows MotherBoard Exp : "+E.getMessage());
+        }
+        return result.trim();
+    }
+
 }
