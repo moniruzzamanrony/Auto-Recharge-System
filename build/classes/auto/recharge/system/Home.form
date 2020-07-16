@@ -3012,6 +3012,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jSeparator9" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -3020,6 +3021,7 @@
                                           <Component id="getSelectedSIMNameCombo" alignment="0" max="32767" attributes="0"/>
                                           <Component id="getUssdCodePattren" alignment="1" max="32767" attributes="0"/>
                                           <Component id="getPIN" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="getUssdCodeForBalanceShowPattren" alignment="1" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel58" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -3032,13 +3034,13 @@
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="jButton4" min="-2" pref="169" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Component id="jLabel100" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jSeparator9" alignment="0" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -3065,6 +3067,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="getUssdCodePattren" min="-2" pref="37" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel100" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="getUssdCodeForBalanceShowPattren" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel61" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="getPIN" min="-2" pref="33" max="-2" attributes="0"/>
@@ -3073,7 +3079,7 @@
                                           <Component id="clickSaveInMobileRechatgeSetting" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                           <Component id="jButton4" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="171" max="32767" attributes="0"/>
+                                      <EmptySpace pref="106" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -3148,6 +3154,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Reset"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="clickSaveInMobileRechatgeSetting">
                               <Properties>
@@ -3171,6 +3180,16 @@
                               </Events>
                             </Component>
                             <Component class="javax.swing.JSeparator" name="jSeparator9">
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="getUssdCodeForBalanceShowPattren">
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getUssdCodeForBalanceShowPattrenActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel100">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Ussd Code pattern For Balance show"/>
+                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -3219,6 +3238,9 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMobileBankingSettingMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -4160,7 +4182,9 @@
                                   <Component id="clickNewContract" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="573" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="alartMessageText" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="260" max="32767" attributes="0"/>
                                   <Component id="serchBar" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -4187,7 +4211,10 @@
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                          <Component id="serchBar" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="serchBar" min="-2" max="-2" attributes="0"/>
+                              <Component id="alartMessageText" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane5" pref="709" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -4312,6 +4339,17 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickNewContractActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="alartMessageText">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Cambria" size="14" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="0" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="**No Internet!! Cloud contracts can&apos;t be loaded. "/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
