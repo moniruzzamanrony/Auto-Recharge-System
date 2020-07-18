@@ -1,5 +1,6 @@
 package auto.recharge.system.config;
 
+import auto.recharge.system.Popup;
 import gnu.io.*;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class ModemUtils {
 
 
 			String s1 = "\nError: " + portName + " port is currently in use.\n";
+                        Popup.customError("Ussd Server is busy.");
 			printValue(s1);
 			ret = "connect_port_in_use";
 		} else {

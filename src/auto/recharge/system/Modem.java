@@ -57,7 +57,11 @@ private static final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "G
                 
                 }
                 else{
-                Popup.customError("Modem Power is off in "+port);
+               int a= Popup.customError("Modem Power is off in "+port);
+               if(a ==  0)
+               {
+               System.exit(0);
+               }
                 
                 }
                 simOperatorIdentifierDto.setPortName(port);

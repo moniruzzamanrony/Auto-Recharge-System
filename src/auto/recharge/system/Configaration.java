@@ -23,10 +23,12 @@ import static java.rmi.server.LogStream.log;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -288,24 +290,25 @@ public class Configaration {
 
     public static String getMacAddress() {
         String motherBoard_SerialNumber = getWindowsMotherboard_SerialNumber().replace(" ", "").toLowerCase();
-        
+
         return motherBoard_SerialNumber;
     }
-      private static String getWindowsMotherboard_SerialNumber() {
+
+    private static String getWindowsMotherboard_SerialNumber() {
         String result = "";
         try {
-            File file = File.createTempFile("realhowto",".vbs");
+            File file = File.createTempFile("realhowto", ".vbs");
             file.deleteOnExit();
             FileWriter fw = new java.io.FileWriter(file);
 
-            String vbs =
-            "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
-              + "Set colItems = objWMIService.ExecQuery _ \n"
-              + "   (\"Select * from Win32_BaseBoard\") \n"
-              + "For Each objItem in colItems \n"
-              + "    Wscript.Echo objItem.SerialNumber \n"
-              + "    exit for  ' do the first cpu only! \n"
-              + "Next \n";
+            String vbs
+                    = "Set objWMIService = GetObject(\"winmgmts:\\\\.\\root\\cimv2\")\n"
+                    + "Set colItems = objWMIService.ExecQuery _ \n"
+                    + "   (\"Select * from Win32_BaseBoard\") \n"
+                    + "For Each objItem in colItems \n"
+                    + "    Wscript.Echo objItem.SerialNumber \n"
+                    + "    exit for  ' do the first cpu only! \n"
+                    + "Next \n";
 
             fw.write(vbs);
             fw.close();
@@ -314,14 +317,25 @@ public class Configaration {
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;
             while ((line = input.readLine()) != null) {
-               result += line;
+                result += line;
             }
             input.close();
-        }
-        catch(Exception E){
-             System.err.println("Windows MotherBoard Exp : "+E.getMessage());
+        } catch (Exception E) {
+            System.err.println("Windows MotherBoard Exp : " + E.getMessage());
         }
         return result.trim();
     }
 
+    public static List<String> stringToNumberList(String value) {
+        List<String> ussdCodeSerialList = new ArrayList<>();
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(value);
+        ussdCodeSerialList.clear();
+        while (m.find()) {
+
+            ussdCodeSerialList.add(m.group());
+        }
+        return ussdCodeSerialList;
+
+    }
 }

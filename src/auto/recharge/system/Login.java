@@ -355,10 +355,12 @@ public class Login extends javax.swing.JFrame {
         String password = null;
         String macAddress = null;
         boolean isAuthUser = false;
+        Log.mgs("Login","358");
         try {
+            Log.mgs("Login","360");
             Connection conn = DbConnection.connect();
             String sql = "SELECT * FROM user_info WHERE active_status = 'true'";
-
+            Log.mgs("Login","362");
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -410,7 +412,7 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Log.error("414", ex.getMessage());
         }
         return isAuthUser;
     }
@@ -463,7 +465,7 @@ public class Login extends javax.swing.JFrame {
                             if (login()) {
                                 getSIMOperatorInfo();
                             } else {
-                                Popup.error("Login Failed!!");
+                               
                             }
 
                             return null;

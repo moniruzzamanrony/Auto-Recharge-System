@@ -456,7 +456,7 @@ public class BuyNow extends javax.swing.JFrame {
 
         String userIdFromSQL = null, nameFromSQL = null, phoneNoFromSQL = null, shopNameFromSQL = null,
                 addessFromSQL = null, passwordFromSQL = null, activePackageFromSQL = null,
-                macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, expireDateFromSQL = null, packageValidity = null,role=null;
+                macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, expireDateFromSQL = null, packageValidity = null, role = null;
         String serialKey = getSerialKey.getText();
         String encryptedSerialKey = AES.decrypt(serialKey, Configaration.getPropertiesValueByKey("scKeyForActive"));
         String[] values = encryptedSerialKey.split(",");
@@ -484,14 +484,14 @@ public class BuyNow extends javax.swing.JFrame {
                         activeDateFromSQL = rs.getString("active_date");
                         expireDateFromSQL = rs.getString("expaied_date");
                         packageValidity = rs.getString("package_validity");
-                        role= rs.getString("role");
+                        role = rs.getString("role");
                         System.out.println("Username : " + userIdFromSQL + "\n" + "Password : " + passwordFromSQL);
 
                     }
                     mySQLConnection.disconnect();
                     if (isAuthrizeMacAddress(macAddreassFromSQL)) {
                         saveToDbUserInfo(userIdFromSQL, nameFromSQL, phoneNoFromSQL, shopNameFromSQL,
-                                addessFromSQL, passwordFromSQL, activePackageFromSQL, macAddreassFromSQL, emailFromSQL, activeDateFromSQL, expireDateFromSQL, packageValidity,role);
+                                addessFromSQL, passwordFromSQL, activePackageFromSQL, macAddreassFromSQL, emailFromSQL, activeDateFromSQL, expireDateFromSQL, packageValidity, role);
                     } else {
                         Popup.customError("Unauthrize Computer");
                     }
@@ -534,7 +534,7 @@ public class BuyNow extends javax.swing.JFrame {
             String passwordFromSQL, String activePackageFromSQL,
             String macAddreassFromSQL, String emailFromSQL,
             String activeDateFromSQL, String expireDateFromSQL,
-            String packageValidity,String role) {
+            String packageValidity, String role) {
 
         String activeDate = Configaration.getCurrentDate();
         int packageValidityInt = Integer.parseInt(packageValidity);

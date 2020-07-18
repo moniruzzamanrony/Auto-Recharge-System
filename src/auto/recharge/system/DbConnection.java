@@ -23,13 +23,14 @@ public class DbConnection {
     private static Connection conn = null;
 
     public static Connection connect() {
+        
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
             System.out.println("Database Connect Succesful");
             return conn;
         } catch (Exception ex) {
-            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Log.error("DbConnection:33", ex.getMessage());
         }
         return conn;
     }
