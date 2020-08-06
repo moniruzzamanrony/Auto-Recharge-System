@@ -6,6 +6,7 @@
 package auto.recharge.system.dto;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class ModemInfoList {
     public static List<String> portsList;
-    public static List<SimOperatorIdentifierDto> simOperatorIdentifiers;
+    public static Set<SimOperatorIdentifierDto> simOperatorIdentifiers;
 
 
     

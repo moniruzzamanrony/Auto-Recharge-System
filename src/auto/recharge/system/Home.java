@@ -11,10 +11,6 @@ import auto.recharge.system.dto.MobileBankingBalanceShowDto;
 import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import auto.recharge.system.dto.UserInfo;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import com.itvillage.AES;
 import java.awt.Color;
 import java.awt.Font;
@@ -28,11 +24,10 @@ import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.CopyOption;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -71,7 +66,6 @@ import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.border.DropShadowBorder;
-import org.omg.CORBA.Environment;
 
 public class Home extends javax.swing.JFrame {
 
@@ -96,8 +90,12 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
+        URL url = getClass().getResource("/resources/images/icon.png");
+        ImageIcon imgicon = new ImageIcon(url);
+        this.setIconImage(imgicon.getImage());
+        this.setTitle("Auto Recharge System");
         setFocusInMobileRechargePanel();
-        setCuurentActiveNetworkAndBalenceFromModem();
+        setCuurentActiveNetworksFromModem();
         loadActiveOperatorNameInComboBox();
         initialValueInTableRechargeDetails();
         refrash();
@@ -106,7 +104,12 @@ public class Home extends javax.swing.JFrame {
         suggList.setModel(defaultListModel);
         popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-        System.err.println("fdgdg");
+        
+        for(SimOperatorIdentifierDto simOperatorIdentifierDto: ModemInfoList.simOperatorIdentifiers)
+        {
+            System.err.println(simOperatorIdentifierDto.getPortName()+"---->"+simOperatorIdentifierDto.getOperatorName());
+        }
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -510,17 +513,17 @@ public class Home extends javax.swing.JFrame {
         logoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/map.png"))); // NOI18N
+        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_header.png"))); // NOI18N
 
         javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
         logoPanel.setLayout(logoPanelLayout);
         logoPanelLayout.setHorizontalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 212, Short.MAX_VALUE)
             .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(logoPanelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 144, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         logoPanelLayout.setVerticalGroup(
@@ -529,8 +532,8 @@ public class Home extends javax.swing.JFrame {
             .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(logoPanelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(47, Short.MAX_VALUE)))
+                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
 
         mobileRechargeTab.setBackground(new java.awt.Color(255, 255, 255));
@@ -1085,8 +1088,8 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(adsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -6415,13 +6418,15 @@ public class Home extends javax.swing.JFrame {
         tableForDetails.setModel(defaultTableModel);
     }
 
-    private void setCuurentActiveNetworkAndBalenceFromModem() {
+    private void setCuurentActiveNetworksFromModem() {
         String operatorNames = "";
         currentNetworkName.setText("Please wait");
 
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            operatorNames = operatorNames + simOperatorIdentifierDto.getOperatorName() + " | ";
-            System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName());
+           String phoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber().substring(10,13);
+           String networkInfo = simOperatorIdentifierDto.getOperatorName()+"("+phoneNumber+") |";
+           operatorNames = operatorNames + networkInfo;
+           System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName()+"  "+networkInfo+"--->"+simOperatorIdentifierDto.getOwnPhoneNumber());
         }
         currentNetworkName.setText(operatorNames);
     }

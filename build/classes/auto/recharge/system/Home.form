@@ -157,9 +157,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="212" max="32767" attributes="0"/>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel55" pref="144" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -173,8 +173,8 @@
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel55" min="-2" pref="101" max="-2" attributes="0"/>
-                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <Component id="jLabel55" min="-2" pref="127" max="-2" attributes="0"/>
+                          <EmptySpace pref="21" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -185,7 +185,7 @@
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/images/map.png"/>
+                  <Image iconType="3" name="/resources/images/logo_header.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -669,9 +669,9 @@
                                           <EmptySpace min="522" pref="522" max="-2" attributes="0"/>
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane2" alignment="0" min="-2" pref="1189" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" alignment="0" pref="1201" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="rechargeBalencePanel" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Component id="adsPanel" alignment="1" min="-2" max="-2" attributes="0"/>

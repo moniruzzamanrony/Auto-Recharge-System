@@ -7,12 +7,14 @@ import com.itvillage.AES;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.SwingWorker;
 
@@ -23,6 +25,10 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        URL url = getClass().getResource("/resources/images/icon.png");
+        ImageIcon imgicon = new ImageIcon(url);
+        this.setIconImage(imgicon.getImage());
+        this.setTitle("Auto Recharge System");
         keyListener();
         setHint();
         processingLoderDialog();
@@ -289,7 +295,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-
+ 
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -298,7 +304,7 @@ public class Login extends javax.swing.JFrame {
                 if (login()) {
                     getSIMOperatorInfo();
                 } else {
-                   Log.error("355", "Login Failed");
+                    Log.error("355", "Login Failed");
                 }
 
                 return null;
@@ -353,12 +359,12 @@ public class Login extends javax.swing.JFrame {
         String password = null;
         String macAddress = null;
         boolean isAuthUser = false;
-        Log.mgs("Login","358");
+        Log.mgs("Login", "358");
         try {
-            Log.mgs("Login","360");
+            Log.mgs("Login", "360");
             Connection conn = DbConnection.connect();
             String sql = "SELECT * FROM user_info WHERE active_status = 'true'";
-            Log.mgs("Login","362");
+            Log.mgs("Login", "362");
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -391,6 +397,12 @@ public class Login extends javax.swing.JFrame {
                 if (getPasswordBypt.getText().trim().equals("")) {
                     getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red, 4));
                 } else {
+//                    String userPhoneNumberFromUser= phoneNo;
+//                    String userPhoneNumberFromDatabase= phoneNo;
+//                    
+//                    String userPhoneNumberFromUser= phoneNo;
+//                    String userPhoneNumberFromDatabase= phoneNo;
+                    
 
                     if (phoneNo.equals(getPhoneNumber.getText().trim())
                             && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
@@ -402,8 +414,10 @@ public class Login extends javax.swing.JFrame {
                         } else {
                             Popup.error("Unverified Device");
                         }
+                        Log.mgs("Login Info", "Success");
 
                     } else {
+                         Log.mgs("Login Info", "Auth Faild");
                         Popup.error("Invalid Phone Number Or Password!!");
                     }
 
@@ -463,7 +477,7 @@ public class Login extends javax.swing.JFrame {
                             if (login()) {
                                 getSIMOperatorInfo();
                             } else {
-                               
+
                             }
 
                             return null;
@@ -493,17 +507,19 @@ public class Login extends javax.swing.JFrame {
 
     private void getSIMOperatorInfo() {
         List<String> ports = Modem.getActivePortsList();
+        System.err.println(ports);
         if (ports.isEmpty()) {
             int res = Popup.customError("Modem Not Found..");
             if (res == 0) {
                 System.exit(0);
             }
         } else {
+            
             ModemInfoList.portsList = ports;
-            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ModemInfoList.portsList);
+            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
 
         }
-       
+
         Home home = new Home();
         home.setVisible(true);
     }

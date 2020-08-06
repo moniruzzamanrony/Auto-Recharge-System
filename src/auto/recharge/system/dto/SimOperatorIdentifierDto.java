@@ -13,6 +13,7 @@ public class SimOperatorIdentifierDto {
 
     private int id;
     private String operatorName;
+    private String ownPhoneNumber;
     private String portName;
     private String simCurrentBalance;
 
@@ -23,6 +24,7 @@ public class SimOperatorIdentifierDto {
     public void setSimCurrentBalance(String simCurrentBalance) {
         this.simCurrentBalance = simCurrentBalance;
     }
+
     public String getOperatorName() {
         return operatorName;
     }
@@ -45,6 +47,14 @@ public class SimOperatorIdentifierDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getOwnPhoneNumber() {
+        return ownPhoneNumber;
+    }
+
+    public void setOwnPhoneNumber(String ownPhoneNumber) {
+        this.ownPhoneNumber = ownPhoneNumber;
     }
 
     @Override

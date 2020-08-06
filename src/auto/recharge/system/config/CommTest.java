@@ -5,6 +5,7 @@
  */
 package auto.recharge.system.config;
 
+import auto.recharge.system.Log;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import java.io.InputStream;
@@ -20,6 +21,8 @@ public class CommTest
     private static final String _NO_DEVICE_FOUND = "  no device found";
 
     private final static Formatter _formatter = new Formatter(System.out);
+    
+    private final static String TAG="Find ports:CommTest"; 
 
     static CommPortIdentifier portId;
 
@@ -39,14 +42,18 @@ public class CommTest
 
     public static List<String> getPorts()
     {
-        List<String> ports= new ArrayList<>();
-     System.out.println("\nSearching for devices...");
+     List<String> ports= new ArrayList<>();
+     System.out.println("Searching for devices...");
         portList = getCleanPortIdentifiers();
+   
         while (portList.hasMoreElements())
         {
             portId = portList.nextElement();
+            
             if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL)
             {
+                System.out.println(TAG+":"+ portId.getName());
+                
                 _formatter.format("%nFound port: %-5s%n", portId.getName());
                 for (int i = 0; i < bauds.length; i++)
                 {
@@ -84,25 +91,26 @@ public class CommTest
                         {
                             try
                             {
-                                System.out.print("  Getting Info...");
-                                System.out.println(portId.getName());
+                              //  System.out.print("  Getting Info...");
+                               // System.out.println(portId.getName());
+                                
+                                outStream.write('A');
+                                outStream.write('T');
+                                outStream.write('+');
+                                outStream.write('C');
+                                outStream.write('G');
+                                outStream.write('M');
+                                outStream.write('M');
+                                outStream.write('\r');
+                                response = "";
+                                c = inStream.read();
+                                while (c != -1)
+                                {
+                                    response += (char) c;
+                                    c = inStream.read();
+                                }
                                 ports.add(portId.getName());
-//                                outStream.write('A');
-//                                outStream.write('T');
-//                                outStream.write('+');
-//                                outStream.write('C');
-//                                outStream.write('G');
-//                                outStream.write('M');
-//                                outStream.write('M');
-//                                outStream.write('\r');
-//                                response = "";
-//                                c = inStream.read();
-//                                while (c != -1)
-//                                {
-//                                    response += (char) c;
-//                                    c = inStream.read();
-//                                }
-//                                System.out.println(" Found: " + response.replaceAll("\\s+OK\\s+", "").replaceAll("\n", "").replaceAll("\r", ""));
+                                System.out.println(" Found: " + response.replaceAll("\\s+OK\\s+", "").replaceAll("\n", "").replaceAll("\r", ""));
                             }
                             catch (Exception e)
                             {

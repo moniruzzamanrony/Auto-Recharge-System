@@ -304,9 +304,9 @@ public class ModemUtils {
 	}
 
 	private void printValue(String value) {
-
+                // Here Final Result prineted
 		responseAdd = responseAdd+value+",";
-		System.out.println("325--->" + value);
+		//System.out.println("325--->" + value);
 
 	}
 
