@@ -6453,8 +6453,8 @@ public class Home extends javax.swing.JFrame {
                 mobileRechargeDetailsDto.getPhoneNumber(),
                 mobileRechargeDetailsDto.getAmmount(),
                 mobileRechargeDetailsDto.getSelectableSim(),
-                "Panding",
-                "Panding"});
+                "Pending",
+                "Pending"});
 
         }
         try {
