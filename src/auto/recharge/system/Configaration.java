@@ -120,7 +120,7 @@ public class Configaration {
         return data;
     }
 
-    static String getCurrentDateAndTime() {
+    public static String getCurrentDateAndTime() {
         DateFormat df = new SimpleDateFormat("yy/MM/dd hh:mm:ss");
         Calendar calobj = Calendar.getInstance();
         return df.format(calobj.getTime());

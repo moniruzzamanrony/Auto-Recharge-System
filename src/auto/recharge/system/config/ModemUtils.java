@@ -29,8 +29,6 @@ public class ModemUtils {
 				.getPortIdentifier(portName);
 		if (portIdentifier.isCurrentlyOwned()) {
 			System.out.println("Error: Port is currently in use");
-
-
 			String s1 = "\nError: " + portName + " port is currently in use.\n";
                         Popup.customError("Ussd Server is busy.");
 			printValue(s1);

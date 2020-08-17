@@ -53,11 +53,14 @@ public class DbConnection {
         try {
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM " + tableName;
-            return st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
+           
+             return rs;
         } catch (SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+       
 
     }
 

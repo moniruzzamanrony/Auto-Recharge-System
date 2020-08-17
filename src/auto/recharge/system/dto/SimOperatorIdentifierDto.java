@@ -59,7 +59,9 @@ public class SimOperatorIdentifierDto {
 
     @Override
     public String toString() {
-        return "SimOperatorIdentifierDto{" + "operatorName=" + operatorName + ", portName=" + portName + '}';
+        return "SimOperatorIdentifierDto{" + "id=" + id + ", operatorName=" + operatorName + ", ownPhoneNumber=" + ownPhoneNumber + ", portName=" + portName + ", simCurrentBalance=" + simCurrentBalance + '}';
     }
+
+ 
 
 }

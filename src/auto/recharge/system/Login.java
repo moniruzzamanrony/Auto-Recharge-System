@@ -80,9 +80,11 @@ public class Login extends javax.swing.JFrame {
         inputPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 13, 428, -1));
 
         getPasswordBypt.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        getPasswordBypt.setText("01988841891");
         inputPanel.add(getPasswordBypt, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 150, 307, 40));
 
         getPhoneNumber.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        getPhoneNumber.setText("01988841891");
         getPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getPhoneNumberActionPerformed(evt);
@@ -213,7 +215,7 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(86, 86, 86))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, brandingPanelLayout.createSequentialGroup()
-                .addComponent(buyNowText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buyNowText, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(brandingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, brandingPanelLayout.createSequentialGroup()

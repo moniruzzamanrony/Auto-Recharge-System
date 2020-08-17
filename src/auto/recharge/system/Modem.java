@@ -30,6 +30,7 @@ public class Modem {
     public static Set<SimOperatorIdentifierDto> getSimInfo(List<String> ports) {
 
         Set<SimOperatorIdentifierDto> simOperatorIdentifierDtos = new HashSet<>();
+        ArrayList<SimOperatorIdentifierDto> operatorIdentifierDtosArray= new ArrayList<>();
         int count = 0;
         for (String port : ports) {
             auto.recharge.system.config.Modem.connect(port);
@@ -69,9 +70,21 @@ public class Modem {
             simOperatorIdentifierDto.setPortName(port);
             auto.recharge.system.config.Modem.disconnect();
 
-            simOperatorIdentifierDtos.add(simOperatorIdentifierDto);
+            operatorIdentifierDtosArray.add(simOperatorIdentifierDto);
         }
+        String operatorName="default",operatorPhoneNumber="default";
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : operatorIdentifierDtosArray) {
+            if (simOperatorIdentifierDto.getOperatorName().endsWith(operatorName)
+                    && simOperatorIdentifierDto.getOwnPhoneNumber().endsWith(operatorPhoneNumber)) {
+                    Log.error("Duplicate Port found: ", simOperatorIdentifierDto.getPortName());
+            } else {
+                operatorName = simOperatorIdentifierDto.getOperatorName();
+                operatorPhoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber();
+                simOperatorIdentifierDtos.add(simOperatorIdentifierDto);
+            }
 
+        }
+        System.out.println("After selection: "+simOperatorIdentifierDtos.toString());
         return simOperatorIdentifierDtos;
     }
 
