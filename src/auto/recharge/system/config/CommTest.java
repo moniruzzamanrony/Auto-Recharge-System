@@ -5,7 +5,7 @@
  */
 package auto.recharge.system.config;
 
-import auto.recharge.system.Log;
+import static auto.recharge.system.config.CommTest.portsCommPortIdentifierList;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import java.io.InputStream;
@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class CommTest
@@ -26,7 +28,7 @@ public class CommTest
 
     static CommPortIdentifier portId;
 
-    static Enumeration<CommPortIdentifier> portList;
+    static Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
 
     static int bauds[] = { 9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
 
@@ -42,14 +44,42 @@ public class CommTest
 
     public static List<String> getPorts()
     {
-     List<String> ports= new ArrayList<>();
-     System.out.println("Searching for devices...");
-        portList = getCleanPortIdentifiers();
-   
-        while (portList.hasMoreElements())
-        {
-            portId = portList.nextElement();
-            
+        try {
+            System.out.println("Searching for devices...");
+            portsCommPortIdentifierList = getCleanPortIdentifiers();
+            RunningModemPort runningModemPort= new RunningModemPort(portsCommPortIdentifierList);
+            runningModemPort.start();
+            runningModemPort.join();
+            System.err.println("---------------"+runningModemPort.getPorts());
+            return runningModemPort.getPorts();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CommTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return new ArrayList<>();
+    }
+} 
+
+class  RunningModemPort extends Thread{
+
+    private final  Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
+    private List<String> ports= new ArrayList<>();
+    private  final String _NO_DEVICE_FOUND = "  no device found";
+    private final static Formatter _formatter = new Formatter(System.out);
+    private final static String TAG="Find ports:CommTest"; 
+    private final int bauds[] = { 9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
+
+    static CommPortIdentifier portId;
+     public RunningModemPort(Enumeration<CommPortIdentifier> portsCommPortIdentifierList) {
+        this.portsCommPortIdentifierList = portsCommPortIdentifierList;
+    }
+     
+        @Override
+        public void run() {
+               
+        while (portsCommPortIdentifierList.hasMoreElements())
+       {
+            portId = portsCommPortIdentifierList.nextElement();
+
             if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL)
             {
                 System.out.println(TAG+":"+ portId.getName());
@@ -106,7 +136,7 @@ public class CommTest
                                 c = inStream.read();
                                 while (c != -1)
                                 {
-                                    response += (char) c;
+                                   response += (char) c;
                                     c = inStream.read();
                                 }
                                 ports.add(portId.getName());
@@ -139,11 +169,16 @@ public class CommTest
                             serialPort.close();
                         }
                     }
-                }
             }
+       }
+           
         }
-        System.out.println("\nTest complete.");
-    
-    return ports;
+        }
+
+    public List<String> getPorts() {
+        return ports;
     }
-} 
+        
+    
+
+}

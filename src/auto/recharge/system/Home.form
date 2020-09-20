@@ -660,10 +660,10 @@
                                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="getSeletedOperatorName" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="clickInbox" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="clickSIMOffer1" alignment="0" max="32767" attributes="0"/>
                                               <Component id="clickGroupLoad" alignment="0" pref="139" max="32767" attributes="0"/>
                                               <Component id="clickUssdDail" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="clickSIMOffer1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="clickInbox" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -721,9 +721,9 @@
                                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                           <Component id="clickGroupLoad" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                          <Component id="clickSIMOffer1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="clickInbox" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="clickSIMOffer1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="getSeletedOperatorName" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -1015,7 +1015,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickGroupLoadActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="clickInbox">
+                <Component class="javax.swing.JButton" name="clickSIMOffer1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" red="99" type="rgb"/>
@@ -1026,10 +1026,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Inbox"/>
+                    <Property name="text" type="java.lang.String" value="SIM Offer"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickInboxActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickSIMOffer1ActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -1179,7 +1179,7 @@
                     <Property name="text" type="java.lang.String" value="Licences DeadLine: 10-10-2020"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="clickSIMOffer1">
+                <Component class="javax.swing.JButton" name="clickInbox">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" red="99" type="rgb"/>
@@ -1190,10 +1190,10 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="SIM Offer"/>
+                    <Property name="text" type="java.lang.String" value="INBOX"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickSIMOffer1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickInboxActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

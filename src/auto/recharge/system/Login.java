@@ -518,7 +518,8 @@ public class Login extends javax.swing.JFrame {
         } else {
             
             ModemInfoList.portsList = ports;
-            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
+            System.out.print(ModemInfoList.portsList);
+           // ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
 
         }
 

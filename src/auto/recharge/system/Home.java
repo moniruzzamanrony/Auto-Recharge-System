@@ -169,14 +169,14 @@ public class Home extends javax.swing.JFrame {
         tableShowSimBalence = new javax.swing.JTable();
         clickUssdDail = new javax.swing.JButton();
         clickGroupLoad = new javax.swing.JButton();
-        clickInbox = new javax.swing.JButton();
+        clickSIMOffer1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableRechargeDetailsShow = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         adsPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
-        clickSIMOffer1 = new javax.swing.JButton();
+        clickInbox = new javax.swing.JButton();
         billPayPanel = new javax.swing.JPanel();
         clickMobileBanking = new javax.swing.JLabel();
         clickBillPayment = new javax.swing.JLabel();
@@ -977,13 +977,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        clickInbox.setBackground(new java.awt.Color(153, 0, 255));
-        clickInbox.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        clickInbox.setForeground(new java.awt.Color(255, 255, 255));
-        clickInbox.setText("Inbox");
-        clickInbox.addActionListener(new java.awt.event.ActionListener() {
+        clickSIMOffer1.setBackground(new java.awt.Color(153, 0, 255));
+        clickSIMOffer1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        clickSIMOffer1.setForeground(new java.awt.Color(255, 255, 255));
+        clickSIMOffer1.setText("SIM Offer");
+        clickSIMOffer1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickInboxActionPerformed(evt);
+                clickSIMOffer1ActionPerformed(evt);
             }
         });
 
@@ -1046,13 +1046,13 @@ public class Home extends javax.swing.JFrame {
         jLabel101.setForeground(new java.awt.Color(204, 0, 51));
         jLabel101.setText("Licences DeadLine: 10-10-2020");
 
-        clickSIMOffer1.setBackground(new java.awt.Color(153, 0, 255));
-        clickSIMOffer1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        clickSIMOffer1.setForeground(new java.awt.Color(255, 255, 255));
-        clickSIMOffer1.setText("SIM Offer");
-        clickSIMOffer1.addActionListener(new java.awt.event.ActionListener() {
+        clickInbox.setBackground(new java.awt.Color(153, 0, 255));
+        clickInbox.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        clickInbox.setForeground(new java.awt.Color(255, 255, 255));
+        clickInbox.setText("INBOX");
+        clickInbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSIMOffer1ActionPerformed(evt);
+                clickInboxActionPerformed(evt);
             }
         });
 
@@ -1092,10 +1092,10 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(getSeletedOperatorName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(clickInbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(clickSIMOffer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(clickGroupLoad, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                                     .addComponent(clickUssdDail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(clickSIMOffer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(clickInbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
@@ -1138,9 +1138,9 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(clickGroupLoad)
                                 .addGap(11, 11, 11)
-                                .addComponent(clickSIMOffer1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(clickInbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(clickSIMOffer1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(getSeletedOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6)
@@ -3879,9 +3879,9 @@ public class Home extends javax.swing.JFrame {
         focusAndKeyboardUsedInGroupRecharge();
     }//GEN-LAST:event_clickGroupLoadActionPerformed
 
-    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
+    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
         simSimOfferDialog();
-    }//GEN-LAST:event_clickInboxActionPerformed
+    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
 
     private void mobileRechargeTabMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseMoved
 
@@ -5150,9 +5150,9 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_clickUpdatePasswordActionPerformed
 
-    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
+    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
+    }//GEN-LAST:event_clickInboxActionPerformed
 
     private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
         // TODO add your handling code here:
@@ -6320,16 +6320,13 @@ public class Home extends javax.swing.JFrame {
         }
 
         auto.recharge.system.config.Modem.disconnect();
+        // UPdate Balance after recharge
+        addBalenceInBalenceShowTable();
         loadValueInTableRechargeDetails();
         updateMobileRechargeStatusByTrxId(trxId, statusMgs, cBalance);
 
-//        if (rechargeType.equals("group")) {
-//            Log.mgs("5492", "Group Rechargeing...");
-//        } else {
-//            rechargeConfirmMessageDialog(statusMgs, phoneNumberRequested);
-//            switchPanelViaMenu(mobileRechargePanel);
-//            Log.mgs("5492", "Single Rechargeing...");
-//        }
+
+
         getMobileNumber.requestFocusInWindow();
     }
 
@@ -6672,6 +6669,7 @@ public class Home extends javax.swing.JFrame {
         currentNetworkName.setText(operatorNames);
     }
 
+//SIM Balance Update 
     private void addBalenceInBalenceShowTable() {
 
         List<String> balancePaseList = new ArrayList<>();
@@ -6682,7 +6680,9 @@ public class Home extends javax.swing.JFrame {
                 DbConnection.connect();
                 rs = DbConnection.retrieveAll("command");
                 while (rs.next()) {
-                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
+                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) 
+                            + ")".toUpperCase())) {
                         String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
                         Configaration.wait(200);
                         Configaration.closeUssdSession();
@@ -6714,6 +6714,7 @@ public class Home extends javax.swing.JFrame {
                     try {
                         rs.close();
                     } catch (SQLException e) {
+                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
                     }
                 }
             }
