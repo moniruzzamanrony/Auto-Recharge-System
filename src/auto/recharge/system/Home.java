@@ -6676,9 +6676,12 @@ public class Home extends javax.swing.JFrame {
         detailsSelectedItems = "recharge";
         setMgsDetails.setText("");
         DefaultTableModel mobileRechargeDetailsTableForDetailsPanelModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+        Connection conn = DbConnection.connect();
         try {
 
-            rs = DbConnection.retrieveAll("recharge_admin");
+            Statement st = conn.createStatement();
+             String sql = "SELECT * FROM `recharge_admin`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -6697,12 +6700,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+      DbConnection.disconnect(conn);
         }
         tableForDetails.setEnabled(false);
         tableForDetails.setRowHeight(30);
@@ -6728,13 +6726,16 @@ public class Home extends javax.swing.JFrame {
         List<String> balancePaseList = new ArrayList<>();
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
         ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
+            Connection conn = DbConnection.connect();
             try {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                DbConnection.connect();
-                rs = DbConnection.retrieveAll("command");
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `command`";
+                ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
-                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) 
+                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
                             + ")".toUpperCase())) {
                         String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
                         Configaration.wait(200);
@@ -6763,13 +6764,8 @@ public class Home extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                    }
-                }
+
+                DbConnection.disconnect(conn);
             }
         });
 
@@ -6819,6 +6815,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void simSimOfferDialog() {
+        Connection conn = DbConnection.connect();
         try {
             JDialog offerDialog = new JDialog();
             SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
@@ -6842,8 +6839,9 @@ public class Home extends javax.swing.JFrame {
 
             defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
 
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("recharge_offers");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `recharge_offers`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 switch (rs.getString("sim_name")) {
                     case "BANGLALINK":
@@ -6887,6 +6885,8 @@ public class Home extends javax.swing.JFrame {
             offerDialog.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -6924,7 +6924,7 @@ public class Home extends javax.swing.JFrame {
         String requestSIMName = getSelectedSimInGroupRecharge1.getSelectedItem().toString();
         String simType = getSelectedTypeGroupRecharge.getSelectedItem().toString();
 
-        conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -6938,7 +6938,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -7031,12 +7031,14 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void loadDataInGroupRechargeTable() {
+        Connection conn = DbConnection.connect();
         try {
             DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
                 "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("group_recharge");
 
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `group_recharge`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
 
@@ -7057,15 +7059,20 @@ public class Home extends javax.swing.JFrame {
             tableGroupRecharge.setModel(groupRechargeTableModel);
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            DbConnection.disconnect(conn);
         }
     }
 
     private void sendGroupRecharge() {
-
+        Connection conn = DbConnection.connect();
         List<GroupRechargeResponse> groupRechargeResponsesList = new ArrayList<>();
         try {
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("group_recharge");
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `group_recharge`";
+            ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
                 GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
@@ -7078,7 +7085,8 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+
+            DbConnection.disconnect(conn);
         }
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
@@ -7097,10 +7105,10 @@ public class Home extends javax.swing.JFrame {
             protected void done() {
 
                 switchPanelViaMenu(mobileRechargePanel);
-                DbConnection.connect();
+               
                 loadValueInTableRechargeDetails();
                 DbConnection.delete("group_recharge");
-                DbConnection.disconnect();
+             
                 System.err.println("Recharge Done...");
             }
 
@@ -7121,9 +7129,12 @@ public class Home extends javax.swing.JFrame {
         boolean isSIMFound = false;
         String res = "Could not get response from server";
         String ussdReplace = null;
-
+        Connection conn = DbConnection.connect();
         try {
-            rs = DbConnection.findByColume("mobile_banking", "services_name", service);
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + service + "\"";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 if (actionType.equals(rs.getString("task_name"))) {
                     ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
@@ -7133,7 +7144,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+            DbConnection.disconnect(conn);
 
         }
 
@@ -7177,7 +7188,7 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
-        ui.getClickDelete().setVisible(false);
+        ui.getClickRetry().setVisible(false);
         ui.getClickOk().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
@@ -7347,7 +7358,7 @@ public class Home extends javax.swing.JFrame {
         String amount = getAmmountInBillPayment.getText();
         String sim = getSimOperatorName.getSelectedItem().toString();
 
-        conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -7366,18 +7377,20 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+            DbConnection.disconnect(conn);
         }
         System.out.println("Mobile Banking request details saved.");
 
     }
 
     private void loadMobileBankingDetailsTable() {
-
+        Connection conn = DbConnection.connect();
         try {
             DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Date and Time"}, 0);
 
-            rs = DbConnection.retrieveAll("m_b_details");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `m_b_details`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
@@ -7400,6 +7413,8 @@ public class Home extends javax.swing.JFrame {
             tableMobileBankingDetails.setModel(defaultTableModel);
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -7441,7 +7456,7 @@ public class Home extends javax.swing.JFrame {
         String balenceUssdPartern = getprofitIn1k.getText();
         String acPassword = accountPassword1.getText();
         String profit = getprofitIn1k.getText();
-        conn = DbConnection.connect();
+       Connection conn = DbConnection.connect();
         String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon,profit) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -7461,27 +7476,23 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         return false;
 
     }
 
     private void loadValuesForUssdManagementTable() {
-
+Connection conn = DbConnection.connect();
         try {
             DefaultTableModel model = new DefaultTableModel(new String[]{
                 "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
             }, 0);
             switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
-
-            rs = DbConnection.retrieveAll("command");
+            Statement st = conn.createStatement();
+             String sql = "SELECT * FROM `command`";
+            ResultSet rs = st.executeQuery(sql);
+           
             while (rs.next()) {
 
                 String operator_name = rs.getString("operator_name");
@@ -7534,12 +7545,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+         DbConnection.disconnect(conn);
         }
     }
 
