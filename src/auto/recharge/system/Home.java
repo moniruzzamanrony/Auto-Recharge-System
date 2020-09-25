@@ -111,7 +111,7 @@ public class Home extends javax.swing.JFrame {
         suggList.setModel(defaultListModel);
         popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-
+        showMobileRechargeBalance();
         processRequestFromMobileRechargeQueue();
 
     }
@@ -162,7 +162,6 @@ public class Home extends javax.swing.JFrame {
         rechargeBalencePanel = new javax.swing.JPanel();
         errorMgsInBalencePanel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        clickRefrash = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableShowSimBalence = new javax.swing.JTable();
@@ -477,7 +476,6 @@ public class Home extends javax.swing.JFrame {
 
         suggList.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         suggList.setSelectionBackground(new java.awt.Color(204, 0, 51));
-        suggList.setSelectionForeground(new java.awt.Color(255, 255, 255));
         suggList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 suggListMouseClicked(evt);
@@ -890,15 +888,6 @@ public class Home extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 255));
         jLabel6.setText("Amount panel");
 
-        clickRefrash.setBackground(new java.awt.Color(255, 0, 0));
-        clickRefrash.setForeground(new java.awt.Color(255, 255, 255));
-        clickRefrash.setText("Refrash");
-        clickRefrash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickRefrashActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setForeground(new java.awt.Color(133, 47, 209));
 
         tableShowSimBalence.setModel(new javax.swing.table.DefaultTableModel(
@@ -932,8 +921,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeBalencePanelLayout.createSequentialGroup()
                         .addGap(0, 12, Short.MAX_VALUE)
                         .addComponent(jLabel6)
-                        .addGap(105, 105, 105)
-                        .addComponent(clickRefrash))
+                        .addGap(183, 183, 183))
                     .addGroup(rechargeBalencePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -945,9 +933,7 @@ public class Home extends javax.swing.JFrame {
             rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeBalencePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(clickRefrash))
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
@@ -1009,7 +995,6 @@ public class Home extends javax.swing.JFrame {
         tableRechargeDetailsShow.setFocusable(false);
         tableRechargeDetailsShow.setRowHeight(30);
         tableRechargeDetailsShow.setSelectionBackground(new java.awt.Color(51, 153, 0));
-        tableRechargeDetailsShow.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tableRechargeDetailsShow.getTableHeader().setReorderingAllowed(false);
         tableRechargeDetailsShow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4298,26 +4283,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backToUssdManengementPanel1AncestorAdded
 
-    private void clickRefrashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickRefrashActionPerformed
-        errorMgsInBalencePanel.setText("Processing...");
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-
-                addBalenceInBalenceShowTable();
-                return null;
-            }
-
-            @Override
-            protected void done() {
-
-            }
-
-        };
-        swingWorker.execute();
-
-    }//GEN-LAST:event_clickRefrashActionPerformed
-
     private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
         removePlaceHolder(getMobileNumber, "Mobile Number");
     }//GEN-LAST:event_getMobileNumberFocusGained
@@ -5264,7 +5229,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel clickMobileBanking;
     private javax.swing.JButton clickNewContract;
     private javax.swing.JButton clickPayIUsingBill;
-    private javax.swing.JButton clickRefrash;
     private javax.swing.JButton clickRefrash2;
     private javax.swing.JButton clickResetBut;
     private javax.swing.JButton clickResetPayInUsingBill;
@@ -6191,7 +6155,7 @@ public class Home extends javax.swing.JFrame {
 
                             MobileRechargeDetailsDto headRechargeDetailsDto = mobileRechargeDetailsDtoQueue.element();
                             rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-
+                            
                         }
                         java.lang.Thread.sleep(100);
                     } catch (InterruptedException ex) {
@@ -6744,6 +6708,7 @@ public class Home extends javax.swing.JFrame {
                         System.out.println(value.length);
                         if (value.length == 1) {
                             errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
+                              defaultTableModel.addRow(new String[]{rs.getString("operator_name"),"Failed"});
                             errorMgsInBalencePanel.setVisible(true);
                         } else {
                             String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
@@ -6753,8 +6718,9 @@ public class Home extends javax.swing.JFrame {
                                 balancePaseList.add(m.group());
                                 System.out.println(m.group());
                             }
-                            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
+                            
                             defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk"});
+                            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
                         }
                     }
                 }
@@ -9499,5 +9465,23 @@ public class Home extends javax.swing.JFrame {
         DbConnection.disconnect(conn);
         loadValueInTableRechargeDetails();
     }
+public void showMobileRechargeBalance()
+{
+    errorMgsInBalencePanel.setText("Processing...");
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
 
+                addBalenceInBalenceShowTable();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+           
+            }
+
+        };
+        swingWorker.execute();
+}
 }
