@@ -5,26 +5,30 @@
  */
 package auto.recharge.system.dto;
 
+import auto.recharge.system.enumClasses.UssdRequestType;
+
 /**
  *
  * @author monirozzamanroni
  */
 public class MobileRechargeDetailsDto {
-    
+
     private String trxId;
     private String dateAndTime;
     private String phoneNumber;
     private String ammount;
     private String postPaidOrPostPaid;
+    private String selectableSimPort;
     private String selectableSim;
-    private String status;
-
-    public MobileRechargeDetailsDto(String trxId, String dateAndTime, String phoneNumber, String ammount, String postPaidOrPostPaid, String selectableSim, String status) {
+    private UssdRequestType status;
+    
+    public MobileRechargeDetailsDto(String trxId, String dateAndTime, String phoneNumber, String ammount, String postPaidOrPostPaid, String selectableSimPort, String selectableSim, UssdRequestType status) {
         this.trxId = trxId;
         this.dateAndTime = dateAndTime;
         this.phoneNumber = phoneNumber;
         this.ammount = ammount;
         this.postPaidOrPostPaid = postPaidOrPostPaid;
+        this.selectableSimPort = selectableSimPort;
         this.selectableSim = selectableSim;
         this.status = status;
     }
@@ -49,19 +53,21 @@ public class MobileRechargeDetailsDto {
         return postPaidOrPostPaid;
     }
 
+    public String getSelectableSimPort() {
+        return selectableSimPort;
+    }
+
+    public UssdRequestType getStatus() {
+        return status;
+    }
+
     public String getSelectableSim() {
         return selectableSim;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     @Override
     public String toString() {
-        return "MobileRechargeDetailsDto{" + "trxId=" + trxId + ", dateAndTime=" + dateAndTime + ", phoneNumber=" + phoneNumber + ", ammount=" + ammount + ", postPaidOrPostPaid=" + postPaidOrPostPaid + ", selectableSim=" + selectableSim + ", status=" + status + '}';
+        return "MobileRechargeDetailsDto{" + "trxId=" + trxId + ", dateAndTime=" + dateAndTime + ", phoneNumber=" + phoneNumber + ", ammount=" + ammount + ", postPaidOrPostPaid=" + postPaidOrPostPaid + ", selectableSimPort=" + selectableSimPort + ", status=" + status + '}';
     }
 
-
-    
 }

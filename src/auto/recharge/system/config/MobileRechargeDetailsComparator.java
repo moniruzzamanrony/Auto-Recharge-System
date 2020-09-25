@@ -12,14 +12,14 @@ import java.util.Comparator;
  *
  * @author monirozzamanroni
  */
-public class MobileRechargeDetailsComparator implements Comparator<MobileRechargeDetailsDto>{
+public class MobileRechargeDetailsComparator implements Comparator<Object>{
 
     @Override
-    public int compare(MobileRechargeDetailsDto t, MobileRechargeDetailsDto t1) {
-       if (t.getPhoneNumber().length() < t1.getPhoneNumber().length()) {
+    public int compare(Object t, Object t1) {
+       if (t == t1) {
             return -1;
         }
-        if (t.getPhoneNumber().length() > t1.getPhoneNumber().length()) {
+        if (t != t1) {
             return 1;
         }
         return 0;

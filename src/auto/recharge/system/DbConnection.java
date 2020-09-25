@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class DbConnection {
 
-    private static Connection conn = null;
+   // private static Connection conn = null;
 
     public static Connection connect() {
         
@@ -32,44 +32,47 @@ public class DbConnection {
         } catch (Exception ex) {
             Log.error("DbConnection:33", ex.getMessage());
         }
-        return conn;
+        return null;
     }
 
     public static boolean delete(String tableName) {
-        conn = DbConnection.connect();
+       Connection conn = DbConnection.connect();
         String sql = "DELETE FROM " + tableName;
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            return preparedStatement.execute();
+            boolean isDeleteSuccess= preparedStatement.execute();
+            conn.close();
+            return isDeleteSuccess;
 
         } catch (SQLException ex) {
             return false;
         }
     }
 
-    public static ResultSet retrieveAll(String tableName) {
-        conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM " + tableName;
-            ResultSet rs = st.executeQuery(sql);
-           
-             return rs;
-        } catch (SQLException ex) {
-            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-       
-
-    }
+//    public static ResultSet retrieveAll1(String tableName) {
+//        Connection conn = DbConnection.connect();
+//        try {
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM " + tableName;
+//            ResultSet rs = st.executeQuery(sql);
+//            conn.close();
+//            return rs;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+//            return null;
+//        }
+//
+//    }
 
     public static boolean deleteRow(String tableName, String columeName, String value) {
-        conn = DbConnection.connect();
+       Connection conn = DbConnection.connect();
         String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";       
         try {
             Statement st = conn.createStatement();
-            return st.execute(sql);
+            boolean isDelete = st.execute(sql);
+            conn.close();
+            return isDelete;
 
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,27 +80,30 @@ public class DbConnection {
         return false;
     }
 
-    public static ResultSet findByColume(String tableName, String columeName, String value) {
-        conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
-            return st.executeQuery(sql);
-        } catch (SQLException ex) {
-            Configaration.setErrorLog("Value Not Found" + ex);
-            return null;
-        }
-    }
+//    public static ResultSet findByColume1(String tableName, String columeName, String value) {
+//     
+//        try {
+//           Connection conn = DbConnection.connect();
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
+//            ResultSet rs= st.executeQuery(sql);
+//            conn.close();
+//            return rs;
+//        } catch (SQLException ex) {
+//            Configaration.setErrorLog("Value Not Found" + ex);
+//            return null;
+//        }
+//    }
 
-    public static void disconnect() {
-        if (conn != null) {
+    public static void disconnect(Connection conn) {
+       if (conn != null) {
             try {
-                conn.close();
-            } catch (SQLException e) {
+               conn.close();
+           } catch (SQLException e) {
 
-            }
+           }
         }
 
-    }
+   }
 
 }

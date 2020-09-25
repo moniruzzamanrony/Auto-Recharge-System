@@ -1,6 +1,5 @@
 package auto.recharge.system;
 
-import auto.recharge.system.dto.MobileRechargeDetailsDto;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,18 +11,14 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.itvillage.AES;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -31,11 +26,6 @@ import java.util.regex.Pattern;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
-import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor;
-import oshi.hardware.ComputerSystem;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.software.os.OperatingSystem;
 
 public class BuyNow extends javax.swing.JFrame {
 
@@ -493,7 +483,7 @@ public class BuyNow extends javax.swing.JFrame {
                     }
                     mySQLConnection.disconnect();
                     if (isAuthrizeMacAddress(macAddreassFromSQL)) {
-                     
+
                         saveToDbUserInfo(userIdFromSQL, nameFromSQL, phoneNoFromSQL, shopNameFromSQL,
                                 addessFromSQL, passwordFromSQL, activePackageFromSQL, macAddreassFromSQL, emailFromSQL, activeDateFromSQL, expireDateFromSQL, packageValidity, role);
                     } else {
@@ -512,8 +502,9 @@ public class BuyNow extends javax.swing.JFrame {
 
     private boolean isUserIdIsExist(String userId) {
         boolean isExist = false;
+        Connection conn = DbConnection.connect();
         try {
-            Connection conn = DbConnection.connect();
+
             String query = "SELECT * from user_info WHERE user_id=\'" + userId + "\'";
             PreparedStatement stm = conn.prepareStatement(query);
             ResultSet rs = stm.executeQuery();
@@ -524,10 +515,18 @@ public class BuyNow extends javax.swing.JFrame {
                 System.out.println("Username ---------------------------: " + userName);
                 isExist = true;
             }
-            DbConnection.disconnect();
+
         } catch (SQLException ex) {
             Log.error("SQLException", ex.toString());
             isExist = false;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuyNow.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         return isExist;
 
@@ -601,11 +600,10 @@ public class BuyNow extends javax.swing.JFrame {
 
         processtingLoderDialog = new JDialog();
         processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(214, 138);
+        processtingLoderDialog.setSize(900, 435);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 
     }
-
 
 }

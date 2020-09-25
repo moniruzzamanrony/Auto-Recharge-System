@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.SwingWorker;
 
-public class Login extends javax.swing.JFrame {
+public final class Login extends javax.swing.JFrame {
 
     private LoadingScreen loadingScreen;
     private JDialog processtingLoderDialog;
@@ -283,7 +283,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void getPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPhoneNumberActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_getPhoneNumberActionPerformed
 
     private void buyingRequest(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyingRequest
@@ -297,7 +297,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
- 
+
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -392,7 +392,7 @@ public class Login extends javax.swing.JFrame {
             if (phoneNo == null) {
                 Popup.customError("Licence not found.");
             } else {
-                System.out.println(phoneNo);
+                System.out.println("step 1/12: Login processing start with "+phoneNo);
                 if (getPhoneNumber.getText().trim().equals("")) {
                     getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red, 4));
                 }
@@ -404,7 +404,6 @@ public class Login extends javax.swing.JFrame {
 //                    
 //                    String userPhoneNumberFromUser= phoneNo;
 //                    String userPhoneNumberFromDatabase= phoneNo;
-                    
 
                     if (phoneNo.equals(getPhoneNumber.getText().trim())
                             && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
@@ -419,7 +418,7 @@ public class Login extends javax.swing.JFrame {
                         Log.mgs("Login Info", "Success");
 
                     } else {
-                         Log.mgs("Login Info", "Auth Faild");
+                        Log.mgs("Login Info", "Auth Faild");
                         Popup.error("Invalid Phone Number Or Password!!");
                     }
 
@@ -474,7 +473,7 @@ public class Login extends javax.swing.JFrame {
                     SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
                         @Override
                         protected Void doInBackground() throws Exception {
-                            System.out.println("Login Processing..");
+                            System.out.println("step 2/10: Login processing");
                             processtingLoderDialog.setVisible(true);
                             if (login()) {
                                 getSIMOperatorInfo();
@@ -487,7 +486,7 @@ public class Login extends javax.swing.JFrame {
 
                         @Override
                         protected void done() {
-                            System.out.println("Login Done..");
+                           System.out.println("step 3/12: Login process successful");
 
                             processtingLoderDialog.setVisible(false);
                         }
@@ -508,18 +507,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void getSIMOperatorInfo() {
+        System.out.println("step 4/12: Start Finding Modem port");
         List<String> ports = Modem.getActivePortsList();
-        System.err.println(ports);
+      
         if (ports.isEmpty()) {
             int res = Popup.customError("Modem Not Found..");
             if (res == 0) {
                 System.exit(0);
             }
         } else {
-            
+
             ModemInfoList.portsList = ports;
-            System.out.print(ModemInfoList.portsList);
-           // ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
+            System.out.println("step 13/13: Successfully found ports "+ModemInfoList.portsList);
+            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
 
         }
 
@@ -533,7 +533,7 @@ public class Login extends javax.swing.JFrame {
 
         processtingLoderDialog = new JDialog();
         processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(214, 138);
+        processtingLoderDialog.setSize(900, 435);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 
@@ -543,7 +543,7 @@ public class Login extends javax.swing.JFrame {
         boolean isAuthrizeMacAddress = false;
 
         String computerMacAddress = Configaration.getMacAddress().replace(":", "");
-        System.err.println(computerMacAddress + "  " + macAddreassFromSQL);
+         System.out.println("step 13/13: Login Reguest by "+computerMacAddress);
         if (computerMacAddress.equals(macAddreassFromSQL)) {
             isAuthrizeMacAddress = true;
         }

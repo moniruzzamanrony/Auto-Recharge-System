@@ -74,14 +74,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Home extends javax.swing.JFrame {
-
-    private Connection conn;
     private String imagePath = "No Image";
     private LoadingScreen l;
     private String selectedSimOperatorName;
     private String[] rowOfContractlist;
     private String trxId;
-    private ResultSet rs;
     private boolean inboxIsActive;
     private String[] perseByCommaInInbox;
     private String[] splitedByCMDValueForInbox = null;
@@ -4585,10 +4582,14 @@ public class Home extends javax.swing.JFrame {
 
     private void getServiceNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceNameItemStateChanged
 
+        Connection conn = DbConnection.connect();
         Set<String> taskNames = new HashSet<>();
         try {
             getOperationType.removeAllItems();
-            rs = DbConnection.findByColume("mobile_banking", "services_name", evt.getItem().toString());
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + evt.getItem().toString() + "\"";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 taskNames.add(rs.getString("task_name"));
 
@@ -4599,7 +4600,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+            DbConnection.disconnect(conn);
 
         }
 

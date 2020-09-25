@@ -60,11 +60,17 @@ public class MobileRechargeDetailsInDBThread extends Thread {
             preparedStatement.setString(8, currentBalance);
             preparedStatement.execute();
             preparedStatement.close();
-            DbConnection.disconnect();
+            
             
 
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(MobileRechargeDetailsInDBThread.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }

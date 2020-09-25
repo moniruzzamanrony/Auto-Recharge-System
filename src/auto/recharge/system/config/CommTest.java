@@ -17,93 +17,87 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+public class CommTest {
 
-public class CommTest
-{
     private static final String _NO_DEVICE_FOUND = "  no device found";
 
     private final static Formatter _formatter = new Formatter(System.out);
-    
-    private final static String TAG="Find ports:CommTest"; 
+
+    private final static String TAG = "Find ports:CommTest";
 
     static CommPortIdentifier portId;
 
     static Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
 
-    static int bauds[] = { 9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
+    static int bauds[] = {9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
 
     /**
      * Wrapper around {@link CommPortIdentifier#getPortIdentifiers()} to be
      * avoid unchecked warnings.
      */
-    private static Enumeration<CommPortIdentifier> getCleanPortIdentifiers()
-    {
+    private static Enumeration<CommPortIdentifier> getCleanPortIdentifiers() {
         return CommPortIdentifier.getPortIdentifiers();
     }
 
-
-    public static List<String> getPorts()
-    {
+    public static List<String> getPorts() {
         try {
-            System.out.println("Searching for devices...");
+             System.out.println("step 11/12: Search modem COM Port");
             portsCommPortIdentifierList = getCleanPortIdentifiers();
-            RunningModemPort runningModemPort= new RunningModemPort(portsCommPortIdentifierList);
+            RunningModemPort runningModemPort = new RunningModemPort(portsCommPortIdentifierList);
             runningModemPort.start();
             runningModemPort.join();
-            System.err.println("---------------"+runningModemPort.getPorts());
+            
             return runningModemPort.getPorts();
         } catch (InterruptedException ex) {
             Logger.getLogger(CommTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-         return new ArrayList<>();
+        return new ArrayList<>();
     }
-} 
+}
 
-class  RunningModemPort extends Thread{
+class RunningModemPort extends Thread {
 
-    private final  Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
-    private List<String> ports= new ArrayList<>();
-    private  final String _NO_DEVICE_FOUND = "  no device found";
+    private final Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
+    private List<String> ports = new ArrayList<>();
+    private final String _NO_DEVICE_FOUND = "  no device found";
     private final static Formatter _formatter = new Formatter(System.out);
-    private final static String TAG="Find ports:CommTest"; 
-    private final int bauds[] = { 9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
+    private final static String TAG = "Find ports:CommTest";
+    private final int bauds[] = {9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
 
     static CommPortIdentifier portId;
-     public RunningModemPort(Enumeration<CommPortIdentifier> portsCommPortIdentifierList) {
+
+    public RunningModemPort(Enumeration<CommPortIdentifier> portsCommPortIdentifierList) {
         this.portsCommPortIdentifierList = portsCommPortIdentifierList;
     }
-     
-        @Override
-        public void run() {
-               
-        while (portsCommPortIdentifierList.hasMoreElements())
-       {
+
+    @Override
+    public void run() {
+
+        while (portsCommPortIdentifierList.hasMoreElements()) {
             portId = portsCommPortIdentifierList.nextElement();
 
-            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL)
-            {
-                System.out.println(TAG+":"+ portId.getName());
-                
+            if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+                 System.out.println("step 12/10: Start COM Port testig for "+portId.getName());
+
                 _formatter.format("%nFound port: %-5s%n", portId.getName());
-                for (int i = 0; i < bauds.length; i++)
-                {
+                for (int i = 0; i < bauds.length; i++) {
                     SerialPort serialPort = null;
-                    _formatter.format("       Trying at %6d...", bauds[i]);
-                    try
-                    {
+                    _formatter.format("       Trying at %6d... ", bauds[i]);
+                    try {
                         InputStream inStream;
                         OutputStream outStream;
                         int c;
                         String response;
-                        serialPort =(SerialPort) portId.open("SMSLibCommTester", 1971);
+                        serialPort = (SerialPort) portId.open("SMSLibCommTester ", 1971);
                         serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN);
                         serialPort.setSerialPortParams(bauds[i], SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
                         inStream = serialPort.getInputStream();
                         outStream = serialPort.getOutputStream();
                         serialPort.enableReceiveTimeout(1000);
                         c = inStream.read();
-                        while (c != -1)
+                        while (c != -1) {
                             c = inStream.read();
+                        }
                         outStream.write('A');
                         outStream.write('T');
                         outStream.write('\r');
@@ -111,19 +105,16 @@ class  RunningModemPort extends Thread{
                         response = "";
                         StringBuilder sb = new StringBuilder();
                         c = inStream.read();
-                        while (c != -1)
-                        {
+                        while (c != -1) {
                             sb.append((char) c);
                             c = inStream.read();
                         }
                         response = sb.toString();
-                        if (response.indexOf("OK") >= 0)
-                        {
-                            try
-                            {
-                              //  System.out.print("  Getting Info...");
-                               // System.out.println(portId.getName());
-                                
+                        if (response.indexOf("OK") >= 0) {
+                            try {
+                                //  System.out.print("  Getting Info...");
+                                // System.out.println(portId.getName());
+
                                 outStream.write('A');
                                 outStream.write('T');
                                 outStream.write('+');
@@ -134,51 +125,38 @@ class  RunningModemPort extends Thread{
                                 outStream.write('\r');
                                 response = "";
                                 c = inStream.read();
-                                while (c != -1)
-                                {
-                                   response += (char) c;
+                                while (c != -1) {
+                                    response += (char) c;
                                     c = inStream.read();
                                 }
                                 ports.add(portId.getName());
                                 System.out.println(" Found: " + response.replaceAll("\\s+OK\\s+", "").replaceAll("\n", "").replaceAll("\r", ""));
-                            }
-                            catch (Exception e)
-                            {
+                            } catch (Exception e) {
                                 System.out.println(_NO_DEVICE_FOUND);
                             }
-                        }
-                        else
-                        {
+                        } else {
                             System.out.println(_NO_DEVICE_FOUND);
                         }
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         System.out.print(_NO_DEVICE_FOUND);
                         Throwable cause = e;
-                        while (cause.getCause() != null)
-                        {
+                        while (cause.getCause() != null) {
                             cause = cause.getCause();
                         }
                         System.out.println(" (" + cause.getMessage() + ")");
-                    }
-                    finally
-                    {
-                        if (serialPort != null)
-                        {
+                    } finally {
+                        if (serialPort != null) {
                             serialPort.close();
                         }
                     }
+                }
             }
-       }
-           
+
         }
-        }
+    }
 
     public List<String> getPorts() {
         return ports;
     }
-        
-    
 
 }

@@ -51,7 +51,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
 
         clickDelete.setBackground(new java.awt.Color(255, 0, 51));
         clickDelete.setForeground(new java.awt.Color(255, 255, 255));
-        clickDelete.setText("Delete");
+        clickDelete.setText("Retry");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,7 +135,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public JButton getClickDelete() {
+    public JButton getClickRetry() {
         return clickDelete;
     }
 

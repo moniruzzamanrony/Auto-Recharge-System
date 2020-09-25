@@ -22,7 +22,7 @@ public class Log {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void mgs(String lineNumber, String mgs) {
-        System.out.println(ANSI_GREEN+lineNumber + "---->" + mgs+ANSI_RESET);
+        System.out.println(lineNumber + "---->" + mgs);
     }
 
     public static void error(String lineNumber, String mgs) {

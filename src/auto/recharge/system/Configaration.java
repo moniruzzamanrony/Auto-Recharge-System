@@ -261,7 +261,7 @@ public class Configaration {
 
         processtingLoderDialog = new JDialog();
         processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(214, 138);
+       processtingLoderDialog.setSize(900, 435);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 
