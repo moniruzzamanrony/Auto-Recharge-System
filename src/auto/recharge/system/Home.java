@@ -6189,14 +6189,28 @@ public class Home extends javax.swing.JFrame {
                             // String key = ee.getKey();
                             //  List<Integer> values = ee.getValue();
                             // TODO: Do something.
+                            System.err.println("----------------------------------"+hashValue.getKey()+"-------------------------------------");
                             while (!hashValue.getValue().isEmpty()) {
 
                                 Object object = hashValue.getValue().element();
                                 Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
                                 UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
+                                
                                 switch(getStatus)
                                 {
-                                    //case UssdRequestType.
+                                    case MOBILE_RECHARGE:
+                                        System.err.println(getStatus);
+                                        break;
+                              
+                                    case MOBILE_BANKING:
+                                        System.err.println(getStatus);
+                                        break;
+                                    case BILL_PAYMENT:
+                                        System.err.println(getStatus);
+                                        break;
+                                    default:
+                                        System.err.println("none");
+                                        break;
                                 }
                               //  System.err.println(portName + "-----------" + getStatus);
                                 //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
