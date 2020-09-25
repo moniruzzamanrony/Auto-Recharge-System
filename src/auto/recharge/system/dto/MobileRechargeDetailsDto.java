@@ -21,7 +21,7 @@ public class MobileRechargeDetailsDto {
     private String selectableSimPort;
     private String selectableSim;
     private UssdRequestType status;
-    
+
     public MobileRechargeDetailsDto(String trxId, String dateAndTime, String phoneNumber, String ammount, String postPaidOrPostPaid, String selectableSimPort, String selectableSim, UssdRequestType status) {
         this.trxId = trxId;
         this.dateAndTime = dateAndTime;

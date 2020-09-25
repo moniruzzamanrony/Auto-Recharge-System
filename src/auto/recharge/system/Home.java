@@ -13,6 +13,7 @@ import auto.recharge.system.dto.MobileRechargeDetailsDto;
 import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import auto.recharge.system.dto.UserInfo;
+import auto.recharge.system.enumClasses.UssdRequestType;
 import com.itvillage.AES;
 import java.awt.Color;
 import java.awt.Font;
@@ -5709,9 +5710,14 @@ public class Home extends javax.swing.JFrame {
                             jDialog.setVisible(false);
                             getMobileNumber.requestFocusInWindow();
                             Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                            MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                    MobileRechargeDetailsDto mobileRechargeDetailsDto = 
+                                            new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested,simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                    addQueue(mobileRechargeDetailsDto);
+                                }
+                            }
 
-                            addQueue(mobileRechargeDetailsDto);
                             // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
 
                             return null;
@@ -5740,8 +5746,13 @@ public class Home extends javax.swing.JFrame {
                                     jDialog.setVisible(false);
                                     getMobileNumber.requestFocusInWindow();
                                     Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                    MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                    addQueue(mobileRechargeDetailsDto);
+                                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                        if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                            MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                    = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                            addQueue(mobileRechargeDetailsDto);
+                                        }
+                                    }
                                     //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
 
                                     return null;
@@ -5873,8 +5884,13 @@ public class Home extends javax.swing.JFrame {
                                         jDialog.setVisible(false);
                                         getMobileNumber.requestFocusInWindow();
                                         Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                        MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                        addQueue(mobileRechargeDetailsDto);
+                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                addQueue(mobileRechargeDetailsDto);
+                                            }
+                                        }
                                         //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
                                         jDialog.setVisible(false);
                                         return null;
@@ -5903,8 +5919,13 @@ public class Home extends javax.swing.JFrame {
                                                 jDialog.setVisible(false);
                                                 getMobileNumber.requestFocusInWindow();
                                                 Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                                addQueue(mobileRechargeDetailsDto);
+                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                        addQueue(mobileRechargeDetailsDto);
+                                                    }
+                                                }
 
                                                 return null;
                                             }
@@ -6033,8 +6054,13 @@ public class Home extends javax.swing.JFrame {
                                         jDialog.setVisible(false);
                                         getMobileNumber.requestFocusInWindow();
                                         Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                        MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                        addQueue(mobileRechargeDetailsDto);
+                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                addQueue(mobileRechargeDetailsDto);
+                                            }
+                                        }
 
                                         // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
                                         jDialog.setVisible(false);
@@ -6064,8 +6090,13 @@ public class Home extends javax.swing.JFrame {
                                                 jDialog.setVisible(false);
                                                 getMobileNumber.requestFocusInWindow();
                                                 Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                MobileRechargeDetailsDto mobileRechargeDetailsDto = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                                addQueue(mobileRechargeDetailsDto);
+                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                        addQueue(mobileRechargeDetailsDto);
+                                                    }
+                                                }
                                                 //(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
                                                 jDialog.setVisible(false);
                                                 return null;
@@ -6161,8 +6192,7 @@ public class Home extends javax.swing.JFrame {
 
                             MobileRechargeDetailsDto headRechargeDetailsDto = mobileRechargeDetailsDtoQueue.element();
                             rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-                            
-                            
+
                         }
                         java.lang.Thread.sleep(100);
                     } catch (InterruptedException ex) {
@@ -6178,28 +6208,29 @@ public class Home extends javax.swing.JFrame {
 
     private void setOperatorIcon() {
         boolean isFoundExpectedSIMCard = false;
-
+        
         if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
             getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
         } else {
-
+            Connection conn = DbConnection.connect();
             try {
                 Icon icon;
-
+                
                 String selectedOperatorName = setPayableSIMByPhoneNumber(getMobileNumber.getText()).toUpperCase();
                 Log.mgs("Selected SIM By Phone Number", selectedOperatorName);
-
-                ResultSet rs = DbConnection.findByColume("command", "operator_name", selectedOperatorName);
-
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                
                 if (!rs.next()) {
                     Popup.customError("Recharge Setting not found.");
                 } else {
                     do {
-
+                        
                         if (rs.getString("operator_name").equals(selectedOperatorName)) {
-
+                            
                             for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-
+                                
                                 if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                     selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                                     getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
@@ -6217,9 +6248,11 @@ public class Home extends javax.swing.JFrame {
                     getAmmountInTk.requestFocusInWindow();
                     getSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
                 }
-
+                
             } catch (SQLException ex) {
                 Log.error("SQLException:", ex.getMessage());
+            } finally {
+                DbConnection.disconnect(conn);
             }
         }
 
@@ -6251,8 +6284,13 @@ public class Home extends javax.swing.JFrame {
         String[] responseArray;
         String cBalance = null;
         String statusMgs = null;
+        Connection conn = DbConnection.connect();
         try {
-            ResultSet rs = DbConnection.findByColume("command", "operator_name", selectedPayableSIM);
+
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedPayableSIM + "\"";
+            ResultSet rs = st.executeQuery(sql);
+
             while (rs.next()) {
 
                 for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
@@ -6325,6 +6363,8 @@ public class Home extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
 
         auto.recharge.system.config.Modem.disconnect();
@@ -6333,15 +6373,13 @@ public class Home extends javax.swing.JFrame {
         loadValueInTableRechargeDetails();
         updateMobileRechargeStatusByTrxId(trxId, statusMgs, cBalance);
 
-
-
         getMobileNumber.requestFocusInWindow();
     }
 
     private boolean saveToDbCommandInRechargeAdmin(String trxId, String getMobileNumberText,
             String getAmmountInTkText, String getPrepaidOrPostpaidText, String requestedSimOperator,
             String ckeckRechargeSuccessStatus, String currentBalance) {
-
+        Connection conn = DbConnection.connect();
         String dateTime = Configaration.getCurrentDateAndTime();
 
         conn = DbConnection.connect();
@@ -6359,11 +6397,14 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.setString(8, currentBalance);
             preparedStatement.execute();
             preparedStatement.close();
-            DbConnection.disconnect();
+
             return true;
 
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            DbConnection.disconnect(conn);
         }
 
         return false;
