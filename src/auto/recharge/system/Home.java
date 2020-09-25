@@ -6503,8 +6503,12 @@ public class Home extends javax.swing.JFrame {
                 "Pending"});
 
         }
+           Connection conn = DbConnection.connect();
         try {
-            rs = DbConnection.retrieveAll("recharge_admin");
+                        Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `recharge_admin`";
+            ResultSet rs = st.executeQuery(sql);
+            
             while (rs.next()) {
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
@@ -6522,12 +6526,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+          DbConnection.disconnect(conn);
         }
 
         tableRechargeDetailsShow.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -6546,9 +6545,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void deleteColumeFromRechargeDetails(String userId) {
-        DbConnection.connect();
+        
         DbConnection.deleteRow("recharge_admin", "trx_id", userId);
-        DbConnection.disconnect();
+        
 
         loadValueInTableRechargeDetails();
 
@@ -6614,16 +6613,19 @@ public class Home extends javax.swing.JFrame {
     }
 
     public Set<String> searchItemsByPhoneNumberInRechargePanel(String sreach1) {
+        Connection conn = DbConnection.connect();
         try {
             List<String> allPhoneNumber = new ArrayList<>();
             Set<String> filteredPhoneNumber = new HashSet<>();
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("recharge_admin");
+           
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `recharge_admin`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 allPhoneNumber.add(rs.getString("mobile_no"));
 
             }
-            DbConnection.disconnect();
+
             allPhoneNumber.stream().forEach(number -> {
                 if (number.toLowerCase().contains(sreach1.toLowerCase())) {
                     filteredPhoneNumber.add(number);
@@ -6635,6 +6637,8 @@ public class Home extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
 
         return null;
