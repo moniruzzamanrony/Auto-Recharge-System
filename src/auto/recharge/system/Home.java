@@ -75,6 +75,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Home extends javax.swing.JFrame {
+
     private String imagePath = "No Image";
     private LoadingScreen l;
     private String selectedSimOperatorName;
@@ -110,7 +111,7 @@ public class Home extends javax.swing.JFrame {
         suggList.setModel(defaultListModel);
         popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-        
+
         processRequestFromMobileRechargeQueue();
 
     }
@@ -4622,7 +4623,7 @@ public class Home extends javax.swing.JFrame {
 
     private void getOperationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getOperationTypeItemStateChanged
         Connection conn = DbConnection.connect();
-        try {         
+        try {
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
             ResultSet rs = st.executeQuery(sql);
@@ -5162,8 +5163,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getSeletedActionActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
-        if (UserInfo.role.equals("admin")) {    
-            DbConnection.deleteRow("m_b_details", "TnxId", userId);        
+        if (UserInfo.role.equals("admin")) {
+            DbConnection.deleteRow("m_b_details", "TnxId", userId);
             loadMobileBankingDetailsTable();
         } else {
             Popup.customError("Access Deny..");
@@ -5196,7 +5197,6 @@ public class Home extends javax.swing.JFrame {
         } finally {
             DbConnection.disconnect(conn);
         }
-        
 
         for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
 
@@ -5712,14 +5712,13 @@ public class Home extends javax.swing.JFrame {
                             Log.mgs("Requested SIM Card: ", selectedPayableSIM);
                             for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                 if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                    MobileRechargeDetailsDto mobileRechargeDetailsDto = 
-                                            new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested,simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                    MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
                                     addQueue(mobileRechargeDetailsDto);
                                 }
                             }
 
                             // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-
                             return null;
                         }
 
@@ -6208,29 +6207,29 @@ public class Home extends javax.swing.JFrame {
 
     private void setOperatorIcon() {
         boolean isFoundExpectedSIMCard = false;
-        
+
         if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
             getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
         } else {
             Connection conn = DbConnection.connect();
             try {
                 Icon icon;
-                
+
                 String selectedOperatorName = setPayableSIMByPhoneNumber(getMobileNumber.getText()).toUpperCase();
                 Log.mgs("Selected SIM By Phone Number", selectedOperatorName);
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
                 ResultSet rs = st.executeQuery(sql);
-                
+
                 if (!rs.next()) {
                     Popup.customError("Recharge Setting not found.");
                 } else {
                     do {
-                        
+
                         if (rs.getString("operator_name").equals(selectedOperatorName)) {
-                            
+
                             for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                
+
                                 if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                     selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                                     getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
@@ -6248,7 +6247,7 @@ public class Home extends javax.swing.JFrame {
                     getAmmountInTk.requestFocusInWindow();
                     getSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
                 }
-                
+
             } catch (SQLException ex) {
                 Log.error("SQLException:", ex.getMessage());
             } finally {
@@ -6503,12 +6502,12 @@ public class Home extends javax.swing.JFrame {
                 "Pending"});
 
         }
-           Connection conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         try {
-                        Statement st = conn.createStatement();
+            Statement st = conn.createStatement();
             String sql = "SELECT * FROM `recharge_admin`";
             ResultSet rs = st.executeQuery(sql);
-            
+
             while (rs.next()) {
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
@@ -6526,7 +6525,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-          DbConnection.disconnect(conn);
+            DbConnection.disconnect(conn);
         }
 
         tableRechargeDetailsShow.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -6545,9 +6544,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void deleteColumeFromRechargeDetails(String userId) {
-        
+
         DbConnection.deleteRow("recharge_admin", "trx_id", userId);
-        
 
         loadValueInTableRechargeDetails();
 
@@ -6617,7 +6615,7 @@ public class Home extends javax.swing.JFrame {
         try {
             List<String> allPhoneNumber = new ArrayList<>();
             Set<String> filteredPhoneNumber = new HashSet<>();
-           
+
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM `recharge_admin`";
             ResultSet rs = st.executeQuery(sql);
@@ -6680,7 +6678,7 @@ public class Home extends javax.swing.JFrame {
         try {
 
             Statement st = conn.createStatement();
-             String sql = "SELECT * FROM `recharge_admin`";
+            String sql = "SELECT * FROM `recharge_admin`";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
@@ -6700,7 +6698,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-      DbConnection.disconnect(conn);
+            DbConnection.disconnect(conn);
         }
         tableForDetails.setEnabled(false);
         tableForDetails.setRowHeight(30);
@@ -7105,10 +7103,10 @@ public class Home extends javax.swing.JFrame {
             protected void done() {
 
                 switchPanelViaMenu(mobileRechargePanel);
-               
+
                 loadValueInTableRechargeDetails();
                 DbConnection.delete("group_recharge");
-             
+
                 System.err.println("Recharge Done...");
             }
 
@@ -7456,7 +7454,7 @@ public class Home extends javax.swing.JFrame {
         String balenceUssdPartern = getprofitIn1k.getText();
         String acPassword = accountPassword1.getText();
         String profit = getprofitIn1k.getText();
-       Connection conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon,profit) VALUES(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -7483,16 +7481,16 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void loadValuesForUssdManagementTable() {
-Connection conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         try {
             DefaultTableModel model = new DefaultTableModel(new String[]{
                 "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
             }, 0);
             switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
             Statement st = conn.createStatement();
-             String sql = "SELECT * FROM `command`";
+            String sql = "SELECT * FROM `command`";
             ResultSet rs = st.executeQuery(sql);
-           
+
             while (rs.next()) {
 
                 String operator_name = rs.getString("operator_name");
@@ -7545,7 +7543,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-         DbConnection.disconnect(conn);
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -7569,7 +7567,7 @@ Connection conn = DbConnection.connect();
         String description = getDescriptionInSetting.getText();
         String simOperator = getSIMOperatorName.getSelectedItem().toString().toUpperCase();
 
-        conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         String sql = "INSERT INTO recharge_offers(offer_name,recharge_amt,validity,description,sim_name) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -7584,13 +7582,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-
-                }
-            }
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -7644,7 +7636,7 @@ Connection conn = DbConnection.connect();
             Popup.customError("Empty Filed Found");
 
         } else {
-            conn = DbConnection.connect();
+            Connection conn = DbConnection.connect();
             String sql = "INSERT INTO mobile_banking(services_name,default_sim,task_name,ussd_code,pin,serviceId,balance_show_ussd) VALUES(?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -7662,23 +7654,20 @@ Connection conn = DbConnection.connect();
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
                 Popup.customError("Saving failed");
             } finally {
-                if (conn != null) {
-                    try {
-                        conn.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
+                DbConnection.disconnect(conn);
             }
         }
     }
 
     private void loadTableMobileBankingSettingFromDb() {
+        Connection conn = DbConnection.connect();
         try {
             DefaultTableModel model = new DefaultTableModel(new String[]{"Service Id",
                 "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
 
-            rs = DbConnection.retrieveAll("mobile_banking");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 String services_id = rs.getString("serviceId");
                 String services_name = rs.getString("services_name");
@@ -7740,12 +7729,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
     }
 
@@ -7754,6 +7738,7 @@ Connection conn = DbConnection.connect();
      */
     private void setContractListInJTable() {
         alartMessageText.setVisible(false);
+        Connection conn = DbConnection.connect();
         try {
             int count = 1;
 
@@ -7784,8 +7769,9 @@ Connection conn = DbConnection.connect();
                 }
             }
 
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("contract");
+            Statement stSQLite = conn.createStatement();
+            String sqlSQLite = "SELECT * FROM `contract`";
+            ResultSet rs = stSQLite.executeQuery(sqlSQLite);
             while (rs.next()) {
                 ContractResponse contractResponse = new ContractResponse();
                 contractResponse.setId(count++);
@@ -7817,6 +7803,8 @@ Connection conn = DbConnection.connect();
                 } catch (SQLException ex) {
                     Log.error("6853", ex.getMessage());
 
+                } finally {
+                    bMySQLConnection.disconnect();
                 }
 
             } else {
@@ -7872,6 +7860,9 @@ Connection conn = DbConnection.connect();
             tableContractLIst.setModel(contractListTableMOdel);
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
+
         }
     }
 
@@ -8177,9 +8168,12 @@ Connection conn = DbConnection.connect();
                 String phnNo = null;
 
                 DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+                Connection conn = DbConnection.connect();
                 try {
 
-                    rs = DbConnection.retrieveAll("recharge_admin");
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `recharge_admin`";
+                    ResultSet rs = st.executeQuery(sql);
                     while (rs.next()) {
                         System.err.println("--" + Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -8200,12 +8194,7 @@ Connection conn = DbConnection.connect();
                 } catch (SQLException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
-                    if (rs != null) {
-                        try {
-                            rs.close();
-                        } catch (SQLException e) {
-                        }
-                    }
+                    DbConnection.disconnect(conn);
                 }
                 tableForDetails.setEnabled(false);
                 tableForDetails.setRowHeight(30);
@@ -8271,9 +8260,12 @@ Connection conn = DbConnection.connect();
             detailsSelectedItems = "recharge";
             setMgsDetails.setText("");
             DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+            Connection conn = DbConnection.connect();
             try {
 
-                rs = DbConnection.retrieveAll("recharge_admin");
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `recharge_admin`";
+                ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -8292,12 +8284,7 @@ Connection conn = DbConnection.connect();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                    }
-                }
+                DbConnection.disconnect(conn);
             }
             tableForDetails.setEnabled(false);
             tableForDetails.setRowHeight(30);
@@ -8360,9 +8347,12 @@ Connection conn = DbConnection.connect();
         } else if (detailsSelectedItems.equals("recharge")) {
 
             DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+            Connection conn = DbConnection.connect();
             try {
 
-                rs = DbConnection.retrieveAll("recharge_admin");
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `recharge_admin`";
+                ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     System.out.println("----->" + rs.getString("date_time").substring(0, 8));
                     System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
@@ -8384,12 +8374,8 @@ Connection conn = DbConnection.connect();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                if (rs != null) {
-                    try {
-                        rs.close();
-                    } catch (SQLException e) {
-                    }
-                }
+
+                DbConnection.disconnect(conn);
             }
             tableForDetails.setEnabled(false);
             tableForDetails.setRowHeight(30);
@@ -8742,9 +8728,12 @@ Connection conn = DbConnection.connect();
 
     private void loadInBillPaymentDetailsByBillNo() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Bill No", "Current balance", "Status"}, 0);
+        Connection conn = DbConnection.connect();
         try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `bill_pay_bill_no`";
+            ResultSet rs = st.executeQuery(sql);
 
-            rs = DbConnection.retrieveAll("bill_pay_bill_no");
             while (rs.next()) {
                 defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
                     rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
@@ -8754,12 +8743,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -8774,9 +8758,12 @@ Connection conn = DbConnection.connect();
 
     private void loadInBillPaymentDetailsByCustomerId() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Customer ID", "Month", "Year", "Current balance", "Status"}, 0);
+        Connection conn = DbConnection.connect();
         try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `bill_payment_customer_id`";
+            ResultSet rs = st.executeQuery(sql);
 
-            rs = DbConnection.retrieveAll("bill_payment_customer_id");
             while (rs.next()) {
                 defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
                     rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
@@ -8786,12 +8773,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         //For jTable contant in center
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
@@ -8842,7 +8824,7 @@ Connection conn = DbConnection.connect();
             }
 
         });
-        ui.getClickDelete().setVisible(false);
+        ui.getClickRetry().setVisible(false);
         ui.getClickOk().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
@@ -9074,9 +9056,8 @@ Connection conn = DbConnection.connect();
 
     private void deleteServiceDetailsFromMobileBanking(String serviceId) {
         Log.mgs("8266", "Delete requested id " + serviceId);
-        DbConnection.connect();
+
         DbConnection.deleteRow("mobile_banking", "serviceId", serviceId);
-        DbConnection.disconnect();
 
     }
 
@@ -9125,11 +9106,14 @@ Connection conn = DbConnection.connect();
 
     private void loadMobileBankingBalance() {
         Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
+        Connection conn = DbConnection.connect();
         try {
             DefaultListModel Clistmodel = new DefaultListModel();//
 
-            DbConnection.connect();
-            ResultSet rs = DbConnection.retrieveAll("mobile_banking");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking`";
+            ResultSet rs = st.executeQuery(sql);
+
             while (rs.next()) {
                 MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
                 mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
@@ -9139,7 +9123,6 @@ Connection conn = DbConnection.connect();
                 mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
                 bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
             }
-            DbConnection.disconnect();
 
             for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
                 System.err.println(mobileBankingBalanceShowDto.getServiceName());
@@ -9155,6 +9138,8 @@ Connection conn = DbConnection.connect();
             mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
 
     }
@@ -9228,9 +9213,12 @@ Connection conn = DbConnection.connect();
 
     private void loadMobileBankingDetailsInDetailsTable() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Service Name", "Action Type", "Mobile No", "Ammount", "From", "Status",}, 0);
+        Connection conn = DbConnection.connect();
         try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `m_b_details`";
+            ResultSet rs = st.executeQuery(sql);
 
-            rs = DbConnection.retrieveAll("m_b_details");
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -9249,12 +9237,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         tableForDetails.setEnabled(false);
         tableForDetails.setRowHeight(30);
@@ -9269,9 +9252,12 @@ Connection conn = DbConnection.connect();
 
     private void loadBillPaymentByBillNoDetailsInDetailsTable() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Bill No", "Current Balance", "Status",}, 0);
+        Connection conn = DbConnection.connect();
         try {
 
-            rs = DbConnection.retrieveAll("bill_pay_bill_no");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `bill_pay_bill_no`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -9289,12 +9275,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         tableForDetails.setEnabled(false);
         tableForDetails.setRowHeight(30);
@@ -9334,9 +9315,12 @@ Connection conn = DbConnection.connect();
     private void loadBillPaymentByCostumerIdDetailsInDetails() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Customer Id",
             "Bill Month", "Bill Year", "Current Balance", "Status"}, 0);
+        Connection conn = DbConnection.connect();
         try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `bill_payment_customer_id`";
+            ResultSet rs = st.executeQuery(sql);
 
-            rs = DbConnection.retrieveAll("bill_payment_customer_id");
             while (rs.next()) {
                 System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
 
@@ -9356,12 +9340,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+            DbConnection.disconnect(conn);
         }
         tableForDetails.setEnabled(false);
         tableForDetails.setRowHeight(30);
@@ -9443,7 +9422,7 @@ Connection conn = DbConnection.connect();
     private void changeAdminPassword(String password) {
         if (UserInfo.role.equals("admin")) {
 
-            conn = DbConnection.connect();
+            Connection conn = DbConnection.connect();
             String sql = "UPDATE user_info SET password = '" + password + "' WHERE user_id = '" + UserInfo.userId + "';";
             try {
                 Statement st = conn.createStatement();
@@ -9457,6 +9436,8 @@ Connection conn = DbConnection.connect();
 
             } catch (SQLException ex) {
                 Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
 
         } else {
@@ -9515,7 +9496,7 @@ Connection conn = DbConnection.connect();
         } catch (SQLException ex) {
             Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
         }
-        DbConnection.disconnect();
+        DbConnection.disconnect(conn);
         loadValueInTableRechargeDetails();
     }
 
