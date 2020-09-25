@@ -6244,15 +6244,7 @@ public class Home extends javax.swing.JFrame {
                         java.lang.Thread.sleep(100);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InvocationTargetException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (NoSuchMethodException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SecurityException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } 
 
                 }
 
