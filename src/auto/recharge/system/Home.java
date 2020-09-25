@@ -4620,8 +4620,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickSandInMBMouseClicked
 
     private void getOperationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getOperationTypeItemStateChanged
-        try {
-            rs = DbConnection.findByColume("mobile_banking", "services_name", getServiceName.getSelectedItem().toString());
+        Connection conn = DbConnection.connect();
+        try {         
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 if (evt.getItem().equals(rs.getString("task_name"))) {
                     getSimOperatorName.setSelectedItem(rs.getString("default_sim"));
@@ -4632,7 +4635,7 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            DbConnection.disconnect();
+            DbConnection.disconnect(conn);
 
         }
     }//GEN-LAST:event_getOperationTypeItemStateChanged
