@@ -6143,7 +6143,7 @@ public class Home extends javax.swing.JFrame {
 
     private void addQueue(Object object) {
         try {
-           
+
             for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
                 if (objectQueue == null) {
@@ -6151,7 +6151,7 @@ public class Home extends javax.swing.JFrame {
                     createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
                 }
             }
-           
+
             Method mathod = object.getClass().getMethod("getSelectableSimPort", null);
             String portName = (String) mathod.invoke(object, null);
             Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
@@ -6159,12 +6159,9 @@ public class Home extends javax.swing.JFrame {
             //Not use here
             Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
             UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-           
-     
-           
-            
+
             // mobileRechargeDetailsDtoQueue.add(mobileRechargeDetailsDto);
-           // loadValueInTableRechargeDetails();
+            // loadValueInTableRechargeDetails();
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
@@ -6190,37 +6187,52 @@ public class Home extends javax.swing.JFrame {
                             // String key = ee.getKey();
                             //  List<Integer> values = ee.getValue();
                             // TODO: Do something.
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                     try {
+                                    while (!hashValue.getValue().isEmpty()) {
+                                        System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
+                                        Object object = hashValue.getValue().element();
+                                        Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
+                                        UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
 
-                            while (!hashValue.getValue().isEmpty()) {
-                                System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
-                                Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
-                                UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
+                                        switch (getStatus) {
+                                            case MOBILE_RECHARGE:
+                                                MobileRechargeDetailsDto headRechargeDetailsDto = (MobileRechargeDetailsDto) object;
+                                                rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());
+                                                System.err.println(getStatus);
+                                                hashValue.getValue().remove();
+                                                break;
 
-                                switch (getStatus) {
-                                    case MOBILE_RECHARGE:
-                                        MobileRechargeDetailsDto headRechargeDetailsDto =(MobileRechargeDetailsDto) object;
-                                        rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        break;
+                                            case MOBILE_BANKING:
+                                                System.err.println(getStatus);
+                                                hashValue.getValue().remove();
+                                                break;
+                                            case BILL_PAYMENT:
+                                                System.err.println(getStatus);
+                                                hashValue.getValue().remove();
+                                                break;
+                                            default:
+                                                System.err.println("none");
+                                                break;
+                                        }
+                                        //  System.err.println(portName + "-----------" + getStatus);
+                                        //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
 
-                                    case MOBILE_BANKING:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        break;
-                                    case BILL_PAYMENT:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        break;
-                                    default:
-                                        System.err.println("none");
-                                        break;
+                                    }
+                                         }  catch (InvocationTargetException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SecurityException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                                 }
-                                //  System.err.println(portName + "-----------" + getStatus);
-                                //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-                              
-                            }
+                            });
+
                            // System.err.println(hashValue.getKey()+"--->"+hashValue.getValue());
                         }
 //                        while (!mobileRechargeDetailsDtoQueue.isEmpty()) {
