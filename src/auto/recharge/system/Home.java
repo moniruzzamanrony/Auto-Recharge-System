@@ -98,7 +98,7 @@ public class Home extends javax.swing.JFrame {
     DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
     private final String TAG_TEST = "Home test: ";
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
-
+    private  Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -6143,7 +6143,7 @@ public class Home extends javax.swing.JFrame {
 
     private void addQueue(Object object) {
         try {
-            Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
+           
             for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
                 if (objectQueue == null) {
@@ -6159,12 +6159,8 @@ public class Home extends javax.swing.JFrame {
             Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
             UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
             System.err.println(portName+"-----------"+getStatus);
-            for (Entry<String, Queue<Object>> ee : createHashMapByConnectedPorts.entrySet()) {
-               // String key = ee.getKey();
-              //  List<Integer> values = ee.getValue();
-                // TODO: Do something.
-            }
-            System.err.println("-----888888888888888888888------"+createHashMapByConnectedPorts.entrySet());
+     
+           
             
             // mobileRechargeDetailsDtoQueue.add(mobileRechargeDetailsDto);
            // loadValueInTableRechargeDetails();
@@ -6189,14 +6185,41 @@ public class Home extends javax.swing.JFrame {
 
                 while (true) {
                     try {
-                        while (!mobileRechargeDetailsDtoQueue.isEmpty()) {
+                        for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
+                            // String key = ee.getKey();
+                            //  List<Integer> values = ee.getValue();
+                            // TODO: Do something.
+                            while (!hashValue.getValue().isEmpty()) {
 
-                            MobileRechargeDetailsDto headRechargeDetailsDto = mobileRechargeDetailsDtoQueue.element();
-                            rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-                            
+                                Object object = hashValue.getValue().element();
+                                Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
+                                UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
+                                switch(getStatus)
+                                {
+                                    //case UssdRequestType.
+                                }
+                              //  System.err.println(portName + "-----------" + getStatus);
+                                //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
+                                hashValue.getValue().remove();
+                            }
+                            System.err.println(hashValue.getKey()+"--->"+hashValue.getValue());
                         }
+//                        while (!mobileRechargeDetailsDtoQueue.isEmpty()) {
+//
+//                            MobileRechargeDetailsDto headRechargeDetailsDto = mobileRechargeDetailsDtoQueue.element();
+//                            rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
+//                            mobileRechargeDetailsDtoQueue.remove();
+//                        }
                         java.lang.Thread.sleep(100);
                     } catch (InterruptedException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InvocationTargetException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NoSuchMethodException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SecurityException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
@@ -6273,7 +6296,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     void rechargeDoneProcess(String trxId, String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM, String rechargeType) {
-        mobileRechargeDetailsDtoQueue.remove();
+       
         saveToDbCommandInRechargeAdmin(trxId,
                 phoneNumberRequested,
                 ammountRequested,
