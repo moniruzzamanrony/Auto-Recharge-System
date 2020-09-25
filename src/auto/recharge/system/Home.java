@@ -4675,12 +4675,14 @@ public class Home extends javax.swing.JFrame {
 
     private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
         switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
-
+        Connection conn = DbConnection.connect();
         Set<String> serviceNames = new HashSet<>();
         try {
             serviceNames.clear();
 
-            rs = DbConnection.retrieveAll("mobile_banking");
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking`";
+            ResultSet rs = st.executeQuery(sql);
             serviceNames.clear();
             while (rs.next()) {
                 serviceNames.add(rs.getString("services_name"));
@@ -4690,12 +4692,8 @@ public class Home extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                }
-            }
+
+            DbConnection.disconnect(conn);
         }
         getServiceName.removeAllItems();
 
