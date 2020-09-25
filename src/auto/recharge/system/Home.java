@@ -4858,7 +4858,7 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
-        ui.getClickDelete().addMouseListener(new MouseAdapter() {
+        ui.getClickRetry().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 deleteColumeFromRechargeDetails(userId);
@@ -5003,7 +5003,7 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
-        ui.getClickDelete().addMouseListener(new MouseAdapter() {
+        ui.getClickRetry().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
                 deleteColumeFromMobileBanking(userId);
@@ -5064,7 +5064,7 @@ public class Home extends javax.swing.JFrame {
             }
 
         });
-        ui.getClickDelete().setVisible(false);
+        ui.getClickRetry().setVisible(false);
         ui.getClickOk().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
@@ -5161,11 +5161,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getSeletedActionActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
-        if (UserInfo.role.equals("admin")) {
-            DbConnection.connect();
-            DbConnection.deleteRow("m_b_details", "TnxId", userId);
-            DbConnection.disconnect();
-
+        if (UserInfo.role.equals("admin")) {    
+            DbConnection.deleteRow("m_b_details", "TnxId", userId);        
             loadMobileBankingDetailsTable();
         } else {
             Popup.customError("Access Deny..");
@@ -5176,13 +5173,14 @@ public class Home extends javax.swing.JFrame {
     private String getMobileBankingBalance(MouseEvent evt, String serviceName) {
 
         String amount = "XX";
-
+        Connection conn = DbConnection.connect();
         Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
         List<String> ussdCodeSerialList = new ArrayList<>();
 
-        DbConnection.connect();
-        ResultSet rs = DbConnection.retrieveAll("mobile_banking");
         try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `mobile_banking`";
+            ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
                 mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
@@ -5194,8 +5192,10 @@ public class Home extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(JListPanelRenderer.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
         }
-        DbConnection.disconnect();
+        
 
         for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
 
@@ -5642,10 +5642,13 @@ public class Home extends javax.swing.JFrame {
     ------------------------ MOBILE RECHARGE PANEL--------------------------------------   
      */
     private void recharge(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
-
+        Connection conn = DbConnection.connect();
         try {
             DbConnection.connect();
-            ResultSet rs = DbConnection.findByColume("recharge_offers", "recharge_amt", ammountRequested);
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `recharge_offers` WHERE `recharge_amt`=\"" + ammountRequested + "\"";
+            ResultSet rs = st.executeQuery(sql);
+
             if (!rs.next()) {
                 Log.mgs("Test:", "2");
                 RechargeConfirmationDialogUI ui
@@ -6134,6 +6137,9 @@ public class Home extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            DbConnection.disconnect(conn);
         }
     }
 

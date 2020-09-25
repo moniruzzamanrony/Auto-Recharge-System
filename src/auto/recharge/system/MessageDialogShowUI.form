@@ -76,7 +76,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="clickOk" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace pref="58" max="32767" attributes="0"/>
-                  <Component id="clickDelete" min="-2" pref="133" max="-2" attributes="0"/>
+                  <Component id="clickREtry" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -87,7 +87,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="clickOk" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="clickDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="clickREtry" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -106,7 +106,7 @@
             <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="clickDelete">
+        <Component class="javax.swing.JButton" name="clickREtry">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="0" red="ff" type="rgb"/>

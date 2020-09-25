@@ -34,7 +34,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         clickOk = new javax.swing.JButton();
-        clickDelete = new javax.swing.JButton();
+        clickREtry = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         setMessageText = new javax.swing.JTextArea();
         toLabel = new javax.swing.JLabel();
@@ -49,9 +49,9 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
         clickOk.setForeground(new java.awt.Color(255, 255, 255));
         clickOk.setText("OK");
 
-        clickDelete.setBackground(new java.awt.Color(255, 0, 51));
-        clickDelete.setForeground(new java.awt.Color(255, 255, 255));
-        clickDelete.setText("Retry");
+        clickREtry.setBackground(new java.awt.Color(255, 0, 51));
+        clickREtry.setForeground(new java.awt.Color(255, 255, 255));
+        clickREtry.setText("Retry");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -61,7 +61,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(clickOk, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(clickDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(clickREtry, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -70,7 +70,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clickOk)
-                    .addComponent(clickDelete))
+                    .addComponent(clickREtry))
                 .addContainerGap())
         );
 
@@ -136,7 +136,7 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public JButton getClickRetry() {
-        return clickDelete;
+        return clickREtry;
     }
 
     public JLabel getClickCross() {
@@ -147,9 +147,6 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
         this.clickCross = clickCross;
     }
 
-    public void setClickDelete(JButton clickDelete) {
-        this.clickDelete = clickDelete;
-    }
 
     public JButton getClickOk() {
         return clickOk;
@@ -161,8 +158,8 @@ public class MessageDialogShowUI extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel clickCross;
-    private javax.swing.JButton clickDelete;
     private javax.swing.JButton clickOk;
+    private javax.swing.JButton clickREtry;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextArea setMessageText;
