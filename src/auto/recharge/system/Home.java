@@ -71,7 +71,6 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -117,6 +116,7 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
         showMobileRechargeBalance();
         processRequestFromMobileRechargeQueue();
+       
 
     }
 
@@ -6189,34 +6189,36 @@ public class Home extends javax.swing.JFrame {
                             // String key = ee.getKey();
                             //  List<Integer> values = ee.getValue();
                             // TODO: Do something.
-                            System.err.println("----------------------------------"+hashValue.getKey()+"-------------------------------------");
-                            while (!hashValue.getValue().isEmpty()) {
 
+                            while (!hashValue.getValue().isEmpty()) {
+                                System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
                                 Object object = hashValue.getValue().element();
                                 Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
                                 UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-                                
-                                switch(getStatus)
-                                {
+
+                                switch (getStatus) {
                                     case MOBILE_RECHARGE:
                                         System.err.println(getStatus);
+                                        hashValue.getValue().remove();
                                         break;
-                              
+
                                     case MOBILE_BANKING:
                                         System.err.println(getStatus);
+                                        hashValue.getValue().remove();
                                         break;
                                     case BILL_PAYMENT:
                                         System.err.println(getStatus);
+                                        hashValue.getValue().remove();
                                         break;
                                     default:
                                         System.err.println("none");
                                         break;
                                 }
-                              //  System.err.println(portName + "-----------" + getStatus);
+                                //  System.err.println(portName + "-----------" + getStatus);
                                 //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-                                hashValue.getValue().remove();
+                              
                             }
-                            System.err.println(hashValue.getKey()+"--->"+hashValue.getValue());
+                           // System.err.println(hashValue.getKey()+"--->"+hashValue.getValue());
                         }
 //                        while (!mobileRechargeDetailsDtoQueue.isEmpty()) {
 //

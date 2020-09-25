@@ -297,6 +297,8 @@ public final class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
+//        Home home = new Home();
+//        home.setVisible(true);
 
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
