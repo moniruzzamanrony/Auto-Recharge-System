@@ -6151,14 +6151,15 @@ public class Home extends javax.swing.JFrame {
                     createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
                 }
             }
-             System.err.println(createHashMapByConnectedPorts);
+           
             Method mathod = object.getClass().getMethod("getSelectableSimPort", null);
             String portName = (String) mathod.invoke(object, null);
             Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
             objectQueue.add(object);
+            //Not use here
             Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
             UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-            System.err.println(portName+"-----------"+getStatus);
+           
      
            
             
@@ -6198,6 +6199,8 @@ public class Home extends javax.swing.JFrame {
 
                                 switch (getStatus) {
                                     case MOBILE_RECHARGE:
+                                        MobileRechargeDetailsDto headRechargeDetailsDto =(MobileRechargeDetailsDto) object;
+                                        rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());
                                         System.err.println(getStatus);
                                         hashValue.getValue().remove();
                                         break;
@@ -6311,7 +6314,7 @@ public class Home extends javax.swing.JFrame {
         return "Expected SIM not found";
     }
 
-    void rechargeDoneProcess(String trxId, String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM, String rechargeType) {
+    void rechargeDoneProcess(String trxId, String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIMPort, String selectedPayableSIM, UssdRequestType rechargeType) {
        
         saveToDbCommandInRechargeAdmin(trxId,
                 phoneNumberRequested,
@@ -6333,10 +6336,10 @@ public class Home extends javax.swing.JFrame {
 
             while (rs.next()) {
 
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    if (selectedPayableSIM.toUpperCase()
-                            .equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                        auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+//                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+//                    if (selectedPayableSIM.toUpperCase()
+//                            .equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                        auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
                                     .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
@@ -6396,8 +6399,8 @@ public class Home extends javax.swing.JFrame {
                             Log.error("5398", "SIM Type Not Match.");
                         }
 
-                    }
-                }
+                   // }
+              // }
 
             }
 
