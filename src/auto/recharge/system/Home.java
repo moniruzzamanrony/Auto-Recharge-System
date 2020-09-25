@@ -30,6 +30,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,9 +43,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
@@ -6137,10 +6141,44 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void addQueue(MobileRechargeDetailsDto mobileRechargeDetailsDto) {
-
-        mobileRechargeDetailsDtoQueue.add(mobileRechargeDetailsDto);
-        loadValueInTableRechargeDetails();
+    private void addQueue(Object object) {
+        try {
+            Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
+                if (objectQueue == null) {
+                    Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
+                    createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
+                }
+            }
+             System.err.println(createHashMapByConnectedPorts);
+            Method mathod = object.getClass().getMethod("getSelectableSimPort", null);
+            String portName = (String) mathod.invoke(object, null);
+            Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
+            objectQueue.add(object);
+            Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
+            UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
+            System.err.println(portName+"-----------"+getStatus);
+            for (Entry<String, Queue<Object>> ee : createHashMapByConnectedPorts.entrySet()) {
+               // String key = ee.getKey();
+              //  List<Integer> values = ee.getValue();
+                // TODO: Do something.
+            }
+            System.err.println("-----888888888888888888888------"+createHashMapByConnectedPorts.entrySet());
+            
+            // mobileRechargeDetailsDtoQueue.add(mobileRechargeDetailsDto);
+           // loadValueInTableRechargeDetails();
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
