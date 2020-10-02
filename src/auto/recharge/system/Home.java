@@ -153,6 +153,8 @@ public class Home extends javax.swing.JFrame {
         currentNetworkName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
+        pandingRequestCounter = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
         getSeletedOperatorName = new javax.swing.JComboBox<>();
@@ -784,6 +786,14 @@ public class Home extends javax.swing.JFrame {
 
         jLabel107.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/help_bar_v_2.png"))); // NOI18N
 
+        pandingRequestCounter.setBackground(new java.awt.Color(0, 0, 0));
+        pandingRequestCounter.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        pandingRequestCounter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pandingRequestCounter.setText("0");
+
+        jLabel43.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel43.setText("Pandding request");
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
@@ -793,7 +803,13 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel107)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(headerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(278, 278, 278)
+                .addGap(301, 301, 301)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel43)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
+                        .addComponent(pandingRequestCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)))
+                .addGap(34, 34, 34)
                 .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerPanelLayout.setVerticalGroup(
@@ -802,7 +818,11 @@ public class Home extends javax.swing.JFrame {
             .addGroup(headerPanelLayout.createSequentialGroup()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel107)
-                    .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(headerPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pandingRequestCounter)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1055,7 +1075,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel101, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                                 .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(mobileRechargePanelLayout.createSequentialGroup()
@@ -1087,8 +1107,8 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1207, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(adsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1139,7 +1159,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(adsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jLabel101)
                 .addContainerGap())
         );
@@ -3040,6 +3060,11 @@ public class Home extends javax.swing.JFrame {
         basePanel.add(addNewContractPanel, "card2");
 
         addMobileBankingPanelInBillPay.setBackground(new java.awt.Color(255, 255, 255));
+        addMobileBankingPanelInBillPay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMobileBankingPanelInBillPayMouseClicked(evt);
+            }
+        });
         addMobileBankingPanelInBillPay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clickSandInMB.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4030,9 +4055,8 @@ public class Home extends javax.swing.JFrame {
         for (String mBank : MOBILE_BANKING_NANE) {
             getSelectedServiceCombo.addItem(mBank);
         }
-
-        for (String sim : SIM_OPERATORS_NAME) {
-            getSelectedSIMNameCombo.addItem(sim);
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
         }
 
         addKeyLisenerInMobileBankingSetting();
@@ -4674,8 +4698,9 @@ public class Home extends javax.swing.JFrame {
             getServiceName.addItem(serviceName);
         }
         getSimOperatorName.removeAllItems();
-        for (String simName : SIM_OPERATORS_NAME) {
-            getSimOperatorName.addItem(simName);
+        
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            getSimOperatorName.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
         }
         loadMobileBankingBalance();
         loadMobileBankingDetailsTable();
@@ -4805,6 +4830,7 @@ public class Home extends javax.swing.JFrame {
         mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
         userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
         phoneNumberText = tableRechargeDetailsShow.getValueAt(row, 3).toString();
+        String ammountText = tableRechargeDetailsShow.getValueAt(row, 4).toString();
         MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
 
         JDialog mgsDialog = new JDialog();
@@ -4832,6 +4858,11 @@ public class Home extends javax.swing.JFrame {
         ui.getClickRetry().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent me) {
+                getMobileNumber.setText(phoneNumberText);
+                getMobileNumber.setForeground(Color.black);
+                getAmmountInTk.setText(ammountText);
+                getAmmountInTk.setForeground(Color.black);
+                
                 deleteColumeFromRechargeDetails(userId);
                 mgsDialog.setVisible(false);
             }
@@ -5131,6 +5162,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getSeletedActionActionPerformed
 
+    private void addMobileBankingPanelInBillPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMobileBankingPanelInBillPayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMobileBankingPanelInBillPayMouseClicked
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -5378,6 +5413,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
@@ -5484,6 +5520,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JLabel nameInProfilePanel1;
     private javax.swing.JPanel netBarPanel;
+    private javax.swing.JLabel pandingRequestCounter;
     private javax.swing.JLabel passwordChange;
     private javax.swing.JPanel passwordChangePanel;
     private javax.swing.JTextField passwordForUpdate;
@@ -6156,15 +6193,7 @@ public class Home extends javax.swing.JFrame {
             String portName = (String) mathod.invoke(object, null);
             Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
             objectQueue.add(object);
-            //Not use here
-            Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
-            UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-           
-     
-           
-            
-            // mobileRechargeDetailsDtoQueue.add(mobileRechargeDetailsDto);
-            loadValueInTableRechargeDetails();
+            ussdDailREquestCounter();
         } catch (IllegalArgumentException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
@@ -6183,14 +6212,10 @@ public class Home extends javax.swing.JFrame {
         // Runs outside of the Swing UI thread
         new Thread(new Runnable() {
             public void run() {
-
                 while (true) {
                     try {
                         for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
-                            // String key = ee.getKey();
-                            //  List<Integer> values = ee.getValue();
-                            // TODO: Do something.
-                            
+
                             while (!hashValue.getValue().isEmpty()) {
                                 System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
                                 Object object = hashValue.getValue().element();
@@ -6200,35 +6225,30 @@ public class Home extends javax.swing.JFrame {
                                 switch (getStatus) {
                                     case MOBILE_RECHARGE:
                                         MobileRechargeDetailsDto headRechargeDetailsDto =(MobileRechargeDetailsDto) object;
-                                        rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());
-                                        System.err.println(getStatus);
+                                        rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());                                  
                                         hashValue.getValue().remove();
+                                        ussdDailREquestCounter();
                                         break;
 
                                     case MOBILE_BANKING:
                                         System.err.println(getStatus);
                                         hashValue.getValue().remove();
+                                         ussdDailREquestCounter();
                                         break;
                                     case BILL_PAYMENT:
                                         System.err.println(getStatus);
                                         hashValue.getValue().remove();
+                                        ussdDailREquestCounter();
                                         break;
                                     default:
                                         System.err.println("none");
                                         break;
                                 }
-                                //  System.err.println(portName + "-----------" + getStatus);
-                                //  rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-                              
+
                             }
-                           // System.err.println(hashValue.getKey()+"--->"+hashValue.getValue());
+
                         }
-//                        while (!mobileRechargeDetailsDtoQueue.isEmpty()) {
-//
-//                            MobileRechargeDetailsDto headRechargeDetailsDto = mobileRechargeDetailsDtoQueue.element();
-//                            rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSim(), "single");
-//                            mobileRechargeDetailsDtoQueue.remove();
-//                        }
+
                         java.lang.Thread.sleep(100);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -6336,71 +6356,65 @@ public class Home extends javax.swing.JFrame {
 
             while (rs.next()) {
 
-//                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-//                    if (selectedPayableSIM.toUpperCase()
-//                            .equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                        auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
-                        if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
-                            String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4672--->Ussd Request Faild");
-                            }
+                auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
+                if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
+                    String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
+                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                    Log.mgs("5347", "USSD Code:" + rechargeCode);
+                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                    Configaration.closeUssdSession();
+                    if (response.contains(",")) {
+                        responseArray = response.split(",");
+                        System.err.println();
+                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                    } else {
+                        cBalance = "Failed";
+                        statusMgs = "Failed";
+                        System.err.println("4672--->Ussd Request Faild");
+                    }
 
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                        } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
-                            String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4686--->Ussd Request Faild");
-                            }
+                    Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
+                } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
+                    String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
+                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                    Log.mgs("5347", "USSD Code:" + rechargeCode);
+                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                    Configaration.closeUssdSession();
+                    if (response.contains(",")) {
+                        responseArray = response.split(",");
+                        System.err.println();
+                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                    } else {
+                        cBalance = "Failed";
+                        statusMgs = "Failed";
+                        System.err.println("4686--->Ussd Request Faild");
+                    }
 
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                        } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
-                            String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4700--->Ussd Request Faild");
-                            }
+                    Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
+                } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
+                    String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
+                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                    Log.mgs("5347", "USSD Code:" + rechargeCode);
+                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                    Configaration.closeUssdSession();
+                    if (response.contains(",")) {
+                        responseArray = response.split(",");
+                        System.err.println();
+                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                    } else {
+                        cBalance = "Failed";
+                        statusMgs = "Failed";
+                        System.err.println("4700--->Ussd Request Faild");
+                    }
 
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
-                        } else {
-                            Popup.customError("Something is wrong.");
-                            Log.error("5398", "SIM Type Not Match.");
-                        }
-
-                   // }
-              // }
+                    Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
+                } else {
+                    Popup.customError("Something is wrong.");
+                    Log.error("5398", "SIM Type Not Match.");
+                }
 
             }
 
@@ -6412,8 +6426,7 @@ public class Home extends javax.swing.JFrame {
 
         auto.recharge.system.config.Modem.disconnect();
         // UPdate Balance after recharge
-        addBalenceInBalenceShowTable();
-        loadValueInTableRechargeDetails();
+        addBalenceInBalenceShowTable();     
         updateMobileRechargeStatusByTrxId(trxId, statusMgs, cBalance);
 
         getMobileNumber.requestFocusInWindow();
@@ -6529,79 +6542,16 @@ public class Home extends javax.swing.JFrame {
             setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
         }
     }
-
+    public void ussdDailREquestCounter() {
+        int total = 0;
+        for (Queue<Object> queue : createHashMapByConnectedPorts.values()) {
+            total += queue.size();
+        }
+        pandingRequestCounter.setText(String.valueOf(total));       
+    }
     public void loadValueInTableRechargeDetails() {
-        // gfhjfgjfj
-        int count = 1;
+
         DefaultTableModel mobileRechargeDetailsInMobileRechargePanel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
-       try{
-                           for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
-             
-                            if (!hashValue.getValue().isEmpty()) {
-                                System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
-                                Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
-                                UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-
-                                switch (getStatus) {
-                                    case MOBILE_RECHARGE:
-                                        MobileRechargeDetailsDto headRechargeDetailsDto = (MobileRechargeDetailsDto) object;
-                                        mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
-                                            headRechargeDetailsDto.getTrxId(),
-                                            headRechargeDetailsDto.getDateAndTime(),
-                                            headRechargeDetailsDto.getPostPaidOrPostPaid(),
-                                            headRechargeDetailsDto.getPhoneNumber(),
-                                            headRechargeDetailsDto.getAmmount(),
-                                            headRechargeDetailsDto.getSelectableSim(),
-                                            "Pending",
-                                            "Pending"});
-                                        System.err.println(getStatus);
-
-                                        break;
-
-                                    case MOBILE_BANKING:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        break;
-                                    case BILL_PAYMENT:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        break;
-                                    default:
-                                        System.err.println("none");
-                                        break;
-                                }
-     
-                            }
-                         
-                        }
-
-                        java.lang.Thread.sleep(100);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InvocationTargetException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (NoSuchMethodException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SecurityException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        
-//        
-//        for (MobileRechargeDetailsDto mobileRechargeDetailsDto : mobileRechargeDetailsDtoQueue) {
-//            mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
-//                mobileRechargeDetailsDto.getTrxId(),
-//                mobileRechargeDetailsDto.getDateAndTime(),
-//                mobileRechargeDetailsDto.getPostPaidOrPostPaid(),
-//                mobileRechargeDetailsDto.getPhoneNumber(),
-//                mobileRechargeDetailsDto.getAmmount(),
-//                mobileRechargeDetailsDto.getSelectableSim(),
-//                "Pending",
-//                "Pending"});
-//
-//        }
         Connection conn = DbConnection.connect();
         try {
             Statement st = conn.createStatement();
@@ -7218,6 +7168,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void sendMobileBankingRequest() {
+        
         System.out.println("Mobile banking Process start..");
         String service = getServiceName.getSelectedItem().toString();
         String actionType = getOperationType.getSelectedItem().toString();
