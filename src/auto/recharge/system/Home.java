@@ -7169,7 +7169,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void sendMobileBankingRequest() {
-        
+        String trxId= Configaration.getUUID();
+        saveInMobileBankingTable(trxId,"Processing", "Processing");
+        loadMobileBankingDetailsTable();
         System.out.println("Mobile banking Process start...");
         String service = getServiceName.getSelectedItem().toString();
         String actionType = getOperationType.getSelectedItem().toString();
@@ -7224,6 +7226,7 @@ public class Home extends javax.swing.JFrame {
         System.err.println("Request USSD CODE="+ussdCodeSerialList);
         // Sand Ussd Serial for Request
         String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
+         Configaration.wait(2000);
         // Sand Ussd Serial for Balance
         String acBalanceInHax = sendSerialUSSDCode(balanceUssdCodeList, sim);
         Pattern p3 = Pattern.compile("\\d+");
@@ -7232,12 +7235,33 @@ public class Home extends javax.swing.JFrame {
             balancePaseList.add(m3.group());
             System.out.println(m3.group());
         }
-        System.err.println("----------------------------------" + balancePaseList.get(0));
+        if (balancePaseList.get(0).equals("16247")) {
+            System.err.println("Possible duplicate request, call 16247 for details.");
+            updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
+        } else {
+            System.err.println("----------------------------------" + balancePaseList.get(0));
 
-        saveInMobileBankingTable(feedBackMgs,balancePaseList.get(0));
+            updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), balancePaseList.get(0));
+        }
+
+        loadMobileBankingDetailsTable();
         getPhoneNumberInBillPayment.setText("");
         getAmmountInBillPayment.setText("");
 
+    }
+    
+    private void updateInMobileBankingDbById(String trxId, String status, String currentBalance) {
+        Connection conn = DbConnection.connect();
+        String sql = "UPDATE m_b_details SET c_balance = '" + currentBalance + "', result = '" + status + "' WHERE TnxId ='" + trxId + "'";
+        try {
+            Statement st = conn.createStatement();
+            st.execute(sql);
+
+        } catch (SQLException ex) {
+            Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+        }
+        DbConnection.disconnect(conn);
+       
     }
 
     private boolean mobileBankingPanelValidation() {
@@ -7259,12 +7283,12 @@ public class Home extends javax.swing.JFrame {
                 getOperationType.getSelectedItem().toString(),
                 getServiceName.getSelectedItem().toString());
 
-        JDialog jDialog = new JDialog();
-        jDialog.add(ui);
-        jDialog.setSize(1400, 941);
-        jDialog.setLocationRelativeTo(null);
-        jDialog.setUndecorated(true);
-        jDialog.setVisible(true);
+        JDialog confirmDialog = new JDialog();
+        confirmDialog.add(ui);
+        confirmDialog.setSize(1400, 941);
+        confirmDialog.setLocationRelativeTo(null);
+        confirmDialog.setUndecorated(true);
+        confirmDialog.setVisible(true);
 
         ui.getClickClose().addActionListener(new ActionListener() {
             @Override
@@ -7272,7 +7296,7 @@ public class Home extends javax.swing.JFrame {
                 getPhoneNumberInBillPayment.setText("");
                 getAmmountInBillPayment.setText("");
                 getMobileNumber.requestFocusInWindow();
-                jDialog.setVisible(false);
+                confirmDialog.setVisible(false);
             }
 
         });
@@ -7284,7 +7308,7 @@ public class Home extends javax.swing.JFrame {
                     getPhoneNumberInBillPayment.setText("");
                     getAmmountInBillPayment.setText("");
                     getMobileNumber.requestFocusInWindow();
-                    jDialog.setVisible(false);
+                    confirmDialog.setVisible(false);
 
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -7296,25 +7320,23 @@ public class Home extends javax.swing.JFrame {
         });
 
         ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-            clickSend.setEnabled(false);
+           
             SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                 @Override
                 protected Void doInBackground() throws Exception {
                     System.err.println("Confirm click");
-                    jDialog.setVisible(false);
-                    clickSandInMB.setVisible(false);
-                   
-                    sendMobileBankingRequest();
+                    confirmDialog.setVisible(false);
 
+                    sendMobileBankingRequest();
+                    getServiceName.requestFocusInWindow();
+                    refrash();
                     return null;
                 }
 
                 @Override
                 protected void done() {
-                    refrash();
-                    loadMobileBankingDetailsTable();
-                    getServiceName.requestFocusInWindow();
-                    clickSandInMB.setVisible(true);
+
+
                    
                 }
 
@@ -7331,21 +7353,17 @@ public class Home extends javax.swing.JFrame {
                         @Override
                         protected Void doInBackground() throws Exception {
                             System.err.println("Confirm click");
-                            jDialog.setVisible(false);
-                            clickSandInMB.setVisible(false);
-                           
+                            confirmDialog.setVisible(false);
+
                             sendMobileBankingRequest();
+                            getServiceName.requestFocusInWindow();
+                            refrash();
 
                             return null;
                         }
 
                         @Override
                         protected void done() {
-                            refrash();
-                            loadMobileBankingDetailsTable();
-                            getServiceName.requestFocusInWindow();
-                            clickSandInMB.setVisible(true);
-                            
 
                         }
 
@@ -7364,7 +7382,7 @@ public class Home extends javax.swing.JFrame {
         ui.getClickEdit().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                jDialog.setVisible(false);
+                confirmDialog.setVisible(false);
             }
 
         });
@@ -7372,7 +7390,7 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    jDialog.setVisible(false);
+                    confirmDialog.setVisible(false);
                 }
                 if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
                     ui.getClickClose().requestFocusInWindow();
@@ -7387,27 +7405,28 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void saveInMobileBankingTable(String finalResultInHax,String amount) {
-        String result = Configaration.haxToStringConvert(finalResultInHax);
+    private void saveInMobileBankingTable(String trxId,String finalResult,String c_amount) {
+        String result = finalResult;
         String service = getServiceName.getSelectedItem().toString();
         String actionType = getOperationType.getSelectedItem().toString();
-        String acPhoneNo = getPhoneNumberInBillPayment.getText();      
+        String acPhoneNo = getPhoneNumberInBillPayment.getText(); 
+        String acAmount = getAmmountInBillPayment.getText(); 
         String sim = getSimOperatorName.getSelectedItem().toString();
 
         Connection conn = DbConnection.connect();
-        String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId) VALUES(?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId,c_balance) VALUES(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, service);
             preparedStatement.setString(2, actionType);
             preparedStatement.setString(3, acPhoneNo);
-            preparedStatement.setString(4, amount);
+            preparedStatement.setString(4, acAmount);
             preparedStatement.setString(5, sim);
             preparedStatement.setString(6, result);
             preparedStatement.setString(7, Configaration.getCurrentDateAndTime());
             preparedStatement.setString(8, "ADMIN");
-            preparedStatement.setString(9, Configaration.getUUID());
-
+            preparedStatement.setString(9, trxId);
+            preparedStatement.setString(10, c_amount);
             preparedStatement.execute();
 
         } catch (SQLException ex) {
@@ -7422,7 +7441,7 @@ public class Home extends javax.swing.JFrame {
     private void loadMobileBankingDetailsTable() {
         Connection conn = DbConnection.connect();
         try {
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Date and Time"}, 0);
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status","Current Balance", "Date and Time"}, 0);
 
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM `m_b_details`";
@@ -7430,7 +7449,7 @@ public class Home extends javax.swing.JFrame {
             while (rs.next()) {
                 if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                     defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                        rs.getString("amount"), rs.getString("sim"), rs.getString("result"), rs.getString("date_time")});
+                        rs.getString("amount"), rs.getString("sim"), rs.getString("result"),rs.getString("c_balance"), rs.getString("date_time")});
                 }
 
             }
