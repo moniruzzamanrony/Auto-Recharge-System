@@ -3875,7 +3875,7 @@ public class Home extends javax.swing.JFrame {
         getUssdCode.requestFocusInWindow();
         refrash();
         ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-            getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName());
+            getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName()+ "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
         });
         addKeyLIsenerInUssdDailPad();
     }//GEN-LAST:event_clickUssdDailActionPerformed
@@ -3883,9 +3883,9 @@ public class Home extends javax.swing.JFrame {
     private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
         switchPanelViaMenu(groupLoadPanel);
         getSelectedSimInGroupRecharge1.removeAllItems();
-        for (String value : SIM_OPERATORS_NAME) {
-            getSelectedSimInGroupRecharge1.addItem(value);
-
+ 
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
         }
         sendingLogLabel.setVisible(false);
         loadDataInGroupRechargeTable();
@@ -6522,7 +6522,8 @@ public class Home extends javax.swing.JFrame {
         String[] responses = null;
         String getOperator = getSelectedSim.getSelectedItem().toString();
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
+            selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName()+ "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+            if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
                 System.out.println(auto.recharge.system.config.Modem.disconnect());
@@ -7169,16 +7170,18 @@ public class Home extends javax.swing.JFrame {
 
     private void sendMobileBankingRequest() {
         
-        System.out.println("Mobile banking Process start..");
+        System.out.println("Mobile banking Process start...");
         String service = getServiceName.getSelectedItem().toString();
         String actionType = getOperationType.getSelectedItem().toString();
         String acPhoneNo = getPhoneNumberInBillPayment.getText();
         String amount = getAmmountInBillPayment.getText();
         String sim = getSimOperatorName.getSelectedItem().toString();
         List<String> ussdCodeSerialList = new ArrayList<>();
-
+        List<String> balanceUssdCodeList = new ArrayList<>();
+        List<String> balancePaseList = new ArrayList<>();
         boolean isSIMFound = false;
         String res = "Could not get response from server";
+        String balanceUssdCode = null;
         String ussdReplace = null;
         Connection conn = DbConnection.connect();
         try {
@@ -7188,7 +7191,9 @@ public class Home extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 if (actionType.equals(rs.getString("task_name"))) {
+                 
                     ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
+                    balanceUssdCode = rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin"));
                     isSIMFound = true;
                 }
             }
@@ -7206,49 +7211,30 @@ public class Home extends javax.swing.JFrame {
 
             ussdCodeSerialList.add(m.group());
         }
+        Matcher m1 = p.matcher(balanceUssdCode);
+        balanceUssdCodeList.clear();
+        while (m1.find()) {
 
+            balanceUssdCodeList.add(m1.group());
+        }
         if (!isSIMFound) {
             Popup.customError("SIM not found !!");
         }
 
-        System.err.println(ussdCodeSerialList);
+        System.err.println("Request USSD CODE="+ussdCodeSerialList);
+        // Sand Ussd Serial for Request
         String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
-        System.err.println("----------------------------------=========================" + feedBackMgs);
+        // Sand Ussd Serial for Balance
+        String acBalanceInHax = sendSerialUSSDCode(balanceUssdCodeList, sim);
+        Pattern p3 = Pattern.compile("\\d+");
+        Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
+        while (m3.find()) {
+            balancePaseList.add(m3.group());
+            System.out.println(m3.group());
+        }
+        System.err.println("----------------------------------" + balancePaseList.get(0));
 
-        MessageDialogShowUI ui = new MessageDialogShowUI(Configaration.haxToStringConvert(feedBackMgs), getPhoneNumberInBillPayment.getText());
-
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().setVisible(false);
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-        saveInMobileBankingTable(feedBackMgs);
+        saveInMobileBankingTable(feedBackMgs,balancePaseList.get(0));
         getPhoneNumberInBillPayment.setText("");
         getAmmountInBillPayment.setText("");
 
@@ -7317,7 +7303,7 @@ public class Home extends javax.swing.JFrame {
                     System.err.println("Confirm click");
                     jDialog.setVisible(false);
                     clickSandInMB.setVisible(false);
-                    processtingLoderDialog.setVisible(true);
+                   
                     sendMobileBankingRequest();
 
                     return null;
@@ -7329,7 +7315,7 @@ public class Home extends javax.swing.JFrame {
                     loadMobileBankingDetailsTable();
                     getServiceName.requestFocusInWindow();
                     clickSandInMB.setVisible(true);
-                    processtingLoderDialog.setVisible(false);
+                   
                 }
 
             };
@@ -7347,7 +7333,7 @@ public class Home extends javax.swing.JFrame {
                             System.err.println("Confirm click");
                             jDialog.setVisible(false);
                             clickSandInMB.setVisible(false);
-                            processtingLoderDialog.setVisible(true);
+                           
                             sendMobileBankingRequest();
 
                             return null;
@@ -7359,7 +7345,7 @@ public class Home extends javax.swing.JFrame {
                             loadMobileBankingDetailsTable();
                             getServiceName.requestFocusInWindow();
                             clickSandInMB.setVisible(true);
-                            processtingLoderDialog.setVisible(false);
+                            
 
                         }
 
@@ -7401,12 +7387,11 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void saveInMobileBankingTable(String finalResultInHax) {
+    private void saveInMobileBankingTable(String finalResultInHax,String amount) {
         String result = Configaration.haxToStringConvert(finalResultInHax);
         String service = getServiceName.getSelectedItem().toString();
         String actionType = getOperationType.getSelectedItem().toString();
-        String acPhoneNo = getPhoneNumberInBillPayment.getText();
-        String amount = getAmmountInBillPayment.getText();
+        String acPhoneNo = getPhoneNumberInBillPayment.getText();      
         String sim = getSimOperatorName.getSelectedItem().toString();
 
         Connection conn = DbConnection.connect();
@@ -8556,14 +8541,15 @@ public class Home extends javax.swing.JFrame {
         List<String> responseList = new ArrayList<>();
         String res = "Could not get response from server";
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(sim.toUpperCase())) {
+              String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+            if (selectedSimCardWithNumber.toUpperCase().equals(sim.toUpperCase())) {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                 for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
                     if (i == 0) {
                         String ussd = "*" + ussdCodeSerialList.get(i) + "#";
                         System.out.println("Sending by " + ussd + ":if");
                         res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                        Configaration.wait(300);
+                        Configaration.wait(400);
                         responseList.add(res);
                         System.out.println("Response " + res);
 
@@ -8571,14 +8557,14 @@ public class Home extends javax.swing.JFrame {
                         String ussd = ussdCodeSerialList.get(i);
                         System.out.println("Sending by " + ussd + ":else");
                         res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                        Configaration.wait(300);
+                        Configaration.wait(400);
                         if (res.split(",").length == 1) {
-                            int a = Popup.customError("Sending Failed..");
-                            if (a == 0) {
+                            System.err.println("Tast="+res);
+                           
                                 Configaration.closeUssdSession();
                                 auto.recharge.system.config.Modem.disconnect();
                                 return "53656e64696e67204661696c6564";
-                            }
+                           
 
                         }
                         responseList.add(res);
