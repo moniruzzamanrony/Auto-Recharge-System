@@ -128,6 +128,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         suggList = new javax.swing.JList<>();
         popupForSuggestManu = new javax.swing.JPopupMenu();
+        dateChooserPanelBeanInfo1 = new com.toedter.calendar.demo.DateChooserPanelBeanInfo();
         menuPanel = new javax.swing.JPanel();
         logoPanel = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
@@ -189,30 +190,75 @@ public class Home extends javax.swing.JFrame {
         jLabel82 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
         resellerPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         detailsPanel = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        tableForDetails = new javax.swing.JTable();
-        searchPanel = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        productInfo = new javax.swing.JPanel();
+        ProductInfoPanel = new javax.swing.JPanel();
+        productPurchase = new javax.swing.JPanel();
+        ProductPurchasePanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        getPhoneNoForSearch = new javax.swing.JTextField();
-        clickSearchedByPhoneNoBut = new javax.swing.JButton();
-        jSeparator6 = new javax.swing.JSeparator();
-        jLabel53 = new javax.swing.JLabel();
-        clickSearchedfromToBut = new javax.swing.JButton();
-        jLabel54 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
-        jLabel56 = new javax.swing.JLabel();
-        clickSearchedReportDownload = new javax.swing.JButton();
-        clickResetBut = new javax.swing.JButton();
-        fromDateChooser = new com.toedter.calendar.JDateChooser();
-        toDateChooser = new com.toedter.calendar.JDateChooser();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel119 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
-        setMgsDetails = new javax.swing.JTextArea();
-        getSelectedOptionFroTable = new javax.swing.JComboBox<>();
-        subItemsComboBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jLabel131 = new javax.swing.JLabel();
+        totalAmt = new javax.swing.JPanel();
+        jLabel120 = new javax.swing.JLabel();
+        tAmountInPPurchase = new javax.swing.JLabel();
+        totalItems = new javax.swing.JPanel();
+        jLabel122 = new javax.swing.JLabel();
+        tAmountInPPurchase1 = new javax.swing.JLabel();
+        paid = new javax.swing.JPanel();
+        jLabel124 = new javax.swing.JLabel();
+        tAmountInPPurchase3 = new javax.swing.JLabel();
+        comission = new javax.swing.JPanel();
+        jLabel123 = new javax.swing.JLabel();
+        tAmountInPPurchase2 = new javax.swing.JLabel();
+        due = new javax.swing.JPanel();
+        jLabel125 = new javax.swing.JLabel();
+        tAmountInPPurchase4 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel50 = new javax.swing.JLabel();
+        todaySellSamary = new javax.swing.JPanel();
+        jLabel53 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel108 = new javax.swing.JLabel();
+        jLabel109 = new javax.swing.JLabel();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        tInvoiceInToday = new javax.swing.JLabel();
+        tSellsInToday = new javax.swing.JLabel();
+        tReturnInToday = new javax.swing.JLabel();
+        tDiscountInToday = new javax.swing.JLabel();
+        tVatInToday = new javax.swing.JLabel();
+        tShippingCostInToday = new javax.swing.JLabel();
+        tGrandTotalInToday = new javax.swing.JLabel();
+        tPaidInToday = new javax.swing.JLabel();
+        tDueInToday = new javax.swing.JLabel();
+        cash = new javax.swing.JPanel();
+        jLabel115 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel116 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        jLabel118 = new javax.swing.JLabel();
+        jLabel121 = new javax.swing.JLabel();
+        dayOpeningInCash = new javax.swing.JLabel();
+        cashReceivedInCash = new javax.swing.JLabel();
+        cashPaymentInCash = new javax.swing.JLabel();
+        cashInCash = new javax.swing.JLabel();
         settingsPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         myProfile = new javax.swing.JLabel();
@@ -641,16 +687,14 @@ public class Home extends javax.swing.JFrame {
         title3.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         title3.setForeground(new java.awt.Color(255, 255, 255));
         title3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title3.setText("Details");
+        title3.setText("Shop Management");
 
         javax.swing.GroupLayout detailsTabLayout = new javax.swing.GroupLayout(detailsTab);
         detailsTab.setLayout(detailsTabLayout);
         detailsTabLayout.setHorizontalGroup(
             detailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(detailsTabLayout.createSequentialGroup()
-                .addComponent(icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(title3, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+            .addComponent(icon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         detailsTabLayout.setVerticalGroup(
             detailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1108,7 +1152,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
                             .addComponent(jScrollPane2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(adsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1244,7 +1288,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(hoverViewrocket, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
@@ -1266,37 +1310,301 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hoverViewrocket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(596, Short.MAX_VALUE))
+                .addContainerGap(597, Short.MAX_VALUE))
         );
 
         basePanel.add(billPayPanel, "card2");
 
         resellerPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setText("re seller");
-
         javax.swing.GroupLayout resellerPanelLayout = new javax.swing.GroupLayout(resellerPanel);
         resellerPanel.setLayout(resellerPanelLayout);
         resellerPanelLayout.setHorizontalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resellerPanelLayout.createSequentialGroup()
-                .addGap(566, 566, 566)
-                .addComponent(jLabel3)
-                .addContainerGap(978, Short.MAX_VALUE))
+            .addGap(0, 1603, Short.MAX_VALUE)
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resellerPanelLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
-                .addComponent(jLabel3)
-                .addContainerGap(680, Short.MAX_VALUE))
+            .addGap(0, 908, Short.MAX_VALUE)
         );
 
         basePanel.add(resellerPanel, "card2");
 
         detailsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        tableForDetails.setModel(new javax.swing.table.DefaultTableModel(
+        ProductInfoPanel.setBackground(new java.awt.Color(204, 204, 255));
+
+        javax.swing.GroupLayout ProductInfoPanelLayout = new javax.swing.GroupLayout(ProductInfoPanel);
+        ProductInfoPanel.setLayout(ProductInfoPanelLayout);
+        ProductInfoPanelLayout.setHorizontalGroup(
+            ProductInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1172, Short.MAX_VALUE)
+        );
+        ProductInfoPanelLayout.setVerticalGroup(
+            ProductInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 837, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout productInfoLayout = new javax.swing.GroupLayout(productInfo);
+        productInfo.setLayout(productInfoLayout);
+        productInfoLayout.setHorizontalGroup(
+            productInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productInfoLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(ProductInfoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        productInfoLayout.setVerticalGroup(
+            productInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productInfoLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(ProductInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Product Information", productInfo);
+
+        ProductPurchasePanel.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("INVOICE #");
+
+        jTextField1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("jTextField1");
+
+        jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("SUPPLIER #");
+
+        jTextField2.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("jTextField1");
+
+        jLabel119.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel119.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel119.setText("DATE #");
+
+        jButton1.setText("Save");
+
+        jLabel131.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
+        jLabel131.setForeground(new java.awt.Color(255, 102, 102));
+        jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel131.setText("Summary");
+
+        totalAmt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel120.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel120.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel120.setText("TOTAL AMOUNT");
+
+        tAmountInPPurchase.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchase.setText("0.0");
+
+        javax.swing.GroupLayout totalAmtLayout = new javax.swing.GroupLayout(totalAmt);
+        totalAmt.setLayout(totalAmtLayout);
+        totalAmtLayout.setHorizontalGroup(
+            totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(totalAmtLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel120, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        totalAmtLayout.setVerticalGroup(
+            totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(totalAmtLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jLabel120)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tAmountInPPurchase)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        totalItems.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel122.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel122.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel122.setText("TOTAL ITEMS");
+
+        tAmountInPPurchase1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchase1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchase1.setText("0.0");
+
+        javax.swing.GroupLayout totalItemsLayout = new javax.swing.GroupLayout(totalItems);
+        totalItems.setLayout(totalItemsLayout);
+        totalItemsLayout.setHorizontalGroup(
+            totalItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(totalItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(totalItemsLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(totalItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel122, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchase1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        totalItemsLayout.setVerticalGroup(
+            totalItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(totalItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(totalItemsLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jLabel122)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tAmountInPPurchase1)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        paid.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel124.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel124.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel124.setText("PAID");
+
+        tAmountInPPurchase3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchase3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchase3.setText("0.0");
+
+        javax.swing.GroupLayout paidLayout = new javax.swing.GroupLayout(paid);
+        paid.setLayout(paidLayout);
+        paidLayout.setHorizontalGroup(
+            paidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(paidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paidLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(paidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel124, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchase3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        paidLayout.setVerticalGroup(
+            paidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(paidLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paidLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jLabel124)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tAmountInPPurchase3)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        comission.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel123.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel123.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel123.setText("COMMISSION");
+
+        tAmountInPPurchase2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchase2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchase2.setText("0.0");
+
+        javax.swing.GroupLayout comissionLayout = new javax.swing.GroupLayout(comission);
+        comission.setLayout(comissionLayout);
+        comissionLayout.setHorizontalGroup(
+            comissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(comissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(comissionLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(comissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel123, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchase2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        comissionLayout.setVerticalGroup(
+            comissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(comissionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(comissionLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jLabel123)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tAmountInPPurchase2)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        due.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel125.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel125.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel125.setText("DUE");
+
+        tAmountInPPurchase4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchase4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchase4.setText("0.0");
+
+        javax.swing.GroupLayout dueLayout = new javax.swing.GroupLayout(due);
+        due.setLayout(dueLayout);
+        dueLayout.setHorizontalGroup(
+            dueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(dueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dueLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(dueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel125, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchase4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap()))
+        );
+        dueLayout.setVerticalGroup(
+            dueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+            .addGroup(dueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dueLayout.createSequentialGroup()
+                    .addGap(26, 26, 26)
+                    .addComponent(jLabel125)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(tAmountInPPurchase4)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totalAmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel131, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totalItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comission, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(paid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(due, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel131)
+                .addGap(18, 18, 18)
+                .addComponent(totalAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totalItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(due, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButton1)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1307,217 +1615,445 @@ public class Home extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableForDetails.setSelectionBackground(new java.awt.Color(255, 51, 51));
-        tableForDetails.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableForDetailsMouseClicked(evt);
-            }
-        });
-        jScrollPane6.setViewportView(tableForDetails);
+        jScrollPane6.setViewportView(jTable1);
 
-        searchPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 3));
-
-        jLabel4.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Search");
-
-        jLabel50.setText("Phone Number: ");
-
-        clickSearchedByPhoneNoBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
-        clickSearchedByPhoneNoBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSearchedByPhoneNoButActionPerformed(evt);
-            }
-        });
-
-        jLabel53.setText("From");
-
-        clickSearchedfromToBut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/search.png"))); // NOI18N
-        clickSearchedfromToBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSearchedfromToButActionPerformed(evt);
-            }
-        });
-
-        jLabel54.setText("To");
-
-        jLabel56.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText("Download Reports");
-
-        clickSearchedReportDownload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/download.png"))); // NOI18N
-        clickSearchedReportDownload.setText("Export Database ");
-        clickSearchedReportDownload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickSearchedReportDownloadActionPerformed(evt);
-            }
-        });
-
-        clickResetBut.setBackground(new java.awt.Color(255, 102, 102));
-        clickResetBut.setForeground(new java.awt.Color(255, 255, 255));
-        clickResetBut.setText("Refrash");
-        clickResetBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickResetButActionPerformed(evt);
-            }
-        });
-
-        fromDateChooser.setDateFormatString("yy/MM/dd");
-
-        toDateChooser.setDateFormatString("yy/MM/dd");
-
-        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
-        searchPanel.setLayout(searchPanelLayout);
-        searchPanelLayout.setHorizontalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator3)
-            .addComponent(jSeparator7)
-            .addComponent(jSeparator6)
-            .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(clickResetBut)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                                .addComponent(clickSearchedReportDownload, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))))
-                    .addGroup(searchPanelLayout.createSequentialGroup()
-                        .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                                .addComponent(getPhoneNoForSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clickSearchedByPhoneNoBut))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel54)
-                                    .addComponent(toDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel50)
-                                    .addComponent(jLabel53))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(fromDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+        javax.swing.GroupLayout ProductPurchasePanelLayout = new javax.swing.GroupLayout(ProductPurchasePanel);
+        ProductPurchasePanel.setLayout(ProductPurchasePanelLayout);
+        ProductPurchasePanelLayout.setHorizontalGroup(
+            ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel119)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 147, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        searchPanelLayout.setVerticalGroup(
-            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clickResetBut)
-                    .addComponent(jLabel4))
-                .addGap(8, 8, 8)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jLabel50)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(clickSearchedByPhoneNoBut)
-                    .addComponent(getPhoneNoForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel53)
-                .addGap(7, 7, 7)
-                .addComponent(fromDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel54)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickSearchedfromToBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(toDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(160, 160, 160)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+        ProductPurchasePanelLayout.setVerticalGroup(
+            ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel119)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel56)
-                .addGap(42, 42, 42)
-                .addComponent(clickSearchedReportDownload)
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout productPurchaseLayout = new javax.swing.GroupLayout(productPurchase);
+        productPurchase.setLayout(productPurchaseLayout);
+        productPurchaseLayout.setHorizontalGroup(
+            productPurchaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productPurchaseLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(ProductPurchasePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        setMgsDetails.setColumns(20);
-        setMgsDetails.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        setMgsDetails.setForeground(new java.awt.Color(255, 102, 102));
-        setMgsDetails.setRows(5);
-        setMgsDetails.setText("ghbfgh");
-        setMgsDetails.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(setMgsDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1095, Short.MAX_VALUE)
+        productPurchaseLayout.setVerticalGroup(
+            productPurchaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(productPurchaseLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(ProductPurchasePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+
+        jTabbedPane1.addTab("Product Purchase", productPurchase);
+
+        jLabel30.setText("3");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(592, 592, 592)
+                .addComponent(jLabel30)
+                .addContainerGap(708, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(jLabel30)
+                .addContainerGap(635, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Product Sell", jPanel11);
+
+        jLabel50.setText("4");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(649, Short.MAX_VALUE)
+                .addComponent(jLabel50)
+                .addGap(651, 651, 651))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(jLabel50)
+                .addContainerGap(643, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Product Warranty ", jPanel12);
+
+        todaySellSamary.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel53.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel53.setText("TODAY SELL SUMMARY");
+
+        jSeparator3.setBackground(new java.awt.Color(255, 102, 102));
+
+        jLabel54.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel54.setText("Total Sales :");
+
+        jLabel56.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel56.setText("Total Invoice:");
+
+        jLabel108.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel108.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel108.setText("Total Return :");
+
+        jLabel109.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel109.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel109.setText("VAT Amount :");
+
+        jLabel110.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel110.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel110.setText("Shipping Cost :");
+
+        jLabel111.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel111.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel111.setText("Discount       :");
+
+        jSeparator6.setBackground(new java.awt.Color(153, 0, 51));
+
+        jLabel112.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel112.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel112.setText("GRAND TOTAL:");
+
+        jLabel113.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel113.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel113.setText("PAID                   :");
+
+        jLabel114.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel114.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel114.setText("DUE                   :");
+
+        tInvoiceInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tInvoiceInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tInvoiceInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tInvoiceInToday.setText("0.0");
+
+        tSellsInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tSellsInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tSellsInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tSellsInToday.setText("0.0");
+
+        tReturnInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tReturnInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tReturnInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tReturnInToday.setText("0.0");
+
+        tDiscountInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tDiscountInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tDiscountInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tDiscountInToday.setText("0.0");
+
+        tVatInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tVatInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tVatInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tVatInToday.setText("0.0");
+
+        tShippingCostInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tShippingCostInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tShippingCostInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tShippingCostInToday.setText("0.0");
+
+        tGrandTotalInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tGrandTotalInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tGrandTotalInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tGrandTotalInToday.setText("0.0");
+
+        tPaidInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tPaidInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tPaidInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tPaidInToday.setText("0.0");
+
+        tDueInToday.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tDueInToday.setForeground(new java.awt.Color(0, 51, 51));
+        tDueInToday.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tDueInToday.setText("0.0");
+
+        javax.swing.GroupLayout todaySellSamaryLayout = new javax.swing.GroupLayout(todaySellSamary);
+        todaySellSamary.setLayout(todaySellSamaryLayout);
+        todaySellSamaryLayout.setHorizontalGroup(
+            todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator3)
+            .addComponent(jSeparator6)
+            .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                .addComponent(jLabel114)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tDueInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                .addComponent(jLabel113)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tPaidInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                .addComponent(jLabel112)
+                                .addGap(33, 33, 33)
+                                .addComponent(tGrandTotalInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                        .addComponent(jLabel110)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tShippingCostInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                        .addComponent(jLabel54)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tSellsInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                        .addComponent(jLabel108)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tReturnInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                        .addComponent(jLabel111)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tDiscountInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                                        .addComponent(jLabel109)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tVatInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, todaySellSamaryLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tInvoiceInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(jLabel56)
+                    .addContainerGap(162, Short.MAX_VALUE)))
+        );
+        todaySellSamaryLayout.setVerticalGroup(
+            todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(todaySellSamaryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(setMgsDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jLabel53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tInvoiceInToday)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel54)
+                    .addComponent(tSellsInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel108)
+                    .addComponent(tReturnInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel111)
+                    .addComponent(tDiscountInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel109)
+                    .addComponent(tVatInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel110)
+                    .addComponent(tShippingCostInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel112)
+                    .addComponent(tGrandTotalInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel113)
+                    .addComponent(tPaidInToday))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel114)
+                    .addComponent(tDueInToday))
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(todaySellSamaryLayout.createSequentialGroup()
+                    .addGap(65, 65, 65)
+                    .addComponent(jLabel56)
+                    .addContainerGap(258, Short.MAX_VALUE)))
         );
 
-        getSelectedOptionFroTable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "My Recharge", "Inbox", "Mobile Banking", "Bill Payment" }));
-        getSelectedOptionFroTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getSelectedOptionFroTableActionPerformed(evt);
-            }
-        });
+        cash.setBackground(new java.awt.Color(204, 255, 255));
 
-        subItemsComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subItemsComboBoxActionPerformed(evt);
-            }
-        });
+        jLabel115.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel115.setText("Cash");
+
+        jSeparator7.setBackground(new java.awt.Color(255, 102, 102));
+
+        jLabel116.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel116.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel116.setText("Cash Received :");
+
+        jLabel117.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel117.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel117.setText("Day Opening    :");
+
+        jLabel118.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel118.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel118.setText("Cash Payment :");
+
+        jLabel121.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel121.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel121.setText("Cash                   :");
+
+        dayOpeningInCash.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        dayOpeningInCash.setForeground(new java.awt.Color(0, 51, 51));
+        dayOpeningInCash.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        dayOpeningInCash.setText("0.0");
+
+        cashReceivedInCash.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        cashReceivedInCash.setForeground(new java.awt.Color(0, 51, 51));
+        cashReceivedInCash.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cashReceivedInCash.setText("0.0");
+
+        cashPaymentInCash.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        cashPaymentInCash.setForeground(new java.awt.Color(0, 51, 51));
+        cashPaymentInCash.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cashPaymentInCash.setText("0.0");
+
+        cashInCash.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        cashInCash.setForeground(new java.awt.Color(0, 51, 51));
+        cashInCash.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cashInCash.setText("0.0");
+
+        javax.swing.GroupLayout cashLayout = new javax.swing.GroupLayout(cash);
+        cash.setLayout(cashLayout);
+        cashLayout.setHorizontalGroup(
+            cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator7)
+            .addGroup(cashLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel115, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(cashLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cashLayout.createSequentialGroup()
+                                .addComponent(jLabel116)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                .addComponent(cashReceivedInCash, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(cashLayout.createSequentialGroup()
+                                .addComponent(jLabel118)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cashPaymentInCash, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(cashLayout.createSequentialGroup()
+                                .addComponent(jLabel121)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cashInCash, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cashLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(dayOpeningInCash, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cashLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(jLabel117)
+                    .addContainerGap(162, Short.MAX_VALUE)))
+        );
+        cashLayout.setVerticalGroup(
+            cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cashLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel115)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(dayOpeningInCash)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel116)
+                    .addComponent(cashReceivedInCash))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel118)
+                    .addComponent(cashPaymentInCash))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel121)
+                    .addComponent(cashInCash))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(cashLayout.createSequentialGroup()
+                    .addGap(65, 65, 65)
+                    .addComponent(jLabel117)
+                    .addContainerGap(98, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout detailsPanelLayout = new javax.swing.GroupLayout(detailsPanel);
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(detailsPanelLayout.createSequentialGroup()
-                        .addComponent(getSelectedOptionFroTable, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(subItemsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(detailsPanelLayout.createSequentialGroup()
-                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(detailsPanelLayout.createSequentialGroup()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 19, Short.MAX_VALUE))
-                            .addComponent(jScrollPane6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                    .addComponent(todaySellSamary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         detailsPanelLayout.setVerticalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, detailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(detailsPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(getSelectedOptionFroTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(subItemsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(todaySellSamary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         basePanel.add(detailsPanel, "card2");
@@ -1685,7 +2221,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(261, 261, 261)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         myProfilePanelLayout.setVerticalGroup(
             myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1756,7 +2292,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(431, Short.MAX_VALUE))
+                .addContainerGap(443, Short.MAX_VALUE))
         );
         systemBackupPanelLayout.setVerticalGroup(
             systemBackupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1846,7 +2382,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(332, 332, 332)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(358, Short.MAX_VALUE))
         );
         passwordChangePanelLayout.setVerticalGroup(
             passwordChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1983,7 +2519,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         trustedEmployeePanelLayout.setVerticalGroup(
             trustedEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2231,7 +2767,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
                     .addComponent(jLabel86, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2247,7 +2783,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel86)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         settingBasePanel.add(MobileBankingSettingsPanel, "card2");
@@ -2372,7 +2908,7 @@ public class Home extends javax.swing.JFrame {
         rechargeOfferPanelLayout.setHorizontalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeOfferPanelLayout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+                .addContainerGap(242, Short.MAX_VALUE)
                 .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(200, 200, 200))
         );
@@ -2714,7 +3250,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
         helplinePanelLayout.setVerticalGroup(
             helplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2869,7 +3405,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(alartMessageText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                         .addComponent(serchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -3829,12 +4365,10 @@ public class Home extends javax.swing.JFrame {
         settingTab.setBackground(new Color(133, 47, 209));
         helplineTab.setBackground(new Color(133, 47, 209));
 
-        loadRechargeDetailsInDetailsPanelTable();
-        getSelectedOptionFroTable.setSelectedItem("My Recharge");
 
         processtingLoderDialog.setVisible(false);
 
-        subItemsComboBox.setVisible(false);
+       
     }//GEN-LAST:event_detailsTabMouseClicked
 
     private void settingTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseClicked
@@ -4335,34 +4869,9 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getAmmountInTkActionPerformed
 
-    private void getSelectedOptionFroTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedOptionFroTableActionPerformed
-        loadValuesInTableForDetails(getSelectedOptionFroTable.getSelectedItem().toString());
-    }//GEN-LAST:event_getSelectedOptionFroTableActionPerformed
-
     private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPanelMouseClicked
-
-    private void clickResetButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickResetButActionPerformed
-        resetSearchItems();
-    }//GEN-LAST:event_clickResetButActionPerformed
-
-    private void clickSearchedReportDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedReportDownloadActionPerformed
-        exportDatabase();
-    }//GEN-LAST:event_clickSearchedReportDownloadActionPerformed
-
-    private void clickSearchedfromToButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedfromToButActionPerformed
-        if (fromDateChooser.getDate() == null && toDateChooser.getDate() == null) {
-            Popup.customError("Date Is Empty");
-        } else {
-            searchByDate(Configaration.getJustDate(fromDateChooser.getDate()), Configaration.getJustDate(toDateChooser.getDate()));
-        }
-
-    }//GEN-LAST:event_clickSearchedfromToButActionPerformed
-
-    private void clickSearchedByPhoneNoButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSearchedByPhoneNoButActionPerformed
-        searchByPhoneNumber();
-    }//GEN-LAST:event_clickSearchedByPhoneNoButActionPerformed
 
     private void getSelectedSIMNameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedSIMNameComboActionPerformed
         // TODO add your handling code here:
@@ -5078,60 +5587,6 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tableBillPaymentDetailsMouseClicked
 
-    private void subItemsComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subItemsComboBoxActionPerformed
-        String selectedItem = subItemsComboBox.getSelectedItem().toString();
-        switch (selectedItem) {
-            case "By Bill no":
-                loadBillPaymentByBillNoDetailsInDetailsTable();
-                break;
-            case "By Customer id":
-                loadBillPaymentByCostumerIdDetailsInDetails();
-                break;
-            case "BANGLALINK":
-                loadInboxDetailsInDetailsTable();
-                break;
-            case "GP":
-                loadInboxDetailsInDetailsTable();
-                break;
-            case "ROBI":
-                loadInboxDetailsInDetailsTable();
-                break;
-            case "AIRTEL":
-                loadInboxDetailsInDetailsTable();
-                break;
-            case "TELETALK":
-                loadInboxDetailsInDetailsTable();
-                break;
-            default:
-                Popup.customWarning("Selection not match.");
-                break;
-
-        }
-    }//GEN-LAST:event_subItemsComboBoxActionPerformed
-
-    private void tableForDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableForDetailsMouseClicked
-        String mgs = null, userId = "fdg";
-        Point point = evt.getPoint();
-        int numberOfColume = tableForDetails.getColumnCount();
-        if (numberOfColume == 6) {
-            int column = tableForDetails.columnAtPoint(point);
-            int row = tableForDetails.rowAtPoint(point);
-            mgs = tableForDetails.getValueAt(row, 5).toString();
-            userId = tableForDetails.getValueAt(row, 0).toString();
-        } else if (numberOfColume == 8) {
-            int column = tableForDetails.columnAtPoint(point);
-            int row = tableForDetails.rowAtPoint(point);
-            mgs = tableForDetails.getValueAt(row, 7).toString();
-            userId = tableForDetails.getValueAt(row, 0).toString();
-        } else if (numberOfColume == 4) {
-            int column = tableForDetails.columnAtPoint(point);
-            int row = tableForDetails.rowAtPoint(point);
-            mgs = tableForDetails.getValueAt(row, 3).toString();
-            userId = tableForDetails.getValueAt(row, 0).toString();
-        }
-        setMgsDetails.setText("Id: " + userId + "\nMessage\n" + mgs);
-    }//GEN-LAST:event_tableForDetailsMouseClicked
-
     private void clickImportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickImportDatabaseActionPerformed
         importDatabase();
     }//GEN-LAST:event_clickImportDatabaseActionPerformed
@@ -5226,6 +5681,8 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MobileBankingSettingsPanel;
+    private javax.swing.JPanel ProductInfoPanel;
+    private javax.swing.JPanel ProductPurchasePanel;
     private javax.swing.JPanel UsingCustomerId;
     private javax.swing.JPasswordField accountPassword;
     private javax.swing.JPasswordField accountPassword1;
@@ -5250,6 +5707,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel billPaymentPanelInBillPay;
     private javax.swing.JPanel billPaymentTab;
     private javax.swing.JPanel bodyPanel;
+    private javax.swing.JPanel cash;
+    private javax.swing.JLabel cashInCash;
+    private javax.swing.JLabel cashPaymentInCash;
+    private javax.swing.JLabel cashReceivedInCash;
     private javax.swing.JButton clickAddContract;
     private javax.swing.JButton clickAddContract1;
     private javax.swing.JButton clickAddContract2;
@@ -5269,14 +5730,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickNewContract;
     private javax.swing.JButton clickPayIUsingBill;
     private javax.swing.JButton clickRefrash2;
-    private javax.swing.JButton clickResetBut;
     private javax.swing.JButton clickResetPayInUsingBill;
     private javax.swing.JButton clickSIMOffer1;
     private javax.swing.JLabel clickSandInMB;
     private javax.swing.JButton clickSaveInMobileRechatgeSetting;
-    private javax.swing.JButton clickSearchedByPhoneNoBut;
-    private javax.swing.JButton clickSearchedReportDownload;
-    private javax.swing.JButton clickSearchedfromToBut;
     private javax.swing.JLabel clickSend;
     private javax.swing.JLabel clickSerch1;
     private javax.swing.JButton clickTabUsingBillNO;
@@ -5285,17 +5742,20 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickUssdDail;
     private javax.swing.JButton clickUssdDailDorSend1;
     private javax.swing.JButton clickUssdSessionClose;
+    private javax.swing.JPanel comission;
     private javax.swing.JLabel companyNameInProfilePanel;
     private javax.swing.JPanel contractListPanel;
     private javax.swing.JLabel currentNetworkName;
+    private com.toedter.calendar.demo.DateChooserPanelBeanInfo dateChooserPanelBeanInfo1;
+    private javax.swing.JLabel dayOpeningInCash;
     private javax.swing.JLabel designationInProfilePanel1;
     private javax.swing.JPanel detailsPanel;
     private javax.swing.JPanel detailsPanelInBillPay;
     private javax.swing.JPanel detailsTab;
     private javax.swing.JComboBox<String> dropdownOperatorName;
+    private javax.swing.JPanel due;
     private javax.swing.JLabel errorMgsInBalencePanel;
     private javax.swing.JLabel expiryDateInProfile;
-    private com.toedter.calendar.JDateChooser fromDateChooser;
     private javax.swing.JTextField getAmmountInBillPayment;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getAmountGroupRecharge;
@@ -5322,7 +5782,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPasswordField getPasswordInBillPay;
     private javax.swing.JTextField getPasswordTEmployee;
     private javax.swing.JTextField getPhoneNOForContract;
-    private javax.swing.JTextField getPhoneNoForSearch;
     private javax.swing.JTextField getPhoneNumberInBillPayment;
     private javax.swing.JTextField getPhoneNumberInGroupRecharge;
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
@@ -5334,7 +5793,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getRechargeUssdParternPrePaid1;
     private javax.swing.JTextField getRechargeUssdParternSkitto;
     private javax.swing.JComboBox<String> getSIMOperatorName;
-    private javax.swing.JComboBox<String> getSelectedOptionFroTable;
     private javax.swing.JComboBox<String> getSelectedSIMNameCombo;
     private javax.swing.JComboBox<String> getSelectedServiceCombo;
     private javax.swing.JComboBox<String> getSelectedSim;
@@ -5367,8 +5825,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel icon3;
     private javax.swing.JLabel icon4;
     private javax.swing.JLabel icon5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -5379,9 +5839,28 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
+    private javax.swing.JLabel jLabel118;
+    private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel120;
+    private javax.swing.JLabel jLabel121;
+    private javax.swing.JLabel jLabel122;
+    private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
+    private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel131;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -5400,6 +5879,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -5476,6 +5956,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -5508,6 +5990,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelUssdPatternSkitto;
     private javax.swing.JLabel loaderInBillPayment;
     private javax.swing.JPanel logoPanel;
@@ -5520,6 +6006,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JLabel nameInProfilePanel1;
     private javax.swing.JPanel netBarPanel;
+    private javax.swing.JPanel paid;
     private javax.swing.JLabel pandingRequestCounter;
     private javax.swing.JLabel passwordChange;
     private javax.swing.JPanel passwordChangePanel;
@@ -5527,6 +6014,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton payInUsingCustomerId;
     private javax.swing.JPopupMenu popupForSuggestManu;
     private javax.swing.JLabel processingTextInMobileBanking;
+    private javax.swing.JPanel productInfo;
+    private javax.swing.JPanel productPurchase;
     private javax.swing.JLabel profile_pic;
     private javax.swing.JTextField rePasswordForUpdate;
     private javax.swing.JPanel rechargeBalencePanel;
@@ -5540,26 +6029,36 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel resellerPanel;
     private javax.swing.JButton resetnUsingCustomerId;
     private javax.swing.JButton saveNewOfferInSettrings;
-    private javax.swing.JPanel searchPanel;
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JLabel selectedSimOperatorIcon1;
     private javax.swing.JLabel selectedSimOperatorIcon2;
     private javax.swing.JButton sendAllRechargeBut;
     private javax.swing.JLabel sendingLogLabel;
     private javax.swing.JPanel serchBar;
-    private javax.swing.JTextArea setMgsDetails;
     private javax.swing.JTextArea setResponseShowFromUssd;
     private javax.swing.JPanel settingBasePanel;
     private javax.swing.JPanel settingTab;
     private javax.swing.JPanel settingsPanel1;
-    private javax.swing.JComboBox<String> subItemsComboBox;
     private javax.swing.JList<String> suggList;
     private javax.swing.JPanel suggestPanel;
     private javax.swing.JLabel systemBackup;
     private javax.swing.JPanel systemBackupPanel;
+    private javax.swing.JLabel tAmountInPPurchase;
+    private javax.swing.JLabel tAmountInPPurchase1;
+    private javax.swing.JLabel tAmountInPPurchase2;
+    private javax.swing.JLabel tAmountInPPurchase3;
+    private javax.swing.JLabel tAmountInPPurchase4;
+    private javax.swing.JLabel tDiscountInToday;
+    private javax.swing.JLabel tDueInToday;
+    private javax.swing.JLabel tGrandTotalInToday;
+    private javax.swing.JLabel tInvoiceInToday;
+    private javax.swing.JLabel tPaidInToday;
+    private javax.swing.JLabel tReturnInToday;
+    private javax.swing.JLabel tSellsInToday;
+    private javax.swing.JLabel tShippingCostInToday;
+    private javax.swing.JLabel tVatInToday;
     private javax.swing.JTable tableBillPaymentDetails;
     private javax.swing.JTable tableContractLIst;
-    private javax.swing.JTable tableForDetails;
     private javax.swing.JTable tableGroupRecharge;
     private javax.swing.JTable tableMobileBankingDetails;
     private javax.swing.JTable tableMobileBankingSetting;
@@ -5571,7 +6070,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel title3;
     private javax.swing.JLabel title4;
     private javax.swing.JLabel title5;
-    private com.toedter.calendar.JDateChooser toDateChooser;
+    private javax.swing.JPanel todaySellSamary;
+    private javax.swing.JPanel totalAmt;
+    private javax.swing.JPanel totalItems;
     private javax.swing.JLabel trustedEmployee;
     private javax.swing.JPanel trustedEmployeePanel;
     private javax.swing.JLabel userIdInProfile;
@@ -6692,69 +7193,69 @@ public class Home extends javax.swing.JFrame {
 
         return null;
     }
+//
+//    private void loadValuesInTableForDetails(String selectedItem) {
+//        if (selectedItem.equals("Inbox")) {
+//            subItemsComboBox.setVisible(true);
+//
+//            openSIMSelectionComboBox();
+//
+//        } else if (selectedItem.equals("My Recharge")) {
+//            subItemsComboBox.setVisible(false);
+//            loadRechargeDetailsInDetailsPanelTable();
+//
+//        } else if (selectedItem.equals("Mobile Banking")) {
+//            subItemsComboBox.setVisible(false);
+//            loadMobileBankingDetailsInDetailsTable();
+//
+//        } else if (selectedItem.equals("Bill Payment")) {
+//            subItemsComboBox.setVisible(true);
+//
+//            loadBillPaymentDetailsInDetailsTable();
+//
+//        } else {
+//            System.err.println("Selected Items Not Found");
+//
+//        }
+//
+//    }
 
-    private void loadValuesInTableForDetails(String selectedItem) {
-        if (selectedItem.equals("Inbox")) {
-            subItemsComboBox.setVisible(true);
-
-            openSIMSelectionComboBox();
-
-        } else if (selectedItem.equals("My Recharge")) {
-            subItemsComboBox.setVisible(false);
-            loadRechargeDetailsInDetailsPanelTable();
-
-        } else if (selectedItem.equals("Mobile Banking")) {
-            subItemsComboBox.setVisible(false);
-            loadMobileBankingDetailsInDetailsTable();
-
-        } else if (selectedItem.equals("Bill Payment")) {
-            subItemsComboBox.setVisible(true);
-
-            loadBillPaymentDetailsInDetailsTable();
-
-        } else {
-            System.err.println("Selected Items Not Found");
-
-        }
-
-    }
-
-    private void loadRechargeDetailsInDetailsPanelTable() {
-
-        inboxIsActive = false;
-        detailsSelectedItems = "recharge";
-        setMgsDetails.setText("");
-        DefaultTableModel mobileRechargeDetailsTableForDetailsPanelModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `recharge_admin`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-
-                mobileRechargeDetailsTableForDetailsPanelModel.addRow(new Object[]{
-                    rs.getString("trx_id"),
-                    rs.getString("date_time"),
-                    rs.getString("type"),
-                    rs.getString("mobile_no"),
-                    rs.getString("amount"),
-                    rs.getString("from_sp"),
-                    rs.getString("current_balance"),
-                    rs.getString("status")});
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-        tableForDetails.setEnabled(false);
-        tableForDetails.setRowHeight(30);
-        tableForDetails.setModel(mobileRechargeDetailsTableForDetailsPanelModel);
-    }
+//    private void loadRechargeDetailsInDetailsPanelTable() {
+//
+//        inboxIsActive = false;
+//        detailsSelectedItems = "recharge";
+//        setMgsDetails.setText("");
+//        DefaultTableModel mobileRechargeDetailsTableForDetailsPanelModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+//        Connection conn = DbConnection.connect();
+//        try {
+//
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM `recharge_admin`";
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                mobileRechargeDetailsTableForDetailsPanelModel.addRow(new Object[]{
+//                    rs.getString("trx_id"),
+//                    rs.getString("date_time"),
+//                    rs.getString("type"),
+//                    rs.getString("mobile_no"),
+//                    rs.getString("amount"),
+//                    rs.getString("from_sp"),
+//                    rs.getString("current_balance"),
+//                    rs.getString("status")});
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            DbConnection.disconnect(conn);
+//        }
+//        tableForDetails.setEnabled(false);
+//        tableForDetails.setRowHeight(30);
+//        tableForDetails.setModel(mobileRechargeDetailsTableForDetailsPanelModel);
+//    }
 
     private void setCuurentActiveNetworksFromModem() {
         String operatorNames = "";
@@ -8095,350 +8596,350 @@ public class Home extends javax.swing.JFrame {
     *--------------------------------------- DETAILS PANEL -------------------------------------------------------
     *
      */
-    private void loadIndoxInDetailsTable(String port) {
-        inboxIsActive = true;
-        detailsSelectedItems = "inbox";
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+//    private void loadIndoxInDetailsTable(String port) {
+//        inboxIsActive = true;
+//        detailsSelectedItems = "inbox";
+//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+//
+//        int count = 0;
+//        String from = null, dateTime = null, mgs = null;
+//
+//        ModemInfoList.simOperatorIdentifiers.stream().map(new Function<SimOperatorIdentifierDto, SimOperatorIdentifierDto>() {
+//            @Override
+//            public SimOperatorIdentifierDto apply(SimOperatorIdentifierDto simOperatorIdentifierDto) {
+//                auto.recharge.system.config.Modem.connect(port);
+//                return simOperatorIdentifierDto;
+//            }
+//        }).map((_item) -> {
+//            // TODO: Move those code in setup Apllication
+//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=1");
+//            return _item;
+//        }).map((_item) -> {
+//            Configaration.wait(1000);
+//            return _item;
+//        }).map((_item) -> {
+//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=?");
+//            return _item;
+//        }).map((_item) -> {
+//            Configaration.wait(1000);
+//            return _item;
+//        }).map((_item) -> {
+//            auto.recharge.system.config.Modem.sendATCommand("AT+CPMS=\"SM\"");
+//            return _item;
+//        }).map((_item) -> {
+//            Configaration.wait(1000);
+//            return _item;
+//        }).map((_item) -> auto.recharge.system.config.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
+//            splitedByCMDValueForInbox = result.split("\\+CMGL:");
+//            return result;
+//        }).forEachOrdered((_item) -> {
+//            auto.recharge.system.config.Modem.disconnect();
+//        });
+//        for (String value : splitedByCMDValueForInbox) {
+//
+//            perseByCommaInInbox = value.replaceAll("OK", "").split(",");
+//            for (int i = 1; i < perseByCommaInInbox.length; i++) {
+//                //2--phn number
+//                //4-5 date time
+//                //6 mgs
+//
+//                from = perseByCommaInInbox[2];
+//                if (from.length() >= 13) {
+//                    from = from.substring(2, 13);
+//                }
+//                dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+//                if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+//                    mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+//                } else {
+//                    mgs = perseByCommaInInbox[6];
+//                }
+//
+//            }
+//            defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+//        }
+//
+//        tableForDetails.setEnabled(false);
+//        tableForDetails.setRowHeight(30);
+//        tableForDetails.setModel(defaultTableModel);
+//
+//    }
 
-        int count = 0;
-        String from = null, dateTime = null, mgs = null;
+//    private void searchByPhoneNumber() {
+//
+//        if (getPhoneNoForSearch.getText().equals("")) {
+//            Popup.customError("Empty Field Found..");
+//        } else {
+//            int count = 0;
+//            String from = null, dateTime = null, mgs = null, fromSearch = null;
+//            if (detailsSelectedItems.equals("inbox")) {
+//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+//                for (String value : splitedByCMDValueForInbox) {
+//
+//                    perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+//                    for (int i = 1; i < perseByCommaInInbox.length; i++) {
+//                        //2--phn number
+//                        //4-5 date time
+//                        //6 mgs
+//                        System.out.println("---" + perseByCommaInInbox[6]);
+//                        from = perseByCommaInInbox[2];
+//                        if (from.length() >= 13) {
+//                            from = from.substring(2, 13);
+//                        }
+//                        if (from.equals(getPhoneNoForSearch.getText())) {
+//                            fromSearch = from;
+//                            dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+//                            if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+//                                mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+//                            } else {
+//                                mgs = perseByCommaInInbox[6];
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                    defaultTableModel.addRow(new Object[]{count++, fromSearch, dateTime, mgs});
+//
+//                }
+//                tableForDetails.addMouseListener(new MouseAdapter() {
+//
+//                    @Override
+//                    public void mouseClicked(MouseEvent me) {
+//                        if (inboxIsActive) {
+//                            Point point = me.getPoint();
+//                            int row = tableForDetails.rowAtPoint(point);
+//                            Configaration.setErrorLog(me.getClickCount());
+//                            setMgsDetails.setText("");
+//                            String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+//                                    + "Date & Time: "
+//                                    + tableForDetails.getValueAt(row, 2).toString()
+//                                    + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+//                            setMgsDetails.setText(showableMgs);
+//                        }
+//                    }
+//                });
+//
+//                tableForDetails.setEnabled(false);
+//                tableForDetails.setRowHeight(30);
+//                tableForDetails.setModel(defaultTableModel);
+//            } else if (detailsSelectedItems.equals("recharge")) {
+//                String phnNo = null;
+//
+//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+//                Connection conn = DbConnection.connect();
+//                try {
+//
+//                    Statement st = conn.createStatement();
+//                    String sql = "SELECT * FROM `recharge_admin`";
+//                    ResultSet rs = st.executeQuery(sql);
+//                    while (rs.next()) {
+//                        System.err.println("--" + Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                        if (rs.getString("mobile_no").equals(getPhoneNoForSearch.getText())) {
+//                            defaultTableModel.addRow(new Object[]{
+//                                rs.getString("trx_id"),
+//                                rs.getString("date_time"),
+//                                rs.getString("type"),
+//                                rs.getString("mobile_no"),
+//                                rs.getString("amount"),
+//                                rs.getString("from_sp"),
+//                                rs.getString("current_balance"),
+//                                rs.getString("status")});
+//                        }
+//
+//                    }
+//
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//                } finally {
+//                    DbConnection.disconnect(conn);
+//                }
+//                tableForDetails.setEnabled(false);
+//                tableForDetails.setRowHeight(30);
+//                tableForDetails.setModel(defaultTableModel);
+//
+//            }
+//        }
+//    }
 
-        ModemInfoList.simOperatorIdentifiers.stream().map(new Function<SimOperatorIdentifierDto, SimOperatorIdentifierDto>() {
-            @Override
-            public SimOperatorIdentifierDto apply(SimOperatorIdentifierDto simOperatorIdentifierDto) {
-                auto.recharge.system.config.Modem.connect(port);
-                return simOperatorIdentifierDto;
-            }
-        }).map((_item) -> {
-            // TODO: Move those code in setup Apllication
-            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=1");
-            return _item;
-        }).map((_item) -> {
-            Configaration.wait(1000);
-            return _item;
-        }).map((_item) -> {
-            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=?");
-            return _item;
-        }).map((_item) -> {
-            Configaration.wait(1000);
-            return _item;
-        }).map((_item) -> {
-            auto.recharge.system.config.Modem.sendATCommand("AT+CPMS=\"SM\"");
-            return _item;
-        }).map((_item) -> {
-            Configaration.wait(1000);
-            return _item;
-        }).map((_item) -> auto.recharge.system.config.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
-            splitedByCMDValueForInbox = result.split("\\+CMGL:");
-            return result;
-        }).forEachOrdered((_item) -> {
-            auto.recharge.system.config.Modem.disconnect();
-        });
-        for (String value : splitedByCMDValueForInbox) {
+//    private void resetSearchItems() {
+//        getPhoneNoForSearch.setText("");
+//        fromDateChooser.setDate(null);
+//        toDateChooser.setDate(null);
+//        int count = 0;
+//        String from = null, dateTime = null, mgs = null, fromSearch = null;
+//        if (detailsSelectedItems.equals("inbox")) {
+//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+//            for (String value : splitedByCMDValueForInbox) {
+//
+//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
+//                    //2--phn number
+//                    //4-5 date time
+//                    //6 mgs
+//
+//                    from = perseByCommaInInbox[2];
+//                    if (from.length() >= 13) {
+//                        from = from.substring(2, 13);
+//                    }
+//
+//                    dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+//                    if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+//                        mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+//                    } else {
+//                        mgs = perseByCommaInInbox[6];
+//                    }
+//
+//                }
+//                defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+//            }
+//            tableForDetails.addMouseListener(new MouseAdapter() {
+//
+//                @Override
+//                public void mouseClicked(MouseEvent me) {
+//                    if (inboxIsActive) {
+//                        Point point = me.getPoint();
+//                        int row = tableForDetails.rowAtPoint(point);
+//                        Configaration.setErrorLog(me.getClickCount());
+//                        setMgsDetails.setText("");
+//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+//                                + "Date & Time: "
+//                                + tableForDetails.getValueAt(row, 2).toString()
+//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+//                        setMgsDetails.setText(showableMgs);
+//                    }
+//                }
+//            });
+//            tableForDetails.setEnabled(false);
+//            tableForDetails.setRowHeight(30);
+//            tableForDetails.setModel(defaultTableModel);
+//        } else if (detailsSelectedItems.equals("recharge")) {
+//            inboxIsActive = false;
+//            detailsSelectedItems = "recharge";
+//            setMgsDetails.setText("");
+//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+//            Connection conn = DbConnection.connect();
+//            try {
+//
+//                Statement st = conn.createStatement();
+//                String sql = "SELECT * FROM `recharge_admin`";
+//                ResultSet rs = st.executeQuery(sql);
+//                while (rs.next()) {
+//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                    defaultTableModel.addRow(new Object[]{
+//                        rs.getString("trx_id"),
+//                        rs.getString("date_time"),
+//                        rs.getString("type"),
+//                        rs.getString("mobile_no"),
+//                        rs.getString("amount"),
+//                        rs.getString("from_sp"),
+//                        rs.getString("current_balance"),
+//                        rs.getString("status")});
+//
+//                }
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//                DbConnection.disconnect(conn);
+//            }
+//            tableForDetails.setEnabled(false);
+//            tableForDetails.setRowHeight(30);
+//            tableForDetails.setModel(defaultTableModel);
+//
+//        }
+//    }
 
-            perseByCommaInInbox = value.replaceAll("OK", "").split(",");
-            for (int i = 1; i < perseByCommaInInbox.length; i++) {
-                //2--phn number
-                //4-5 date time
-                //6 mgs
-
-                from = perseByCommaInInbox[2];
-                if (from.length() >= 13) {
-                    from = from.substring(2, 13);
-                }
-                dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-                if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-                    mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-                } else {
-                    mgs = perseByCommaInInbox[6];
-                }
-
-            }
-            defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-        }
-
-        tableForDetails.setEnabled(false);
-        tableForDetails.setRowHeight(30);
-        tableForDetails.setModel(defaultTableModel);
-
-    }
-
-    private void searchByPhoneNumber() {
-
-        if (getPhoneNoForSearch.getText().equals("")) {
-            Popup.customError("Empty Field Found..");
-        } else {
-            int count = 0;
-            String from = null, dateTime = null, mgs = null, fromSearch = null;
-            if (detailsSelectedItems.equals("inbox")) {
-                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-                for (String value : splitedByCMDValueForInbox) {
-
-                    perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-                    for (int i = 1; i < perseByCommaInInbox.length; i++) {
-                        //2--phn number
-                        //4-5 date time
-                        //6 mgs
-                        System.out.println("---" + perseByCommaInInbox[6]);
-                        from = perseByCommaInInbox[2];
-                        if (from.length() >= 13) {
-                            from = from.substring(2, 13);
-                        }
-                        if (from.equals(getPhoneNoForSearch.getText())) {
-                            fromSearch = from;
-                            dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-                            if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-                                mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-                            } else {
-                                mgs = perseByCommaInInbox[6];
-                            }
-
-                        }
-
-                    }
-
-                    defaultTableModel.addRow(new Object[]{count++, fromSearch, dateTime, mgs});
-
-                }
-                tableForDetails.addMouseListener(new MouseAdapter() {
-
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        if (inboxIsActive) {
-                            Point point = me.getPoint();
-                            int row = tableForDetails.rowAtPoint(point);
-                            Configaration.setErrorLog(me.getClickCount());
-                            setMgsDetails.setText("");
-                            String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-                                    + "Date & Time: "
-                                    + tableForDetails.getValueAt(row, 2).toString()
-                                    + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-                            setMgsDetails.setText(showableMgs);
-                        }
-                    }
-                });
-
-                tableForDetails.setEnabled(false);
-                tableForDetails.setRowHeight(30);
-                tableForDetails.setModel(defaultTableModel);
-            } else if (detailsSelectedItems.equals("recharge")) {
-                String phnNo = null;
-
-                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-                Connection conn = DbConnection.connect();
-                try {
-
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `recharge_admin`";
-                    ResultSet rs = st.executeQuery(sql);
-                    while (rs.next()) {
-                        System.err.println("--" + Configaration.getCurrentDateAndTime().substring(0, 8));
-
-                        if (rs.getString("mobile_no").equals(getPhoneNoForSearch.getText())) {
-                            defaultTableModel.addRow(new Object[]{
-                                rs.getString("trx_id"),
-                                rs.getString("date_time"),
-                                rs.getString("type"),
-                                rs.getString("mobile_no"),
-                                rs.getString("amount"),
-                                rs.getString("from_sp"),
-                                rs.getString("current_balance"),
-                                rs.getString("status")});
-                        }
-
-                    }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-                tableForDetails.setEnabled(false);
-                tableForDetails.setRowHeight(30);
-                tableForDetails.setModel(defaultTableModel);
-
-            }
-        }
-    }
-
-    private void resetSearchItems() {
-        getPhoneNoForSearch.setText("");
-        fromDateChooser.setDate(null);
-        toDateChooser.setDate(null);
-        int count = 0;
-        String from = null, dateTime = null, mgs = null, fromSearch = null;
-        if (detailsSelectedItems.equals("inbox")) {
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-            for (String value : splitedByCMDValueForInbox) {
-
-                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-                    //2--phn number
-                    //4-5 date time
-                    //6 mgs
-
-                    from = perseByCommaInInbox[2];
-                    if (from.length() >= 13) {
-                        from = from.substring(2, 13);
-                    }
-
-                    dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-                    if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-                        mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-                    } else {
-                        mgs = perseByCommaInInbox[6];
-                    }
-
-                }
-                defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-            }
-            tableForDetails.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    if (inboxIsActive) {
-                        Point point = me.getPoint();
-                        int row = tableForDetails.rowAtPoint(point);
-                        Configaration.setErrorLog(me.getClickCount());
-                        setMgsDetails.setText("");
-                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-                                + "Date & Time: "
-                                + tableForDetails.getValueAt(row, 2).toString()
-                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-                        setMgsDetails.setText(showableMgs);
-                    }
-                }
-            });
-            tableForDetails.setEnabled(false);
-            tableForDetails.setRowHeight(30);
-            tableForDetails.setModel(defaultTableModel);
-        } else if (detailsSelectedItems.equals("recharge")) {
-            inboxIsActive = false;
-            detailsSelectedItems = "recharge";
-            setMgsDetails.setText("");
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-            Connection conn = DbConnection.connect();
-            try {
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `recharge_admin`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-
-                    defaultTableModel.addRow(new Object[]{
-                        rs.getString("trx_id"),
-                        rs.getString("date_time"),
-                        rs.getString("type"),
-                        rs.getString("mobile_no"),
-                        rs.getString("amount"),
-                        rs.getString("from_sp"),
-                        rs.getString("current_balance"),
-                        rs.getString("status")});
-
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-            tableForDetails.setEnabled(false);
-            tableForDetails.setRowHeight(30);
-            tableForDetails.setModel(defaultTableModel);
-
-        }
-    }
-
-    private void searchByDate(String stratDate, String endDate) {
-        int count = 0;
-        String from = null, dateTime = null, mgs = null, fromSearch = null;
-        if (detailsSelectedItems.equals("inbox")) {
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-            for (String value : splitedByCMDValueForInbox) {
-
-                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-                    //2--phn number
-                    //4-5 date time
-                    //6 mgs
-
-                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(perseByCommaInInbox[4]))
-                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(perseByCommaInInbox[4]))) {
-                        from = perseByCommaInInbox[2];
-                        if (from.length() >= 13) {
-                            from = from.substring(2, 13);
-                        }
-                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-                        } else {
-                            mgs = perseByCommaInInbox[6];
-                        }
-                        defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-                    }
-
-                }
-
-            }
-            tableForDetails.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    if (inboxIsActive) {
-                        Point point = me.getPoint();
-                        int row = tableForDetails.rowAtPoint(point);
-                        Configaration.setErrorLog(me.getClickCount());
-                        setMgsDetails.setText("");
-                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-                                + "Date & Time: "
-                                + tableForDetails.getValueAt(row, 2).toString()
-                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-                        setMgsDetails.setText(showableMgs);
-                    }
-                }
-            });
-            tableForDetails.setEnabled(false);
-            tableForDetails.setRowHeight(30);
-            tableForDetails.setModel(defaultTableModel);
-        } else if (detailsSelectedItems.equals("recharge")) {
-
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-            Connection conn = DbConnection.connect();
-            try {
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `recharge_admin`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    System.out.println("----->" + rs.getString("date_time").substring(0, 8));
-                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))
-                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))) {
-                        defaultTableModel.addRow(new Object[]{
-                            rs.getString("trx_id"),
-                            rs.getString("date_time"),
-                            rs.getString("type"),
-                            rs.getString("mobile_no"),
-                            rs.getString("amount"),
-                            rs.getString("from_sp"),
-                            rs.getString("current_balance"),
-                            rs.getString("status")});
-
-                    }
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-            tableForDetails.setEnabled(false);
-            tableForDetails.setRowHeight(30);
-            tableForDetails.setModel(defaultTableModel);
-        }
-    }
+//    private void searchByDate(String stratDate, String endDate) {
+//        int count = 0;
+//        String from = null, dateTime = null, mgs = null, fromSearch = null;
+//        if (detailsSelectedItems.equals("inbox")) {
+//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
+//            for (String value : splitedByCMDValueForInbox) {
+//
+//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
+//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
+//                    //2--phn number
+//                    //4-5 date time
+//                    //6 mgs
+//
+//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(perseByCommaInInbox[4]))
+//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(perseByCommaInInbox[4]))) {
+//                        from = perseByCommaInInbox[2];
+//                        if (from.length() >= 13) {
+//                            from = from.substring(2, 13);
+//                        }
+//                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+//                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+//                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+//                        } else {
+//                            mgs = perseByCommaInInbox[6];
+//                        }
+//                        defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
+//                    }
+//
+//                }
+//
+//            }
+//            tableForDetails.addMouseListener(new MouseAdapter() {
+//
+//                @Override
+//                public void mouseClicked(MouseEvent me) {
+//                    if (inboxIsActive) {
+//                        Point point = me.getPoint();
+//                        int row = tableForDetails.rowAtPoint(point);
+//                        Configaration.setErrorLog(me.getClickCount());
+//                        setMgsDetails.setText("");
+//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
+//                                + "Date & Time: "
+//                                + tableForDetails.getValueAt(row, 2).toString()
+//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
+//                        setMgsDetails.setText(showableMgs);
+//                    }
+//                }
+//            });
+//            tableForDetails.setEnabled(false);
+//            tableForDetails.setRowHeight(30);
+//            tableForDetails.setModel(defaultTableModel);
+//        } else if (detailsSelectedItems.equals("recharge")) {
+//
+//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
+//            Connection conn = DbConnection.connect();
+//            try {
+//
+//                Statement st = conn.createStatement();
+//                String sql = "SELECT * FROM `recharge_admin`";
+//                ResultSet rs = st.executeQuery(sql);
+//                while (rs.next()) {
+//                    System.out.println("----->" + rs.getString("date_time").substring(0, 8));
+//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))
+//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))) {
+//                        defaultTableModel.addRow(new Object[]{
+//                            rs.getString("trx_id"),
+//                            rs.getString("date_time"),
+//                            rs.getString("type"),
+//                            rs.getString("mobile_no"),
+//                            rs.getString("amount"),
+//                            rs.getString("from_sp"),
+//                            rs.getString("current_balance"),
+//                            rs.getString("status")});
+//
+//                    }
+//                }
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//
+//                DbConnection.disconnect(conn);
+//            }
+//            tableForDetails.setEnabled(false);
+//            tableForDetails.setRowHeight(30);
+//            tableForDetails.setModel(defaultTableModel);
+//        }
+//    }
 
     private void setBorderInManuBar() {
         DropShadowBorder shadow = new DropShadowBorder();
@@ -9269,147 +9770,147 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void loadMobileBankingDetailsInDetailsTable() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Service Name", "Action Type", "Mobile No", "Ammount", "From", "Status",}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `m_b_details`";
-            ResultSet rs = st.executeQuery(sql);
+//    private void loadMobileBankingDetailsInDetailsTable() {
+//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Service Name", "Action Type", "Mobile No", "Ammount", "From", "Status",}, 0);
+//        Connection conn = DbConnection.connect();
+//        try {
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM `m_b_details`";
+//            ResultSet rs = st.executeQuery(sql);
+//
+//            while (rs.next()) {
+//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                defaultTableModel.addRow(new Object[]{
+//                    rs.getString("TnxId"),
+//                    rs.getString("date_time"),
+//                    rs.getString("service_name"),
+//                    rs.getString("action_type"),
+//                    rs.getString("phone_no"),
+//                    rs.getString("amount"),
+//                    rs.getString("sim"),
+//                    rs.getString("result")});
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            DbConnection.disconnect(conn);
+//        }
+//        tableForDetails.setEnabled(false);
+//        tableForDetails.setRowHeight(30);
+//        tableForDetails.setModel(defaultTableModel);
+//    }
 
-            while (rs.next()) {
-                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//    private void loadBillPaymentDetailsInDetailsTable() {
+//        subItemsComboBox.addItem("By Bill no");
+//        subItemsComboBox.addItem("By Customer id");
+//        System.err.println("Bill no.");
+//    }
 
-                defaultTableModel.addRow(new Object[]{
-                    rs.getString("TnxId"),
-                    rs.getString("date_time"),
-                    rs.getString("service_name"),
-                    rs.getString("action_type"),
-                    rs.getString("phone_no"),
-                    rs.getString("amount"),
-                    rs.getString("sim"),
-                    rs.getString("result")});
+//    private void loadBillPaymentByBillNoDetailsInDetailsTable() {
+//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Bill No", "Current Balance", "Status",}, 0);
+//        Connection conn = DbConnection.connect();
+//        try {
+//
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM `bill_pay_bill_no`";
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                defaultTableModel.addRow(new Object[]{
+//                    rs.getString("TrxId"),
+//                    rs.getString("time_date"),
+//                    rs.getString("bill_type"),
+//                    rs.getString("bill_no"),
+//                    rs.getString("c_balance"),
+//                    rs.getString("status")
+//                });
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            DbConnection.disconnect(conn);
+//        }
+//        tableForDetails.setEnabled(false);
+//        tableForDetails.setRowHeight(30);
+//        tableForDetails.setModel(defaultTableModel);
+//
+//    }
 
-            }
+//    private void loadInboxDetailsInDetailsTable() {
+//
+//        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+//            @Override
+//            protected Void doInBackground() throws Exception {
+//                processtingLoderDialog.setVisible(true);
+//                for (SimOperatorIdentifierDto operatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+//                    if (operatorIdentifierDto.getOperatorName().toUpperCase().contains(subItemsComboBox.getSelectedItem().toString().toUpperCase())) {
+//                        loadIndoxInDetailsTable(operatorIdentifierDto.getPortName());
+//
+//                    }
+//
+//                }
+//
+//                return null;
+//            }
+//
+//            @Override
+//            protected void done() {
+//
+//                processtingLoderDialog.setVisible(false);
+//                System.out.println("Delete Successful...@Done");
+//            }
+//
+//        };
+//        swingWorker.execute();
+//
+//    }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-        tableForDetails.setEnabled(false);
-        tableForDetails.setRowHeight(30);
-        tableForDetails.setModel(defaultTableModel);
-    }
+//    private void loadBillPaymentByCostumerIdDetailsInDetails() {
+//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Customer Id",
+//            "Bill Month", "Bill Year", "Current Balance", "Status"}, 0);
+//        Connection conn = DbConnection.connect();
+//        try {
+//            Statement st = conn.createStatement();
+//            String sql = "SELECT * FROM `bill_payment_customer_id`";
+//            ResultSet rs = st.executeQuery(sql);
+//
+//            while (rs.next()) {
+//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
+//
+//                defaultTableModel.addRow(new Object[]{
+//                    rs.getString("TrxId"),
+//                    rs.getString("time_date"),
+//                    rs.getString("bill_type"),
+//                    rs.getString("customer_id"),
+//                    rs.getString("bill_month"),
+//                    rs.getString("bill_year"),
+//                    rs.getString("c_balance"),
+//                    rs.getString("status")
+//                });
+//
+//            }
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            DbConnection.disconnect(conn);
+//        }
+//        tableForDetails.setEnabled(false);
+//        tableForDetails.setRowHeight(30);
+//        tableForDetails.setModel(defaultTableModel);
+//    }
 
-    private void loadBillPaymentDetailsInDetailsTable() {
-        subItemsComboBox.addItem("By Bill no");
-        subItemsComboBox.addItem("By Customer id");
-        System.err.println("Bill no.");
-    }
-
-    private void loadBillPaymentByBillNoDetailsInDetailsTable() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Bill No", "Current Balance", "Status",}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `bill_pay_bill_no`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-
-                defaultTableModel.addRow(new Object[]{
-                    rs.getString("TrxId"),
-                    rs.getString("time_date"),
-                    rs.getString("bill_type"),
-                    rs.getString("bill_no"),
-                    rs.getString("c_balance"),
-                    rs.getString("status")
-                });
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-        tableForDetails.setEnabled(false);
-        tableForDetails.setRowHeight(30);
-        tableForDetails.setModel(defaultTableModel);
-
-    }
-
-    private void loadInboxDetailsInDetailsTable() {
-
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                for (SimOperatorIdentifierDto operatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    if (operatorIdentifierDto.getOperatorName().toUpperCase().contains(subItemsComboBox.getSelectedItem().toString().toUpperCase())) {
-                        loadIndoxInDetailsTable(operatorIdentifierDto.getPortName());
-
-                    }
-
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void done() {
-
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Delete Successful...@Done");
-            }
-
-        };
-        swingWorker.execute();
-
-    }
-
-    private void loadBillPaymentByCostumerIdDetailsInDetails() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Customer Id",
-            "Bill Month", "Bill Year", "Current Balance", "Status"}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `bill_payment_customer_id`";
-            ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-
-                defaultTableModel.addRow(new Object[]{
-                    rs.getString("TrxId"),
-                    rs.getString("time_date"),
-                    rs.getString("bill_type"),
-                    rs.getString("customer_id"),
-                    rs.getString("bill_month"),
-                    rs.getString("bill_year"),
-                    rs.getString("c_balance"),
-                    rs.getString("status")
-                });
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-        tableForDetails.setEnabled(false);
-        tableForDetails.setRowHeight(30);
-        tableForDetails.setModel(defaultTableModel);
-    }
-
-    private void openSIMSelectionComboBox() {
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            subItemsComboBox.addItem(simOperatorIdentifierDto.getOperatorName());
-        }
-    }
+//    private void openSIMSelectionComboBox() {
+//        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+//            subItemsComboBox.addItem(simOperatorIdentifierDto.getOperatorName());
+//        }
+//    }
 
     private void exportDatabase() {
         try {
