@@ -43,6 +43,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -204,7 +205,7 @@ public class Home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         supplierInProductPurchases = new javax.swing.JTextField();
         jLabel119 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateInProductPurchases = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel131 = new javax.swing.JLabel();
         totalAmt = new javax.swing.JPanel();
@@ -1413,6 +1414,11 @@ public class Home extends javax.swing.JFrame {
 
         invoiceInProductPurchases.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         invoiceInProductPurchases.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        invoiceInProductPurchases.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                invoiceInProductPurchasesKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1767,7 +1773,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel119)
                                 .addGap(4, 4, 4)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanelLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1782,7 +1788,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(invoiceInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(supplierInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5795,12 +5801,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_addMobileBankingPanelInBillPayMouseClicked
 
     private void productPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productPurchaseMouseClicked
-  System.err.println("gfhdgd");
+        System.err.println("gfhdgd");
     }//GEN-LAST:event_productPurchaseMouseClicked
 
     private void ProductPurchasePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanelMouseClicked
-             setupPurchaseTab();
-             System.err.println("gfhdgd");
+        setupPurchaseTab();
+        System.err.println("gfhdgd");
     }//GEN-LAST:event_ProductPurchasePanelMouseClicked
 
     private void detailsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsPanelMouseClicked
@@ -5808,13 +5814,59 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_detailsPanelMouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-      saveInProductPurchaseDB();
-     shoDataInProductPurchaseFromDB();
+        saveInProductPurchaseDB();
+        shoDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupInProductPurchasesActionPerformed
+
+    private void invoiceInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchasesKeyReleased
+        List<String> list = new ArrayList<>();
+        String to_check = null;
+        Connection conn = DbConnection.connect();
+        try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `product_purchase`";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                list.add(rs.getString("invoice"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
+        }
+
+        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+        }else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             shoDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+            supplierInProductPurchases.requestFocusInWindow();
+        } else {
+            to_check = invoiceInProductPurchases.getText();
+            int to_check_len = to_check.length();
+            for (String data : list) {
+                String check_from_data = "";
+                for (int i = 0; i < to_check_len; i++) {
+                    if (to_check_len <= data.length()) {
+                        check_from_data = check_from_data + data.charAt(i);
+                    }
+                }
+               
+                if (check_from_data.equals(to_check)) {
+                    
+                    invoiceInProductPurchases.setText(data);
+                    invoiceInProductPurchases.setSelectionStart(to_check_len);
+                    invoiceInProductPurchases.setSelectionEnd(data.length());
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_invoiceInProductPurchasesKeyReleased
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -5944,6 +5996,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel contractListPanel;
     private javax.swing.JLabel currentNetworkName;
     private com.toedter.calendar.demo.DateChooserPanelBeanInfo dateChooserPanelBeanInfo1;
+    private com.toedter.calendar.JDateChooser dateInProductPurchases;
     private javax.swing.JLabel dayOpeningInCash;
     private javax.swing.JLabel designationInProfilePanel1;
     private javax.swing.JPanel detailsPanel;
@@ -6027,7 +6080,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -10297,7 +10349,11 @@ public void showMobileRechargeBalance()
     private void saveInProductPurchaseDB() {
         String invoice = invoiceInProductPurchases.getText();
         String supplier = supplierInProductPurchases.getText();
-        String date = Configaration.getCurrentDate();
+        
+        java.util.Date jud = dateInProductPurchases.getDate();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM dd, yyyy");     
+        String date = sdf.format(jud);
+    
         String barCode = barCodeInProductPurchases.getText();
         String sellRate = sellRateInProductPurchases.getText();
         String group = groupInProductPurchases.getText();
@@ -10337,11 +10393,11 @@ public void showMobileRechargeBalance()
         }
     }
 
-    private void shoDataInProductPurchaseFromDB() {
+    private void shoDataInProductPurchaseFromDB(String invoice) {
 
         DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Barcode", "Group", "Purchases Name", "QTY.", "BUY RATE", "SELL RATE", "SUBTOTAL", "TYPE"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productPurchaseTable.getDefaultRenderer(String.class);
-        Double subtotal = 0.0;
+      
         Double returnAC = 0.0;
         Double comission = 0.0;
         Double total = 0.0;
@@ -10349,13 +10405,15 @@ public void showMobileRechargeBalance()
         Connection conn = DbConnection.connect();
         try {
             Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" + invoiceInProductPurchases.getText();
+            String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" +invoice;
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
                 count++;
                 String typeOfProduct = rs.getString("type");   
                 String subTotal = rs.getString("subTotal");   
+                supplierInProductPurchases.setText(rs.getString("supplier"));
+                dateInProductPurchases.setDate(new Date(rs.getString("date")));
                 productPurchaseTableModel.addRow(new Object[]{
                     rs.getString("bar_code"),
                     rs.getString("group"),
@@ -10396,8 +10454,7 @@ public void showMobileRechargeBalance()
         productPurchaseTable.setEnabled(false);
         productPurchaseTable.setRowHeight(30);
         productPurchaseTable.setModel(productPurchaseTableModel);     
-        System.err.println(returnAC+ "   "+comission );
-        
+         
         summaryShowInDisplay(total, count, comission, total, returnAC);
     }
 
