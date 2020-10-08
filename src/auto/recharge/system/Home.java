@@ -52,12 +52,12 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -74,6 +74,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
@@ -97,7 +98,8 @@ public class Home extends javax.swing.JFrame {
     DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
     private final String TAG_TEST = "Home test: ";
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
-    private  Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
+    private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
+    private DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Barcode", "Group", "Purchases Name", "QTY.", "BUY RATE", "SELL RATE", "SUBTOTAL", "TYPE", "ACTION"}, 0);
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -221,7 +223,7 @@ public class Home extends javax.swing.JFrame {
         jLabel125 = new javax.swing.JLabel();
         tAmountInPPurchase4 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productPurchaseTable = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
@@ -1070,6 +1072,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tableRechargeDetailsShow);
+        if (tableRechargeDetailsShow.getColumnModel().getColumnCount() > 0) {
+            tableRechargeDetailsShow.getColumnModel().getColumn(0).setCellEditor(null);
+        }
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 255));
@@ -1331,6 +1336,11 @@ public class Home extends javax.swing.JFrame {
         basePanel.add(resellerPanel, "card2");
 
         detailsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        detailsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                detailsPanelMouseClicked(evt);
+            }
+        });
 
         ProductInfoPanel.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -1364,7 +1374,18 @@ public class Home extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Product Information", productInfo);
 
+        productPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productPurchaseMouseClicked(evt);
+            }
+        });
+
         ProductPurchasePanel.setBackground(new java.awt.Color(204, 204, 255));
+        ProductPurchasePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductPurchasePanelMouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1604,7 +1625,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productPurchaseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1612,10 +1633,23 @@ public class Home extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Barcode", "Group", "Pro", "Title 4"
             }
-        ));
-        jScrollPane6.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(productPurchaseTable);
+        if (productPurchaseTable.getColumnModel().getColumnCount() > 0) {
+            productPurchaseTable.getColumnModel().getColumn(1).setResizable(false);
+            productPurchaseTable.getColumnModel().getColumn(2).setResizable(false);
+            productPurchaseTable.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout ProductPurchasePanelLayout = new javax.swing.GroupLayout(ProductPurchasePanel);
         ProductPurchasePanel.setLayout(ProductPurchasePanelLayout);
@@ -1837,8 +1871,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel112)
                                 .addGap(33, 33, 33)
                                 .addComponent(tGrandTotalInToday, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(todaySellSamaryLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1919,7 +1952,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel114)
                     .addComponent(tDueInToday))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(todaySellSamaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(todaySellSamaryLayout.createSequentialGroup()
                     .addGap(65, 65, 65)
@@ -2026,7 +2059,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel121)
                     .addComponent(cashInCash))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(cashLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cashLayout.createSequentialGroup()
                     .addGap(65, 65, 65)
@@ -4367,6 +4400,7 @@ public class Home extends javax.swing.JFrame {
 
 
         processtingLoderDialog.setVisible(false);
+        setupPurchaseTab();
 
        
     }//GEN-LAST:event_detailsTabMouseClicked
@@ -5621,6 +5655,19 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addMobileBankingPanelInBillPayMouseClicked
 
+    private void productPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productPurchaseMouseClicked
+  System.err.println("gfhdgd");
+    }//GEN-LAST:event_productPurchaseMouseClicked
+
+    private void ProductPurchasePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanelMouseClicked
+             setupPurchaseTab();
+             System.err.println("gfhdgd");
+    }//GEN-LAST:event_ProductPurchasePanelMouseClicked
+
+    private void detailsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsPanelMouseClicked
+
+    }//GEN-LAST:event_detailsPanelMouseClicked
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -5991,7 +6038,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labelUssdPatternSkitto;
@@ -6016,6 +6062,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel processingTextInMobileBanking;
     private javax.swing.JPanel productInfo;
     private javax.swing.JPanel productPurchase;
+    private javax.swing.JTable productPurchaseTable;
     private javax.swing.JLabel profile_pic;
     private javax.swing.JTextField rePasswordForUpdate;
     private javax.swing.JPanel rechargeBalencePanel;
@@ -10076,5 +10123,28 @@ public void showMobileRechargeBalance()
 
         };
         swingWorker.execute();
-}
+    }
+
+    private void setupPurchaseTab() {
+
+
+        TableColumn testColumn = productPurchaseTable.getColumnModel().getColumn(0);
+        System.out.println("auto.recharge.system.Home.setupPurchaseTab()");
+        String country[] = {"India", "Aus", "U.S.A", "England", "Newzealand"};
+        JComboBox comboBox = new JComboBox(country);
+        comboBox.setEditable(true);
+        testColumn.setCellEditor(new DefaultCellEditor(comboBox));
+        productPurchaseTableModel.addRow(new Object[]{});
+
+        //For jTable contant in center
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productPurchaseTable.getDefaultRenderer(String.class);
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        productPurchaseTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        productPurchaseTable.getTableHeader().setOpaque(false);
+        productPurchaseTable.getTableHeader().setBackground(new Color(133, 47, 209));
+        productPurchaseTable.getTableHeader().setForeground(new Color(255, 255, 255));
+        productPurchaseTable.setEnabled(false);
+        productPurchaseTable.setRowHeight(30);
+        productPurchaseTable.setModel(productPurchaseTableModel);
+    }
 }
