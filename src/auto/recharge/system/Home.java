@@ -20,11 +20,14 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -68,15 +71,25 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import net.sourceforge.barbecue.Barcode;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
+import net.sourceforge.barbecue.BarcodeFactory;
+import net.sourceforge.barbecue.Barcode;
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.BarcodeFactory;
+import net.sourceforge.barbecue.BarcodeImageHandler;
+import net.sourceforge.barbecue.output.OutputException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 
 public class Home extends javax.swing.JFrame {
 
@@ -200,33 +213,33 @@ public class Home extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         productDetailsTable = new javax.swing.JTable();
         jLabel143 = new javax.swing.JLabel();
-        barCodeInProductPurchases1 = new javax.swing.JTextField();
+        barCodeInProductDetails = new javax.swing.JTextField();
         jLabel144 = new javax.swing.JLabel();
-        groupInProductPurchases1 = new javax.swing.JTextField();
+        groupInProductDetails = new javax.swing.JTextField();
         jLabel145 = new javax.swing.JLabel();
-        pNameInProductPurchases1 = new javax.swing.JTextField();
+        pNameInProductDetails = new javax.swing.JTextField();
         jLabel146 = new javax.swing.JLabel();
-        brandInProductPurchases1 = new javax.swing.JTextField();
+        brandInProductDetails = new javax.swing.JTextField();
         jLabel147 = new javax.swing.JLabel();
-        buyRateInProductPurchases1 = new javax.swing.JTextField();
+        buyRateInProductDetails = new javax.swing.JTextField();
         jLabel148 = new javax.swing.JLabel();
-        sellRateInProductPurchases1 = new javax.swing.JTextField();
+        sellRateInProductDetails = new javax.swing.JTextField();
         jLabel149 = new javax.swing.JLabel();
         saveInProductPurchase1 = new javax.swing.JButton();
         searchByGroupInRatio = new javax.swing.JRadioButton();
         listOfBarCodeOrGroupComboBox = new javax.swing.JComboBox<>();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        qtyInProductPurchases2 = new javax.swing.JTextField();
+        addPerchangeSelection = new javax.swing.JCheckBox();
+        productMasurementProductDetails = new javax.swing.JComboBox<>();
+        qtyInProductDetails = new javax.swing.JTextField();
         jLabel150 = new javax.swing.JLabel();
-        qtyInProductPurchases3 = new javax.swing.JTextField();
+        oderLimitInProductDetails = new javax.swing.JTextField();
         saveInProductPurchase2 = new javax.swing.JButton();
         jLabel134 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        barCodeNumberProductDetails = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel151 = new javax.swing.JLabel();
-        qtyInProductPurchases4 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        warrentyInProductDetails = new javax.swing.JTextField();
+        timeTypeProductDetails = new javax.swing.JComboBox<>();
         jLabel135 = new javax.swing.JLabel();
         invoiceINProductDetails = new javax.swing.JLabel();
         productPurchase = new javax.swing.JPanel();
@@ -1436,14 +1449,14 @@ public class Home extends javax.swing.JFrame {
         jLabel144.setForeground(new java.awt.Color(0, 0, 0));
         jLabel144.setText("Group        :");
 
-        groupInProductPurchases1.addActionListener(new java.awt.event.ActionListener() {
+        groupInProductDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                groupInProductPurchases1ActionPerformed(evt);
+                groupInProductDetailsActionPerformed(evt);
             }
         });
-        groupInProductPurchases1.addKeyListener(new java.awt.event.KeyAdapter() {
+        groupInProductDetails.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                groupInProductPurchases1KeyReleased(evt);
+                groupInProductDetailsKeyReleased(evt);
             }
         });
 
@@ -1495,11 +1508,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setBackground(new java.awt.Color(204, 204, 255));
-        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jCheckBox1.setText("%");
+        addPerchangeSelection.setBackground(new java.awt.Color(204, 204, 255));
+        addPerchangeSelection.setForeground(new java.awt.Color(0, 0, 0));
+        addPerchangeSelection.setText("%");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics,", "Kg,", "Litter,", "Bag,", "Bundle,", "Dozon" }));
+        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics,", "Kg,", "Litter,", "Bag,", "Bundle,", "Dozon" }));
 
         jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel150.setForeground(new java.awt.Color(0, 0, 0));
@@ -1521,12 +1534,17 @@ public class Home extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Genarate");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jLabel151.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel151.setForeground(new java.awt.Color(0, 0, 0));
         jLabel151.setText("Warranty    :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day,", "month,", "year" }));
+        timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day,", "month,", "year" }));
 
         jLabel135.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel135.setForeground(new java.awt.Color(255, 51, 51));
@@ -1560,15 +1578,15 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel143)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(barCodeInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(barCodeInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel144)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(groupInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel145, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pNameInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pNameInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
@@ -1577,40 +1595,40 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel146)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(brandInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(brandInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel150)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qtyInProductPurchases3)))
+                                .addComponent(oderLimitInProductDetails)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel147)
                             .addComponent(jLabel151))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buyRateInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
-                                .addComponent(qtyInProductPurchases4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(warrentyInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, 1, Short.MAX_VALUE)))
+                                .addComponent(timeTypeProductDetails, 0, 1, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel148)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox1)
+                                .addComponent(addPerchangeSelection)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sellRateInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel149)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qtyInProductPurchases2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(qtyInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(barCodeNumberProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
@@ -1635,43 +1653,43 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel143)
-                        .addComponent(barCodeInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(barCodeInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(groupInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel144)
                         .addComponent(jLabel145)
-                        .addComponent(pNameInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pNameInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel146)
-                            .addComponent(brandInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(brandInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel150)
-                            .addComponent(qtyInProductPurchases3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(qtyInProductPurchases4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oderLimitInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(warrentyInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel151)
                             .addComponent(jLabel148)
-                            .addComponent(jCheckBox1)
-                            .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addPerchangeSelection)
+                            .addComponent(sellRateInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(timeTypeProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45))
                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buyRateInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel147)
                             .addComponent(jLabel149)
-                            .addComponent(qtyInProductPurchases2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(qtyInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(saveInProductPurchase2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel134)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(barCodeNumberProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)))
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -6216,13 +6234,13 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_groupInProductPurchasesKeyReleased
 
-    private void groupInProductPurchases1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchases1ActionPerformed
+    private void groupInProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductDetailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_groupInProductPurchases1ActionPerformed
+    }//GEN-LAST:event_groupInProductDetailsActionPerformed
 
-    private void groupInProductPurchases1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductPurchases1KeyReleased
+    private void groupInProductDetailsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductDetailsKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_groupInProductPurchases1KeyReleased
+    }//GEN-LAST:event_groupInProductDetailsKeyReleased
 
     private void saveInProductPurchase1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase1MouseClicked
         // TODO add your handling code here:
@@ -6299,12 +6317,12 @@ public class Home extends javax.swing.JFrame {
         System.err.println(productId+"+"+productGroup);
         
         //SET VALUE IN EDITTEXT
-        barCodeInProductPurchases1.setText(productId);
-        groupInProductPurchases1.setText(productGroup);
-        pNameInProductPurchases1.setText(productName);
-        buyRateInProductPurchases1.setText(buyRate);
-        sellRateInProductPurchases1.setText(sellPrice);
-        brandInProductPurchases1.setText(sellPrice);
+        barCodeInProductDetails.setText(productId);
+        groupInProductDetails.setText(productGroup);
+        pNameInProductDetails.setText(productName);
+        buyRateInProductDetails.setText(buyRate);
+        sellRateInProductDetails.setText(sellPrice);
+        brandInProductDetails.setText(sellPrice);
         
         
 
@@ -6312,8 +6330,24 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_productDetailsTableMouseClicked
 
     private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
-      updateStoredItemByBarCode(invoiceINProductDetails.getText(),barCodeInProductPurchases1.getText());
+            addPerchangeSelection.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+              Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
+             if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                   sellRate = Double.valueOf(buyRateInProductDetails.getText())+((Double.valueOf(sellRateInProductDetails.getText())*Double.valueOf(buyRateInProductDetails.getText()))/100);
+                 updateStoredItemByBarCode(invoiceINProductDetails.getText(),barCodeInProductDetails.getText(),String.valueOf(sellRate));
+             } else {//checkbox has been deselected
+                      updateStoredItemByBarCode(invoiceINProductDetails.getText(),barCodeInProductDetails.getText(),String.valueOf(sellRate));
+                };
+            }
+        });
+       
     }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       genarateBarCode();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -6387,6 +6421,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel addNewContractPanel;
     private javax.swing.JPanel addNewManagementPanel;
     private javax.swing.JPanel addNewManagementPanelSettings;
+    private javax.swing.JCheckBox addPerchangeSelection;
     private javax.swing.JPanel adsPanel;
     private javax.swing.JLabel alartMessageText;
     private javax.swing.JLabel back;
@@ -6395,18 +6430,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel backToMobileRecharge1;
     private javax.swing.JLabel backToUssdManengementPanel;
     private javax.swing.JLabel backToUssdManengementPanel1;
+    private javax.swing.JTextField barCodeInProductDetails;
     private javax.swing.JTextField barCodeInProductPurchases;
-    private javax.swing.JTextField barCodeInProductPurchases1;
+    private javax.swing.JTextField barCodeNumberProductDetails;
     private javax.swing.JPanel baseBillPayment;
     private javax.swing.JPanel basePanel;
     private javax.swing.JPanel billPayPanel;
     private javax.swing.JPanel billPaymentPanelInBillPay;
     private javax.swing.JPanel billPaymentTab;
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JTextField brandInProductPurchases1;
+    private javax.swing.JTextField brandInProductDetails;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField buyRateInProductDetails;
     private javax.swing.JTextField buyRateInProductPurchases;
-    private javax.swing.JTextField buyRateInProductPurchases1;
     private javax.swing.JPanel cash;
     private javax.swing.JLabel cashInCash;
     private javax.swing.JLabel cashPaymentInCash;
@@ -6513,8 +6549,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getValidityInSetting;
     private javax.swing.JTextField getprofitIn1k;
     private javax.swing.JComboBox<String> getyear;
+    private javax.swing.JTextField groupInProductDetails;
     private javax.swing.JTextField groupInProductPurchases;
-    private javax.swing.JTextField groupInProductPurchases1;
     private javax.swing.JPanel groupLoadPanel;
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
@@ -6532,9 +6568,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -6717,7 +6750,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelUssdPatternSkitto;
     private javax.swing.JComboBox<String> listOfBarCodeOrGroupComboBox;
     private javax.swing.JLabel loaderInBillPayment;
@@ -6731,8 +6763,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JLabel nameInProfilePanel1;
     private javax.swing.JPanel netBarPanel;
+    private javax.swing.JTextField oderLimitInProductDetails;
+    private javax.swing.JTextField pNameInProductDetails;
     private javax.swing.JTextField pNameInProductPurchases;
-    private javax.swing.JTextField pNameInProductPurchases1;
     private javax.swing.JPanel paid;
     private javax.swing.JPanel paid1;
     private javax.swing.JLabel pandingRequestCounter;
@@ -6744,13 +6777,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel processingTextInMobileBanking;
     private javax.swing.JTable productDetailsTable;
     private javax.swing.JPanel productInfo;
+    private javax.swing.JComboBox<String> productMasurementProductDetails;
     private javax.swing.JPanel productPurchase;
     private javax.swing.JTable productPurchaseTable;
     private javax.swing.JLabel profile_pic;
+    private javax.swing.JTextField qtyInProductDetails;
     private javax.swing.JTextField qtyInProductPurchases;
-    private javax.swing.JTextField qtyInProductPurchases2;
-    private javax.swing.JTextField qtyInProductPurchases3;
-    private javax.swing.JTextField qtyInProductPurchases4;
     private javax.swing.JTextField rePasswordForUpdate;
     private javax.swing.JPanel rechargeBalencePanel;
     private javax.swing.JPanel rechargeBalencePanel1;
@@ -6770,8 +6802,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JLabel selectedSimOperatorIcon1;
     private javax.swing.JLabel selectedSimOperatorIcon2;
+    private javax.swing.JTextField sellRateInProductDetails;
     private javax.swing.JTextField sellRateInProductPurchases;
-    private javax.swing.JTextField sellRateInProductPurchases1;
     private javax.swing.JButton sendAllRechargeBut;
     private javax.swing.JLabel sendingLogLabel;
     private javax.swing.JPanel serchBar;
@@ -6806,6 +6838,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable tableRechargeDetailsShow;
     private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JTable tableTrustedEmployees;
+    private javax.swing.JComboBox<String> timeTypeProductDetails;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title3;
@@ -6821,6 +6854,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel usingBillNoPanel;
     private javax.swing.JPanel ussdDialPanel;
     private javax.swing.JTable ussdSettedTable;
+    private javax.swing.JTextField warrentyInProductDetails;
     // End of variables declaration//GEN-END:variables
 
     protected void switchPanelViaMenu(JPanel requestedPanel, JPanel tabPanel, JLabel title, JLabel icon, String iconName, String header) {
@@ -10999,7 +11033,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void showDataInProductDetailsPurchaseFromDB(String barCode) {
-        
+        System.out.println(barCode);
         DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name",  "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
 
@@ -11040,7 +11074,6 @@ public class Home extends javax.swing.JFrame {
         productDetailsTable.setRowHeight(30);
         productDetailsTable.setModel(productPurchaseTableModel);
 
-      
     }
 
     private void summaryShowInDisplay(Double tAmountInPPurchaseInSummaryP, int tItemsInPPurchaseInSummaryStringP, Double tCommissionInPPurchaseInSummaryP, Double tPaidInPPurchaseInSummaryP, Double tReturnAmountInPPurchaseInSummaryP) {
@@ -11053,9 +11086,18 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void updateStoredItemByBarCode(String invoice ,String barCode) {
-               Connection conn = DbConnection.connect();
-        String sql = "UPDATE product_purchase SET current_balance = '" + currentBalance + "', status = '" + status + "' WHERE invoice ='" + trxId + "' AND bar_code ='" + trxId + "'";
+    private void updateStoredItemByBarCode(String invoice, String barCode,String sellPrice) {
+       
+ 
+
+        Connection conn = DbConnection.connect();
+        String sql = "UPDATE product_purchase SET date = '" + Configaration.getCurrentDateAndTime()
+                + "', pName = '" + pNameInProductDetails.getText() + "',qty = '"
+                + qtyInProductDetails.getText() + "',buy_rate = '" + buyRateInProductDetails.getText()
+                + "',sell_rate = '" + sellPrice + "/"+ productMasurementProductDetails.getSelectedItem()  + "',order_limit = '"
+                + oderLimitInProductDetails.getText() + "',warranty = '"
+                + warrentyInProductDetails.getText() + " " + timeTypeProductDetails.getSelectedItem()+"' WHERE invoice ='" + invoice + "' AND bar_code ='"
+                + barCode + "'";
         try {
             Statement st = conn.createStatement();
             st.execute(sql);
@@ -11064,5 +11106,30 @@ public class Home extends javax.swing.JFrame {
             Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
         }
         DbConnection.disconnect(conn);
+        showDataInProductDetailsPurchaseFromDB(barCode);
+    }
+    public void genarateBarCode()
+    {
+                       
+        try {
+            System.err.println("fhgfhgf");
+            //2 create the bar code using a String (your data)
+            Barcode barCode = BarcodeFactory.createCode128("Hello World !!!");
+            PDDocument doc = new PDDocument();
+            PDPage page = new PDPage();
+            doc.addPage(page);
+            PDPageContentStream content = new PDPageContentStream(doc, page);
+            try {
+                barCode.output(new PDFBoxOutput(content, 1.0f, 1.0f, 5.0f));
+            } catch (OutputException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (BarcodeException e) {
+
+            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

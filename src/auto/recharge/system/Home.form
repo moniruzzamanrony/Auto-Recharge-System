@@ -1506,15 +1506,15 @@
                                                   <Group type="102" attributes="0">
                                                       <Component id="jLabel143" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="barCodeInProductPurchases1" min="-2" pref="147" max="-2" attributes="0"/>
+                                                      <Component id="barCodeInProductDetails" min="-2" pref="147" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       <Component id="jLabel144" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="groupInProductPurchases1" min="-2" pref="199" max="-2" attributes="0"/>
+                                                      <Component id="groupInProductDetails" min="-2" pref="199" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jLabel145" min="-2" pref="110" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="pNameInProductPurchases1" min="-2" pref="208" max="-2" attributes="0"/>
+                                                      <Component id="pNameInProductDetails" min="-2" pref="208" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="saveInProductPurchase1" min="-2" pref="202" max="-2" attributes="0"/>
                                                   </Group>
@@ -1526,12 +1526,12 @@
                                                   <Group type="102" attributes="0">
                                                       <Component id="jLabel146" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="brandInProductPurchases1" min="-2" pref="151" max="-2" attributes="0"/>
+                                                      <Component id="brandInProductDetails" min="-2" pref="151" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" attributes="0">
                                                       <Component id="jLabel150" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="qtyInProductPurchases3" max="32767" attributes="0"/>
+                                                      <Component id="oderLimitInProductDetails" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1541,11 +1541,11 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="buyRateInProductPurchases1" min="-2" pref="199" max="-2" attributes="0"/>
+                                                  <Component id="buyRateInProductDetails" min="-2" pref="199" max="-2" attributes="0"/>
                                                   <Group type="102" attributes="0">
-                                                      <Component id="qtyInProductPurchases4" min="-2" pref="145" max="-2" attributes="0"/>
+                                                      <Component id="warrentyInProductDetails" min="-2" pref="145" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jComboBox2" pref="0" max="32767" attributes="0"/>
+                                                      <Component id="timeTypeProductDetails" pref="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -1553,22 +1553,22 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel148" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="addPerchangeSelection" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="sellRateInProductPurchases1" min="-2" pref="113" max="-2" attributes="0"/>
+                                                      <Component id="sellRateInProductDetails" min="-2" pref="113" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jComboBox1" min="-2" pref="71" max="-2" attributes="0"/>
+                                                      <Component id="productMasurementProductDetails" min="-2" pref="71" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel149" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="qtyInProductPurchases2" min="-2" pref="208" max="-2" attributes="0"/>
+                                                      <Component id="qtyInProductDetails" min="-2" pref="208" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                      <Component id="jTextField1" min="-2" pref="59" max="-2" attributes="0"/>
+                                                      <Component id="barCodeNumberProductDetails" min="-2" pref="59" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jButton1" min="-2" pref="101" max="-2" attributes="0"/>
                                                   </Group>
@@ -1602,13 +1602,13 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel143" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="barCodeInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="barCodeInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="groupInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="groupInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               <Component id="jLabel144" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel145" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="pNameInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Component id="pNameInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               <Component id="saveInProductPurchase1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1617,35 +1617,35 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel146" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="brandInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="brandInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel150" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="qtyInProductPurchases3" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                  <Component id="qtyInProductPurchases4" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="oderLimitInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="warrentyInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                   <Component id="jLabel151" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel148" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="sellRateInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="addPerchangeSelection" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="sellRateInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="productMasurementProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="timeTypeProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="buyRateInProductPurchases1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="buyRateInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                   <Component id="jLabel147" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel149" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="qtyInProductPurchases2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="qtyInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                   <Component id="saveInProductPurchase2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="jLabel134" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jTextField1" min="-2" pref="28" max="-2" attributes="0"/>
+                                                  <Component id="barCodeNumberProductDetails" min="-2" pref="28" max="-2" attributes="0"/>
                                                   <Component id="jButton1" min="-2" pref="26" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -1730,7 +1730,7 @@
                                 <Property name="text" type="java.lang.String" value="Barcode      :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="barCodeInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="barCodeInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel144">
                               <Properties>
@@ -1743,10 +1743,10 @@
                                 <Property name="text" type="java.lang.String" value="Group        :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="groupInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="groupInProductDetails">
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupInProductPurchases1ActionPerformed"/>
-                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="groupInProductPurchases1KeyReleased"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupInProductDetailsActionPerformed"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="groupInProductDetailsKeyReleased"/>
                               </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel145">
@@ -1760,7 +1760,7 @@
                                 <Property name="text" type="java.lang.String" value="Product Name   :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="pNameInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="pNameInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel146">
                               <Properties>
@@ -1773,7 +1773,7 @@
                                 <Property name="text" type="java.lang.String" value="Brand          : "/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="brandInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="brandInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel147">
                               <Properties>
@@ -1786,7 +1786,7 @@
                                 <Property name="text" type="java.lang.String" value="BUY RATE   :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="buyRateInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="buyRateInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel148">
                               <Properties>
@@ -1799,7 +1799,7 @@
                                 <Property name="text" type="java.lang.String" value="SELL RATE  :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="sellRateInProductPurchases1">
+                            <Component class="javax.swing.JTextField" name="sellRateInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel149">
                               <Properties>
@@ -1851,7 +1851,7 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+                            <Component class="javax.swing.JCheckBox" name="addPerchangeSelection">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="cc" red="cc" type="rgb"/>
@@ -1862,7 +1862,7 @@
                                 <Property name="text" type="java.lang.String" value="%"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox1">
+                            <Component class="javax.swing.JComboBox" name="productMasurementProductDetails">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="6">
@@ -1879,7 +1879,7 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="qtyInProductPurchases2">
+                            <Component class="javax.swing.JTextField" name="qtyInProductDetails">
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel150">
                               <Properties>
@@ -1892,7 +1892,7 @@
                                 <Property name="text" type="java.lang.String" value="Ordar LImit : "/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="qtyInProductPurchases3">
+                            <Component class="javax.swing.JTextField" name="oderLimitInProductDetails">
                             </Component>
                             <Component class="javax.swing.JButton" name="saveInProductPurchase2">
                               <Properties>
@@ -1919,7 +1919,7 @@
                                 <Property name="text" type="java.lang.String" value="Barcode"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField1">
+                            <Component class="javax.swing.JTextField" name="barCodeNumberProductDetails">
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton1">
                               <Properties>
@@ -1931,6 +1931,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Genarate"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel151">
                               <Properties>
@@ -1943,9 +1946,9 @@
                                 <Property name="text" type="java.lang.String" value="Warranty    :"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="qtyInProductPurchases4">
+                            <Component class="javax.swing.JTextField" name="warrentyInProductDetails">
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="jComboBox2">
+                            <Component class="javax.swing.JComboBox" name="timeTypeProductDetails">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="3">
