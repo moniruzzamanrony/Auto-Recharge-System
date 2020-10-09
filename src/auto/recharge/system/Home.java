@@ -12300,6 +12300,13 @@ public class Home extends javax.swing.JFrame {
                 hm.put("shop_name", shopName);
                 hm.put("shop_address", address);
                 hm.put("phone_number", phoneNumber);
+                hm.put("customar_name", "Moniruzzaman Roni");
+                hm.put("customar_address", "Asulia Savar Dhaka");
+                hm.put("customar_phone_no", "01988841890");
+                hm.put("sold_by", "Asikur Rahamna ");
+                hm.put("invoice_no", "1234325432");
+                hm.put("bar_code", "325435");
+              
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
                 preview(jprint);
