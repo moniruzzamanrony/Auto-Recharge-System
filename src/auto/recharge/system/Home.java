@@ -311,18 +311,21 @@ public class Home extends javax.swing.JFrame {
         totalAmt1 = new javax.swing.JPanel();
         jLabel140 = new javax.swing.JLabel();
         tAmountInPPurchaseInSummary1 = new javax.swing.JLabel();
-        totalItems1 = new javax.swing.JPanel();
+        tAmountInPPurchaseInSummary2 = new javax.swing.JLabel();
         jLabel141 = new javax.swing.JLabel();
-        tItemsInPPurchaseInSummary1 = new javax.swing.JLabel();
-        paid2 = new javax.swing.JPanel();
+        tAmountInPPurchaseInSummary3 = new javax.swing.JLabel();
         jLabel142 = new javax.swing.JLabel();
-        tPaidInPPurchase4 = new javax.swing.JLabel();
-        comission1 = new javax.swing.JPanel();
+        tAmountInPPurchaseInSummary4 = new javax.swing.JLabel();
         jLabel152 = new javax.swing.JLabel();
-        tCommissionInPPurchaseInSummary1 = new javax.swing.JLabel();
-        paid3 = new javax.swing.JPanel();
+        comission1 = new javax.swing.JPanel();
         jLabel153 = new javax.swing.JLabel();
-        tReturnAmountInPPurchase5 = new javax.swing.JLabel();
+        tAmountInPPurchaseInSummary5 = new javax.swing.JLabel();
+        paid3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane12 = new javax.swing.JScrollPane();
         productPurchaseTable1 = new javax.swing.JTable();
         jLabel154 = new javax.swing.JLabel();
@@ -337,6 +340,8 @@ public class Home extends javax.swing.JFrame {
         sellRateInProductPurchases1 = new javax.swing.JTextField();
         jLabel160 = new javax.swing.JLabel();
         typeInProductPurchasesComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel138 = new javax.swing.JLabel();
         todaySellSamary = new javax.swing.JPanel();
         jLabel53 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -2279,118 +2284,94 @@ public class Home extends javax.swing.JFrame {
 
         totalAmt1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel140.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel140.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel140.setText("TOTAL AMOUNT");
+        jLabel140.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel140.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel140.setText("TOTAL ITEMS: ");
 
-        tAmountInPPurchaseInSummary1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchaseInSummary1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
         tAmountInPPurchaseInSummary1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tAmountInPPurchaseInSummary1.setText("0.0");
+
+        tAmountInPPurchaseInSummary2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        tAmountInPPurchaseInSummary2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchaseInSummary2.setText("0.0");
+
+        jLabel141.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel141.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel141.setText("Return(-): ");
+
+        tAmountInPPurchaseInSummary3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        tAmountInPPurchaseInSummary3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchaseInSummary3.setText("0.0");
+
+        jLabel142.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel142.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel142.setText("Discount(TK): ");
+
+        tAmountInPPurchaseInSummary4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        tAmountInPPurchaseInSummary4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchaseInSummary4.setText("0.0");
+
+        jLabel152.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel152.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel152.setText("VAT:");
 
         javax.swing.GroupLayout totalAmt1Layout = new javax.swing.GroupLayout(totalAmt1);
         totalAmt1.setLayout(totalAmt1Layout);
         totalAmt1Layout.setHorizontalGroup(
             totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(totalAmt1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel140, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(tAmountInPPurchaseInSummary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap()))
+            .addGroup(totalAmt1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalAmt1Layout.createSequentialGroup()
+                        .addComponent(jLabel140, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchaseInSummary1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(totalAmt1Layout.createSequentialGroup()
+                        .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchaseInSummary2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(totalAmt1Layout.createSequentialGroup()
+                        .addComponent(jLabel142, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchaseInSummary3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(totalAmt1Layout.createSequentialGroup()
+                        .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tAmountInPPurchaseInSummary4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         totalAmt1Layout.setVerticalGroup(
             totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-            .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(totalAmt1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel140)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tAmountInPPurchaseInSummary1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        totalItems1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel141.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel141.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel141.setText("TOTAL ITEMS");
-
-        tItemsInPPurchaseInSummary1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        tItemsInPPurchaseInSummary1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tItemsInPPurchaseInSummary1.setText("0.0");
-
-        javax.swing.GroupLayout totalItems1Layout = new javax.swing.GroupLayout(totalItems1);
-        totalItems1.setLayout(totalItems1Layout);
-        totalItems1Layout.setHorizontalGroup(
-            totalItems1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(totalItems1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(totalItems1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(totalItems1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel141, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(tItemsInPPurchaseInSummary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap()))
-        );
-        totalItems1Layout.setVerticalGroup(
-            totalItems1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-            .addGroup(totalItems1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(totalItems1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel141)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tItemsInPPurchaseInSummary1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        paid2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel142.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel142.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel142.setText("PAID");
-
-        tPaidInPPurchase4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        tPaidInPPurchase4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tPaidInPPurchase4.setText("0.0");
-
-        javax.swing.GroupLayout paid2Layout = new javax.swing.GroupLayout(paid2);
-        paid2.setLayout(paid2Layout);
-        paid2Layout.setHorizontalGroup(
-            paid2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(paid2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paid2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(paid2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel142, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(tPaidInPPurchase4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap()))
-        );
-        paid2Layout.setVerticalGroup(
-            paid2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-            .addGroup(paid2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paid2Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel142)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tPaidInPPurchase4)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(totalAmt1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tAmountInPPurchaseInSummary1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel140, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tAmountInPPurchaseInSummary2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tAmountInPPurchaseInSummary3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel142, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tAmountInPPurchaseInSummary4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         comission1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel152.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel152.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel152.setText("COMMISSION");
+        jLabel153.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel153.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel153.setText("PAYABLE");
 
-        tCommissionInPPurchaseInSummary1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        tCommissionInPPurchaseInSummary1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tCommissionInPPurchaseInSummary1.setText("0.0");
+        tAmountInPPurchaseInSummary5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        tAmountInPPurchaseInSummary5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tAmountInPPurchaseInSummary5.setText("0.0");
 
         javax.swing.GroupLayout comission1Layout = new javax.swing.GroupLayout(comission1);
         comission1.setLayout(comission1Layout);
@@ -2400,57 +2381,45 @@ public class Home extends javax.swing.JFrame {
             .addGroup(comission1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(comission1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addGroup(comission1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel152, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(tCommissionInPPurchaseInSummary1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel153, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tAmountInPPurchaseInSummary5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
         comission1Layout.setVerticalGroup(
             comission1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
+            .addGap(0, 46, Short.MAX_VALUE)
             .addGroup(comission1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(comission1Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel152)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tCommissionInPPurchaseInSummary1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(14, 14, 14)
+                    .addGroup(comission1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tAmountInPPurchaseInSummary5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel153, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
 
         paid3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel153.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        jLabel153.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel153.setText("RETURN AMOUNT");
-
-        tReturnAmountInPPurchase5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
-        tReturnAmountInPPurchase5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tReturnAmountInPPurchase5.setText("0.0");
 
         javax.swing.GroupLayout paid3Layout = new javax.swing.GroupLayout(paid3);
         paid3.setLayout(paid3Layout);
         paid3Layout.setHorizontalGroup(
             paid3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(paid3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paid3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(paid3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel153, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(tReturnAmountInPPurchase5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap()))
         );
         paid3Layout.setVerticalGroup(
             paid3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 86, Short.MAX_VALUE)
-            .addGroup(paid3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paid3Layout.createSequentialGroup()
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel153)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tReturnAmountInPPurchase5)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        jButton2.setText("New");
+
+        jButton5.setText("Delete");
+
+        jButton6.setText("Print");
+
+        jCheckBox1.setText("POS MEMO");
+
+        jCheckBox2.setText("SHOP MEMO");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -2460,11 +2429,20 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(totalAmt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel139, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(totalItems1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel139, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comission1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(paid2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(paid3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(paid3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jCheckBox1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -2474,15 +2452,21 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel139)
                 .addGap(32, 32, 32)
                 .addComponent(totalAmt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(totalItems1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(37, 37, 37)
                 .addComponent(comission1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(paid2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(120, 120, 120)
                 .addComponent(paid3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap())
         );
 
         productPurchaseTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -2560,6 +2544,17 @@ public class Home extends javax.swing.JFrame {
 
         typeInProductPurchasesComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         typeInProductPurchasesComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PURCHASE", "RETURN", "OFFER" }));
+        typeInProductPurchasesComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeInProductPurchasesComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel138.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
+        jLabel138.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel138.setText("Pandding List");
 
         javax.swing.GroupLayout ProductPurchasePanel2Layout = new javax.swing.GroupLayout(ProductPurchasePanel2);
         ProductPurchasePanel2.setLayout(ProductPurchasePanel2Layout);
@@ -2568,100 +2563,126 @@ public class Home extends javax.swing.JFrame {
             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel160)
-                                .addGap(36, 36, 36)
-                                .addComponent(typeInProductPurchasesComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel159)
-                                .addGap(72, 72, 72)
-                                .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(467, 467, 467)
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                            .addComponent(sellRateInProductPurchases1)))
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel154, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(barCodeInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(jLabel155)
-                                .addGap(35, 35, 35)
-                                .addComponent(groupInProductPurchases1)
-                                .addGap(121, 121, 121))
-                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel157)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(qtyInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel158)
-                                .addGap(10, 10, 10)
-                                .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113))
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel30)
                                 .addGap(4, 4, 4)
-                                .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel137)
+                                .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel157)
+                                    .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel154, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel160)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(typeInProductPurchasesComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(qtyInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                                        .addComponent(barCodeInProductPurchases1)))))
+                        .addGap(10, 10, 10)
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel158)
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel155, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel137, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(4, 4, 4)
-                                .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                                    .addComponent(groupInProductPurchases1)))
+                            .addComponent(jLabel159)))
+                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jLabel138)
+                        .addGap(144, 144, 144))
+                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ProductPurchasePanel2Layout.setVerticalGroup(
             ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(26, 26, 26)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel137))))
-                .addGap(18, 18, 18)
-                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(barCodeInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(groupInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel30)
+                                    .addComponent(jLabel137)))))
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel154)
-                            .addComponent(jLabel155))))
-                .addGap(18, 18, 18)
-                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel157)
-                                .addComponent(qtyInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel158))))
-                .addGap(5, 5, 5)
+                        .addContainerGap()
+                        .addComponent(jLabel138)
+                        .addGap(7, 7, 7)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
+                                .addGap(18, 18, 18)
+                                .addComponent(groupInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jLabel160))
-                                    .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(typeInProductPurchasesComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel159))))
+                                        .addGap(5, 5, 5)
+                                        .addComponent(jLabel154))
+                                    .addComponent(barCodeInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel155, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel158)
+                                .addGap(18, 18, 18))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel157)
+                                            .addComponent(qtyInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(buyRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(10, 10, 10)))
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel159)))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(typeInProductPurchasesComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel160)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane12))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout billPanelLayout = new javax.swing.GroupLayout(billPanel);
@@ -6838,6 +6859,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barCodeInProductPurchases1ActionPerformed
 
+    private void typeInProductPurchasesComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeInProductPurchasesComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeInProductPurchasesComboBox1ActionPerformed
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -7062,8 +7087,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField invoiceInProductPurchases;
     private javax.swing.JTextField invoiceInProductPurchases1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -7107,6 +7138,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel135;
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
+    private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel140;
@@ -7278,7 +7310,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField pNameInProductPurchases;
     private javax.swing.JPanel paid;
     private javax.swing.JPanel paid1;
-    private javax.swing.JPanel paid2;
     private javax.swing.JPanel paid3;
     private javax.swing.JLabel pandingRequestCounter;
     private javax.swing.JLabel passwordChange;
@@ -7334,19 +7365,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel systemBackupPanel;
     private javax.swing.JLabel tAmountInPPurchaseInSummary;
     private javax.swing.JLabel tAmountInPPurchaseInSummary1;
+    private javax.swing.JLabel tAmountInPPurchaseInSummary2;
+    private javax.swing.JLabel tAmountInPPurchaseInSummary3;
+    private javax.swing.JLabel tAmountInPPurchaseInSummary4;
+    private javax.swing.JLabel tAmountInPPurchaseInSummary5;
     private javax.swing.JLabel tCommissionInPPurchaseInSummary;
-    private javax.swing.JLabel tCommissionInPPurchaseInSummary1;
     private javax.swing.JLabel tDiscountInToday;
     private javax.swing.JLabel tDueInToday;
     private javax.swing.JLabel tGrandTotalInToday;
     private javax.swing.JLabel tInvoiceInToday;
     private javax.swing.JLabel tItemsInPPurchaseInSummary;
-    private javax.swing.JLabel tItemsInPPurchaseInSummary1;
     private javax.swing.JLabel tPaidInPPurchase3;
-    private javax.swing.JLabel tPaidInPPurchase4;
     private javax.swing.JLabel tPaidInToday;
     private javax.swing.JLabel tReturnAmountInPPurchase4;
-    private javax.swing.JLabel tReturnAmountInPPurchase5;
     private javax.swing.JLabel tReturnInToday;
     private javax.swing.JLabel tSellsInToday;
     private javax.swing.JLabel tShippingCostInToday;
@@ -7369,7 +7400,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel totalAmt;
     private javax.swing.JPanel totalAmt1;
     private javax.swing.JPanel totalItems;
-    private javax.swing.JPanel totalItems1;
     private javax.swing.JLabel trustedEmployee;
     private javax.swing.JPanel trustedEmployeePanel;
     private javax.swing.JComboBox<String> typeInProductPurchasesComboBox;
