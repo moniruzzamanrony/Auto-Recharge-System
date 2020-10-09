@@ -84,26 +84,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
-import net.sourceforge.barbecue.Barcode;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
-import net.sourceforge.barbecue.BarcodeFactory;
-import net.sourceforge.barbecue.Barcode;
-import net.sourceforge.barbecue.BarcodeException;
-import net.sourceforge.barbecue.BarcodeFactory;
-import net.sourceforge.barbecue.BarcodeImageHandler;
-import net.sourceforge.barbecue.output.OutputException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 
 public class Home extends javax.swing.JFrame {
 
@@ -126,6 +114,10 @@ public class Home extends javax.swing.JFrame {
     private final String TAG_TEST = "Home test: ";
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
     private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
+    private Double returnForSellTable = 0.0;
+    private Double totalPayableAmt = 0.0;
+    private Double discountInSellProduct = 0.0;
+    private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
 
     public Home() {
         initComponents();
@@ -2674,6 +2666,7 @@ public class Home extends javax.swing.JFrame {
         jLabel164.setForeground(new java.awt.Color(0, 0, 0));
         jLabel164.setText("Payment       :");
 
+        paymentInProductBill.setText("0.0");
         paymentInProductBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentInProductBillActionPerformed(evt);
@@ -2684,6 +2677,7 @@ public class Home extends javax.swing.JFrame {
         jLabel165.setForeground(new java.awt.Color(0, 0, 0));
         jLabel165.setText("VAT         :");
 
+        vatInProductBill.setText("0.0");
         vatInProductBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vatInProductBillActionPerformed(evt);
@@ -2700,12 +2694,14 @@ public class Home extends javax.swing.JFrame {
         jLabel166.setForeground(new java.awt.Color(0, 0, 0));
         jLabel166.setText("Due Payment :");
 
+        duePaymentInProductBill.setText("0.0");
         duePaymentInProductBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 duePaymentInProductBillActionPerformed(evt);
             }
         });
 
+        discpuntInProductBill.setText("0.0");
         discpuntInProductBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 discpuntInProductBillActionPerformed(evt);
@@ -6991,7 +6987,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_saveInProductPurchase2MouseClicked
 
     private void productDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productDetailsTableMouseClicked
-        String productId,productGroup,productName,buyRate,sellPrice,brand,lastModify;
+        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify;
         Point point = evt.getPoint();
         int column = productDetailsTable.columnAtPoint(point);
         int row = productDetailsTable.rowAtPoint(point);
@@ -7002,8 +6998,8 @@ public class Home extends javax.swing.JFrame {
         sellPrice = productDetailsTable.getValueAt(row, 4).toString();
         brand = productDetailsTable.getValueAt(row, 5).toString();
         lastModify = productDetailsTable.getValueAt(row, 6).toString();
-        System.err.println(productId+"+"+productGroup);
-        
+        System.err.println(productId + "+" + productGroup);
+
         //SET VALUE IN EDITTEXT
         barCodeInProductDetails.setText(productId);
         groupInProductDetails.setText(productGroup);
@@ -7011,30 +7007,28 @@ public class Home extends javax.swing.JFrame {
         buyRateInProductDetails.setText(buyRate);
         sellRateInProductDetails.setText(sellPrice);
         brandInProductDetails.setText(sellPrice);
-        
-        
 
 
     }//GEN-LAST:event_productDetailsTableMouseClicked
 
     private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
-            addPerchangeSelection.addItemListener(new ItemListener() {
+        addPerchangeSelection.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-              Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
-             if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
-                   sellRate = Double.valueOf(buyRateInProductDetails.getText())+((Double.valueOf(sellRateInProductDetails.getText())*Double.valueOf(buyRateInProductDetails.getText()))/100);
-                 updateStoredItemByBarCode(invoiceINProductDetails.getText(),barCodeInProductDetails.getText(),String.valueOf(sellRate));
-             } else {//checkbox has been deselected
-                      updateStoredItemByBarCode(invoiceINProductDetails.getText(),barCodeInProductDetails.getText(),String.valueOf(sellRate));
+                Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
+                if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                    sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
+                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                } else {//checkbox has been deselected
+                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
                 };
             }
         });
-       
+
     }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       genarateBarCode(barCodeInProductDetails.getText());
+        genarateBarCode(barCodeInProductDetails.getText());
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void invoiceInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductSellKeyReleased
@@ -11761,6 +11755,123 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
+
+        //Product SELL Tab
+        invoiceInProductSell.requestFocusInWindow();
+        invoiceInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        customerIdINProductSell.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        customerIdINProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    fullNameInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+
+        fullNameInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    addressInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        addressInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    noteInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        noteInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    phoneNOInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        phoneNOInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    paymentInProductBill.requestFocusInWindow();
+                }
+            }
+        });
+        paymentInProductBill.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    summaryShowInBillDisplay();
+                    vatInProductBill.requestFocusInWindow();
+                }
+            }
+        });
+        vatInProductBill.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    summaryShowInBillDisplay();
+                    duePaymentInProductBill.requestFocusInWindow();
+                }
+            }
+        });
+        duePaymentInProductBill.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    summaryShowInBillDisplay();
+                    discpuntInProductBill.requestFocusInWindow();
+                }
+            }
+        });
+        discpuntInProductBill.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    summaryShowInBillDisplay();
+                    actionTypeInProductSellCOmboBox.requestFocusInWindow();
+                }
+            }
+        });
+        actionTypeInProductSellCOmboBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    barCodeInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        barCodeInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    paymentTypeInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        paymentTypeInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    paymentTypeInProductSell.requestFocusInWindow();
+                }
+            }
+        });
     }
 
     private void saveInProductPurchaseDB() {
@@ -11878,9 +11989,8 @@ public class Home extends javax.swing.JFrame {
 
     private void showDataInProductDetailsPurchaseFromDB(String barCode) {
         System.out.println(barCode);
-        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name",  "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
+        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name", "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
-
 
         Connection conn = DbConnection.connect();
         try {
@@ -11901,14 +12011,14 @@ public class Home extends javax.swing.JFrame {
                     rs.getString("supplier"),
                     rs.getString("date")
                 });
-          
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             DbConnection.disconnect(conn);
         }
-        
+
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productDetailsTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productDetailsTable.getTableHeader().setOpaque(false);
@@ -11930,17 +12040,15 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void updateStoredItemByBarCode(String invoice, String barCode,String sellPrice) {
-       
- 
+    private void updateStoredItemByBarCode(String invoice, String barCode, String sellPrice) {
 
         Connection conn = DbConnection.connect();
         String sql = "UPDATE product_purchase SET date = '" + Configaration.getCurrentDateAndTime()
                 + "', pName = '" + pNameInProductDetails.getText() + "',qty = '"
                 + qtyInProductDetails.getText() + "',buy_rate = '" + buyRateInProductDetails.getText()
-                + "',sell_rate = '" + sellPrice + "/"+ productMasurementProductDetails.getSelectedItem()  + "',order_limit = '"
+                + "',sell_rate = '" + sellPrice + "',order_limit = '"
                 + oderLimitInProductDetails.getText() + "',warranty = '"
-                + warrentyInProductDetails.getText() + " " + timeTypeProductDetails.getSelectedItem()+"' WHERE invoice ='" + invoice + "' AND bar_code ='"
+                + warrentyInProductDetails.getText() + "' WHERE invoice ='" + invoice + "' AND bar_code ='"
                 + barCode + "'";
         try {
             Statement st = conn.createStatement();
@@ -11956,10 +12064,10 @@ public class Home extends javax.swing.JFrame {
     public void genarateBarCode(String pdfName) {
         try {
             String fileNameJrxml1 = "/resources/reports/bar_code_list.jrxml";
-            
+
             URL res = getClass().getResource(fileNameJrxml1);
             File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();          
+            String fileNameJrxml = file.getAbsolutePath();
             String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
             URL res1 = getClass().getResource(fileNamePdf1);
             try {
@@ -11971,14 +12079,14 @@ public class Home extends javax.swing.JFrame {
                 String second_language = "Structured text";
                 HashMap hm = new HashMap();
                 hm.put("bar_code_text", first_language);
-                
+
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
                 preview(jprint);
                 System.out.println("exporting the JASPER file to PDF file....");
-               // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
                 System.out.println("Successfully completed the export");
-                
+
             } catch (Exception e) {
                 System.out.print("Exception:" + e);
             }
@@ -12003,14 +12111,10 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void addProductFromDBInSellPanel(String barCode) 
-    {
-       DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"SL","Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
+    private void addProductFromDBInSellPanel(String barCode) {
+
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
 
-        Double returnAC = 0.0;
-        Double comission = 0.0;
-        Double total = 0.0;
         int count = 0;
         Connection conn = DbConnection.connect();
         try {
@@ -12022,12 +12126,12 @@ public class Home extends javax.swing.JFrame {
             while (rs.next()) {
                 count++;
                 Double subTotal = Double.valueOf(rs.getString("buy_rate")) * 1.0;
-
+                String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
                 supplierInProductPurchases.setText(rs.getString("supplier"));
                 dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                productPurchaseTableModel.addRow(new Object[]{
+                productSellTableModel.addRow(new Object[]{
                     String.valueOf(count),
-                    actionTypeInProductSellCOmboBox.getSelectedItem(),
+                    typeOfAction,
                     rs.getString("bar_code"),
                     rs.getString("group"),
                     rs.getString("pName"),
@@ -12035,7 +12139,19 @@ public class Home extends javax.swing.JFrame {
                     rs.getString("sell_rate"),
                     subTotal
                 });
+                switch (typeOfAction) {
+                    case "Sell":
+                        totalPayableAmt = totalPayableAmt + Double.valueOf(subTotal);
 
+                        break;
+                    case "Return":
+                        returnForSellTable = returnForSellTable + Double.valueOf(subTotal);
+                        System.err.println("returnAC");
+                        break;
+                    default:
+                        System.err.println("Type Not Selected");
+                        break;
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -12046,14 +12162,38 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productSellTable.getTableHeader().setOpaque(false);
         productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));      
+        productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
-        productSellTable.setModel(productPurchaseTableModel);
+        productSellTable.setModel(productSellTableModel);
+        //For Summary Show
+        int numberofRows = productSellTable.getRowCount();
 
-        summaryShowInBillDisplay(total, count, comission, total, returnAC);
+        summaryShowInBillDisplay();
     }
 
-    private void summaryShowInBillDisplay(Double total, int count, Double comission, Double total0, Double returnAC) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void summaryShowInBillDisplay() {
+        if (!discpuntInProductBill.getText().toString().equals(0.0)) {
+            discountInSellProduct = (totalPayableAmt * Double.valueOf(discpuntInProductBill.getText())) / 100;
+            totalPayableAmt = totalPayableAmt - discountInSellProduct;
+        }
+        String totalItems, returnAmt, discountAmt, vat, payableAmt, due, payway;
+        totalItems = String.valueOf(productSellTable.getRowCount());
+        returnAmt = String.valueOf(returnForSellTable);
+        discountAmt = String.valueOf(discountInSellProduct);
+        vat = String.valueOf("0.0");
+        payableAmt = String.valueOf(totalPayableAmt);
+        due = String.valueOf(Double.valueOf(payableAmt) - Double.valueOf(paymentInProductBill.getText()));
+        payway = String.valueOf(paymentTypeInProductSell.getSelectedItem().toString());
+
+        totalItemsInProductSell.setText(totalItems);
+        returnInProductSell.setText(returnAmt);
+        discountInProductSell.setText(discountAmt);
+        vatInProductSell.setText(vat);
+        payableInProductSell.setText(payableAmt);
+        paidInProductSell.setText(paymentInProductBill.getText());
+        duePaymentInProductSell.setText(duePaymentInProductBill.getText());
+        dueInProductSell.setText(due);
+        paymentWayInProductSell.setText(payway);
+
     }
 }
