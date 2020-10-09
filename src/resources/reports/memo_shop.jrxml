@@ -2,7 +2,79 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="882b9bed-1932-4f73-ba5b-c771cb9ce65f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F5F5DC">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFBF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="92728e5c-a87d-41a1-9577-e35dd9a49f10">
+		<parameter name="col11" class="java.lang.String"/>
+		<field name="barCode" class="java.lang.String"/>
+		<field name="pName" class="java.lang.String"/>
+		<field name="warranty" class="java.lang.String"/>
+		<field name="price" class="java.lang.String"/>
+		<field name="qty" class="java.lang.String"/>
+		<field name="subTotal" class="java.lang.String"/>
+	</subDataset>
 	<parameter name="shop_name" class="java.lang.String"/>
 	<parameter name="shop_address" class="java.lang.String"/>
 	<parameter name="shop_phone_number" class="java.lang.String"/>
@@ -12,6 +84,7 @@
 	<parameter name="sold_by" class="java.lang.String"/>
 	<parameter name="invoice" class="java.lang.String"/>
 	<parameter name="bar_code" class="java.lang.String"/>
+	<parameter name="collectionOfBean" class="net.sf.jasperreports.engine.JRDataSource"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -38,12 +111,18 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{shop_address}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="6" y="102" width="542" height="1" forecolor="#009999" uuid="251404e6-b651-4857-92de-a584d59f8dd0"/>
+			</line>
+			<line>
+				<reportElement x="6" y="105" width="542" height="1" forecolor="#660099" uuid="254a4f74-6402-455e-9074-13de0523cb78"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="30" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="2" width="542" height="24" forecolor="#330033" uuid="3891fe0c-25a7-45b8-a65a-4793d59f9edd"/>
+				<reportElement x="6" y="18" width="542" height="24" forecolor="#330033" uuid="3891fe0c-25a7-45b8-a65a-4793d59f9edd"/>
 				<textElement textAlignment="Center">
 					<font fontName="Ebrima" size="16" isBold="true"/>
 				</textElement>
@@ -52,9 +131,9 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="281" splitType="Stretch">
+		<band height="347" splitType="Stretch">
 			<rectangle>
-				<reportElement x="13" y="0" width="535" height="254" forecolor="#CCCCFF" uuid="5067198b-ec68-4419-8c2b-109f43686287"/>
+				<reportElement x="13" y="0" width="535" height="332" forecolor="#CCCCFF" uuid="5067198b-ec68-4419-8c2b-109f43686287"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="25" y="17" width="120" height="20" uuid="17e238d2-93c0-414d-af62-06b42b6f0463"/>
@@ -64,7 +143,7 @@
 				<text><![CDATA[Customar Name       :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="25" y="68" width="120" height="20" uuid="78c45dc7-6d5b-4deb-be9d-41f52f0390c3"/>
+				<reportElement x="25" y="68" width="118" height="20" uuid="78c45dc7-6d5b-4deb-be9d-41f52f0390c3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Georgia" size="12"/>
 				</textElement>
@@ -144,7 +223,7 @@
 				<text><![CDATA[Bar Code]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="354" y="101" width="187" height="43" uuid="bb116d23-73a6-4105-8db5-c22ab39ff85f"/>
+				<reportElement x="328" y="101" width="213" height="34" uuid="bb116d23-73a6-4105-8db5-c22ab39ff85f"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
 					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
 				</jr:barbecue>
@@ -154,9 +233,141 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{bar_code}]]></textFieldExpression>
 			</textField>
+			<elementGroup/>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="25" y="150" width="516" height="50" uuid="80d995ce-7f30-43c8-8312-2a701ae1c434"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="beddd1d5-404d-44b8-9c13-f0a8620d540c">
+						<datasetParameter name="REPORT_DATA_SOURCE">
+							<datasetParameterExpression><![CDATA[$P{collectionOfBean}]]></datasetParameterExpression>
+						</datasetParameter>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="48" uuid="b347451d-c979-40cc-ac1e-0c1160d6bdaf">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="30" uuid="4ef5c343-931b-4f70-b294-159675f6b2e9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SL]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="48" height="21" uuid="6fbe29be-4fae-4425-8cdc-138511635515"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{barCode}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+					<jr:column width="159" uuid="32b19094-03c1-4f46-b5e3-2399030195c7">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="159" height="30" uuid="964c24b1-7ad7-4d88-a925-1eea671b0f83"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Product Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="159" height="21" uuid="8344913a-9fae-4ade-97b5-c9a9795bde74"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{pName}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+					<jr:column width="74" uuid="62c622f6-4719-4147-9d10-3e8731abf320">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="74" height="30" uuid="e7399db2-b101-47d0-83f8-67fe758588be"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Warranty]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="74" height="21" uuid="18e034cf-70a6-4642-bae7-8d671d61c254"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{warranty}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+					<jr:column width="74" uuid="df5a51fd-4c2c-4e45-b90a-34af84225832">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="74" height="30" uuid="a65db38c-fd7b-43ce-97b4-9840052b4019"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="74" height="21" uuid="bd4d55d8-de27-4909-90f1-b4edc214875b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+					<jr:column width="51" uuid="d6e349d4-fda9-40d2-8c40-3eabb869985c">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="30" uuid="320812a3-6b27-4b40-83aa-b779a6c9a306"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[QTY]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="51" height="21" uuid="d0a74fcc-17ab-4328-84bc-e3a2c0fbe4f0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+					<jr:column width="112" uuid="38863529-02fa-40f5-9b8d-cba53fd420e6">
+						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="106" height="30" uuid="0d763481-0054-46cb-9951-12b941a82904"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Bahnschrift" size="13" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sub Total]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="112" height="21" uuid="5dba4643-4c4c-4923-9647-d70eb99ab187"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 	</columnHeader>
 	<summary>
-		<band height="87" splitType="Stretch"/>
+		<band height="93" splitType="Stretch"/>
 	</summary>
 </jasperReport>
