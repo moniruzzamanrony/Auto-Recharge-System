@@ -11,27 +11,27 @@ package auto.recharge.system.dto;
  */
 public class Products {
 
-    private String barCode;
-    private String pName;
+    private String bar_code;
+    private String p_name;
     private String warranty;
     private String price;
     private String qty;
-    private String subTotal;
+    private String sub_total;
 
     public String getBarCode() {
-        return barCode;
+        return bar_code;
     }
 
     public void setBarCode(String barCode) {
-        this.barCode = barCode;
+        this.bar_code = barCode;
     }
 
     public String getpName() {
-        return pName;
+        return p_name;
     }
 
     public void setpName(String pName) {
-        this.pName = pName;
+        this.p_name = pName;
     }
 
     public String getWarranty() {
@@ -59,11 +59,11 @@ public class Products {
     }
 
     public String getSubTotal() {
-        return subTotal;
+        return sub_total;
     }
 
     public void setSubTotal(String subTotal) {
-        this.subTotal = subTotal;
+        this.sub_total = subTotal;
     }
     
 

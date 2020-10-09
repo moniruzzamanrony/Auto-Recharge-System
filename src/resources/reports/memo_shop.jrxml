@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="882b9bed-1932-4f73-ba5b-c771cb9ce65f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="119"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -68,12 +68,12 @@
 	</style>
 	<subDataset name="Table Dataset 1" uuid="92728e5c-a87d-41a1-9577-e35dd9a49f10">
 		<parameter name="col11" class="java.lang.String"/>
-		<field name="barCode" class="java.lang.String"/>
-		<field name="pName" class="java.lang.String"/>
+		<field name="bar_code" class="java.lang.String"/>
+		<field name="p_name" class="java.lang.String"/>
 		<field name="warranty" class="java.lang.String"/>
 		<field name="price" class="java.lang.String"/>
 		<field name="qty" class="java.lang.String"/>
-		<field name="subTotal" class="java.lang.String"/>
+		<field name="sub_total" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="shop_name" class="java.lang.String"/>
 	<parameter name="shop_address" class="java.lang.String"/>
@@ -235,31 +235,29 @@
 			</textField>
 			<elementGroup/>
 			<componentElement>
-				<reportElement key="table 2" style="table 2" x="25" y="150" width="516" height="50" uuid="80d995ce-7f30-43c8-8312-2a701ae1c434"/>
+				<reportElement key="table 2" style="table 2" x="25" y="150" width="550" height="132" uuid="80d995ce-7f30-43c8-8312-2a701ae1c434"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Table Dataset 1" uuid="beddd1d5-404d-44b8-9c13-f0a8620d540c">
+					<datasetRun subDataset="Table Dataset 1" uuid="60d804c1-b424-4470-bc94-cf741d071004">
 						<datasetParameter name="REPORT_DATA_SOURCE">
 							<datasetParameterExpression><![CDATA[$P{collectionOfBean}]]></datasetParameterExpression>
 						</datasetParameter>
-						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="48" uuid="b347451d-c979-40cc-ac1e-0c1160d6bdaf">
+					<jr:column width="77" uuid="b347451d-c979-40cc-ac1e-0c1160d6bdaf">
 						<jr:tableHeader style="table 2_TH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="48" height="30" uuid="4ef5c343-931b-4f70-b294-159675f6b2e9"/>
+								<reportElement x="0" y="0" width="77" height="30" uuid="4ef5c343-931b-4f70-b294-159675f6b2e9"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Bahnschrift" size="13" isBold="true"/>
 								</textElement>
 								<text><![CDATA[SL]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="48" height="21" uuid="6fbe29be-4fae-4425-8cdc-138511635515"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{barCode}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="77" height="21" uuid="f4220d99-2788-456f-9cfb-cda5b297a14f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{bar_code}]]></textFieldExpression>
 							</textField>
 						</jr:columnHeader>
 					</jr:column>
@@ -273,13 +271,11 @@
 								<text><![CDATA[Product Name]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="159" height="21" uuid="8344913a-9fae-4ade-97b5-c9a9795bde74"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{pName}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="159" height="21" uuid="96ea83dc-0bf8-46b7-b9bf-5bf370eb2368"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{p_name}]]></textFieldExpression>
 							</textField>
 						</jr:columnHeader>
 					</jr:column>
@@ -293,7 +289,7 @@
 								<text><![CDATA[Warranty]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="74" height="21" uuid="18e034cf-70a6-4642-bae7-8d671d61c254"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -313,7 +309,7 @@
 								<text><![CDATA[Price]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="74" height="21" uuid="bd4d55d8-de27-4909-90f1-b4edc214875b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -333,7 +329,7 @@
 								<text><![CDATA[QTY]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
 								<reportElement x="0" y="0" width="51" height="21" uuid="d0a74fcc-17ab-4328-84bc-e3a2c0fbe4f0"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -353,13 +349,11 @@
 								<text><![CDATA[Sub Total]]></text>
 							</staticText>
 						</jr:tableHeader>
-						<jr:columnHeader style="table 2_CH" height="21" rowSpan="1">
+						<jr:columnHeader style="table 2_CH" height="42" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="112" height="21" uuid="5dba4643-4c4c-4923-9647-d70eb99ab187"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="112" height="21" uuid="7935a71d-b58e-4f9c-b769-a7fb57c77f0a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
 							</textField>
 						</jr:columnHeader>
 					</jr:column>

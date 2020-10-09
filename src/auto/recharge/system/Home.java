@@ -93,6 +93,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
@@ -124,7 +125,7 @@ public class Home extends javax.swing.JFrame {
     private Double totalPayableAmt = 0.0;
     private Double discountInSellProduct = 0.0;
     private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
-
+    int countForSellTable = 0;
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -7171,7 +7172,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_barCodeInProductSellKeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       clearBillforProduct();
+        clearBillforProduct();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void productSellTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTableMouseClicked
@@ -7188,8 +7189,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_productSellTableKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        saveSellProductInSellTabel();      
-       // printMemo();
+        //  saveSellProductInSellTabel();      
+         printMemo();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
@@ -11925,7 +11926,6 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
-   
 
     }
 
@@ -12164,7 +12164,7 @@ public class Home extends javax.swing.JFrame {
 
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
 
-        int count = 0;
+        
         Connection conn = DbConnection.connect();
         try {
             Statement st = conn.createStatement();
@@ -12172,13 +12172,13 @@ public class Home extends javax.swing.JFrame {
             //TODO: HANDLE NULL
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                count++;
+                countForSellTable++;
                 Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
                 String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
                 supplierInProductPurchases.setText(rs.getString("supplier"));
                 dateInProductPurchases.setDate(new Date(rs.getString("date")));
                 productSellTableModel.addRow(new Object[]{
-                    String.valueOf(count),
+                    String.valueOf(countForSellTable),
                     typeOfAction,
                     rs.getString("bar_code"),
                     rs.getString("group"),
@@ -12206,7 +12206,7 @@ public class Home extends javax.swing.JFrame {
         } finally {
             DbConnection.disconnect(conn);
         }
-     
+
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productSellTable.getTableHeader().setOpaque(false);
@@ -12214,8 +12214,8 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-       
-          
+        saveSellProductInSellTabel(countForSellTable);
+
         summaryShowInBillDisplay();
     }
 
@@ -12267,8 +12267,7 @@ public class Home extends javax.swing.JFrame {
         vatInProductBill.setText("0.0");
         duePaymentInProductBill.setText("0.0");
         discpuntInProductBill.setText("0.0");
-        
-        
+
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
         productSellTableModel.addRow(new Object[]{});
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -12278,13 +12277,36 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-
+        
+        int countForSellTable = 0;
 
     }
 
     private void printMemo() {
-          
-            try {
+        List<Products> productses = new ArrayList<>();
+    Connection conn = DbConnection.connect();
+        try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `sell_table`";
+            //TODO: HANDLE NULL
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                if(invoiceInProductSell.getText().equals(rs.getString("invoice"))){
+                Products p= new Products();
+                p.setBarCode(rs.getString("bar_code"));
+                p.setPrice(rs.getString("price"));
+                p.setQty(rs.getString("qty"));
+                p.setSubTotal(rs.getString("sub_total"));
+                p.setWarranty(rs.getString("warranty"));
+                p.setpName(rs.getString("p_name"));
+                }         
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
+        }
+        try {
             String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
 
             URL res = getClass().getResource(fileNameJrxml1);
@@ -12300,7 +12322,9 @@ public class Home extends javax.swing.JFrame {
                 String shopName = "AK STORE AND TELECOM";
                 String address = "Asulia savar,dhaka,bangladesh";
                 String phoneNumber = "+8801988841890 +8801988851789";
-                HashMap hm = new HashMap();
+                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(productses);
+                
+                HashMap<String,Object> hm = new HashMap<String,Object>();
                 hm.put("shop_name", shopName);
                 hm.put("shop_address", address);
                 hm.put("shop_phone_number", phoneNumber);
@@ -12310,7 +12334,7 @@ public class Home extends javax.swing.JFrame {
                 hm.put("invoice", invoiceInProductSell.getText());
                 hm.put("sold_by", "Logged User Name");
                 hm.put("bar_code", invoiceInProductSell.getText());
-              
+                hm.put("collectionOfBean", ds);
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
                 preview(jprint);
@@ -12327,9 +12351,9 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void saveSellProductInSellTabel(String row) {
-              Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,group,p_name,qty,price,sub_total) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private void saveSellProductInSellTabel(int rowNo) {
+        Connection conn1 = DbConnection.connect();
+        String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn1.prepareStatement(sql);
             preparedStatement.setString(1, invoiceInProductSell.getText().toString());
@@ -12349,38 +12373,36 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
             preparedStatement.setString(16, dueInProductSell.getText().toString());
             preparedStatement.setString(17, paymentWayInProductSell.getText().toString());
-       
+
             for (int j = 0; j < productSellTable.getColumnCount(); j++) {
-             
+
                 switch (j) {
                     case 0:
-                         preparedStatement.setString(18, productSellTable.getModel().getValueAt(row, j));
-                   System.err.println();
+                        preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        System.err.println();
                         break;
                     case 1:
-                         preparedStatement.setString(19, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
                     case 2:
-                         preparedStatement.setString(20, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
                     case 3:
-                         preparedStatement.setString(21, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
                     case 4:
-                         preparedStatement.setString(22, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
                     case 5:
-                         preparedStatement.setString(23, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
                     case 6:
-                         preparedStatement.setString(24, productSellTable.getModel().getValueAt(row, j));
+                        preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
                         break;
 
-
                 }
-               
-            
-        }
+
+            }
             preparedStatement.execute();
 
         } catch (SQLException ex) {
@@ -12394,11 +12416,8 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
-    
-
 
 //        productSellTable.getRowCount();
 //        System.err.println(productSellTable.getModel().getValueAt(0,0));
-        
     }
 }
