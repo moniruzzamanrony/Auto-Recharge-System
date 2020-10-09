@@ -78,6 +78,14 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sourceforge.barbecue.Barcode;
 import org.apache.commons.lang3.StringUtils;
 import org.jdesktop.swingx.border.DropShadowBorder;
@@ -11108,28 +11116,32 @@ public class Home extends javax.swing.JFrame {
         DbConnection.disconnect(conn);
         showDataInProductDetailsPurchaseFromDB(barCode);
     }
-    public void genarateBarCode()
-    {
-                       
+
+    public void genarateBarCode() {
+        
+        String fileNameJrxml = "D:\\Proggraming\\Java Swing\\JisperREport\\src\\jisperreport\\newReport.jrxml";
+       // String fileNamePdf = "D:\\Proggraming\\Java Swing\\JisperREport\\src\\jisperreport\\Blank_A4_Paramv2.pdf";
+          String fileNamePdf = getClass().getResource("Blank_A4_Paramv2.pdf");
+          String fileNameJrxml = getClass().getResource("Blank_A4_Paramv2.pdf");
         try {
-            System.err.println("fhgfhgf");
-            //2 create the bar code using a String (your data)
-            Barcode barCode = BarcodeFactory.createCode128("Hello World !!!");
-            PDDocument doc = new PDDocument();
-            PDPage page = new PDPage();
-            doc.addPage(page);
-            PDPageContentStream content = new PDPageContentStream(doc, page);
-            try {
-                barCode.output(new PDFBoxOutput(content, 1.0f, 1.0f, 5.0f));
-            } catch (OutputException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            System.out.println("Loading the .JRMXML file ....");
+            JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+            System.out.println("Compiling the .JRMXML file to .JASPER file....");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            String first_language = "Java";
+            String second_language = "Structured text";
+            HashMap hm = new HashMap();
+            hm.put("f_name", first_language);
 
-        } catch (BarcodeException e) {
+            System.out.println("filling parameters to .JASPER file....");
+            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+            System.out.println("exporting the JASPER file to PDF file....");
+            JasperExportManager.exportReportToPdfFile(jprint, fileNamePdf);
+            System.out.println("Successfully completed the export");
 
-            e.printStackTrace();
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.print("Exception:" + e);
         }
+
     }
 }
