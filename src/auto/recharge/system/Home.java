@@ -63,10 +63,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -78,6 +81,7 @@ import javax.swing.JPanel;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -309,6 +313,8 @@ public class Home extends javax.swing.JFrame {
         jLabel142 = new javax.swing.JLabel();
         vatInProductSell = new javax.swing.JLabel();
         jLabel152 = new javax.swing.JLabel();
+        jLabel168 = new javax.swing.JLabel();
+        totalAmountInProductSell1 = new javax.swing.JLabel();
         comission1 = new javax.swing.JPanel();
         jLabel153 = new javax.swing.JLabel();
         payableInProductSell = new javax.swing.JLabel();
@@ -1655,8 +1661,8 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel145, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pNameInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2330,6 +2336,14 @@ public class Home extends javax.swing.JFrame {
         jLabel152.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel152.setText("VAT:");
 
+        jLabel168.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel168.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel168.setText("Total Amount: ");
+
+        totalAmountInProductSell1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        totalAmountInProductSell1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        totalAmountInProductSell1.setText("0.0");
+
         javax.swing.GroupLayout totalAmt1Layout = new javax.swing.GroupLayout(totalAmt1);
         totalAmt1.setLayout(totalAmt1Layout);
         totalAmt1Layout.setHorizontalGroup(
@@ -2352,7 +2366,11 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(totalAmt1Layout.createSequentialGroup()
                         .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(vatInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(vatInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalAmt1Layout.createSequentialGroup()
+                        .addComponent(jLabel168, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(totalAmountInProductSell1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         totalAmt1Layout.setVerticalGroup(
@@ -2366,6 +2384,10 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalAmountInProductSell1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel168, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(discountInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2374,7 +2396,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(totalAmt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vatInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel152, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         comission1.setBackground(new java.awt.Color(255, 204, 51));
@@ -2503,11 +2525,21 @@ public class Home extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(255, 102, 102));
         jButton5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(102, 51, 255));
         jButton6.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Print");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("POS MEMO");
 
@@ -2578,6 +2610,16 @@ public class Home extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        productSellTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productSellTableMouseClicked(evt);
+            }
+        });
+        productSellTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                productSellTableKeyPressed(evt);
             }
         });
         jScrollPane12.setViewportView(productSellTable);
@@ -7012,6 +7054,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_productDetailsTableMouseClicked
 
     private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
+        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
         addPerchangeSelection.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -7124,6 +7167,27 @@ public class Home extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_barCodeInProductSellKeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       clearBillforProduct();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void productSellTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productSellTableMouseClicked
+
+    private void productSellTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTableKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.err.println("VK_ENTER");
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            System.err.println("VK_TAB");
+        }
+    }//GEN-LAST:event_productSellTableKeyPressed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       printMemo();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -7442,6 +7506,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel165;
     private javax.swing.JLabel jLabel166;
     private javax.swing.JLabel jLabel167;
+    private javax.swing.JLabel jLabel168;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -7679,6 +7744,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel title4;
     private javax.swing.JLabel title5;
     private javax.swing.JPanel todaySellSamary;
+    private javax.swing.JLabel totalAmountInProductSell1;
     private javax.swing.JPanel totalAmt;
     private javax.swing.JPanel totalAmt1;
     private javax.swing.JPanel totalItems;
@@ -11856,22 +11922,8 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
-        barCodeInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    paymentTypeInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-        paymentTypeInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    paymentTypeInProductSell.requestFocusInWindow();
-                }
-            }
-        });
+   
+
     }
 
     private void saveInProductPurchaseDB() {
@@ -12055,7 +12107,7 @@ public class Home extends javax.swing.JFrame {
             st.execute(sql);
 
         } catch (SQLException ex) {
-            Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+            System.err.println(ex.getMessage());
         }
         DbConnection.disconnect(conn);
         showDataInProductDetailsPurchaseFromDB(barCode);
@@ -12102,13 +12154,7 @@ public class Home extends javax.swing.JFrame {
         viewer.setLocationRelativeTo(null); //You can set location
         viewer.setSize(new Dimension(1000, 600)); //You can set size or you set preferredSize and the pack it.
         viewer.setVisible(true);
-        JFrame frame = new JFrame();
-        frame.setLayout(new FlowLayout());
-        frame.setSize(new Dimension(1000, 600));
-        frame.getContentPane().add(viewer);
-        frame.pack();
-        frame.setVisible(true);
-
+  
     }
 
     private void addProductFromDBInSellPanel(String barCode) {
@@ -12122,10 +12168,9 @@ public class Home extends javax.swing.JFrame {
             String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
             //TODO: HANDLE NULL
             ResultSet rs = st.executeQuery(sql);
-
             while (rs.next()) {
                 count++;
-                Double subTotal = Double.valueOf(rs.getString("buy_rate")) * 1.0;
+                Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
                 String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
                 supplierInProductPurchases.setText(rs.getString("supplier"));
                 dateInProductPurchases.setDate(new Date(rs.getString("date")));
@@ -12158,6 +12203,7 @@ public class Home extends javax.swing.JFrame {
         } finally {
             DbConnection.disconnect(conn);
         }
+     
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productSellTable.getTableHeader().setOpaque(false);
@@ -12165,26 +12211,27 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-        //For Summary Show
-        int numberofRows = productSellTable.getRowCount();
-
+       
+          
         summaryShowInBillDisplay();
     }
 
     private void summaryShowInBillDisplay() {
-        if (!discpuntInProductBill.getText().toString().equals(0.0)) {
+        Double totalPayableAmtAfterDiscount;
+        
             discountInSellProduct = (totalPayableAmt * Double.valueOf(discpuntInProductBill.getText())) / 100;
-            totalPayableAmt = totalPayableAmt - discountInSellProduct;
-        }
+            totalPayableAmtAfterDiscount = totalPayableAmt - discountInSellProduct;
+      
         String totalItems, returnAmt, discountAmt, vat, payableAmt, due, payway;
         totalItems = String.valueOf(productSellTable.getRowCount());
         returnAmt = String.valueOf(returnForSellTable);
         discountAmt = String.valueOf(discountInSellProduct);
         vat = String.valueOf("0.0");
-        payableAmt = String.valueOf(totalPayableAmt);
+        payableAmt = String.valueOf(totalPayableAmtAfterDiscount);
         due = String.valueOf(Double.valueOf(payableAmt) - Double.valueOf(paymentInProductBill.getText()));
         payway = String.valueOf(paymentTypeInProductSell.getSelectedItem().toString());
 
+        totalAmountInProductSell1.setText(String.valueOf(totalPayableAmt));
         totalItemsInProductSell.setText(totalItems);
         returnInProductSell.setText(returnAmt);
         discountInProductSell.setText(discountAmt);
@@ -12195,5 +12242,77 @@ public class Home extends javax.swing.JFrame {
         dueInProductSell.setText(due);
         paymentWayInProductSell.setText(payway);
 
+    }
+
+    private void clearBillforProduct() {
+        totalItemsInProductSell.setText("");
+        returnInProductSell.setText("");
+        discountInProductSell.setText("");
+        vatInProductSell.setText("");
+        payableInProductSell.setText("");
+        paidInProductSell.setText("");
+        duePaymentInProductSell.setText("");
+        dueInProductSell.setText("");
+        paymentWayInProductSell.setText("");
+
+        invoiceInProductSell.setText("");
+        customerIdINProductSell.setText("");
+        fullNameInProductSell.setText("");
+        addressInProductSell.setText("");
+        phoneNOInProductSell.setText("");
+        paymentInProductBill.setText("0.0");
+        vatInProductBill.setText("0.0");
+        duePaymentInProductBill.setText("0.0");
+        discpuntInProductBill.setText("0.0");
+        
+        
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
+        productSellTableModel.addRow(new Object[]{});
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        productSellTable.getTableHeader().setOpaque(false);
+        productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
+        productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
+        productSellTable.setRowHeight(30);
+        productSellTable.setModel(productSellTableModel);
+
+
+    }
+
+    private void printMemo() {
+            try {
+            String fileNameJrxml1 = "/resources/reports/memo.jrxml";
+
+            URL res = getClass().getResource(fileNameJrxml1);
+            File file = Paths.get(res.toURI()).toFile();
+            String fileNameJrxml = file.getAbsolutePath();
+//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
+//            URL res1 = getClass().getResource(fileNamePdf1);
+            try {
+                System.out.println("Loading the .JRMXML file ....");
+                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                System.out.println("Compiling the .JRMXML file to .JASPER file....");
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                String shopName = "AK STORE AND TELECOM";
+                String address = "Asulia savar,dhaka,bangladesh";
+                String phoneNumber = "+8801988841890 +8801988851789";
+                HashMap hm = new HashMap();
+                hm.put("shop_name", shopName);
+                hm.put("shop_address", address);
+                hm.put("phone_number", phoneNumber);
+                System.out.println("filling parameters to .JASPER file....");
+                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+                preview(jprint);
+                System.out.println("exporting the JASPER file to PDF file....");
+                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+                System.out.println("Successfully completed the export");
+
+            } catch (Exception e) {
+                System.out.print("Exception:" + e);
+            }
+
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

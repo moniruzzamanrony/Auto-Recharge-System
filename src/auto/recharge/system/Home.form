@@ -1515,8 +1515,8 @@
                                                       <Component id="jLabel145" min="-2" pref="110" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="pNameInProductDetails" min="-2" pref="208" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="saveInProductPurchase1" min="-2" pref="202" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="saveInProductPurchase1" min="-2" pref="196" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -3168,6 +3168,11 @@
                                                       <EmptySpace max="32767" attributes="0"/>
                                                       <Component id="vatInProductSell" min="-2" pref="109" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel168" min="-2" pref="92" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="totalAmountInProductSell1" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -3186,6 +3191,11 @@
                                                   <Component id="returnInProductSell" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                                                   <Component id="jLabel141" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                                               </Group>
+                                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="totalAmountInProductSell1" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                                                  <Component id="jLabel168" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="discountInProductSell" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
@@ -3196,7 +3206,7 @@
                                                   <Component id="vatInProductSell" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                                                   <Component id="jLabel152" alignment="3" min="-2" pref="15" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="57" max="32767" attributes="0"/>
+                                              <EmptySpace pref="35" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -3272,6 +3282,24 @@
                                         </Property>
                                         <Property name="horizontalAlignment" type="int" value="2"/>
                                         <Property name="text" type="java.lang.String" value="VAT:"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel168">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Georgia" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="horizontalAlignment" type="int" value="2"/>
+                                        <Property name="text" type="java.lang.String" value="Total Amount: "/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="totalAmountInProductSell1">
+                                      <Properties>
+                                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                          <Font name="Franklin Gothic Medium" size="12" style="0"/>
+                                        </Property>
+                                        <Property name="horizontalAlignment" type="int" value="0"/>
+                                        <Property name="text" type="java.lang.String" value="0.0"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
@@ -3511,6 +3539,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Delete"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="jButton6">
                                   <Properties>
@@ -3525,6 +3556,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="Print"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JCheckBox" name="jCheckBox1">
                                   <Properties>
@@ -3583,6 +3617,10 @@
                                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                     </Property>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="productSellTableMouseClicked"/>
+                                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="productSellTableKeyPressed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>
