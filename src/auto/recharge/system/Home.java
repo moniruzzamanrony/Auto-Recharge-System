@@ -211,6 +211,7 @@ public class Home extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
         clickInbox = new javax.swing.JButton();
+        generateBarCode = new javax.swing.JButton();
         billPayPanel = new javax.swing.JPanel();
         clickMobileBanking = new javax.swing.JLabel();
         clickBillPayment = new javax.swing.JLabel();
@@ -298,8 +299,18 @@ public class Home extends javax.swing.JFrame {
         jLabel133 = new javax.swing.JLabel();
         typeInProductPurchasesComboBox = new javax.swing.JComboBox<>();
         saveInProductPurchase = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
+        warrantyTab = new javax.swing.JPanel();
+        ProductPurchasePanel3 = new javax.swing.JPanel();
         jLabel50 = new javax.swing.JLabel();
+        invoiceInProductPurchases1 = new javax.swing.JTextField();
+        jLabel169 = new javax.swing.JLabel();
+        supplierInProductPurchases1 = new javax.swing.JTextField();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        productPurchaseTable1 = new javax.swing.JTable();
+        pNameInProductPurchases1 = new javax.swing.JTextField();
+        sellRateInProductPurchases1 = new javax.swing.JTextField();
+        typeInProductPurchasesComboBox1 = new javax.swing.JComboBox<>();
+        jLabel170 = new javax.swing.JLabel();
         billPanel = new javax.swing.JPanel();
         ProductPurchasePanel2 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
@@ -1247,6 +1258,16 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        generateBarCode.setBackground(new java.awt.Color(153, 0, 255));
+        generateBarCode.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        generateBarCode.setForeground(new java.awt.Color(255, 255, 255));
+        generateBarCode.setText("Bar Code");
+        generateBarCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateBarCodeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mobileRechargePanelLayout = new javax.swing.GroupLayout(mobileRechargePanel);
         mobileRechargePanel.setLayout(mobileRechargePanelLayout);
         mobileRechargePanelLayout.setHorizontalGroup(
@@ -1286,7 +1307,8 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(clickSIMOffer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(clickGroupLoad, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                                     .addComponent(clickUssdDail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(clickInbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(clickInbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(generateBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
@@ -1333,6 +1355,8 @@ public class Home extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(clickSIMOffer1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(generateBarCode)
+                                .addGap(8, 8, 8)
                                 .addComponent(getSeletedOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9)
@@ -2253,26 +2277,134 @@ public class Home extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Product Purchase", productPurchase);
 
-        jLabel50.setText("4");
+        ProductPurchasePanel3.setBackground(new java.awt.Color(204, 204, 255));
+        ProductPurchasePanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductPurchasePanel3MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(664, Short.MAX_VALUE)
-                .addComponent(jLabel50)
-                .addGap(651, 651, 651))
+        jLabel50.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("INVOICE #");
+
+        invoiceInProductPurchases1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        invoiceInProductPurchases1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        invoiceInProductPurchases1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                invoiceInProductPurchases1KeyReleased(evt);
+            }
+        });
+
+        jLabel169.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel169.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel169.setText("BarCode #");
+
+        supplierInProductPurchases1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        supplierInProductPurchases1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        productPurchaseTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Barcode", "Group", "Pro", "Title 4"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane15.setViewportView(productPurchaseTable1);
+        if (productPurchaseTable1.getColumnModel().getColumnCount() > 0) {
+            productPurchaseTable1.getColumnModel().getColumn(1).setResizable(false);
+            productPurchaseTable1.getColumnModel().getColumn(2).setResizable(false);
+            productPurchaseTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        typeInProductPurchasesComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        typeInProductPurchasesComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Received", "Return" }));
+
+        jLabel170.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel170.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel170.setText("Action");
+
+        javax.swing.GroupLayout ProductPurchasePanel3Layout = new javax.swing.GroupLayout(ProductPurchasePanel3);
+        ProductPurchasePanel3.setLayout(ProductPurchasePanel3Layout);
+        ProductPurchasePanel3Layout.setHorizontalGroup(
+            ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel170))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(typeInProductPurchasesComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel169)
+                        .addGap(4, 4, 4)
+                        .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pNameInProductPurchases1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                    .addComponent(sellRateInProductPurchases1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(jLabel50)
-                .addContainerGap(625, Short.MAX_VALUE))
+        ProductPurchasePanel3Layout.setVerticalGroup(
+            ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(invoiceInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(supplierInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel50)
+                            .addComponent(jLabel169))))
+                .addGap(18, 18, 18)
+                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pNameInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(typeInProductPurchasesComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel170)))
+                .addGap(19, 19, 19)
+                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sellRateInProductPurchases1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Product Warranty ", jPanel12);
+        javax.swing.GroupLayout warrantyTabLayout = new javax.swing.GroupLayout(warrantyTab);
+        warrantyTab.setLayout(warrantyTabLayout);
+        warrantyTabLayout.setHorizontalGroup(
+            warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(warrantyTabLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
+        );
+        warrantyTabLayout.setVerticalGroup(
+            warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, warrantyTabLayout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
+        );
+
+        jTabbedPane1.addTab("Product Warranty ", warrantyTab);
 
         ProductPurchasePanel2.setBackground(new java.awt.Color(204, 204, 255));
         ProductPurchasePanel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2930,7 +3062,7 @@ public class Home extends javax.swing.JFrame {
             billPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(ProductPurchasePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, Short.MAX_VALUE)
+                .addComponent(ProductPurchasePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -5159,7 +5291,7 @@ public class Home extends javax.swing.JFrame {
 
         getBalanceInBillPayment.setFont(new java.awt.Font("Agency FB", 1, 80)); // NOI18N
         getBalanceInBillPayment.setForeground(new java.awt.Color(153, 0, 0));
-        getBalanceInBillPayment.setText("1000000");
+        getBalanceInBillPayment.setText("00");
         getBalanceInBillPayment.setToolTipText("");
 
         jLabel88.setFont(new java.awt.Font("Cambria", 1, 70)); // NOI18N
@@ -5427,10 +5559,10 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(getyear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(getMonthNo, 0, 496, Short.MAX_VALUE)
                             .addComponent(getPassword))))
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
             .addGroup(UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UsingCustomerIdLayout.createSequentialGroup()
-                    .addContainerGap(334, Short.MAX_VALUE)
+                    .addContainerGap(338, Short.MAX_VALUE)
                     .addComponent(getCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(316, 316, 316)))
         );
@@ -7179,6 +7311,18 @@ public class Home extends javax.swing.JFrame {
         printMemo();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void invoiceInProductPurchases1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchases1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoiceInProductPurchases1KeyReleased
+
+    private void ProductPurchasePanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductPurchasePanel3MouseClicked
+
+    private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
+   genarateBarCodeForContractNumber(getMobileNumber.getText(),"Hasib Mahmud");
+    }//GEN-LAST:event_generateBarCodeActionPerformed
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -7188,7 +7332,6 @@ public class Home extends javax.swing.JFrame {
         }
 
     }
-
     private String getMobileBankingBalance(MouseEvent evt, String serviceName) {
 
         String amount = "XX";
@@ -7242,6 +7385,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel ProductPurchasePanel;
     private javax.swing.JPanel ProductPurchasePanel1;
     private javax.swing.JPanel ProductPurchasePanel2;
+    private javax.swing.JPanel ProductPurchasePanel3;
     private javax.swing.JPanel UsingCustomerId;
     private javax.swing.JPasswordField accountPassword;
     private javax.swing.JPasswordField accountPassword1;
@@ -7337,6 +7481,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel errorMgsInBalencePanel;
     private javax.swing.JLabel expiryDateInProfile;
     private javax.swing.JTextField fullNameInProductSell;
+    private javax.swing.JButton generateBarCode;
     private javax.swing.JTextField getAmmountInBillPayment;
     private javax.swing.JTextField getAmmountInTk;
     private javax.swing.JTextField getAmountGroupRecharge;
@@ -7410,6 +7555,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel icon5;
     private javax.swing.JLabel invoiceINProductDetails;
     private javax.swing.JTextField invoiceInProductPurchases;
+    private javax.swing.JTextField invoiceInProductPurchases1;
     private javax.swing.JTextField invoiceInProductSell;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -7496,7 +7642,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel166;
     private javax.swing.JLabel jLabel167;
     private javax.swing.JLabel jLabel168;
+    private javax.swing.JLabel jLabel169;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel170;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -7590,7 +7738,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -7605,6 +7752,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -7643,6 +7791,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField oderLimitInProductDetails;
     private javax.swing.JTextField pNameInProductDetails;
     private javax.swing.JTextField pNameInProductPurchases;
+    private javax.swing.JTextField pNameInProductPurchases1;
     private javax.swing.JPanel paid;
     private javax.swing.JPanel paid1;
     private javax.swing.JPanel paid3;
@@ -7666,6 +7815,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> productMasurementProductDetails;
     private javax.swing.JPanel productPurchase;
     private javax.swing.JTable productPurchaseTable;
+    private javax.swing.JTable productPurchaseTable1;
     private javax.swing.JTable productSellTable;
     private javax.swing.JLabel profile_pic;
     private javax.swing.JTextField qtyInProductDetails;
@@ -7692,6 +7842,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel selectedSimOperatorIcon2;
     private javax.swing.JTextField sellRateInProductDetails;
     private javax.swing.JTextField sellRateInProductPurchases;
+    private javax.swing.JTextField sellRateInProductPurchases1;
     private javax.swing.JButton sendAllRechargeBut;
     private javax.swing.JLabel sendingLogLabel;
     private javax.swing.JPanel serchBar;
@@ -7702,6 +7853,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JList<String> suggList;
     private javax.swing.JPanel suggestPanel;
     private javax.swing.JTextField supplierInProductPurchases;
+    private javax.swing.JTextField supplierInProductPurchases1;
     private javax.swing.JLabel systemBackup;
     private javax.swing.JPanel systemBackupPanel;
     private javax.swing.JLabel tAmountInPPurchaseInSummary;
@@ -7741,12 +7893,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel trustedEmployee;
     private javax.swing.JPanel trustedEmployeePanel;
     private javax.swing.JComboBox<String> typeInProductPurchasesComboBox;
+    private javax.swing.JComboBox<String> typeInProductPurchasesComboBox1;
     private javax.swing.JLabel userIdInProfile;
     private javax.swing.JPanel usingBillNoPanel;
     private javax.swing.JPanel ussdDialPanel;
     private javax.swing.JTable ussdSettedTable;
     private javax.swing.JLabel vatInProductSell;
     private javax.swing.JTextField warrantyInProductBill;
+    private javax.swing.JPanel warrantyTab;
     private javax.swing.JTextField warrentyInProductDetails;
     // End of variables declaration//GEN-END:variables
 
@@ -9310,32 +9464,19 @@ public class Home extends javax.swing.JFrame {
 
             DbConnection.disconnect(conn);
         }
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
+        groupRechargeResponsesList.stream().forEach(values -> {
+            //TODO: For group rechage
 
-                groupRechargeResponsesList.stream().forEach(values -> {
-                    //TODO: For group rechage
-                    //   rechargeDoneProcess(values.getPhoneNumber(), values.getAmount(), values.getSimType(), values.getPayBy(), "group");
-                    Configaration.wait(1000);
-
-                });
-                return null;
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                    MobileRechargeDetailsDto mobileRechargeDetailsDto
+                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
+                    addQueue(mobileRechargeDetailsDto);
+                }
             }
 
-            @Override
-            protected void done() {
-
-                switchPanelViaMenu(mobileRechargePanel);
-
-                loadValueInTableRechargeDetails();
-                DbConnection.delete("group_recharge");
-
-                System.err.println("Recharge Done...");
-            }
-
-        };
-        swingWorker.execute();
+        });
+        DbConnection.delete("group_recharge");
 
     }
 
@@ -12136,7 +12277,41 @@ public class Home extends javax.swing.JFrame {
         }
 
     }
+    public void genarateBarCodeForContractNumber(String number,String name) {
+        try {
+            String fileNameJrxml1 = "/resources/reports/contract_number.jrxml";
 
+            URL res = getClass().getResource(fileNameJrxml1);
+            File file = Paths.get(res.toURI()).toFile();
+            String fileNameJrxml = file.getAbsolutePath();
+            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
+            URL res1 = getClass().getResource(fileNamePdf1);
+            try {
+                System.out.println("Loading the .JRMXML file ....");
+                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                System.out.println("Compiling the .JRMXML file to .JASPER file....");
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                String first_language = "Java";
+                String second_language = "Structured text";
+                HashMap hm = new HashMap();
+                hm.put("phone_no", number);
+                hm.put("name", name);
+                System.out.println("filling parameters to .JASPER file....");
+                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+                preview(jprint);
+                System.out.println("exporting the JASPER file to PDF file....");
+                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+                System.out.println("Successfully completed the export");
+
+            } catch (Exception e) {
+                System.out.print("Exception:" + e);
+            }
+
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     private void preview(JasperPrint jprint) {
 
         JasperViewer viewer = new JasperViewer(jprint, false);

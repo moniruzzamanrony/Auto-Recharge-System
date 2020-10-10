@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="882b9bed-1932-4f73-ba5b-c771cb9ce65f">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="231"/>
+	<property name="ireport.y" value="220"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -178,9 +178,9 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="510" splitType="Stretch">
+		<band height="271" splitType="Stretch">
 			<rectangle>
-				<reportElement x="13" y="0" width="535" height="445" forecolor="#CCCCFF" uuid="5067198b-ec68-4419-8c2b-109f43686287"/>
+				<reportElement x="6" y="0" width="542" height="252" forecolor="#CCCCFF" uuid="5067198b-ec68-4419-8c2b-109f43686287"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="25" y="17" width="120" height="20" uuid="17e238d2-93c0-414d-af62-06b42b6f0463"/>
@@ -400,109 +400,113 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
-			<staticText>
-				<reportElement x="274" y="236" width="103" height="20" uuid="171e711f-2e21-4734-89d4-468bc80b59e3"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total Amount]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="274" y="263" width="103" height="20" uuid="2d469ea7-77b3-4db4-9a69-316d0a5d2dcb"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Add VAT/TAX]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="274" y="289" width="103" height="20" uuid="00e00b27-c3c7-43db-9ff1-fbb905a8198b"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Discount]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="275" y="314" width="102" height="20" uuid="9373b9d0-de7a-4308-a98d-e308fca7f166"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Due Payment]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="275" y="368" width="102" height="20" uuid="8cd8b2a3-c954-4605-97cd-111b41bdd118"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Due]]></text>
-			</staticText>
-			<line>
-				<reportElement x="203" y="396" width="338" height="1" uuid="9ef7d06f-a7a3-48b6-9915-7d658fa36749"/>
-			</line>
-			<staticText>
-				<reportElement x="275" y="403" width="102" height="20" uuid="aa801694-b010-440d-8741-08ac75590e4b"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Total Payable Amount :]]></text>
-			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="213">
 			<textField>
-				<reportElement x="388" y="403" width="153" height="20" uuid="62f9520c-4d84-45af-88bf-c2b549f9c4fd"/>
+				<reportElement x="381" y="91" width="153" height="20" uuid="ab2813d5-6e14-4c27-9d09-21b222a75405"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{tPayble}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="388" y="368" width="153" height="20" uuid="f5e15066-6acd-4a34-8eec-066fd1c90861"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{due}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="388" y="314" width="153" height="20" uuid="ab2813d5-6e14-4c27-9d09-21b222a75405"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{due_payment}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="289" width="153" height="20" uuid="097ed593-d17b-4ecb-be08-17bcaa5f6bba"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+				<reportElement x="381" y="118" width="153" height="20" uuid="9f1cc544-a410-4e5c-bac8-0bc4f47de42d"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{discountAmountInBitll}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{paid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="267" y="13" width="103" height="20" uuid="171e711f-2e21-4734-89d4-468bc80b59e3"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="180" width="153" height="20" uuid="62f9520c-4d84-45af-88bf-c2b549f9c4fd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tPayble}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="263" width="153" height="20" uuid="871f6d9a-8d73-4e27-aa25-6d3d252f5cf7"/>
+				<reportElement x="381" y="13" width="153" height="20" uuid="dca763b1-193d-4e8d-a059-d0b498be7606"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{vatTAxInBitll}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="388" y="236" width="153" height="20" uuid="dca763b1-193d-4e8d-a059-d0b498be7606"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{total_amouny}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="274" y="341" width="102" height="20" uuid="efdaf8a7-ccf4-4673-9247-dac77c36ace5"/>
+				<reportElement x="267" y="91" width="103" height="20" uuid="9373b9d0-de7a-4308-a98d-e308fca7f166"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Due Payment]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="66" width="153" height="20" uuid="097ed593-d17b-4ecb-be08-17bcaa5f6bba"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{discountAmountInBitll}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="267" y="145" width="103" height="20" uuid="8cd8b2a3-c954-4605-97cd-111b41bdd118"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Due]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="40" width="153" height="20" uuid="871f6d9a-8d73-4e27-aa25-6d3d252f5cf7"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{vatTAxInBitll}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="145" width="153" height="20" uuid="f5e15066-6acd-4a34-8eec-066fd1c90861"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{due}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="267" y="40" width="103" height="20" uuid="2d469ea7-77b3-4db4-9a69-316d0a5d2dcb"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Add VAT/TAX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="118" width="102" height="20" uuid="efdaf8a7-ccf4-4673-9247-dac77c36ace5"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Paid]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="388" y="341" width="153" height="20" uuid="9f1cc544-a410-4e5c-bac8-0bc4f47de42d"/>
-				<textElement textAlignment="Right">
-					<font size="12" isBold="true"/>
+			<staticText>
+				<reportElement x="267" y="66" width="103" height="20" uuid="00e00b27-c3c7-43db-9ff1-fbb905a8198b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{paid}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="180" width="103" height="20" uuid="aa801694-b010-440d-8741-08ac75590e4b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Payable Amount :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="232" y="172" width="309" height="1" uuid="8971606f-bee6-4257-bd58-e2dff399331a"/>
+			</line>
 		</band>
-	</columnHeader>
+	</detail>
 	<summary>
 		<band height="93" splitType="Stretch">
 			<line>
