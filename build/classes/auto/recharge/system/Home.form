@@ -2841,139 +2841,157 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                                      <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                                      <Component id="invoiceInProductWarranty" min="-2" pref="233" max="-2" attributes="0"/>
+                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                      <Component id="jLabel169" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                      <Component id="customerIdINProductWanrranty" min="-2" pref="358" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="updateClickProductWanrranty" min="-2" pref="90" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="printClickProductWanrranty" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jLabel181" min="-2" pref="81" max="-2" attributes="0"/>
+                                                  <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
+                                                  <Component id="dateInProductWanrranty" min="-2" pref="231" max="-2" attributes="0"/>
+                                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                  <Component id="jLabel182" min="-2" pref="89" max="-2" attributes="0"/>
+                                                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                                  <Component id="fullNameInProductWanrranty" min="-2" pref="358" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jPanel13" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                                          <Component id="invoiceInProductWarranty" min="-2" pref="233" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="jLabel183" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel186" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel181" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="dateInProductWanrranty" alignment="0" pref="231" max="32767" attributes="0"/>
-                                                              <Component id="delevaryDateDateInProductWanrranty" alignment="0" max="32767" attributes="0"/>
-                                                              <Component id="jScrollPane17" alignment="0" max="32767" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="jLabel182" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                                              <Component id="jLabel184" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="jLabel169" alignment="1" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel185" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel187" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="customerIdINProductWanrranty" alignment="0" pref="358" max="32767" attributes="0"/>
-                                                      <Component id="fullNameInProductWanrranty" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="addressInProductWanrranty" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="phoneNOInProductWanrranty" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="refNameInProductWanrranty" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel183" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="jLabel186" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="jLabel187" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <Component id="jPanel13" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="jScrollPane15" alignment="1" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="refNameInProductWanrranty" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel185" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                                      <Component id="phoneNOInProductWanrranty" min="-2" pref="358" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="delevaryDateDateInProductWanrranty" min="-2" pref="231" max="-2" attributes="0"/>
+                                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                                      <Component id="jLabel184" min="-2" pref="68" max="-2" attributes="0"/>
+                                                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                                                      <Component id="addressInProductWanrranty" min="-2" pref="358" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jScrollPane17" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                       <Component id="jPanel12" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="665" pref="665" max="-2" attributes="0"/>
+                                      <Component id="updateClickProductWanrranty" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                                      <Component id="printClickProductWanrranty" min="-2" pref="96" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane15" min="-2" pref="831" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel50" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
                                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel169" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="invoiceInProductWarranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="customerIdINProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="invoiceInProductWarranty" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
+                                              <Component id="jLabel169" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                              <Component id="customerIdINProductWanrranty" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
+                                      <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
+                                              <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel181" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="dateInProductWanrranty" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="jLabel182" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                                                      <Component id="fullNameInProductWanrranty" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel183" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="delevaryDateDateInProductWanrranty" min="-2" pref="31" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="3" attributes="0">
-                                                          <Component id="jLabel182" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="fullNameInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="addressInProductWanrranty" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="jLabel184" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="dateInProductWanrranty" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="jLabel181" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="delevaryDateDateInProductWanrranty" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="jLabel183" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="3" attributes="0">
-                                                          <Component id="jLabel186" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel185" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="phoneNOInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="jScrollPane17" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="jLabel184" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="addressInProductWanrranty" min="-2" pref="31" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel187" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="refNameInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                                      <Component id="refNameInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                                      <Component id="jLabel185" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                                  </Group>
+                                                                  <Component id="phoneNOInProductWanrranty" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                                              </Group>
+                                                          </Group>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="jLabel187" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="jLabel186" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jScrollPane17" min="-2" pref="68" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                               <Component id="jPanel13" min="-2" pref="136" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="updateClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="printClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jScrollPane15" min="-2" pref="283" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="updateClickProductWanrranty" min="-2" max="-2" attributes="0"/>
+                                          <Component id="printClickProductWanrranty" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane15" min="-2" pref="283" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -3045,7 +3063,7 @@
                                           <Component id="comission2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="paid4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="354" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -3442,7 +3460,7 @@
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel192" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="paymentInProductWanrranty" max="32767" attributes="0"/>
+                                                  <Component id="brandInProductWanrranty" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -3475,7 +3493,7 @@
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel192" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="paymentInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="brandInProductWanrranty" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                   <Component id="jLabel193" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="statusInProductWanrrantyComboBox" max="32767" attributes="0"/>
@@ -3515,12 +3533,12 @@
                                     <Property name="text" type="java.lang.String" value="Bill       :"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="paymentInProductWanrranty">
+                                <Component class="javax.swing.JTextField" name="brandInProductWanrranty">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="0.0"/>
                                   </Properties>
                                   <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paymentInProductWanrrantyActionPerformed"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="brandInProductWanrrantyActionPerformed"/>
                                   </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel189">
