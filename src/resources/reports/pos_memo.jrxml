@@ -186,13 +186,10 @@
 	<columnFooter>
 		<band height="63" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table 3" style="table 3" x="9" y="0" width="120" height="30" uuid="cecc2342-9e7d-4962-b467-910cf03fbe20"/>
+				<reportElement key="table 3" style="table 3" x="22" y="0" width="120" height="30" uuid="cecc2342-9e7d-4962-b467-910cf03fbe20"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Table Dataset 2" uuid="c18084f4-e8bb-47f1-84c2-ff36a64e0175">
+					<datasetRun subDataset="Table Dataset 2" uuid="cc024805-a6e8-4817-99a4-6e680e268817">
 						<datasetParameter name="REPORT_DATA_SOURCE">
-							<datasetParameterExpression><![CDATA[]]></datasetParameterExpression>
-						</datasetParameter>
-						<datasetParameter name="REPORT_CONTEXT">
 							<datasetParameterExpression><![CDATA[$P{collectionOfBean}]]></datasetParameterExpression>
 						</datasetParameter>
 						<dataSourceExpression><![CDATA[$P{collectionOfBean}]]></dataSourceExpression>
@@ -335,17 +332,14 @@
 	<noData>
 		<band height="37">
 			<staticText>
-				<reportElement x="6" y="0" width="82" height="17" uuid="fbf13938-3192-4a73-b596-ff90aa269b45"/>
+				<reportElement x="6" y="0" width="100" height="20" uuid="fbf13938-3192-4a73-b596-ff90aa269b45"/>
 				<textElement>
 					<font size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Delivary Date :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="17" width="133" height="20" uuid="972258a6-1058-4df6-a35a-d8f59043bf95"/>
-				<textElement>
-					<font size="11" isBold="true"/>
-				</textElement>
+				<reportElement x="56" y="17" width="100" height="20" uuid="dd7a0bb3-adc5-4fa0-b82a-ee36f65984a7"/>
 				<textFieldExpression><![CDATA[$P{delivary_date}]]></textFieldExpression>
 			</textField>
 		</band>
