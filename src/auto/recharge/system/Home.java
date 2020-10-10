@@ -14,6 +14,7 @@ import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.Products;
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
 import auto.recharge.system.dto.UserInfo;
+import auto.recharge.system.dto.Warranty;
 import auto.recharge.system.enumClasses.UssdRequestType;
 import com.itvillage.AES;
 import java.awt.Color;
@@ -13143,7 +13144,7 @@ public class Home extends javax.swing.JFrame {
 
     private void saveWarrantyDetailsInDb() {
         Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO warranty_table(invoice,customerId,date,d_date,`problem`,f_name,address,mobole_no,ref_name,`brand`,status,bill,warranty,paid,discount,due) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO warranty_table(invoice,customar_id,`date`,d_date,`problem`,f_name,address,mobole_no,ref_name,`brand`,status,bill,warranty,paid,discount,due) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn1.prepareStatement(sql);
             preparedStatement.setString(1, invoiceInProductWarranty.getText().toString());
@@ -13180,6 +13181,84 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void printPosMemo(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+             List<Warranty> warrantys = new ArrayList<>();
+        Connection conn = DbConnection.connect();
+        try {
+            
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `warranty_table`";
+            //TODO: HANDLE NULL
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
+                    Warranty p = new Warranty();
+                    p.setId("1");
+                    p.setService_name(rs.getString("brand"));
+                    p.setPrice(rs.getString("bill"));
+                    p.setQty("1");
+                    p.setTotal(rs.getString("bill"));
+                   
+                    warrantys.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
+        }
+        try {
+            String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
+
+            URL res = getClass().getResource(fileNameJrxml1);
+            File file = Paths.get(res.toURI()).toFile();
+            String fileNameJrxml = file.getAbsolutePath();
+//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
+//            URL res1 = getClass().getResource(fileNamePdf1);
+            try {
+                System.out.println("Loading the .JRMXML file ....");
+                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                System.out.println("Compiling the .JRMXML file to .JASPER file....");
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                String shopName = "AK STORE AND TELECOM";
+                String address = "Asulia savar,dhaka,bangladesh";
+                String phoneNumber = "+8801988841890 +8801988851789";
+                
+                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
+
+                HashMap<String, Object> hm = new HashMap<String, Object>();
+                hm.put("shop_name", shopName);
+                hm.put("address", address);
+                hm.put("phone_no", phoneNumber);
+                hm.put("invoice", invoiceInProductWarranty.getText());
+                hm.put("c_phn_no", phoneNOInProductWanrranty.getText());
+                hm.put("c_name", fullNameInProductWanrranty.getText());
+                hm.put("paid", paidPaymentInProductWanrranty.getText());
+                hm.put("due", "Logged User Name");
+                hm.put("total", invoiceInProductSell.getText());
+                hm.put("delivary_date", delevaryDateDateInProductWanrranty.getDate().toString());
+                hm.put("collectionOfBean", ds);
+
+                hm.put("total_amouny", totalAmountInProductSell1.getText());
+                hm.put("discountAmountInBitll", discountInProductSell.getText());
+                hm.put("tPayble", payableInProductSell.getText());
+                hm.put("paid", paidInProductSell.getText());
+                hm.put("due_payment", duePaymentInProductSell.getText());
+                hm.put("due", dueInProductSell.getText());
+
+                hm.put("vatTAxInBitll", "0.0");
+                System.out.println("filling parameters to .JASPER file....");
+                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+                preview(jprint);
+                System.out.println("exporting the JASPER file to PDF file....");
+                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+                System.out.println("Successfully completed the export");
+
+            } catch (Exception e) {
+                System.out.print("Exception:" + e);
+            }
+
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
