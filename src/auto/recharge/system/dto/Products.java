@@ -18,20 +18,20 @@ public class Products {
     private String qty;
     private String sub_total;
 
-    public String getBarCode() {
+    public String getBar_code() {
         return bar_code;
     }
 
-    public void setBarCode(String barCode) {
-        this.bar_code = barCode;
+    public void setBar_code(String bar_code) {
+        this.bar_code = bar_code;
     }
 
-    public String getpName() {
+    public String getP_name() {
         return p_name;
     }
 
-    public void setpName(String pName) {
-        this.p_name = pName;
+    public void setP_name(String p_name) {
+        this.p_name = p_name;
     }
 
     public String getWarranty() {
@@ -58,13 +58,14 @@ public class Products {
         this.qty = qty;
     }
 
-    public String getSubTotal() {
+    public String getSub_total() {
         return sub_total;
     }
 
-    public void setSubTotal(String subTotal) {
-        this.sub_total = subTotal;
+    public void setSub_total(String sub_total) {
+        this.sub_total = sub_total;
     }
+
     
 
 }

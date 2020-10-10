@@ -126,6 +126,7 @@ public class Home extends javax.swing.JFrame {
     private Double discountInSellProduct = 0.0;
     private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
     int countForSellTable = 0;
+
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -359,8 +360,7 @@ public class Home extends javax.swing.JFrame {
         jLabel164 = new javax.swing.JLabel();
         paymentInProductBill = new javax.swing.JTextField();
         jLabel165 = new javax.swing.JLabel();
-        vatInProductBill = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        warrantyInProductBill = new javax.swing.JTextField();
         jLabel166 = new javax.swing.JLabel();
         duePaymentInProductBill = new javax.swing.JTextField();
         discpuntInProductBill = new javax.swing.JTextField();
@@ -2720,18 +2720,12 @@ public class Home extends javax.swing.JFrame {
 
         jLabel165.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel165.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel165.setText("VAT         :");
+        jLabel165.setText("Warranty");
 
-        vatInProductBill.setText("0.0");
-        vatInProductBill.addActionListener(new java.awt.event.ActionListener() {
+        warrantyInProductBill.setText("0.0");
+        warrantyInProductBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vatInProductBillActionPerformed(evt);
-            }
-        });
-
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                warrantyInProductBillActionPerformed(evt);
             }
         });
 
@@ -2767,21 +2761,17 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel164)
                     .addComponent(jLabel166))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel165, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel167, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel165, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel167, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vatInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(warrantyInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -2791,9 +2781,8 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel164)
                     .addComponent(jLabel165)
-                    .addComponent(vatInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(warrantyInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
@@ -4155,12 +4144,12 @@ public class Home extends javax.swing.JFrame {
         backToUssdManengementPanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToUssdManengementPanel1.setText("jLabel3");
         backToUssdManengementPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 backToUssdManengementPanel1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         backToUssdManengementPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -7109,9 +7098,9 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_paymentInProductBillActionPerformed
 
-    private void vatInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vatInProductBillActionPerformed
+    private void warrantyInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyInProductBillActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_vatInProductBillActionPerformed
+    }//GEN-LAST:event_warrantyInProductBillActionPerformed
 
     private void duePaymentInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duePaymentInProductBillActionPerformed
         // TODO add your handling code here:
@@ -7120,10 +7109,6 @@ public class Home extends javax.swing.JFrame {
     private void discpuntInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductBillActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discpuntInProductBillActionPerformed
-
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void barCodeInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeInProductSellKeyReleased
         List<String> list = new ArrayList<>();
@@ -7147,6 +7132,7 @@ public class Home extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
 
         } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
             addProductFromDBInSellPanel(barCodeInProductSell.getText());
             barCodeInProductSell.requestFocusInWindow();
         } else {
@@ -7190,7 +7176,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //  saveSellProductInSellTabel();      
-         printMemo();
+        printMemo();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
@@ -7433,7 +7419,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -7760,8 +7745,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel usingBillNoPanel;
     private javax.swing.JPanel ussdDialPanel;
     private javax.swing.JTable ussdSettedTable;
-    private javax.swing.JTextField vatInProductBill;
     private javax.swing.JLabel vatInProductSell;
+    private javax.swing.JTextField warrantyInProductBill;
     private javax.swing.JTextField warrentyInProductDetails;
     // End of variables declaration//GEN-END:variables
 
@@ -11887,11 +11872,11 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                     summaryShowInBillDisplay();
-                    vatInProductBill.requestFocusInWindow();
+                    warrantyInProductBill.requestFocusInWindow();
                 }
             }
         });
-        vatInProductBill.addKeyListener(new KeyAdapter() {
+        warrantyInProductBill.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -12164,14 +12149,14 @@ public class Home extends javax.swing.JFrame {
 
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
 
-        
         Connection conn = DbConnection.connect();
         try {
             Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
+            String sql = "SELECT * FROM `product_purchase` WHERE bar_code= " + barCode;
             //TODO: HANDLE NULL
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
+                warrantyInProductBill.setText(rs.getString("warranty"));
                 countForSellTable++;
                 Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
                 String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
@@ -12264,7 +12249,7 @@ public class Home extends javax.swing.JFrame {
         addressInProductSell.setText("");
         phoneNOInProductSell.setText("");
         paymentInProductBill.setText("0.0");
-        vatInProductBill.setText("0.0");
+        warrantyInProductBill.setText("0.0");
         duePaymentInProductBill.setText("0.0");
         discpuntInProductBill.setText("0.0");
 
@@ -12277,29 +12262,30 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-        
+
         int countForSellTable = 0;
 
     }
 
     private void printMemo() {
         List<Products> productses = new ArrayList<>();
-    Connection conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         try {
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM `sell_table`";
             //TODO: HANDLE NULL
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                if(invoiceInProductSell.getText().equals(rs.getString("invoice"))){
-                Products p= new Products();
-                p.setBarCode(rs.getString("bar_code"));
-                p.setPrice(rs.getString("price"));
-                p.setQty(rs.getString("qty"));
-                p.setSubTotal(rs.getString("sub_total"));
-                p.setWarranty(rs.getString("warranty"));
-                p.setpName(rs.getString("p_name"));
-                }         
+                if (invoiceInProductSell.getText().equals(rs.getString("invoice"))) {
+                    Products p = new Products();
+                    p.setBar_code(rs.getString("bar_code"));
+                    p.setPrice(rs.getString("price"));
+                    p.setQty(rs.getString("qty"));
+                    p.setSub_total(rs.getString("sub_total"));
+                    p.setWarranty(warrantyInProductBill.getText());
+                    p.setP_name(rs.getString("p_name"));
+                    productses.add(p);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -12322,9 +12308,10 @@ public class Home extends javax.swing.JFrame {
                 String shopName = "AK STORE AND TELECOM";
                 String address = "Asulia savar,dhaka,bangladesh";
                 String phoneNumber = "+8801988841890 +8801988851789";
+                System.err.println(productses.get(0).getPrice());
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(productses);
-                
-                HashMap<String,Object> hm = new HashMap<String,Object>();
+
+                HashMap<String, Object> hm = new HashMap<String, Object>();
                 hm.put("shop_name", shopName);
                 hm.put("shop_address", address);
                 hm.put("shop_phone_number", phoneNumber);
@@ -12335,6 +12322,15 @@ public class Home extends javax.swing.JFrame {
                 hm.put("sold_by", "Logged User Name");
                 hm.put("bar_code", invoiceInProductSell.getText());
                 hm.put("collectionOfBean", ds);
+                
+                hm.put("total_amouny", totalAmountInProductSell1.getText());
+                hm.put("discountAmountInBitll", discountInProductSell.getText());
+                hm.put("tPayble", payableInProductSell.getText());
+                hm.put("paid", paidInProductSell.getText());
+                hm.put("due_payment", duePaymentInProductSell.getText());
+                hm.put("due", dueInProductSell.getText());
+                
+                hm.put("vatTAxInBitll", "0.0");
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
                 preview(jprint);
@@ -12353,7 +12349,7 @@ public class Home extends javax.swing.JFrame {
 
     private void saveSellProductInSellTabel(int rowNo) {
         Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total,warranty) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn1.prepareStatement(sql);
             preparedStatement.setString(1, invoiceInProductSell.getText().toString());
@@ -12373,31 +12369,31 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
             preparedStatement.setString(16, dueInProductSell.getText().toString());
             preparedStatement.setString(17, paymentWayInProductSell.getText().toString());
-
-            for (int j = 0; j < productSellTable.getColumnCount(); j++) {
+            preparedStatement.setString(25, warrantyInProductBill.getText().toString());
+            for (int j = 1; j < productSellTable.getColumnCount(); j++) {
 
                 switch (j) {
                     case 0:
-                        preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         System.err.println();
                         break;
                     case 1:
-                        preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
                     case 2:
-                        preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
                     case 3:
-                        preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
                     case 4:
-                        preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
                     case 5:
-                        preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
                     case 6:
-                        preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo-1, j)));
+                        preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
                         break;
 
                 }
