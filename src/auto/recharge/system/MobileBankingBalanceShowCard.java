@@ -36,8 +36,6 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
         refrashBalanceBut = new javax.swing.JButton();
         lastUpdateTimeText = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         ammountShowCard.setBackground(new java.awt.Color(204, 255, 204));
 
         serviceNameText.setFont(new java.awt.Font("Cambria", 1, 20)); // NOI18N
@@ -89,7 +87,16 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
                 .addComponent(lastUpdateTimeText))
         );
 
-        add(ammountShowCard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ammountShowCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ammountShowCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void refrashBalanceButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrashBalanceButActionPerformed

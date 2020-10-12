@@ -1010,15 +1010,33 @@ public class Home extends javax.swing.JFrame {
         headerLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         netBarPanel.setBackground(new java.awt.Color(255, 255, 255));
-        netBarPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         currentNetworkName.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
         currentNetworkName.setForeground(new java.awt.Color(102, 102, 255));
         currentNetworkName.setText("No SIIM Avaiable");
-        netBarPanel.add(currentNetworkName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 380, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/network_bar.png"))); // NOI18N
-        netBarPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 12, 460, -1));
+
+        javax.swing.GroupLayout netBarPanelLayout = new javax.swing.GroupLayout(netBarPanel);
+        netBarPanel.setLayout(netBarPanelLayout);
+        netBarPanelLayout.setHorizontalGroup(
+            netBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(netBarPanelLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(currentNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(netBarPanelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        netBarPanelLayout.setVerticalGroup(
+            netBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(netBarPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(currentNetworkName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(netBarPanelLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel7))
+        );
 
         jLabel107.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/help_bar_v_2.png"))); // NOI18N
 
@@ -1067,7 +1085,6 @@ public class Home extends javax.swing.JFrame {
 
         mobileRechargePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        getSeletedOperatorName.setBackground(new java.awt.Color(255, 255, 255));
         getSeletedOperatorName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         getSeletedOperatorName.setForeground(new java.awt.Color(204, 0, 0));
         getSeletedOperatorName.addActionListener(new java.awt.event.ActionListener() {
@@ -1082,7 +1099,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        getPrepaidOrPostpaid.setBackground(new java.awt.Color(255, 255, 255));
         getPrepaidOrPostpaid.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         getPrepaidOrPostpaid.setForeground(new java.awt.Color(255, 153, 153));
         getPrepaidOrPostpaid.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pre-Paid", "Post-Paid", "Skitto" }));
@@ -1550,7 +1566,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel136.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel136.setForeground(new java.awt.Color(0, 0, 0));
         jLabel136.setText("Search By");
 
         productDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1585,11 +1600,9 @@ public class Home extends javax.swing.JFrame {
         }
 
         jLabel143.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel143.setForeground(new java.awt.Color(0, 0, 0));
         jLabel143.setText("Barcode      :");
 
         jLabel144.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel144.setForeground(new java.awt.Color(0, 0, 0));
         jLabel144.setText("Group        :");
 
         groupInProductDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -1604,23 +1617,18 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel145.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel145.setForeground(new java.awt.Color(0, 0, 0));
         jLabel145.setText("Product Name   :");
 
         jLabel146.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel146.setForeground(new java.awt.Color(0, 0, 0));
         jLabel146.setText("Brand          : ");
 
         jLabel147.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel147.setForeground(new java.awt.Color(0, 0, 0));
         jLabel147.setText("BUY RATE   :");
 
         jLabel148.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel148.setForeground(new java.awt.Color(0, 0, 0));
         jLabel148.setText("SELL RATE  :");
 
         jLabel149.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel149.setForeground(new java.awt.Color(0, 0, 0));
         jLabel149.setText("Stock Openning: ");
 
         saveInProductPurchase1.setBackground(new java.awt.Color(255, 102, 102));
@@ -1652,13 +1660,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         addPerchangeSelection.setBackground(new java.awt.Color(204, 204, 255));
-        addPerchangeSelection.setForeground(new java.awt.Color(0, 0, 0));
         addPerchangeSelection.setText("%");
 
         productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics,", "Kg,", "Litter,", "Bag,", "Bundle,", "Dozon" }));
 
         jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel150.setForeground(new java.awt.Color(0, 0, 0));
         jLabel150.setText("Ordar LImit : ");
 
         saveInProductPurchase2.setBackground(new java.awt.Color(255, 102, 102));
@@ -1671,7 +1677,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel134.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
-        jLabel134.setForeground(new java.awt.Color(0, 0, 0));
         jLabel134.setText("Barcode");
 
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
@@ -1684,7 +1689,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel151.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel151.setForeground(new java.awt.Color(0, 0, 0));
         jLabel151.setText("Warranty    :");
 
         timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day,", "month,", "year" }));
@@ -1694,7 +1698,6 @@ public class Home extends javax.swing.JFrame {
         jLabel135.setText("INVOICE #");
 
         invoiceINProductDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        invoiceINProductDetails.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout ProductPurchasePanel1Layout = new javax.swing.GroupLayout(ProductPurchasePanel1);
         ProductPurchasePanel1.setLayout(ProductPurchasePanel1Layout);
@@ -1868,7 +1871,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("INVOICE #");
 
         invoiceInProductPurchases.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -1880,14 +1882,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("SUPPLIER #");
 
         supplierInProductPurchases.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
         supplierInProductPurchases.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel119.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel119.setForeground(new java.awt.Color(0, 0, 0));
         jLabel119.setText("DATE #");
 
         jLabel131.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
@@ -2130,11 +2130,9 @@ public class Home extends javax.swing.JFrame {
         }
 
         jLabel126.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel126.setForeground(new java.awt.Color(0, 0, 0));
         jLabel126.setText("Barcode :");
 
         jLabel127.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel127.setForeground(new java.awt.Color(0, 0, 0));
         jLabel127.setText("Group:");
 
         groupInProductPurchases.addActionListener(new java.awt.event.ActionListener() {
@@ -2149,23 +2147,18 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel128.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel128.setForeground(new java.awt.Color(0, 0, 0));
         jLabel128.setText("Product Name:");
 
         jLabel129.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel129.setForeground(new java.awt.Color(0, 0, 0));
         jLabel129.setText("QTY :");
 
         jLabel130.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel130.setForeground(new java.awt.Color(0, 0, 0));
         jLabel130.setText("BUY RATE:");
 
         jLabel132.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel132.setForeground(new java.awt.Color(0, 0, 0));
         jLabel132.setText("SELL RATE:");
 
         jLabel133.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel133.setForeground(new java.awt.Color(0, 0, 0));
         jLabel133.setText("TYPE :");
 
         typeInProductPurchasesComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2331,7 +2324,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel50.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setText("INVOICE #");
 
         invoiceInProductWarranty.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -2343,7 +2335,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel169.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel169.setForeground(new java.awt.Color(0, 0, 0));
         jLabel169.setText("Customer Id");
 
         customerIdINProductWanrranty.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -2530,11 +2521,9 @@ public class Home extends javax.swing.JFrame {
         }
 
         jLabel181.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel181.setForeground(new java.awt.Color(0, 0, 0));
         jLabel181.setText("Date :");
 
         jLabel182.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel182.setForeground(new java.awt.Color(0, 0, 0));
         jLabel182.setText("Full Name: ");
 
         fullNameInProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
@@ -2549,15 +2538,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel183.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jLabel183.setForeground(new java.awt.Color(0, 0, 0));
         jLabel183.setText("Delivary Date: ");
 
         jLabel184.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel184.setForeground(new java.awt.Color(0, 0, 0));
         jLabel184.setText("Address");
 
         jLabel185.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel185.setForeground(new java.awt.Color(0, 0, 0));
         jLabel185.setText("Mobile No.");
 
         phoneNOInProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
@@ -2567,14 +2553,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel186.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel186.setForeground(new java.awt.Color(0, 0, 0));
         jLabel186.setText("Problam");
 
         jPanel13.setBackground(new java.awt.Color(204, 204, 204));
         jPanel13.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 102, 102)));
 
         jLabel188.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel188.setForeground(new java.awt.Color(0, 0, 0));
         jLabel188.setText("Bill       :");
 
         brandInProductWanrranty.setText("0.0");
@@ -2585,7 +2569,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel189.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel189.setForeground(new java.awt.Color(0, 0, 0));
         jLabel189.setText("Warranty");
 
         warrantyInProductWanrranty.setText("0.0");
@@ -2596,7 +2579,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel190.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel190.setForeground(new java.awt.Color(0, 0, 0));
         jLabel190.setText("Paid     :");
 
         paidPaymentInProductWanrranty.setText("0.0");
@@ -2614,11 +2596,9 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel191.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel191.setForeground(new java.awt.Color(0, 0, 0));
         jLabel191.setText("Discount(%)    ");
 
         jLabel192.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel192.setForeground(new java.awt.Color(0, 0, 0));
         jLabel192.setText("Brand   :");
 
         billInProductWanrranty.setText("0.0");
@@ -2629,7 +2609,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel193.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel193.setForeground(new java.awt.Color(0, 0, 0));
         jLabel193.setText("Status");
 
         statusInProductWanrrantyComboBox.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -2667,13 +2646,13 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel193, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusInProductWanrrantyComboBox, 0, 250, Short.MAX_VALUE)))
+                        .addComponent(statusInProductWanrrantyComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel192)
@@ -2710,7 +2689,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel187.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel187.setForeground(new java.awt.Color(0, 0, 0));
         jLabel187.setText("Ref Name.");
 
         refNameInProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
@@ -2832,7 +2810,7 @@ public class Home extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2869,7 +2847,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel30.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("INVOICE #");
 
         invoiceInProductSell.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -2881,7 +2858,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel137.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        jLabel137.setForeground(new java.awt.Color(0, 0, 0));
         jLabel137.setText("Customer Id");
 
         customerIdINProductSell.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
@@ -3220,11 +3196,9 @@ public class Home extends javax.swing.JFrame {
         }
 
         jLabel154.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel154.setForeground(new java.awt.Color(0, 0, 0));
         jLabel154.setText("Date :");
 
         jLabel155.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel155.setForeground(new java.awt.Color(0, 0, 0));
         jLabel155.setText("Full Name: ");
 
         fullNameInProductSell.addActionListener(new java.awt.event.ActionListener() {
@@ -3239,15 +3213,12 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel157.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel157.setForeground(new java.awt.Color(0, 0, 0));
         jLabel157.setText("Due Date: ");
 
         jLabel158.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel158.setForeground(new java.awt.Color(0, 0, 0));
         jLabel158.setText("Address");
 
         jLabel159.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel159.setForeground(new java.awt.Color(0, 0, 0));
         jLabel159.setText("Mobile No.");
 
         phoneNOInProductSell.addActionListener(new java.awt.event.ActionListener() {
@@ -3257,7 +3228,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel160.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel160.setForeground(new java.awt.Color(0, 0, 0));
         jLabel160.setText("Note");
 
         panddingListnProductSellComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -3267,7 +3237,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel138.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel138.setForeground(new java.awt.Color(0, 0, 0));
         jLabel138.setText("Pandding List");
 
         actionTypeInProductSellCOmboBox.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
@@ -3295,7 +3264,6 @@ public class Home extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 102, 102)));
 
         jLabel164.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel164.setForeground(new java.awt.Color(0, 0, 0));
         jLabel164.setText("Payment       :");
 
         paymentInProductBill.setText("0.0");
@@ -3306,7 +3274,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel165.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel165.setForeground(new java.awt.Color(0, 0, 0));
         jLabel165.setText("Warranty");
 
         warrantyInProductBill.setText("0.0");
@@ -3317,7 +3284,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel166.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel166.setForeground(new java.awt.Color(0, 0, 0));
         jLabel166.setText("Due Payment :");
 
         duePaymentInProductBill.setText("0.0");
@@ -3335,7 +3301,6 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel167.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel167.setForeground(new java.awt.Color(0, 0, 0));
         jLabel167.setText("Discount(%)    :");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -3517,7 +3482,7 @@ public class Home extends javax.swing.JFrame {
             billPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(ProductPurchasePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, Short.MAX_VALUE)
+                .addComponent(ProductPurchasePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3882,7 +3847,6 @@ public class Home extends javax.swing.JFrame {
         myProfilePanel.setToolTipText("");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clickEditInProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/edit.png"))); // NOI18N
         clickEditInProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3893,7 +3857,6 @@ public class Home extends javax.swing.JFrame {
                 clickEditInProfileMouseExited(evt);
             }
         });
-        jPanel4.add(clickEditInProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, -1));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -3967,7 +3930,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(expiryDateInProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3992,31 +3955,66 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel75)
                     .addComponent(remainDaysInProfile))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
-
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 289, 730, 400));
 
         profile_pic.setBackground(new java.awt.Color(51, 51, 255));
         profile_pic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/profile_add.png"))); // NOI18N
         profile_pic.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel4.add(profile_pic, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 130, 130));
 
         companyNameInProfilePanel.setFont(new java.awt.Font("Cambria Math", 1, 18)); // NOI18N
         companyNameInProfilePanel.setForeground(new java.awt.Color(255, 51, 51));
         companyNameInProfilePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         companyNameInProfilePanel.setText("IT Village Ltd.");
-        jPanel4.add(companyNameInProfilePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 740, -1));
 
         nameInProfilePanel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         nameInProfilePanel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nameInProfilePanel1.setText("Moniruzzaman Roni");
-        jPanel4.add(nameInProfilePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 180, 740, -1));
 
         designationInProfilePanel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         designationInProfilePanel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         designationInProfilePanel1.setText("Owner");
-        jPanel4.add(designationInProfilePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 740, -1));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(profile_pic, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270)
+                .addComponent(clickEditInProfile))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(nameInProfilePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(designationInProfilePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(companyNameInProfilePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(profile_pic, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(clickEditInProfile))
+                .addGap(10, 10, 10)
+                .addComponent(nameInProfilePanel1)
+                .addGap(1, 1, 1)
+                .addComponent(designationInProfilePanel1)
+                .addGap(3, 3, 3)
+                .addComponent(companyNameInProfilePanel)
+                .addGap(37, 37, 37)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout myProfilePanelLayout = new javax.swing.GroupLayout(myProfilePanel);
         myProfilePanel.setLayout(myProfilePanelLayout);
@@ -4726,8 +4724,6 @@ public class Home extends javax.swing.JFrame {
 
         settingBasePanel.add(rechargeOfferPanel, "card2");
 
-        addNewManagementPanelSettings.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         backToUssdManengementPanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToUssdManengementPanel1.setText("jLabel3");
         backToUssdManengementPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -4744,19 +4740,16 @@ public class Home extends javax.swing.JFrame {
                 backToUssdManengementPanel1MouseClicked(evt);
             }
         });
-        addNewManagementPanelSettings.add(backToUssdManengementPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
         getOparetorNameInDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getOparetorNameInDropDownActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getOparetorNameInDropDown, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
 
         jLabel41.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(102, 102, 255));
         jLabel41.setText("Add New USSD Command ");
-        addNewManagementPanelSettings.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         clickAddContract2.setBackground(new java.awt.Color(102, 153, 0));
         clickAddContract2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -4768,18 +4761,14 @@ public class Home extends javax.swing.JFrame {
                 clickAddContract2ActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(clickAddContract2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 710, 150, 40));
 
         getOperatorName1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        addNewManagementPanelSettings.add(getOperatorName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
 
         jLabel42.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel42.setText("Operator Name");
-        addNewManagementPanelSettings.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 98, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel45.setText("Recharge USSD Code Pattern (Pre-paid)");
-        addNewManagementPanelSettings.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
 
         getRechargeUssdParternPrePaid1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdParternPrePaid1.addActionListener(new java.awt.event.ActionListener() {
@@ -4787,11 +4776,9 @@ public class Home extends javax.swing.JFrame {
                 getRechargeUssdParternPrePaid1ActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getRechargeUssdParternPrePaid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 470, 40));
 
         jLabel46.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel46.setText("Icon");
-        addNewManagementPanelSettings.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, -1, -1));
 
         clickChooseIcon1.setBackground(new java.awt.Color(255, 255, 255));
         clickChooseIcon1.setForeground(new java.awt.Color(102, 102, 255));
@@ -4801,7 +4788,6 @@ public class Home extends javax.swing.JFrame {
                 clickChooseIcon1ActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(clickChooseIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, 470, 30));
 
         getprofitIn1k.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getprofitIn1k.addActionListener(new java.awt.event.ActionListener() {
@@ -4809,20 +4795,15 @@ public class Home extends javax.swing.JFrame {
                 getprofitIn1kActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getprofitIn1k, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 470, 40));
 
         jLabel47.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel47.setText("Balence show USSD Code Pattern");
-        addNewManagementPanelSettings.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
 
         jLabel48.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel48.setText("Account Password");
-        addNewManagementPanelSettings.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, -1, -1));
-        addNewManagementPanelSettings.add(accountPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, 470, 40));
 
         jLabel49.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel49.setText("Recharge USSD Code Pattern(post-paid)");
-        addNewManagementPanelSettings.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
         getRechargeUssdParternPostPaid1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdParternPostPaid1.addActionListener(new java.awt.event.ActionListener() {
@@ -4830,11 +4811,9 @@ public class Home extends javax.swing.JFrame {
                 getRechargeUssdParternPostPaid1ActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getRechargeUssdParternPostPaid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 470, 40));
 
         labelUssdPatternSkitto.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         labelUssdPatternSkitto.setText("Recharge USSD Code Pattern(Skitto)");
-        addNewManagementPanelSettings.add(labelUssdPatternSkitto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, -1, -1));
 
         getRechargeUssdParternSkitto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdParternSkitto.addActionListener(new java.awt.event.ActionListener() {
@@ -4842,11 +4821,9 @@ public class Home extends javax.swing.JFrame {
                 getRechargeUssdParternSkittoActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getRechargeUssdParternSkitto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 660, 470, 40));
 
         jLabel62.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel62.setText("Profit in 1000 tk");
-        addNewManagementPanelSettings.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
 
         getBalenceUssdPartern3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getBalenceUssdPartern3.addActionListener(new java.awt.event.ActionListener() {
@@ -4854,7 +4831,116 @@ public class Home extends javax.swing.JFrame {
                 getBalenceUssdPartern3ActionPerformed(evt);
             }
         });
-        addNewManagementPanelSettings.add(getBalenceUssdPartern3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 470, 40));
+
+        javax.swing.GroupLayout addNewManagementPanelSettingsLayout = new javax.swing.GroupLayout(addNewManagementPanelSettings);
+        addNewManagementPanelSettings.setLayout(addNewManagementPanelSettingsLayout);
+        addNewManagementPanelSettingsLayout.setHorizontalGroup(
+            addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(backToUssdManengementPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270)
+                .addComponent(jLabel41))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel42))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addGroup(addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getOparetorNameInDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getOperatorName1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addGroup(addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getRechargeUssdParternPrePaid1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45)))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel49))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getRechargeUssdParternPostPaid1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel47))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getBalenceUssdPartern3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel62))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getprofitIn1k, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel48))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(accountPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel46))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(clickChooseIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(labelUssdPatternSkitto))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getRechargeUssdParternSkitto, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(clickAddContract2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        addNewManagementPanelSettingsLayout.setVerticalGroup(
+            addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backToUssdManengementPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel41)))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel42)
+                .addGroup(addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getOparetorNameInDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getOperatorName1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(getRechargeUssdParternPrePaid1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel45))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel49)
+                .addGap(8, 8, 8)
+                .addComponent(getRechargeUssdParternPostPaid1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel47)
+                .addGap(8, 8, 8)
+                .addComponent(getBalenceUssdPartern3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel62)
+                .addGap(8, 8, 8)
+                .addComponent(getprofitIn1k, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel48)
+                .addGap(8, 8, 8)
+                .addComponent(accountPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel46)
+                .addGap(8, 8, 8)
+                .addComponent(clickChooseIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(labelUssdPatternSkitto)
+                .addGap(8, 8, 8)
+                .addComponent(getRechargeUssdParternSkitto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(clickAddContract2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         settingBasePanel.add(addNewManagementPanelSettings, "card2");
 
@@ -4986,66 +5072,112 @@ public class Home extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(133, 47, 209));
         jPanel9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo.png"))); // NOI18N
-        jPanel9.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 54, 1090, 186));
 
         jLabel11.setFont(new java.awt.Font("Cambria Math", 1, 120)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("01788841890");
-        jPanel9.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 471, 1090, -1));
 
         jLabel12.setFont(new java.awt.Font("Cambria Math", 1, 120)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("01988841890");
-        jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 316, 1090, -1));
 
         jLabel13.setFont(new java.awt.Font("Calibri", 1, 40)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Contract Us");
-        jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 270, 1070, 45));
 
         jLabel51.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
         jLabel51.setForeground(new java.awt.Color(255, 255, 255));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel51.setText("( Afsar Ali )");
-        jPanel9.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 618, 1090, -1));
 
         jLabel99.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel99.setText("Founder of Auto Recharge Software Ltd.");
-        jPanel9.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 701, 1094, -1));
 
         jLabel102.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         jLabel102.setForeground(new java.awt.Color(255, 255, 255));
         jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel102.setText("Develop By: IT Village Ltd. ");
-        jPanel9.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(828, 864, 260, 20));
 
         jLabel103.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         jLabel103.setForeground(new java.awt.Color(255, 255, 255));
         jLabel103.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel103.setText("Offer By: Auto Recharge Software Ltd. ");
-        jPanel9.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 760, 1080, 45));
-        jPanel9.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 736, 1094, 10));
-        jPanel9.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 821, 1094, 10));
 
         jLabel104.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/facebook.png"))); // NOI18N
-        jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 849, -1, -1));
 
         jLabel105.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/youtube.png"))); // NOI18N
-        jPanel9.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 849, -1, -1));
 
         jLabel106.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel106.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/internet.png"))); // NOI18N
-        jPanel9.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 849, -1, -1));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, 1094, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 1094, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 1094, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(503, 503, 503)
+                .addComponent(jLabel104)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel105)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel106)
+                .addGap(191, 191, 191)
+                .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel12)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel11)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel51)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel99)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel104)
+                    .addComponent(jLabel105)
+                    .addComponent(jLabel106)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         javax.swing.GroupLayout helplinePanelLayout = new javax.swing.GroupLayout(helplinePanel);
         helplinePanel.setLayout(helplinePanelLayout);
@@ -5054,20 +5186,19 @@ public class Home extends javax.swing.JFrame {
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         helplinePanelLayout.setVerticalGroup(
             helplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         basePanel.add(helplinePanel, "card2");
 
         ussdDialPanel.setBackground(new java.awt.Color(255, 255, 255));
-        ussdDialPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backToMobileRecharge.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToMobileRecharge.setText("jLabel3");
@@ -5076,13 +5207,11 @@ public class Home extends javax.swing.JFrame {
                 backToMobileRechargeMouseClicked(evt);
             }
         });
-        ussdDialPanel.add(backToMobileRecharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
         jLabel20.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(102, 102, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("USSD Dail");
-        ussdDialPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         clickUssdSessionClose.setBackground(new java.awt.Color(255, 102, 102));
         clickUssdSessionClose.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -5094,27 +5223,19 @@ public class Home extends javax.swing.JFrame {
                 clickUssdSessionCloseActionPerformed(evt);
             }
         });
-        ussdDialPanel.add(clickUssdSessionClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 150, 40));
-
-        ussdDialPanel.add(getSelectedSim, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 470, 40));
 
         getUssdCode.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        ussdDialPanel.add(getUssdCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 470, 40));
 
         jLabel24.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jLabel24.setText("Code:");
-        ussdDialPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
 
         setResponseShowFromUssd.setColumns(20);
         setResponseShowFromUssd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         setResponseShowFromUssd.setRows(5);
         jScrollPane3.setViewportView(setResponseShowFromUssd);
 
-        ussdDialPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 490, 290));
-
         jLabel25.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
         jLabel25.setText("Select SIM:");
-        ussdDialPanel.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
 
         clickUssdDailDorSend1.setBackground(new java.awt.Color(102, 153, 0));
         clickUssdDailDorSend1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -5126,14 +5247,67 @@ public class Home extends javax.swing.JFrame {
                 clickUssdDailDorSend1ActionPerformed(evt);
             }
         });
-        ussdDialPanel.add(clickUssdDailDorSend1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 280, 150, 40));
+
+        javax.swing.GroupLayout ussdDialPanelLayout = new javax.swing.GroupLayout(ussdDialPanel);
+        ussdDialPanel.setLayout(ussdDialPanelLayout);
+        ussdDialPanelLayout.setHorizontalGroup(
+            ussdDialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(backToMobileRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel20))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel24))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getUssdCode, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel25))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getSelectedSim, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(clickUssdDailDorSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(clickUssdSessionClose, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        ussdDialPanelLayout.setVerticalGroup(
+            ussdDialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(ussdDialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backToMobileRecharge, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ussdDialPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel20)))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel24)
+                .addGap(1, 1, 1)
+                .addComponent(getUssdCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel25)
+                .addGap(1, 1, 1)
+                .addComponent(getSelectedSim, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(ussdDialPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clickUssdDailDorSend1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clickUssdSessionClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(ussdDialPanel, "card2");
 
         contractListPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         serchBar.setBackground(new java.awt.Color(255, 255, 255));
-        serchBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         getNameForSearch.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         getNameForSearch.setBorder(null);
@@ -5142,10 +5316,27 @@ public class Home extends javax.swing.JFrame {
                 getNameForSearchKeyReleased(evt);
             }
         });
-        serchBar.add(getNameForSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 3, 390, 45));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/Search_bg.png"))); // NOI18N
-        serchBar.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, -1, -1));
+
+        javax.swing.GroupLayout serchBarLayout = new javax.swing.GroupLayout(serchBar);
+        serchBar.setLayout(serchBarLayout);
+        serchBarLayout.setHorizontalGroup(
+            serchBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(serchBarLayout.createSequentialGroup()
+                .addGap(610, 610, 610)
+                .addComponent(getNameForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(serchBarLayout.createSequentialGroup()
+                .addGap(600, 600, 600)
+                .addComponent(jLabel27))
+        );
+        serchBarLayout.setVerticalGroup(
+            serchBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(serchBarLayout.createSequentialGroup()
+                .addGap(3, 3, 3)
+                .addComponent(getNameForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel27)
+        );
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         back.setText("jLabel3");
@@ -5239,7 +5430,6 @@ public class Home extends javax.swing.JFrame {
         basePanel.add(contractListPanel, "card2");
 
         addNewManagementPanel.setBackground(new java.awt.Color(255, 255, 255));
-        addNewManagementPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backToUssdManengementPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToUssdManengementPanel.setText("jLabel3");
@@ -5248,14 +5438,10 @@ public class Home extends javax.swing.JFrame {
                 backToUssdManengementPanelMouseClicked(evt);
             }
         });
-        addNewManagementPanel.add(backToUssdManengementPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
-
-        addNewManagementPanel.add(dropdownOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
 
         jLabel28.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(102, 102, 255));
         jLabel28.setText("Add New USSD Command ");
-        addNewManagementPanel.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         clickAddContract1.setBackground(new java.awt.Color(102, 153, 0));
         clickAddContract1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -5267,18 +5453,14 @@ public class Home extends javax.swing.JFrame {
                 clickAddContract1ActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(clickAddContract1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 590, 150, 40));
 
         getOperatorName.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        addNewManagementPanel.add(getOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 470, 40));
 
         jLabel29.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel29.setText("Operator Name");
-        addNewManagementPanel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 98, -1, -1));
 
         jLabel31.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel31.setText("Action For");
-        addNewManagementPanel.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
 
         getSeletedAction.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         getSeletedAction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mobile Recharge" }));
@@ -5287,11 +5469,9 @@ public class Home extends javax.swing.JFrame {
                 getSeletedActionActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(getSeletedAction, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 470, 40));
 
         jLabel32.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel32.setText("Recharge USSD Code Pattern (Pre-paid)");
-        addNewManagementPanel.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 
         getRechargeUssdParternPrePaid.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdParternPrePaid.addActionListener(new java.awt.event.ActionListener() {
@@ -5299,11 +5479,9 @@ public class Home extends javax.swing.JFrame {
                 getRechargeUssdParternPrePaidActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(getRechargeUssdParternPrePaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 470, 40));
 
         jLabel33.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel33.setText("Icon");
-        addNewManagementPanel.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
 
         clickChooseIcon.setBackground(new java.awt.Color(255, 255, 255));
         clickChooseIcon.setForeground(new java.awt.Color(102, 102, 255));
@@ -5313,7 +5491,6 @@ public class Home extends javax.swing.JFrame {
                 clickChooseIconActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(clickChooseIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 530, 470, 30));
 
         getBalenceUssdPartern1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getBalenceUssdPartern1.addActionListener(new java.awt.event.ActionListener() {
@@ -5321,22 +5498,17 @@ public class Home extends javax.swing.JFrame {
                 getBalenceUssdPartern1ActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(getBalenceUssdPartern1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 470, 40));
 
         jLabel34.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel34.setText("Balence show USSD Code Pattern");
-        addNewManagementPanel.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel35.setText("Account Password");
-        addNewManagementPanel.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
         accountPassword.setText("jPasswordField1");
-        addNewManagementPanel.add(accountPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 470, 40));
 
         jLabel36.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel36.setText("Recharge USSD Code Pattern(post-paid)");
-        addNewManagementPanel.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, -1));
 
         getRechargeUssdParternPostPaid.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         getRechargeUssdParternPostPaid.addActionListener(new java.awt.event.ActionListener() {
@@ -5344,12 +5516,109 @@ public class Home extends javax.swing.JFrame {
                 getRechargeUssdParternPostPaidActionPerformed(evt);
             }
         });
-        addNewManagementPanel.add(getRechargeUssdParternPostPaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 470, 40));
+
+        javax.swing.GroupLayout addNewManagementPanelLayout = new javax.swing.GroupLayout(addNewManagementPanel);
+        addNewManagementPanel.setLayout(addNewManagementPanelLayout);
+        addNewManagementPanelLayout.setHorizontalGroup(
+            addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(backToUssdManengementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270)
+                .addComponent(jLabel28))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel29))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dropdownOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getSeletedAction, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31)))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addComponent(getRechargeUssdParternPrePaid, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel36))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getRechargeUssdParternPostPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel34))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getBalenceUssdPartern1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel35))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(accountPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel33))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(clickChooseIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(430, 430, 430)
+                .addComponent(clickAddContract1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        addNewManagementPanelLayout.setVerticalGroup(
+            addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backToUssdManengementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel28)))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel29)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dropdownOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(getSeletedAction, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel31))
+                .addGap(10, 10, 10)
+                .addGroup(addNewManagementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addGroup(addNewManagementPanelLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(getRechargeUssdParternPrePaid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jLabel36)
+                .addGap(8, 8, 8)
+                .addComponent(getRechargeUssdParternPostPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel34)
+                .addGap(8, 8, 8)
+                .addComponent(getBalenceUssdPartern1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel35)
+                .addGap(8, 8, 8)
+                .addComponent(accountPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel33)
+                .addGap(8, 8, 8)
+                .addComponent(clickChooseIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(clickAddContract1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(addNewManagementPanel, "card2");
 
         addNewContractPanel.setBackground(new java.awt.Color(255, 255, 255));
-        addNewContractPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         back43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         back43.setText("jLabel3");
@@ -5358,12 +5627,10 @@ public class Home extends javax.swing.JFrame {
                 back43MouseClicked(evt);
             }
         });
-        addNewContractPanel.add(back43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
         jLabel37.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(102, 102, 255));
         jLabel37.setText("New Contract ");
-        addNewContractPanel.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         clickAddContract.setBackground(new java.awt.Color(102, 153, 0));
         clickAddContract.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -5375,27 +5642,75 @@ public class Home extends javax.swing.JFrame {
                 clickAddContractActionPerformed(evt);
             }
         });
-        addNewContractPanel.add(clickAddContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 400, 150, 40));
 
         getNameForContract.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        addNewContractPanel.add(getNameForContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 470, 40));
 
         jLabel38.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel38.setText("Name");
-        addNewContractPanel.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 175, -1, -1));
 
         getPhoneNOForContract.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        addNewContractPanel.add(getPhoneNOForContract, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 470, 40));
 
         jLabel39.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel39.setText("Phone No.");
-        addNewContractPanel.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 245, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
         jLabel40.setText("Storage");
-        addNewContractPanel.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 315, -1, -1));
 
-        addNewContractPanel.add(getSeletedStorage, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 470, 40));
+        javax.swing.GroupLayout addNewContractPanelLayout = new javax.swing.GroupLayout(addNewContractPanel);
+        addNewContractPanel.setLayout(addNewContractPanelLayout);
+        addNewContractPanelLayout.setHorizontalGroup(
+            addNewContractPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(back43, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(330, 330, 330)
+                .addComponent(jLabel37))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel38))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getNameForContract, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel39))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getPhoneNOForContract, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(jLabel40))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(getSeletedStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(clickAddContract, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        addNewContractPanelLayout.setVerticalGroup(
+            addNewContractPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(addNewContractPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back43, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addNewContractPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel37)))
+                .addGap(105, 105, 105)
+                .addComponent(jLabel38)
+                .addGap(3, 3, 3)
+                .addComponent(getNameForContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel39)
+                .addGap(3, 3, 3)
+                .addComponent(getPhoneNOForContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jLabel40)
+                .addGap(3, 3, 3)
+                .addComponent(getSeletedStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(clickAddContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(addNewContractPanel, "card2");
 
@@ -5405,23 +5720,19 @@ public class Home extends javax.swing.JFrame {
                 addMobileBankingPanelInBillPayMouseClicked(evt);
             }
         });
-        addMobileBankingPanelInBillPay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clickSandInMB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clickSandInMBMouseClicked(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(clickSandInMB, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 360, 200, 50));
 
-        getSimOperatorName.setBackground(new java.awt.Color(255, 255, 255));
         getSimOperatorName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getSimOperatorName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getSimOperatorNameActionPerformed(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(getSimOperatorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, 190, 40));
 
         getPhoneNumberInBillPayment.setFont(new java.awt.Font("Cambria", 1, 80)); // NOI18N
         getPhoneNumberInBillPayment.setBorder(null);
@@ -5438,7 +5749,6 @@ public class Home extends javax.swing.JFrame {
                 getPhoneNumberInBillPaymentActionPerformed(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(getPhoneNumberInBillPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 740, 100));
 
         getAmmountInBillPayment.setFont(new java.awt.Font("Cambria", 0, 100)); // NOI18N
         getAmmountInBillPayment.setBorder(null);
@@ -5450,8 +5760,6 @@ public class Home extends javax.swing.JFrame {
                 getAmmountInBillPaymentFocusLost(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(getAmmountInBillPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 530, 100));
-        addMobileBankingPanelInBillPay.add(selectedSimOperatorIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 50, 50));
 
         clickContactList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -5461,10 +5769,8 @@ public class Home extends javax.swing.JFrame {
                 clickContactList1MouseEntered(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(clickContactList1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 50, 50));
 
         jLabel80.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mobile_banking.png"))); // NOI18N
-        addMobileBankingPanelInBillPay.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 1025, 347));
 
         getServiceName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -5476,12 +5782,10 @@ public class Home extends javax.swing.JFrame {
                 getServiceNameActionPerformed(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(getServiceName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 330, 50));
 
         jLabel83.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel83.setForeground(new java.awt.Color(102, 0, 255));
         jLabel83.setText("Service:");
-        addMobileBankingPanelInBillPay.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 50));
 
         getOperationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "------ Select Operation ----" }));
         getOperationType.addItemListener(new java.awt.event.ItemListener() {
@@ -5494,7 +5798,6 @@ public class Home extends javax.swing.JFrame {
                 getOperationTypeActionPerformed(evt);
             }
         });
-        addMobileBankingPanelInBillPay.add(getOperationType, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 40, 350, 50));
 
         rechargeBalencePanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -5530,7 +5833,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8)
-                    .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                     .addComponent(processingTextInMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -5544,11 +5847,9 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(processingTextInMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addComponent(processingTextInMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        addMobileBankingPanelInBillPay.add(rechargeBalencePanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 30, 320, 420));
 
         tableMobileBankingDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -5568,17 +5869,87 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane13.setViewportView(tableMobileBankingDetails);
 
-        addMobileBankingPanelInBillPay.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 1550, 350));
-
         jLabel84.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel84.setForeground(new java.awt.Color(102, 0, 255));
         jLabel84.setText("Operation:");
-        addMobileBankingPanelInBillPay.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, -1, 50));
+
+        javax.swing.GroupLayout addMobileBankingPanelInBillPayLayout = new javax.swing.GroupLayout(addMobileBankingPanelInBillPay);
+        addMobileBankingPanelInBillPay.setLayout(addMobileBankingPanelInBillPayLayout);
+        addMobileBankingPanelInBillPayLayout.setHorizontalGroup(
+            addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addComponent(jLabel83)
+                        .addGap(13, 13, 13)
+                        .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel84)
+                        .addGap(9, 9, 9)
+                        .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(670, 670, 670)
+                        .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(135, 135, 135)
+                .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 1550, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        addMobileBankingPanelInBillPayLayout.setVerticalGroup(
+            addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(20, 20, 20)
+                                .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                .addGap(260, 260, 260)
+                                .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(addMobileBankingPanelInBillPay, "card2");
 
         groupLoadPanel.setBackground(new java.awt.Color(255, 255, 255));
-        groupLoadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backToMobileRecharge1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToMobileRecharge1.setText("jLabel3");
@@ -5587,13 +5958,11 @@ public class Home extends javax.swing.JFrame {
                 backToMobileRecharge1MouseClicked(evt);
             }
         });
-        groupLoadPanel.add(backToMobileRecharge1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
         jLabel66.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
         jLabel66.setForeground(new java.awt.Color(102, 102, 255));
         jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel66.setText("Group Load");
-        groupLoadPanel.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         tableGroupRecharge.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -5608,15 +5977,12 @@ public class Home extends javax.swing.JFrame {
         ));
         jScrollPane11.setViewportView(tableGroupRecharge);
 
-        groupLoadPanel.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 990, 600));
-
         sendAllRechargeBut.setText("Send All Recharge");
         sendAllRechargeBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendAllRechargeButActionPerformed(evt);
             }
         });
-        groupLoadPanel.add(sendAllRechargeBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 70, 160, 30));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 51), null));
 
@@ -5694,22 +6060,60 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(getSelectedSimInGroupRecharge1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(addButInGroupRecharge)
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
-
-        groupLoadPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 70, 300, 640));
 
         sendingLogLabel.setFont(new java.awt.Font("Cambria", 1, 36)); // NOI18N
         sendingLogLabel.setForeground(new java.awt.Color(204, 0, 51));
         sendingLogLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sendingLogLabel.setText("Please Wait...");
-        groupLoadPanel.add(sendingLogLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 370, -1));
+
+        javax.swing.GroupLayout groupLoadPanelLayout = new javax.swing.GroupLayout(groupLoadPanel);
+        groupLoadPanel.setLayout(groupLoadPanelLayout);
+        groupLoadPanelLayout.setHorizontalGroup(
+            groupLoadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(groupLoadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                        .addComponent(backToMobileRecharge1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel66)
+                        .addGap(89, 89, 89)
+                        .addComponent(sendingLogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(170, 170, 170)
+                        .addComponent(sendAllRechargeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        groupLoadPanelLayout.setVerticalGroup(
+            groupLoadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(groupLoadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backToMobileRecharge1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel66))
+                    .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(sendingLogLabel))
+                    .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(sendAllRechargeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(groupLoadPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(groupLoadPanel, "card2");
 
         billPaymentPanelInBillPay.setBackground(new java.awt.Color(255, 255, 255));
-        billPaymentPanelInBillPay.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        billPaymentPanelInBillPay.add(selectedSimOperatorIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 50, 50));
 
         clickContactList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -5719,7 +6123,6 @@ public class Home extends javax.swing.JFrame {
                 clickContactList2MouseEntered(evt);
             }
         });
-        billPaymentPanelInBillPay.add(clickContactList2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 50, 50));
 
         rechargeBalencePanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -5762,7 +6165,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(rechargeBalencePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeBalencePanel2Layout.createSequentialGroup()
                         .addComponent(jLabel90)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addComponent(clickRefrash2))
                     .addComponent(loaderInBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getBalanceInBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -5789,8 +6192,6 @@ public class Home extends javax.swing.JFrame {
                 .addGap(85, 85, 85))
         );
 
-        billPaymentPanelInBillPay.add(rechargeBalencePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 20, 280, 320));
-
         tableBillPaymentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -5808,8 +6209,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jScrollPane16.setViewportView(tableBillPaymentDetails);
-
-        billPaymentPanelInBillPay.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 1550, 300));
 
         detailsPanelInBillPay.setBackground(new java.awt.Color(133, 47, 209));
         detailsPanelInBillPay.setForeground(new java.awt.Color(102, 0, 255));
@@ -6095,11 +6494,44 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(clickTabUsingBillNO, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clickTabUsingCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(baseBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(baseBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        billPaymentPanelInBillPay.add(detailsPanelInBillPay, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 1200, 570));
+        javax.swing.GroupLayout billPaymentPanelInBillPayLayout = new javax.swing.GroupLayout(billPaymentPanelInBillPay);
+        billPaymentPanelInBillPay.setLayout(billPaymentPanelInBillPayLayout);
+        billPaymentPanelInBillPayLayout.setHorizontalGroup(
+            billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clickContactList2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectedSimOperatorIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(20, 20, 20)
+                .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 1550, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        billPaymentPanelInBillPayLayout.setVerticalGroup(
+            billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(clickContactList2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(selectedSimOperatorIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         basePanel.add(billPaymentPanelInBillPay, "card2");
 
