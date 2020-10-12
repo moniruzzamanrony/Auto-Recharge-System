@@ -146,7 +146,8 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
         showMobileRechargeBalance();
         processRequestFromMobileRechargeQueue();
-
+        startUpApplicationBaseOnRole();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -8449,6 +8450,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField warrentyInProductDetails;
     // End of variables declaration//GEN-END:variables
 
+    //Redirect Panel use Role
+    private void startUpApplicationBaseOnRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     protected void switchPanelViaMenu(JPanel requestedPanel, JPanel tabPanel, JLabel title, JLabel icon, String iconName, String header) {
 
         colorSwitcherWithHighlight(tabPanel, title, icon, iconName, header);
@@ -9058,7 +9063,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
 
-            Method mathod = object.getClass().getMethod("getSelectableSimPort", null);
+            Method mathod =(Method) object.getClass().getMethod("getSelectableSimPort", null);
             String portName = (String) mathod.invoke(object, null);
             Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
             objectQueue.add(object);
@@ -9088,7 +9093,7 @@ public class Home extends javax.swing.JFrame {
                             while (!hashValue.getValue().isEmpty()) {
                                 System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
                                 Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = object.getClass().getMethod("getStatus", null);
+                                Method mathodGetStatus = (Method)object.getClass().getMethod("getStatus", null);
                                 UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
 
                                 switch (getStatus) {
@@ -13261,4 +13266,6 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+ 
 }
