@@ -135,8 +135,7 @@ public class Home extends javax.swing.JFrame {
         this.setIconImage(imgicon.getImage());
         this.setTitle("Auto Recharge System");
         setFocusInMobileRechargePanel();
-        setCuurentActiveNetworksFromModem();
-        loadActiveOperatorNameInComboBox();
+
         loadValueInTableRechargeDetails();
         refrash();
         placeHoderSetter();
@@ -146,8 +145,12 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
         showMobileRechargeBalance();
         processRequestFromMobileRechargeQueue();
+
         startUpApplicationBaseOnRole();
-       
+
+        //Need Modem
+        //setCuurentActiveNetworksFromModem();
+        //loadActiveOperatorNameInComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -1675,6 +1678,11 @@ public class Home extends javax.swing.JFrame {
                 saveInProductPurchase2MouseClicked(evt);
             }
         });
+        saveInProductPurchase2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveInProductPurchase2ActionPerformed(evt);
+            }
+        });
 
         jLabel134.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
         jLabel134.setText("Barcode");
@@ -2679,6 +2687,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane17.setViewportView(problemInProductWanrranty);
 
         updateClickProductWanrranty.setText("Update");
+        updateClickProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateClickProductWanrrantyActionPerformed(evt);
+            }
+        });
 
         printClickProductWanrranty.setBackground(new java.awt.Color(0, 153, 0));
         printClickProductWanrranty.setText("Print");
@@ -4094,7 +4107,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(443, Short.MAX_VALUE))
+                .addContainerGap(479, Short.MAX_VALUE))
         );
         systemBackupPanelLayout.setVerticalGroup(
             systemBackupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4251,6 +4264,11 @@ public class Home extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Add");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -4321,7 +4339,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
         trustedEmployeePanelLayout.setVerticalGroup(
             trustedEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4569,7 +4587,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
                     .addComponent(jLabel86, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4710,7 +4728,7 @@ public class Home extends javax.swing.JFrame {
         rechargeOfferPanelLayout.setHorizontalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeOfferPanelLayout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
+                .addContainerGap(280, Short.MAX_VALUE)
                 .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(200, 200, 200))
         );
@@ -6641,21 +6659,31 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_helplineTabMouseClicked
 
     private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
+
         switchPanelViaMenu(ussdDialPanel);
         getUssdCode.requestFocusInWindow();
         refrash();
-        ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-            getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-        });
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
+                getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
+            });
+        }
         addKeyLIsenerInUssdDailPad();
     }//GEN-LAST:event_clickUssdDailActionPerformed
 
     private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
         switchPanelViaMenu(groupLoadPanel);
         getSelectedSimInGroupRecharge1.removeAllItems();
+        if (UserInfo.role.equals("demo")) {
 
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+        } else {
+
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+            }
+
         }
         sendingLogLabel.setVisible(false);
         loadDataInGroupRechargeTable();
@@ -6663,7 +6691,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickGroupLoadActionPerformed
 
     private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
-        simSimOfferDialog();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            simSimOfferDialog();
+        }
     }//GEN-LAST:event_clickSIMOffer1ActionPerformed
 
     private void mobileRechargeTabMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseMoved
@@ -6730,6 +6762,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_helplineTabMouseExited
 
     private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+
         switchPanelViaMenu(contractListPanel);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
@@ -6825,10 +6863,18 @@ public class Home extends javax.swing.JFrame {
         for (String mBank : MOBILE_BANKING_NANE) {
             getSelectedServiceCombo.addItem(mBank);
         }
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
-        }
+        if (UserInfo.role.equals("demo")) {
 
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+                }
+            }
+        }
         addKeyLisenerInMobileBankingSetting();
     }//GEN-LAST:event_mobileBankingSettingsMouseClicked
 
@@ -6851,31 +6897,39 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_rechargeOffersMouseClicked
 
     private void clickAddNewManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddNewManagementActionPerformed
-        resetComboBox(getOparetorNameInDropDown);
-        ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-            getOparetorNameInDropDown.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-        });
-        switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            resetComboBox(getOparetorNameInDropDown);
+            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
+                getOparetorNameInDropDown.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
+            });
+            switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
+        }
     }//GEN-LAST:event_clickAddNewManagementActionPerformed
 
     private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
-
-        String phoneNumberRequested = getMobileNumber.getText();
-        String ammountRequested = getAmmountInTk.getText();
-
-        if (!phoneNumberRequested.equals("")
-                && !ammountRequested.equals("")
-                && phoneNumberRequested.matches("[0-9]+")
-                && ammountRequested.matches("[0-9]+")) {
-
-            String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-            String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
-
-            recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-            getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
 
+            String phoneNumberRequested = getMobileNumber.getText();
+            String ammountRequested = getAmmountInTk.getText();
+
+            if (!phoneNumberRequested.equals("")
+                    && !ammountRequested.equals("")
+                    && phoneNumberRequested.matches("[0-9]+")
+                    && ammountRequested.matches("[0-9]+")) {
+
+                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+
+                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+            } else {
+                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+
+            }
         }
     }//GEN-LAST:event_clickSendMouseClicked
 
@@ -6902,55 +6956,60 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToMobileRechargeMouseClicked
 
     private void clickUssdSessionCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdSessionCloseActionPerformed
-        processtingLoderDialog.setVisible(true);
-        clickUssdSessionClose.setEnabled(false);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            processtingLoderDialog.setVisible(true);
+            clickUssdSessionClose.setEnabled(false);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
 
-                closeUssdSession();
-                return null;
-            }
+                    closeUssdSession();
+                    return null;
+                }
 
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-                clickUssdSessionClose.setEnabled(true);
-            }
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    clickUssdSessionClose.setEnabled(true);
+                }
 
-        };
-        swingWorker.execute();
-
+            };
+            swingWorker.execute();
+        }
 
     }//GEN-LAST:event_clickUssdSessionCloseActionPerformed
 
     private void clickUssdDailDorSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSend1ActionPerformed
-        clickUssdDailDorSend1.setEnabled(false);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            clickUssdDailDorSend1.setEnabled(false);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
 
-                if (getUssdCode.getText().equals("")) {
-                    getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                } else {
-                    processtingLoderDialog.setVisible(true);
-                    ussdDial();
-                    getUssdCode.setText("");
+                    if (getUssdCode.getText().equals("")) {
+                        getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                    } else {
+                        processtingLoderDialog.setVisible(true);
+                        ussdDial();
+                        getUssdCode.setText("");
+                    }
+                    return null;
                 }
-                return null;
-            }
 
-            @Override
-            protected void done() {
-                getUssdCode.requestFocusInWindow();
-                processtingLoderDialog.setVisible(false);
-                clickUssdDailDorSend1.setEnabled(true);
-            }
+                @Override
+                protected void done() {
+                    getUssdCode.requestFocusInWindow();
+                    processtingLoderDialog.setVisible(false);
+                    clickUssdDailDorSend1.setEnabled(true);
+                }
 
-        };
-        swingWorker.execute();
-
-
+            };
+            swingWorker.execute();
+        }
     }//GEN-LAST:event_clickUssdDailDorSend1ActionPerformed
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
@@ -6960,9 +7019,19 @@ public class Home extends javax.swing.JFrame {
     private void clickNewContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickNewContractActionPerformed
         switchPanelViaMenu(addNewContractPanel);
         getSeletedStorage.removeAllItems();
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            getSeletedStorage.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase());
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
 
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    getSeletedStorage.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase());
+
+                }
+            }
         }
         getSeletedStorage.addItem("MEMORY");
         getSeletedStorage.addItem("CLOUD");
@@ -6979,20 +7048,23 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToUssdManengementPanelMouseClicked
 
     private void clickAddContract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract1ActionPerformed
-
-        String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
-        String operatorName = dropdownOperatorName.getSelectedItem().toString();
-
-        String actionFor = getSeletedAction.getSelectedItem().toString();
-        String balenceUssdPartern = getBalenceUssdPartern1.getText();
-        if (!rechargeUssdPartern.equals("")
-                && !operatorName.equals("")) {
-
-            if (saveToDbCommandInCommand()) {
-                System.out.println("Adding Successfull");
-            }
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            Popup.error("Empty Field");
+            String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
+            String operatorName = dropdownOperatorName.getSelectedItem().toString();
+
+            String actionFor = getSeletedAction.getSelectedItem().toString();
+            String balenceUssdPartern = getBalenceUssdPartern1.getText();
+            if (!rechargeUssdPartern.equals("")
+                    && !operatorName.equals("")) {
+
+                if (saveToDbCommandInCommand()) {
+                    System.out.println("Adding Successfull");
+                }
+            } else {
+                Popup.error("Empty Field");
+            }
         }
     }//GEN-LAST:event_clickAddContract1ActionPerformed
 
@@ -7018,24 +7090,27 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_back43MouseClicked
 
     private void clickAddContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContractActionPerformed
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                saveContract();
-                return null;
-            }
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveContract();
+                    return null;
+                }
 
-            @Override
-            protected void done() {
-                switchPanelViaMenu(contractListPanel);
-                setContractListInJTable();
-                processtingLoderDialog.setVisible(false);
-            }
+                @Override
+                protected void done() {
+                    switchPanelViaMenu(contractListPanel);
+                    setContractListInJTable();
+                    processtingLoderDialog.setVisible(false);
+                }
 
-        };
-        swingWorker.execute();
-
+            };
+            swingWorker.execute();
+        }
     }//GEN-LAST:event_clickAddContractActionPerformed
 
     private void backToUssdManengementPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1MouseClicked
@@ -7043,21 +7118,25 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_backToUssdManengementPanel1MouseClicked
 
     private void clickAddContract2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract2ActionPerformed
-        String rechargeUssdPartern = getRechargeUssdParternPrePaid1.getText();
-        String operatorName = getOparetorNameInDropDown.getSelectedItem().toString();
-        String othersCode = getRechargeUssdParternSkitto.getText();
-        String balenceUssdPartern = getprofitIn1k.getText();
-        String profit = getprofitIn1k.getText();
-
-        if (!rechargeUssdPartern.equals("")
-                && !operatorName.equals("")
-                && !profit.equals("")) {
-
-            if (saveToDbCommandInCommand()) {
-                System.out.println("Adding Successfull");
-            }
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            Popup.error("Empty Field");
+            String rechargeUssdPartern = getRechargeUssdParternPrePaid1.getText();
+            String operatorName = getOparetorNameInDropDown.getSelectedItem().toString();
+            String othersCode = getRechargeUssdParternSkitto.getText();
+            String balenceUssdPartern = getprofitIn1k.getText();
+            String profit = getprofitIn1k.getText();
+
+            if (!rechargeUssdPartern.equals("")
+                    && !operatorName.equals("")
+                    && !profit.equals("")) {
+
+                if (saveToDbCommandInCommand()) {
+                    System.out.println("Adding Successfull");
+                }
+            } else {
+                Popup.error("Empty Field");
+            }
         }
     }//GEN-LAST:event_clickAddContract2ActionPerformed
 
@@ -7184,27 +7263,30 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickContactListMouseEntered
 
     private void saveNewOfferInSettringsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewOfferInSettringsActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveSIMOffer();
+                    return null;
+                }
 
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                saveSIMOffer();
-                return null;
-            }
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    getOfferNameInSeting.setText("");
+                    getRechargeAmmountInSeetings.setText("");
+                    getValidityInSetting.setText("");
+                    getDescriptionInSetting.setText("");
+                    System.err.println("Added @Done...");
+                }
 
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-                getOfferNameInSeting.setText("");
-                getRechargeAmmountInSeetings.setText("");
-                getValidityInSetting.setText("");
-                getDescriptionInSetting.setText("");
-                System.err.println("Added @Done...");
-            }
-
-        };
-        swingWorker.execute();
+            };
+            swingWorker.execute();
+        }
     }//GEN-LAST:event_saveNewOfferInSettringsActionPerformed
 
     private void backToMobileRecharge1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRecharge1MouseClicked
@@ -7224,30 +7306,34 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_sendAllRechargeButActionPerformed
 
     private void addButInGroupRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButInGroupRechargeActionPerformed
-        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
-            Popup.customError("Empty field found..");
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    addInGroupRechargeTable();
-                    return null;
-                }
+            if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
+                Popup.customError("Empty field found..");
+            } else {
+                SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        processtingLoderDialog.setVisible(true);
+                        addInGroupRechargeTable();
+                        return null;
+                    }
 
-                @Override
-                protected void done() {
-                    processtingLoderDialog.setVisible(false);
-                    loadDataInGroupRechargeTable();
-                    getPhoneNumberInGroupRecharge.setText("");
-                    getAmountGroupRecharge.setText("");
-                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
-                    System.err.println("Number Add In Recharge List @Done...");
-                }
+                    @Override
+                    protected void done() {
+                        processtingLoderDialog.setVisible(false);
+                        loadDataInGroupRechargeTable();
+                        getPhoneNumberInGroupRecharge.setText("");
+                        getAmountGroupRecharge.setText("");
+                        getPhoneNumberInGroupRecharge.requestFocusInWindow();
+                        System.err.println("Number Add In Recharge List @Done...");
+                    }
 
-            };
-            swingWorker.execute();
+                };
+                swingWorker.execute();
 
+            }
         }
     }//GEN-LAST:event_addButInGroupRechargeActionPerformed
 
@@ -7262,7 +7348,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickEditInProfileMouseExited
 
     private void clickExportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickExportDatabaseActionPerformed
-        exportDatabase();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            exportDatabase();
+        }
     }//GEN-LAST:event_clickExportDatabaseActionPerformed
 
     private void getEmployeeNameTEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getEmployeeNameTEmployeeActionPerformed
@@ -7294,89 +7384,105 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getUssdCodePattrenActionPerformed
 
     private void clickSaveInMobileRechatgeSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSaveInMobileRechatgeSettingActionPerformed
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                saveInMobileBanking();
-                return null;
-            }
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveInMobileBanking();
+                    return null;
+                }
 
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-                getTaskNameInMBS.setText("");
-                getUssdCodePattren.setText("");
-                getPIN.setText("");
-                getUssdCodeForBalanceShowPattren.setText("");
-                loadTableMobileBankingSettingFromDb();
-                getSelectedServiceCombo.requestFocusInWindow();
-                System.err.println("Mobile Banking Service Added in List @Done...");
-            }
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    getTaskNameInMBS.setText("");
+                    getUssdCodePattren.setText("");
+                    getPIN.setText("");
+                    getUssdCodeForBalanceShowPattren.setText("");
+                    loadTableMobileBankingSettingFromDb();
+                    getSelectedServiceCombo.requestFocusInWindow();
+                    System.err.println("Mobile Banking Service Added in List @Done...");
+                }
 
-        };
-        swingWorker.execute();
+            };
+            swingWorker.execute();
 
-
+        }
     }//GEN-LAST:event_clickSaveInMobileRechatgeSettingActionPerformed
 
     private void getServiceNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceNameItemStateChanged
-
-        Connection conn = DbConnection.connect();
         Set<String> taskNames = new HashSet<>();
-        try {
-            getOperationType.removeAllItems();
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + evt.getItem().toString() + "\"";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                taskNames.add(rs.getString("task_name"));
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
 
-                System.err.println(rs.getString("task_name"));
+            Connection conn = DbConnection.connect();
+
+            try {
+                getOperationType.removeAllItems();
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + evt.getItem().toString() + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    taskNames.add(rs.getString("task_name"));
+
+                    System.err.println(rs.getString("task_name"));
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
 
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-
-        }
-
-        for (String taskName : taskNames) {
-            getOperationType.addItem(taskName);
+            for (String taskName : taskNames) {
+                getOperationType.addItem(taskName);
+            }
         }
 
     }//GEN-LAST:event_getServiceNameItemStateChanged
 
     private void clickSandInMBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSandInMBMouseClicked
-
-        if (mobileBankingPanelValidation()) {
-            showMobileBankingConfirmationDialog();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            Popup.customError("Any field is empty!!");
+            if (mobileBankingPanelValidation()) {
+                showMobileBankingConfirmationDialog();
+            } else {
+                Popup.customError("Any field is empty!!");
+            }
         }
     }//GEN-LAST:event_clickSandInMBMouseClicked
 
     private void getOperationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getOperationTypeItemStateChanged
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                if (evt.getItem().equals(rs.getString("task_name"))) {
-                    getSimOperatorName.setSelectedItem(rs.getString("default_sim"));
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (evt.getItem().equals(rs.getString("task_name"))) {
+                        getSimOperatorName.setSelectedItem(rs.getString("default_sim"));
+                    }
+
                 }
 
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-
         }
     }//GEN-LAST:event_getOperationTypeItemStateChanged
 
@@ -7415,41 +7521,53 @@ public class Home extends javax.swing.JFrame {
 
     private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
         switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
-        Connection conn = DbConnection.connect();
-        Set<String> serviceNames = new HashSet<>();
-        try {
-            serviceNames.clear();
+        if (UserInfo.role.equals("demo")) {
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking`";
-            ResultSet rs = st.executeQuery(sql);
-            serviceNames.clear();
-            while (rs.next()) {
-                serviceNames.add(rs.getString("services_name"));
+        } else {
+            Connection conn = DbConnection.connect();
+            Set<String> serviceNames = new HashSet<>();
+            try {
+                serviceNames.clear();
 
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking`";
+                ResultSet rs = st.executeQuery(sql);
+                serviceNames.clear();
+                while (rs.next()) {
+                    serviceNames.add(rs.getString("services_name"));
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+
+                DbConnection.disconnect(conn);
             }
+            getServiceName.removeAllItems();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+            getServiceName.addItem("------ Select Service -------");
+            for (String serviceName : serviceNames) {
 
-            DbConnection.disconnect(conn);
+                getServiceName.addItem(serviceName);
+            }
+            getSimOperatorName.removeAllItems();
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                if (UserInfo.role.equals("demo")) {
+                    System.err.println("Access dny in DEMO Panel");
+
+                } else {
+                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                        getSimOperatorName.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+                    }
+                }
+            }
+            loadMobileBankingBalance();
+            loadMobileBankingDetailsTable();
         }
-        getServiceName.removeAllItems();
-
-        getServiceName.addItem("------ Select Service -------");
-        for (String serviceName : serviceNames) {
-
-            getServiceName.addItem(serviceName);
-        }
-        getSimOperatorName.removeAllItems();
-
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            getSimOperatorName.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
-        }
-        loadMobileBankingBalance();
-        loadMobileBankingDetailsTable();
-
         addKeyListenerAndHoverInMobileBankingPanel();
     }//GEN-LAST:event_clickMobileBankingMouseClicked
 
@@ -7513,49 +7631,54 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickTabUsingCustomerIdActionPerformed
 
     private void payInUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payInUsingCustomerIdActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    payBillByCustomerId();
 
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                payBillByCustomerId();
+                    return null;
+                }
 
-                return null;
-            }
+                @Override
+                protected void done() {
+                    resetBillByCustomerId();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
 
-            @Override
-            protected void done() {
-                resetBillByCustomerId();
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Fatching Successful...");
-            }
-
-        };
-        swingWorker.execute();
-
+            };
+            swingWorker.execute();
+        }
 
     }//GEN-LAST:event_payInUsingCustomerIdActionPerformed
 
     private void clickPayIUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickPayIUsingBillActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    payBillByBillNo();
 
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                payBillByBillNo();
+                    return null;
+                }
 
-                return null;
-            }
+                @Override
+                protected void done() {
+                    resetBillByCustomerId();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
 
-            @Override
-            protected void done() {
-                resetBillByCustomerId();
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Fatching Successful...");
-            }
-
-        };
-        swingWorker.execute();
+            };
+            swingWorker.execute();
+        }
 
     }//GEN-LAST:event_clickPayIUsingBillActionPerformed
 
@@ -7824,29 +7947,41 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_tableBillPaymentDetailsMouseClicked
 
     private void clickImportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickImportDatabaseActionPerformed
-        importDatabase();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+            importDatabase();
+        }
     }//GEN-LAST:event_clickImportDatabaseActionPerformed
 
     private void clickUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUpdatePasswordActionPerformed
-        String password = passwordForUpdate.getText();
-        String rePassword = rePasswordForUpdate.getText();
-        if (password.equals("") || rePassword.equals("")) {
-            Popup.customError("Empty field found.");
-
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            if (password.equals(rePassword)) {
-                changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
+            String password = passwordForUpdate.getText();
+            String rePassword = rePasswordForUpdate.getText();
+            if (password.equals("") || rePassword.equals("")) {
+                Popup.customError("Empty field found.");
 
             } else {
-                Popup.customError("Re-type password not match");
+                if (password.equals(rePassword)) {
+                    changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
+
+                } else {
+                    Popup.customError("Re-type password not match");
+                }
             }
+
         }
-
-
     }//GEN-LAST:event_clickUpdatePasswordActionPerformed
 
     private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
-        // TODO add your handling code here:
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+        }
+// TODO add your handling code here:
     }//GEN-LAST:event_clickInboxActionPerformed
 
     private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
@@ -7871,8 +8006,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_detailsPanelMouseClicked
 
     private void saveInProductPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchaseMouseClicked
-        saveInProductPurchaseDB();
-        showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            saveInProductPurchaseDB();
+            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+        }
     }//GEN-LAST:event_saveInProductPurchaseMouseClicked
 
     private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
@@ -7880,46 +8019,51 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_groupInProductPurchasesActionPerformed
 
     private void invoiceInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchasesKeyReleased
-        List<String> list = new ArrayList<>();
-        String to_check = null;
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
 
-            while (rs.next()) {
-                list.add(rs.getString("invoice"));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-
-        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
-            supplierInProductPurchases.requestFocusInWindow();
         } else {
-            to_check = invoiceInProductPurchases.getText();
-            int to_check_len = to_check.length();
-            for (String data : list) {
-                String check_from_data = "";
-                for (int i = 0; i < to_check_len; i++) {
-                    if (to_check_len <= data.length()) {
-                        check_from_data = check_from_data + data.charAt(i);
-                    }
+            List<String> list = new ArrayList<>();
+            String to_check = null;
+
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("invoice"));
+
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
 
-                if (check_from_data.equals(to_check)) {
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
 
-                    invoiceInProductPurchases.setText(data);
-                    invoiceInProductPurchases.setSelectionStart(to_check_len);
-                    invoiceInProductPurchases.setSelectionEnd(data.length());
-                    break;
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+                supplierInProductPurchases.requestFocusInWindow();
+            } else {
+                to_check = invoiceInProductPurchases.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        invoiceInProductPurchases.setText(data);
+                        invoiceInProductPurchases.setSelectionStart(to_check_len);
+                        invoiceInProductPurchases.setSelectionEnd(data.length());
+                        break;
+                    }
                 }
             }
         }
@@ -7928,44 +8072,48 @@ public class Home extends javax.swing.JFrame {
     private void groupInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductPurchasesKeyReleased
         List<String> list = new ArrayList<>();
         String to_check = null;
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase`";
-            ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                list.add(rs.getString("group"));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-
-        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            showDataInProductPurchaseFromDB(groupInProductPurchases.getText());
-            pNameInProductPurchases.requestFocusInWindow();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            to_check = groupInProductPurchases.getText();
-            int to_check_len = to_check.length();
-            for (String data : list) {
-                String check_from_data = "";
-                for (int i = 0; i < to_check_len; i++) {
-                    if (to_check_len <= data.length()) {
-                        check_from_data = check_from_data + data.charAt(i);
-                    }
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("group"));
+
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
 
-                if (check_from_data.equals(to_check)) {
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
 
-                    groupInProductPurchases.setText(data);
-                    groupInProductPurchases.setSelectionStart(to_check_len);
-                    groupInProductPurchases.setSelectionEnd(data.length());
-                    break;
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                showDataInProductPurchaseFromDB(groupInProductPurchases.getText());
+                pNameInProductPurchases.requestFocusInWindow();
+            } else {
+                to_check = groupInProductPurchases.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        groupInProductPurchases.setText(data);
+                        groupInProductPurchases.setSelectionStart(to_check_len);
+                        groupInProductPurchases.setSelectionEnd(data.length());
+                        break;
+                    }
                 }
             }
         }
@@ -7976,7 +8124,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_groupInProductDetailsActionPerformed
 
     private void groupInProductDetailsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductDetailsKeyReleased
-        // TODO add your handling code here:
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+        }
     }//GEN-LAST:event_groupInProductDetailsKeyReleased
 
     private void saveInProductPurchase1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase1MouseClicked
@@ -7988,49 +8140,59 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ProductPurchasePanel1MouseClicked
 
     private void searchByGroupInRatioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByGroupInRatioActionPerformed
-        listOfBarCodeOrGroupComboBox.removeAllItems();
-        if (evt.getSource() == searchByGroupInRatio) {
+        if (UserInfo.role.equals("demo")) {
 
-            Boolean isActive = false;
-            if (searchByGroupInRatio.isSelected()) {
-                isActive = true;
-            }
+        } else {
+            listOfBarCodeOrGroupComboBox.removeAllItems();
+            if (evt.getSource() == searchByGroupInRatio) {
 
-            if (isActive) {
-
-                Connection conn = DbConnection.connect();
-                try {
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `product_purchase`";
-                    ResultSet rs = st.executeQuery(sql);
-
-                    while (rs.next()) {
-                        listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString() + "  " + rs.getString("group").toString());
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    DbConnection.disconnect(conn);
+                Boolean isActive = false;
+                if (searchByGroupInRatio.isSelected()) {
+                    isActive = true;
                 }
 
-            } else {
-                setupTabsInShopManagment();
+                if (isActive) {
+                    if (UserInfo.role.equals("demo")) {
+                        System.err.println("Access dny in DEMO Panel");
+
+                    } else {
+                        Connection conn = DbConnection.connect();
+                        try {
+                            Statement st = conn.createStatement();
+                            String sql = "SELECT * FROM `product_purchase`";
+                            ResultSet rs = st.executeQuery(sql);
+
+                            while (rs.next()) {
+                                listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString() + "  " + rs.getString("group").toString());
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                        } finally {
+                            DbConnection.disconnect(conn);
+                        }
+                    }
+
+                }
+
             }
         }
     }//GEN-LAST:event_searchByGroupInRatioActionPerformed
 
     private void listOfBarCodeOrGroupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listOfBarCodeOrGroupComboBoxActionPerformed
-        //  String selectedItems = listOfBarCodeOrGroupComboBox.getSelectedItem().toString();
-        if (listOfBarCodeOrGroupComboBox.getSelectedItem() != null) {
-            if (listOfBarCodeOrGroupComboBox.getSelectedItem().toString().contains(" ")) {
-                System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
-                showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            if (listOfBarCodeOrGroupComboBox.getSelectedItem() != null) {
+                if (listOfBarCodeOrGroupComboBox.getSelectedItem().toString().contains(" ")) {
+                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
+                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
 
-            } else {
-                System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem());
-                showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString());
+                } else {
+                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem());
+                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString());
+                }
+
             }
-
         }
 
     }//GEN-LAST:event_listOfBarCodeOrGroupComboBoxActionPerformed
@@ -8065,24 +8227,32 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_productDetailsTableMouseClicked
 
     private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
-        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
-        addPerchangeSelection.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
-                if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
-                    sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
-                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
-                } else {//checkbox has been deselected
-                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
-                };
-            }
-        });
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
+            addPerchangeSelection.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
+                    if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                        sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                    } else {//checkbox has been deselected
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                    };
+                }
+            });
 
+        }
     }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        genarateBarCode(barCodeInProductDetails.getText());
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            genarateBarCode(barCodeInProductDetails.getText());
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void invoiceInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductSellKeyReleased
@@ -8132,53 +8302,61 @@ public class Home extends javax.swing.JFrame {
     private void barCodeInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeInProductSellKeyReleased
         List<String> list = new ArrayList<>();
         String to_check = null;
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase`";
-            ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                list.add(rs.getString("bar_code"));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-
-        if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            addProductFromDBInSellPanel(barCodeInProductSell.getText());
-            barCodeInProductSell.requestFocusInWindow();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            to_check = barCodeInProductSell.getText();
-            int to_check_len = to_check.length();
-            for (String data : list) {
-                String check_from_data = "";
-                for (int i = 0; i < to_check_len; i++) {
-                    if (to_check_len <= data.length()) {
-                        check_from_data = check_from_data + data.charAt(i);
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("bar_code"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+                addProductFromDBInSellPanel(barCodeInProductSell.getText());
+                barCodeInProductSell.requestFocusInWindow();
+            } else {
+                to_check = barCodeInProductSell.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        barCodeInProductSell.setText(data);
+                        barCodeInProductSell.setSelectionStart(to_check_len);
+                        barCodeInProductSell.setSelectionEnd(data.length());
+                        break;
                     }
                 }
-
-                if (check_from_data.equals(to_check)) {
-
-                    barCodeInProductSell.setText(data);
-                    barCodeInProductSell.setSelectionStart(to_check_len);
-                    barCodeInProductSell.setSelectionEnd(data.length());
-                    break;
-                }
             }
+            invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
         }
-         invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345,100000)));
     }//GEN-LAST:event_barCodeInProductSellKeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        clearBillforProduct();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            clearBillforProduct();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void productSellTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTableMouseClicked
@@ -8195,16 +8373,28 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_productSellTableKeyPressed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //  saveSellProductInSellTabel();      
-        printMemo();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+//  saveSellProductInSellTabel();      
+            printMemo();
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
-        genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
+        }
     }//GEN-LAST:event_generateBarCodeActionPerformed
 
     private void invoiceInProductWarrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductWarrantyKeyReleased
-        // TODO add your handling code here:
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+        }
     }//GEN-LAST:event_invoiceInProductWarrantyKeyReleased
 
     private void productSellTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTable1MouseClicked
@@ -8256,9 +8446,38 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_refNameInProductWanrrantyActionPerformed
 
     private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
-       saveWarrantyDetailsInDb();
-       printPosMemo(invoiceInProductWarranty.getText());
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            saveWarrantyDetailsInDb();
+            printPosMemo(invoiceInProductWarranty.getText());
+        }
     }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
+
+    private void saveInProductPurchase2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase2ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+    }//GEN-LAST:event_saveInProductPurchase2ActionPerformed
+
+    private void updateClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClickProductWanrrantyActionPerformed
+
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+        }
+
+    }//GEN-LAST:event_updateClickProductWanrrantyActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -8272,46 +8491,50 @@ public class Home extends javax.swing.JFrame {
 
     private String getMobileBankingBalance(MouseEvent evt, String serviceName) {
 
-        String amount = "XX";
-        Connection conn = DbConnection.connect();
-        Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
-        List<String> ussdCodeSerialList = new ArrayList<>();
+        String amount = "0.0";
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
+            List<String> ussdCodeSerialList = new ArrayList<>();
 
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
-                mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
-                mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
-                mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
-                mobileBankingBalanceShowDto.setUssdCode(rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin")));
-                mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
-                bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JListPanelRenderer.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-        }
-
-        for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
-
-            if (mobileBankingBalanceShowDto.getServiceName().toLowerCase().equals(serviceName.toLowerCase())) {
-
-                Pattern p = Pattern.compile("\\d+");
-                Matcher m = p.matcher(mobileBankingBalanceShowDto.getUssdCode());
-                ussdCodeSerialList.clear();
-                while (m.find()) {
-
-                    ussdCodeSerialList.add(m.group());
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
+                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
+                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
+                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
+                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin")));
+                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
+                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
                 }
-                String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, mobileBankingBalanceShowDto.getDefaultSIM());
+            } catch (SQLException ex) {
+                Logger.getLogger(JListPanelRenderer.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
 
-                amount = Configaration.stringToNumberList(Configaration.haxToStringConvert(feedBackMgs)).get(0);
-                System.err.println("Amount: " + amount);
+            for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
 
+                if (mobileBankingBalanceShowDto.getServiceName().toLowerCase().equals(serviceName.toLowerCase())) {
+
+                    Pattern p = Pattern.compile("\\d+");
+                    Matcher m = p.matcher(mobileBankingBalanceShowDto.getUssdCode());
+                    ussdCodeSerialList.clear();
+                    while (m.find()) {
+
+                        ussdCodeSerialList.add(m.group());
+                    }
+                    String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, mobileBankingBalanceShowDto.getDefaultSIM());
+
+                    amount = Configaration.stringToNumberList(Configaration.haxToStringConvert(feedBackMgs)).get(0);
+                    System.err.println("Amount: " + amount);
+
+                }
             }
         }
         return amount;
@@ -8884,8 +9107,14 @@ public class Home extends javax.swing.JFrame {
 
     //Redirect Panel use Role
     private void startUpApplicationBaseOnRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+        }
     }
+
     protected void switchPanelViaMenu(JPanel requestedPanel, JPanel tabPanel, JLabel title, JLabel icon, String iconName, String header) {
 
         colorSwitcherWithHighlight(tabPanel, title, icon, iconName, header);
@@ -8954,108 +9183,81 @@ public class Home extends javax.swing.JFrame {
     ------------------------ MOBILE RECHARGE PANEL--------------------------------------   
      */
     private void recharge(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
-        Connection conn = DbConnection.connect();
-        try {
-            DbConnection.connect();
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `recharge_offers` WHERE `recharge_amt`=\"" + ammountRequested + "\"";
-            ResultSet rs = st.executeQuery(sql);
 
-            if (!rs.next()) {
-                Log.mgs("Test:", "2");
-                RechargeConfirmationDialogUI ui
-                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                getMobileNumber.getText(),
-                                getAmmountInTk.getText() + " tk",
-                                getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                getSeletedOperatorName.getSelectedItem().toString());
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                DbConnection.connect();
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `recharge_offers` WHERE `recharge_amt`=\"" + ammountRequested + "\"";
+                ResultSet rs = st.executeQuery(sql);
 
-                JDialog jDialog = new JDialog();
-                jDialog.add(ui);
-                jDialog.setSize(1400, 941);
-                jDialog.setLocationRelativeTo(null);
-                jDialog.setUndecorated(true);
-                jDialog.setVisible(true);
+                if (!rs.next()) {
+                    Log.mgs("Test:", "2");
+                    RechargeConfirmationDialogUI ui
+                            = new RechargeConfirmationDialogUI("Recharge Confirmation",
+                                    getMobileNumber.getText(),
+                                    getAmmountInTk.getText() + " tk",
+                                    getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                    getSeletedOperatorName.getSelectedItem().toString());
 
-                ui.getClickClose().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        Icon icon = new ImageIcon(getClass()
-                                .getResource("/resources/images/default_operator_icon_1.png"));
+                    JDialog jDialog = new JDialog();
+                    jDialog.add(ui);
+                    jDialog.setSize(1400, 941);
+                    jDialog.setLocationRelativeTo(null);
+                    jDialog.setUndecorated(true);
+                    jDialog.setVisible(true);
 
-                        selectedSimOperatorIcon.setIcon(icon);
-                        getMobileNumber.setText("");
-                        getAmmountInTk.setText("");
-                        getMobileNumber.requestFocusInWindow();
-                        jDialog.setVisible(false);
-                    }
-
-                });
-                ui.getClickClose().addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent ke) {
-                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    ui.getClickClose().addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent ae) {
                             Icon icon = new ImageIcon(getClass()
                                     .getResource("/resources/images/default_operator_icon_1.png"));
+
                             selectedSimOperatorIcon.setIcon(icon);
                             getMobileNumber.setText("");
                             getAmmountInTk.setText("");
                             getMobileNumber.requestFocusInWindow();
                             jDialog.setVisible(false);
-
                         }
-                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            ui.getClickEdit().requestFocusInWindow();
-                        } else {
 
-                        }
-                    }
-                });
-
-                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
-                    refrash();
-                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                    });
+                    ui.getClickClose().addKeyListener(new KeyAdapter() {
                         @Override
-                        protected Void doInBackground() throws Exception {
-                            jDialog.setVisible(false);
-                            getMobileNumber.requestFocusInWindow();
-                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                    MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                    addQueue(mobileRechargeDetailsDto);
-                                }
+                        public void keyPressed(KeyEvent ke) {
+                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                Icon icon = new ImageIcon(getClass()
+                                        .getResource("/resources/images/default_operator_icon_1.png"));
+                                selectedSimOperatorIcon.setIcon(icon);
+                                getMobileNumber.setText("");
+                                getAmmountInTk.setText("");
+                                getMobileNumber.requestFocusInWindow();
+                                jDialog.setVisible(false);
+
                             }
+                            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                ui.getClickEdit().requestFocusInWindow();
+                            } else {
 
-                            // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                            return null;
+                            }
                         }
+                    });
 
-                        @Override
-                        protected void done() {
-                            //  refrash();
-                            // loadValueInTableRechargeDetails();
+                    ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
 
-                        }
+                        refrash();
+                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                            @Override
+                            protected Void doInBackground() throws Exception {
+                                jDialog.setVisible(false);
+                                getMobileNumber.requestFocusInWindow();
+                                Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                if (UserInfo.role.equals("demo")) {
+                                    System.err.println("Access dny in DEMO Panel");
 
-                    };
-                    worker.execute();
-
-                });
-
-                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent ke) {
-                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                            refrash();
-                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                @Override
-                                protected Void doInBackground() throws Exception {
-                                    jDialog.setVisible(false);
-                                    getMobileNumber.requestFocusInWindow();
-                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                } else {
                                     for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                         if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                             MobileRechargeDetailsDto mobileRechargeDetailsDto
@@ -9063,130 +9265,27 @@ public class Home extends javax.swing.JFrame {
                                             addQueue(mobileRechargeDetailsDto);
                                         }
                                     }
-                                    //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-
-                                    return null;
                                 }
+                                // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                return null;
+                            }
 
-                                @Override
-                                protected void done() {
+                            @Override
+                            protected void done() {
+                                //  refrash();
+                                // loadValueInTableRechargeDetails();
 
-                                    //loadValueInTableRechargeDetails();
-                                }
+                            }
 
-                            };
-                            worker.execute();
+                        };
+                        worker.execute();
 
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            ui.getClickEdit().requestFocusInWindow();
-                        } else {
+                    });
 
-                        }
-                    }
-                });
-
-                ui.getClickEdit().addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        jDialog.setVisible(false);
-                    }
-
-                });
-                ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent ke) {
-                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                            jDialog.setVisible(false);
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            ui.getClickClose().requestFocusInWindow();
-                        }
-                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                            ui.getClickConfirm().requestFocusInWindow();
-                        } else {
-
-                        }
-                    }
-                });
-
-                ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseReleased(MouseEvent me) {
-                        System.err.println("press");
-
-                    }
-
-                    @Override
-                    public void mousePressed(MouseEvent me) {
-                        System.err.println("press");
-
-                        jDialog.setVisible(false);
-                    }
-
-                });
-            } else {
-
-                do {
-                    Log.mgs("Test:", "1");
-                    if (rs.getString("sim_name").toUpperCase().contains(selectedPayableSIM.replaceAll(StringUtils.right(selectedPayableSIM, 5), "").replaceAll("\\(\\)", "").toUpperCase())) {
-                        int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
-
-                        if (res == -1) {
-                            Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                        } else {
-
-                            RechargeConfirmationDialogUI ui
-                                    = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                            getMobileNumber.getText(),
-                                            getAmmountInTk.getText() + " tk",
-                                            getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                            getSeletedOperatorName.getSelectedItem().toString());
-
-                            JDialog jDialog = new JDialog();
-                            jDialog.add(ui);
-                            jDialog.setSize(1400, 941);
-                            jDialog.setLocationRelativeTo(null);
-                            jDialog.setUndecorated(true);
-                            jDialog.setVisible(true);
-
-                            ui.getClickClose().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    Icon icon = new ImageIcon(getClass()
-                                            .getResource("/resources/images/default_operator_icon_1.png"));
-
-                                    selectedSimOperatorIcon.setIcon(icon);
-                                    getMobileNumber.setText("");
-                                    getAmmountInTk.setText("");
-                                    getMobileNumber.requestFocusInWindow();
-                                    jDialog.setVisible(false);
-                                }
-
-                            });
-                            ui.getClickClose().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                        Icon icon = new ImageIcon(getClass()
-                                                .getResource("/resources/images/default_operator_icon_1.png"));
-                                        selectedSimOperatorIcon.setIcon(icon);
-                                        getMobileNumber.setText("");
-                                        getAmmountInTk.setText("");
-                                        getMobileNumber.requestFocusInWindow();
-                                        jDialog.setVisible(false);
-
-                                    }
-                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                        ui.getClickEdit().requestFocusInWindow();
-                                    } else {
-
-                                    }
-                                }
-                            });
-
-                            ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
+                    ui.getClickConfirm().addKeyListener(new KeyAdapter() {
+                        @Override
+                        public void keyPressed(KeyEvent ke) {
+                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                                 refrash();
                                 SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                                     @Override
@@ -9194,212 +9293,153 @@ public class Home extends javax.swing.JFrame {
                                         jDialog.setVisible(false);
                                         getMobileNumber.requestFocusInWindow();
                                         Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                addQueue(mobileRechargeDetailsDto);
+                                        if (UserInfo.role.equals("demo")) {
+                                            System.err.println("Access dny in DEMO Panel");
+
+                                        } else {
+                                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                    MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                    addQueue(mobileRechargeDetailsDto);
+                                                }
                                             }
                                         }
                                         //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                        jDialog.setVisible(false);
+
                                         return null;
                                     }
 
                                     @Override
                                     protected void done() {
-                                        refrash();
-                                        //loadValueInTableRechargeDetails();
 
+                                        //loadValueInTableRechargeDetails();
                                     }
 
                                 };
                                 worker.execute();
 
-                            });
+                            }
+                            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                ui.getClickEdit().requestFocusInWindow();
+                            } else {
 
-                            ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                        refrash();
-                                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                            @Override
-                                            protected Void doInBackground() throws Exception {
-                                                jDialog.setVisible(false);
-                                                getMobileNumber.requestFocusInWindow();
-                                                Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                        addQueue(mobileRechargeDetailsDto);
-                                                    }
-                                                }
+                            }
+                        }
+                    });
 
-                                                return null;
-                                            }
+                    ui.getClickEdit().addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent ae) {
+                            jDialog.setVisible(false);
+                        }
 
-                                            @Override
-                                            protected void done() {
-                                                refrash();
-                                                // loadValueInTableRechargeDetails();
+                    });
+                    ui.getClickEdit().addKeyListener(new KeyAdapter() {
+                        @Override
+                        public void keyPressed(KeyEvent ke) {
+                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                jDialog.setVisible(false);
+                            }
+                            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                ui.getClickClose().requestFocusInWindow();
+                            }
+                            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                ui.getClickConfirm().requestFocusInWindow();
+                            } else {
 
-                                            }
+                            }
+                        }
+                    });
 
-                                        };
-                                        worker.execute();
-
-                                    }
-                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                        ui.getClickEdit().requestFocusInWindow();
-                                    } else {
-
-                                    }
-                                }
-                            });
-
-                            ui.getClickEdit().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    jDialog.setVisible(false);
-                                }
-
-                            });
-                            ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                        jDialog.setVisible(false);
-                                    }
-                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                        ui.getClickClose().requestFocusInWindow();
-                                    }
-                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                        ui.getClickConfirm().requestFocusInWindow();
-                                    } else {
-
-                                    }
-                                }
-                            });
-
-                            ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                                @Override
-                                public void mouseReleased(MouseEvent me) {
-                                    System.err.println("press");
-
-                                }
-
-                                @Override
-                                public void mousePressed(MouseEvent me) {
-                                    System.err.println("press");
-
-                                    jDialog.setVisible(false);
-                                }
-
-                            });
+                    ui.getClickConfirm().addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseReleased(MouseEvent me) {
+                            System.err.println("press");
 
                         }
-                    } else {
-                        int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
 
-                        if (res == -1) {
-                            Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                        } else {
+                        @Override
+                        public void mousePressed(MouseEvent me) {
+                            System.err.println("press");
 
-                            RechargeConfirmationDialogUI ui
-                                    = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                            getMobileNumber.getText(),
-                                            getAmmountInTk.getText() + " tk",
-                                            getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                            getSeletedOperatorName.getSelectedItem().toString());
+                            jDialog.setVisible(false);
+                        }
 
-                            JDialog jDialog = new JDialog();
-                            jDialog.add(ui);
-                            jDialog.setSize(1400, 941);
-                            jDialog.setLocationRelativeTo(null);
-                            jDialog.setUndecorated(true);
-                            jDialog.setVisible(true);
+                    });
+                } else {
 
-                            ui.getClickClose().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    Icon icon = new ImageIcon(getClass()
-                                            .getResource("/resources/images/default_operator_icon_1.png"));
+                    do {
+                        Log.mgs("Test:", "1");
+                        if (rs.getString("sim_name").toUpperCase().contains(selectedPayableSIM.replaceAll(StringUtils.right(selectedPayableSIM, 5), "").replaceAll("\\(\\)", "").toUpperCase())) {
+                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
 
-                                    selectedSimOperatorIcon.setIcon(icon);
-                                    getMobileNumber.setText("");
-                                    getAmmountInTk.setText("");
-                                    getMobileNumber.requestFocusInWindow();
-                                    jDialog.setVisible(false);
-                                }
+                            if (res == -1) {
+                                Log.mgs("Dialog:", "Recharge Offer dialog closed.");
+                            } else {
 
-                            });
-                            ui.getClickClose().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                RechargeConfirmationDialogUI ui
+                                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
+                                                getMobileNumber.getText(),
+                                                getAmmountInTk.getText() + " tk",
+                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                                getSeletedOperatorName.getSelectedItem().toString());
+
+                                JDialog jDialog = new JDialog();
+                                jDialog.add(ui);
+                                jDialog.setSize(1400, 941);
+                                jDialog.setLocationRelativeTo(null);
+                                jDialog.setUndecorated(true);
+                                jDialog.setVisible(true);
+
+                                ui.getClickClose().addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
                                         Icon icon = new ImageIcon(getClass()
                                                 .getResource("/resources/images/default_operator_icon_1.png"));
+
                                         selectedSimOperatorIcon.setIcon(icon);
                                         getMobileNumber.setText("");
                                         getAmmountInTk.setText("");
                                         getMobileNumber.requestFocusInWindow();
                                         jDialog.setVisible(false);
-
                                     }
-                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                        ui.getClickEdit().requestFocusInWindow();
-                                    } else {
 
-                                    }
-                                }
-                            });
-
-                            ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-                                refrash();
-                                SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                });
+                                ui.getClickClose().addKeyListener(new KeyAdapter() {
                                     @Override
-                                    protected Void doInBackground() throws Exception {
-                                        jDialog.setVisible(false);
-                                        getMobileNumber.requestFocusInWindow();
-                                        Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                addQueue(mobileRechargeDetailsDto);
-                                            }
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            Icon icon = new ImageIcon(getClass()
+                                                    .getResource("/resources/images/default_operator_icon_1.png"));
+                                            selectedSimOperatorIcon.setIcon(icon);
+                                            getMobileNumber.setText("");
+                                            getAmmountInTk.setText("");
+                                            getMobileNumber.requestFocusInWindow();
+                                            jDialog.setVisible(false);
+
                                         }
+                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                            ui.getClickEdit().requestFocusInWindow();
+                                        } else {
 
-                                        // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                        jDialog.setVisible(false);
-                                        return null;
+                                        }
                                     }
+                                });
 
-                                    @Override
-                                    protected void done() {
-                                        refrash();
-                                        // loadValueInTableRechargeDetails();
+                                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
 
-                                    }
+                                    refrash();
+                                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                        @Override
+                                        protected Void doInBackground() throws Exception {
+                                            jDialog.setVisible(false);
+                                            getMobileNumber.requestFocusInWindow();
+                                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                            if (UserInfo.role.equals("demo")) {
+                                                System.err.println("Access dny in DEMO Panel");
 
-                                };
-                                worker.execute();
-
-                            });
-
-                            ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                        refrash();
-                                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                            @Override
-                                            protected Void doInBackground() throws Exception {
-                                                jDialog.setVisible(false);
-                                                getMobileNumber.requestFocusInWindow();
-                                                Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                            } else {
                                                 for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                                     if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                                         MobileRechargeDetailsDto mobileRechargeDetailsDto
@@ -9407,95 +9447,321 @@ public class Home extends javax.swing.JFrame {
                                                         addQueue(mobileRechargeDetailsDto);
                                                     }
                                                 }
-                                                //(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                                jDialog.setVisible(false);
-                                                return null;
                                             }
+                                            //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                            jDialog.setVisible(false);
+                                            return null;
+                                        }
 
-                                            @Override
-                                            protected void done() {
-                                                refrash();
+                                        @Override
+                                        protected void done() {
+                                            refrash();
+                                            //loadValueInTableRechargeDetails();
 
-                                            }
+                                        }
 
-                                        };
-                                        worker.execute();
+                                    };
+                                    worker.execute();
 
+                                });
+
+                                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
+                                    @Override
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            refrash();
+                                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                                @Override
+                                                protected Void doInBackground() throws Exception {
+                                                    jDialog.setVisible(false);
+                                                    getMobileNumber.requestFocusInWindow();
+                                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                                    if (UserInfo.role.equals("demo")) {
+                                                        System.err.println("Access dny in DEMO Panel");
+
+                                                    } else {
+                                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                                addQueue(mobileRechargeDetailsDto);
+                                                            }
+                                                        }
+                                                    }
+
+                                                    return null;
+                                                }
+
+                                                @Override
+                                                protected void done() {
+                                                    refrash();
+                                                    // loadValueInTableRechargeDetails();
+
+                                                }
+
+                                            };
+                                            worker.execute();
+
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                            ui.getClickEdit().requestFocusInWindow();
+                                        } else {
+
+                                        }
                                     }
-                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                        ui.getClickEdit().requestFocusInWindow();
-                                    } else {
+                                });
 
-                                    }
-                                }
-                            });
-
-                            ui.getClickEdit().addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent ae) {
-                                    jDialog.setVisible(false);
-                                }
-
-                            });
-                            ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                                @Override
-                                public void keyPressed(KeyEvent ke) {
-                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                ui.getClickEdit().addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
                                         jDialog.setVisible(false);
                                     }
-                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                        ui.getClickClose().requestFocusInWindow();
+
+                                });
+                                ui.getClickEdit().addKeyListener(new KeyAdapter() {
+                                    @Override
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            jDialog.setVisible(false);
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                            ui.getClickClose().requestFocusInWindow();
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                            ui.getClickConfirm().requestFocusInWindow();
+                                        } else {
+
+                                        }
                                     }
-                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                        ui.getClickConfirm().requestFocusInWindow();
-                                    } else {
+                                });
+
+                                ui.getClickConfirm().addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent me) {
+                                        System.err.println("press");
 
                                     }
-                                }
-                            });
 
-                            ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                                @Override
-                                public void mouseReleased(MouseEvent me) {
-                                    System.err.println("press");
+                                    @Override
+                                    public void mousePressed(MouseEvent me) {
+                                        System.err.println("press");
 
-                                }
+                                        jDialog.setVisible(false);
+                                    }
 
-                                @Override
-                                public void mousePressed(MouseEvent me) {
-                                    System.err.println("press");
+                                });
 
-                                    jDialog.setVisible(false);
-                                }
+                            }
+                        } else {
+                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
 
-                            });
+                            if (res == -1) {
+                                Log.mgs("Dialog:", "Recharge Offer dialog closed.");
+                            } else {
 
+                                RechargeConfirmationDialogUI ui
+                                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
+                                                getMobileNumber.getText(),
+                                                getAmmountInTk.getText() + " tk",
+                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                                getSeletedOperatorName.getSelectedItem().toString());
+
+                                JDialog jDialog = new JDialog();
+                                jDialog.add(ui);
+                                jDialog.setSize(1400, 941);
+                                jDialog.setLocationRelativeTo(null);
+                                jDialog.setUndecorated(true);
+                                jDialog.setVisible(true);
+
+                                ui.getClickClose().addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        Icon icon = new ImageIcon(getClass()
+                                                .getResource("/resources/images/default_operator_icon_1.png"));
+
+                                        selectedSimOperatorIcon.setIcon(icon);
+                                        getMobileNumber.setText("");
+                                        getAmmountInTk.setText("");
+                                        getMobileNumber.requestFocusInWindow();
+                                        jDialog.setVisible(false);
+                                    }
+
+                                });
+                                ui.getClickClose().addKeyListener(new KeyAdapter() {
+                                    @Override
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            Icon icon = new ImageIcon(getClass()
+                                                    .getResource("/resources/images/default_operator_icon_1.png"));
+                                            selectedSimOperatorIcon.setIcon(icon);
+                                            getMobileNumber.setText("");
+                                            getAmmountInTk.setText("");
+                                            getMobileNumber.requestFocusInWindow();
+                                            jDialog.setVisible(false);
+
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                            ui.getClickEdit().requestFocusInWindow();
+                                        } else {
+
+                                        }
+                                    }
+                                });
+
+                                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
+                                    refrash();
+                                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                        @Override
+                                        protected Void doInBackground() throws Exception {
+                                            jDialog.setVisible(false);
+                                            getMobileNumber.requestFocusInWindow();
+                                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                            if (UserInfo.role.equals("demo")) {
+                                                System.err.println("Access dny in DEMO Panel");
+
+                                            } else {
+                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                        addQueue(mobileRechargeDetailsDto);
+                                                    }
+                                                }
+                                            }
+                                            // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                            jDialog.setVisible(false);
+                                            return null;
+                                        }
+
+                                        @Override
+                                        protected void done() {
+                                            refrash();
+                                            // loadValueInTableRechargeDetails();
+
+                                        }
+
+                                    };
+                                    worker.execute();
+
+                                });
+
+                                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
+                                    @Override
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            refrash();
+                                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                                @Override
+                                                protected Void doInBackground() throws Exception {
+                                                    jDialog.setVisible(false);
+                                                    getMobileNumber.requestFocusInWindow();
+                                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                                    if (UserInfo.role.equals("demo")) {
+                                                        System.err.println("Access dny in DEMO Panel");
+
+                                                    } else {
+                                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                                addQueue(mobileRechargeDetailsDto);
+                                                            }
+                                                        }
+                                                    }
+                                                    //(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                                    jDialog.setVisible(false);
+                                                    return null;
+                                                }
+
+                                                @Override
+                                                protected void done() {
+                                                    refrash();
+
+                                                }
+
+                                            };
+                                            worker.execute();
+
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                            ui.getClickEdit().requestFocusInWindow();
+                                        } else {
+
+                                        }
+                                    }
+                                });
+
+                                ui.getClickEdit().addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent ae) {
+                                        jDialog.setVisible(false);
+                                    }
+
+                                });
+                                ui.getClickEdit().addKeyListener(new KeyAdapter() {
+                                    @Override
+                                    public void keyPressed(KeyEvent ke) {
+                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                            jDialog.setVisible(false);
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                            ui.getClickClose().requestFocusInWindow();
+                                        }
+                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                            ui.getClickConfirm().requestFocusInWindow();
+                                        } else {
+
+                                        }
+                                    }
+                                });
+
+                                ui.getClickConfirm().addMouseListener(new MouseAdapter() {
+                                    @Override
+                                    public void mouseReleased(MouseEvent me) {
+                                        System.err.println("press");
+
+                                    }
+
+                                    @Override
+                                    public void mousePressed(MouseEvent me) {
+                                        System.err.println("press");
+
+                                        jDialog.setVisible(false);
+                                    }
+
+                                });
+
+                            }
                         }
-                    }
 
-                } while (rs.next());
+                    } while (rs.next());
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+
+                DbConnection.disconnect(conn);
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            DbConnection.disconnect(conn);
         }
     }
 
     private void addQueue(Object object) {
         try {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
 
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
-                if (objectQueue == null) {
-                    Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
-                    createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
+            } else {
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
+                    if (objectQueue == null) {
+                        Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
+                        createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
+                    }
                 }
             }
 
-            Method mathod =(Method) object.getClass().getMethod("getSelectableSimPort", null);
+            Method mathod = (Method) object.getClass().getMethod("getSelectableSimPort", null);
             String portName = (String) mathod.invoke(object, null);
             Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
             objectQueue.add(object);
@@ -9525,7 +9791,7 @@ public class Home extends javax.swing.JFrame {
                             while (!hashValue.getValue().isEmpty()) {
                                 System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
                                 Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = (Method)object.getClass().getMethod("getStatus", null);
+                                Method mathodGetStatus = (Method) object.getClass().getMethod("getStatus", null);
                                 UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
 
                                 switch (getStatus) {
@@ -9581,47 +9847,51 @@ public class Home extends javax.swing.JFrame {
         if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
             getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
         } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Icon icon;
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    Icon icon;
 
-                String selectedOperatorName = setPayableSIMByPhoneNumber(getMobileNumber.getText()).toUpperCase();
-                Log.mgs("Selected SIM By Phone Number", selectedOperatorName);
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
-                ResultSet rs = st.executeQuery(sql);
+                    String selectedOperatorName = setPayableSIMByPhoneNumber(getMobileNumber.getText()).toUpperCase();
+                    Log.mgs("Selected SIM By Phone Number", selectedOperatorName);
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
+                    ResultSet rs = st.executeQuery(sql);
 
-                if (!rs.next()) {
-                    Popup.customError("Recharge Setting not found.");
-                } else {
-                    do {
+                    if (!rs.next()) {
+                        Popup.customError("Recharge Setting not found.");
+                    } else {
+                        do {
 
-                        if (rs.getString("operator_name").equals(selectedOperatorName)) {
+                            if (rs.getString("operator_name").equals(selectedOperatorName)) {
 
-                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-                                if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                    selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                                    getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                    icon = new ImageIcon(rs.getString("icon"));
-                                    selectedSimOperatorIcon.setIcon(icon);
-                                    getAmmountInTk.requestFocusInWindow();
-                                    Log.mgs("Setted Operator Name In getSeletedOperatorName", selectedSimOperatorName);
-                                    isFoundExpectedSIMCard = true;
+                                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                        selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                                        getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
+                                        icon = new ImageIcon(rs.getString("icon"));
+                                        selectedSimOperatorIcon.setIcon(icon);
+                                        getAmmountInTk.requestFocusInWindow();
+                                        Log.mgs("Setted Operator Name In getSeletedOperatorName", selectedSimOperatorName);
+                                        isFoundExpectedSIMCard = true;
+                                    }
                                 }
                             }
-                        }
-                    } while (rs.next());
-                }
-                if (isFoundExpectedSIMCard == false) {
-                    getAmmountInTk.requestFocusInWindow();
-                    getSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
-                }
+                        } while (rs.next());
+                    }
+                    if (isFoundExpectedSIMCard == false) {
+                        getAmmountInTk.requestFocusInWindow();
+                        getSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
+                    }
 
-            } catch (SQLException ex) {
-                Log.error("SQLException:", ex.getMessage());
-            } finally {
-                DbConnection.disconnect(conn);
+                } catch (SQLException ex) {
+                    Log.error("SQLException:", ex.getMessage());
+                } finally {
+                    DbConnection.disconnect(conn);
+                }
             }
         }
 
@@ -9629,11 +9899,16 @@ public class Home extends javax.swing.JFrame {
 
     private String setPayableSIMByPhoneNumber(String phoneNumberUserInput) {
         String phoneNumberUserInputSubString = StringUtils.left(phoneNumberUserInput, 3);
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOwnPhoneNumber().contains(phoneNumberUserInputSubString)) {
-                String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                getSeletedOperatorName.setSelectedItem(selectedSimCardWithNumber);
-                return selectedSimCardWithNumber;
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                if (simOperatorIdentifierDto.getOwnPhoneNumber().contains(phoneNumberUserInputSubString)) {
+                    String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                    getSeletedOperatorName.setSelectedItem(selectedSimCardWithNumber);
+                    return selectedSimCardWithNumber;
+                }
             }
         }
 
@@ -9653,83 +9928,91 @@ public class Home extends javax.swing.JFrame {
         String[] responseArray;
         String cBalance = null;
         String statusMgs = null;
-        Connection conn = DbConnection.connect();
-        try {
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedPayableSIM + "\"";
-            ResultSet rs = st.executeQuery(sql);
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
 
-            while (rs.next()) {
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedPayableSIM + "\"";
+                    ResultSet rs = st.executeQuery(sql);
 
-                auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
-                if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
-                    String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
-                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                    Log.mgs("5347", "USSD Code:" + rechargeCode);
-                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                    Configaration.closeUssdSession();
-                    if (response.contains(",")) {
-                        responseArray = response.split(",");
-                        System.err.println();
-                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                    } else {
-                        cBalance = "Failed";
-                        statusMgs = "Failed";
-                        System.err.println("4672--->Ussd Request Faild");
+                    while (rs.next()) {
+
+                        auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
+                        if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
+                            String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
+                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            Configaration.closeUssdSession();
+                            if (response.contains(",")) {
+                                responseArray = response.split(",");
+                                System.err.println();
+                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                            } else {
+                                cBalance = "Failed";
+                                statusMgs = "Failed";
+                                System.err.println("4672--->Ussd Request Faild");
+                            }
+
+                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
+                        } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
+                            String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
+                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            Configaration.closeUssdSession();
+                            if (response.contains(",")) {
+                                responseArray = response.split(",");
+                                System.err.println();
+                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                            } else {
+                                cBalance = "Failed";
+                                statusMgs = "Failed";
+                                System.err.println("4686--->Ussd Request Faild");
+                            }
+
+                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
+                        } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
+                            String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
+                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                            Log.mgs("5347", "USSD Code:" + rechargeCode);
+                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
+                            Configaration.closeUssdSession();
+                            if (response.contains(",")) {
+                                responseArray = response.split(",");
+                                System.err.println();
+                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
+                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                            } else {
+                                cBalance = "Failed";
+                                statusMgs = "Failed";
+                                System.err.println("4700--->Ussd Request Faild");
+                            }
+
+                            Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
+                        } else {
+                            Popup.customError("Something is wrong.");
+                            Log.error("5398", "SIM Type Not Match.");
+                        }
+
                     }
 
-                    Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
-                    String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
-                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                    Log.mgs("5347", "USSD Code:" + rechargeCode);
-                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                    Configaration.closeUssdSession();
-                    if (response.contains(",")) {
-                        responseArray = response.split(",");
-                        System.err.println();
-                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                    } else {
-                        cBalance = "Failed";
-                        statusMgs = "Failed";
-                        System.err.println("4686--->Ussd Request Faild");
-                    }
-
-                    Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
-                    String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
-                            .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                    Log.mgs("5347", "USSD Code:" + rechargeCode);
-                    String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                    Configaration.closeUssdSession();
-                    if (response.contains(",")) {
-                        responseArray = response.split(",");
-                        System.err.println();
-                        statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                        cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
-                    } else {
-                        cBalance = "Failed";
-                        statusMgs = "Failed";
-                        System.err.println("4700--->Ussd Request Faild");
-                    }
-
-                    Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
-                } else {
-                    Popup.customError("Something is wrong.");
-                    Log.error("5398", "SIM Type Not Match.");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
-
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
-
         auto.recharge.system.config.Modem.disconnect();
         // UPdate Balance after recharge
         addBalenceInBalenceShowTable();
@@ -9741,35 +10024,49 @@ public class Home extends javax.swing.JFrame {
     private boolean saveToDbCommandInRechargeAdmin(String trxId, String getMobileNumberText,
             String getAmmountInTkText, String getPrepaidOrPostpaidText, String requestedSimOperator,
             String ckeckRechargeSuccessStatus, String currentBalance) {
-        Connection conn = DbConnection.connect();
-        String dateTime = Configaration.getCurrentDateAndTime();
-
-        conn = DbConnection.connect();
-        String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
-
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, getMobileNumberText);
-            preparedStatement.setString(2, getAmmountInTkText);
-            preparedStatement.setString(3, dateTime);
-            preparedStatement.setString(4, ckeckRechargeSuccessStatus);
-            preparedStatement.setString(5, trxId);
-            preparedStatement.setString(6, getPrepaidOrPostpaidText);
-            preparedStatement.setString(7, requestedSimOperator);
-            preparedStatement.setString(8, currentBalance);
-            preparedStatement.execute();
-            preparedStatement.close();
-
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
             return true;
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+                return true;
+            } else {
+                if (UserInfo.role.equals("demo")) {
+                    System.err.println("Access dny in DEMO Panel");
+                    return true;
+                } else {
+                    Connection conn = DbConnection.connect();
+                    String dateTime = Configaration.getCurrentDateAndTime();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+                    conn = DbConnection.connect();
+                    String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
 
-            DbConnection.disconnect(conn);
+                    try {
+                        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                        preparedStatement.setString(1, getMobileNumberText);
+                        preparedStatement.setString(2, getAmmountInTkText);
+                        preparedStatement.setString(3, dateTime);
+                        preparedStatement.setString(4, ckeckRechargeSuccessStatus);
+                        preparedStatement.setString(5, trxId);
+                        preparedStatement.setString(6, getPrepaidOrPostpaidText);
+                        preparedStatement.setString(7, requestedSimOperator);
+                        preparedStatement.setString(8, currentBalance);
+                        preparedStatement.execute();
+                        preparedStatement.close();
+
+                        return true;
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+
+                        DbConnection.disconnect(conn);
+                    }
+                }
+                return false;
+            }
         }
-
-        return false;
 
     }
 
@@ -9827,27 +10124,34 @@ public class Home extends javax.swing.JFrame {
         String response = null;
         String[] responses = null;
         String getOperator = getSelectedSim.getSelectedItem().toString();
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-            if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
-                System.out.println(auto.recharge.system.config.Modem.disconnect());
-                responses = value.split(",");
-                // response = Configaration.haxToStringConvert(value[1]);
-                System.err.println(value);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-                //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
+                    System.out.println(auto.recharge.system.config.Modem.disconnect());
+                    responses = value.split(",");
+                    // response = Configaration.haxToStringConvert(value[1]);
+                    System.err.println(value);
+
+                    //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+                }
+
             }
 
-        }
-        System.out.println(responses.length);
-        if (responses.length == 3) {
-            for (int i = 0; i < responses.length; i++) {
-                response = responses[1].replaceAll("\"", "");
+            System.out.println(responses.length);
+            if (responses.length == 3) {
+                for (int i = 0; i < responses.length; i++) {
+                    response = responses[1].replaceAll("\"", "");
+                }
+                setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
             }
-            setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
         }
+
     }
 
     public void ussdDailREquestCounter() {
@@ -9861,32 +10165,41 @@ public class Home extends javax.swing.JFrame {
     public void loadValueInTableRechargeDetails() {
 
         DefaultTableModel mobileRechargeDetailsInMobileRechargePanel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `recharge_admin`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
-                if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                    mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
-                        rs.getString("trx_id"),
-                        rs.getString("date_time"),
-                        rs.getString("type"),
-                        rs.getString("mobile_no"),
-                        rs.getString("amount"),
-                        rs.getString("from_sp"),
-                        rs.getString("current_balance"),
-                        rs.getString("status")});
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `recharge_admin`";
+                    ResultSet rs = st.executeQuery(sql);
+
+                    while (rs.next()) {
+                        if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
+                            mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
+                                rs.getString("trx_id"),
+                                rs.getString("date_time"),
+                                rs.getString("type"),
+                                rs.getString("mobile_no"),
+                                rs.getString("amount"),
+                                rs.getString("from_sp"),
+                                rs.getString("current_balance"),
+                                rs.getString("status")});
+                        }
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
-
         tableRechargeDetailsShow.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
         tableRechargeDetailsShow.getTableHeader().setOpaque(false);
         tableRechargeDetailsShow.getTableHeader().setBackground(new Color(133, 47, 209));
@@ -9970,34 +10283,43 @@ public class Home extends javax.swing.JFrame {
     }
 
     public Set<String> searchItemsByPhoneNumberInRechargePanel(String sreach1) {
-        Connection conn = DbConnection.connect();
-        try {
-            List<String> allPhoneNumber = new ArrayList<>();
-            Set<String> filteredPhoneNumber = new HashSet<>();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `recharge_admin`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                allPhoneNumber.add(rs.getString("mobile_no"));
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
 
-            }
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    List<String> allPhoneNumber = new ArrayList<>();
+                    Set<String> filteredPhoneNumber = new HashSet<>();
 
-            allPhoneNumber.stream().forEach(number -> {
-                if (number.toLowerCase().contains(sreach1.toLowerCase())) {
-                    filteredPhoneNumber.add(number);
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `recharge_admin`";
+                    ResultSet rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        allPhoneNumber.add(rs.getString("mobile_no"));
+
+                    }
+
+                    allPhoneNumber.stream().forEach(number -> {
+                        if (number.toLowerCase().contains(sreach1.toLowerCase())) {
+                            filteredPhoneNumber.add(number);
+                        }
+
+                    });
+
+                    return filteredPhoneNumber;
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
-
-            });
-
-            return filteredPhoneNumber;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            }
         }
-
         return null;
     }
 //
@@ -10066,67 +10388,75 @@ public class Home extends javax.swing.JFrame {
     private void setCuurentActiveNetworksFromModem() {
         String operatorNames = "";
         currentNetworkName.setText("Please wait");
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            String phoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13);
-            String networkInfo = simOperatorIdentifierDto.getOperatorName() + "(" + phoneNumber + ") |";
-            operatorNames = operatorNames + networkInfo;
-            System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName() + "  " + networkInfo + "--->" + simOperatorIdentifierDto.getOwnPhoneNumber());
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                String phoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13);
+                String networkInfo = simOperatorIdentifierDto.getOperatorName() + "(" + phoneNumber + ") |";
+                operatorNames = operatorNames + networkInfo;
+                System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName() + "  " + networkInfo + "--->" + simOperatorIdentifierDto.getOwnPhoneNumber());
+            }
+            currentNetworkName.setText(operatorNames);
         }
-        currentNetworkName.setText(operatorNames);
     }
 
 //SIM Balance Update 
     private void addBalenceInBalenceShowTable() {
-
-        List<String> balancePaseList = new ArrayList<>();
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
-        ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
-            Connection conn = DbConnection.connect();
-            try {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+        List<String> balancePaseList = new ArrayList<>();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `command`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
-                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
-                            + ")".toUpperCase())) {
-                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
-                        Configaration.wait(200);
-                        Configaration.closeUssdSession();
-                        System.out.println(auto.recharge.system.config.Modem.disconnect());
-                        String[] value = balanceMgs.split(",");
+        } else {
 
-                        System.out.println(value.length);
-                        if (value.length == 1) {
-                            errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
-                            defaultTableModel.addRow(new String[]{rs.getString("operator_name"), "Failed"});
-                            errorMgsInBalencePanel.setVisible(true);
-                        } else {
-                            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
-                            Pattern p = Pattern.compile("\\d+");
-                            Matcher m = p.matcher(balance);
-                            while (m.find()) {
-                                balancePaseList.add(m.group());
-                                System.out.println(m.group());
+            ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
+                Connection conn = DbConnection.connect();
+                try {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `command`";
+                    ResultSet rs = st.executeQuery(sql);
+                    while (rs.next()) {
+                        if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
+                                + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
+                                + ")".toUpperCase())) {
+                            String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
+                            Configaration.wait(200);
+                            Configaration.closeUssdSession();
+                            System.out.println(auto.recharge.system.config.Modem.disconnect());
+                            String[] value = balanceMgs.split(",");
+
+                            System.out.println(value.length);
+                            if (value.length == 1) {
+                                errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
+                                defaultTableModel.addRow(new String[]{rs.getString("operator_name"), "Failed"});
+                                errorMgsInBalencePanel.setVisible(true);
+                            } else {
+                                String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
+                                Pattern p = Pattern.compile("\\d+");
+                                Matcher m = p.matcher(balance);
+                                while (m.find()) {
+                                    balancePaseList.add(m.group());
+                                    System.out.println(m.group());
+                                }
+
+                                defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk"});
+                                errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
                             }
-
-                            defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk"});
-                            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
                         }
                     }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+
+                    DbConnection.disconnect(conn);
                 }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-        });
-
+            });
+        }
         tableShowSimBalence.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tableShowSimBalence.getTableHeader().setOpaque(false);
         tableShowSimBalence.getTableHeader().setBackground(new Color(255, 0, 0));
@@ -10148,16 +10478,21 @@ public class Home extends javax.swing.JFrame {
         String response = null;
         String[] responses = null;
         String getOperator = getSelectedSim.getSelectedItem().toString();
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
-                auto.recharge.system.config.Modem.disconnect();
-                responses = value.split(",");
-            }
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
+                    auto.recharge.system.config.Modem.disconnect();
+                    responses = value.split(",");
+                }
+
+            }
+            setResponseShowFromUssd.setText("Reset Successful");
         }
-        setResponseShowFromUssd.setText("Reset Successful");
 
     }
 
@@ -10173,78 +10508,83 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void simSimOfferDialog() {
-        Connection conn = DbConnection.connect();
-        try {
-            JDialog offerDialog = new JDialog();
-            SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
-            DefaultTableModel defaultTableModelBL, defaultTableModelGP, defaultTableModelRobi, defaultTableModelAirtel, defaultTableModelTeletalk;
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            ui.getCross().addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    offerDialog.setVisible(false);
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                JDialog offerDialog = new JDialog();
+                SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
+                DefaultTableModel defaultTableModelBL, defaultTableModelGP, defaultTableModelRobi, defaultTableModelAirtel, defaultTableModelTeletalk;
+
+                ui.getCross().addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent me) {
+                        offerDialog.setVisible(false);
+                    }
+
+                });
+
+                defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+                defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+                defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+                defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+                defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `recharge_offers`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    switch (rs.getString("sim_name")) {
+                        case "BANGLALINK":
+                            defaultTableModelBL.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                            break;
+                        case "GP":
+                            defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                            break;
+                        case "ROBI":
+                            defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                            break;
+                        case "AIRTEL":
+                            defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                            break;
+                        case "TELETALK":
+                            defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
+                            break;
+                    }
+
                 }
 
-            });
+                addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(), offerDialog);
+                ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
 
-            defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+                addTableUIDesignForOfferDialog(ui.getTableGpOffers(), offerDialog);
+                ui.getTableGpOffers().setModel(defaultTableModelGP);
 
-            defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+                addTableUIDesignForOfferDialog(ui.getTableRobiOffers(), offerDialog);
+                ui.getTableRobiOffers().setModel(defaultTableModelRobi);
 
-            defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+                addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(), offerDialog);
+                ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
 
-            defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
+                addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(), offerDialog);
+                ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
 
-            defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `recharge_offers`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                switch (rs.getString("sim_name")) {
-                    case "BANGLALINK":
-                        defaultTableModelBL.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                        break;
-                    case "GP":
-                        defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                        break;
-                    case "ROBI":
-                        defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                        break;
-                    case "AIRTEL":
-                        defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                        break;
-                    case "TELETALK":
-                        defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                        break;
-                }
-
+                offerDialog.add(ui);
+                offerDialog.setSize(1000, 800);
+                offerDialog.setLocationRelativeTo(null);
+                offerDialog.setUndecorated(true);
+                offerDialog.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-
-            addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(), offerDialog);
-            ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
-
-            addTableUIDesignForOfferDialog(ui.getTableGpOffers(), offerDialog);
-            ui.getTableGpOffers().setModel(defaultTableModelGP);
-
-            addTableUIDesignForOfferDialog(ui.getTableRobiOffers(), offerDialog);
-            ui.getTableRobiOffers().setModel(defaultTableModelRobi);
-
-            addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(), offerDialog);
-            ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
-
-            addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(), offerDialog);
-            ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
-
-            offerDialog.add(ui);
-            offerDialog.setSize(1000, 800);
-            offerDialog.setLocationRelativeTo(null);
-            offerDialog.setUndecorated(true);
-            offerDialog.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
     }
 
@@ -10281,22 +10621,26 @@ public class Home extends javax.swing.JFrame {
         String amountInTk = getAmountGroupRecharge.getText();
         String requestSIMName = getSelectedSimInGroupRecharge1.getSelectedItem().toString();
         String simType = getSelectedTypeGroupRecharge.getSelectedItem().toString();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, number);
-            preparedStatement.setString(2, amountInTk);
-            preparedStatement.setString(3, requestSIMName);
-            preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
-            preparedStatement.setString(5, simType);
-            preparedStatement.execute();
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, number);
+                preparedStatement.setString(2, amountInTk);
+                preparedStatement.setString(3, requestSIMName);
+                preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
+                preparedStatement.setString(5, simType);
+                preparedStatement.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
         }
     }
 
@@ -10389,76 +10733,86 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void loadDataInGroupRechargeTable() {
-        Connection conn = DbConnection.connect();
-        try {
-            DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
-                "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `group_recharge`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
+                    "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
 
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `group_recharge`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
+
+                }
+
+                tableGroupRecharge.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+                tableGroupRecharge.getTableHeader().setOpaque(false);
+                tableGroupRecharge.getTableHeader().setBackground(new Color(133, 47, 209));
+                tableGroupRecharge.getTableHeader().setForeground(new Color(255, 255, 255));
+
+                //For jTable contant in center
+                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableGroupRecharge.getDefaultRenderer(String.class);
+                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+                tableGroupRecharge.setEnabled(false);
+
+                tableGroupRecharge.setRowHeight(25);
+                tableGroupRecharge.setModel(groupRechargeTableModel);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+
+                DbConnection.disconnect(conn);
             }
-
-            tableGroupRecharge.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-            tableGroupRecharge.getTableHeader().setOpaque(false);
-            tableGroupRecharge.getTableHeader().setBackground(new Color(133, 47, 209));
-            tableGroupRecharge.getTableHeader().setForeground(new Color(255, 255, 255));
-
-            //For jTable contant in center
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableGroupRecharge.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-            tableGroupRecharge.setEnabled(false);
-
-            tableGroupRecharge.setRowHeight(25);
-            tableGroupRecharge.setModel(groupRechargeTableModel);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-
-            DbConnection.disconnect(conn);
         }
     }
 
     private void sendGroupRecharge() {
-        Connection conn = DbConnection.connect();
-        List<GroupRechargeResponse> groupRechargeResponsesList = new ArrayList<>();
-        try {
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `group_recharge`";
-            ResultSet rs = st.executeQuery(sql);
+        } else {
+            Connection conn = DbConnection.connect();
+            List<GroupRechargeResponse> groupRechargeResponsesList = new ArrayList<>();
+            try {
 
-            while (rs.next()) {
-                GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
-                groupRechargeResponse.setPhoneNumber(rs.getString("phone_number"));
-                groupRechargeResponse.setAmount(rs.getString("amount"));
-                groupRechargeResponse.setSimType(rs.getString("type"));
-                groupRechargeResponse.setPayBy(rs.getString("send_by"));
-                groupRechargeResponsesList.add(groupRechargeResponse);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `group_recharge`";
+                ResultSet rs = st.executeQuery(sql);
 
-            DbConnection.disconnect(conn);
-        }
-        groupRechargeResponsesList.stream().forEach(values -> {
-            //TODO: For group rechage
-
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                    MobileRechargeDetailsDto mobileRechargeDetailsDto
-                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
-                    addQueue(mobileRechargeDetailsDto);
+                while (rs.next()) {
+                    GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
+                    groupRechargeResponse.setPhoneNumber(rs.getString("phone_number"));
+                    groupRechargeResponse.setAmount(rs.getString("amount"));
+                    groupRechargeResponse.setSimType(rs.getString("type"));
+                    groupRechargeResponse.setPayBy(rs.getString("send_by"));
+                    groupRechargeResponsesList.add(groupRechargeResponse);
                 }
-            }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
 
-        });
-        DbConnection.delete("group_recharge");
+                DbConnection.disconnect(conn);
+            }
+            groupRechargeResponsesList.stream().forEach(values -> {
+                //TODO: For group rechage
+
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                        MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
+                        addQueue(mobileRechargeDetailsDto);
+                    }
+                }
+
+            });
+            DbConnection.delete("group_recharge");
+        }
 
     }
 
@@ -10479,83 +10833,92 @@ public class Home extends javax.swing.JFrame {
         String res = "Could not get response from server";
         String balanceUssdCode = null;
         String ussdReplace = null;
-        Connection conn = DbConnection.connect();
-        try {
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + service + "\"";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                if (actionType.equals(rs.getString("task_name"))) {
-
-                    ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
-                    balanceUssdCode = rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin"));
-                    isSIMFound = true;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-
-        }
-
-        Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(ussdReplace);
-        ussdCodeSerialList.clear();
-        while (m.find()) {
-
-            ussdCodeSerialList.add(m.group());
-        }
-        Matcher m1 = p.matcher(balanceUssdCode);
-        balanceUssdCodeList.clear();
-        while (m1.find()) {
-
-            balanceUssdCodeList.add(m1.group());
-        }
-        if (!isSIMFound) {
-            Popup.customError("SIM not found !!");
-        }
-
-        System.err.println("Request USSD CODE=" + ussdCodeSerialList);
-        // Sand Ussd Serial for Request
-        String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
-        Configaration.wait(2000);
-        // Sand Ussd Serial for Balance
-        String acBalanceInHax = sendSerialUSSDCode(balanceUssdCodeList, sim);
-        Pattern p3 = Pattern.compile("\\d+");
-        Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
-        while (m3.find()) {
-            balancePaseList.add(m3.group());
-            System.out.println(m3.group());
-        }
-        if (balancePaseList.get(0).equals("16247")) {
-            System.err.println("Possible duplicate request, call 16247 for details.");
-            updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
         } else {
-            System.err.println("----------------------------------" + balancePaseList.get(0));
+            Connection conn = DbConnection.connect();
+            try {
 
-            updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), balancePaseList.get(0));
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + service + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (actionType.equals(rs.getString("task_name"))) {
+
+                        ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
+                        balanceUssdCode = rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin"));
+                        isSIMFound = true;
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+
+            }
+
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(ussdReplace);
+            ussdCodeSerialList.clear();
+            while (m.find()) {
+
+                ussdCodeSerialList.add(m.group());
+            }
+            Matcher m1 = p.matcher(balanceUssdCode);
+            balanceUssdCodeList.clear();
+            while (m1.find()) {
+
+                balanceUssdCodeList.add(m1.group());
+            }
+            if (!isSIMFound) {
+                Popup.customError("SIM not found !!");
+            }
+
+            System.err.println("Request USSD CODE=" + ussdCodeSerialList);
+            // Sand Ussd Serial for Request
+            String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
+            Configaration.wait(2000);
+            // Sand Ussd Serial for Balance
+            String acBalanceInHax = sendSerialUSSDCode(balanceUssdCodeList, sim);
+            Pattern p3 = Pattern.compile("\\d+");
+            Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
+            while (m3.find()) {
+                balancePaseList.add(m3.group());
+                System.out.println(m3.group());
+            }
+            if (balancePaseList.get(0).equals("16247")) {
+                System.err.println("Possible duplicate request, call 16247 for details.");
+                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
+            } else {
+                System.err.println("----------------------------------" + balancePaseList.get(0));
+
+                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), balancePaseList.get(0));
+            }
+
+            loadMobileBankingDetailsTable();
+            getPhoneNumberInBillPayment.setText("");
+            getAmmountInBillPayment.setText("");
         }
-
-        loadMobileBankingDetailsTable();
-        getPhoneNumberInBillPayment.setText("");
-        getAmmountInBillPayment.setText("");
 
     }
 
     private void updateInMobileBankingDbById(String trxId, String status, String currentBalance) {
-        Connection conn = DbConnection.connect();
-        String sql = "UPDATE m_b_details SET c_balance = '" + currentBalance + "', result = '" + status + "' WHERE TnxId ='" + trxId + "'";
-        try {
-            Statement st = conn.createStatement();
-            st.execute(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        } catch (SQLException ex) {
-            Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "UPDATE m_b_details SET c_balance = '" + currentBalance + "', result = '" + status + "' WHERE TnxId ='" + trxId + "'";
+            try {
+                Statement st = conn.createStatement();
+                st.execute(sql);
+
+            } catch (SQLException ex) {
+                Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+            }
+            DbConnection.disconnect(conn);
         }
-        DbConnection.disconnect(conn);
-
     }
 
     private boolean mobileBankingPanelValidation() {
@@ -10704,64 +11067,74 @@ public class Home extends javax.swing.JFrame {
         String acPhoneNo = getPhoneNumberInBillPayment.getText();
         String acAmount = getAmmountInBillPayment.getText();
         String sim = getSimOperatorName.getSelectedItem().toString();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId,c_balance) VALUES(?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, service);
-            preparedStatement.setString(2, actionType);
-            preparedStatement.setString(3, acPhoneNo);
-            preparedStatement.setString(4, acAmount);
-            preparedStatement.setString(5, sim);
-            preparedStatement.setString(6, result);
-            preparedStatement.setString(7, Configaration.getCurrentDateAndTime());
-            preparedStatement.setString(8, "ADMIN");
-            preparedStatement.setString(9, trxId);
-            preparedStatement.setString(10, c_amount);
-            preparedStatement.execute();
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId,c_balance) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, service);
+                preparedStatement.setString(2, actionType);
+                preparedStatement.setString(3, acPhoneNo);
+                preparedStatement.setString(4, acAmount);
+                preparedStatement.setString(5, sim);
+                preparedStatement.setString(6, result);
+                preparedStatement.setString(7, Configaration.getCurrentDateAndTime());
+                preparedStatement.setString(8, "ADMIN");
+                preparedStatement.setString(9, trxId);
+                preparedStatement.setString(10, c_amount);
+                preparedStatement.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            System.out.println("Mobile Banking request details saved.");
         }
-        System.out.println("Mobile Banking request details saved.");
 
     }
 
     private void loadMobileBankingDetailsTable() {
-        Connection conn = DbConnection.connect();
-        try {
-            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Current Balance", "Date and Time"}, 0);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `m_b_details`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                    defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                        rs.getString("amount"), rs.getString("sim"), rs.getString("result"), rs.getString("c_balance"), rs.getString("date_time")});
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Current Balance", "Date and Time"}, 0);
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `m_b_details`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
+                        defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
+                            rs.getString("amount"), rs.getString("sim"), rs.getString("result"), rs.getString("c_balance"), rs.getString("date_time")});
+                    }
+
                 }
 
+                tableMobileBankingDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+                tableMobileBankingDetails.getTableHeader().setOpaque(false);
+                tableMobileBankingDetails.getTableHeader().setBackground(new Color(255, 0, 0));
+                tableMobileBankingDetails.getTableHeader().setForeground(new Color(255, 255, 255));
+
+                //For jTable contant in center
+                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingDetails.getDefaultRenderer(String.class);
+                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+                tableMobileBankingDetails.setEnabled(false);
+                tableMobileBankingDetails.setRowHeight(35);
+                tableMobileBankingDetails.setModel(defaultTableModel);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-
-            tableMobileBankingDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-            tableMobileBankingDetails.getTableHeader().setOpaque(false);
-            tableMobileBankingDetails.getTableHeader().setBackground(new Color(255, 0, 0));
-            tableMobileBankingDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-
-            //For jTable contant in center
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingDetails.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-            tableMobileBankingDetails.setEnabled(false);
-            tableMobileBankingDetails.setRowHeight(35);
-            tableMobileBankingDetails.setModel(defaultTableModel);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
     }
 
@@ -10803,96 +11176,111 @@ public class Home extends javax.swing.JFrame {
         String balenceUssdPartern = getprofitIn1k.getText();
         String acPassword = accountPassword1.getText();
         String profit = getprofitIn1k.getText();
-        Connection conn = DbConnection.connect();
-        String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon,profit) VALUES(?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, operatorName.toUpperCase());
-            preparedStatement.setString(2, operatorCode);
-            preparedStatement.setString(3, othersCode);
-            preparedStatement.setString(4, rechargeUssdParternPre);
-            preparedStatement.setString(5, rechargeUssdParternPost);
-            preparedStatement.setString(6, balenceUssdPartern);
-            preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
-            preparedStatement.setString(8, imagePath);
-            preparedStatement.setString(9, profit);
-            preparedStatement.execute();
-            switchPanelViaSettings(myProfilePanel, myProfile);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
             return true;
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon,profit) VALUES(?,?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, operatorName.toUpperCase());
+                preparedStatement.setString(2, operatorCode);
+                preparedStatement.setString(3, othersCode);
+                preparedStatement.setString(4, rechargeUssdParternPre);
+                preparedStatement.setString(5, rechargeUssdParternPost);
+                preparedStatement.setString(6, balenceUssdPartern);
+                preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
+                preparedStatement.setString(8, imagePath);
+                preparedStatement.setString(9, profit);
+                preparedStatement.execute();
+                switchPanelViaSettings(myProfilePanel, myProfile);
+                return true;
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
         }
         return false;
 
     }
 
     private void loadValuesForUssdManagementTable() {
-        Connection conn = DbConnection.connect();
-        try {
-            DefaultTableModel model = new DefaultTableModel(new String[]{
-                "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
-            }, 0);
-            switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `command`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
 
-                String operator_name = rs.getString("operator_name");
-                String profit = rs.getString("profit");
-                String action_for = rs.getString("action_for");
-                String r_ussd_code_pre = rs.getString("r_ussd_code_pre");
-                String r_ussd_code_post = rs.getString("r_ussd_code_post");
-                String b_s_ussd_code = rs.getString("b_s_ussd_code");
-                String icon = rs.getString("icon");
-                model.addRow(new Object[]{operator_name, profit, action_for, r_ussd_code_pre, r_ussd_code_post, b_s_ussd_code, icon});
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    DefaultTableModel model = new DefaultTableModel(new String[]{
+                        "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
+                    }, 0);
+                    switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `command`";
+                    ResultSet rs = st.executeQuery(sql);
 
-            }
-            ussdSettedTable.setModel(model);
-            ussdSettedTable.setEnabled(false);
-            ussdSettedTable.setRowHeight(30);
-            ussdSettedTable.addMouseListener(new MouseAdapter() {
+                    while (rs.next()) {
 
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    int seletedOption = 3;
-                    Point point = me.getPoint();
-                    int row = ussdSettedTable.rowAtPoint(point);
-                    Configaration.setErrorLog(me.getClickCount());
-                    if (me.getClickCount() == 2) {
-                        Object[] options = {"Delete", "Edit"};
-                        seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-                        Configaration.setLog(seletedOption);
+                        String operator_name = rs.getString("operator_name");
+                        String profit = rs.getString("profit");
+                        String action_for = rs.getString("action_for");
+                        String r_ussd_code_pre = rs.getString("r_ussd_code_pre");
+                        String r_ussd_code_post = rs.getString("r_ussd_code_post");
+                        String b_s_ussd_code = rs.getString("b_s_ussd_code");
+                        String icon = rs.getString("icon");
+                        model.addRow(new Object[]{operator_name, profit, action_for, r_ussd_code_pre, r_ussd_code_post, b_s_ussd_code, icon});
+
                     }
+                    ussdSettedTable.setModel(model);
+                    ussdSettedTable.setEnabled(false);
+                    ussdSettedTable.setRowHeight(30);
+                    ussdSettedTable.addMouseListener(new MouseAdapter() {
 
-                    switch (seletedOption) {
-                        case 0:
-                            DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-                            Home.showDeshBoardPage();
+                        @Override
+                        public void mouseClicked(MouseEvent me) {
+                            int seletedOption = 3;
+                            Point point = me.getPoint();
+                            int row = ussdSettedTable.rowAtPoint(point);
+                            Configaration.setErrorLog(me.getClickCount());
+                            if (me.getClickCount() == 2) {
+                                Object[] options = {"Delete", "Edit"};
+                                seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
+                                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                                Configaration.setLog(seletedOption);
+                            }
 
-                            break;
-                        case 1:
+                            switch (seletedOption) {
+                                case 0:
+                                    DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
+                                    Home.showDeshBoardPage();
 
-                            //  switchPanelViaMenu(updateAddedManagementPanel);
-                            //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-                            break;
-                        default:
-                            Configaration.setErrorLog("JOption selection not match");
+                                    break;
+                                case 1:
 
-                            break;
-                    }
+                                    //  switchPanelViaMenu(updateAddedManagementPanel);
+                                    //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
+                                    break;
+                                default:
+                                    Configaration.setErrorLog("JOption selection not match");
+
+                                    break;
+                            }
+                        }
+                    });
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
-            });
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            }
         }
     }
 
@@ -10915,23 +11303,27 @@ public class Home extends javax.swing.JFrame {
         String validity = getValidityInSetting.getText() + " " + getSelectedValidityTimeTypeSetting.getSelectedItem();
         String description = getDescriptionInSetting.getText();
         String simOperator = getSIMOperatorName.getSelectedItem().toString().toUpperCase();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        String sql = "INSERT INTO recharge_offers(offer_name,recharge_amt,validity,description,sim_name) VALUES(?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, offerName);
-            preparedStatement.setString(2, rechargeAmount);
-            preparedStatement.setString(3, validity);
-            preparedStatement.setString(4, description);
-            preparedStatement.setString(5, simOperator);
-            preparedStatement.execute();
-            Popup.customSuccess();
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "INSERT INTO recharge_offers(offer_name,recharge_amt,validity,description,sim_name) VALUES(?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, offerName);
+                preparedStatement.setString(2, rechargeAmount);
+                preparedStatement.setString(3, validity);
+                preparedStatement.setString(4, description);
+                preparedStatement.setString(5, simOperator);
+                preparedStatement.execute();
+                Popup.customSuccess();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
         }
     }
 
@@ -10985,62 +11377,71 @@ public class Home extends javax.swing.JFrame {
             Popup.customError("Empty Filed Found");
 
         } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO mobile_banking(services_name,default_sim,task_name,ussd_code,pin,serviceId,balance_show_ussd) VALUES(?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, service);
-                preparedStatement.setString(2, defultSIM);
-                preparedStatement.setString(3, taskName);
-                preparedStatement.setString(4, ussdCode);
-                preparedStatement.setString(5, pin);
-                preparedStatement.setString(6, Configaration.getUUID());
-                preparedStatement.setString(7, balanceShowUssdCode);
-                preparedStatement.execute();
-                Popup.customSuccess();
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                Popup.customError("Saving failed");
-            } finally {
-                DbConnection.disconnect(conn);
+            } else {
+                Connection conn = DbConnection.connect();
+                String sql = "INSERT INTO mobile_banking(services_name,default_sim,task_name,ussd_code,pin,serviceId,balance_show_ussd) VALUES(?,?,?,?,?,?,?)";
+                try {
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    preparedStatement.setString(1, service);
+                    preparedStatement.setString(2, defultSIM);
+                    preparedStatement.setString(3, taskName);
+                    preparedStatement.setString(4, ussdCode);
+                    preparedStatement.setString(5, pin);
+                    preparedStatement.setString(6, Configaration.getUUID());
+                    preparedStatement.setString(7, balanceShowUssdCode);
+                    preparedStatement.execute();
+                    Popup.customSuccess();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+                    Popup.customError("Saving failed");
+                } finally {
+                    DbConnection.disconnect(conn);
+                }
             }
         }
     }
 
     private void loadTableMobileBankingSettingFromDb() {
-        Connection conn = DbConnection.connect();
-        try {
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Service Id",
-                "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking`";
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                String services_id = rs.getString("serviceId");
-                String services_name = rs.getString("services_name");
-                String default_sim = rs.getString("default_sim");
-                String task_name = rs.getString("task_name");
-                String ussd_code = rs.getString("ussd_code");
-                String balance_ussd_code = rs.getString("balance_show_ussd");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                DefaultTableModel model = new DefaultTableModel(new String[]{"Service Id",
+                    "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
 
-                model.addRow(new Object[]{services_id, services_name, default_sim, task_name, ussd_code, balance_ussd_code});
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    String services_id = rs.getString("serviceId");
+                    String services_name = rs.getString("services_name");
+                    String default_sim = rs.getString("default_sim");
+                    String task_name = rs.getString("task_name");
+                    String ussd_code = rs.getString("ussd_code");
+                    String balance_ussd_code = rs.getString("balance_show_ussd");
 
-            }
-            tableMobileBankingSetting.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-            tableMobileBankingSetting.getTableHeader().setOpaque(false);
-            tableMobileBankingSetting.getTableHeader().setBackground(new Color(133, 47, 209));
-            tableMobileBankingSetting.getTableHeader().setForeground(new Color(255, 255, 255));
+                    model.addRow(new Object[]{services_id, services_name, default_sim, task_name, ussd_code, balance_ussd_code});
 
-            //For jTable contant in center
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingSetting.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+                }
+                tableMobileBankingSetting.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+                tableMobileBankingSetting.getTableHeader().setOpaque(false);
+                tableMobileBankingSetting.getTableHeader().setBackground(new Color(133, 47, 209));
+                tableMobileBankingSetting.getTableHeader().setForeground(new Color(255, 255, 255));
 
-            tableMobileBankingSetting.setEnabled(false);
+                //For jTable contant in center
+                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingSetting.getDefaultRenderer(String.class);
+                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
-            tableMobileBankingSetting.setRowHeight(25);
-            tableMobileBankingSetting.setModel(model);
+                tableMobileBankingSetting.setEnabled(false);
+
+                tableMobileBankingSetting.setRowHeight(25);
+                tableMobileBankingSetting.setModel(model);
 
 //            ussdSettedTable.addMouseListener(new MouseAdapter() {
 //
@@ -11075,10 +11476,11 @@ public class Home extends javax.swing.JFrame {
 //                    }
 //                }
 //            });
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
         }
     }
 
@@ -11087,131 +11489,136 @@ public class Home extends javax.swing.JFrame {
      */
     private void setContractListInJTable() {
         alartMessageText.setVisible(false);
-        Connection conn = DbConnection.connect();
-        try {
-            int count = 1;
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
 
-            contractList = new HashSet<>();
-            DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
-            ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                return simOperatorIdentifierDto;
-            }).map((_item) -> {
-                rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                int count = 1;
 
-                return _item;
-            }).forEachOrdered((_item) -> {
-                auto.recharge.system.config.Modem.disconnect();
-            });
+                contractList = new HashSet<>();
+                DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
+                ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    return simOperatorIdentifierDto;
+                }).map((_item) -> {
+                    rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
 
-            for (String contract : rowOfContractlist) {
-                System.err.println(contract);
-                String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
-                        .replaceAll("\"", "").split(",");
-                for (int i = 1; i < contractPerseDetails.length; i++) {
-                    ContractResponse contractResponse = new ContractResponse();
-                    contractResponse.setId(count++);
-                    contractResponse.setName(contractPerseDetails[4]);
-                    contractResponse.setPhoneNo(contractPerseDetails[2]);
-                    contractResponse.setStorage("SIM");
-                    contractList.add(contractResponse);
-                }
-            }
+                    return _item;
+                }).forEachOrdered((_item) -> {
+                    auto.recharge.system.config.Modem.disconnect();
+                });
 
-            Statement stSQLite = conn.createStatement();
-            String sqlSQLite = "SELECT * FROM `contract`";
-            ResultSet rs = stSQLite.executeQuery(sqlSQLite);
-            while (rs.next()) {
-                ContractResponse contractResponse = new ContractResponse();
-                contractResponse.setId(count++);
-                contractResponse.setName(rs.getString("name"));
-                contractResponse.setPhoneNo(rs.getString("phone_no"));
-                contractResponse.setStorage(rs.getString("memory"));
-                contractList.add(contractResponse);
-
-            }
-
-            if (Configaration.netIsAvailable()) {
-
-                DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
-
-                try {
-                    java.sql.Statement st = bMySQLConnection.connect().createStatement();
-                    String sql = "SELECT * FROM user_contracts_list WHERE userId='" + UserInfo.userId + "';";
-
-                    java.sql.ResultSet resultSet = st.executeQuery(sql);
-                    while (resultSet.next()) {
+                for (String contract : rowOfContractlist) {
+                    System.err.println(contract);
+                    String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
+                            .replaceAll("\"", "").split(",");
+                    for (int i = 1; i < contractPerseDetails.length; i++) {
                         ContractResponse contractResponse = new ContractResponse();
                         contractResponse.setId(count++);
-                        contractResponse.setName(resultSet.getString("name"));
-                        contractResponse.setPhoneNo(resultSet.getString("phone_number"));
-                        contractResponse.setStorage(resultSet.getString("storage"));
+                        contractResponse.setName(contractPerseDetails[4]);
+                        contractResponse.setPhoneNo(contractPerseDetails[2]);
+                        contractResponse.setStorage("SIM");
                         contractList.add(contractResponse);
-
                     }
-                } catch (SQLException ex) {
-                    Log.error("6853", ex.getMessage());
-
-                } finally {
-                    bMySQLConnection.disconnect();
                 }
 
-            } else {
-                alartMessageText.setVisible(true);
+                Statement stSQLite = conn.createStatement();
+                String sqlSQLite = "SELECT * FROM `contract`";
+                ResultSet rs = stSQLite.executeQuery(sqlSQLite);
+                while (rs.next()) {
+                    ContractResponse contractResponse = new ContractResponse();
+                    contractResponse.setId(count++);
+                    contractResponse.setName(rs.getString("name"));
+                    contractResponse.setPhoneNo(rs.getString("phone_no"));
+                    contractResponse.setStorage(rs.getString("memory"));
+                    contractList.add(contractResponse);
+
+                }
+
+                if (Configaration.netIsAvailable()) {
+
+                    DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
+
+                    try {
+                        java.sql.Statement st = bMySQLConnection.connect().createStatement();
+                        String sql = "SELECT * FROM user_contracts_list WHERE userId='" + UserInfo.userId + "';";
+
+                        java.sql.ResultSet resultSet = st.executeQuery(sql);
+                        while (resultSet.next()) {
+                            ContractResponse contractResponse = new ContractResponse();
+                            contractResponse.setId(count++);
+                            contractResponse.setName(resultSet.getString("name"));
+                            contractResponse.setPhoneNo(resultSet.getString("phone_number"));
+                            contractResponse.setStorage(resultSet.getString("storage"));
+                            contractList.add(contractResponse);
+
+                        }
+                    } catch (SQLException ex) {
+                        Log.error("6853", ex.getMessage());
+
+                    } finally {
+                        bMySQLConnection.disconnect();
+                    }
+
+                } else {
+                    alartMessageText.setVisible(true);
+                }
+
+                contractList.stream().forEach(contract -> {
+
+                    contractListTableMOdel.addRow(new Object[]{contract.getName(), contract.getPhoneNo(), contract.getStorage()});
+                });
+
+                tableContractLIst.setEnabled(false);
+                tableContractLIst.addMouseListener(new MouseAdapter() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent me) {
+                        String selectedNumber;
+                        Point point = me.getPoint();
+                        int column = tableContractLIst.columnAtPoint(point);
+                        int row = tableContractLIst.rowAtPoint(point);
+                        selectedNumber = tableContractLIst.getValueAt(row, 1).toString();
+                        System.out.println(selectedNumber.length());
+                        if (selectedNumber.length() == 14) {
+                            switchPanelViaMenu(mobileRechargePanel);
+                            getMobileNumber.requestFocusInWindow();
+                            getMobileNumber.setForeground(Color.BLACK);
+                            getMobileNumber.setText(selectedNumber.substring(3, 14));
+
+                            System.err.println(selectedNumber.substring(3, 14));
+                            System.out.println(selectedNumber);
+                        } else {
+                            switchPanelViaMenu(mobileRechargePanel);
+                            getMobileNumber.requestFocusInWindow();
+                            getMobileNumber.setForeground(Color.BLACK);
+                            getMobileNumber.setText(selectedNumber);
+                        }
+
+                    }
+                });
+
+                tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+                tableContractLIst.getTableHeader().setOpaque(false);
+                tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
+                tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
+
+                //For jTable contant in center
+                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableContractLIst.getDefaultRenderer(String.class);
+                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+                tableContractLIst.setEnabled(false);
+
+                tableContractLIst.setRowHeight(25);
+                tableContractLIst.setModel(contractListTableMOdel);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+
             }
-
-            contractList.stream().forEach(contract -> {
-
-                contractListTableMOdel.addRow(new Object[]{contract.getName(), contract.getPhoneNo(), contract.getStorage()});
-            });
-
-            tableContractLIst.setEnabled(false);
-            tableContractLIst.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    String selectedNumber;
-                    Point point = me.getPoint();
-                    int column = tableContractLIst.columnAtPoint(point);
-                    int row = tableContractLIst.rowAtPoint(point);
-                    selectedNumber = tableContractLIst.getValueAt(row, 1).toString();
-                    System.out.println(selectedNumber.length());
-                    if (selectedNumber.length() == 14) {
-                        switchPanelViaMenu(mobileRechargePanel);
-                        getMobileNumber.requestFocusInWindow();
-                        getMobileNumber.setForeground(Color.BLACK);
-                        getMobileNumber.setText(selectedNumber.substring(3, 14));
-
-                        System.err.println(selectedNumber.substring(3, 14));
-                        System.out.println(selectedNumber);
-                    } else {
-                        switchPanelViaMenu(mobileRechargePanel);
-                        getMobileNumber.requestFocusInWindow();
-                        getMobileNumber.setForeground(Color.BLACK);
-                        getMobileNumber.setText(selectedNumber);
-                    }
-
-                }
-            });
-
-            tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-            tableContractLIst.getTableHeader().setOpaque(false);
-            tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
-            tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
-
-            //For jTable contant in center
-            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableContractLIst.getDefaultRenderer(String.class);
-            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-            tableContractLIst.setEnabled(false);
-
-            tableContractLIst.setRowHeight(25);
-            tableContractLIst.setModel(contractListTableMOdel);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
-
         }
     }
 
@@ -11274,34 +11681,38 @@ public class Home extends javax.swing.JFrame {
         String name = getNameForContract.getText();
         String phoneNo = getPhoneNOForContract.getText();
         String storage = getSeletedStorage.getSelectedItem().toString();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO contract(name,phone_no,memory) VALUES(?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, phoneNo);
-            preparedStatement.setString(3, storage);
-            preparedStatement.execute();
-            int a = Popup.customSuccess();
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO contract(name,phone_no,memory) VALUES(?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, phoneNo);
+                preparedStatement.setString(3, storage);
+                preparedStatement.execute();
+                int a = Popup.customSuccess();
 
-            if (a == 0) {
-                getNameForContract.setText("");
-                getPhoneNOForContract.setText("");
-            } else {
-                getNameForContract.setText("");
-                getPhoneNOForContract.setText("");
+                if (a == 0) {
+                    getNameForContract.setText("");
+                    getPhoneNOForContract.setText("");
+                } else {
+                    getNameForContract.setText("");
+                    getPhoneNOForContract.setText("");
 
-            }
+                }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
 
+                    }
                 }
             }
         }
@@ -11352,33 +11763,38 @@ public class Home extends javax.swing.JFrame {
         String phoneNo = getPhoneNOForContract.getText();
         String storage = getSeletedStorage.getSelectedItem().toString();
         String result = null;
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(storage.toUpperCase())) {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                result = auto.recharge.system.config.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
-                auto.recharge.system.config.Modem.disconnect();
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-            }
-
-        }
-
-        if (result != null) {
-            if (result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").toLowerCase().equals("ok")) {
-                int a = Popup.customSuccess();
-
-                if (a == 0) {
-                    getNameForContract.setText("");
-                    getPhoneNOForContract.setText("");
-                } else {
-                    getNameForContract.setText("");
-                    getPhoneNOForContract.setText("");
+                if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(storage.toUpperCase())) {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    result = auto.recharge.system.config.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
+                    auto.recharge.system.config.Modem.disconnect();
 
                 }
-            } else {
-                Popup.customError(result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").split(":")[1]);
+
             }
 
+            if (result != null) {
+                if (result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").toLowerCase().equals("ok")) {
+                    int a = Popup.customSuccess();
+
+                    if (a == 0) {
+                        getNameForContract.setText("");
+                        getPhoneNOForContract.setText("");
+                    } else {
+                        getNameForContract.setText("");
+                        getPhoneNOForContract.setText("");
+
+                    }
+                } else {
+                    Popup.customError(result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").split(":")[1]);
+                }
+
+            }
         }
     }
 
@@ -11847,53 +12263,60 @@ public class Home extends javax.swing.JFrame {
 
         List<String> responseList = new ArrayList<>();
         String res = "Could not get response from server";
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-            if (selectedSimCardWithNumber.toUpperCase().equals(sim.toUpperCase())) {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
-                    if (i == 0) {
-                        String ussd = "*" + ussdCodeSerialList.get(i) + "#";
-                        System.out.println("Sending by " + ussd + ":if");
-                        res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                        Configaration.wait(400);
-                        responseList.add(res);
-                        System.out.println("Response " + res);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
+            return "200";
 
-                    } else {
-                        String ussd = ussdCodeSerialList.get(i);
-                        System.out.println("Sending by " + ussd + ":else");
-                        res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                        Configaration.wait(400);
-                        if (res.split(",").length == 1) {
-                            System.err.println("Tast=" + res);
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                if (selectedSimCardWithNumber.toUpperCase().equals(sim.toUpperCase())) {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
+                        if (i == 0) {
+                            String ussd = "*" + ussdCodeSerialList.get(i) + "#";
+                            System.out.println("Sending by " + ussd + ":if");
+                            res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
+                            Configaration.wait(400);
+                            responseList.add(res);
+                            System.out.println("Response " + res);
+
+                        } else {
+                            String ussd = ussdCodeSerialList.get(i);
+                            System.out.println("Sending by " + ussd + ":else");
+                            res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
+                            Configaration.wait(400);
+                            if (res.split(",").length == 1) {
+                                System.err.println("Tast=" + res);
+
+                                Configaration.closeUssdSession();
+                                auto.recharge.system.config.Modem.disconnect();
+                                return "53656e64696e67204661696c6564";
+
+                            }
+                            responseList.add(res);
+
+                            System.out.println("Response " + res);
+
+                        }
+                        if (i == ussdCodeSerialList.size() - 1) {
 
                             Configaration.closeUssdSession();
                             auto.recharge.system.config.Modem.disconnect();
-                            return "53656e64696e67204661696c6564";
-
+                            int size = responseList.size();
+                            String finalResponse = responseList.get(size - 1);
+                            String[] finalResponsePerse = finalResponse.split(",");
+                            String finalResultInHax = finalResponsePerse[1].replaceAll("\"", "");
+                            System.err.println("00000000000000000000000909090    " + Configaration.haxToStringConvert(finalResultInHax));
+                            return finalResultInHax;
                         }
-                        responseList.add(res);
-
-                        System.out.println("Response " + res);
-
-                    }
-                    if (i == ussdCodeSerialList.size() - 1) {
-
-                        Configaration.closeUssdSession();
-                        auto.recharge.system.config.Modem.disconnect();
-                        int size = responseList.size();
-                        String finalResponse = responseList.get(size - 1);
-                        String[] finalResponsePerse = finalResponse.split(",");
-                        String finalResultInHax = finalResponsePerse[1].replaceAll("\"", "");
-                        System.err.println("00000000000000000000000909090    " + Configaration.haxToStringConvert(finalResultInHax));
-                        return finalResultInHax;
                     }
                 }
             }
+            responseList.clear();
+
+            return "USSD Dial Failed";
         }
-        responseList.clear();
-        return "USSD Dial Failed";
     }
 
     //-------------------------------- Bill Pay Panel------------------------------------
@@ -11993,46 +12416,56 @@ public class Home extends javax.swing.JFrame {
     private String billPayUssdCodeDial(String sim, String code) {
         String res = "Sending Failed...";
         boolean isPay = false;
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-            if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase())) {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
-                auto.recharge.system.config.Modem.disconnect();
-                isPay = true;
-            }
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        }
-        if (!isPay) {
-            Popup.customError("Teletalk SIM Not Found");
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase())) {
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
+                    auto.recharge.system.config.Modem.disconnect();
+                    isPay = true;
+                }
+
+            }
+            if (!isPay) {
+                Popup.customError("Teletalk SIM Not Found");
+            }
         }
         return res;
+
     }
 
     private void saveIntobill_pay_bill_no(String status) {
 
         String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
         String billNo = getBillNO.getText();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO bill_pay_bill_no(TrxId,bill_no,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, Configaration.getUUID());
-            preparedStatement.setString(2, billNo);
-            preparedStatement.setString(3, Configaration.getCurrentDateAndTime());
-            preparedStatement.setString(4, "6");
-            preparedStatement.setString(5, getServiceType);
-            preparedStatement.setString(6, status);
-            preparedStatement.execute();
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO bill_pay_bill_no(TrxId,bill_no,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, Configaration.getUUID());
+                preparedStatement.setString(2, billNo);
+                preparedStatement.setString(3, Configaration.getCurrentDateAndTime());
+                preparedStatement.setString(4, "6");
+                preparedStatement.setString(5, getServiceType);
+                preparedStatement.setString(6, status);
+                preparedStatement.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
 
+                    }
                 }
             }
         }
@@ -12043,29 +12476,33 @@ public class Home extends javax.swing.JFrame {
         String customerId = getCustomerId.getText();
         String monthName = getMonthNo.getSelectedItem().toString();
         String year = getyear.getSelectedItem().toString();
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO bill_payment_customer_id(TrxId,customer_id,bill_month,bill_year,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, Configaration.getUUID());
-            preparedStatement.setString(2, customerId);
-            preparedStatement.setString(3, monthName);
-            preparedStatement.setString(4, year);
-            preparedStatement.setString(5, Configaration.getCurrentDateAndTime());
-            preparedStatement.setString(6, "4");
-            preparedStatement.setString(7, getServiceType);
-            preparedStatement.setString(8, status);
-            preparedStatement.execute();
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO bill_payment_customer_id(TrxId,customer_id,bill_month,bill_year,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, Configaration.getUUID());
+                preparedStatement.setString(2, customerId);
+                preparedStatement.setString(3, monthName);
+                preparedStatement.setString(4, year);
+                preparedStatement.setString(5, Configaration.getCurrentDateAndTime());
+                preparedStatement.setString(6, "4");
+                preparedStatement.setString(7, getServiceType);
+                preparedStatement.setString(8, status);
+                preparedStatement.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
 
+                    }
                 }
             }
         }
@@ -12073,22 +12510,27 @@ public class Home extends javax.swing.JFrame {
 
     private void loadInBillPaymentDetailsByBillNo() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Bill No", "Current balance", "Status"}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `bill_pay_bill_no`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
-                defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                    rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
-                    rs.getString("status")});
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `bill_pay_bill_no`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
+                        rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
+                        rs.getString("status")});
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -12103,22 +12545,27 @@ public class Home extends javax.swing.JFrame {
 
     private void loadInBillPaymentDetailsByCustomerId() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Customer ID", "Month", "Year", "Current balance", "Status"}, 0);
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `bill_payment_customer_id`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
-                defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                    rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
-                    rs.getString("status")});
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `bill_payment_customer_id`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
+                        rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
+                        rs.getString("status")});
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
         //For jTable contant in center
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
@@ -12451,40 +12898,45 @@ public class Home extends javax.swing.JFrame {
 
     private void loadMobileBankingBalance() {
         Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
-        Connection conn = DbConnection.connect();
-        try {
-            DefaultListModel Clistmodel = new DefaultListModel();//
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `mobile_banking`";
-            ResultSet rs = st.executeQuery(sql);
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                DefaultListModel Clistmodel = new DefaultListModel();//
 
-            while (rs.next()) {
-                MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
-                mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
-                mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
-                mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
-                mobileBankingBalanceShowDto.setUssdCode(rs.getString("ussd_code"));
-                mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
-                bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
+                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
+                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
+                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
+                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("ussd_code"));
+                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
+                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
+                }
+
+                for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
+                    System.err.println(mobileBankingBalanceShowDto.getServiceName());
+                    MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
+                    mobileBankingBalanceShowCard.getServiceNameText().setText(mobileBankingBalanceShowDto.getServiceName());
+                    mobileBankingBalanceShowCard.getAmountBalanceText().setText("XXXX" + " TK");
+                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + "XX-XX-XX");
+
+                    Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
+                }
+                mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
+
+                mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-
-            for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
-                System.err.println(mobileBankingBalanceShowDto.getServiceName());
-                MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
-                mobileBankingBalanceShowCard.getServiceNameText().setText(mobileBankingBalanceShowDto.getServiceName());
-                mobileBankingBalanceShowCard.getAmountBalanceText().setText("XXXX" + " TK");
-                mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + "XX-XX-XX");
-
-                Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
-            }
-            mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
-
-            mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
 
     }
@@ -12543,14 +12995,19 @@ public class Home extends javax.swing.JFrame {
 
     private void loadBalanceINBillPaymentPanel() {
         String SIM_NAME = "BANGLALINK";
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            if (SIM_NAME.toUpperCase().contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+        } else {
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                getBalanceInBillPayment.setText(getCurrentBalance(SIM_NAME));
-                Configaration.closeUssdSession();
-                auto.recharge.system.config.Modem.disconnect();
+                if (SIM_NAME.toUpperCase().contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
+
+                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+                    getBalanceInBillPayment.setText(getCurrentBalance(SIM_NAME));
+                    Configaration.closeUssdSession();
+                    auto.recharge.system.config.Modem.disconnect();
+                }
             }
         }
 
@@ -12760,23 +13217,27 @@ public class Home extends javax.swing.JFrame {
 
     private void changeAdminPassword(String password) {
         if (UserInfo.role.equals("admin")) {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
 
-            Connection conn = DbConnection.connect();
-            String sql = "UPDATE user_info SET password = '" + password + "' WHERE user_id = '" + UserInfo.userId + "';";
-            try {
-                Statement st = conn.createStatement();
-                st.execute(sql);
-                int a = Popup.customWarning("Password changed\nLagin again please!");
-                if (a == 0) {
-                    this.setVisible(false);
-                    Login login = new Login();
-                    login.setVisible(true);
+            } else {
+                Connection conn = DbConnection.connect();
+                String sql = "UPDATE user_info SET password = '" + password + "' WHERE user_id = '" + UserInfo.userId + "';";
+                try {
+                    Statement st = conn.createStatement();
+                    st.execute(sql);
+                    int a = Popup.customWarning("Password changed\nLagin again please!");
+                    if (a == 0) {
+                        this.setVisible(false);
+                        Login login = new Login();
+                        login.setVisible(true);
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
             }
 
         } else {
@@ -12826,16 +13287,22 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void updateMobileRechargeStatusByTrxId(String trxId, String status, String currentBalance) {
-        Connection conn = DbConnection.connect();
-        String sql = "UPDATE recharge_admin SET current_balance = '" + currentBalance + "', status = '" + status + "' WHERE trx_id ='" + trxId + "'";
-        try {
-            Statement st = conn.createStatement();
-            st.execute(sql);
 
-        } catch (SQLException ex) {
-            Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
+
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "UPDATE recharge_admin SET current_balance = '" + currentBalance + "', status = '" + status + "' WHERE trx_id ='" + trxId + "'";
+            try {
+                Statement st = conn.createStatement();
+                st.execute(sql);
+
+            } catch (SQLException ex) {
+                Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
+            }
+            DbConnection.disconnect(conn);
         }
-        DbConnection.disconnect(conn);
         loadValueInTableRechargeDetails();
     }
 
@@ -12862,22 +13329,26 @@ public class Home extends javax.swing.JFrame {
         showDataInProductPurchaseFromDB("0000");
         //Product Details Tab
         listOfBarCodeOrGroupComboBox.removeAllItems();
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase`";
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
-                listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString());
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
 
+                while (rs.next()) {
+                    listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString());
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
-
         //Handle Enter Button Task
         supplierInProductPurchases.addKeyListener(new KeyAdapter() {
             @Override
@@ -13034,8 +13505,8 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
-        invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345,100000)));
-        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000,10000)));
+        invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
+        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000, 10000)));
     }
 
     private void saveInProductPurchaseDB() {
@@ -13054,32 +13525,36 @@ public class Home extends javax.swing.JFrame {
         String buyRate = buyRateInProductPurchases.getText();
         String typeOfProduct = typeInProductPurchasesComboBox.getSelectedItem().toString();
         Double subtotal = (Double.valueOf(buyRate) * Double.valueOf(qtyString));
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO product_purchase(invoice,supplier,date,bar_code,`group`,pName,qty,buy_rate,sell_rate,type,subTotal) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, invoice);
-            preparedStatement.setString(2, supplier);
-            preparedStatement.setString(3, date);
-            preparedStatement.setString(4, barCode);
-            preparedStatement.setString(5, group);
-            preparedStatement.setString(6, pName);
-            preparedStatement.setString(7, qtyString);
-            preparedStatement.setString(8, buyRate);
-            preparedStatement.setString(9, sellRate);
-            preparedStatement.setString(10, typeOfProduct);
-            preparedStatement.setString(11, String.valueOf(subtotal));
-            preparedStatement.execute();
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO product_purchase(invoice,supplier,date,bar_code,`group`,pName,qty,buy_rate,sell_rate,type,subTotal) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, invoice);
+                preparedStatement.setString(2, supplier);
+                preparedStatement.setString(3, date);
+                preparedStatement.setString(4, barCode);
+                preparedStatement.setString(5, group);
+                preparedStatement.setString(6, pName);
+                preparedStatement.setString(7, qtyString);
+                preparedStatement.setString(8, buyRate);
+                preparedStatement.setString(9, sellRate);
+                preparedStatement.setString(10, typeOfProduct);
+                preparedStatement.setString(11, String.valueOf(subtotal));
+                preparedStatement.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
 
+                    }
                 }
             }
         }
@@ -13094,50 +13569,55 @@ public class Home extends javax.swing.JFrame {
         Double comission = 0.0;
         Double total = 0.0;
         int count = 0;
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" + invoice;
-            //TODO: HANDLE NULL
-            ResultSet rs = st.executeQuery(sql);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-            while (rs.next()) {
-                count++;
-                String typeOfProduct = rs.getString("type");
-                String subTotal = rs.getString("subTotal");
-                supplierInProductPurchases.setText(rs.getString("supplier"));
-                dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                productPurchaseTableModel.addRow(new Object[]{
-                    rs.getString("bar_code"),
-                    rs.getString("group"),
-                    rs.getString("pName"),
-                    rs.getString("qty"),
-                    rs.getString("buy_rate"),
-                    rs.getString("sell_rate"),
-                    subTotal,
-                    rs.getString("type")
-                });
-                switch (typeOfProduct) {
-                    case "PURCHASE":
-                        total = total + Double.valueOf(subTotal);
-                        break;
-                    case "RETURN":
-                        returnAC = returnAC + Double.valueOf(subTotal);
-                        System.err.println("returnAC");
-                        break;
-                    case "OFFER":
-                        comission = comission + Double.valueOf(subTotal);
-                        System.err.println("comission");
-                        break;
-                    default:
-                        System.err.println("Type Not Selected");
-                        break;
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" + invoice;
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    count++;
+                    String typeOfProduct = rs.getString("type");
+                    String subTotal = rs.getString("subTotal");
+                    supplierInProductPurchases.setText(rs.getString("supplier"));
+                    dateInProductPurchases.setDate(new Date(rs.getString("date")));
+                    productPurchaseTableModel.addRow(new Object[]{
+                        rs.getString("bar_code"),
+                        rs.getString("group"),
+                        rs.getString("pName"),
+                        rs.getString("qty"),
+                        rs.getString("buy_rate"),
+                        rs.getString("sell_rate"),
+                        subTotal,
+                        rs.getString("type")
+                    });
+                    switch (typeOfProduct) {
+                        case "PURCHASE":
+                            total = total + Double.valueOf(subTotal);
+                            break;
+                        case "RETURN":
+                            returnAC = returnAC + Double.valueOf(subTotal);
+                            System.err.println("returnAC");
+                            break;
+                        case "OFFER":
+                            comission = comission + Double.valueOf(subTotal);
+                            System.err.println("comission");
+                            break;
+                        default:
+                            System.err.println("Type Not Selected");
+                            break;
+                    }
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productPurchaseTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -13147,8 +13627,8 @@ public class Home extends javax.swing.JFrame {
         productPurchaseTable.setEnabled(false);
         productPurchaseTable.setRowHeight(30);
         productPurchaseTable.setModel(productPurchaseTableModel);
-        
-        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000,10000)));
+
+        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000, 10000)));
 
         summaryShowInDisplay(total, count, comission, total, returnAC);
     }
@@ -13157,34 +13637,37 @@ public class Home extends javax.swing.JFrame {
         System.out.println(barCode);
         DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name", "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
-            //TODO: HANDLE NULL
-            ResultSet rs = st.executeQuery(sql);
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
-                invoiceINProductDetails.setText(rs.getString("invoice"));
-                System.err.println(rs.getString("bar_code"));
-                productPurchaseTableModel.addRow(new Object[]{
-                    rs.getString("bar_code"),
-                    rs.getString("group"),
-                    rs.getString("pName"),
-                    rs.getString("buy_rate"),
-                    rs.getString("sell_rate"),
-                    rs.getString("supplier"),
-                    rs.getString("date")
-                });
+                while (rs.next()) {
+                    invoiceINProductDetails.setText(rs.getString("invoice"));
+                    System.err.println(rs.getString("bar_code"));
+                    productPurchaseTableModel.addRow(new Object[]{
+                        rs.getString("bar_code"),
+                        rs.getString("group"),
+                        rs.getString("pName"),
+                        rs.getString("buy_rate"),
+                        rs.getString("sell_rate"),
+                        rs.getString("supplier"),
+                        rs.getString("date")
+                    });
 
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
-
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productDetailsTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productDetailsTable.getTableHeader().setOpaque(false);
@@ -13207,23 +13690,28 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void updateStoredItemByBarCode(String invoice, String barCode, String sellPrice) {
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        String sql = "UPDATE product_purchase SET date = '" + Configaration.getCurrentDateAndTime()
-                + "', pName = '" + pNameInProductDetails.getText() + "',qty = '"
-                + qtyInProductDetails.getText() + "',buy_rate = '" + buyRateInProductDetails.getText()
-                + "',sell_rate = '" + sellPrice + "',order_limit = '"
-                + oderLimitInProductDetails.getText() + "',warranty = '"
-                + warrentyInProductDetails.getText() + "' WHERE invoice ='" + invoice + "' AND bar_code ='"
-                + barCode + "'";
-        try {
-            Statement st = conn.createStatement();
-            st.execute(sql);
+        } else {
+            Connection conn = DbConnection.connect();
+            String sql = "UPDATE product_purchase SET date = '" + Configaration.getCurrentDateAndTime()
+                    + "', pName = '" + pNameInProductDetails.getText() + "',qty = '"
+                    + qtyInProductDetails.getText() + "',buy_rate = '" + buyRateInProductDetails.getText()
+                    + "',sell_rate = '" + sellPrice + "',order_limit = '"
+                    + oderLimitInProductDetails.getText() + "',warranty = '"
+                    + warrentyInProductDetails.getText() + "' WHERE invoice ='" + invoice + "' AND bar_code ='"
+                    + barCode + "'";
+            try {
+                Statement st = conn.createStatement();
+                st.execute(sql);
 
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+            DbConnection.disconnect(conn);
+
         }
-        DbConnection.disconnect(conn);
         showDataInProductDetailsPurchaseFromDB(barCode);
     }
 
@@ -13310,50 +13798,53 @@ public class Home extends javax.swing.JFrame {
     private void addProductFromDBInSellPanel(String barCode) {
 
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
 
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `product_purchase` WHERE bar_code= " + barCode;
-            //TODO: HANDLE NULL
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                warrantyInProductBill.setText(rs.getString("warranty"));
-                countForSellTable++;
-                Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
-                String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
-                supplierInProductPurchases.setText(rs.getString("supplier"));
-                dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                productSellTableModel.addRow(new Object[]{
-                    String.valueOf(countForSellTable),
-                    typeOfAction,
-                    rs.getString("bar_code"),
-                    rs.getString("group"),
-                    rs.getString("pName"),
-                    "1",
-                    rs.getString("sell_rate"),
-                    subTotal
-                });
-                switch (typeOfAction) {
-                    case "Sell":
-                        totalPayableAmt = totalPayableAmt + Double.valueOf(subTotal);
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase` WHERE bar_code= " + barCode;
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    warrantyInProductBill.setText(rs.getString("warranty"));
+                    countForSellTable++;
+                    Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
+                    String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
+                    supplierInProductPurchases.setText(rs.getString("supplier"));
+                    dateInProductPurchases.setDate(new Date(rs.getString("date")));
+                    productSellTableModel.addRow(new Object[]{
+                        String.valueOf(countForSellTable),
+                        typeOfAction,
+                        rs.getString("bar_code"),
+                        rs.getString("group"),
+                        rs.getString("pName"),
+                        "1",
+                        rs.getString("sell_rate"),
+                        subTotal
+                    });
+                    switch (typeOfAction) {
+                        case "Sell":
+                            totalPayableAmt = totalPayableAmt + Double.valueOf(subTotal);
 
-                        break;
-                    case "Return":
-                        returnForSellTable = returnForSellTable + Double.valueOf(subTotal);
-                        System.err.println("returnAC");
-                        break;
-                    default:
-                        System.err.println("Type Not Selected");
-                        break;
+                            break;
+                        case "Return":
+                            returnForSellTable = returnForSellTable + Double.valueOf(subTotal);
+                            System.err.println("returnAC");
+                            break;
+                        default:
+                            System.err.println("Type Not Selected");
+                            break;
+                    }
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
-
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productSellTable.getTableHeader().setOpaque(false);
@@ -13431,28 +13922,33 @@ public class Home extends javax.swing.JFrame {
 
     private void printMemo() {
         List<Products> productses = new ArrayList<>();
-        Connection conn = DbConnection.connect();
-        try {
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `sell_table`";
-            //TODO: HANDLE NULL
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                if (invoiceInProductSell.getText().equals(rs.getString("invoice"))) {
-                    Products p = new Products();
-                    p.setBar_code(rs.getString("bar_code"));
-                    p.setPrice(rs.getString("price"));
-                    p.setQty(rs.getString("qty"));
-                    p.setSub_total(rs.getString("sub_total"));
-                    p.setWarranty(warrantyInProductBill.getText());
-                    p.setP_name(rs.getString("p_name"));
-                    productses.add(p);
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `sell_table`";
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (invoiceInProductSell.getText().equals(rs.getString("invoice"))) {
+                        Products p = new Products();
+                        p.setBar_code(rs.getString("bar_code"));
+                        p.setPrice(rs.getString("price"));
+                        p.setQty(rs.getString("qty"));
+                        p.setSub_total(rs.getString("sub_total"));
+                        p.setWarranty(warrantyInProductBill.getText());
+                        p.setP_name(rs.getString("p_name"));
+                        productses.add(p);
+                    }
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
         try {
             String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
@@ -13510,67 +14006,73 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void saveSellProductInSellTabel(int rowNo) {
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total,warranty) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, invoiceInProductSell.getText().toString());
-            preparedStatement.setString(2, customerIdINProductSell.getText().toString());
-            preparedStatement.setString(3, dateInProductSell.getDate().toString());
-            preparedStatement.setString(4, dueDateInProductSell.getDate().toString());
-            preparedStatement.setString(5, fullNameInProductSell.getText().toString());
-            preparedStatement.setString(6, addressInProductSell.getText().toString());
-            preparedStatement.setString(7, noteInProductSell.getText().toString());
-            preparedStatement.setString(8, phoneNOInProductSell.getText().toString());
-            preparedStatement.setString(9, totalItemsInProductSell.getText().toString());
-            preparedStatement.setString(10, returnInProductSell.getText().toString());
-            preparedStatement.setString(11, totalAmountInProductSell1.getText().toString());
-            preparedStatement.setString(12, discountInProductSell.getText().toString());
-            preparedStatement.setString(13, payableInProductSell.getText().toString());
-            preparedStatement.setString(14, paidInProductSell.getText().toString());
-            preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
-            preparedStatement.setString(16, dueInProductSell.getText().toString());
-            preparedStatement.setString(17, paymentWayInProductSell.getText().toString());
-            preparedStatement.setString(25, warrantyInProductBill.getText().toString());
-            for (int j = 1; j < productSellTable.getColumnCount(); j++) {
 
-                switch (j) {
-                    case 0:
-                        preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        System.err.println();
-                        break;
-                    case 1:
-                        preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
-                    case 2:
-                        preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
-                    case 3:
-                        preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
-                    case 4:
-                        preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
-                    case 5:
-                        preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
-                    case 6:
-                        preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                        break;
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
+
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total,warranty) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, invoiceInProductSell.getText().toString());
+                preparedStatement.setString(2, customerIdINProductSell.getText().toString());
+                preparedStatement.setString(3, dateInProductSell.getDate().toString());
+                preparedStatement.setString(4, dueDateInProductSell.getDate().toString());
+                preparedStatement.setString(5, fullNameInProductSell.getText().toString());
+                preparedStatement.setString(6, addressInProductSell.getText().toString());
+                preparedStatement.setString(7, noteInProductSell.getText().toString());
+                preparedStatement.setString(8, phoneNOInProductSell.getText().toString());
+                preparedStatement.setString(9, totalItemsInProductSell.getText().toString());
+                preparedStatement.setString(10, returnInProductSell.getText().toString());
+                preparedStatement.setString(11, totalAmountInProductSell1.getText().toString());
+                preparedStatement.setString(12, discountInProductSell.getText().toString());
+                preparedStatement.setString(13, payableInProductSell.getText().toString());
+                preparedStatement.setString(14, paidInProductSell.getText().toString());
+                preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
+                preparedStatement.setString(16, dueInProductSell.getText().toString());
+                preparedStatement.setString(17, paymentWayInProductSell.getText().toString());
+                preparedStatement.setString(25, warrantyInProductBill.getText().toString());
+                for (int j = 1; j < productSellTable.getColumnCount(); j++) {
+
+                    switch (j) {
+                        case 0:
+                            preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            System.err.println();
+                            break;
+                        case 1:
+                            preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+                        case 2:
+                            preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+                        case 3:
+                            preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+                        case 4:
+                            preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+                        case 5:
+                            preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+                        case 6:
+                            preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
+                            break;
+
+                    }
 
                 }
+                preparedStatement.execute();
 
-            }
-            preparedStatement.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
-
+                    }
                 }
             }
         }
@@ -13580,68 +14082,78 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void saveWarrantyDetailsInDb() {
-        Connection conn1 = DbConnection.connect();
-        String sql = "INSERT INTO warranty_table(invoice,customar_id,`date`,d_date,`problem`,f_name,address,mobole_no,ref_name,`brand`,status,bill,warranty,paid,discount,due) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, invoiceInProductWarranty.getText().toString());
-            preparedStatement.setString(2, customerIdINProductWanrranty.getText().toString());
-            preparedStatement.setString(3, dateInProductWanrranty.getDate().toString());
-            preparedStatement.setString(4, delevaryDateDateInProductWanrranty.getDate().toString());
-            preparedStatement.setString(5, problemInProductWanrranty.getText().toString());
-            preparedStatement.setString(6, fullNameInProductWanrranty.getText().toString());
-            preparedStatement.setString(7, addressInProductWanrranty.getText().toString());
-            preparedStatement.setString(8, phoneNOInProductWanrranty.getText().toString());
-            preparedStatement.setString(9, refNameInProductWanrranty.getText().toString());
-           
-            preparedStatement.setString(10, brandInProductWanrranty.getText().toString());
-            preparedStatement.setString(11, statusInProductWanrrantyComboBox.getSelectedItem().toString());
-            preparedStatement.setString(12, billInProductWanrranty.getText().toString());
-            preparedStatement.setString(13, warrantyInProductWanrranty.getText().toString());
-            preparedStatement.setString(14, paidPaymentInProductWanrranty.getText().toString());
-            preparedStatement.setString(15, discpuntInProductWanrranty.getText().toString());
-            preparedStatement.setString(16, dueInProductWanrranty.getText().toString());
-           
-            preparedStatement.execute();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
+        } else {
+            Connection conn1 = DbConnection.connect();
+            String sql = "INSERT INTO warranty_table(invoice,customar_id,`date`,d_date,`problem`,f_name,address,mobole_no,ref_name,`brand`,status,bill,warranty,paid,discount,due) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
+                preparedStatement.setString(1, invoiceInProductWarranty.getText().toString());
+                preparedStatement.setString(2, customerIdINProductWanrranty.getText().toString());
+                preparedStatement.setString(3, dateInProductWanrranty.getDate().toString());
+                preparedStatement.setString(4, delevaryDateDateInProductWanrranty.getDate().toString());
+                preparedStatement.setString(5, problemInProductWanrranty.getText().toString());
+                preparedStatement.setString(6, fullNameInProductWanrranty.getText().toString());
+                preparedStatement.setString(7, addressInProductWanrranty.getText().toString());
+                preparedStatement.setString(8, phoneNOInProductWanrranty.getText().toString());
+                preparedStatement.setString(9, refNameInProductWanrranty.getText().toString());
 
+                preparedStatement.setString(10, brandInProductWanrranty.getText().toString());
+                preparedStatement.setString(11, statusInProductWanrrantyComboBox.getSelectedItem().toString());
+                preparedStatement.setString(12, billInProductWanrranty.getText().toString());
+                preparedStatement.setString(13, warrantyInProductWanrranty.getText().toString());
+                preparedStatement.setString(14, paidPaymentInProductWanrranty.getText().toString());
+                preparedStatement.setString(15, discpuntInProductWanrranty.getText().toString());
+                preparedStatement.setString(16, dueInProductWanrranty.getText().toString());
+
+                preparedStatement.execute();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (conn1 != null) {
+                    try {
+                        conn1.close();
+                    } catch (SQLException e) {
+
+                    }
                 }
             }
         }
     }
 
     private void printPosMemo(String text) {
-             List<Warranty> warrantys = new ArrayList<>();
-        Connection conn = DbConnection.connect();
-        try {
-            
-            Statement st = conn.createStatement();
-            String sql = "SELECT * FROM `warranty_table`";
-            //TODO: HANDLE NULL
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
-                    Warranty p = new Warranty();
-                    p.setId("1");
-                    p.setService_name(rs.getString("brand"));
-                    p.setPrice(rs.getString("bill"));
-                    p.setQty("1");
-                    p.setTotal(rs.getString("bill"));
-                   
-                    warrantys.add(p);
+        List<Warranty> warrantys = new ArrayList<>();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `warranty_table`";
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
+                        Warranty p = new Warranty();
+                        p.setId("1");
+                        p.setService_name(rs.getString("brand"));
+                        p.setPrice(rs.getString("bill"));
+                        p.setQty("1");
+                        p.setTotal(rs.getString("bill"));
+
+                        warrantys.add(p);
+                    }
                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            DbConnection.disconnect(conn);
         }
         try {
             String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
@@ -13659,7 +14171,7 @@ public class Home extends javax.swing.JFrame {
                 String shopName = "AK STORE AND TELECOM";
                 String address = "Asulia savar,dhaka,bangladesh";
                 String phoneNumber = "+8801988841890 +8801988851789";
-                
+
                 JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
 
                 HashMap<String, Object> hm = new HashMap<String, Object>();
@@ -13699,5 +14211,4 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
- 
 }

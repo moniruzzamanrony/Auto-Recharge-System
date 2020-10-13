@@ -5,6 +5,7 @@
  */
 package auto.recharge.system;
 
+import auto.recharge.system.dto.UserInfo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +22,9 @@ import java.util.logging.Logger;
  */
 public class DbConnection {
 
-   // private static Connection conn = null;
-
+    // private static Connection conn = null;
     public static Connection connect() {
-        
+
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
@@ -32,16 +33,17 @@ public class DbConnection {
         } catch (Exception ex) {
             Log.error("DbConnection:33", ex.getMessage());
         }
+
         return null;
     }
 
     public static boolean delete(String tableName) {
-       Connection conn = DbConnection.connect();
+        Connection conn = DbConnection.connect();
         String sql = "DELETE FROM " + tableName;
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            boolean isDeleteSuccess= preparedStatement.execute();
+            boolean isDeleteSuccess = preparedStatement.execute();
             conn.close();
             return isDeleteSuccess;
 
@@ -64,10 +66,9 @@ public class DbConnection {
 //        }
 //
 //    }
-
     public static boolean deleteRow(String tableName, String columeName, String value) {
-       Connection conn = DbConnection.connect();
-        String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";       
+        Connection conn = DbConnection.connect();
+        String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
         try {
             Statement st = conn.createStatement();
             boolean isDelete = st.execute(sql);
@@ -94,16 +95,15 @@ public class DbConnection {
 //            return null;
 //        }
 //    }
-
     public static void disconnect(Connection conn) {
-       if (conn != null) {
+        if (conn != null) {
             try {
-               conn.close();
-           } catch (SQLException e) {
+                conn.close();
+            } catch (SQLException e) {
 
-           }
+            }
         }
 
-   }
+    }
 
 }
