@@ -345,22 +345,22 @@ public final class Login extends javax.swing.JFrame {
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
+                 new Login().setVisible(false);
                 if (login()) {
                     if (UserInfo.role.equals("demo")) {
-                        new Login().setVisible(false);                     
+                       
                         Home home = new Home();
                         home.setVisible(true);
                     } else {
-                        
-                        getModemPorts();
-                        new Login().setVisible(false);
-                        new ConfigrarationModemStartUp().show();
+                       
+                        Home home = new Home();
+                        home.setVisible(true);
+
                     }
 
-                } else {
-
+                } else{
+                 new Login().setVisible(true);
                 }
-
                 return null;
             }
 
@@ -450,6 +450,7 @@ public final class Login extends javax.swing.JFrame {
                     UserInfo.address = rs.getString("address");
                     UserInfo.name = rs.getString("name");
                     UserInfo.role = rs.getString("role");
+                    UserInfo.isDeviceReady = false;
 
                 }
                 UserInfo.userId = userId;
@@ -573,24 +574,6 @@ public final class Login extends javax.swing.JFrame {
 
     }
 
-    private void getModemPorts() {
-        System.out.println("step 4/12: Start Finding Modem port");
-        List<String> ports = Modem.getActivePortsList();
-
-        if (ports.isEmpty()) {
-            int res = Popup.customError("Modem Not Found..");
-            if (res == 0) {
-                System.exit(0);
-            }
-        } else {
-
-            ModemInfoList.portsList = ports;
-            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
-            //ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
-
-        }
-
-    }
 
     private void processingLoderDialog() {
 

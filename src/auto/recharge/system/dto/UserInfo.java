@@ -23,6 +23,7 @@ public class UserInfo {
     public static String address;
     public static String name;
     public static String role;
+     public static boolean isDeviceReady;
     
     
     

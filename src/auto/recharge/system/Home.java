@@ -118,7 +118,7 @@ public class Home extends javax.swing.JFrame {
     private final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
     private JDialog processtingLoderDialog;
     private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash"};
-    DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
+    private DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
     private final String TAG_TEST = "Home test: ";
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
     private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
@@ -214,7 +214,7 @@ public class Home extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         adsPanel = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel101 = new javax.swing.JLabel();
+        deviceStartStatus = new javax.swing.JLabel();
         clickInbox = new javax.swing.JButton();
         generateBarCode = new javax.swing.JButton();
         billPayPanel = new javax.swing.JPanel();
@@ -1305,9 +1305,8 @@ public class Home extends javax.swing.JFrame {
             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel101.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel101.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel101.setText("Licences DeadLine: 10-10-2020");
+        deviceStartStatus.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        deviceStartStatus.setForeground(new java.awt.Color(204, 0, 51));
 
         clickInbox.setBackground(new java.awt.Color(153, 0, 255));
         clickInbox.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -1337,7 +1336,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mobileRechargePanelLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel101, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deviceStartStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1427,8 +1426,8 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(adsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jLabel101)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(deviceStartStatus)
                 .addContainerGap())
         );
 
@@ -8639,6 +8638,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel detailsPanel;
     private javax.swing.JPanel detailsPanelInBillPay;
     private javax.swing.JPanel detailsTab;
+    private javax.swing.JLabel deviceStartStatus;
     private javax.swing.JLabel discountInProductSell;
     private javax.swing.JTextField discpuntInProductBill;
     private javax.swing.JTextField discpuntInProductWanrranty;
@@ -8740,7 +8740,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
@@ -9111,6 +9110,24 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
 
         } else {
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    deviceStartStatus.setText("Starting Device..");
+                    getModemPorts();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    deviceStartStatus.setText("");
+                    //  refrash();
+                    // loadValueInTableRechargeDetails();
+
+                }
+
+            };
+            worker.execute();
 
         }
     }
@@ -14209,6 +14226,24 @@ public class Home extends javax.swing.JFrame {
         } catch (URISyntaxException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    private void getModemPorts() {
+        System.out.println("step 4/12: Start Finding Modem port");
+        List<String> ports = Modem.getActivePortsList();
+
+        if (ports.isEmpty()) {
+            int res = Popup.customError("Modem Not Found..");
+            if (res == 0) {
+                System.exit(0);
+            }
+        } else {
+
+            ModemInfoList.portsList = ports;
+            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
+            //ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
+
+        }
+
     }
 
 }

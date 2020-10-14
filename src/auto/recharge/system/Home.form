@@ -668,7 +668,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jLabel101" min="-2" pref="234" max="-2" attributes="0"/>
+                                  <Component id="deviceStartStatus" min="-2" pref="234" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
@@ -786,8 +786,8 @@
                                   <Component id="adsPanel" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
-                          <Component id="jLabel101" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                          <Component id="deviceStartStatus" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1188,7 +1188,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel101">
+                <Component class="javax.swing.JLabel" name="deviceStartStatus">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="1"/>
@@ -1196,7 +1196,6 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="cc" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Licences DeadLine: 10-10-2020"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="clickInbox">

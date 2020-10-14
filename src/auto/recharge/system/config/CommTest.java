@@ -43,6 +43,7 @@ public class CommTest {
         try {
              System.out.println("step 11/12: Search modem COM Port");
             portsCommPortIdentifierList = getCleanPortIdentifiers();
+            
             RunningModemPort runningModemPort = new RunningModemPort(portsCommPortIdentifierList);
             runningModemPort.start();
             runningModemPort.join();
@@ -77,6 +78,8 @@ class RunningModemPort extends Thread {
             portId = portsCommPortIdentifierList.nextElement();
 
             if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+               
+          
                  System.out.println("step 12/10: Start COM Port testig for "+portId.getName());
 
                 _formatter.format("%nFound port: %-5s%n", portId.getName());
@@ -115,20 +118,20 @@ class RunningModemPort extends Thread {
                                 //  System.out.print("  Getting Info...");
                                 // System.out.println(portId.getName());
 
-                                outStream.write('A');
-                                outStream.write('T');
-                                outStream.write('+');
-                                outStream.write('C');
-                                outStream.write('G');
-                                outStream.write('M');
-                                outStream.write('M');
-                                outStream.write('\r');
-                                response = "";
-                                c = inStream.read();
-                                while (c != -1) {
-                                    response += (char) c;
-                                    c = inStream.read();
-                                }
+//                                outStream.write('A');
+//                                outStream.write('T');
+//                                outStream.write('+');
+//                                outStream.write('C');
+//                                outStream.write('G');
+//                                outStream.write('M');
+//                                outStream.write('M');
+//                                outStream.write('\r');
+//                                response = "";
+//                                c = inStream.read();
+//                                while (c != -1) {
+//                                    response += (char) c;
+//                                    c = inStream.read();
+//                                }
                                 ports.add(portId.getName());
                                 System.out.println(" Found: " + response.replaceAll("\\s+OK\\s+", "").replaceAll("\n", "").replaceAll("\r", ""));
                             } catch (Exception e) {
@@ -150,7 +153,7 @@ class RunningModemPort extends Thread {
                         }
                     }
                 }
-            }
+           }
 
         }
     }
