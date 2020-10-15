@@ -9114,7 +9114,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     deviceStartStatus.setText("Starting Device..");
-                    getModemPorts();
+                   // getModemPorts();
                     return null;
                 }
 
@@ -14227,23 +14227,4 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void getModemPorts() {
-        System.out.println("step 4/12: Start Finding Modem port");
-        List<String> ports = Modem.getActivePortsList();
-
-        if (ports.isEmpty()) {
-            int res = Popup.customError("Modem Not Found..");
-            if (res == 0) {
-                System.exit(0);
-            }
-        } else {
-
-            ModemInfoList.portsList = ports;
-            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
-            //ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
-
-        }
-
-    }
-
 }

@@ -345,21 +345,20 @@ public final class Login extends javax.swing.JFrame {
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
-                 new Login().setVisible(false);
+                new Login().setVisible(false);
                 if (login()) {
                     if (UserInfo.role.equals("demo")) {
-                       
                         Home home = new Home();
                         home.setVisible(true);
                     } else {
-                       
-                        Home home = new Home();
-                        home.setVisible(true);
-
+                     //   getModemPorts();
+                       new ConfigrarationModemStartUp().setVisible(true);
+//                        Home home = new Home();
+//                        home.setVisible(true);
                     }
-
-                } else{
-                 new Login().setVisible(true);
+                }
+                else {
+                    new Login().setVisible(true);
                 }
                 return null;
             }
@@ -598,5 +597,20 @@ public final class Login extends javax.swing.JFrame {
 
         return isAuthrizeMacAddress;
     }
+    private void getModemPorts() {
+        System.out.println("step 4/12: Start Finding Modem port");
+        List<String> ports = Modem.getActivePortsList();
 
+        if (ports.isEmpty()) {
+            int res = Popup.customError("Modem Not Found..");
+            if (res == 0) {
+                System.exit(0);
+            }
+        } else {
+            ModemInfoList.portsList = ports;
+            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
+            ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
+        }
+
+    }
 }
