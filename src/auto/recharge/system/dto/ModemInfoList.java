@@ -15,7 +15,7 @@ import java.util.Set;
 public class ModemInfoList {
     public static List<String> portsList;
     public static Set<SimOperatorIdentifierDto> simOperatorIdentifiers;
-
+    public static List<MobileRechargeBalance> mobileRechargeBalance;
 
     
 }

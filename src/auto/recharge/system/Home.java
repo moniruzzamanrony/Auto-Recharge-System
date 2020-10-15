@@ -9,6 +9,7 @@ import auto.recharge.system.config.MobileRechargeDetailsComparator;
 import auto.recharge.system.dto.ContractResponse;
 import auto.recharge.system.dto.GroupRechargeResponse;
 import auto.recharge.system.dto.MobileBankingBalanceShowDto;
+import auto.recharge.system.dto.MobileRechargeBalance;
 import auto.recharge.system.dto.MobileRechargeDetailsDto;
 import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.Products;
@@ -22,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -134,23 +136,18 @@ public class Home extends javax.swing.JFrame {
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
         this.setTitle("Auto Recharge System");
-        setFocusInMobileRechargePanel();
 
-        loadValueInTableRechargeDetails();
         refrash();
         placeHoderSetter();
         setBorderInManuBar();
         suggList.setModel(defaultListModel);
         popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-        showMobileRechargeBalance();
-        processRequestFromMobileRechargeQueue();
 
         startUpApplicationBaseOnRole();
+        
+        displayConfig();
 
-        //Need Modem
-        //setCuurentActiveNetworksFromModem();
-        //loadActiveOperatorNameInComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -179,8 +176,8 @@ public class Home extends javax.swing.JFrame {
         icon4 = new javax.swing.JLabel();
         title4 = new javax.swing.JLabel();
         helplineTab = new javax.swing.JPanel();
-        icon5 = new javax.swing.JLabel();
         title5 = new javax.swing.JLabel();
+        icon5 = new javax.swing.JLabel();
         bodyPanel = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         headerLabel = new javax.swing.JLabel();
@@ -760,30 +757,13 @@ public class Home extends javax.swing.JFrame {
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_header.png"))); // NOI18N
+        logoPanel.add(jLabel55);
 
-        javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
-        logoPanel.setLayout(logoPanelLayout);
-        logoPanelLayout.setHorizontalGroup(
-            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 212, Short.MAX_VALUE)
-            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(logoPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 144, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        logoPanelLayout.setVerticalGroup(
-            logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
-            .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(logoPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
-        );
+        menuPanel.add(logoPanel);
 
         mobileRechargeTab.setBackground(new java.awt.Color(255, 255, 255));
         mobileRechargeTab.setForeground(new java.awt.Color(153, 153, 255));
+        mobileRechargeTab.setPreferredSize(new java.awt.Dimension(200, 150));
         mobileRechargeTab.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 mobileRechargeTabMouseMoved(evt);
@@ -814,18 +794,28 @@ public class Home extends javax.swing.JFrame {
         mobileRechargeTab.setLayout(mobileRechargeTabLayout);
         mobileRechargeTabLayout.setHorizontalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(mobileRechargeTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(mobileRechargeTabLayout.createSequentialGroup()
+                        .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         mobileRechargeTabLayout.setVerticalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mobileRechargeTabLayout.createSequentialGroup()
-                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
+        menuPanel.add(mobileRechargeTab);
+
         billPaymentTab.setBackground(new java.awt.Color(133, 47, 209));
+        billPaymentTab.setPreferredSize(new java.awt.Dimension(200, 150));
         billPaymentTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 billPaymentTabMouseClicked(evt);
@@ -851,19 +841,26 @@ public class Home extends javax.swing.JFrame {
         billPaymentTab.setLayout(billPaymentTabLayout);
         billPaymentTabLayout.setHorizontalGroup(
             billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(billPaymentTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
         );
         billPaymentTabLayout.setVerticalGroup(
             billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPaymentTabLayout.createSequentialGroup()
-                .addComponent(icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icon1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(title1)
+                .addContainerGap())
         );
 
+        menuPanel.add(billPaymentTab);
+
         detailsTab.setBackground(new java.awt.Color(133, 47, 209));
+        detailsTab.setPreferredSize(new java.awt.Dimension(200, 150));
         detailsTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 detailsTabMouseClicked(evt);
@@ -888,19 +885,29 @@ public class Home extends javax.swing.JFrame {
         detailsTab.setLayout(detailsTabLayout);
         detailsTabLayout.setHorizontalGroup(
             detailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title3, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-            .addComponent(icon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(detailsTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+            .addGroup(detailsTabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsTabLayout.setVerticalGroup(
             detailsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsTabLayout.createSequentialGroup()
-                .addComponent(icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title3)
+                .addContainerGap())
         );
 
+        menuPanel.add(detailsTab);
+
         settingTab.setBackground(new java.awt.Color(133, 47, 209));
+        settingTab.setPreferredSize(new java.awt.Dimension(200, 150));
         settingTab.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingTabMouseClicked(evt);
@@ -925,17 +932,26 @@ public class Home extends javax.swing.JFrame {
         settingTab.setLayout(settingTabLayout);
         settingTabLayout.setHorizontalGroup(
             settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(title4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(settingTabLayout.createSequentialGroup()
+                .addGroup(settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settingTabLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(icon4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(settingTabLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(title4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         settingTabLayout.setVerticalGroup(
             settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settingTabLayout.createSequentialGroup()
-                .addComponent(icon4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(icon4, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(title4))
         );
+
+        menuPanel.add(settingTab);
 
         helplineTab.setBackground(new java.awt.Color(133, 47, 209));
         helplineTab.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -950,9 +966,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        icon5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/helpline.png"))); // NOI18N
-
         title5.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         title5.setForeground(new java.awt.Color(255, 255, 255));
         title5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -962,45 +975,22 @@ public class Home extends javax.swing.JFrame {
         helplineTab.setLayout(helplineTabLayout);
         helplineTabLayout.setHorizontalGroup(
             helplineTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(title5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(helplineTabLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(title5))
         );
         helplineTabLayout.setVerticalGroup(
             helplineTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helplineTabLayout.createSequentialGroup()
-                .addComponent(icon5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(5, 5, 5)
+                .addComponent(title5))
         );
 
-        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
-        menuPanel.setLayout(menuPanelLayout);
-        menuPanelLayout.setHorizontalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(detailsTab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(settingTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(helplineTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(mobileRechargeTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(billPaymentTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        menuPanelLayout.setVerticalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addComponent(logoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mobileRechargeTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(billPaymentTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(detailsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(settingTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(helplineTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        menuPanel.add(helplineTab);
+
+        icon5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/helpline.png"))); // NOI18N
+        menuPanel.add(icon5);
 
         bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1373,7 +1363,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(522, 522, 522)
                                 .addComponent(jLabel9))
                             .addComponent(jScrollPane2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 732, Short.MAX_VALUE)
                         .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(adsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1511,7 +1501,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 846, Short.MAX_VALUE)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(hoverViewrocket, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
@@ -1544,7 +1534,7 @@ public class Home extends javax.swing.JFrame {
         resellerPanel.setLayout(resellerPanelLayout);
         resellerPanelLayout.setHorizontalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1603, Short.MAX_VALUE)
+            .addGap(0, 2290, Short.MAX_VALUE)
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3818,7 +3808,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1326, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(detailsPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(todaySellSamary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(detailsPanelLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -4035,7 +4025,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(myProfilePanelLayout.createSequentialGroup()
                 .addGap(261, 261, 261)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(974, Short.MAX_VALUE))
         );
         myProfilePanelLayout.setVerticalGroup(
             myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4106,7 +4096,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(systemBackupPanelLayout.createSequentialGroup()
                 .addGap(396, 396, 396)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(479, Short.MAX_VALUE))
+                .addContainerGap(1140, Short.MAX_VALUE))
         );
         systemBackupPanelLayout.setVerticalGroup(
             systemBackupPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4196,7 +4186,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(passwordChangePanelLayout.createSequentialGroup()
                 .addGap(332, 332, 332)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(358, Short.MAX_VALUE))
+                .addContainerGap(1053, Short.MAX_VALUE))
         );
         passwordChangePanelLayout.setVerticalGroup(
             passwordChangePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4338,7 +4328,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(trustedEmployeePanelLayout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(907, Short.MAX_VALUE))
         );
         trustedEmployeePanelLayout.setVerticalGroup(
             trustedEmployeePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4586,7 +4576,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MobileBankingSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1580, Short.MAX_VALUE)
                     .addComponent(jLabel86, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4727,7 +4717,7 @@ public class Home extends javax.swing.JFrame {
         rechargeOfferPanelLayout.setHorizontalGroup(
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeOfferPanelLayout.createSequentialGroup()
-                .addContainerGap(280, Short.MAX_VALUE)
+                .addContainerGap(941, Short.MAX_VALUE)
                 .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(200, 200, 200))
         );
@@ -5203,7 +5193,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(helplinePanelLayout.createSequentialGroup()
                 .addGap(207, 207, 207)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addContainerGap(985, Short.MAX_VALUE))
         );
         helplinePanelLayout.setVerticalGroup(
             helplinePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5417,7 +5407,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(alartMessageText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 960, Short.MAX_VALUE)
                         .addComponent(serchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(contractListPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -6572,9 +6562,9 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6657,46 +6647,6 @@ public class Home extends javax.swing.JFrame {
         settingTab.setBackground(new Color(133, 47, 209));
     }//GEN-LAST:event_helplineTabMouseClicked
 
-    private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
-
-        switchPanelViaMenu(ussdDialPanel);
-        getUssdCode.requestFocusInWindow();
-        refrash();
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-                getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-            });
-        }
-        addKeyLIsenerInUssdDailPad();
-    }//GEN-LAST:event_clickUssdDailActionPerformed
-
-    private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
-        switchPanelViaMenu(groupLoadPanel);
-        getSelectedSimInGroupRecharge1.removeAllItems();
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
-            }
-
-        }
-        sendingLogLabel.setVisible(false);
-        loadDataInGroupRechargeTable();
-        focusAndKeyboardUsedInGroupRecharge();
-    }//GEN-LAST:event_clickGroupLoadActionPerformed
-
-    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            simSimOfferDialog();
-        }
-    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
-
     private void mobileRechargeTabMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseMoved
 
     }//GEN-LAST:event_mobileRechargeTabMouseMoved
@@ -6759,38 +6709,6 @@ public class Home extends javax.swing.JFrame {
     private void helplineTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseExited
         //  hoverRemove(helplineTab);
     }//GEN-LAST:event_helplineTabMouseExited
-
-    private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-        }
-
-        switchPanelViaMenu(contractListPanel);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                setContractListInJTable();
-                System.out.println("Contract Searching...");
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                getNameForSearch.setText("");
-                getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-                getNameForSearch.requestFocusInWindow();
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Fatching Successful...");
-            }
-
-        };
-        swingWorker.execute();
-
-
-    }//GEN-LAST:event_clickContactListMouseClicked
 
     private void myProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myProfileMouseClicked
         switchPanelViaSettings(myProfilePanel, myProfile);
@@ -6906,31 +6824,6 @@ public class Home extends javax.swing.JFrame {
             switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
         }
     }//GEN-LAST:event_clickAddNewManagementActionPerformed
-
-    private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-            String phoneNumberRequested = getMobileNumber.getText();
-            String ammountRequested = getAmmountInTk.getText();
-
-            if (!phoneNumberRequested.equals("")
-                    && !ammountRequested.equals("")
-                    && phoneNumberRequested.matches("[0-9]+")
-                    && ammountRequested.matches("[0-9]+")) {
-
-                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
-
-                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-            } else {
-                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-
-            }
-        }
-    }//GEN-LAST:event_clickSendMouseClicked
 
     private void backToMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRechargeMouseClicked
         switchPanelViaMenu(mobileRechargePanel);
@@ -7159,30 +7052,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_backToUssdManengementPanel1AncestorAdded
 
-    private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
-        removePlaceHolder(getMobileNumber, "Mobile Number");
-    }//GEN-LAST:event_getMobileNumberFocusGained
-
-    private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
-        setPlaceHolder(getMobileNumber, "Mobile Number");
-    }//GEN-LAST:event_getMobileNumberFocusLost
-
-    private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
-        removePlaceHolder(getAmmountInTk, "Ammount");
-    }//GEN-LAST:event_getAmmountInTkFocusGained
-
-    private void getAmmountInTkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusLost
-        setPlaceHolder(getAmmountInTk, "Ammount");
-    }//GEN-LAST:event_getAmmountInTkFocusLost
-
-    private void getSeletedOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedOperatorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
-
-    private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getAmmountInTkActionPerformed
-
     private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_menuPanelMouseClicked
@@ -7222,27 +7091,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getBalenceUssdPartern3ActionPerformed
 
-    private void getMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberKeyReleased
-        if (getMobileNumber.getText().equals("")) {
-            popupForSuggestManu.setVisible(false);
-        } else {
-
-            if (searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText()).isEmpty()) {
-                popupForSuggestManu.setVisible(false);
-            } else {
-                popupForSuggestManu.setVisible(true);
-                defaultListModel.removeAllElements();
-                popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
-                searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
-                        .stream().forEach(number -> {
-                            defaultListModel.addElement(number);
-                        });
-
-            }
-
-        }
-    }//GEN-LAST:event_getMobileNumberKeyReleased
-
     private void suggListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suggListMouseClicked
         getMobileNumber.setText(suggList.getSelectedValue());
         popupForSuggestManu.setVisible(false);
@@ -7256,10 +7104,6 @@ public class Home extends javax.swing.JFrame {
 
         searchByName(contractList, getNameForSearch.getText());
     }//GEN-LAST:event_getNameForSearchKeyReleased
-
-    private void clickContactListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactListMouseEntered
 
     private void saveNewOfferInSettringsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewOfferInSettringsActionPerformed
         if (UserInfo.role.equals("demo")) {
@@ -7493,10 +7337,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getPhoneNumberInBillPaymentActionPerformed
 
-    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getMobileNumberActionPerformed
-
     private void clickBillPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseExited
         hoverRemoveInBillPayPanel(hoverViewrocket);
     }//GEN-LAST:event_clickBillPaymentMouseExited
@@ -7688,62 +7528,6 @@ public class Home extends javax.swing.JFrame {
     private void resetnUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetnUsingCustomerIdActionPerformed
         resetBillByCustomerId();
     }//GEN-LAST:event_resetnUsingCustomerIdActionPerformed
-
-    private void tableRechargeDetailsShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRechargeDetailsShowMouseClicked
-        String mgs, userId, phoneNumberText;
-        Point point = evt.getPoint();
-        int column = tableRechargeDetailsShow.columnAtPoint(point);
-        int row = tableRechargeDetailsShow.rowAtPoint(point);
-        mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
-        userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
-        phoneNumberText = tableRechargeDetailsShow.getValueAt(row, 3).toString();
-        String ammountText = tableRechargeDetailsShow.getValueAt(row, 4).toString();
-        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
-
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                getMobileNumber.setText(phoneNumberText);
-                getMobileNumber.setForeground(Color.black);
-                getAmmountInTk.setText(ammountText);
-                getAmmountInTk.setForeground(Color.black);
-
-                deleteColumeFromRechargeDetails(userId);
-                mgsDialog.setVisible(false);
-            }
-
-        });
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-    }//GEN-LAST:event_tableRechargeDetailsShowMouseClicked
 
     private void tableMobileBankingSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingSettingMouseClicked
         String userId;
@@ -7974,14 +7758,6 @@ public class Home extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_clickUpdatePasswordActionPerformed
-
-    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_clickInboxActionPerformed
 
     private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
         // TODO add your handling code here:
@@ -8380,14 +8156,6 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
-        }
-    }//GEN-LAST:event_generateBarCodeActionPerformed
-
     private void invoiceInProductWarrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductWarrantyKeyReleased
         if (UserInfo.role.equals("demo")) {
 
@@ -8477,6 +8245,227 @@ public class Home extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
+        }
+    }//GEN-LAST:event_generateBarCodeActionPerformed
+
+    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickInboxActionPerformed
+
+    private void tableRechargeDetailsShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRechargeDetailsShowMouseClicked
+        String mgs, userId, phoneNumberText;
+        Point point = evt.getPoint();
+        int column = tableRechargeDetailsShow.columnAtPoint(point);
+        int row = tableRechargeDetailsShow.rowAtPoint(point);
+        mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
+        userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
+        phoneNumberText = tableRechargeDetailsShow.getValueAt(row, 3).toString();
+        String ammountText = tableRechargeDetailsShow.getValueAt(row, 4).toString();
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
+
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 254);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickRetry().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                getMobileNumber.setText(phoneNumberText);
+                getMobileNumber.setForeground(Color.black);
+                getAmmountInTk.setText(ammountText);
+                getAmmountInTk.setForeground(Color.black);
+
+                deleteColumeFromRechargeDetails(userId);
+                mgsDialog.setVisible(false);
+            }
+
+        });
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
+    }//GEN-LAST:event_tableRechargeDetailsShowMouseClicked
+
+    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            simSimOfferDialog();
+        }
+    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
+
+    private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
+        switchPanelViaMenu(groupLoadPanel);
+        getSelectedSimInGroupRecharge1.removeAllItems();
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+            }
+
+        }
+        sendingLogLabel.setVisible(false);
+        loadDataInGroupRechargeTable();
+        focusAndKeyboardUsedInGroupRecharge();
+    }//GEN-LAST:event_clickGroupLoadActionPerformed
+
+    private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
+
+        switchPanelViaMenu(ussdDialPanel);
+        getUssdCode.requestFocusInWindow();
+        refrash();
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
+                getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
+            });
+        }
+        addKeyLIsenerInUssdDailPad();
+    }//GEN-LAST:event_clickUssdDailActionPerformed
+
+    private void clickContactListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactListMouseEntered
+
+    private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+
+        switchPanelViaMenu(contractListPanel);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                processtingLoderDialog.setVisible(true);
+                setContractListInJTable();
+                System.out.println("Contract Searching...");
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                getNameForSearch.setText("");
+                getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+                getNameForSearch.requestFocusInWindow();
+                processtingLoderDialog.setVisible(false);
+                System.out.println("Fatching Successful...");
+            }
+
+        };
+        swingWorker.execute();
+
+    }//GEN-LAST:event_clickContactListMouseClicked
+
+    private void getMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberKeyReleased
+        if (getMobileNumber.getText().equals("")) {
+            popupForSuggestManu.setVisible(false);
+        } else {
+
+            if (searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText()).isEmpty()) {
+                popupForSuggestManu.setVisible(false);
+            } else {
+                popupForSuggestManu.setVisible(true);
+                defaultListModel.removeAllElements();
+                popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
+                searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
+                .stream().forEach(number -> {
+                    defaultListModel.addElement(number);
+                });
+
+            }
+
+        }
+    }//GEN-LAST:event_getMobileNumberKeyReleased
+
+    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getMobileNumberActionPerformed
+
+    private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
+        setPlaceHolder(getMobileNumber, "Mobile Number");
+    }//GEN-LAST:event_getMobileNumberFocusLost
+
+    private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
+        removePlaceHolder(getMobileNumber, "Mobile Number");
+    }//GEN-LAST:event_getMobileNumberFocusGained
+
+    private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getAmmountInTkActionPerformed
+
+    private void getAmmountInTkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusLost
+        setPlaceHolder(getAmmountInTk, "Ammount");
+    }//GEN-LAST:event_getAmmountInTkFocusLost
+
+    private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
+        removePlaceHolder(getAmmountInTk, "Ammount");
+    }//GEN-LAST:event_getAmmountInTkFocusGained
+
+    private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+            String phoneNumberRequested = getMobileNumber.getText();
+            String ammountRequested = getAmmountInTk.getText();
+
+            if (!phoneNumberRequested.equals("")
+                && !ammountRequested.equals("")
+                && phoneNumberRequested.matches("[0-9]+")
+                && ammountRequested.matches("[0-9]+")) {
+
+                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+
+                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+            } else {
+                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+
+            }
+        }
+    }//GEN-LAST:event_clickSendMouseClicked
+
+    private void getSeletedOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedOperatorNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -9113,16 +9102,18 @@ public class Home extends javax.swing.JFrame {
             SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                 @Override
                 protected Void doInBackground() throws Exception {
-                    deviceStartStatus.setText("Starting Device..");
-                   // getModemPorts();
+                    setCuurentActiveNetworksFromModem();
+                    loadActiveOperatorNameInComboBox();
+                    processRequestFromMobileRechargeQueue();
+                    collectInitialSIMBalance();
+                    showMobileRechargeBalance();
+                    loadValueInTableRechargeDetails();
+                    setFocusInMobileRechargePanel();
                     return null;
                 }
 
                 @Override
                 protected void done() {
-                    deviceStartStatus.setText("");
-                    //  refrash();
-                    // loadValueInTableRechargeDetails();
 
                 }
 
@@ -9972,7 +9963,17 @@ public class Home extends javax.swing.JFrame {
                                 responseArray = response.split(",");
                                 System.err.println();
                                 statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+
+                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
+                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
+                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
+                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
+                                        mobileRechargeBalance.setSimBalance(cBalance);
+                                    }
+                                    balanceUpdatePaseList.add(mobileRechargeBalance);
+                                }
+                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
+                                loadValueInTableRechargeDetails();
                             } else {
                                 cBalance = "Failed";
                                 statusMgs = "Failed";
@@ -9990,7 +9991,16 @@ public class Home extends javax.swing.JFrame {
                                 responseArray = response.split(",");
                                 System.err.println();
                                 statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
+                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
+                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
+                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
+                                        mobileRechargeBalance.setSimBalance(cBalance);
+                                    }
+                                    balanceUpdatePaseList.add(mobileRechargeBalance);
+                                }
+                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
+                                loadValueInTableRechargeDetails();
                             } else {
                                 cBalance = "Failed";
                                 statusMgs = "Failed";
@@ -10008,7 +10018,16 @@ public class Home extends javax.swing.JFrame {
                                 responseArray = response.split(",");
                                 System.err.println();
                                 statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                cBalance = getCurrentBalance(selectedPayableSIM.toUpperCase());
+                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
+                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
+                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
+                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
+                                        mobileRechargeBalance.setSimBalance(cBalance);
+                                    }
+                                    balanceUpdatePaseList.add(mobileRechargeBalance);
+                                }
+                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
+                                loadValueInTableRechargeDetails();
                             } else {
                                 cBalance = "Failed";
                                 statusMgs = "Failed";
@@ -10422,57 +10441,16 @@ public class Home extends javax.swing.JFrame {
 //SIM Balance Update 
     private void addBalenceInBalenceShowTable() {
         DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
-        List<String> balancePaseList = new ArrayList<>();
+
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
+            for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
+                defaultTableModel.addRow(new String[]{mobileRechargeBalance.getSimName(), mobileRechargeBalance.getSimBalance() + " Tk"});
+            }
 
-            ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
-                Connection conn = DbConnection.connect();
-                try {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `command`";
-                    ResultSet rs = st.executeQuery(sql);
-                    while (rs.next()) {
-                        if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
-                                + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
-                                + ")".toUpperCase())) {
-                            String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
-                            Configaration.wait(200);
-                            Configaration.closeUssdSession();
-                            System.out.println(auto.recharge.system.config.Modem.disconnect());
-                            String[] value = balanceMgs.split(",");
-
-                            System.out.println(value.length);
-                            if (value.length == 1) {
-                                errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
-                                defaultTableModel.addRow(new String[]{rs.getString("operator_name"), "Failed"});
-                                errorMgsInBalencePanel.setVisible(true);
-                            } else {
-                                String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
-                                Pattern p = Pattern.compile("\\d+");
-                                Matcher m = p.matcher(balance);
-                                while (m.find()) {
-                                    balancePaseList.add(m.group());
-                                    System.out.println(m.group());
-                                }
-
-                                defaultTableModel.addRow(new String[]{rs.getString("operator_name"), balancePaseList.get(0) + " Tk"});
-                                errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
-                            }
-                        }
-                    }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-
-                    DbConnection.disconnect(conn);
-                }
-            });
+            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
         }
         tableShowSimBalence.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tableShowSimBalence.getTableHeader().setOpaque(false);
@@ -14226,5 +14204,69 @@ public class Home extends javax.swing.JFrame {
         } catch (URISyntaxException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void collectInitialSIMBalance() {
+        errorMgsInBalencePanel.setText("Processing...");
+        List<String> balancePaseList = new ArrayList<>();
+        List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
+        ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
+            Connection conn = DbConnection.connect();
+            try {
+                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `command`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
+                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
+                            + ")".toUpperCase())) {
+                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
+                        Configaration.wait(200);
+                        Configaration.closeUssdSession();
+                        System.out.println(auto.recharge.system.config.Modem.disconnect());
+                        String[] value = balanceMgs.split(",");
+
+                        System.out.println(value.length);
+                        if (value.length == 1) {
+                            errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
+
+                            errorMgsInBalencePanel.setVisible(true);
+                        } else {
+                            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
+                            Pattern p = Pattern.compile("\\d+");
+                            Matcher m = p.matcher(balance);
+                            while (m.find()) {
+                                balancePaseList.add(m.group());
+                                System.out.println(m.group());
+                            }
+
+                        }
+                        MobileRechargeBalance mobileRechargeBalance = new MobileRechargeBalance();
+                        mobileRechargeBalance.setPhoneNumber(simOperatorIdentifierDto.getOwnPhoneNumber());
+                        mobileRechargeBalance.setSimName(rs.getString("operator_name"));
+                        mobileRechargeBalance.setSimBalance(balancePaseList.get(0));
+                        mobileRechargeBalanceList.add(mobileRechargeBalance);
+                    }
+                }
+                ModemInfoList.mobileRechargeBalance = mobileRechargeBalanceList;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+
+                DbConnection.disconnect(conn);
+            }
+        });
+    }
+
+    private void displayConfig() {
+        // java - get screen size using the Toolkit class
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setPreferredSize(new Dimension(screenHeight,screenWidth));
+        
     }
 }
