@@ -9,27 +9,21 @@ import auto.recharge.system.config.MobileRechargeDetailsComparator;
 import auto.recharge.system.dto.*;
 import auto.recharge.system.enumClasses.UssdRequestType;
 import com.itvillage.AES;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.commons.lang3.StringUtils;
+import org.jdesktop.swingx.border.DropShadowBorder;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.font.TextAttribute;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
@@ -38,61 +32,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.AbstractList;
-import java.util.ArrayList;
+import java.sql.*;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.Queue;
-import java.util.Set;
-import java.util.UUID;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.AbstractAction;
-import javax.swing.ActionMap;
-import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.InputMap;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.KeyStroke;
-import javax.swing.SwingConstants;
-import javax.swing.SwingWorker;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import org.apache.commons.lang3.StringUtils;
-import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Home extends javax.swing.JFrame {
 
@@ -120,7 +69,9 @@ public class Home extends javax.swing.JFrame {
     private Double discountInSellProduct = 0.0;
     private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
     int countForSellTable = 0;
-    private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos= new HashSet<>();
+    private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
+    private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
+
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -136,10 +87,1869 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
 
         startUpApplicationBaseOnRole();
-        
+
         displayConfig();
 
     }
+
+    private javax.swing.JLabel back1;
+
+    private void billPaymentTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseClicked
+        switchPanelViaMenu(billPayPanel, billPaymentTab, title1, icon1, "money_color", "Bill Payment");
+
+        colorSwitcherWithRegular(title, icon, "payment");
+        // colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title3, icon3, "details");
+        colorSwitcherWithRegular(title4, icon4, "settings_1");
+        colorSwitcherWithRegular(title5, icon5, "helpline");
+
+        mobileRechargeTab.setBackground(new Color(133, 47, 209));
+        // resellerTab.setBackground(new Color(133, 47, 209));
+        detailsTab.setBackground(new Color(133, 47, 209));
+        settingTab.setBackground(new Color(133, 47, 209));
+        helplineTab.setBackground(new Color(133, 47, 209));
+
+    }//GEN-LAST:event_billPaymentTabMouseClicked
+
+    private void detailsTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseClicked
+        switchPanelViaMenu(detailsPanel, detailsTab, title3, icon3, "details_color", "Details");
+
+        colorSwitcherWithRegular(title, icon, "payment");
+        colorSwitcherWithRegular(title1, icon1, "money");
+        // colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title4, icon4, "settings_1");
+        colorSwitcherWithRegular(title5, icon5, "helpline");
+
+        mobileRechargeTab.setBackground(new Color(133, 47, 209));
+        // resellerTab.setBackground(new Color(133, 47, 209));
+        billPaymentTab.setBackground(new Color(133, 47, 209));
+        settingTab.setBackground(new Color(133, 47, 209));
+        helplineTab.setBackground(new Color(133, 47, 209));
+
+        processtingLoderDialog.setVisible(false);
+        setupTabsInShopManagment();
+
+
+    }//GEN-LAST:event_detailsTabMouseClicked
+
+    private void settingTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseClicked
+        switchPanelViaMenu(settingsPanel1, settingTab, title4, icon4, "settings_color", "Settings");
+
+        colorSwitcherWithRegular(title, icon, "payment");
+        colorSwitcherWithRegular(title1, icon1, "money");
+        //colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title3, icon3, "details");
+        colorSwitcherWithRegular(title5, icon5, "helpline");
+
+        mobileRechargeTab.setBackground(new Color(133, 47, 209));
+        //  resellerTab.setBackground(new Color(133, 47, 209));
+        detailsTab.setBackground(new Color(133, 47, 209));
+        billPaymentTab.setBackground(new Color(133, 47, 209));
+        helplineTab.setBackground(new Color(133, 47, 209));
+        setDataInProfilePanel();
+    }//GEN-LAST:event_settingTabMouseClicked
+
+    private void helplineTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseClicked
+        switchPanelViaMenu(helplinePanel, helplineTab, title5, icon5, "helpline_color", "Help Line");
+
+        colorSwitcherWithRegular(title, icon, "payment");
+        colorSwitcherWithRegular(title1, icon1, "money");
+        // colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title3, icon3, "details");
+        colorSwitcherWithRegular(title4, icon4, "settings_1");
+
+        mobileRechargeTab.setBackground(new Color(133, 47, 209));
+        // resellerTab.setBackground(new Color(133, 47, 209));
+        detailsTab.setBackground(new Color(133, 47, 209));
+        billPaymentTab.setBackground(new Color(133, 47, 209));
+        settingTab.setBackground(new Color(133, 47, 209));
+    }//GEN-LAST:event_helplineTabMouseClicked
+
+    private void mobileRechargeTabMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseMoved
+
+    }//GEN-LAST:event_mobileRechargeTabMouseMoved
+
+    private void mobileRechargeTabHover(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabHover
+        //hover(mobileRechargeTab);
+    }//GEN-LAST:event_mobileRechargeTabHover
+
+    private void mobileRechargeTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseExited
+        // hoverRemove(mobileRechargeTab);
+    }//GEN-LAST:event_mobileRechargeTabMouseExited
+
+    private void mobileRechargeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseClicked
+        switchPanelViaMenu(mobileRechargePanel, mobileRechargeTab, title, icon, "payment_color", "Mobile Recharge");
+
+        colorSwitcherWithRegular(title1, icon1, "money");
+        // colorSwitcherWithRegular(title2, icon2, "reseller");
+        colorSwitcherWithRegular(title3, icon3, "details");
+        colorSwitcherWithRegular(title4, icon4, "settings_1");
+        colorSwitcherWithRegular(title5, icon5, "helpline");
+
+        //  resellerTab.setBackground(new Color(133, 47, 209));
+        billPaymentTab.setBackground(new Color(133, 47, 209));
+        detailsTab.setBackground(new Color(133, 47, 209));
+        settingTab.setBackground(new Color(133, 47, 209));
+        helplineTab.setBackground(new Color(133, 47, 209));
+
+        setFocusInMobileRechargePanel();
+
+    }//GEN-LAST:event_mobileRechargeTabMouseClicked
+
+    private void billPaymentTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseEntered
+        // hover(billPaymentTab);
+    }//GEN-LAST:event_billPaymentTabMouseEntered
+
+    private void billPaymentTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseExited
+        // hoverRemove(billPaymentTab);
+    }//GEN-LAST:event_billPaymentTabMouseExited
+
+    private void detailsTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseEntered
+        //hover(detailsTab);
+    }//GEN-LAST:event_detailsTabMouseEntered
+
+    private void detailsTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseExited
+        // hoverRemove(detailsTab);
+    }//GEN-LAST:event_detailsTabMouseExited
+
+    private void settingTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseEntered
+        // hover(settingTab);
+    }//GEN-LAST:event_settingTabMouseEntered
+
+    private void settingTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseExited
+        // hoverRemove(settingTab);
+    }//GEN-LAST:event_settingTabMouseExited
+
+    private void helplineTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseEntered
+        //  hover(helplineTab);
+    }//GEN-LAST:event_helplineTabMouseEntered
+
+    private void helplineTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseExited
+        //  hoverRemove(helplineTab);
+    }//GEN-LAST:event_helplineTabMouseExited
+
+    private void myProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myProfileMouseClicked
+        switchPanelViaSettings(myProfilePanel, myProfile);
+        systemBackup.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+        setDataInProfilePanel();
+    }//GEN-LAST:event_myProfileMouseClicked
+
+    private void systemBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_systemBackupMouseClicked
+        switchPanelViaSettings(systemBackupPanel, systemBackup);
+        myProfile.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+    }//GEN-LAST:event_systemBackupMouseClicked
+
+    private void passwordChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordChangeMouseClicked
+        switchPanelViaSettings(passwordChangePanel, passwordChange);
+        myProfile.setForeground(Color.black);
+        systemBackup.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+
+        addKeyLisenerInPasswordChargePanel();
+    }//GEN-LAST:event_passwordChangeMouseClicked
+
+    private void trustedEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trustedEmployeeMouseClicked
+        switchPanelViaSettings(trustedEmployeePanel, trustedEmployee);
+        myProfile.setForeground(Color.black);
+        systemBackup.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+    }//GEN-LAST:event_trustedEmployeeMouseClicked
+
+    private void rechargeSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechargeSettingsMouseClicked
+        switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
+        myProfile.setForeground(Color.black);
+        systemBackup.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+        System.err.println("fdgdfg");
+        loadValuesForUssdManagementTable();
+    }//GEN-LAST:event_rechargeSettingsMouseClicked
+
+    private void mobileBankingSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingSettingsMouseClicked
+
+        switchPanelViaSettings(MobileBankingSettingsPanel, mobileBankingSettings);
+        myProfile.setForeground(Color.black);
+        systemBackup.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        rechargeOffers.setForeground(Color.black);
+        loadTableMobileBankingSettingFromDb();
+        getSelectedSIMNameCombo.removeAllItems();
+        getSelectedServiceCombo.removeAllItems();
+        for (String mBank : MOBILE_BANKING_NANE) {
+            getSelectedServiceCombo.addItem(mBank);
+        }
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+                }
+            }
+        }
+        addKeyLisenerInMobileBankingSetting();
+    }//GEN-LAST:event_mobileBankingSettingsMouseClicked
+
+    private void rechargeOffersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechargeOffersMouseClicked
+
+        switchPanelViaSettings(rechargeOfferPanel, rechargeOffers);
+        myProfile.setForeground(Color.black);
+        systemBackup.setForeground(Color.black);
+        passwordChange.setForeground(Color.black);
+        trustedEmployee.setForeground(Color.black);
+        rechargeSettings.setForeground(Color.black);
+        mobileBankingSettings.setForeground(Color.black);
+
+        getSIMOperatorName.removeAllItems();
+        for (String string : SIM_OPERATORS_NAME) {
+            getSIMOperatorName.addItem(string);
+
+        }
+        addKeyListenserInRechargeOffer();
+    }//GEN-LAST:event_rechargeOffersMouseClicked
+
+    private void clickAddNewManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddNewManagementActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            resetComboBox(getOparetorNameInDropDown);
+            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
+                getOparetorNameInDropDown.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
+            });
+            switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
+        }
+    }//GEN-LAST:event_clickAddNewManagementActionPerformed
+
+    private void backToMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRechargeMouseClicked
+        switchPanelViaMenu(mobileRechargePanel);
+        processtingLoderDialog.setVisible(true);
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+
+                closeUssdSession();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+            }
+
+        };
+        swingWorker.execute();
+
+
+    }//GEN-LAST:event_backToMobileRechargeMouseClicked
+
+    private void clickUssdSessionCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdSessionCloseActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            processtingLoderDialog.setVisible(true);
+            clickUssdSessionClose.setEnabled(false);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+
+                    closeUssdSession();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    clickUssdSessionClose.setEnabled(true);
+                }
+
+            };
+            swingWorker.execute();
+        }
+
+    }//GEN-LAST:event_clickUssdSessionCloseActionPerformed
+
+    private void clickUssdDailDorSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSend1ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            clickUssdDailDorSend1.setEnabled(false);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+
+                    if (getUssdCode.getText().equals("")) {
+                        getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                    } else {
+                        processtingLoderDialog.setVisible(true);
+                        ussdDial();
+                        getUssdCode.setText("");
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    getUssdCode.requestFocusInWindow();
+                    processtingLoderDialog.setVisible(false);
+                    clickUssdDailDorSend1.setEnabled(true);
+                }
+
+            };
+            swingWorker.execute();
+        }
+    }//GEN-LAST:event_clickUssdDailDorSend1ActionPerformed
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        switchPanelViaMenu(mobileRechargePanel);
+    }//GEN-LAST:event_backMouseClicked
+
+    private void clickNewContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickNewContractActionPerformed
+        switchPanelViaMenu(addNewContractPanel);
+        getSeletedStorage.removeAllItems();
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    getSeletedStorage.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase());
+
+                }
+            }
+        }
+        getSeletedStorage.addItem("MEMORY");
+        getSeletedStorage.addItem("CLOUD");
+
+        getNameForContract.setText("");
+        getPhoneNOForContract.setText("");
+
+        activeKeyPressWorkInNewContractSave();
+
+    }//GEN-LAST:event_clickNewContractActionPerformed
+
+    private void backToUssdManengementPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanelMouseClicked
+        switchPanelViaMenu(rechargeSettingsPanel);
+    }//GEN-LAST:event_backToUssdManengementPanelMouseClicked
+
+    private void clickAddContract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract1ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
+            String operatorName = dropdownOperatorName.getSelectedItem().toString();
+
+            String actionFor = getSeletedAction.getSelectedItem().toString();
+            String balenceUssdPartern = getBalenceUssdPartern1.getText();
+            if (!rechargeUssdPartern.equals("")
+                    && !operatorName.equals("")) {
+
+                if (saveToDbCommandInCommand()) {
+                    System.out.println("Adding Successfull");
+                }
+            } else {
+                Popup.error("Empty Field");
+            }
+        }
+    }//GEN-LAST:event_clickAddContract1ActionPerformed
+
+    private void getRechargeUssdParternPrePaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPrePaidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdParternPrePaidActionPerformed
+
+    private void clickChooseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIconActionPerformed
+
+        loadImageIcon(dropdownOperatorName.getSelectedItem().toString().toLowerCase());
+    }//GEN-LAST:event_clickChooseIconActionPerformed
+
+    private void getBalenceUssdPartern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getBalenceUssdPartern1ActionPerformed
+
+    private void getRechargeUssdParternPostPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPostPaidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdParternPostPaidActionPerformed
+
+    private void back43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back43MouseClicked
+        switchPanelViaMenu(contractListPanel);
+    }//GEN-LAST:event_back43MouseClicked
+
+    private void clickAddContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContractActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveContract();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    switchPanelViaMenu(contractListPanel);
+                    setContractListInJTable("mobile_recharge");
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            swingWorker.execute();
+        }
+    }//GEN-LAST:event_clickAddContractActionPerformed
+
+    private void backToUssdManengementPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1MouseClicked
+        switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
+    }//GEN-LAST:event_backToUssdManengementPanel1MouseClicked
+
+    private void clickAddContract2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract2ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            String rechargeUssdPartern = getRechargeUssdParternPrePaid1.getText();
+            String operatorName = getOparetorNameInDropDown.getSelectedItem().toString();
+            String othersCode = getRechargeUssdParternSkitto.getText();
+            String balenceUssdPartern = getprofitIn1k.getText();
+            String profit = getprofitIn1k.getText();
+
+            if (!rechargeUssdPartern.equals("")
+                    && !operatorName.equals("")
+                    && !profit.equals("")) {
+
+                if (saveToDbCommandInCommand()) {
+                    System.out.println("Adding Successfull");
+                }
+            } else {
+                Popup.error("Empty Field");
+            }
+        }
+    }//GEN-LAST:event_clickAddContract2ActionPerformed
+
+    private void getRechargeUssdParternPrePaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPrePaid1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdParternPrePaid1ActionPerformed
+
+    private void clickChooseIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIcon1ActionPerformed
+        loadImageIcon(getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase());
+    }//GEN-LAST:event_clickChooseIcon1ActionPerformed
+
+    private void getprofitIn1kActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getprofitIn1kActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getprofitIn1kActionPerformed
+
+    private void getRechargeUssdParternPostPaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPostPaid1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdParternPostPaid1ActionPerformed
+
+    private void backToUssdManengementPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backToUssdManengementPanel1AncestorAdded
+
+    private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPanelMouseClicked
+
+    private void getSelectedSIMNameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedSIMNameComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSelectedSIMNameComboActionPerformed
+
+    private void getRechargeUssdParternSkittoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternSkittoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getRechargeUssdParternSkittoActionPerformed
+
+    private void getOparetorNameInDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOparetorNameInDropDownActionPerformed
+        System.err.println(getOparetorNameInDropDown.getSelectedItem());
+
+        if (getOparetorNameInDropDown.getSelectedItem() == null) {
+            System.err.println("Null Value Found");
+        } else {
+            switch (getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase().replaceAll(" ", "")) {
+                case "gp":
+                    labelUssdPatternSkitto.setVisible(true);
+                    getRechargeUssdParternSkitto.setVisible(true);
+                    break;
+                case "grameenphone":
+                    labelUssdPatternSkitto.setVisible(true);
+                    getRechargeUssdParternSkitto.setVisible(true);
+                    break;
+                default:
+                    labelUssdPatternSkitto.setVisible(false);
+                    getRechargeUssdParternSkitto.setVisible(false);
+                    break;
+            }
+        }
+    }//GEN-LAST:event_getOparetorNameInDropDownActionPerformed
+
+    private void getBalenceUssdPartern3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getBalenceUssdPartern3ActionPerformed
+
+    private void suggListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suggListMouseClicked
+        getMobileNumber.setText(suggList.getSelectedValue());
+        popupForSuggestManu.setVisible(false);
+    }//GEN-LAST:event_suggListMouseClicked
+
+    private void suggListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suggListMouseEntered
+
+    }//GEN-LAST:event_suggListMouseEntered
+
+    private void getNameForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getNameForSearchKeyReleased
+
+        searchByName(contractList, getNameForSearch.getText());
+    }//GEN-LAST:event_getNameForSearchKeyReleased
+
+    private void saveNewOfferInSettringsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewOfferInSettringsActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveSIMOffer();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    getOfferNameInSeting.setText("");
+                    getRechargeAmmountInSeetings.setText("");
+                    getValidityInSetting.setText("");
+                    getDescriptionInSetting.setText("");
+                    System.err.println("Added @Done...");
+                }
+
+            };
+            swingWorker.execute();
+        }
+    }//GEN-LAST:event_saveNewOfferInSettringsActionPerformed
+
+    private void backToMobileRecharge1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRecharge1MouseClicked
+        switchPanelViaMenu(mobileRechargePanel);
+    }//GEN-LAST:event_backToMobileRecharge1MouseClicked
+
+    private void sendAllRechargeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendAllRechargeButActionPerformed
+        sendingLogLabel.setVisible(true);
+        sendAllRechargeBut.setFocusable(false);
+        int res = Popup.customWarning("Be carefull\n Can't cencel it");
+        if (res == 0) {
+            sendGroupRecharge();
+        } else {
+            sendingLogLabel.setVisible(false);
+            sendAllRechargeBut.setFocusable(true);
+        }
+    }//GEN-LAST:event_sendAllRechargeButActionPerformed
+
+    private void addButInGroupRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButInGroupRechargeActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
+                Popup.customError("Empty field found..");
+            } else {
+                SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        processtingLoderDialog.setVisible(true);
+                        addInGroupRechargeTable();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        processtingLoderDialog.setVisible(false);
+                        loadDataInGroupRechargeTable();
+                        getPhoneNumberInGroupRecharge.setText("");
+                        getAmountGroupRecharge.setText("");
+                        getPhoneNumberInGroupRecharge.requestFocusInWindow();
+                        System.err.println("Number Add In Recharge List @Done...");
+                    }
+
+                };
+                swingWorker.execute();
+
+            }
+        }
+    }//GEN-LAST:event_addButInGroupRechargeActionPerformed
+
+    private void clickEditInProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickEditInProfileMouseEntered
+        ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/edit_color.png"));
+        clickEditInProfile.setIcon(image);
+    }//GEN-LAST:event_clickEditInProfileMouseEntered
+
+    private void clickEditInProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickEditInProfileMouseExited
+        ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/edit.png"));
+        clickEditInProfile.setIcon(image);
+    }//GEN-LAST:event_clickEditInProfileMouseExited
+
+    private void clickExportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickExportDatabaseActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            exportDatabase();
+        }
+    }//GEN-LAST:event_clickExportDatabaseActionPerformed
+
+    private void getEmployeeNameTEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getEmployeeNameTEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getEmployeeNameTEmployeeActionPerformed
+
+    private void clickContactList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList1MouseClicked
+
+    private void clickContactList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList1MouseEntered
+
+    private void getServiceNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getServiceNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getServiceNameActionPerformed
+
+    private void getOperationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOperationTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getOperationTypeActionPerformed
+
+    private void getSelectedServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedServiceComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSelectedServiceComboActionPerformed
+
+    private void getUssdCodePattrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getUssdCodePattrenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getUssdCodePattrenActionPerformed
+
+    private void clickSaveInMobileRechatgeSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSaveInMobileRechatgeSettingActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveInMobileBanking();
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                    getTaskNameInMBS.setText("");
+                    getUssdCodePattren.setText("");
+                    getPIN.setText("");
+                    getUssdCodeForBalanceShowPattren.setText("");
+                    loadTableMobileBankingSettingFromDb();
+                    getSelectedServiceCombo.requestFocusInWindow();
+                    System.err.println("Mobile Banking Service Added in List @Done...");
+                }
+
+            };
+            swingWorker.execute();
+
+        }
+    }//GEN-LAST:event_clickSaveInMobileRechatgeSettingActionPerformed
+
+    private void getServiceNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceNameItemStateChanged
+        Set<String> taskNames = new HashSet<>();
+
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+            Connection conn = DbConnection.connect();
+
+            try {
+                getOperationType.removeAllItems();
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + evt.getItem().toString() + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    taskNames.add(rs.getString("task_name"));
+
+                    System.err.println(rs.getString("task_name"));
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+
+            }
+
+            for (String taskName : taskNames) {
+                getOperationType.addItem(taskName);
+            }
+        }
+
+    }//GEN-LAST:event_getServiceNameItemStateChanged
+
+    private void clickSandInMBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSandInMBMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            if (mobileBankingPanelValidation()) {
+                showMobileBankingConfirmationDialog();
+            } else {
+                Popup.customError("Any field is empty!!");
+            }
+        }
+    }//GEN-LAST:event_clickSandInMBMouseClicked
+
+    private void getOperationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getOperationTypeItemStateChanged
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    if (evt.getItem().equals(rs.getString("task_name"))) {
+                        getSimOperatorName.setSelectedItem(rs.getString("default_sim"));
+                    }
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+
+            }
+        }
+    }//GEN-LAST:event_getOperationTypeItemStateChanged
+
+    private void getSimOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimOperatorNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSimOperatorNameActionPerformed
+
+    private void getPhoneNumberInBillPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getPhoneNumberInBillPaymentActionPerformed
+
+    private void clickBillPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseExited
+        hoverRemoveInBillPayPanel(hoverViewrocket);
+    }//GEN-LAST:event_clickBillPaymentMouseExited
+
+    private void clickBillPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseEntered
+        hoverInBillPayPanel(hoverViewrocket);
+    }//GEN-LAST:event_clickBillPaymentMouseEntered
+
+    private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
+        switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);
+        loadInBillPaymentDetailsByBillNo();
+    }//GEN-LAST:event_clickBillPaymentMouseClicked
+
+    private void clickMobileBankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseExited
+        hoverRemoveInBillPayPanel(hoverViewbKash);
+    }//GEN-LAST:event_clickMobileBankingMouseExited
+
+    private void clickMobileBankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseEntered
+        hoverInBillPayPanel(hoverViewbKash);
+    }//GEN-LAST:event_clickMobileBankingMouseEntered
+
+    private javax.swing.JPanel inboxJpanel;
+
+    private void clickContactList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList2MouseClicked
+
+    private void clickContactList2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactList2MouseEntered
+
+    private void getSimNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getSimNameItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSimNameItemStateChanged
+
+    private void getSimNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSimNameActionPerformed
+
+    private void getServiceTypeInBillPayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceTypeInBillPayItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getServiceTypeInBillPayItemStateChanged
+
+    private void getServiceTypeInBillPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getServiceTypeInBillPayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getServiceTypeInBillPayActionPerformed
+
+    private void clickRefrash2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickRefrash2ActionPerformed
+        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                loaderInBillPayment.setText("Processing..");
+                loadBalanceINBillPaymentPanel();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+                loaderInBillPayment.setText("Last Updateed: " + Configaration.getCurrentDateAndTime());
+                System.err.println("Mobile Banking Service Added in List @Done...");
+            }
+
+        };
+        swingWorker.execute();
+
+
+    }//GEN-LAST:event_clickRefrash2ActionPerformed
+
+    private void clickTabUsingBillNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingBillNOActionPerformed
+        switchPanelInBillPayment(usingBillNoPanel);
+        loadInBillPaymentDetailsByBillNo();
+
+
+    }//GEN-LAST:event_clickTabUsingBillNOActionPerformed
+
+    private void clickTabUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingCustomerIdActionPerformed
+        switchPanelInBillPayment(UsingCustomerId);
+        loadInBillPaymentDetailsByCustomerId();
+
+    }//GEN-LAST:event_clickTabUsingCustomerIdActionPerformed
+
+    private void payInUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payInUsingCustomerIdActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    payBillByCustomerId();
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    resetBillByCustomerId();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
+
+            };
+            swingWorker.execute();
+        }
+
+    }//GEN-LAST:event_payInUsingCustomerIdActionPerformed
+
+    private void clickPayIUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickPayIUsingBillActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    payBillByBillNo();
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    resetBillByCustomerId();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
+
+            };
+            swingWorker.execute();
+        }
+
+    }//GEN-LAST:event_clickPayIUsingBillActionPerformed
+
+    private void clickResetPayInUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickResetPayInUsingBillActionPerformed
+        resetBillByBillNo();
+    }//GEN-LAST:event_clickResetPayInUsingBillActionPerformed
+
+    private void resetnUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetnUsingCustomerIdActionPerformed
+        resetBillByCustomerId();
+    }//GEN-LAST:event_resetnUsingCustomerIdActionPerformed
+
+    private void tableMobileBankingSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingSettingMouseClicked
+        String userId;
+        Point point = evt.getPoint();
+
+        int row = tableMobileBankingSetting.rowAtPoint(point);
+        userId = tableMobileBankingSetting.getValueAt(row, 0).toString();
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to remove this?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            if (UserInfo.role.equals("admin")) {
+                SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        processtingLoderDialog.setVisible(true);
+                        deleteServiceDetailsFromMobileBanking(userId);
+
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        loadTableMobileBankingSettingFromDb();
+                        processtingLoderDialog.setVisible(false);
+                        System.out.println("Delete Successful...@Done");
+                    }
+
+                };
+                swingWorker.execute();
+
+            } else {
+                Popup.customError("Permission Deny");
+            }
+        } else {
+
+        }
+
+    }//GEN-LAST:event_tableMobileBankingSettingMouseClicked
+
+    private void getUssdCodeForBalanceShowPattrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getUssdCodeForBalanceShowPattrenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getUssdCodeForBalanceShowPattrenActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        getTaskNameInMBS.setText("");
+        getUssdCodePattren.setText("");
+        getPIN.setText("");
+        getUssdCodeForBalanceShowPattren.setText("");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void getPhoneNumberInBillPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentFocusGained
+        removePlaceHolder(getPhoneNumberInBillPayment, "Mobile Number");
+    }//GEN-LAST:event_getPhoneNumberInBillPaymentFocusGained
+
+    private void getPhoneNumberInBillPaymentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentFocusLost
+        setPlaceHolder(getPhoneNumberInBillPayment, "Mobile Number");
+    }//GEN-LAST:event_getPhoneNumberInBillPaymentFocusLost
+
+    private void getAmmountInBillPaymentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInBillPaymentFocusLost
+        setPlaceHolder(getAmmountInBillPayment, "Amount");
+    }//GEN-LAST:event_getAmmountInBillPaymentFocusLost
+
+    private void getAmmountInBillPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInBillPaymentFocusGained
+        removePlaceHolder(getAmmountInBillPayment, "Amount");
+    }//GEN-LAST:event_getAmmountInBillPaymentFocusGained
+
+    private javax.swing.JTable inboxTable;
+
+    private void tableMobileBankingDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingDetailsMouseClicked
+        String mgs, userId, phoneNumberText, serviceName;
+        Point point = evt.getPoint();
+        int column = tableMobileBankingDetails.columnAtPoint(point);
+        int row = tableMobileBankingDetails.rowAtPoint(point);
+        mgs = tableMobileBankingDetails.getValueAt(row, 6).toString();
+        userId = tableMobileBankingDetails.getValueAt(row, 0).toString();
+        phoneNumberText = tableMobileBankingDetails.getValueAt(row, 3).toString();
+        serviceName = tableMobileBankingDetails.getValueAt(row, 1).toString();
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, serviceName + "-" + phoneNumberText);
+
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 254);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickRetry().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                deleteColumeFromMobileBanking(userId);
+                mgsDialog.setVisible(false);
+            }
+
+        });
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableMobileBankingDetailsMouseClicked
+
+    private void tableBillPaymentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBillPaymentDetailsMouseClicked
+        String mgs = null, userId = "fdg", phoneNumberText = null;
+        Point point = evt.getPoint();
+        int numberOfColume = tableBillPaymentDetails.getColumnCount();
+        if (numberOfColume == 6) {
+            int column = tableBillPaymentDetails.columnAtPoint(point);
+            int row = tableBillPaymentDetails.rowAtPoint(point);
+            mgs = tableBillPaymentDetails.getValueAt(row, 5).toString();
+            userId = tableBillPaymentDetails.getValueAt(row, 0).toString();
+            phoneNumberText = tableBillPaymentDetails.getValueAt(row, 3).toString();
+        } else if (numberOfColume == 8) {
+            int column = tableBillPaymentDetails.columnAtPoint(point);
+            int row = tableBillPaymentDetails.rowAtPoint(point);
+            mgs = tableBillPaymentDetails.getValueAt(row, 7).toString();
+            userId = tableBillPaymentDetails.getValueAt(row, 0).toString();
+            phoneNumberText = tableBillPaymentDetails.getValueAt(row, 3).toString();
+
+        }
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 254);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickRetry().setVisible(false);
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
+
+    }//GEN-LAST:event_tableBillPaymentDetailsMouseClicked
+
+    private void clickImportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickImportDatabaseActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+            importDatabase();
+        }
+    }//GEN-LAST:event_clickImportDatabaseActionPerformed
+
+    private void clickUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUpdatePasswordActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            String password = passwordForUpdate.getText();
+            String rePassword = rePasswordForUpdate.getText();
+            if (password.equals("") || rePassword.equals("")) {
+                Popup.customError("Empty field found.");
+
+            } else {
+                if (password.equals(rePassword)) {
+                    changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
+
+                } else {
+                    Popup.customError("Re-type password not match");
+                }
+            }
+
+        }
+    }//GEN-LAST:event_clickUpdatePasswordActionPerformed
+
+    private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSeletedActionActionPerformed
+
+    private void addMobileBankingPanelInBillPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMobileBankingPanelInBillPayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMobileBankingPanelInBillPayMouseClicked
+
+    private void productPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productPurchaseMouseClicked
+        System.err.println("gfhdgd");
+    }//GEN-LAST:event_productPurchaseMouseClicked
+
+    private void ProductPurchasePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanelMouseClicked
+        setupTabsInShopManagment();
+        System.err.println("gfhdgd");
+    }//GEN-LAST:event_ProductPurchasePanelMouseClicked
+
+    private void detailsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsPanelMouseClicked
+
+    }//GEN-LAST:event_detailsPanelMouseClicked
+
+    private void saveInProductPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchaseMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            saveInProductPurchaseDB();
+            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+        }
+    }//GEN-LAST:event_saveInProductPurchaseMouseClicked
+
+    private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_groupInProductPurchasesActionPerformed
+
+    private void invoiceInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchasesKeyReleased
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            List<String> list = new ArrayList<>();
+            String to_check = null;
+
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("invoice"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+                supplierInProductPurchases.requestFocusInWindow();
+            } else {
+                to_check = invoiceInProductPurchases.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        invoiceInProductPurchases.setText(data);
+                        invoiceInProductPurchases.setSelectionStart(to_check_len);
+                        invoiceInProductPurchases.setSelectionEnd(data.length());
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_invoiceInProductPurchasesKeyReleased
+
+    private void groupInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductPurchasesKeyReleased
+        List<String> list = new ArrayList<>();
+        String to_check = null;
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("group"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                showDataInProductPurchaseFromDB(groupInProductPurchases.getText());
+                pNameInProductPurchases.requestFocusInWindow();
+            } else {
+                to_check = groupInProductPurchases.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        groupInProductPurchases.setText(data);
+                        groupInProductPurchases.setSelectionStart(to_check_len);
+                        groupInProductPurchases.setSelectionEnd(data.length());
+                        break;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_groupInProductPurchasesKeyReleased
+
+    private void groupInProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_groupInProductDetailsActionPerformed
+
+    private void groupInProductDetailsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductDetailsKeyReleased
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+        }
+    }//GEN-LAST:event_groupInProductDetailsKeyReleased
+
+    private void saveInProductPurchase1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveInProductPurchase1MouseClicked
+
+    private void ProductPurchasePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductPurchasePanel1MouseClicked
+
+    private void searchByGroupInRatioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByGroupInRatioActionPerformed
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            listOfBarCodeOrGroupComboBox.removeAllItems();
+            if (evt.getSource() == searchByGroupInRatio) {
+
+                Boolean isActive = false;
+                if (searchByGroupInRatio.isSelected()) {
+                    isActive = true;
+                }
+
+                if (isActive) {
+                    if (UserInfo.role.equals("demo")) {
+                        System.err.println("Access dny in DEMO Panel");
+
+                    } else {
+                        Connection conn = DbConnection.connect();
+                        try {
+                            Statement st = conn.createStatement();
+                            String sql = "SELECT * FROM `product_purchase`";
+                            ResultSet rs = st.executeQuery(sql);
+
+                            while (rs.next()) {
+                                listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString() + "  " + rs.getString("group").toString());
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                        } finally {
+                            DbConnection.disconnect(conn);
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }//GEN-LAST:event_searchByGroupInRatioActionPerformed
+
+    private void listOfBarCodeOrGroupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listOfBarCodeOrGroupComboBoxActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            if (listOfBarCodeOrGroupComboBox.getSelectedItem() != null) {
+                if (listOfBarCodeOrGroupComboBox.getSelectedItem().toString().contains(" ")) {
+                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
+                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
+
+                } else {
+                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem());
+                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+    }//GEN-LAST:event_listOfBarCodeOrGroupComboBoxActionPerformed
+
+    private void saveInProductPurchase2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveInProductPurchase2MouseClicked
+
+    private void productDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productDetailsTableMouseClicked
+        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify;
+        Point point = evt.getPoint();
+        int column = productDetailsTable.columnAtPoint(point);
+        int row = productDetailsTable.rowAtPoint(point);
+        productId = productDetailsTable.getValueAt(row, 0).toString();
+        productGroup = productDetailsTable.getValueAt(row, 1).toString();
+        productName = productDetailsTable.getValueAt(row, 2).toString();
+        buyRate = productDetailsTable.getValueAt(row, 3).toString();
+        sellPrice = productDetailsTable.getValueAt(row, 4).toString();
+        brand = productDetailsTable.getValueAt(row, 5).toString();
+        lastModify = productDetailsTable.getValueAt(row, 6).toString();
+        System.err.println(productId + "+" + productGroup);
+
+        //SET VALUE IN EDITTEXT
+        barCodeInProductDetails.setText(productId);
+        groupInProductDetails.setText(productGroup);
+        pNameInProductDetails.setText(productName);
+        buyRateInProductDetails.setText(buyRate);
+        sellRateInProductDetails.setText(sellPrice);
+        brandInProductDetails.setText(sellPrice);
+
+
+    }//GEN-LAST:event_productDetailsTableMouseClicked
+
+    private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
+            addPerchangeSelection.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
+                    if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                        sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                    } else {//checkbox has been deselected
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                    }
+                    ;
+                }
+            });
+
+        }
+    }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            genarateBarCode(barCodeInProductDetails.getText());
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void invoiceInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductSellKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invoiceInProductSellKeyReleased
+
+    private void fullNameInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInProductSellActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullNameInProductSellActionPerformed
+
+    private void fullNameInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullNameInProductSellKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullNameInProductSellKeyReleased
+
+    private void ProductPurchasePanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductPurchasePanel2MouseClicked
+
+    private void phoneNOInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNOInProductSellActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNOInProductSellActionPerformed
+
+    private void panddingListnProductSellComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panddingListnProductSellComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panddingListnProductSellComboBoxActionPerformed
+
+    private void noteInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noteInProductSellActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_noteInProductSellActionPerformed
+
+    private void paymentInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentInProductBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paymentInProductBillActionPerformed
+
+    private void warrantyInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyInProductBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_warrantyInProductBillActionPerformed
+
+    private void duePaymentInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duePaymentInProductBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_duePaymentInProductBillActionPerformed
+
+    private void discpuntInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductBillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discpuntInProductBillActionPerformed
+
+    private void barCodeInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeInProductSellKeyReleased
+        List<String> list = new ArrayList<>();
+        String to_check = null;
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `product_purchase`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("bar_code"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+                addProductFromDBInSellPanel(barCodeInProductSell.getText());
+                barCodeInProductSell.requestFocusInWindow();
+            } else {
+                to_check = barCodeInProductSell.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        barCodeInProductSell.setText(data);
+                        barCodeInProductSell.setSelectionStart(to_check_len);
+                        barCodeInProductSell.setSelectionEnd(data.length());
+                        break;
+                    }
+                }
+            }
+            invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
+        }
+    }//GEN-LAST:event_barCodeInProductSellKeyReleased
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            clearBillforProduct();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void productSellTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productSellTableMouseClicked
+
+    private void productSellTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTableKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            System.err.println("VK_ENTER");
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            System.err.println("VK_TAB");
+        }
+    }//GEN-LAST:event_productSellTableKeyPressed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+//  saveSellProductInSellTabel();      
+            printMemo();
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void invoiceInProductWarrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductWarrantyKeyReleased
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+        }
+    }//GEN-LAST:event_invoiceInProductWarrantyKeyReleased
+
+    private void productSellTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productSellTable1MouseClicked
+
+    private void productSellTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTable1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productSellTable1KeyPressed
+
+    private void fullNameInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullNameInProductWanrrantyActionPerformed
+
+    private void fullNameInProductWanrrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullNameInProductWanrrantyKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fullNameInProductWanrrantyKeyReleased
+
+    private void phoneNOInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNOInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneNOInProductWanrrantyActionPerformed
+
+    private void brandInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandInProductWanrrantyActionPerformed
+
+    private void warrantyInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_warrantyInProductWanrrantyActionPerformed
+
+    private void discpuntInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_discpuntInProductWanrrantyActionPerformed
+
+    private void ProductPurchasePanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductPurchasePanel3MouseClicked
+
+    private void paidPaymentInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidPaymentInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_paidPaymentInProductWanrrantyActionPerformed
+
+    private void billInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_billInProductWanrrantyActionPerformed
+
+    private void refNameInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refNameInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refNameInProductWanrrantyActionPerformed
+
+    private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            saveWarrantyDetailsInDb();
+            printPosMemo(invoiceInProductWarranty.getText());
+        }
+    }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
+
+    private void saveInProductPurchase2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase2ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+    }//GEN-LAST:event_saveInProductPurchase2ActionPerformed
+
+    private void updateClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClickProductWanrrantyActionPerformed
+
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+        }
+
+    }//GEN-LAST:event_updateClickProductWanrrantyActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
+        }
+    }//GEN-LAST:event_generateBarCodeActionPerformed
+
+    private javax.swing.JLabel jLabel27;
+
+
+    private void tableRechargeDetailsShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRechargeDetailsShowMouseClicked
+        String mgs, userId, phoneNumberText;
+        Point point = evt.getPoint();
+        int column = tableRechargeDetailsShow.columnAtPoint(point);
+        int row = tableRechargeDetailsShow.rowAtPoint(point);
+        mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
+        userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
+        phoneNumberText = tableRechargeDetailsShow.getValueAt(row, 3).toString();
+        String ammountText = tableRechargeDetailsShow.getValueAt(row, 4).toString();
+        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
+
+        JDialog mgsDialog = new JDialog();
+        mgsDialog.add(ui);
+        mgsDialog.setSize(352, 254);
+        mgsDialog.setLocationRelativeTo(null);
+        mgsDialog.setUndecorated(true);
+        mgsDialog.setVisible(true);
+
+        ui.getClickOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                mgsDialog.dispose();
+            }
+
+        });
+
+        ui.getClickCross().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                mgsDialog.dispose();
+            }
+
+        });
+        ui.getClickRetry().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                getMobileNumber.setText(phoneNumberText);
+                getMobileNumber.setForeground(Color.black);
+                getAmmountInTk.setText(ammountText);
+                getAmmountInTk.setForeground(Color.black);
+
+                deleteColumeFromRechargeDetails(userId);
+                mgsDialog.setVisible(false);
+            }
+
+        });
+        ui.getClickOk().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    mgsDialog.dispose();
+                }
+            }
+        });
+    }//GEN-LAST:event_tableRechargeDetailsShowMouseClicked
+
+    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            simSimOfferDialog();
+        }
+    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
+
+    private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
+        switchPanelViaMenu(groupLoadPanel);
+        getSelectedSimInGroupRecharge1.removeAllItems();
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+
+            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+            }
+
+        }
+        sendingLogLabel.setVisible(false);
+        loadDataInGroupRechargeTable();
+        focusAndKeyboardUsedInGroupRecharge();
+    }//GEN-LAST:event_clickGroupLoadActionPerformed
+
+    private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
+
+        switchPanelViaMenu(ussdDialPanel);
+        getUssdCode.requestFocusInWindow();
+        refrash();
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
+                getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
+            });
+        }
+        addKeyLIsenerInUssdDailPad();
+    }//GEN-LAST:event_clickUssdDailActionPerformed
+
+    private void clickContactListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickContactListMouseEntered
+
+    private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+
+            switchPanelViaMenu(contractListPanel);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    setContractListInJTable("mobile_recharge");
+                    System.out.println("Contract Searching...");
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    getNameForSearch.setText("");
+                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+                    getNameForSearch.requestFocusInWindow();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
+
+            };
+            swingWorker.execute();
+        }
+    }//GEN-LAST:event_clickContactListMouseClicked
+
+    private void getMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberKeyReleased
+        if (getMobileNumber.getText().equals("")) {
+            popupForSuggestManu.setVisible(false);
+        } else {
+
+            if (searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText()).isEmpty()) {
+                popupForSuggestManu.setVisible(false);
+            } else {
+                popupForSuggestManu.setVisible(true);
+                defaultListModel.removeAllElements();
+                popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
+                searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
+                        .stream().forEach(number -> {
+                    defaultListModel.addElement(number);
+                });
+
+            }
+
+        }
+    }//GEN-LAST:event_getMobileNumberKeyReleased
+
+    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getMobileNumberActionPerformed
+
+    private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
+        setPlaceHolder(getMobileNumber, "Mobile Number");
+    }//GEN-LAST:event_getMobileNumberFocusLost
+
+    private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
+        removePlaceHolder(getMobileNumber, "Mobile Number");
+    }//GEN-LAST:event_getMobileNumberFocusGained
+
+    private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getAmmountInTkActionPerformed
+
+    private void getAmmountInTkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusLost
+        setPlaceHolder(getAmmountInTk, "Ammount");
+    }//GEN-LAST:event_getAmmountInTkFocusLost
+
+    private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
+        removePlaceHolder(getAmmountInTk, "Ammount");
+    }//GEN-LAST:event_getAmmountInTkFocusGained
+
+    private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            String phoneNumberRequested = getMobileNumber.getText();
+            String ammountRequested = getAmmountInTk.getText();
+
+            if (!phoneNumberRequested.equals("")
+                    && !ammountRequested.equals("")
+                    && phoneNumberRequested.matches("[0-9]+")
+                    && ammountRequested.matches("[0-9]+")) {
+
+                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+
+                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+            } else {
+                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+                getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
+
+            }
+        }
+    }//GEN-LAST:event_clickSendMouseClicked
+
+    private void getSeletedOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedOperatorNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
+
+    private void searchInMobileRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInMobileRechargeActionPerformed
+        // searchByPhonenumberInRechargePanel("fgh");
+    }//GEN-LAST:event_searchInMobileRechargeActionPerformed
+
+
+    private void contractListClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contractListClickActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+
+
+            switchPanelViaMenu(contractListPanel);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    setContractListInJTable("mobile_banking");
+                    System.out.println("Contract Searching...");
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    getNameForSearch.setText("");
+                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+                    getNameForSearch.requestFocusInWindow();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
+
+            };
+            swingWorker.execute();
+        }
+    }//GEN-LAST:event_contractListClickActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void getNameForSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getNameForSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getNameForSearchActionPerformed
+
+    private void getMobileNumberForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberForSearchKeyReleased
+        searchByPhoneNumberInRechargeDetails(mobileRechargeDetailsForSearchingDtos, getMobileNumberForSearch.getText());
+    }//GEN-LAST:event_getMobileNumberForSearchKeyReleased
+
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JTextField searchInInbox;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -682,6 +2492,12 @@ public class Home extends javax.swing.JFrame {
         clickPayIUsingBill = new javax.swing.JButton();
         clickResetPayInUsingBill = new javax.swing.JButton();
         getPasswordInBillPay = new javax.swing.JPasswordField();
+        inboxJpanel = new javax.swing.JPanel();
+        back1 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        inboxTable = new javax.swing.JTable();
+        searchInInbox = new javax.swing.JTextField();
 
         suggestPanel.setPreferredSize(new java.awt.Dimension(670, 471));
 
@@ -691,6 +2507,7 @@ public class Home extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 suggListMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 suggListMouseEntered(evt);
             }
@@ -4466,12 +6283,14 @@ public class Home extends javax.swing.JFrame {
         backToUssdManengementPanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         backToUssdManengementPanel1.setText("jLabel3");
         backToUssdManengementPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 backToUssdManengementPanel1AncestorAdded(evt);
             }
+
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         backToUssdManengementPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -5625,48 +7444,47 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel173, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel174)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel175)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel174)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel175)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                            .addGap(20, 20, 20)
-                                            .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(30, 30, 30)
-                                    .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                    .addGap(670, 670, 670)
-                                    .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                    .addGap(120, 120, 120)
-                                    .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGap(90, 90, 90)
+                                                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                                                .addGap(20, 20, 20)
+                                                                .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(30, 30, 30)
+                                                .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                                .addGap(670, 670, 670)
+                                                .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                                .addGap(120, 120, 120)
+                                                .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 1035, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                            .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel84)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(contractListClick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel84)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contractListClick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -6278,24 +8096,103 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
                         .addGap(160, 160, 160)
                         .addComponent(clickContactList2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(selectedSimOperatorIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, 0)
+                            .addComponent(selectedSimOperatorIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         basePanel.add(billPaymentPanelInBillPay, "card2");
 
+        back1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        back1.setText("jLabel3");
+        back1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back1MouseClicked(evt);
+            }
+        });
+
+        jLabel27.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel27.setText("Inbox");
+
+        inboxTable.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        inboxTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+
+                },
+                new String[]{
+                        "No", "Name", "Phone No.", "From"
+                }
+        ) {
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
+        jScrollPane18.setViewportView(inboxTable);
+
+        searchInInbox.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        searchInInbox.setBorder(null);
+        searchInInbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInInboxActionPerformed(evt);
+            }
+        });
+        searchInInbox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInInboxKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inboxJpanelLayout = new javax.swing.GroupLayout(inboxJpanel);
+        inboxJpanel.setLayout(inboxJpanelLayout);
+        inboxJpanelLayout.setHorizontalGroup(
+                inboxJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(inboxJpanelLayout.createSequentialGroup()
+                                .addGroup(inboxJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(inboxJpanelLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel27))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inboxJpanelLayout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(searchInInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2291, Short.MAX_VALUE))
+                                .addContainerGap())
+        );
+        inboxJpanelLayout.setVerticalGroup(
+                inboxJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(inboxJpanelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(inboxJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(inboxJpanelLayout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel27)))
+                                .addGap(64, 64, 64)
+                                .addComponent(searchInInbox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(244, Short.MAX_VALUE))
+        );
+
+        basePanel.add(inboxJpanel, "card15");
+
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
-            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(bodyPanelLayout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(bodyPanelLayout.createSequentialGroup()
+                                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6315,796 +8212,24 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(bodyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
-            .addComponent(bodyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1076, Short.MAX_VALUE)
+                        .addComponent(bodyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void billPaymentTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseClicked
-        switchPanelViaMenu(billPayPanel, billPaymentTab, title1, icon1, "money_color", "Bill Payment");
-
-        colorSwitcherWithRegular(title, icon, "payment");
-        // colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title3, icon3, "details");
-        colorSwitcherWithRegular(title4, icon4, "settings_1");
-        colorSwitcherWithRegular(title5, icon5, "helpline");
-
-        mobileRechargeTab.setBackground(new Color(133, 47, 209));
-        // resellerTab.setBackground(new Color(133, 47, 209));
-        detailsTab.setBackground(new Color(133, 47, 209));
-        settingTab.setBackground(new Color(133, 47, 209));
-        helplineTab.setBackground(new Color(133, 47, 209));
-
-    }//GEN-LAST:event_billPaymentTabMouseClicked
-
-    private void detailsTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseClicked
-        switchPanelViaMenu(detailsPanel, detailsTab, title3, icon3, "details_color", "Details");
-
-        colorSwitcherWithRegular(title, icon, "payment");
-        colorSwitcherWithRegular(title1, icon1, "money");
-        // colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title4, icon4, "settings_1");
-        colorSwitcherWithRegular(title5, icon5, "helpline");
-
-        mobileRechargeTab.setBackground(new Color(133, 47, 209));
-        // resellerTab.setBackground(new Color(133, 47, 209));
-        billPaymentTab.setBackground(new Color(133, 47, 209));
-        settingTab.setBackground(new Color(133, 47, 209));
-        helplineTab.setBackground(new Color(133, 47, 209));
-
-        processtingLoderDialog.setVisible(false);
-        setupTabsInShopManagment();
-
-
-    }//GEN-LAST:event_detailsTabMouseClicked
-
-    private void settingTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseClicked
-        switchPanelViaMenu(settingsPanel1, settingTab, title4, icon4, "settings_color", "Settings");
-
-        colorSwitcherWithRegular(title, icon, "payment");
-        colorSwitcherWithRegular(title1, icon1, "money");
-        //colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title3, icon3, "details");
-        colorSwitcherWithRegular(title5, icon5, "helpline");
-
-        mobileRechargeTab.setBackground(new Color(133, 47, 209));
-        //  resellerTab.setBackground(new Color(133, 47, 209));
-        detailsTab.setBackground(new Color(133, 47, 209));
-        billPaymentTab.setBackground(new Color(133, 47, 209));
-        helplineTab.setBackground(new Color(133, 47, 209));
-        setDataInProfilePanel();
-    }//GEN-LAST:event_settingTabMouseClicked
-
-    private void helplineTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseClicked
-        switchPanelViaMenu(helplinePanel, helplineTab, title5, icon5, "helpline_color", "Help Line");
-
-        colorSwitcherWithRegular(title, icon, "payment");
-        colorSwitcherWithRegular(title1, icon1, "money");
-        // colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title3, icon3, "details");
-        colorSwitcherWithRegular(title4, icon4, "settings_1");
-
-        mobileRechargeTab.setBackground(new Color(133, 47, 209));
-        // resellerTab.setBackground(new Color(133, 47, 209));
-        detailsTab.setBackground(new Color(133, 47, 209));
-        billPaymentTab.setBackground(new Color(133, 47, 209));
-        settingTab.setBackground(new Color(133, 47, 209));
-    }//GEN-LAST:event_helplineTabMouseClicked
-
-    private void mobileRechargeTabMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseMoved
-
-    }//GEN-LAST:event_mobileRechargeTabMouseMoved
-
-    private void mobileRechargeTabHover(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabHover
-        //hover(mobileRechargeTab);
-    }//GEN-LAST:event_mobileRechargeTabHover
-
-    private void mobileRechargeTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseExited
-        // hoverRemove(mobileRechargeTab);
-    }//GEN-LAST:event_mobileRechargeTabMouseExited
-
-    private void mobileRechargeTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileRechargeTabMouseClicked
-        switchPanelViaMenu(mobileRechargePanel, mobileRechargeTab, title, icon, "payment_color", "Mobile Recharge");
-
-        colorSwitcherWithRegular(title1, icon1, "money");
-        // colorSwitcherWithRegular(title2, icon2, "reseller");
-        colorSwitcherWithRegular(title3, icon3, "details");
-        colorSwitcherWithRegular(title4, icon4, "settings_1");
-        colorSwitcherWithRegular(title5, icon5, "helpline");
-
-        //  resellerTab.setBackground(new Color(133, 47, 209));
-        billPaymentTab.setBackground(new Color(133, 47, 209));
-        detailsTab.setBackground(new Color(133, 47, 209));
-        settingTab.setBackground(new Color(133, 47, 209));
-        helplineTab.setBackground(new Color(133, 47, 209));
-
-        setFocusInMobileRechargePanel();
-
-    }//GEN-LAST:event_mobileRechargeTabMouseClicked
-
-    private void billPaymentTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseEntered
-        // hover(billPaymentTab);
-    }//GEN-LAST:event_billPaymentTabMouseEntered
-
-    private void billPaymentTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billPaymentTabMouseExited
-        // hoverRemove(billPaymentTab);
-    }//GEN-LAST:event_billPaymentTabMouseExited
-
-    private void detailsTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseEntered
-        //hover(detailsTab);
-    }//GEN-LAST:event_detailsTabMouseEntered
-
-    private void detailsTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsTabMouseExited
-        // hoverRemove(detailsTab);
-    }//GEN-LAST:event_detailsTabMouseExited
-
-    private void settingTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseEntered
-        // hover(settingTab);
-    }//GEN-LAST:event_settingTabMouseEntered
-
-    private void settingTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingTabMouseExited
-        // hoverRemove(settingTab);
-    }//GEN-LAST:event_settingTabMouseExited
-
-    private void helplineTabMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseEntered
-        //  hover(helplineTab);
-    }//GEN-LAST:event_helplineTabMouseEntered
-
-    private void helplineTabMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helplineTabMouseExited
-        //  hoverRemove(helplineTab);
-    }//GEN-LAST:event_helplineTabMouseExited
-
-    private void myProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myProfileMouseClicked
-        switchPanelViaSettings(myProfilePanel, myProfile);
-        systemBackup.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-        setDataInProfilePanel();
-    }//GEN-LAST:event_myProfileMouseClicked
-
-    private void systemBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_systemBackupMouseClicked
-        switchPanelViaSettings(systemBackupPanel, systemBackup);
-        myProfile.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-    }//GEN-LAST:event_systemBackupMouseClicked
-
-    private void passwordChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordChangeMouseClicked
-        switchPanelViaSettings(passwordChangePanel, passwordChange);
-        myProfile.setForeground(Color.black);
-        systemBackup.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-
-        addKeyLisenerInPasswordChargePanel();
-    }//GEN-LAST:event_passwordChangeMouseClicked
-
-    private void trustedEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trustedEmployeeMouseClicked
-        switchPanelViaSettings(trustedEmployeePanel, trustedEmployee);
-        myProfile.setForeground(Color.black);
-        systemBackup.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-    }//GEN-LAST:event_trustedEmployeeMouseClicked
-
-    private void rechargeSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechargeSettingsMouseClicked
-        switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
-        myProfile.setForeground(Color.black);
-        systemBackup.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-        System.err.println("fdgdfg");
-        loadValuesForUssdManagementTable();
-    }//GEN-LAST:event_rechargeSettingsMouseClicked
-
-    private void mobileBankingSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingSettingsMouseClicked
-
-        switchPanelViaSettings(MobileBankingSettingsPanel, mobileBankingSettings);
-        myProfile.setForeground(Color.black);
-        systemBackup.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        rechargeOffers.setForeground(Color.black);
-        loadTableMobileBankingSettingFromDb();
-        getSelectedSIMNameCombo.removeAllItems();
-        getSelectedServiceCombo.removeAllItems();
-        for (String mBank : MOBILE_BANKING_NANE) {
-            getSelectedServiceCombo.addItem(mBank);
-        }
-        if (UserInfo.role.equals("demo")) {
-
+    private void deleteColumeFromMobileBanking(String userId) {
+        if (UserInfo.role.equals("admin")) {
+            DbConnection.deleteRow("m_b_details", "TnxId", userId);
+            loadMobileBankingDetailsTable();
         } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
-                }
-            }
-        }
-        addKeyLisenerInMobileBankingSetting();
-    }//GEN-LAST:event_mobileBankingSettingsMouseClicked
-
-    private void rechargeOffersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechargeOffersMouseClicked
-
-        switchPanelViaSettings(rechargeOfferPanel, rechargeOffers);
-        myProfile.setForeground(Color.black);
-        systemBackup.setForeground(Color.black);
-        passwordChange.setForeground(Color.black);
-        trustedEmployee.setForeground(Color.black);
-        rechargeSettings.setForeground(Color.black);
-        mobileBankingSettings.setForeground(Color.black);
-
-        getSIMOperatorName.removeAllItems();
-        for (String string : SIM_OPERATORS_NAME) {
-            getSIMOperatorName.addItem(string);
-
-        }
-        addKeyListenserInRechargeOffer();
-    }//GEN-LAST:event_rechargeOffersMouseClicked
-
-    private void clickAddNewManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddNewManagementActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            resetComboBox(getOparetorNameInDropDown);
-            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-                getOparetorNameInDropDown.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-            });
-            switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
-        }
-    }//GEN-LAST:event_clickAddNewManagementActionPerformed
-
-    private void backToMobileRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRechargeMouseClicked
-        switchPanelViaMenu(mobileRechargePanel);
-        processtingLoderDialog.setVisible(true);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-
-                closeUssdSession();
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-            }
-
-        };
-        swingWorker.execute();
-
-
-    }//GEN-LAST:event_backToMobileRechargeMouseClicked
-
-    private void clickUssdSessionCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdSessionCloseActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            processtingLoderDialog.setVisible(true);
-            clickUssdSessionClose.setEnabled(false);
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-
-                    closeUssdSession();
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    processtingLoderDialog.setVisible(false);
-                    clickUssdSessionClose.setEnabled(true);
-                }
-
-            };
-            swingWorker.execute();
+            Popup.customError("Access Deny..");
         }
 
-    }//GEN-LAST:event_clickUssdSessionCloseActionPerformed
-
-    private void clickUssdDailDorSend1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailDorSend1ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            clickUssdDailDorSend1.setEnabled(false);
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-
-                    if (getUssdCode.getText().equals("")) {
-                        getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                    } else {
-                        processtingLoderDialog.setVisible(true);
-                        ussdDial();
-                        getUssdCode.setText("");
-                    }
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    getUssdCode.requestFocusInWindow();
-                    processtingLoderDialog.setVisible(false);
-                    clickUssdDailDorSend1.setEnabled(true);
-                }
-
-            };
-            swingWorker.execute();
-        }
-    }//GEN-LAST:event_clickUssdDailDorSend1ActionPerformed
-
-    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        switchPanelViaMenu(mobileRechargePanel);
-    }//GEN-LAST:event_backMouseClicked
-
-    private void clickNewContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickNewContractActionPerformed
-        switchPanelViaMenu(addNewContractPanel);
-        getSeletedStorage.removeAllItems();
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    getSeletedStorage.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase());
-
-                }
-            }
-        }
-        getSeletedStorage.addItem("MEMORY");
-        getSeletedStorage.addItem("CLOUD");
-
-        getNameForContract.setText("");
-        getPhoneNOForContract.setText("");
-
-        activeKeyPressWorkInNewContractSave();
-
-    }//GEN-LAST:event_clickNewContractActionPerformed
-
-    private void backToUssdManengementPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanelMouseClicked
-        switchPanelViaMenu(rechargeSettingsPanel);
-    }//GEN-LAST:event_backToUssdManengementPanelMouseClicked
-
-    private void clickAddContract1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract1ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
-            String operatorName = dropdownOperatorName.getSelectedItem().toString();
-
-            String actionFor = getSeletedAction.getSelectedItem().toString();
-            String balenceUssdPartern = getBalenceUssdPartern1.getText();
-            if (!rechargeUssdPartern.equals("")
-                    && !operatorName.equals("")) {
-
-                if (saveToDbCommandInCommand()) {
-                    System.out.println("Adding Successfull");
-                }
-            } else {
-                Popup.error("Empty Field");
-            }
-        }
-    }//GEN-LAST:event_clickAddContract1ActionPerformed
-
-    private void getRechargeUssdParternPrePaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPrePaidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getRechargeUssdParternPrePaidActionPerformed
-
-    private void clickChooseIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIconActionPerformed
-
-        loadImageIcon(dropdownOperatorName.getSelectedItem().toString().toLowerCase());
-    }//GEN-LAST:event_clickChooseIconActionPerformed
-
-    private void getBalenceUssdPartern1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getBalenceUssdPartern1ActionPerformed
-
-    private void getRechargeUssdParternPostPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPostPaidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getRechargeUssdParternPostPaidActionPerformed
-
-    private void back43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back43MouseClicked
-        switchPanelViaMenu(contractListPanel);
-    }//GEN-LAST:event_back43MouseClicked
-
-    private void clickAddContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContractActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    saveContract();
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    switchPanelViaMenu(contractListPanel);
-                    setContractListInJTable("mobile_recharge");
-                    processtingLoderDialog.setVisible(false);
-                }
-
-            };
-            swingWorker.execute();
-        }
-    }//GEN-LAST:event_clickAddContractActionPerformed
-
-    private void backToUssdManengementPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1MouseClicked
-        switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
-    }//GEN-LAST:event_backToUssdManengementPanel1MouseClicked
-
-    private void clickAddContract2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddContract2ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            String rechargeUssdPartern = getRechargeUssdParternPrePaid1.getText();
-            String operatorName = getOparetorNameInDropDown.getSelectedItem().toString();
-            String othersCode = getRechargeUssdParternSkitto.getText();
-            String balenceUssdPartern = getprofitIn1k.getText();
-            String profit = getprofitIn1k.getText();
-
-            if (!rechargeUssdPartern.equals("")
-                    && !operatorName.equals("")
-                    && !profit.equals("")) {
-
-                if (saveToDbCommandInCommand()) {
-                    System.out.println("Adding Successfull");
-                }
-            } else {
-                Popup.error("Empty Field");
-            }
-        }
-    }//GEN-LAST:event_clickAddContract2ActionPerformed
-
-    private void getRechargeUssdParternPrePaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPrePaid1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getRechargeUssdParternPrePaid1ActionPerformed
-
-    private void clickChooseIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickChooseIcon1ActionPerformed
-        loadImageIcon(getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase());
-    }//GEN-LAST:event_clickChooseIcon1ActionPerformed
-
-    private void getprofitIn1kActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getprofitIn1kActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getprofitIn1kActionPerformed
-
-    private void getRechargeUssdParternPostPaid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternPostPaid1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getRechargeUssdParternPostPaid1ActionPerformed
-
-    private void backToUssdManengementPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_backToUssdManengementPanel1AncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_backToUssdManengementPanel1AncestorAdded
-
-    private void menuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuPanelMouseClicked
-
-    private void getSelectedSIMNameComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedSIMNameComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSelectedSIMNameComboActionPerformed
-
-    private void getRechargeUssdParternSkittoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getRechargeUssdParternSkittoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getRechargeUssdParternSkittoActionPerformed
-
-    private void getOparetorNameInDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOparetorNameInDropDownActionPerformed
-        System.err.println(getOparetorNameInDropDown.getSelectedItem());
-
-        if (getOparetorNameInDropDown.getSelectedItem() == null) {
-            System.err.println("Null Value Found");
-        } else {
-            switch (getOparetorNameInDropDown.getSelectedItem().toString().toLowerCase().replaceAll(" ", "")) {
-                case "gp":
-                    labelUssdPatternSkitto.setVisible(true);
-                    getRechargeUssdParternSkitto.setVisible(true);
-                    break;
-                case "grameenphone":
-                    labelUssdPatternSkitto.setVisible(true);
-                    getRechargeUssdParternSkitto.setVisible(true);
-                    break;
-                default:
-                    labelUssdPatternSkitto.setVisible(false);
-                    getRechargeUssdParternSkitto.setVisible(false);
-                    break;
-            }
-        }
-    }//GEN-LAST:event_getOparetorNameInDropDownActionPerformed
-
-    private void getBalenceUssdPartern3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getBalenceUssdPartern3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getBalenceUssdPartern3ActionPerformed
-
-    private void suggListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suggListMouseClicked
-        getMobileNumber.setText(suggList.getSelectedValue());
-        popupForSuggestManu.setVisible(false);
-    }//GEN-LAST:event_suggListMouseClicked
-
-    private void suggListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_suggListMouseEntered
-
-    }//GEN-LAST:event_suggListMouseEntered
-
-    private void getNameForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getNameForSearchKeyReleased
-
-        searchByName(contractList, getNameForSearch.getText());
-    }//GEN-LAST:event_getNameForSearchKeyReleased
-
-    private void saveNewOfferInSettringsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveNewOfferInSettringsActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    saveSIMOffer();
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    processtingLoderDialog.setVisible(false);
-                    getOfferNameInSeting.setText("");
-                    getRechargeAmmountInSeetings.setText("");
-                    getValidityInSetting.setText("");
-                    getDescriptionInSetting.setText("");
-                    System.err.println("Added @Done...");
-                }
-
-            };
-            swingWorker.execute();
-        }
-    }//GEN-LAST:event_saveNewOfferInSettringsActionPerformed
-
-    private void backToMobileRecharge1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMobileRecharge1MouseClicked
-        switchPanelViaMenu(mobileRechargePanel);
-    }//GEN-LAST:event_backToMobileRecharge1MouseClicked
-
-    private void sendAllRechargeButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendAllRechargeButActionPerformed
-        sendingLogLabel.setVisible(true);
-        sendAllRechargeBut.setFocusable(false);
-        int res = Popup.customWarning("Be carefull\n Can't cencel it");
-        if (res == 0) {
-            sendGroupRecharge();
-        } else {
-            sendingLogLabel.setVisible(false);
-            sendAllRechargeBut.setFocusable(true);
-        }
-    }//GEN-LAST:event_sendAllRechargeButActionPerformed
-
-    private void addButInGroupRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButInGroupRechargeActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
-                Popup.customError("Empty field found..");
-            } else {
-                SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        processtingLoderDialog.setVisible(true);
-                        addInGroupRechargeTable();
-                        return null;
-                    }
-
-                    @Override
-                    protected void done() {
-                        processtingLoderDialog.setVisible(false);
-                        loadDataInGroupRechargeTable();
-                        getPhoneNumberInGroupRecharge.setText("");
-                        getAmountGroupRecharge.setText("");
-                        getPhoneNumberInGroupRecharge.requestFocusInWindow();
-                        System.err.println("Number Add In Recharge List @Done...");
-                    }
-
-                };
-                swingWorker.execute();
-
-            }
-        }
-    }//GEN-LAST:event_addButInGroupRechargeActionPerformed
-
-    private void clickEditInProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickEditInProfileMouseEntered
-        ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/edit_color.png"));
-        clickEditInProfile.setIcon(image);
-    }//GEN-LAST:event_clickEditInProfileMouseEntered
-
-    private void clickEditInProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickEditInProfileMouseExited
-        ImageIcon image = new ImageIcon(getClass().getResource("/resources/images/edit.png"));
-        clickEditInProfile.setIcon(image);
-    }//GEN-LAST:event_clickEditInProfileMouseExited
-
-    private void clickExportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickExportDatabaseActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            exportDatabase();
-        }
-    }//GEN-LAST:event_clickExportDatabaseActionPerformed
-
-    private void getEmployeeNameTEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getEmployeeNameTEmployeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getEmployeeNameTEmployeeActionPerformed
-
-    private void clickContactList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactList1MouseClicked
-
-    private void clickContactList1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactList1MouseEntered
-
-    private void getServiceNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getServiceNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getServiceNameActionPerformed
-
-    private void getOperationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOperationTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getOperationTypeActionPerformed
-
-    private void getSelectedServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedServiceComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSelectedServiceComboActionPerformed
-
-    private void getUssdCodePattrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getUssdCodePattrenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getUssdCodePattrenActionPerformed
-
-    private void clickSaveInMobileRechatgeSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSaveInMobileRechatgeSettingActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    saveInMobileBanking();
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    processtingLoderDialog.setVisible(false);
-                    getTaskNameInMBS.setText("");
-                    getUssdCodePattren.setText("");
-                    getPIN.setText("");
-                    getUssdCodeForBalanceShowPattren.setText("");
-                    loadTableMobileBankingSettingFromDb();
-                    getSelectedServiceCombo.requestFocusInWindow();
-                    System.err.println("Mobile Banking Service Added in List @Done...");
-                }
-
-            };
-            swingWorker.execute();
-
-        }
-    }//GEN-LAST:event_clickSaveInMobileRechatgeSettingActionPerformed
-
-    private void getServiceNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceNameItemStateChanged
-        Set<String> taskNames = new HashSet<>();
-
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-            Connection conn = DbConnection.connect();
-
-            try {
-                getOperationType.removeAllItems();
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + evt.getItem().toString() + "\"";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    taskNames.add(rs.getString("task_name"));
-
-                    System.err.println(rs.getString("task_name"));
-
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-
-            }
-
-            for (String taskName : taskNames) {
-                getOperationType.addItem(taskName);
-            }
-        }
-
-    }//GEN-LAST:event_getServiceNameItemStateChanged
-
-    private void clickSandInMBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSandInMBMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            if (mobileBankingPanelValidation()) {
-                showMobileBankingConfirmationDialog();
-            } else {
-                Popup.customError("Any field is empty!!");
-            }
-        }
-    }//GEN-LAST:event_clickSandInMBMouseClicked
-
-    private void getOperationTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getOperationTypeItemStateChanged
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + getServiceName.getSelectedItem().toString() + "\"";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (evt.getItem().equals(rs.getString("task_name"))) {
-                        getSimOperatorName.setSelectedItem(rs.getString("default_sim"));
-                    }
-
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-
-            }
-        }
-    }//GEN-LAST:event_getOperationTypeItemStateChanged
-
-    private void getSimOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimOperatorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSimOperatorNameActionPerformed
-
-    private void getPhoneNumberInBillPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getPhoneNumberInBillPaymentActionPerformed
-
-    private void clickBillPaymentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseExited
-        hoverRemoveInBillPayPanel(hoverViewrocket);
-    }//GEN-LAST:event_clickBillPaymentMouseExited
-
-    private void clickBillPaymentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseEntered
-        hoverInBillPayPanel(hoverViewrocket);
-    }//GEN-LAST:event_clickBillPaymentMouseEntered
-
-    private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
-        switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);
-        loadInBillPaymentDetailsByBillNo();
-    }//GEN-LAST:event_clickBillPaymentMouseClicked
-
-    private void clickMobileBankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseExited
-        hoverRemoveInBillPayPanel(hoverViewbKash);
-    }//GEN-LAST:event_clickMobileBankingMouseExited
-
-    private void clickMobileBankingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseEntered
-        hoverInBillPayPanel(hoverViewbKash);
-    }//GEN-LAST:event_clickMobileBankingMouseEntered
+    }
 
     private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
         switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
@@ -7152,1178 +8277,35 @@ public class Home extends javax.swing.JFrame {
                     }
                 }
             }
-            loadMobileBankingBalance();
+
+
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    if (mobileBankingBalenceHash.isEmpty()) {
+                        getMobileBankingBalance();
+                    }
+
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    loadMobileBankingBalance();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Delete Successful...@Done");
+                }
+
+            };
+            swingWorker.execute();
+
             loadMobileBankingDetailsTable();
+
         }
         addKeyListenerAndHoverInMobileBankingPanel();
     }//GEN-LAST:event_clickMobileBankingMouseClicked
-
-    private void clickContactList2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactList2MouseClicked
-
-    private void clickContactList2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactList2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactList2MouseEntered
-
-    private void getSimNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getSimNameItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSimNameItemStateChanged
-
-    private void getSimNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSimNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSimNameActionPerformed
-
-    private void getServiceTypeInBillPayItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_getServiceTypeInBillPayItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getServiceTypeInBillPayItemStateChanged
-
-    private void getServiceTypeInBillPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getServiceTypeInBillPayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getServiceTypeInBillPayActionPerformed
-
-    private void clickRefrash2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickRefrash2ActionPerformed
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                loaderInBillPayment.setText("Processing..");
-                loadBalanceINBillPaymentPanel();
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-                loaderInBillPayment.setText("Last Updateed: " + Configaration.getCurrentDateAndTime());
-                System.err.println("Mobile Banking Service Added in List @Done...");
-            }
-
-        };
-        swingWorker.execute();
-
-
-    }//GEN-LAST:event_clickRefrash2ActionPerformed
-
-    private void clickTabUsingBillNOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingBillNOActionPerformed
-        switchPanelInBillPayment(usingBillNoPanel);
-        loadInBillPaymentDetailsByBillNo();
-
-
-    }//GEN-LAST:event_clickTabUsingBillNOActionPerformed
-
-    private void clickTabUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickTabUsingCustomerIdActionPerformed
-        switchPanelInBillPayment(UsingCustomerId);
-        loadInBillPaymentDetailsByCustomerId();
-
-    }//GEN-LAST:event_clickTabUsingCustomerIdActionPerformed
-
-    private void payInUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payInUsingCustomerIdActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    payBillByCustomerId();
-
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    resetBillByCustomerId();
-                    processtingLoderDialog.setVisible(false);
-                    System.out.println("Fatching Successful...");
-                }
-
-            };
-            swingWorker.execute();
-        }
-
-    }//GEN-LAST:event_payInUsingCustomerIdActionPerformed
-
-    private void clickPayIUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickPayIUsingBillActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    payBillByBillNo();
-
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    resetBillByCustomerId();
-                    processtingLoderDialog.setVisible(false);
-                    System.out.println("Fatching Successful...");
-                }
-
-            };
-            swingWorker.execute();
-        }
-
-    }//GEN-LAST:event_clickPayIUsingBillActionPerformed
-
-    private void clickResetPayInUsingBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickResetPayInUsingBillActionPerformed
-        resetBillByBillNo();
-    }//GEN-LAST:event_clickResetPayInUsingBillActionPerformed
-
-    private void resetnUsingCustomerIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetnUsingCustomerIdActionPerformed
-        resetBillByCustomerId();
-    }//GEN-LAST:event_resetnUsingCustomerIdActionPerformed
-
-    private void tableMobileBankingSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingSettingMouseClicked
-        String userId;
-        Point point = evt.getPoint();
-
-        int row = tableMobileBankingSetting.rowAtPoint(point);
-        userId = tableMobileBankingSetting.getValueAt(row, 0).toString();
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to remove this?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            if (UserInfo.role.equals("admin")) {
-                SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        processtingLoderDialog.setVisible(true);
-                        deleteServiceDetailsFromMobileBanking(userId);
-
-                        return null;
-                    }
-
-                    @Override
-                    protected void done() {
-                        loadTableMobileBankingSettingFromDb();
-                        processtingLoderDialog.setVisible(false);
-                        System.out.println("Delete Successful...@Done");
-                    }
-
-                };
-                swingWorker.execute();
-
-            } else {
-                Popup.customError("Permission Deny");
-            }
-        } else {
-
-        }
-
-    }//GEN-LAST:event_tableMobileBankingSettingMouseClicked
-
-    private void getUssdCodeForBalanceShowPattrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getUssdCodeForBalanceShowPattrenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getUssdCodeForBalanceShowPattrenActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        getTaskNameInMBS.setText("");
-        getUssdCodePattren.setText("");
-        getPIN.setText("");
-        getUssdCodeForBalanceShowPattren.setText("");
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void getPhoneNumberInBillPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentFocusGained
-        removePlaceHolder(getPhoneNumberInBillPayment, "Mobile Number");
-    }//GEN-LAST:event_getPhoneNumberInBillPaymentFocusGained
-
-    private void getPhoneNumberInBillPaymentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getPhoneNumberInBillPaymentFocusLost
-        setPlaceHolder(getPhoneNumberInBillPayment, "Mobile Number");
-    }//GEN-LAST:event_getPhoneNumberInBillPaymentFocusLost
-
-    private void getAmmountInBillPaymentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInBillPaymentFocusLost
-        setPlaceHolder(getAmmountInBillPayment, "Amount");
-    }//GEN-LAST:event_getAmmountInBillPaymentFocusLost
-
-    private void getAmmountInBillPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInBillPaymentFocusGained
-        removePlaceHolder(getAmmountInBillPayment, "Amount");
-    }//GEN-LAST:event_getAmmountInBillPaymentFocusGained
-
-    private void mobileBankingBalanceShowPanelListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingBalanceShowPanelListMouseClicked
-        JList list = (JList) evt.getSource();
-        MobileBankingBalanceShowCard mobileBankingBalanceShowCard = (MobileBankingBalanceShowCard) list.getModel().getElementAt(list.locationToIndex(evt.getPoint()));
-
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                String amount = getMobileBankingBalance(evt, mobileBankingBalanceShowCard.getServiceNameText().getText());
-
-                if (amount.equals("16247")) {
-                    Popup.customError("Duplicate Request");
-                } else {
-                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(amount + " Tk");
-                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update :" + Configaration.getCurrentDateAndTime());
-                }
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Delete Successful...@Done");
-            }
-
-        };
-        swingWorker.execute();
-
-        // System.out.println("index: " + );
-    }//GEN-LAST:event_mobileBankingBalanceShowPanelListMouseClicked
-
-    private void tableMobileBankingDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingDetailsMouseClicked
-        String mgs, userId, phoneNumberText, serviceName;
-        Point point = evt.getPoint();
-        int column = tableMobileBankingDetails.columnAtPoint(point);
-        int row = tableMobileBankingDetails.rowAtPoint(point);
-        mgs = tableMobileBankingDetails.getValueAt(row, 6).toString();
-        userId = tableMobileBankingDetails.getValueAt(row, 0).toString();
-        phoneNumberText = tableMobileBankingDetails.getValueAt(row, 3).toString();
-        serviceName = tableMobileBankingDetails.getValueAt(row, 1).toString();
-        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, serviceName + "-" + phoneNumberText);
-
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                deleteColumeFromMobileBanking(userId);
-                mgsDialog.setVisible(false);
-            }
-
-        });
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableMobileBankingDetailsMouseClicked
-
-    private void tableBillPaymentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBillPaymentDetailsMouseClicked
-        String mgs = null, userId = "fdg", phoneNumberText = null;
-        Point point = evt.getPoint();
-        int numberOfColume = tableBillPaymentDetails.getColumnCount();
-        if (numberOfColume == 6) {
-            int column = tableBillPaymentDetails.columnAtPoint(point);
-            int row = tableBillPaymentDetails.rowAtPoint(point);
-            mgs = tableBillPaymentDetails.getValueAt(row, 5).toString();
-            userId = tableBillPaymentDetails.getValueAt(row, 0).toString();
-            phoneNumberText = tableBillPaymentDetails.getValueAt(row, 3).toString();
-        } else if (numberOfColume == 8) {
-            int column = tableBillPaymentDetails.columnAtPoint(point);
-            int row = tableBillPaymentDetails.rowAtPoint(point);
-            mgs = tableBillPaymentDetails.getValueAt(row, 7).toString();
-            userId = tableBillPaymentDetails.getValueAt(row, 0).toString();
-            phoneNumberText = tableBillPaymentDetails.getValueAt(row, 3).toString();
-
-        }
-        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().setVisible(false);
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-
-    }//GEN-LAST:event_tableBillPaymentDetailsMouseClicked
-
-    private void clickImportDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickImportDatabaseActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-            importDatabase();
-        }
-    }//GEN-LAST:event_clickImportDatabaseActionPerformed
-
-    private void clickUpdatePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUpdatePasswordActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            String password = passwordForUpdate.getText();
-            String rePassword = rePasswordForUpdate.getText();
-            if (password.equals("") || rePassword.equals("")) {
-                Popup.customError("Empty field found.");
-
-            } else {
-                if (password.equals(rePassword)) {
-                    changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
-
-                } else {
-                    Popup.customError("Re-type password not match");
-                }
-            }
-
-        }
-    }//GEN-LAST:event_clickUpdatePasswordActionPerformed
-
-    private void getSeletedActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedActionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSeletedActionActionPerformed
-
-    private void addMobileBankingPanelInBillPayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMobileBankingPanelInBillPayMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addMobileBankingPanelInBillPayMouseClicked
-
-    private void productPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productPurchaseMouseClicked
-        System.err.println("gfhdgd");
-    }//GEN-LAST:event_productPurchaseMouseClicked
-
-    private void ProductPurchasePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanelMouseClicked
-        setupTabsInShopManagment();
-        System.err.println("gfhdgd");
-    }//GEN-LAST:event_ProductPurchasePanelMouseClicked
-
-    private void detailsPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailsPanelMouseClicked
-
-    }//GEN-LAST:event_detailsPanelMouseClicked
-
-    private void saveInProductPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchaseMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            saveInProductPurchaseDB();
-            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
-        }
-    }//GEN-LAST:event_saveInProductPurchaseMouseClicked
-
-    private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_groupInProductPurchasesActionPerformed
-
-    private void invoiceInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchasesKeyReleased
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-            List<String> list = new ArrayList<>();
-            String to_check = null;
-
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    list.add(rs.getString("invoice"));
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
-                supplierInProductPurchases.requestFocusInWindow();
-            } else {
-                to_check = invoiceInProductPurchases.getText();
-                int to_check_len = to_check.length();
-                for (String data : list) {
-                    String check_from_data = "";
-                    for (int i = 0; i < to_check_len; i++) {
-                        if (to_check_len <= data.length()) {
-                            check_from_data = check_from_data + data.charAt(i);
-                        }
-                    }
-
-                    if (check_from_data.equals(to_check)) {
-
-                        invoiceInProductPurchases.setText(data);
-                        invoiceInProductPurchases.setSelectionStart(to_check_len);
-                        invoiceInProductPurchases.setSelectionEnd(data.length());
-                        break;
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_invoiceInProductPurchasesKeyReleased
-
-    private void groupInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductPurchasesKeyReleased
-        List<String> list = new ArrayList<>();
-        String to_check = null;
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    list.add(rs.getString("group"));
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                showDataInProductPurchaseFromDB(groupInProductPurchases.getText());
-                pNameInProductPurchases.requestFocusInWindow();
-            } else {
-                to_check = groupInProductPurchases.getText();
-                int to_check_len = to_check.length();
-                for (String data : list) {
-                    String check_from_data = "";
-                    for (int i = 0; i < to_check_len; i++) {
-                        if (to_check_len <= data.length()) {
-                            check_from_data = check_from_data + data.charAt(i);
-                        }
-                    }
-
-                    if (check_from_data.equals(to_check)) {
-
-                        groupInProductPurchases.setText(data);
-                        groupInProductPurchases.setSelectionStart(to_check_len);
-                        groupInProductPurchases.setSelectionEnd(data.length());
-                        break;
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_groupInProductPurchasesKeyReleased
-
-    private void groupInProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductDetailsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_groupInProductDetailsActionPerformed
-
-    private void groupInProductDetailsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductDetailsKeyReleased
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-
-        }
-    }//GEN-LAST:event_groupInProductDetailsKeyReleased
-
-    private void saveInProductPurchase1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveInProductPurchase1MouseClicked
-
-    private void ProductPurchasePanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductPurchasePanel1MouseClicked
-
-    private void searchByGroupInRatioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByGroupInRatioActionPerformed
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-            listOfBarCodeOrGroupComboBox.removeAllItems();
-            if (evt.getSource() == searchByGroupInRatio) {
-
-                Boolean isActive = false;
-                if (searchByGroupInRatio.isSelected()) {
-                    isActive = true;
-                }
-
-                if (isActive) {
-                    if (UserInfo.role.equals("demo")) {
-                        System.err.println("Access dny in DEMO Panel");
-
-                    } else {
-                        Connection conn = DbConnection.connect();
-                        try {
-                            Statement st = conn.createStatement();
-                            String sql = "SELECT * FROM `product_purchase`";
-                            ResultSet rs = st.executeQuery(sql);
-
-                            while (rs.next()) {
-                                listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString() + "  " + rs.getString("group").toString());
-                            }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                        } finally {
-                            DbConnection.disconnect(conn);
-                        }
-                    }
-
-                }
-
-            }
-        }
-    }//GEN-LAST:event_searchByGroupInRatioActionPerformed
-
-    private void listOfBarCodeOrGroupComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listOfBarCodeOrGroupComboBoxActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            if (listOfBarCodeOrGroupComboBox.getSelectedItem() != null) {
-                if (listOfBarCodeOrGroupComboBox.getSelectedItem().toString().contains(" ")) {
-                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
-                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
-
-                } else {
-                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem());
-                    showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString());
-                }
-
-            }
-        }
-
-    }//GEN-LAST:event_listOfBarCodeOrGroupComboBoxActionPerformed
-
-    private void saveInProductPurchase2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveInProductPurchase2MouseClicked
-
-    private void productDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productDetailsTableMouseClicked
-        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify;
-        Point point = evt.getPoint();
-        int column = productDetailsTable.columnAtPoint(point);
-        int row = productDetailsTable.rowAtPoint(point);
-        productId = productDetailsTable.getValueAt(row, 0).toString();
-        productGroup = productDetailsTable.getValueAt(row, 1).toString();
-        productName = productDetailsTable.getValueAt(row, 2).toString();
-        buyRate = productDetailsTable.getValueAt(row, 3).toString();
-        sellPrice = productDetailsTable.getValueAt(row, 4).toString();
-        brand = productDetailsTable.getValueAt(row, 5).toString();
-        lastModify = productDetailsTable.getValueAt(row, 6).toString();
-        System.err.println(productId + "+" + productGroup);
-
-        //SET VALUE IN EDITTEXT
-        barCodeInProductDetails.setText(productId);
-        groupInProductDetails.setText(productGroup);
-        pNameInProductDetails.setText(productName);
-        buyRateInProductDetails.setText(buyRate);
-        sellRateInProductDetails.setText(sellPrice);
-        brandInProductDetails.setText(sellPrice);
-
-
-    }//GEN-LAST:event_productDetailsTableMouseClicked
-
-    private void saveInProductPurchase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase1ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
-            addPerchangeSelection.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
-                    if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
-                        sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
-                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
-                    } else {//checkbox has been deselected
-                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
-                    };
-                }
-            });
-
-        }
-    }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            genarateBarCode(barCodeInProductDetails.getText());
-        }
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void invoiceInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductSellKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_invoiceInProductSellKeyReleased
-
-    private void fullNameInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInProductSellActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullNameInProductSellActionPerformed
-
-    private void fullNameInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullNameInProductSellKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullNameInProductSellKeyReleased
-
-    private void ProductPurchasePanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductPurchasePanel2MouseClicked
-
-    private void phoneNOInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNOInProductSellActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNOInProductSellActionPerformed
-
-    private void panddingListnProductSellComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panddingListnProductSellComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panddingListnProductSellComboBoxActionPerformed
-
-    private void noteInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noteInProductSellActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noteInProductSellActionPerformed
-
-    private void paymentInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentInProductBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paymentInProductBillActionPerformed
-
-    private void warrantyInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyInProductBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_warrantyInProductBillActionPerformed
-
-    private void duePaymentInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duePaymentInProductBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_duePaymentInProductBillActionPerformed
-
-    private void discpuntInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductBillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_discpuntInProductBillActionPerformed
-
-    private void barCodeInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeInProductSellKeyReleased
-        List<String> list = new ArrayList<>();
-        String to_check = null;
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    list.add(rs.getString("bar_code"));
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                addProductFromDBInSellPanel(barCodeInProductSell.getText());
-                barCodeInProductSell.requestFocusInWindow();
-            } else {
-                to_check = barCodeInProductSell.getText();
-                int to_check_len = to_check.length();
-                for (String data : list) {
-                    String check_from_data = "";
-                    for (int i = 0; i < to_check_len; i++) {
-                        if (to_check_len <= data.length()) {
-                            check_from_data = check_from_data + data.charAt(i);
-                        }
-                    }
-
-                    if (check_from_data.equals(to_check)) {
-
-                        barCodeInProductSell.setText(data);
-                        barCodeInProductSell.setSelectionStart(to_check_len);
-                        barCodeInProductSell.setSelectionEnd(data.length());
-                        break;
-                    }
-                }
-            }
-            invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
-        }
-    }//GEN-LAST:event_barCodeInProductSellKeyReleased
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            clearBillforProduct();
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void productSellTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_productSellTableMouseClicked
-
-    private void productSellTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTableKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            System.err.println("VK_ENTER");
-        }
-        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            System.err.println("VK_TAB");
-        }
-    }//GEN-LAST:event_productSellTableKeyPressed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-//  saveSellProductInSellTabel();      
-            printMemo();
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void invoiceInProductWarrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductWarrantyKeyReleased
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-
-        }
-    }//GEN-LAST:event_invoiceInProductWarrantyKeyReleased
-
-    private void productSellTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_productSellTable1MouseClicked
-
-    private void productSellTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTable1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_productSellTable1KeyPressed
-
-    private void fullNameInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullNameInProductWanrrantyActionPerformed
-
-    private void fullNameInProductWanrrantyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullNameInProductWanrrantyKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fullNameInProductWanrrantyKeyReleased
-
-    private void phoneNOInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNOInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNOInProductWanrrantyActionPerformed
-
-    private void brandInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brandInProductWanrrantyActionPerformed
-
-    private void warrantyInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warrantyInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_warrantyInProductWanrrantyActionPerformed
-
-    private void discpuntInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_discpuntInProductWanrrantyActionPerformed
-
-    private void ProductPurchasePanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductPurchasePanel3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductPurchasePanel3MouseClicked
-
-    private void paidPaymentInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidPaymentInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paidPaymentInProductWanrrantyActionPerformed
-
-    private void billInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_billInProductWanrrantyActionPerformed
-
-    private void refNameInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refNameInProductWanrrantyActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refNameInProductWanrrantyActionPerformed
-
-    private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            saveWarrantyDetailsInDb();
-            printPosMemo(invoiceInProductWarranty.getText());
-        }
-    }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
-
-    private void saveInProductPurchase2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase2ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-        }
-    }//GEN-LAST:event_saveInProductPurchase2ActionPerformed
-
-    private void updateClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateClickProductWanrrantyActionPerformed
-
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-        }
-
-    }//GEN-LAST:event_updateClickProductWanrrantyActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
-        }
-    }//GEN-LAST:event_generateBarCodeActionPerformed
-
-    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickInboxActionPerformed
-
-    private void tableRechargeDetailsShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRechargeDetailsShowMouseClicked
-        String mgs, userId, phoneNumberText;
-        Point point = evt.getPoint();
-        int column = tableRechargeDetailsShow.columnAtPoint(point);
-        int row = tableRechargeDetailsShow.rowAtPoint(point);
-        mgs = tableRechargeDetailsShow.getValueAt(row, 7).toString();
-        userId = tableRechargeDetailsShow.getValueAt(row, 0).toString();
-        phoneNumberText = tableRechargeDetailsShow.getValueAt(row, 3).toString();
-        String ammountText = tableRechargeDetailsShow.getValueAt(row, 4).toString();
-        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumberText);
-
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                getMobileNumber.setText(phoneNumberText);
-                getMobileNumber.setForeground(Color.black);
-                getAmmountInTk.setText(ammountText);
-                getAmmountInTk.setForeground(Color.black);
-
-                deleteColumeFromRechargeDetails(userId);
-                mgsDialog.setVisible(false);
-            }
-
-        });
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-    }//GEN-LAST:event_tableRechargeDetailsShowMouseClicked
-
-    private void clickSIMOffer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickSIMOffer1ActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            simSimOfferDialog();
-        }
-    }//GEN-LAST:event_clickSIMOffer1ActionPerformed
-
-    private void clickGroupLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickGroupLoadActionPerformed
-        switchPanelViaMenu(groupLoadPanel);
-        getSelectedSimInGroupRecharge1.removeAllItems();
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
-            }
-
-        }
-        sendingLogLabel.setVisible(false);
-        loadDataInGroupRechargeTable();
-        focusAndKeyboardUsedInGroupRecharge();
-    }//GEN-LAST:event_clickGroupLoadActionPerformed
-
-    private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
-
-        switchPanelViaMenu(ussdDialPanel);
-        getUssdCode.requestFocusInWindow();
-        refrash();
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-            ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-                getSelectedSim.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-            });
-        }
-        addKeyLIsenerInUssdDailPad();
-    }//GEN-LAST:event_clickUssdDailActionPerformed
-
-    private void clickContactListMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickContactListMouseEntered
-
-    private void clickContactListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickContactListMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-        
-
-        switchPanelViaMenu(contractListPanel);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                setContractListInJTable("mobile_recharge");
-                System.out.println("Contract Searching...");
-                return null;
-            }
-
-            @Override
-            protected void done() {
-                getNameForSearch.setText("");
-                getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-                getNameForSearch.requestFocusInWindow();
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Fatching Successful...");
-            }
-
-        };
-        swingWorker.execute();
-        }
-    }//GEN-LAST:event_clickContactListMouseClicked
-
-    private void getMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberKeyReleased
-        if (getMobileNumber.getText().equals("")) {
-            popupForSuggestManu.setVisible(false);
-        } else {
-
-            if (searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText()).isEmpty()) {
-                popupForSuggestManu.setVisible(false);
-            } else {
-                popupForSuggestManu.setVisible(true);
-                defaultListModel.removeAllElements();
-                popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
-                searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
-                .stream().forEach(number -> {
-                    defaultListModel.addElement(number);
-                });
-
-            }
-
-        }
-    }//GEN-LAST:event_getMobileNumberKeyReleased
-
-    private void getMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getMobileNumberActionPerformed
-
-    private void getMobileNumberFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusLost
-        setPlaceHolder(getMobileNumber, "Mobile Number");
-    }//GEN-LAST:event_getMobileNumberFocusLost
-
-    private void getMobileNumberFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getMobileNumberFocusGained
-        removePlaceHolder(getMobileNumber, "Mobile Number");
-    }//GEN-LAST:event_getMobileNumberFocusGained
-
-    private void getAmmountInTkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAmmountInTkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getAmmountInTkActionPerformed
-
-    private void getAmmountInTkFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusLost
-        setPlaceHolder(getAmmountInTk, "Ammount");
-    }//GEN-LAST:event_getAmmountInTkFocusLost
-
-    private void getAmmountInTkFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInTkFocusGained
-        removePlaceHolder(getAmmountInTk, "Ammount");
-    }//GEN-LAST:event_getAmmountInTkFocusGained
-
-    private void clickSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickSendMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            String phoneNumberRequested = getMobileNumber.getText();
-            String ammountRequested = getAmmountInTk.getText();
-
-            if (!phoneNumberRequested.equals("")
-                && !ammountRequested.equals("")
-                && phoneNumberRequested.matches("[0-9]+")
-                && ammountRequested.matches("[0-9]+")) {
-
-                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
-
-                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-            } else {
-                getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-
-            }
-        }
-    }//GEN-LAST:event_clickSendMouseClicked
-
-    private void getSeletedOperatorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSeletedOperatorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
-
-    private void searchInMobileRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInMobileRechargeActionPerformed
-     // searchByPhonenumberInRechargePanel("fgh");
-    }//GEN-LAST:event_searchInMobileRechargeActionPerformed
-
-
-
-    private void contractListClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contractListClickActionPerformed
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-
-
-
-            switchPanelViaMenu(contractListPanel);
-            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    setContractListInJTable("mobile_banking");
-                    System.out.println("Contract Searching...");
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    getNameForSearch.setText("");
-                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-                    getNameForSearch.requestFocusInWindow();
-                    processtingLoderDialog.setVisible(false);
-                    System.out.println("Fatching Successful...");
-                }
-
-            };
-            swingWorker.execute();
-        }
-    }//GEN-LAST:event_contractListClickActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void getNameForSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getNameForSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getNameForSearchActionPerformed
-
-    private void getMobileNumberForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberForSearchKeyReleased
-       searchByPhoneNumberInRechargeDetails(mobileRechargeDetailsForSearchingDtos,getMobileNumberForSearch.getText());
-    }//GEN-LAST:event_getMobileNumberForSearchKeyReleased
-
-    private void deleteColumeFromMobileBanking(String userId) {
-        if (UserInfo.role.equals("admin")) {
-            DbConnection.deleteRow("m_b_details", "TnxId", userId);
-            loadMobileBankingDetailsTable();
-        } else {
-            Popup.customError("Access Deny..");
-        }
-
-    }
-
-    private String getMobileBankingBalance(MouseEvent evt, String serviceName) {
-
-        String amount = "0.0";
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
-            List<String> ussdCodeSerialList = new ArrayList<>();
-
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
-                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
-                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
-                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
-                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin")));
-                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
-                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(JListPanelRenderer.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
-
-                if (mobileBankingBalanceShowDto.getServiceName().toLowerCase().equals(serviceName.toLowerCase())) {
-
-                    Pattern p = Pattern.compile("\\d+");
-                    Matcher m = p.matcher(mobileBankingBalanceShowDto.getUssdCode());
-                    ussdCodeSerialList.clear();
-                    while (m.find()) {
-
-                        ussdCodeSerialList.add(m.group());
-                    }
-                    String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, mobileBankingBalanceShowDto.getDefaultSIM());
-
-                    amount = Configaration.stringToNumberList(Configaration.haxToStringConvert(feedBackMgs)).get(0);
-                    System.err.println("Amount: " + amount);
-
-                }
-            }
-        }
-        return amount;
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -8348,6 +8330,38 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField addressInProductWanrranty;
     private javax.swing.JPanel adsPanel;
     private javax.swing.JLabel back;
+
+    private void mobileBankingBalanceShowPanelListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingBalanceShowPanelListMouseClicked
+//        JList list = (JList) evt.getSource();
+//        MobileBankingBalanceShowCard mobileBankingBalanceShowCard = (MobileBankingBalanceShowCard) list.getModel().getElementAt(list.locationToIndex(evt.getPoint()));
+//
+//        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+//            @Override
+//            protected Void doInBackground() throws Exception {
+//                processtingLoderDialog.setVisible(true);
+//                String amount = getMobileBankingBalance(evt, mobileBankingBalanceShowCard.getServiceNameText().getText());
+//
+//                if (amount.equals("16247")) {
+//                    Popup.customError("Duplicate Request");
+//                } else {
+//                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(amount + " Tk");
+//                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update :" + Configaration.getCurrentDateAndTime());
+//                }
+//                return null;
+//            }
+//
+//            @Override
+//            protected void done() {
+//                processtingLoderDialog.setVisible(false);
+//                System.out.println("Delete Successful...@Done");
+//            }
+//
+//        };
+//        swingWorker.execute();
+
+        // System.out.println("index: " + );
+    }//GEN-LAST:event_mobileBankingBalanceShowPanelListMouseClicked
+
     private javax.swing.JLabel back43;
     private javax.swing.JLabel backToMobileRecharge;
     private javax.swing.JLabel backToMobileRecharge1;
@@ -8505,6 +8519,41 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel icon3;
     private javax.swing.JLabel icon4;
     private javax.swing.JLabel icon5;
+
+    private void clickInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickInboxActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            switchPanelViaMenu(inboxJpanel);
+
+//            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+//                @Override
+//                protected Void doInBackground() throws Exception {
+//                    processtingLoderDialog.setVisible(true);
+//                    setInboxDataInTable();
+//                    System.out.println("Contract Searching...");
+//                    return null;
+//                }
+//
+//                @Override
+//                protected void done() {
+//                    getNameForSearch.setText("");
+//                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+//                    getNameForSearch.requestFocusInWindow();
+//                    processtingLoderDialog.setVisible(false);
+//                    System.out.println("Fatching Successful...");
+//                }
+//
+//            };
+//            swingWorker.execute();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clickInboxActionPerformed
+
+    private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_back1MouseClicked
+
     private javax.swing.JLabel invoiceINProductDetails;
     private javax.swing.JTextField invoiceInProductPurchases;
     private javax.swing.JTextField invoiceInProductSell;
@@ -8620,6 +8669,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+
+    private void searchInInboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInInboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInInboxActionPerformed
+
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -8719,6 +8773,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
+
+    private void searchInInboxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchInInboxKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInInboxKeyReleased
+
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -8808,6 +8867,67 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton saveInProductPurchase2;
     private javax.swing.JButton saveNewOfferInSettrings;
     private javax.swing.JRadioButton searchByGroupInRatio;
+
+    private HashMap<String, String> getMobileBankingBalance() {
+        System.out.println("action here");
+
+        String amount = "0.0";
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            Connection conn = DbConnection.connect();
+            Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
+            List<String> ussdCodeSerialList = new ArrayList<>();
+
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `mobile_banking`";
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+
+                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
+                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
+                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
+                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
+                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin")));
+                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
+                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JListPanelRenderer.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
+
+                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    String activeSimNameWithPhoneNO = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+
+                    if (mobileBankingBalanceShowDto.getDefaultSIM().toLowerCase().equals(activeSimNameWithPhoneNO.toLowerCase())) {
+
+                        Pattern p = Pattern.compile("\\d+");
+                        Matcher m = p.matcher(mobileBankingBalanceShowDto.getUssdCode());
+                        ussdCodeSerialList.clear();
+                        while (m.find()) {
+
+                            ussdCodeSerialList.add(m.group());
+                        }
+
+                        //GET BALANNCE
+                        String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, simOperatorIdentifierDto.getPortName());
+                        amount = Configaration.stringToNumberList(Configaration.haxToStringConvert(feedBackMgs)).get(0);
+                        mobileBankingBalenceHash.put(mobileBankingBalanceShowDto.getServiceName() + "(" + activeSimNameWithPhoneNO + ")", amount);
+
+                    }
+                }
+
+            }
+
+        }
+        return mobileBankingBalenceHash;
+    }
+
     private javax.swing.JButton searchInMobileRecharge;
     private javax.swing.JLabel selectedSimOperatorIcon;
     private javax.swing.JLabel selectedSimOperatorIcon1;
@@ -8882,6 +9002,7 @@ public class Home extends javax.swing.JFrame {
                     showMobileRechargeBalance();
                     loadValueInTableRechargeDetails();
                     setFocusInMobileRechargePanel();
+                    detectUnreadSms();
                     return null;
                 }
 
@@ -8895,6 +9016,7 @@ public class Home extends javax.swing.JFrame {
 
         }
     }
+
 
     protected void switchPanelViaMenu(JPanel requestedPanel, JPanel tabPanel, JLabel title, JLabel icon, String iconName, String header) {
 
@@ -9572,8 +9694,8 @@ public class Home extends javax.swing.JFrame {
                             while (!hashValue.getValue().isEmpty()) {
                                 System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
                                 Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = (Method) object.getClass().getMethod("getStatus", null);
-                                UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
+                                Method methodGetStatus = (Method) object.getClass().getMethod("getStatus", null);
+                                UssdRequestType getStatus = (UssdRequestType) methodGetStatus.invoke(object, null);
 
                                 switch (getStatus) {
                                     case MOBILE_RECHARGE:
@@ -9585,6 +9707,8 @@ public class Home extends javax.swing.JFrame {
 
                                     case MOBILE_BANKING:
                                         System.err.println(getStatus);
+                                        MobileBankingDetailsDto headMobileBankingDetailsDto = (MobileBankingDetailsDto) object;
+                                        sendMobileBankingRequest(headMobileBankingDetailsDto.getService(), headMobileBankingDetailsDto.getAction(), headMobileBankingDetailsDto.getAcNo(), headMobileBankingDetailsDto.getAmount(), headMobileBankingDetailsDto.getSelectableSimPort(), headMobileBankingDetailsDto.getSelectableSim());
                                         hashValue.getValue().remove();
                                         ussdDailREquestCounter();
                                         break;
@@ -10596,16 +10720,13 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void sendMobileBankingRequest() {
+    private void sendMobileBankingRequest(String service, String actionType, String acPhoneNo, String amount, String simPort, String sim) {
         String trxId = Configaration.getUUID();
+
         saveInMobileBankingTable(trxId, "Processing", "Processing");
         loadMobileBankingDetailsTable();
         System.out.println("Mobile banking Process start...");
-        String service = getServiceName.getSelectedItem().toString();
-        String actionType = getOperationType.getSelectedItem().toString();
-        String acPhoneNo = getPhoneNumberInBillPayment.getText();
-        String amount = getAmmountInBillPayment.getText();
-        String sim = getSimOperatorName.getSelectedItem().toString();
+
         List<String> ussdCodeSerialList = new ArrayList<>();
         List<String> balanceUssdCodeList = new ArrayList<>();
         List<String> balancePaseList = new ArrayList<>();
@@ -10657,24 +10778,33 @@ public class Home extends javax.swing.JFrame {
 
             System.err.println("Request USSD CODE=" + ussdCodeSerialList);
             // Sand Ussd Serial for Request
-            String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
+            String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, simPort);
             Configaration.wait(2000);
             // Sand Ussd Serial for Balance
-            String acBalanceInHax = "00420061006C0061006E00630065003A00200030002E0030003800200054006B002E0020004500780070003A002000300035002F00300033002F0032003000320032002E0020004C006F0061006E0020004400750065003A00200035003000200054006B002E000A0031003A00420065007300740020004D0069006E0075007400650020002600200049006E007400650072006E006500740020004F00660066006500720073000A0032003A0047006500740020005300700065006300690061006C002000430061006C006C00200052006100740065";
-            Pattern p3 = Pattern.compile("\\d+");
-            Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
-            while (m3.find()) {
-                balancePaseList.add(m3.group());
-                System.out.println(m3.group());
-            }
-            if (balancePaseList.get(0).equals("16247")) {
-                System.err.println("Possible duplicate request, call 16247 for details.");
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
+            if (!feedBackMgs.equals("USSD Dial Failed") || !feedBackMgs.equals("Possible duplicate request, call 16247 for details")) {
+                Double currentBalance = Double.valueOf(mobileBankingBalenceHash.get(service + "(" + sim + ")"));
+                Double acBalance = currentBalance - Double.valueOf(amount);
+                mobileBankingBalenceHash.put(service + "(" + sim + ")", String.valueOf(acBalance));
+                loadMobileBankingBalance();
+                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(acBalance));
+                System.out.println(currentBalance + "==============================" + service + " " + acBalance + " " + amount);
             } else {
-                System.err.println("----------------------------------" + balancePaseList.get(0));
-
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), balancePaseList.get(0));
+                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(mobileBankingBalenceHash.get(service + "(" + sim + ")")));
             }
+//            Pattern p3 = Pattern.compile("\\d+");
+//            Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
+//            while (m3.find()) {
+//                balancePaseList.add(m3.group());
+//                System.out.println(m3.group());
+//            }
+//            if (balancePaseList.get(0).equals("16247")) {
+//                System.err.println("Possible duplicate request, call 16247 for details.");
+//                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
+//            } else {
+//                System.err.println("----------------------------------" + balancePaseList.get(0));
+//
+//
+//            }
 
             loadMobileBankingDetailsTable();
             getPhoneNumberInBillPayment.setText("");
@@ -10764,7 +10894,21 @@ public class Home extends javax.swing.JFrame {
                     System.err.println("Confirm click");
                     confirmDialog.setVisible(false);
                     mobileBankingBalanceShowPanelList.setEnabled(false);
-                    sendMobileBankingRequest();
+                    //sendMobileBankingRequest();
+                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                        String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                        if (selectedSimCardWithNumber.toUpperCase().equals(getSimOperatorName.getSelectedItem().toString().toUpperCase())) {
+                            MobileBankingDetailsDto mobileBankingDetailsDto = new MobileBankingDetailsDto();
+                            mobileBankingDetailsDto.setAcNo(getPhoneNumberInBillPayment.getText());
+                            mobileBankingDetailsDto.setService(getServiceName.getSelectedItem().toString());
+                            mobileBankingDetailsDto.setAction(getOperationType.getSelectedItem().toString());
+                            mobileBankingDetailsDto.setAmount(getAmmountInBillPayment.getText());
+                            mobileBankingDetailsDto.setSelectableSimPort(simOperatorIdentifierDto.getPortName());
+                            mobileBankingDetailsDto.setSelectableSim(getSimOperatorName.getSelectedItem().toString());
+                            mobileBankingDetailsDto.setStatus(UssdRequestType.MOBILE_BANKING);
+                            addQueue(mobileBankingDetailsDto);
+                        }
+                    }
                     getServiceName.requestFocusInWindow();
                     refrash();
                     return null;
@@ -10790,7 +10934,20 @@ public class Home extends javax.swing.JFrame {
                             System.err.println("Confirm click");
                             confirmDialog.setVisible(false);
                             mobileBankingBalanceShowPanelList.setEnabled(false);
-                            sendMobileBankingRequest();
+                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
+                                if (selectedSimCardWithNumber.toUpperCase().equals(getSimOperatorName.getSelectedItem().toString().toUpperCase())) {
+                                    MobileBankingDetailsDto mobileBankingDetailsDto = new MobileBankingDetailsDto();
+                                    mobileBankingDetailsDto.setAcNo(getPhoneNumberInBillPayment.getText());
+                                    mobileBankingDetailsDto.setService(getServiceName.getSelectedItem().toString());
+                                    mobileBankingDetailsDto.setAction(getOperationType.getSelectedItem().toString());
+                                    mobileBankingDetailsDto.setAmount(getAmmountInBillPayment.getText());
+                                    mobileBankingDetailsDto.setSelectableSimPort(simOperatorIdentifierDto.getPortName());
+                                    mobileBankingDetailsDto.setSelectableSim(getSimOperatorName.getSelectedItem().toString());
+                                    mobileBankingDetailsDto.setStatus(UssdRequestType.MOBILE_BANKING);
+                                    addQueue(mobileBankingDetailsDto);
+                                }
+                            }
                             getServiceName.requestFocusInWindow();
                             refrash();
 
@@ -10885,7 +11042,7 @@ public class Home extends javax.swing.JFrame {
         } else {
             Connection conn = DbConnection.connect();
             try {
-                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Date and Time","info"}, 0);
+                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Current Balance", "Status", "Date and Time", "info"}, 0);
 
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `m_b_details`";
@@ -10893,7 +11050,7 @@ public class Home extends javax.swing.JFrame {
                 while (rs.next()) {
                     if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                         defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                            rs.getString("amount"), rs.getString("sim"), rs.getString("result"), rs.getString("date_time"),rs.getString("date_time")});
+                                rs.getString("amount"), rs.getString("sim"), rs.getString("c_balance"), rs.getString("result"), rs.getString("date_time"), rs.getString("date_time")});
                     }
 
                 }
@@ -12087,20 +12244,17 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private String sendSerialUSSDCode(List<String> ussdCodeSerialList, String sim) {
+    private String sendSerialUSSDCode(List<String> ussdCodeSerialList, String simPort) {
         System.err.println("Request List: " + ussdCodeSerialList);
 
         List<String> responseList = new ArrayList<>();
-        String res = "Could not get response from server";
+        String res = "USSD Dial Failed";
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
             return "200";
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                if (selectedSimCardWithNumber.toUpperCase().equals(sim.toUpperCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+            auto.recharge.system.config.Modem.connect(simPort);
                     for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
                         if (i == 0) {
                             String ussd = "*" + ussdCodeSerialList.get(i) + "#";
@@ -12136,16 +12290,16 @@ public class Home extends javax.swing.JFrame {
                             String finalResponse = responseList.get(size - 1);
                             String[] finalResponsePerse = finalResponse.split(",");
                             String finalResultInHax = finalResponsePerse[1].replaceAll("\"", "");
-                            System.err.println("00000000000000000000000909090    " + Configaration.haxToStringConvert(finalResultInHax));
+                            System.err.println("Final Result    " + Configaration.haxToStringConvert(finalResultInHax));
                             return finalResultInHax;
                         }
                     }
-                }
-            }
-            responseList.clear();
 
-            return "USSD Dial Failed";
         }
+        responseList.clear();
+
+        return "USSD Dial Failed";
+
     }
 
     //-------------------------------- Bill Pay Panel------------------------------------
@@ -12731,41 +12885,24 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DefaultListModel Clistmodel = new DefaultListModel();//
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
-                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
-                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
-                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
-                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("ussd_code"));
-                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
-                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
-                }
-
-                for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
-                    System.err.println(mobileBankingBalanceShowDto.getServiceName());
+            DefaultListModel Clistmodel = new DefaultListModel();
+            for (Map.Entry<String, String> entry : mobileBankingBalenceHash.entrySet()) {
+                System.out.println("----------------------" + entry.getKey() + " : " + entry.getValue());
+                if (entry.getValue().equals("16247")) {
+                    Popup.customError("Duplicate Request");
+                } else {
                     MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
-                    mobileBankingBalanceShowCard.getServiceNameText().setText(mobileBankingBalanceShowDto.getServiceName());
-                    mobileBankingBalanceShowCard.getAmountBalanceText().setText("XXXX" + " TK");
-                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + "XX-XX-XX");
+                    mobileBankingBalanceShowCard.getServiceNameText().setText(entry.getKey());
+                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(entry.getValue() + " TK");
+                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + Configaration.getCurrentDateAndTime());
 
                     Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
                 }
-                mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
-
-                mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
             }
+            mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
+
+            mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
+
         }
 
     }
@@ -14096,12 +14233,162 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void displayConfig() {
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            int screenHeight = screenSize.height;
-            int screenWidth = screenSize.width;
-            this.setSize(1500,950);
-            this.setLocationRelativeTo(null);
-        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
+        this.setSize(1500, 950);
+        this.setLocationRelativeTo(null);
+
     }
 
+    private void setInboxDataInTable() {
+//        Connection conn = DbConnection.connect();
+//        try {
+//            int count = 1;
+//
+//            contractList = new HashSet<>();
+//            DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
+////                ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
+////                    System.out.println(simOperatorIdentifierDto.getPortName());
+////                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+////                    return simOperatorIdentifierDto;
+////                }).map((_item) -> {
+////                    rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
+////
+////                    return _item;
+////                }).forEachOrdered((_item) -> {
+////                    auto.recharge.system.config.Modem.disconnect();
+////                    Configaration.wait(1000);
+////                });
+////
+////                for (String contract : rowOfContractlist) {
+////                    System.err.println(contract);
+////                    String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
+////                            .replaceAll("\"", "").split(",");
+////                    for (int i = 1; i < contractPerseDetails.length; i++) {
+////                        ContractResponse contractResponse = new ContractResponse();
+////                        contractResponse.setId(count++);
+////                        contractResponse.setName(contractPerseDetails[4]);
+////                        contractResponse.setPhoneNo(contractPerseDetails[2]);
+////                        contractResponse.setStorage("SIM");
+////                        contractList.add(contractResponse);
+////                    }
+////                }
+//
+//            Statement stSQLite = conn.createStatement();
+//            String sqlSQLite = "SELECT * FROM `contract`";
+//            ResultSet rs = stSQLite.executeQuery(sqlSQLite);
+//            while (rs.next()) {
+//                ContractResponse contractResponse = new ContractResponse();
+//                contractResponse.setId(count++);
+//                contractResponse.setName(rs.getString("name"));
+//                contractResponse.setPhoneNo(rs.getString("phone_no"));
+//                contractResponse.setStorage(rs.getString("memory"));
+//                contractList.add(contractResponse);
+//                contractListTableMOdel.addRow(new Object[]{rs.getString("name"),rs.getString("phone_no"), rs.getString("memory")});
+//            }
+////
+////                if (Configaration.netIsAvailable()) {
+////
+////                    DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
+////
+////                    try {
+////                        java.sql.Statement st = bMySQLConnection.connect().createStatement();
+////                        String sql = "SELECT * FROM user_contracts_list WHERE userId='" + UserInfo.userId + "';";
+////
+////                        java.sql.ResultSet resultSet = st.executeQuery(sql);
+////                        while (resultSet.next()) {
+////                            ContractResponse contractResponse = new ContractResponse();
+////                            contractResponse.setId(count++);
+////                            contractResponse.setName(resultSet.getString("name"));
+////                            contractResponse.setPhoneNo(resultSet.getString("phone_number"));
+////                            contractResponse.setStorage(resultSet.getString("storage"));
+////                            contractList.add(contractResponse);
+////
+////                        }
+////                    } catch (SQLException ex) {
+////                        Log.error("6853", ex.getMessage());
+////
+////                    } finally {
+////                        bMySQLConnection.disconnect();
+////                    }
+////
+////                } else {
+////                    //alartMessageText.setVisible(true);
+////                }
+////
+////                contractList.stream().forEach(contract -> {
+////
+////                    contractListTableMOdel.addRow(new Object[]{contract.getName(), contract.getPhoneNo(), contract.getStorage()});
+////                });
+//
+//            tableContractLIst.setEnabled(false);
+//            tableContractLIst.addMouseListener(new MouseAdapter() {
+//
+//                @Override
+//                public void mouseClicked(MouseEvent me) {
+//                    String selectedNumber;
+//                    Point point = me.getPoint();
+//                    int column = tableContractLIst.columnAtPoint(point);
+//                    int row = tableContractLIst.rowAtPoint(point);
+//                    selectedNumber = tableContractLIst.getValueAt(row, 1).toString();
+//                    System.out.println(selectedNumber.length());
+//                    if(type.equals("mobile_recharge")) {
+//                        if (selectedNumber.length() == 14) {
+//                            switchPanelViaMenu(mobileRechargePanel);
+//                            getMobileNumber.requestFocusInWindow();
+//                            getMobileNumber.setForeground(Color.BLACK);
+//                            getMobileNumber.setText(selectedNumber.substring(3, 14));
+//
+//                            System.err.println(selectedNumber.substring(3, 14));
+//                            System.out.println(selectedNumber);
+//                        } else {
+//                            switchPanelViaMenu(mobileRechargePanel);
+//                            getMobileNumber.requestFocusInWindow();
+//                            getMobileNumber.setForeground(Color.BLACK);
+//                            getMobileNumber.setText(selectedNumber);
+//                        }
+//                    } else if(type.equals("mobile_banking")) {
+//                        if (selectedNumber.length() == 14) {
+//                            switchPanelViaMenu(addMobileBankingPanelInBillPay);
+//                            getPhoneNumberInBillPayment.requestFocusInWindow();
+//                            getPhoneNumberInBillPayment.setForeground(Color.BLACK);
+//                            getPhoneNumberInBillPayment.setText(selectedNumber.substring(3, 14));
+//
+//                            System.err.println(selectedNumber.substring(3, 14));
+//                            System.out.println(selectedNumber);
+//                        } else {
+//                            switchPanelViaMenu(addMobileBankingPanelInBillPay);
+//                            getPhoneNumberInBillPayment.requestFocusInWindow();
+//                            getPhoneNumberInBillPayment.setForeground(Color.BLACK);
+//                            getPhoneNumberInBillPayment.setText(selectedNumber);
+//                        }
+//                    }
+//
+//                }
+//            });
+//
+//            tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+//            tableContractLIst.getTableHeader().setOpaque(false);
+//            tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
+//            tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
+//
+//            //For jTable contant in center
+//            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableContractLIst.getDefaultRenderer(String.class);
+//            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+//
+//            tableContractLIst.setEnabled(false);
+//
+//            tableContractLIst.setRowHeight(25);
+//            tableContractLIst.setModel(contractListTableMOdel);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            DbConnection.disconnect(conn);
+//
+//        }
+    }
+
+    private void detectUnreadSms() {
+    }
 }

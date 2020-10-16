@@ -8,66 +8,82 @@ package auto.recharge.system.dto;
 import auto.recharge.system.enumClasses.UssdRequestType;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class MobileBankingDetailsDto {
 
     private String trxId;
-    private String dateAndTime;
-    private String phoneNumber;
-    private String ammount;
-    private String postPaidOrPostPaid;
+    private String service;
+    private String action;
+    private String acNo;
+    private String amount;
     private String selectableSimPort;
     private String selectableSim;
     private UssdRequestType status;
 
-    public MobileBankingDetailsDto(String trxId, String dateAndTime, String phoneNumber, String ammount, String postPaidOrPostPaid, String selectableSimPort, String selectableSim, UssdRequestType status) {
-        this.trxId = trxId;
-        this.dateAndTime = dateAndTime;
-        this.phoneNumber = phoneNumber;
-        this.ammount = ammount;
-        this.postPaidOrPostPaid = postPaidOrPostPaid;
-        this.selectableSimPort = selectableSimPort;
-        this.selectableSim = selectableSim;
-        this.status = status;
-    }
 
     public String getTrxId() {
         return trxId;
     }
 
-    public String getDateAndTime() {
-        return dateAndTime;
+    public void setTrxId(String trxId) {
+        this.trxId = trxId;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getService() {
+        return service;
     }
 
-    public String getAmmount() {
-        return ammount;
+    public void setService(String service) {
+        this.service = service;
     }
 
-    public String getPostPaidOrPostPaid() {
-        return postPaidOrPostPaid;
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getAcNo() {
+        return acNo;
+    }
+
+    public void setAcNo(String acNo) {
+        this.acNo = acNo;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getSelectableSimPort() {
         return selectableSimPort;
     }
 
-    public UssdRequestType getStatus() {
-        return status;
+    public void setSelectableSimPort(String selectableSimPort) {
+        this.selectableSimPort = selectableSimPort;
     }
 
     public String getSelectableSim() {
         return selectableSim;
     }
 
-    @Override
-    public String toString() {
-        return "MobileRechargeDetailsDto{" + "trxId=" + trxId + ", dateAndTime=" + dateAndTime + ", phoneNumber=" + phoneNumber + ", ammount=" + ammount + ", postPaidOrPostPaid=" + postPaidOrPostPaid + ", selectableSimPort=" + selectableSimPort + ", status=" + status + '}';
+    public void setSelectableSim(String selectableSim) {
+        this.selectableSim = selectableSim;
+    }
+
+    public UssdRequestType getStatus() {
+        return status;
+    }
+
+    public void setStatus(UssdRequestType status) {
+        this.status = status;
     }
 
 }
