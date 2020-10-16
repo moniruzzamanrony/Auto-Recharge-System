@@ -33,30 +33,19 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
         ammountShowCard = new javax.swing.JPanel();
         serviceNameText = new javax.swing.JLabel();
         amountBalanceText = new javax.swing.JLabel();
-        refrashBalanceBut = new javax.swing.JButton();
         lastUpdateTimeText = new javax.swing.JLabel();
 
         ammountShowCard.setBackground(new java.awt.Color(204, 255, 204));
 
-        serviceNameText.setFont(new java.awt.Font("Cambria", 1, 20)); // NOI18N
+        serviceNameText.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         serviceNameText.setText("bKash");
 
-        amountBalanceText.setFont(new java.awt.Font("Cambria", 1, 20)); // NOI18N
+        amountBalanceText.setFont(new java.awt.Font("Cambria", 1, 13)); // NOI18N
         amountBalanceText.setForeground(new java.awt.Color(255, 0, 51));
         amountBalanceText.setText("10000 Tk");
 
-        refrashBalanceBut.setBackground(new java.awt.Color(255, 0, 0));
-        refrashBalanceBut.setForeground(new java.awt.Color(255, 255, 255));
-        refrashBalanceBut.setText("Refrash");
-        refrashBalanceBut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refrashBalanceButActionPerformed(evt);
-            }
-        });
-
         lastUpdateTimeText.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         lastUpdateTimeText.setForeground(new java.awt.Color(204, 0, 51));
-        lastUpdateTimeText.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lastUpdateTimeText.setText("Last update : 20/20/20 12:12 PM");
 
         javax.swing.GroupLayout ammountShowCardLayout = new javax.swing.GroupLayout(ammountShowCard);
@@ -64,25 +53,20 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
         ammountShowCardLayout.setHorizontalGroup(
             ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ammountShowCardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lastUpdateTimeText, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lastUpdateTimeText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ammountShowCardLayout.createSequentialGroup()
                         .addComponent(serviceNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(amountBalanceText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refrashBalanceBut, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(amountBalanceText, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ammountShowCardLayout.setVerticalGroup(
             ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ammountShowCardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(serviceNameText)
-                    .addComponent(amountBalanceText)
-                    .addComponent(refrashBalanceBut))
+                .addGroup(ammountShowCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(serviceNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(amountBalanceText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lastUpdateTimeText))
         );
@@ -98,10 +82,6 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
             .addComponent(ammountShowCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void refrashBalanceButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrashBalanceButActionPerformed
-        System.out.println("auto.recharge.system.MobileBankingBalanceShowCard.refrashBalanceButActionPerformed()");
-    }//GEN-LAST:event_refrashBalanceButActionPerformed
 
     public JLabel getAmountBalanceText() {
         return amountBalanceText;
@@ -119,13 +99,6 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
         this.lastUpdateTimeText = lastUpdateTimeText;
     }
 
-    public JButton getRefrashBalanceBut() {
-        return refrashBalanceBut;
-    }
-
-    public void setRefrashBalanceBut(JButton refrashBalanceBut) {
-        this.refrashBalanceBut = refrashBalanceBut;
-    }
 
     public JLabel getServiceNameText() {
         return serviceNameText;
@@ -139,7 +112,6 @@ public class MobileBankingBalanceShowCard extends javax.swing.JPanel {
     private javax.swing.JPanel ammountShowCard;
     private javax.swing.JLabel amountBalanceText;
     private javax.swing.JLabel lastUpdateTimeText;
-    private javax.swing.JButton refrashBalanceBut;
     private javax.swing.JLabel serviceNameText;
     // End of variables declaration//GEN-END:variables
 }

@@ -183,7 +183,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Agency FB" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="01988841891"/>
+                <Property name="text" type="java.lang.String" value="demo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="getPhoneNumber">
@@ -191,7 +191,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Agency FB" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="01988841891"/>
+                <Property name="text" type="java.lang.String" value="demo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getPhoneNumberActionPerformed"/>
@@ -267,7 +267,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginButMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginButCllick"/>
                   </Events>
                 </Component>
               </SubComponents>

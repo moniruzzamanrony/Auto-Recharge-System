@@ -5,6 +5,8 @@ import auto.recharge.system.dto.UserInfo;
 import com.itvillage.AES;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
@@ -22,7 +24,6 @@ public final class Login extends javax.swing.JFrame {
 
     private LoadingScreen loadingScreen;
     private JDialog processtingLoderDialog;
-
     public Login() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
@@ -78,10 +79,10 @@ public final class Login extends javax.swing.JFrame {
         jLabel1.setText("Login");
 
         getPasswordBypt.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        getPasswordBypt.setText("01988841891");
+        getPasswordBypt.setText("demo");
 
         getPhoneNumber.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        getPhoneNumber.setText("01988841891");
+        getPhoneNumber.setText("demo");
         getPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getPhoneNumberActionPerformed(evt);
@@ -105,7 +106,7 @@ public final class Login extends javax.swing.JFrame {
         loginBut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loginBut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginButMouseClicked(evt);
+                loginButCllick(evt);
             }
         });
 
@@ -338,35 +339,25 @@ public final class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitLoginPanel
 
-    private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Popup.info("Please,\nCall us to password reset\n" + Configaration.getPropertiesValueByKey("number1") + "," + Configaration.getPropertiesValueByKey("number2"));
+    }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void loginButCllick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButCllick
+
+        new Login().setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
-                new Login().setVisible(false);
-                if (login()) {
-                    if (UserInfo.role.equals("demo")) {
-                        Home home = new Home();
-                        home.setVisible(true);
-                    } else {
-                     //   getModemPorts();
-                       new ConfigrarationModemStartUp().setVisible(true);
-//                        Home home = new Home();
-//                        home.setVisible(true);
-                    }
-                }
-                else {
-                    new Login().setVisible(true);
-                }
+                 login();
                 return null;
             }
 
             @Override
             protected void done() {
                 System.out.println("Login Done..");
-
                 processtingLoderDialog.setVisible(false);
             }
 
@@ -374,11 +365,7 @@ public final class Login extends javax.swing.JFrame {
 
         swingWorker.execute();
 
-    }//GEN-LAST:event_loginButMouseClicked
-
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        Popup.info("Please,\nCall us to password reset\n" + Configaration.getPropertiesValueByKey("number1") + "," + Configaration.getPropertiesValueByKey("number2"));
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_loginButCllick
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -427,6 +414,9 @@ public final class Login extends javax.swing.JFrame {
             UserInfo.phoneNo = "demo";
             UserInfo.password = "demo";
             UserInfo.macAddress = Configaration.getMacAddress().replace(":", "");
+            Home home = new Home();
+             home.setVisible(true);
+
         } else {
             try {
                 Log.mgs("Login", "360");
@@ -485,6 +475,7 @@ public final class Login extends javax.swing.JFrame {
 
                     }
                 }
+                new ConfigrarationModemStartUp().setVisible(true);
             } catch (SQLException ex) {
                 Log.error("414", ex.getMessage());
             }
@@ -507,15 +498,12 @@ public final class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(() -> {
-            new Login().setVisible(false);
-            Login login = new Login();
-            login.setVisible(true);
-            //new Login().setVisible(true);
-            appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
-            buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
+        Login login = new Login();
+        login.setVisible(true);
+        //new Login().setVisible(true);
+        appName.setText("<html><font color='red'>A</font>uto <font color='red'>R</font>echarge</html>");
+        buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
 
-        });
     }
 
     public void keyListener() {
