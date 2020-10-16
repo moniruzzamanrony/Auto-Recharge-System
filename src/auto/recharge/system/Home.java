@@ -8525,6 +8525,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
             switchPanelViaMenu(inboxJpanel);
+            detectUnreadSms();
 
 //            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
 //                @Override
@@ -14390,5 +14391,17 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void detectUnreadSms() {
+
+        String strCommand1 = "AT+CMGF=1";
+        String strCommand2 = "AT+CPMS=\"SM\"";
+        String strCommand3 = "AT+CMGL=\"REC UNREAD\"";
+
+        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand1));
+            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand2));
+            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand3));
+            auto.recharge.system.config.Modem.disconnect();
+        }
     }
 }

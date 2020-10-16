@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20" uuid="f0ab248f-2437-4f88-bb63-12c2cedcb037">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="bar_code_text" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <componentElement>
+                <reportElement x="11" y="12" width="87" height="27" uuid="c68e6b37-f80b-4cbc-8aa8-64a0914fcb01"/>
+                <jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                             xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd"
+                             type="Code128" drawText="false" checksumRequired="false">
+                    <jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+                </jr:barbecue>
+            </componentElement>
+            <componentElement>
+                <reportElement x="115" y="12" width="87" height="27" uuid="5098c835-73c5-437f-aa15-727af78cd2dd"/>
+                <jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                             xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd"
+                             type="Code128" drawText="false" checksumRequired="false">
+                    <jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+                </jr:barbecue>
+            </componentElement>
+            <textField>
+                <reportElement x="11" y="43" width="87" height="17" uuid="c07093e0-9e85-43da-aca1-2c9e718fa27a"/>
+                <textElement textAlignment="Center">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+            </textField>
+            <componentElement>
+                <reportElement x="214" y="12" width="87" height="27" uuid="a6e57e7e-d833-4e53-9736-223e1d696814"/>
+                <jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                             xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd"
+                             type="Code128" drawText="false" checksumRequired="false">
+                    <jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+                </jr:barbecue>
+            </componentElement>
+            <textField>
+                <reportElement x="115" y="42" width="87" height="17" uuid="17fb9a05-f303-4db8-9773-6eb1970eb1bc"/>
+                <textElement textAlignment="Center">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+            </textField>
+            <componentElement>
+                <reportElement x="323" y="12" width="87" height="27" uuid="4379ffff-8acd-4edc-87a2-c5e58d878560"/>
+                <jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                             xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd"
+                             type="Code128" drawText="false" checksumRequired="false">
+                    <jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+                </jr:barbecue>
+            </componentElement>
+            <componentElement>
+                <reportElement x="441" y="12" width="87" height="27" uuid="19e69cd3-ec42-4489-8312-b34a8a718f16"/>
+                <jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components"
+                             xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd"
+                             type="Code128" drawText="false" checksumRequired="false">
+                    <jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+                </jr:barbecue>
+            </componentElement>
+            <textField>
+                <reportElement x="214" y="41" width="87" height="20" uuid="2d490988-4b45-494e-9210-b4b58fe288ab"/>
+                <textElement textAlignment="Center">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="323" y="42" width="87" height="20" uuid="3807927b-8c29-4168-b5ae-4d064800eb16"/>
+                <textElement textAlignment="Center">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="441" y="42" width="87" height="20" uuid="865e9f2d-4cb7-4a6b-a86f-f3f48959acc5"/>
+                <textElement textAlignment="Center">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="247" splitType="Stretch"/>
+    </detail>
+</jasperReport>
