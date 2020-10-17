@@ -5,16 +5,14 @@
  */
 package auto.recharge.system;
 
-import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class Popup {
@@ -22,6 +20,9 @@ public class Popup {
     public static final int OK = 1;
     public static final int EXIT = -1;
     public static final int CANCEL = 2;
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final Toolkit AWT_TOOLKIT = Toolkit.getDefaultToolkit();
+    private static final Clipboard CLIPBOARD = AWT_TOOLKIT.getSystemClipboard();
 
     public static void info(String message) {
         info(message, theNameOfTheMethodThatCalledMe());
@@ -43,7 +44,6 @@ public class Popup {
         setClipboard("Auto Rechage System" + ":" + NEW_LINE + message);
         JOptionPane.showMessageDialog(null, message, "Auto Rechage System", iconId);
     }
-    private static final String NEW_LINE = System.lineSeparator();
 
     public static String theNameOfTheMethodThatCalledMe() {
         return Thread.currentThread().getStackTrace()[3].getMethodName();
@@ -129,6 +129,4 @@ public class Popup {
         });
         return 11;
     }
-    private static final Toolkit AWT_TOOLKIT = Toolkit.getDefaultToolkit();
-    private static final Clipboard CLIPBOARD = AWT_TOOLKIT.getSystemClipboard();
 }

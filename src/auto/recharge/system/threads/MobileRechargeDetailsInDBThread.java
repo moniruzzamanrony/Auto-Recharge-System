@@ -7,17 +7,15 @@ package auto.recharge.system.threads;
 
 import auto.recharge.system.Configaration;
 import auto.recharge.system.DbConnection;
-import auto.recharge.system.Log;
 import auto.recharge.system.Mail;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class MobileRechargeDetailsInDBThread extends Thread {
@@ -44,7 +42,7 @@ public class MobileRechargeDetailsInDBThread extends Thread {
 
     @Override
     public void run() {
-       
+
         Connection conn = DbConnection.connect();
         String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
 
@@ -60,12 +58,11 @@ public class MobileRechargeDetailsInDBThread extends Thread {
             preparedStatement.setString(8, currentBalance);
             preparedStatement.execute();
             preparedStatement.close();
-            
-            
+
 
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
             try {
                 conn.close();
             } catch (SQLException ex) {

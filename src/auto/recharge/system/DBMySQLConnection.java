@@ -11,19 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class DBMySQLConnection {
 
-    private Connection conn = null;
-    private String query = null;
-    private String server = "localhost";
-    private ResultSet rs;
-    private final String url = "jdbc:mysql://" + server + ":3306/auto_recharge_system?useCursorFetch=true";
     //private final String url=("jdbc:mysql://localhost:3306;databaseName=auto_recharge_system");
     private final String usrName = "root";
     private final String pwd = "";
+    private Connection conn = null;
+    private String query = null;
+    private String server = "localhost";
+    private final String url = "jdbc:mysql://" + server + ":3306/auto_recharge_system?useCursorFetch=true";
+    private ResultSet rs;
 
     public Connection connect() {
         System.err.println("Connecting...");
@@ -40,7 +39,7 @@ public class DBMySQLConnection {
 
     }
 
-    public void disconnect() {       
+    public void disconnect() {
         try {
 
             conn.close();

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class ModemInfoList {
@@ -17,5 +16,5 @@ public class ModemInfoList {
     public static Set<SimOperatorIdentifierDto> simOperatorIdentifiers;
     public static List<MobileRechargeBalance> mobileRechargeBalance;
 
-    
+
 }

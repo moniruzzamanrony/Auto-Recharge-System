@@ -6,18 +6,21 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class ContractResponse {
 
-   private int id;
-   private String name;
-   private String phoneNo;
-   private String storage;
+    private int id;
+    private String name;
+    private String phoneNo;
+    private String storage;
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -26,10 +29,6 @@ public class ContractResponse {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhoneNo() {

@@ -8,7 +8,6 @@ package auto.recharge.system.dto;
 import auto.recharge.system.enumClasses.UssdRequestType;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class MobileRechargeDetailsDto {

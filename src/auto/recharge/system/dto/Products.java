@@ -6,7 +6,6 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class Products {
@@ -66,6 +65,5 @@ public class Products {
         this.sub_total = sub_total;
     }
 
-    
 
 }

@@ -5,18 +5,16 @@
  */
 package auto.recharge.system.config;
 
-import auto.recharge.system.dto.MobileRechargeDetailsDto;
 import java.util.Comparator;
 
 /**
- *
  * @author monirozzamanroni
  */
-public class MobileRechargeDetailsComparator implements Comparator<Object>{
+public class MobileRechargeDetailsComparator implements Comparator<Object> {
 
     @Override
     public int compare(Object t, Object t1) {
-       if (t == t1) {
+        if (t == t1) {
             return -1;
         }
         if (t != t1) {
@@ -24,5 +22,5 @@ public class MobileRechargeDetailsComparator implements Comparator<Object>{
         }
         return 0;
     }
-    
+
 }

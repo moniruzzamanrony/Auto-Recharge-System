@@ -6,15 +6,14 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class Warranty {
-private String id;
-private String service_name;
-private String price;
-private String qty;
-private String total;
+    private String id;
+    private String service_name;
+    private String price;
+    private String qty;
+    private String total;
 
     public String getId() {
         return id;

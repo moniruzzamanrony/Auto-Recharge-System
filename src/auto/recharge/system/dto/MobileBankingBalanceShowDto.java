@@ -6,7 +6,6 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class MobileBankingBalanceShowDto {
@@ -55,7 +54,6 @@ public class MobileBankingBalanceShowDto {
     public void setPin(String pin) {
         this.pin = pin;
     }
-    
-    
-    
+
+
 }

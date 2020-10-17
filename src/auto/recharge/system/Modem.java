@@ -6,13 +6,13 @@
 package auto.recharge.system;
 
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class Modem {
@@ -36,7 +36,7 @@ public class Modem {
 
             return sIMInfoCollector.getSimOperatorIdentifierDtos();
         } catch (InterruptedException ex) {
-            System.out.println("Error: Ports Set not Found "+ex.getMessage());
+            System.out.println("Error: Ports Set not Found " + ex.getMessage());
         }
         return null;
     }
@@ -45,17 +45,49 @@ public class Modem {
 
 class SIMInfoCollector extends Thread {
 
-    private final List<String> ports;
     private static final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
+    private final List<String> ports;
     private final Set<SimOperatorIdentifierDto> simOperatorIdentifierDtos = new HashSet<>();
 
     public SIMInfoCollector(List<String> ports) {
         this.ports = ports;
     }
 
+    private static String getPhoneNumberFromSim(String numberGettingcode) {
+
+        String phoneNumber;
+        String responseFromSavedPhoneNumber = auto.recharge.system.config.Modem.sendATCommand("AT+CNUM");
+
+        // System.out.println("Getting SIM Number: "+responseFromSavedPhoneNumber);
+        List<String> responseFromSavedPhoneNumbers = Configaration.stringToNumberList(responseFromSavedPhoneNumber);
+        if (responseFromSavedPhoneNumbers.isEmpty()) {
+            String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + numberGettingcode + "\",15");
+            String[] splitResponse = value.split(",");
+            String finalResponse = splitResponse[1].replaceAll("\"", "");
+            String finalResponseString = Configaration.haxToStringConvert(finalResponse);
+            List<String> phoneNumbers = Configaration.stringToNumberList(finalResponseString);
+            phoneNumber = phoneNumbers.get(0);
+
+            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=?");
+            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS?");
+            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=\"ON\"");
+            auto.recharge.system.config.Modem.sendATCommand("at+cpbs?");
+            auto.recharge.system.config.Modem.sendATCommand("at+cpbw=,\"" + phoneNumber + "\"");
+
+            System.out.println("Saved List In SIM:" + auto.recharge.system.config.Modem.sendATCommand("at+cpbs?"));
+
+            System.out.println("step 15/15: Getting SIM Number: " + phoneNumbers.get(0));
+        } else {
+            phoneNumber = responseFromSavedPhoneNumbers.get(0);
+            System.out.println("step 15/15: Getting SIM Number: " + phoneNumber);
+        }
+
+        return phoneNumber;
+    }
+
     @Override
     public void run() {
-         System.out.println("step 14/14: Start Connected SIM Number Collectting ");
+        System.out.println("step 14/14: Start Connected SIM Number Collectting ");
         ArrayList<SimOperatorIdentifierDto> operatorIdentifierDtosArray = new ArrayList<>();
         int count = 0;
         for (String port : ports) {
@@ -114,37 +146,5 @@ class SIMInfoCollector extends Thread {
 
     public Set<SimOperatorIdentifierDto> getSimOperatorIdentifierDtos() {
         return simOperatorIdentifierDtos;
-    }
-
-    private static String getPhoneNumberFromSim(String numberGettingcode) {
-
-        String phoneNumber;
-        String responseFromSavedPhoneNumber = auto.recharge.system.config.Modem.sendATCommand("AT+CNUM");
-
-        // System.out.println("Getting SIM Number: "+responseFromSavedPhoneNumber);
-        List<String> responseFromSavedPhoneNumbers = Configaration.stringToNumberList(responseFromSavedPhoneNumber);
-        if (responseFromSavedPhoneNumbers.isEmpty()) {
-            String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + numberGettingcode + "\",15");
-            String[] splitResponse = value.split(",");
-            String finalResponse = splitResponse[1].replaceAll("\"", "");
-            String finalResponseString = Configaration.haxToStringConvert(finalResponse);
-            List<String> phoneNumbers = Configaration.stringToNumberList(finalResponseString);
-            phoneNumber = phoneNumbers.get(0);
-
-            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=?");
-            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS?");
-            auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=\"ON\"");
-            auto.recharge.system.config.Modem.sendATCommand("at+cpbs?");
-            auto.recharge.system.config.Modem.sendATCommand("at+cpbw=,\"" + phoneNumber + "\"");
-
-            System.out.println("Saved List In SIM:" + auto.recharge.system.config.Modem.sendATCommand("at+cpbs?"));
-           
-            System.out.println("step 15/15: Getting SIM Number: "+phoneNumbers.get(0));
-        } else {
-            phoneNumber = responseFromSavedPhoneNumbers.get(0);
-           System.out.println("step 15/15: Getting SIM Number: "+phoneNumber);
-        }
-
-        return phoneNumber;
     }
 }

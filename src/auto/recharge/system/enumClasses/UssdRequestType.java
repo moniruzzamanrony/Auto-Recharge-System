@@ -6,10 +6,10 @@
 package auto.recharge.system.enumClasses;
 
 
- public enum UssdRequestType {
+public enum UssdRequestType {
     MOBILE_RECHARGE,
     MOBILE_BANKING,
     BILL_PAYMENT
-    
+
 }
 

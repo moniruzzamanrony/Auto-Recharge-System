@@ -7,20 +7,43 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class ModemUtils {
 
+    private static int send_to_parser;
+    private static String last_cmd;
     private InputStream in1;
     private OutputStream outputStream;
     private CommPort commPort;
     private SerialPort serialPort;
     private String port_name;
-    private static int send_to_parser;
-    private static String last_cmd;
     private String response = "Error";
     private String responseAdd = "";
+
+    static String getPortTypeName(int portType) {
+        switch (portType) {
+            case 3:
+                return "I2C";
+            case 2:
+                return "Parallel";
+            case 5:
+                return "Raw";
+            case 4:
+                return "RS485";
+            case 1:
+                return "Serial";
+        }
+        return "unknown type";
+    }
+
+    public static void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
     public String connect(String portName, int speed) throws Exception {
 
@@ -28,23 +51,23 @@ public class ModemUtils {
         CommPortIdentifier portIdentifier = CommPortIdentifier
                 .getPortIdentifier(portName);
         if (portIdentifier.isCurrentlyOwned()) {
-            System.out.println("step 7/10: "+portName+" port is already used");
-            Popup.customError(portName+" is busy.\nPlease resreat this application");
-            
+            System.out.println("step 7/10: " + portName + " port is already used");
+            Popup.customError(portName + " is busy.\nPlease resreat this application");
+
             ret = "connect_port_in_use";
         } else {
             try {
                 this.commPort = portIdentifier.open(getClass().getName(), 2000);
             } catch (Exception e) {
-               System.out.println("Error: "+e.getMessage());
+                System.out.println("Error: " + e.getMessage());
                 String s1 = portName
                         + "  is currently in use. Please close the application that is using this port and connect again."
                         + "\r\n";
                 System.out.println(s1);
                 return "connect_port_in_use";
             }
-            System.out.println("step 8/10: "+this.commPort+"ready to used");
-           
+            System.out.println("step 8/10: " + this.commPort + "ready to used");
+
             if ((this.commPort instanceof SerialPort)) {
                 this.serialPort = ((SerialPort) this.commPort);
                 this.port_name = portIdentifier.getName();
@@ -62,11 +85,11 @@ public class ModemUtils {
                 this.serialPort.notifyOnDataAvailable(true);
                 ret = "connect_sucess";
             } else {
-                System.out.println("Error: "+"Only serial ports are handled by this software.");
-                
+                System.out.println("Error: " + "Only serial ports are handled by this software.");
+
                 ret = "connect_error";
                 String s1 = "Error connecting to " + portName + ".\r\n";
-                System.out.println("Error: "+"Only serial ports are handled by this software.");
+                System.out.println("Error: " + "Only serial ports are handled by this software.");
             }
         }
         return ret;
@@ -87,22 +110,6 @@ public class ModemUtils {
         // Close the port.
         serialPort.close();
         return res;
-    }
-
-    static String getPortTypeName(int portType) {
-        switch (portType) {
-            case 3:
-                return "I2C";
-            case 2:
-                return "Parallel";
-            case 5:
-                return "Raw";
-            case 4:
-                return "RS485";
-            case 1:
-                return "Serial";
-        }
-        return "unknown type";
     }
 
     private String sendUssdCode(String str, int type) {
@@ -137,13 +144,47 @@ public class ModemUtils {
         return ret;
     }
 
+    private void printValue(String value) {
+        // Here Final Result prineted
+        responseAdd = responseAdd + value + ",";
+        //System.out.println("325--->" + value);
+
+    }
+
+    public String USSDCodeDial(String command) {
+        try {
+            sendUssdCode(command + "\r\n", 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        wait(2000);
+        return response;
+    }
+
+    public String ussdDial(String command) {
+        try {
+            responseAdd = new String();
+            sendUssdCode(command + "\r\n", 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        wait(1500);
+
+        return responseAdd;
+    }
+
+    public List<String> getActivePorts() {
+        System.out.println("step 6/10: Start COM Port testig");
+        return CommTest.getPorts();
+    }
+
     private class SerialReader implements SerialPortEventListener {
 
+        public int winflag = 1;
+        List<String> resp_array = new ArrayList<String>();
         private InputStream in;
         private byte[] portBuffer = new byte[1024];
         private String fileBuffer;
-        public int winflag = 1;
-        List<String> resp_array = new ArrayList<String>();
 
         public SerialReader(InputStream in) {
             this.in = in;
@@ -205,8 +246,8 @@ public class ModemUtils {
                         this.portBuffer[(len++)] = ((byte) data);
                     }
                     this.fileBuffer = new String(this.portBuffer, 0, len);
-                    System.out.println("step 10/10: "+this.fileBuffer.toString());
-                   
+                    System.out.println("step 10/10: " + this.fileBuffer.toString());
+
                     response = this.fileBuffer.toString();
                     resp_array.add(response);
                     printValue(resp_array.toString());
@@ -297,48 +338,6 @@ public class ModemUtils {
                 e.printStackTrace();
                 System.exit(-1);
             }
-        }
-    }
-
-    private void printValue(String value) {
-        // Here Final Result prineted
-        responseAdd = responseAdd + value + ",";
-        //System.out.println("325--->" + value);
-
-    }
-
-    public String USSDCodeDial(String command) {
-        try {
-            sendUssdCode(command + "\r\n", 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        wait(2000);
-        return response;
-    }
-
-    public String ussdDial(String command) {
-        try {
-            responseAdd = new String();
-            sendUssdCode(command + "\r\n", 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        wait(1500);
-
-        return responseAdd;
-    }
-
-    public List<String> getActivePorts() {
-        System.out.println("step 6/10: Start COM Port testig");
-        return CommTest.getPorts();
-    }
-
-    public static void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
         }
     }
 

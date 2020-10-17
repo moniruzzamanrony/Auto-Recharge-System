@@ -5,19 +5,13 @@
  */
 package auto.recharge.system;
 
-import auto.recharge.system.dto.UserInfo;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class DbConnection {
@@ -28,6 +22,7 @@ public class DbConnection {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
+            tableCreate();
             System.out.println("Database Connect Succesful");
             return conn;
         } catch (Exception ex) {
@@ -35,6 +30,43 @@ public class DbConnection {
         }
 
         return null;
+    }
+
+    private static void tableCreate() {
+        List<String> tableCreateSqlQueryList = new ArrayList<>();
+        // For user_info table
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS user_info (id integer PRIMARY KEY,	user_id varchar(255),name varchar(255),phone_no varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS bill_pay_bill_no (id integer PRIMARY KEY,TrxId varchar(255),bill_no varchar(255),time_date varchar(255),c_balance varchar(255),bill_type varchar(255),status varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS bill_payment_customer_id (id integer PRIMARY KEY,	TrxId varchar(255),customer_id varchar(255),bill_month varchar(255),bill_year varchar(255),time_date varchar(255),c_balance varchar(255),bill_type varchar(255),status varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS command (id integer PRIMARY KEY,	operator_name varchar(255),operator_code varchar(255),action_for varchar(255),r_ussd_code_pre varchar(255),b_s_ussd_code varchar(255),icon varchar(255),password varchar(255),r_ussd_code_post varchar(255),profit varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS contract (id integer PRIMARY KEY,	name varchar(255),phone_no varchar(255),memory varchar(255));");
+
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS group_recharge (id integer PRIMARY KEY,	phone_number varchar(255),amount varchar(255),send_by varchar(255),date_time varchar(255),type varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS licenceInfo (id integer PRIMARY KEY,	package_name varchar(255),serial_key varchar(255),activation_date varchar(255),expaired_date varchar(255),mac_address varchar(255));");
+
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS m_b_details (id integer PRIMARY KEY,	service_name varchar(255),action_type varchar(255),phone_no varchar(255),amount varchar(255),sim varchar(255),result varchar(255),date_time varchar(255),request_by varchar(255),TnxId varchar(255),c_balance varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS contract (id integer PRIMARY KEY,	name varchar(255),phone_no varchar(255),memory varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
+
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS mobile_banking (id integer PRIMARY KEY,	services_name varchar(255),default_sim varchar(255),task_name varchar(255),ussd_code varchar(255),pin varchar(255),serviceId varchar(255),balance_show_ussd varchar(255));");
+
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS product_purchase (id integer PRIMARY KEY,invoice varchar(255),supplier varchar(255),date varchar(255),bar_code varchar(255),group varchar(255),pName varchar(255),qty varchar(255),buy_rate varchar(255),sell_rate varchar(255),type varchar(255),subTotal varchar(255),stock_open varchar(255),order_limit varchar(255),warranty varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS contract (id integer PRIMARY KEY,	name varchar(255),phone_no varchar(255),memory varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS contract (id integer PRIMARY KEY,	name varchar(255),phone_no varchar(255),memory varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS contract (id integer PRIMARY KEY,	name varchar(255),phone_no varchar(255),memory varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
+
+            for(String sql: tableCreateSqlQueryList){
+                Statement stmt = conn.createStatement();
+                stmt.execute(sql);
+                stmt.close();
+            }
+            conn.close();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public static boolean delete(String tableName) {
@@ -52,7 +84,7 @@ public class DbConnection {
         }
     }
 
-//    public static ResultSet retrieveAll1(String tableName) {
+    //    public static ResultSet retrieveAll1(String tableName) {
 //        Connection conn = DbConnection.connect();
 //        try {
 //            Statement st = conn.createStatement();
@@ -81,7 +113,7 @@ public class DbConnection {
         return false;
     }
 
-//    public static ResultSet findByColume1(String tableName, String columeName, String value) {
+    //    public static ResultSet findByColume1(String tableName, String columeName, String value) {
 //     
 //        try {
 //           Connection conn = DbConnection.connect();

@@ -4,49 +4,38 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.Dimension;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
-import static java.rmi.server.LogStream.log;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.ImageInputStream;
-import javax.swing.BorderFactory;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JTable;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static java.rmi.server.LogStream.log;
 
 public class Configaration {
 
     private static final Pattern HEXADECIMAL_PATTERN = Pattern.compile("\\p{XDigit}+");
     private static JDialog processtingLoderDialog;
+
+    public Configaration() {
+        processingLoderDialog();
+    }
 
     public static boolean netIsAvailable() {
         try {
@@ -60,10 +49,6 @@ public class Configaration {
         } catch (IOException e) {
             return false;
         }
-    }
-
-    public Configaration() {
-        processingLoderDialog();
     }
 
     public static void wait(int ms) {
@@ -256,18 +241,6 @@ public class Configaration {
         System.out.println("Session closed.");
     }
 
-    private void processingLoderDialog() {
-
-        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
-
-        processtingLoderDialog = new JDialog();
-        processtingLoderDialog.add(processeingLoderUI);
-       processtingLoderDialog.setSize(900, 435);
-        processtingLoderDialog.setLocationRelativeTo(null);
-        processtingLoderDialog.setUndecorated(true);
-
-    }
-
     public static void showProcessingBar() {
         processtingLoderDialog.setVisible(true);
 
@@ -334,18 +307,31 @@ public class Configaration {
         return ussdCodeSerialList;
 
     }
+
     public static void openWebpage(String urlString) {
-    try {
-        Desktop.getDesktop().browse(new URL(urlString).toURI());
-    } catch (Exception e) {
-        e.printStackTrace();
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
     public static int getRandInt(int min, int max) {
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
         return randomNum;
+    }
+
+    private void processingLoderDialog() {
+
+        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
+
+        processtingLoderDialog = new JDialog();
+        processtingLoderDialog.add(processeingLoderUI);
+        processtingLoderDialog.setSize(900, 435);
+        processtingLoderDialog.setLocationRelativeTo(null);
+        processtingLoderDialog.setUndecorated(true);
+
     }
 }

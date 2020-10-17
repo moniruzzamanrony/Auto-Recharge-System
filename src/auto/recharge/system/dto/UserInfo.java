@@ -6,7 +6,6 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class UserInfo {
@@ -23,8 +22,7 @@ public class UserInfo {
     public static String address;
     public static String name;
     public static String role;
-     public static boolean isDeviceReady;
-    
-    
-    
+    public static boolean isDeviceReady;
+
+
 }

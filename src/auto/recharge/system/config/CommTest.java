@@ -5,10 +5,9 @@
  */
 package auto.recharge.system.config;
 
-import static auto.recharge.system.config.CommTest.portsCommPortIdentifierList;
-import static auto.recharge.system.config.RunningModemPort.portId;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -49,13 +48,13 @@ public class CommTest {
         while (portsCommPortIdentifierList.hasMoreElements()) {
             portId = portsCommPortIdentifierList.nextElement();
             if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-                
+
                 System.out.println("step 12/10: Start COM Port testig for " + portId.getName());
                 _formatter.format("%nFound port: %-5s%n", portId.getName());
 
                 // for (int i = 0; i < bauds.length; i++) {
                 SerialPort serialPort = null;
-            
+
                 try {
                     InputStream inStream;
                     OutputStream outStream;
@@ -85,7 +84,7 @@ public class CommTest {
                     response = sb.toString();
                     if (response.indexOf("OK") >= 0) {
                         try {
-                           portLists.add(portId.getName());
+                            portLists.add(portId.getName());
 
 //                                outStream.write('A');
 //                                outStream.write('T');
@@ -144,14 +143,13 @@ public class CommTest {
 
 class RunningModemPort extends Thread {
 
-    private final Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
-    private List<String> ports = new ArrayList<>();
-    private final String _NO_DEVICE_FOUND = "  no device found";
     private final static Formatter _formatter = new Formatter(System.out);
     private final static String TAG = "Find ports:CommTest";
-    private final int bauds[] = {9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
-
     static CommPortIdentifier portId;
+    private final Enumeration<CommPortIdentifier> portsCommPortIdentifierList;
+    private final String _NO_DEVICE_FOUND = "  no device found";
+    private final int bauds[] = {9600/*, 14400, 19200, 28800, 33600, 38400, 56000, 57600, 115200 */};
+    private List<String> ports = new ArrayList<>();
 
     public RunningModemPort(Enumeration<CommPortIdentifier> portsCommPortIdentifierList) {
         this.portsCommPortIdentifierList = portsCommPortIdentifierList;

@@ -5,16 +5,14 @@
  */
 package auto.recharge.system;
 
-import java.awt.Component;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
+import javax.swing.*;
+import java.awt.*;
 
 class JListPanelRenderer implements ListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-         JPanel renderer = (JPanel) value;
+        JPanel renderer = (JPanel) value;
 //        Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
 //        List<String> ussdCodeSerialList = new ArrayList<>();
 //        DefaultListModel Clistmodel = new DefaultListModel();//
@@ -53,7 +51,6 @@ class JListPanelRenderer implements ListCellRenderer {
 //            }
 //        }
 //        
-       
 
 
         return renderer;

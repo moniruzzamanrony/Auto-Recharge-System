@@ -6,7 +6,6 @@
 package auto.recharge.system;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class Log {

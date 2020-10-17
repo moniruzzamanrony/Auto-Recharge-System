@@ -6,7 +6,6 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class MobileRechargeBalance {
@@ -38,7 +37,6 @@ public class MobileRechargeBalance {
     public void setSimBalance(String simBalance) {
         this.simBalance = simBalance;
     }
-    
-    
+
 
 }

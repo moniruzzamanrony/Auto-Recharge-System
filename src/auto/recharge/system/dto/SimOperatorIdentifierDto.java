@@ -6,7 +6,6 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class SimOperatorIdentifierDto {
@@ -62,6 +61,5 @@ public class SimOperatorIdentifierDto {
         return "SimOperatorIdentifierDto{" + "id=" + id + ", operatorName=" + operatorName + ", ownPhoneNumber=" + ownPhoneNumber + ", portName=" + portName + ", simCurrentBalance=" + simCurrentBalance + '}';
     }
 
- 
 
 }

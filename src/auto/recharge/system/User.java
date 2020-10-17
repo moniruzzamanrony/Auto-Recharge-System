@@ -8,15 +8,13 @@ package auto.recharge.system;
 import java.util.UUID;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class User {
-    
- public  static String getUserId()
-    {
 
-       return UUID.randomUUID().toString();
+    public static String getUserId() {
+
+        return UUID.randomUUID().toString();
     }
- 
+
 }

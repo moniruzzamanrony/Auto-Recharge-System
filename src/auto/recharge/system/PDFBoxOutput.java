@@ -5,18 +5,18 @@
  */
 package auto.recharge.system;
 
-import java.awt.Color;
-import java.io.IOException;
 import net.sourceforge.barbecue.output.LabelLayout;
 import net.sourceforge.barbecue.output.Output;
 import net.sourceforge.barbecue.output.OutputException;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 
+import java.awt.*;
+import java.io.IOException;
 
 
 public class PDFBoxOutput implements Output {
 
-   
+
     public final static float SCALAR = 0.5f;
 
     private final PDPageContentStream stream;
@@ -33,7 +33,8 @@ public class PDFBoxOutput implements Output {
     }
 
     @Override
-    public void beginDraw() throws OutputException {}
+    public void beginDraw() throws OutputException {
+    }
 
     @Override
     public int drawBar(int x, int y, int width, int height, boolean paintWithForegroundColor) throws OutputException {
@@ -56,10 +57,12 @@ public class PDFBoxOutput implements Output {
     }
 
     @Override
-    public void endDraw(int width, int height) throws OutputException {}
+    public void endDraw(int width, int height) throws OutputException {
+    }
 
     @Override
-    public void paintBackground(int x, int y, int width, int height) {}
+    public void paintBackground(int x, int y, int width, int height) {
+    }
 
     @Override
     public void toggleDrawingColor() {

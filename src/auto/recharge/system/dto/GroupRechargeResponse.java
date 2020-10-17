@@ -6,11 +6,10 @@
 package auto.recharge.system.dto;
 
 /**
- *
  * @author monirozzamanroni
  */
 public class GroupRechargeResponse {
-    
+
     private String phoneNumber;
     private String amount;
     private String simType;
@@ -47,6 +46,6 @@ public class GroupRechargeResponse {
     public void setPayBy(String payBy) {
         this.payBy = payBy;
     }
-    
-    
+
+
 }
