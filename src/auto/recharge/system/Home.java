@@ -1417,7 +1417,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_saveInProductPurchase2MouseClicked
 
     private void productDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productDetailsTableMouseClicked
-        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify;
+        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify,qty,warranty;
         Point point = evt.getPoint();
         int column = productDetailsTable.columnAtPoint(point);
         int row = productDetailsTable.rowAtPoint(point);
@@ -1427,6 +1427,8 @@ public class Home extends javax.swing.JFrame {
         buyRate = productDetailsTable.getValueAt(row, 3).toString();
         sellPrice = productDetailsTable.getValueAt(row, 4).toString();
         brand = productDetailsTable.getValueAt(row, 5).toString();
+        qty = productDetailsTable.getValueAt(row, 5).toString();
+        warranty = productDetailsTable.getValueAt(row, 5).toString();
         lastModify = productDetailsTable.getValueAt(row, 6).toString();
         System.err.println(productId + "+" + productGroup);
 
@@ -1437,6 +1439,8 @@ public class Home extends javax.swing.JFrame {
         buyRateInProductDetails.setText(buyRate);
         sellRateInProductDetails.setText(sellPrice);
         brandInProductDetails.setText(sellPrice);
+        qtyInProductDetails.setText(qty);
+        warrentyInProductDetails.setText(warranty);
 
 
     }//GEN-LAST:event_productDetailsTableMouseClicked
@@ -1459,7 +1463,14 @@ public class Home extends javax.swing.JFrame {
                     ;
                 }
             });
-
+            barCodeInProductDetails.setText("");
+            groupInProductDetails.setText("");
+            pNameInProductDetails.setText("");
+            buyRateInProductDetails.setText("");
+            sellRateInProductDetails.setText("");
+            brandInProductDetails.setText("");
+            qtyInProductDetails.setText("");
+            warrentyInProductDetails.setText("");
         }
     }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
 
@@ -3536,7 +3547,7 @@ public class Home extends javax.swing.JFrame {
         addPerchangeSelection.setBackground(new java.awt.Color(204, 204, 255));
         addPerchangeSelection.setText("%");
 
-        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics,", "Kg,", "Litter,", "Bag,", "Bundle,", "Dozon" }));
+        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics", "Kg", "Litter", "Bag", "Bundle" }));
 
         jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel150.setText("Ordar LImit : ");
@@ -3572,7 +3583,7 @@ public class Home extends javax.swing.JFrame {
         jLabel151.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel151.setText("Warranty    :");
 
-        timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day,", "month,", "year" }));
+        timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day", "Month,", "Year" }));
 
         jLabel135.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel135.setForeground(new java.awt.Color(255, 51, 51));
@@ -8524,29 +8535,25 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            switchPanelViaMenu(inboxJpanel);
-            detectUnreadSms();
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    detectUnreadSms();
+                    System.out.println("Contract Searching...");
+                    return null;
+                }
 
-//            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-//                @Override
-//                protected Void doInBackground() throws Exception {
-//                    processtingLoderDialog.setVisible(true);
-//                    setInboxDataInTable();
-//                    System.out.println("Contract Searching...");
-//                    return null;
-//                }
-//
-//                @Override
-//                protected void done() {
-//                    getNameForSearch.setText("");
-//                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-//                    getNameForSearch.requestFocusInWindow();
-//                    processtingLoderDialog.setVisible(false);
-//                    System.out.println("Fatching Successful...");
-//                }
-//
-//            };
-//            swingWorker.execute();
+                @Override
+                protected void done() {
+                    loadDataInInboxTable();
+                    switchPanelViaMenu(inboxJpanel);
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
+
+            };
+            swingWorker.execute();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_clickInboxActionPerformed
@@ -9003,7 +9010,7 @@ public class Home extends javax.swing.JFrame {
                     showMobileRechargeBalance();
                     loadValueInTableRechargeDetails();
                     setFocusInMobileRechargePanel();
-                    detectUnreadSms();
+
                     return null;
                 }
 
@@ -13602,7 +13609,7 @@ public class Home extends javax.swing.JFrame {
 
     private void showDataInProductDetailsPurchaseFromDB(String barCode) {
         System.out.println(barCode);
-        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name", "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
+        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name","QTY", "Buy Rate", "Sell Price", "Brand","Warranty", "Last Modify"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
@@ -13622,9 +13629,11 @@ public class Home extends javax.swing.JFrame {
                         rs.getString("bar_code"),
                         rs.getString("group"),
                         rs.getString("pName"),
+                        rs.getString("qty"),
                         rs.getString("buy_rate"),
                         rs.getString("sell_rate"),
                         rs.getString("supplier"),
+                        rs.getString("warranty"),
                         rs.getString("date")
                     });
 
@@ -14242,153 +14251,7 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void setInboxDataInTable() {
-//        Connection conn = DbConnection.connect();
-//        try {
-//            int count = 1;
-//
-//            contractList = new HashSet<>();
-//            DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
-////                ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
-////                    System.out.println(simOperatorIdentifierDto.getPortName());
-////                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-////                    return simOperatorIdentifierDto;
-////                }).map((_item) -> {
-////                    rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
-////
-////                    return _item;
-////                }).forEachOrdered((_item) -> {
-////                    auto.recharge.system.config.Modem.disconnect();
-////                    Configaration.wait(1000);
-////                });
-////
-////                for (String contract : rowOfContractlist) {
-////                    System.err.println(contract);
-////                    String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
-////                            .replaceAll("\"", "").split(",");
-////                    for (int i = 1; i < contractPerseDetails.length; i++) {
-////                        ContractResponse contractResponse = new ContractResponse();
-////                        contractResponse.setId(count++);
-////                        contractResponse.setName(contractPerseDetails[4]);
-////                        contractResponse.setPhoneNo(contractPerseDetails[2]);
-////                        contractResponse.setStorage("SIM");
-////                        contractList.add(contractResponse);
-////                    }
-////                }
-//
-//            Statement stSQLite = conn.createStatement();
-//            String sqlSQLite = "SELECT * FROM `contract`";
-//            ResultSet rs = stSQLite.executeQuery(sqlSQLite);
-//            while (rs.next()) {
-//                ContractResponse contractResponse = new ContractResponse();
-//                contractResponse.setId(count++);
-//                contractResponse.setName(rs.getString("name"));
-//                contractResponse.setPhoneNo(rs.getString("phone_no"));
-//                contractResponse.setStorage(rs.getString("memory"));
-//                contractList.add(contractResponse);
-//                contractListTableMOdel.addRow(new Object[]{rs.getString("name"),rs.getString("phone_no"), rs.getString("memory")});
-//            }
-////
-////                if (Configaration.netIsAvailable()) {
-////
-////                    DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
-////
-////                    try {
-////                        java.sql.Statement st = bMySQLConnection.connect().createStatement();
-////                        String sql = "SELECT * FROM user_contracts_list WHERE userId='" + UserInfo.userId + "';";
-////
-////                        java.sql.ResultSet resultSet = st.executeQuery(sql);
-////                        while (resultSet.next()) {
-////                            ContractResponse contractResponse = new ContractResponse();
-////                            contractResponse.setId(count++);
-////                            contractResponse.setName(resultSet.getString("name"));
-////                            contractResponse.setPhoneNo(resultSet.getString("phone_number"));
-////                            contractResponse.setStorage(resultSet.getString("storage"));
-////                            contractList.add(contractResponse);
-////
-////                        }
-////                    } catch (SQLException ex) {
-////                        Log.error("6853", ex.getMessage());
-////
-////                    } finally {
-////                        bMySQLConnection.disconnect();
-////                    }
-////
-////                } else {
-////                    //alartMessageText.setVisible(true);
-////                }
-////
-////                contractList.stream().forEach(contract -> {
-////
-////                    contractListTableMOdel.addRow(new Object[]{contract.getName(), contract.getPhoneNo(), contract.getStorage()});
-////                });
-//
-//            tableContractLIst.setEnabled(false);
-//            tableContractLIst.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    String selectedNumber;
-//                    Point point = me.getPoint();
-//                    int column = tableContractLIst.columnAtPoint(point);
-//                    int row = tableContractLIst.rowAtPoint(point);
-//                    selectedNumber = tableContractLIst.getValueAt(row, 1).toString();
-//                    System.out.println(selectedNumber.length());
-//                    if(type.equals("mobile_recharge")) {
-//                        if (selectedNumber.length() == 14) {
-//                            switchPanelViaMenu(mobileRechargePanel);
-//                            getMobileNumber.requestFocusInWindow();
-//                            getMobileNumber.setForeground(Color.BLACK);
-//                            getMobileNumber.setText(selectedNumber.substring(3, 14));
-//
-//                            System.err.println(selectedNumber.substring(3, 14));
-//                            System.out.println(selectedNumber);
-//                        } else {
-//                            switchPanelViaMenu(mobileRechargePanel);
-//                            getMobileNumber.requestFocusInWindow();
-//                            getMobileNumber.setForeground(Color.BLACK);
-//                            getMobileNumber.setText(selectedNumber);
-//                        }
-//                    } else if(type.equals("mobile_banking")) {
-//                        if (selectedNumber.length() == 14) {
-//                            switchPanelViaMenu(addMobileBankingPanelInBillPay);
-//                            getPhoneNumberInBillPayment.requestFocusInWindow();
-//                            getPhoneNumberInBillPayment.setForeground(Color.BLACK);
-//                            getPhoneNumberInBillPayment.setText(selectedNumber.substring(3, 14));
-//
-//                            System.err.println(selectedNumber.substring(3, 14));
-//                            System.out.println(selectedNumber);
-//                        } else {
-//                            switchPanelViaMenu(addMobileBankingPanelInBillPay);
-//                            getPhoneNumberInBillPayment.requestFocusInWindow();
-//                            getPhoneNumberInBillPayment.setForeground(Color.BLACK);
-//                            getPhoneNumberInBillPayment.setText(selectedNumber);
-//                        }
-//                    }
-//
-//                }
-//            });
-//
-//            tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-//            tableContractLIst.getTableHeader().setOpaque(false);
-//            tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
-//            tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
-//
-//            //For jTable contant in center
-//            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableContractLIst.getDefaultRenderer(String.class);
-//            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-//
-//            tableContractLIst.setEnabled(false);
-//
-//            tableContractLIst.setRowHeight(25);
-//            tableContractLIst.setModel(contractListTableMOdel);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//
-//        }
-    }
+
 
     private void detectUnreadSms() {
 
@@ -14399,9 +14262,118 @@ public class Home extends javax.swing.JFrame {
         for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
             System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand1));
-            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand2));
-            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand3));
+            auto.recharge.system.config.Modem.sendATCommand(strCommand2);
+            String result= auto.recharge.system.config.Modem.sendATCommand(strCommand3).replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "");
+            for (String value : result.split("\\+CMGL:")) {
+
+                perseByCommaInInbox = value.replaceAll("OK", "").split(",");
+                for (int i = 1; i < perseByCommaInInbox.length; i++) {
+                    //2--phn number
+                    //4-5 date time
+                    //6 mgs
+                    if(perseByCommaInInbox.length == 7) {
+                        String from, dateTime, mgs;
+                        from = perseByCommaInInbox[2];
+
+                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
+                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
+                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
+                        } else {
+                            mgs = perseByCommaInInbox[6];
+                        }
+                        System.out.println(from + " " + dateTime + " " + mgs);
+                        insertSIMInTable(from,dateTime,mgs,simOperatorIdentifierDto.getOperatorName());
+                        System.out.println();
+                    }
+                }
+
+            }
+            System.out.println();
             auto.recharge.system.config.Modem.disconnect();
+
+        }
+    }
+
+    private void loadDataInInboxTable() {
+        DefaultTableModel inboxTableModel = new DefaultTableModel(new String[]{"Time & Date", "From", "Sim Card", "Message"}, 0);
+        if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
+
+        } else {
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `sms`";
+                    ResultSet rs = st.executeQuery(sql);
+
+                    while (rs.next()) {
+
+                            inboxTableModel.addRow(new Object[]{
+                                    rs.getString("time_date"),
+                                    rs.getString("phoneNo"),
+                                    rs.getString("sim_name"),
+                                    rs.getString("mgs")});
+
+//                        MobileRechargeDetailsForSearchingDto mobileRechargeDetailsForSearchingDto= new MobileRechargeDetailsForSearchingDto();
+//                        mobileRechargeDetailsForSearchingDto.setTrxId(rs.getString("trx_id"));
+//                        mobileRechargeDetailsForSearchingDto.setDateAndTime(rs.getString("date_time"));
+//                        mobileRechargeDetailsForSearchingDto.setPhoneNumber(rs.getString("type"));
+//                        mobileRechargeDetailsForSearchingDto.setcBalance(rs.getString("mobile_no"));
+//                        mobileRechargeDetailsForSearchingDto.setPostPaidOrPostPaid(rs.getString("amount"));
+//                        mobileRechargeDetailsForSearchingDto.setAmmount(rs.getString("from_sp"));
+//                        mobileRechargeDetailsForSearchingDto.setSelectableSim(rs.getString("current_balance"));
+//                        mobileRechargeDetailsForSearchingDto.setStatus(rs.getString("status"));
+
+ //                       mobileRechargeDetailsForSearchingDtos.add(mobileRechargeDetailsForSearchingDto);
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
+                }
+            }
+        }
+        inboxTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        inboxTable.getTableHeader().setOpaque(false);
+        inboxTable.getTableHeader().setBackground(new Color(133, 47, 209));
+        inboxTable.getTableHeader().setForeground(new Color(255, 255, 255));
+
+        //For jTable contant in center
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) inboxTable.getDefaultRenderer(String.class);
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        inboxTable.setEnabled(false);
+        inboxTable.setRowHeight(35);
+        inboxTable.setModel(inboxTableModel);
+    }
+
+    private void insertSIMInTable(String from, String dateTime, String mgs, String operatorName) {
+        Connection conn = DbConnection.connect();
+
+        String sql = "INSERT INTO sms(phoneNo,time_date,sim_name,mgs) VALUES(?,?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, from);
+            preparedStatement.setString(2, dateTime);
+            preparedStatement.setString(3, operatorName);
+            preparedStatement.setString(4, mgs);
+
+            preparedStatement.execute();
+            preparedStatement.close();
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            DbConnection.disconnect(conn);
         }
     }
 }

@@ -532,12 +532,11 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simToFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simToFinishActionPerformed
+        this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 processtingLoderDialog.setVisible(true);
-                ConfigrarationModemStartUp configrarationModemStartUp = new ConfigrarationModemStartUp();
-                configrarationModemStartUp.setVisible(false);
                 Home home = new Home();
                 home.setVisible(true);
 
