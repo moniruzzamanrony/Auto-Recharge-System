@@ -17,7 +17,7 @@ import java.util.List;
 
 public final class Login extends javax.swing.JFrame {
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private static javax.swing.JLabel appName;
     private static javax.swing.JLabel buyNowText;
     private LoadingScreen loadingScreen;
@@ -43,7 +43,7 @@ public final class Login extends javax.swing.JFrame {
     private javax.swing.JLabel loginBut;
 
     public Login() {
-
+        System.err.println("Lohin Panle");
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
         ImageIcon imgicon = new ImageIcon(url);
@@ -398,7 +398,7 @@ public final class Login extends javax.swing.JFrame {
         swingWorker.execute();
 
     }//GEN-LAST:event_loginButCllick
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 //    ---------------------------------- Custom Methods ----------------------------------------------------
 
     private boolean login() {

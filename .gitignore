@@ -14,3 +14,4 @@ build/classes/resources/images/network_bar.png
 build/empty/
 build/generated-sources/
 test/
+/build/
