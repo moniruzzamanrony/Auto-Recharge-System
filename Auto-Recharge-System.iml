@@ -7,7 +7,80 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="Auto_Recharge_System" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/aes-encryption-1.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-6.1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-logging-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/itext-2.1.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-5.1.17-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/com-jaspersoft-ireport.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-digester-2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/com-jaspersoft-ireport-jasperserver.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/barbecue-1.5-beta1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/com-jaspersoft-ireport-components.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-htmlcomponent-5.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-functions-5.6.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/com-jaspersoft-jrx.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-core-renderer.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcommon-1.0.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcommon-xml-1.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcommon-1.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-jtidy-r938.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-5.6.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jfreechart-1.0.12.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jfreechart-1.0.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-collections-3.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/mail-1.4.7.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-beanutils-1.8.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/groovy-2.4.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcommon-1.0.8-junit.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/javax.mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/aes-encryption-1.0-SNAPSHOT_1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-dbutils-1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcalendar-1.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jfreechart-1.0.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-chart-themes-5.6.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/json-simple-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-lang3-3.11.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-htmlcomponent-4.7.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/itextpdf-5.5.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/joda-time-2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-json.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jasperreports-extensions-3.5.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/rxtx-comm.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/pdfbox-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/RXTXcomm.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/sqlite-jdbc-3.7.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-action-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-all-1.6.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-autocomplete-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-common-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-core-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-graphics-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-painters-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/swingx-plaf-1.6.5-1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/zxing-1.7-javase.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/zxing-core-2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/lib/commons-logging-1.2-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/sqlite-jdbc-3.7.2.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

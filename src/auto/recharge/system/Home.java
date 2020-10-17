@@ -1839,7 +1839,7 @@ public class Home extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                    list.add(rs.getString("group"));
+                    list.add(rs.getString("group_products"));
 
                 }
             } catch (SQLException ex) {
@@ -13517,7 +13517,7 @@ public class Home extends javax.swing.JFrame {
 
         } else {
             Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO product_purchase(invoice,supplier,date,bar_code,`group`,pName,qty,buy_rate,sell_rate,type,subTotal) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO product_purchase(invoice,supplier,date,bar_code,group_products,pName,qty,buy_rate,sell_rate,type,subTotal) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement preparedStatement = conn1.prepareStatement(sql);
                 preparedStatement.setString(1, invoice);
@@ -13575,7 +13575,7 @@ public class Home extends javax.swing.JFrame {
                     dateInProductPurchases.setDate(new Date(rs.getString("date")));
                     productPurchaseTableModel.addRow(new Object[]{
                             rs.getString("bar_code"),
-                            rs.getString("group"),
+                            rs.getString("group_products"),
                             rs.getString("pName"),
                             rs.getString("qty"),
                             rs.getString("buy_rate"),
@@ -13640,7 +13640,7 @@ public class Home extends javax.swing.JFrame {
                     System.err.println(rs.getString("bar_code"));
                     productPurchaseTableModel.addRow(new Object[]{
                             rs.getString("bar_code"),
-                            rs.getString("group"),
+                            rs.getString("group_products"),
                             rs.getString("pName"),
                             rs.getString("qty"),
                             rs.getString("buy_rate"),
@@ -13808,7 +13808,7 @@ public class Home extends javax.swing.JFrame {
                             String.valueOf(countForSellTable),
                             typeOfAction,
                             rs.getString("bar_code"),
-                            rs.getString("group"),
+                            rs.getString("group_products"),
                             rs.getString("pName"),
                             "1",
                             rs.getString("sell_rate"),

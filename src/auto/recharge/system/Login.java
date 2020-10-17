@@ -41,7 +41,9 @@ public final class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel loginBut;
+
     public Login() {
+
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
         ImageIcon imgicon = new ImageIcon(url);
