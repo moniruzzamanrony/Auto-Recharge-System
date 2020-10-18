@@ -677,6 +677,12 @@ public class Home extends javax.swing.JFrame {
         jScrollPane18 = new javax.swing.JScrollPane();
         inboxTable = new javax.swing.JTable();
         searchInInbox = new javax.swing.JTextField();
+        getRechargeName = new javax.swing.JPanel();
+        back44 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        clickAddForRechargeBarCode = new javax.swing.JButton();
+        getNameForRechargeBarCode = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
 
         suggestPanel.setPreferredSize(new java.awt.Dimension(670, 471));
 
@@ -6239,6 +6245,75 @@ public class Home extends javax.swing.JFrame {
 
         basePanel.add(inboxJpanel, "card15");
 
+        getRechargeName.setBackground(new java.awt.Color(255, 255, 255));
+
+        back44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
+        back44.setText("jLabel3");
+        back44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back44MouseClicked(evt);
+            }
+        });
+
+        jLabel53.setFont(new java.awt.Font("Agency FB", 1, 40)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel53.setText("Meke Bar Code");
+
+        clickAddForRechargeBarCode.setBackground(new java.awt.Color(102, 153, 0));
+        clickAddForRechargeBarCode.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        clickAddForRechargeBarCode.setForeground(new java.awt.Color(255, 255, 255));
+        clickAddForRechargeBarCode.setText("Add");
+        clickAddForRechargeBarCode.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 153, 153), null, new java.awt.Color(204, 204, 204)));
+        clickAddForRechargeBarCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clickAddForRechargeBarCodeActionPerformed(evt);
+            }
+        });
+
+        getNameForRechargeBarCode.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        jLabel54.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel54.setText("Name");
+
+        javax.swing.GroupLayout getRechargeNameLayout = new javax.swing.GroupLayout(getRechargeName);
+        getRechargeName.setLayout(getRechargeNameLayout);
+        getRechargeNameLayout.setHorizontalGroup(
+            getRechargeNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(getRechargeNameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clickAddForRechargeBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(getRechargeNameLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(back44, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(getRechargeNameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(getRechargeNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getNameForRechargeBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel54))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        getRechargeNameLayout.setVerticalGroup(
+            getRechargeNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(getRechargeNameLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(getRechargeNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back44, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(getRechargeNameLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel53)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel54)
+                .addGap(3, 3, 3)
+                .addComponent(getNameForRechargeBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(clickAddForRechargeBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        basePanel.add(getRechargeName, "card2");
+
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
@@ -7753,7 +7828,22 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            genarateBarCode(barCodeInProductDetails.getText());
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    genarateBarCode(barCodeInProductDetails.getText());
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            worker.execute();
+
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -8015,36 +8105,51 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_refNameInProductWanrrantyActionPerformed
 
     private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
-        boolean isExist= false;
+       
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-              Connection conn = DbConnection.connect();
-            try {
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                     boolean isExist = false;
+                    Connection conn = DbConnection.connect();
+                    try {
 
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `warranty_table` WHERE invoice='"+invoiceInProductWarranty.getText()+"';";
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-                if(!rs.next())
-                {
-                    isExist = true;
+                        Statement st = conn.createStatement();
+                        String sql = "SELECT * FROM `warranty_table` WHERE invoice='" + invoiceInProductWarranty.getText() + "';";
+                        //TODO: HANDLE NULL
+                        ResultSet rs = st.executeQuery(sql);
+                        if (!rs.next()) {
+                            isExist = true;
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        DbConnection.disconnect(conn);
+                    }
+                    System.err.println(isExist);
+                    if (isExist) {
+                        System.err.println(isExist);
+                        saveWarrantyDetailsInDb();
+                        printPosMemo(invoiceInProductWarranty.getText());
+                    } else {
+                        System.err.println("just print");
+                        printPosMemo(invoiceInProductWarranty.getText());
+                    }
+                    return null;
                 }
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-            System.err.println(isExist);
-            if (isExist) {
-                System.err.println(isExist);
-                saveWarrantyDetailsInDb();
-                printPosMemo(invoiceInProductWarranty.getText());
-            } else {
-                System.err.println("just print");
-                printPosMemo(invoiceInProductWarranty.getText());
-            }
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            worker.execute();
+
         }
     }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
 
@@ -8075,10 +8180,12 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void generateBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBarCodeActionPerformed
+         
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            genarateBarCodeForContractNumber(getMobileNumber.getText(), "Hasib Mahmud");
+            switchPanelViaMenu(getRechargeName);
+           
         }
     }//GEN-LAST:event_generateBarCodeActionPerformed
 
@@ -8378,6 +8485,34 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_getMobileNumberForSearchActionPerformed
 
+    private void back44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back44MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_back44MouseClicked
+
+    private void clickAddForRechargeBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddForRechargeBarCodeActionPerformed
+        if (UserInfo.role.equals("demo")) {
+
+        } else {
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode.getText());
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            worker.execute();
+
+        }
+
+    }//GEN-LAST:event_clickAddForRechargeBarCodeActionPerformed
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -8472,6 +8607,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel back;
     private javax.swing.JLabel back1;
     private javax.swing.JLabel back43;
+    private javax.swing.JLabel back44;
     private javax.swing.JLabel backToMobileRecharge;
     private javax.swing.JLabel backToMobileRecharge1;
     private javax.swing.JLabel backToUssdManengementPanel;
@@ -8495,6 +8631,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton clickAddContract;
     private javax.swing.JButton clickAddContract1;
     private javax.swing.JButton clickAddContract2;
+    private javax.swing.JButton clickAddForRechargeBarCode;
     private javax.swing.JButton clickAddNewManagement;
     private javax.swing.JLabel clickBillPayment;
     private javax.swing.JButton clickChooseIcon;
@@ -8571,6 +8708,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getMobileNumberForSearch;
     private javax.swing.JTextField getNameForContract;
+    private javax.swing.JTextField getNameForRechargeBarCode;
     private javax.swing.JTextField getNameForSearch;
     private javax.swing.JTextField getOfferNameInSeting;
     private javax.swing.JComboBox<String> getOparetorNameInDropDown;
@@ -8587,6 +8725,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> getPrepaidOrPostpaid;
     private javax.swing.JTextField getRechargeAmmountInSeetings;
     private javax.swing.JPanel getRechargeAmountInSetting;
+    private javax.swing.JPanel getRechargeName;
     private javax.swing.JTextField getRechargeUssdParternPostPaid;
     private javax.swing.JTextField getRechargeUssdParternPostPaid1;
     private javax.swing.JTextField getRechargeUssdParternPrePaid;
@@ -8767,6 +8906,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;

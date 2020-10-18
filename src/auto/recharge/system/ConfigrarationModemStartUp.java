@@ -99,14 +99,19 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
+                Set<String> modemNameList = new HashSet<>();
                 processtingLoderDialog.setVisible(true);
                 DefaultListModel defaultListModel = new DefaultListModel();
                 for (String port : portsList) {
                     auto.recharge.system.config.Modem.connect(port);
                     String modemName = auto.recharge.system.config.Modem.sendATCommand("AT+CGMM");
-                    defaultListModel.addElement(modemName.split(",")[1]);
+                    modemNameList.add(modemName.split(",")[1]);
+                    
                     System.err.println(modemName.split(",")[1]);
                     auto.recharge.system.config.Modem.disconnect();
+                }
+                for(String modemName: modemNameList){
+                defaultListModel.addElement(modemName);
                 }
                 modem_list.setModel(defaultListModel);
                 return null;
@@ -125,7 +130,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     }//GEN-LAST:event_port_searching3ActionPerformed
 
     private void modemToSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modemToSimActionPerformed
-        Set<String> simNames = new HashSet<>();
+        List<String> simNames = new ArrayList<>();
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
