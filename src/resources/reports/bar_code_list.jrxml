@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0ab248f-2437-4f88-bb63-12c2cedcb037">
 	<property name="ireport.zoom" value="1.9487171000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="203"/>
+	<property name="ireport.y" value="251"/>
 	<parameter name="bar_code_text" class="java.lang.String"/>
 	<title>
 		<band height="107" splitType="Stretch">
@@ -203,6 +203,144 @@
 			</textField>
 		</band>
 	</title>
+	<pageHeader>
+		<band height="50">
+			<componentElement>
+				<reportElement x="11" y="10" width="87" height="27" uuid="a8ea4a54-d52f-4e25-9baa-33ab47b84191"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="115" y="10" width="87" height="27" uuid="6c0e97d0-cf16-4d55-bbd9-db42d325cec6"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="214" y="10" width="87" height="27" uuid="9c306222-9dc3-485f-85a7-08915411d3cc"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="323" y="10" width="87" height="27" uuid="037ba98d-b1d3-457c-acb9-ac267759c0a7"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="443" y="10" width="87" height="27" uuid="e510dc44-f618-408e-9526-780abcdccddf"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="443" y="20" width="87" height="17" uuid="a279f44f-874c-4dd6-b743-42c72c3bf44d"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="20" width="87" height="17" uuid="9d8397a2-32ea-4e61-a7d0-00a3707cea7e"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="20" width="87" height="17" uuid="18431600-73ab-4d7d-81ad-5359f8ede4c9"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="20" width="87" height="17" uuid="86bed0f8-cb81-4f21-9322-7464e283df0a"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="20" width="87" height="17" uuid="acf80a80-f4cc-4e9f-a64e-891cdc39a679"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<componentElement>
+				<reportElement x="11" y="10" width="87" height="27" uuid="0483feea-a9cf-4216-a34b-ba70e9a5ccf3"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="115" y="10" width="87" height="27" uuid="4e777e0b-7f3e-4bf5-aadd-2155c56474ac"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="214" y="10" width="87" height="27" uuid="18955181-e8c1-4dfe-aad7-b18454cc9bd6"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="323" y="10" width="87" height="27" uuid="9a87eca7-b125-41f7-8041-6edb74c54482"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="443" y="10" width="87" height="27" uuid="beb22fd4-7d1b-4075-ae66-33d07690d41f"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="11" y="20" width="87" height="17" uuid="bb6eb319-2308-456f-a831-98d03ff9b301"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="20" width="87" height="17" uuid="a2cdf951-6c4a-479f-913e-0e97c0224ff0"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="20" width="87" height="17" uuid="91506ff2-8b3e-435d-bda5-4d3268a670b0"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="20" width="87" height="17" uuid="890c091c-9ce0-4c72-b7a8-493e13e3591d"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="20" width="87" height="17" uuid="2808b0a5-f2a9-4ad4-88c5-ae0844cc74a4"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bar_code_text}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
 	<detail>
 		<band height="247" splitType="Stretch">
 			<componentElement>

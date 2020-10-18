@@ -23,6 +23,13 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.TextAttribute;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -1311,7 +1318,11 @@ public class Home extends javax.swing.JFrame {
         jLabel172.setForeground(new java.awt.Color(51, 0, 102));
         jLabel172.setText("Number: ");
 
-        getMobileNumberForSearch.setText("jTextField1");
+        getMobileNumberForSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getMobileNumberForSearchActionPerformed(evt);
+            }
+        });
         getMobileNumberForSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 getMobileNumberForSearchKeyReleased(evt);
@@ -6407,6 +6418,7 @@ public class Home extends javax.swing.JFrame {
         mobileBankingSettings.setForeground(Color.black);
         rechargeOffers.setForeground(Color.black);
         setDataInProfilePanel();
+        setLoggedUserDataInProfile();
     }//GEN-LAST:event_myProfileMouseClicked
 
     private void systemBackupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_systemBackupMouseClicked
@@ -7047,7 +7059,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickMobileBankingMouseEntered
 
     private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
-               switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
+        switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
         if (UserInfo.role.equals("demo")) {
 
         } else {
@@ -7093,7 +7105,6 @@ public class Home extends javax.swing.JFrame {
                 }
             }
 
-
             SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
                 @Override
                 protected Void doInBackground() throws Exception {
@@ -7101,7 +7112,6 @@ public class Home extends javax.swing.JFrame {
                     if (mobileBankingBalenceHash.isEmpty()) {
                         getMobileBankingBalance();
                     }
-
 
                     return null;
                 }
@@ -7839,7 +7849,7 @@ public class Home extends javax.swing.JFrame {
                     }
                 }
             }
-           
+
         }
     }//GEN-LAST:event_barCodeInProductSellKeyReleased
 
@@ -7855,9 +7865,9 @@ public class Home extends javax.swing.JFrame {
         Point point = evt.getPoint();
         int column = productWarrantyTable.columnAtPoint(point);
         int row = productWarrantyTable.rowAtPoint(point);
-       String barcode = productWarrantyTable.getValueAt(row, 2).toString();
-       String rowNo = productWarrantyTable.getValueAt(row, 0).toString();
-       deteteFromProductListTable(barcode,rowNo);
+        String barcode = productWarrantyTable.getValueAt(row, 2).toString();
+        String rowNo = productWarrantyTable.getValueAt(row, 0).toString();
+        deteteFromProductListTable(barcode, rowNo);
     }//GEN-LAST:event_productSellTableMouseClicked
 
     private void productSellTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTableKeyPressed
@@ -7873,7 +7883,7 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            
+
             printMemo();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -7930,7 +7940,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_invoiceInProductWarrantyKeyReleased
 
     private void productWarrantyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productWarrantyTableMouseClicked
-        String customerId, fullName, phoneNo, status, paid, due, brand, total, problem,invoice;
+        String customerId, fullName, phoneNo, status, paid, due, brand, total, problem, invoice;
         Point point = evt.getPoint();
         int column = productWarrantyTable.columnAtPoint(point);
         int row = productWarrantyTable.rowAtPoint(point);
@@ -8005,11 +8015,36 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_refNameInProductWanrrantyActionPerformed
 
     private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
+        boolean isExist= false;
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            saveWarrantyDetailsInDb();
-            printPosMemo(invoiceInProductWarranty.getText());
+              Connection conn = DbConnection.connect();
+            try {
+
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `warranty_table` WHERE invoice='"+invoiceInProductWarranty.getText()+"';";
+                //TODO: HANDLE NULL
+                ResultSet rs = st.executeQuery(sql);
+                if(!rs.next())
+                {
+                    isExist = true;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+            System.err.println(isExist);
+            if (isExist) {
+                System.err.println(isExist);
+                saveWarrantyDetailsInDb();
+                printPosMemo(invoiceInProductWarranty.getText());
+            } else {
+                System.err.println("just print");
+                printPosMemo(invoiceInProductWarranty.getText());
+            }
         }
     }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
 
@@ -8334,10 +8369,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_searchInInboxKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
+
         clearBillforProduct();
         invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void getMobileNumberForSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getMobileNumberForSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getMobileNumberForSearchActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -13784,7 +13823,7 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-        
+
         saveSellProductInSellTabel(countForSellTable);
         summaryShowInBillDisplay();
     }
@@ -13861,19 +13900,19 @@ public class Home extends javax.swing.JFrame {
             Connection conn = DbConnection.connect();
             try {
                 Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `sell_table` where invoice="+invoiceInProductSell.getText();
+                String sql = "SELECT * FROM `sell_table` where invoice=" + invoiceInProductSell.getText();
                 //TODO: HANDLE NULL
                 ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {                  
-                        Products p = new Products();
-                        p.setBar_code(rs.getString("bar_code"));
-                        p.setPrice(rs.getString("price"));
-                        p.setQty(rs.getString("qty"));
-                        p.setSub_total(rs.getString("sub_total"));
-                        p.setWarranty(warrantyInProductBill.getText());
-                        p.setP_name(rs.getString("p_name"));
-                        productses.add(p);
-                   
+                while (rs.next()) {
+                    Products p = new Products();
+                    p.setBar_code(rs.getString("bar_code"));
+                    p.setPrice(rs.getString("price"));
+                    p.setQty(rs.getString("qty"));
+                    p.setSub_total(rs.getString("sub_total"));
+                    p.setWarranty(warrantyInProductBill.getText());
+                    p.setP_name(rs.getString("p_name"));
+                    productses.add(p);
+
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -14056,7 +14095,7 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void printPosMemo(String text) {
+    private void printPosMemo(String invoice) {
         List<Warranty> warrantys = new ArrayList<>();
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
@@ -14070,7 +14109,7 @@ public class Home extends javax.swing.JFrame {
                 //TODO: HANDLE NULL
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
+                    if (invoice.equals(rs.getString("invoice"))) {
                         Warranty p = new Warranty();
                         p.setId("1");
                         p.setService_name(rs.getString("brand"));
@@ -14087,62 +14126,131 @@ public class Home extends javax.swing.JFrame {
                 DbConnection.disconnect(conn);
             }
         }
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setPrintable(new BillPrintable(warrantys), getPageFormat(pj));
         try {
-            String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
+            pj.print();
 
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-//            URL res1 = getClass().getResource(fileNamePdf1);
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String shopName = "AK STORE AND TELECOM";
-                String address = "Asulia savar,dhaka,bangladesh";
-                String phoneNumber = "+8801988841890 +8801988851789";
-
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
-
-                HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("shop_name", shopName);
-                hm.put("address", address);
-                hm.put("phone_no", phoneNumber);
-                hm.put("invoice", invoiceInProductWarranty.getText());
-                hm.put("c_phn_no", phoneNOInProductWanrranty.getText());
-                hm.put("c_name", fullNameInProductWanrranty.getText());
-                hm.put("paid", paidPaymentInProductWanrranty.getText());
-                hm.put("due", "Logged User Name");
-                hm.put("total", invoiceInProductSell.getText());
-                hm.put("delivary_date", delevaryDateDateInProductWanrranty.getDate().toString());
-                hm.put("collectionOfBean", ds);
-
-                hm.put("total_amouny", totalAmountInProductSell1.getText());
-                hm.put("discountAmountInBitll", discountInProductSell.getText());
-                hm.put("tPayble", payableInProductSell.getText());
-                hm.put("paid", paidInProductSell.getText());
-                hm.put("due_payment", duePaymentInProductSell.getText());
-                hm.put("due", dueInProductSell.getText());
-
-                hm.put("vatTAxInBitll", "0.0");
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
-
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
-
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrinterException ex) {
+            ex.printStackTrace();
         }
+//        List<Warranty> warrantys = new ArrayList<>();
+//        if (UserInfo.role.equals("demo")) {
+//            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+//
+//        } else {
+//            Connection conn = DbConnection.connect();
+//            try {
+//
+//                Statement st = conn.createStatement();
+//                String sql = "SELECT * FROM `warranty_table`";
+//                //TODO: HANDLE NULL
+//                ResultSet rs = st.executeQuery(sql);
+//                while (rs.next()) {
+//                    if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
+//                        Warranty p = new Warranty();
+//                        p.setId("1");
+//                        p.setService_name(rs.getString("brand"));
+//                        p.setPrice(rs.getString("bill"));
+//                        p.setQty("1");
+//                        p.setTotal(rs.getString("bill"));
+//
+//                        warrantys.add(p);
+//                    }
+//                }
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//                DbConnection.disconnect(conn);
+//            }
+//        }
+//        try {
+//            String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
+//
+//            URL res = getClass().getResource(fileNameJrxml1);
+//            File file = Paths.get(res.toURI()).toFile();
+//            String fileNameJrxml = file.getAbsolutePath();
+////            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
+////            URL res1 = getClass().getResource(fileNamePdf1);
+//            try {
+//                System.out.println("Loading the .JRMXML file ....");
+//                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+//                System.out.println("Compiling the .JRMXML file to .JASPER file....");
+//                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+//                String shopName = "AK STORE AND TELECOM";
+//                String address = "Asulia savar,dhaka,bangladesh";
+//                String phoneNumber = "+8801988841890 +8801988851789";
+//
+//                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
+//
+//                HashMap<String, Object> hm = new HashMap<String, Object>();
+//                hm.put("shop_name", shopName);
+//                hm.put("address", address);
+//                hm.put("phone_no", phoneNumber);
+//                hm.put("invoice", invoiceInProductWarranty.getText());
+//                hm.put("c_phn_no", phoneNOInProductWanrranty.getText());
+//                hm.put("c_name", fullNameInProductWanrranty.getText());
+//                hm.put("paid", paidPaymentInProductWanrranty.getText());
+//                hm.put("due", "Logged User Name");
+//                hm.put("total", invoiceInProductSell.getText());
+//                hm.put("delivary_date", delevaryDateDateInProductWanrranty.getDate().toString());
+//                hm.put("collectionOfBean", ds);
+//
+//                hm.put("total_amouny", totalAmountInProductSell1.getText());
+//                hm.put("discountAmountInBitll", discountInProductSell.getText());
+//                hm.put("tPayble", payableInProductSell.getText());
+//                hm.put("paid", paidInProductSell.getText());
+//                hm.put("due_payment", duePaymentInProductSell.getText());
+//                hm.put("due", dueInProductSell.getText());
+//
+//                hm.put("vatTAxInBitll", "0.0");
+//                System.out.println("filling parameters to .JASPER file....");
+//                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+//                preview(jprint);
+//                System.out.println("exporting the JASPER file to PDF file....");
+//                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+//                System.out.println("Successfully completed the export");
+//
+//            } catch (Exception e) {
+//                System.out.print("Exception:" + e);
+//            }
+//
+//        } catch (URISyntaxException ex) {
+//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
+    public PageFormat getPageFormat(PrinterJob pj) {
+
+        PageFormat pf = pj.defaultPage();
+        Paper paper = pf.getPaper();
+
+        double middleHeight = 8.0;
+        double headerHeight = 2.0;
+        double footerHeight = 2.0;
+        double width = convert_CM_To_PPI(8);      //printer know only point per inch.default value is 72ppi
+        double height = convert_CM_To_PPI(headerHeight + middleHeight + footerHeight);
+        paper.setSize(width, height);
+        paper.setImageableArea(
+                0,
+                10,
+                width,
+                height - convert_CM_To_PPI(1)
+        );   //define boarder size    after that print area width is about 180 points
+
+        pf.setOrientation(PageFormat.PORTRAIT);           //select orientation portrait or landscape but for this time portrait
+        pf.setPaper(paper);
+
+        return pf;
+    }
+
+    protected static double convert_CM_To_PPI(double cm) {
+        return toPPI(cm * 0.393600787);
+    }
+
+    protected static double toPPI(double inch) {
+        return inch * 72d;
+    }
     private void collectInitialSIMBalance() {
         errorMgsInBalencePanel.setText("Processing...");
         List<String> balancePaseList = new ArrayList<>();
@@ -14411,19 +14519,19 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void updateWarrantyInfoByInvoice() {
-        String afterPayment = String.valueOf(Double.valueOf(billInProductWanrranty.getText())-Double.valueOf(paidPaymentInProductWanrranty.getText()));
-           Connection conn = DbConnection.connect();
-            String sql = "UPDATE warranty_table SET problem = '" + problemInProductWanrranty.getText() + "', mobole_no = '" + phoneNOInProductWanrranty.getText() +"', status = '" + statusInProductWanrrantyComboBox.getSelectedItem().toString() +"', paid = '" + paidPaymentInProductWanrranty.getText() +"', due = '" + afterPayment +"', bill = '" + billInProductWanrranty.getText() + "' WHERE invoice ='" + invoiceInProductWarranty.getText() + "'";
-            try {
-                Statement st = conn.createStatement();
-                st.execute(sql);
+        String afterPayment = String.valueOf(Double.valueOf(billInProductWanrranty.getText()) - Double.valueOf(paidPaymentInProductWanrranty.getText()));
+        Connection conn = DbConnection.connect();
+        String sql = "UPDATE warranty_table SET problem = '" + problemInProductWanrranty.getText() + "', mobole_no = '" + phoneNOInProductWanrranty.getText() + "', status = '" + statusInProductWanrrantyComboBox.getSelectedItem().toString() + "', paid = '" + paidPaymentInProductWanrranty.getText() + "', due = '" + afterPayment + "', bill = '" + billInProductWanrranty.getText() + "' WHERE invoice ='" + invoiceInProductWarranty.getText() + "'";
+        try {
+            Statement st = conn.createStatement();
+            st.execute(sql);
 
-            } catch (SQLException ex) {
-                Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
-            }
-            DbConnection.disconnect(conn);
-            showDataInProductWarentyByInvoiceFromDB(invoiceInProductWarranty.getText());
+        } catch (SQLException ex) {
+            Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
         }
+        DbConnection.disconnect(conn);
+        showDataInProductWarentyByInvoiceFromDB(invoiceInProductWarranty.getText());
+    }
 
     private void deteteFromProductListTable(String barcode, String rowNo) {
         System.err.println(barcode + " " + rowNo);
@@ -14443,7 +14551,116 @@ public class Home extends javax.swing.JFrame {
             }
         }
     }
-    
+
+    private void setLoggedUserDataInProfile() {
+        nameInProfilePanel1.setText(UserInfo.name);
+        companyNameInProfilePanel.setText(UserInfo.shopName);
+        userIdInProfile.setText(UserInfo.userId);
+        activePackageNameInProfile.setText(UserInfo.activePackage);
+        activeDateInProfile.setText(UserInfo.activeDate);
+        expiryDateInProfile.setText(UserInfo.expireDate);
+        remainDaysInProfile.setText(trxId);
+    }
+
+    public class BillPrintable implements Printable {
+
+        private final List<Warranty> warrantys;
+
+        public BillPrintable(List<Warranty> warrantys) {
+            this.warrantys = warrantys;
+        }
+
+        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
+                throws PrinterException {
+
+            int result = NO_SUCH_PAGE;
+            if (pageIndex == 0) {
+
+                Graphics2D g2d = (Graphics2D) graphics;
+
+                double width = pageFormat.getImageableWidth();
+
+                g2d.translate((int) pageFormat.getImageableX(), (int) pageFormat.getImageableY());
+
+
+                FontMetrics metrics = g2d.getFontMetrics(new Font("Arial", Font.BOLD, 7));
+
+                int idLength = metrics.stringWidth("000");
+                int amtLength = metrics.stringWidth("000000");
+                int qtyLength = metrics.stringWidth("00000");
+                int priceLength = metrics.stringWidth("000000");
+                int prodLength = (int) width - idLength - amtLength - qtyLength - priceLength - 17;
+
+            
+                int productPosition = 0;
+                int discountPosition = prodLength + 5;
+                int pricePosition = discountPosition + idLength + 10;
+                int qtyPosition = pricePosition + priceLength + 4;
+                int amtPosition = qtyPosition + qtyLength;
+
+                try {
+                    /*Draw Header*/
+                    int y = 20;
+                    int yShift = 10;
+                    int headerRectHeight = 15;
+                    int headerRectHeighta = 40;
+                    String total="";
+
+                    g2d.setFont(new Font("Monospaced", Font.PLAIN, 9));
+                    g2d.drawString("-------------------------------------", 12, y);
+                    y += yShift;
+                    g2d.drawString("            " + UserInfo.shopName + "        ", 16, y);
+                    y += yShift;
+                    g2d.drawString("-------------------------------------", 12, y);
+                    y += headerRectHeight;
+               
+                    g2d.drawString("Invoice #: " + invoiceInProductWarranty.getText() + "", 10, y);
+                    y += yShift;
+                    g2d.drawString("Customer Name: " + fullNameInProductWanrranty.getText() + "", 10, y);
+                    y += yShift;
+                    g2d.drawString("Phone N0: " + phoneNOInProductWanrranty.getText() + "", 10, y);
+                    y += yShift;
+                    g2d.drawString("Date & Time: " + Configaration.getCurrentDateAndTime() + "", 10, y);
+                    y += yShift;
+                    g2d.drawString("-------------------------------------", 10, y);
+                    y += yShift;
+                    g2d.drawString(" Id           Service Name       Paid", 10, y);
+                    y += yShift;
+                    g2d.drawString("-------------------------------------", 10, y);
+                    y += headerRectHeight;
+                    for (Warranty warranty : warrantys) {
+                        g2d.drawString(" "+warranty.getId()+"               "+warranty.getService_name()+"            " + warranty.getPrice()+"", 10, y);
+                        y += yShift;
+                        total = warranty.getTotal();
+                    }
+
+                    g2d.drawString("-------------------------------------", 10, y);
+                    y += yShift;
+                    g2d.drawString(" Total amount: " + total + "         ", 10, y);
+                    y += yShift;
+                    g2d.drawString("-------------------------------------", 10, y);
+                    y += yShift;
+                    g2d.drawString("               HelpLine                ", 10, y);
+                    y += yShift;
+                    g2d.drawString("             " + UserInfo.phoneNo + "         ", 10, y);
+                    y += yShift;
+                    g2d.drawString("*************************************", 10, y);
+                    y += yShift;
+                    g2d.drawString("    THANKS TO VISIT OUR SHOP   ", 10, y);
+                    y += yShift;
+                    g2d.drawString("*************************************", 10, y);
+                    y += yShift;
+
+//            g2d.setFont(new Font("Monospaced",Font.BOLD,10));
+//            g2d.drawString("Customer Shopping Invoice", 30,y);y+=yShift; 
+                } catch (Exception r) {
+                    r.printStackTrace();
+                }
+
+                result = PAGE_EXISTS;
+            }
+            return result;
+        }
+    }
+
 }
-
-
