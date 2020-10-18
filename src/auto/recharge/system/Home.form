@@ -766,25 +766,15 @@
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                          <Component id="jLabel101" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="fromDateInMobileRecharge" min="-2" pref="173" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabel171" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="toDateInMobileRecharge" min="-2" pref="173" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel172" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="getMobileNumberForSearch" min="-2" pref="218" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="searchInMobileRecharge" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane2" alignment="1" min="-2" pref="1150" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -885,27 +875,17 @@
                               </Group>
                               <Component id="rechargeBalencePanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <Component id="fromDateInMobileRecharge" min="-2" max="-2" attributes="0"/>
-                              <Component id="toDateInMobileRecharge" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel101" min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jLabel171" alignment="1" min="-2" pref="18" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel172" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="getMobileNumberForSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchInMobileRecharge" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="getMobileNumberForSearch" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="167" max="-2" attributes="0"/>
-                          <EmptySpace pref="293" max="32767" attributes="0"/>
+                          <EmptySpace pref="277" max="32767" attributes="0"/>
                           <Component id="deviceStartStatus" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1310,64 +1290,24 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generateBarCodeActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel101">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Yu Gothic UI Semilight" size="11" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="From: "/>
-                  </Properties>
-                </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="fromDateInMobileRecharge">
-                </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="toDateInMobileRecharge">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel171">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Yu Gothic UI Semilight" size="11" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="0" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="To: "/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel172">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="0" red="33" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Yu Gothic UI Semilight" size="11" style="1"/>
+                      <Font name="Yu Gothic UI Semilight" size="12" style="1"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="0" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Number: "/>
+                    <Property name="text" type="java.lang.String" value="Search By Date or Phone Number Or Amount"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="getMobileNumberForSearch">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getMobileNumberForSearchActionPerformed"/>
                     <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="getMobileNumberForSearchKeyReleased"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="searchInMobileRecharge">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Search"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchInMobileRechargeActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -6317,140 +6257,90 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="backToUssdManengementPanel1" min="-2" pref="70" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="clickAddContract2" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                          <Component id="backToUssdManengementPanel1" min="-2" pref="70" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="getOparetorNameInDropDown" min="-2" pref="470" max="-2" attributes="0"/>
-                                              <Component id="getOperatorName1" min="-2" pref="470" max="-2" attributes="0"/>
+                                      <Component id="jLabel42" alignment="1" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="getOparetorNameInDropDown" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel45" alignment="0" pref="844" max="32767" attributes="0"/>
+                                              <Component id="jLabel41" alignment="0" min="-2" pref="836" max="-2" attributes="0"/>
+                                              <Component id="getRechargeUssdParternPrePaid1" alignment="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="getRechargeUssdParternPrePaid1" min="-2" pref="470" max="-2" attributes="0"/>
-                                              <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="clickAddContract2" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="getRechargeUssdParternSkitto" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="labelUssdPatternSkitto" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="clickChooseIcon1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel46" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="accountPassword1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel49" alignment="0" pref="844" max="32767" attributes="0"/>
+                                              <Component id="getRechargeUssdParternPostPaid1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel47" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="getBalenceUssdPartern3" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel62" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel48" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="getprofitIn1k" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="getRechargeUssdParternPostPaid1" min="-2" pref="470" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="getBalenceUssdPartern3" min="-2" pref="470" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel62" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="getprofitIn1k" min="-2" pref="470" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="accountPassword1" min="-2" pref="470" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="clickChooseIcon1" min="-2" pref="470" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="labelUssdPatternSkitto" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="getRechargeUssdParternSkitto" min="-2" pref="470" max="-2" attributes="0"/>
+                                          <EmptySpace pref="14" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="backToUssdManengementPanel1" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                          <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="backToUssdManengementPanel1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="getOparetorNameInDropDown" min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="getOperatorName1" min="-2" pref="40" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="getOparetorNameInDropDown" min="-2" pref="34" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                          <Component id="getRechargeUssdParternPrePaid1" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="getRechargeUssdParternPrePaid1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="getRechargeUssdParternPostPaid1" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="getRechargeUssdParternPostPaid1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="getBalenceUssdPartern3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <Component id="getBalenceUssdPartern3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel62" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="getprofitIn1k" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="getprofitIn1k" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="accountPassword1" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="accountPassword1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="clickChooseIcon1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="clickChooseIcon1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelUssdPatternSkitto" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                  <Component id="getRechargeUssdParternSkitto" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                  <Component id="clickAddContract2" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="getRechargeUssdParternSkitto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="clickAddContract2" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace pref="24" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -6517,17 +6407,10 @@
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickAddContract2ActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="getOperatorName1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Dialog" size="24" style="0"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="jLabel42">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Operator Name"/>
                           </Properties>
@@ -6535,7 +6418,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel45">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Recharge USSD Code Pattern (Pre-paid)"/>
                           </Properties>
@@ -6553,7 +6436,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel46">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Icon"/>
                           </Properties>
@@ -6585,7 +6468,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel47">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Balence show USSD Code Pattern"/>
                           </Properties>
@@ -6593,7 +6476,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel48">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Account Password"/>
                           </Properties>
@@ -6603,7 +6486,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel49">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Recharge USSD Code Pattern(post-paid)"/>
                           </Properties>
@@ -6621,7 +6504,7 @@
                         <Component class="javax.swing.JLabel" name="labelUssdPatternSkitto">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Recharge USSD Code Pattern(Skitto)"/>
                           </Properties>
@@ -6639,7 +6522,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel62">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Bahnschrift" size="18" style="1"/>
+                              <Font name="Bahnschrift" size="12" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Profit in 1000 tk"/>
                           </Properties>
@@ -7678,27 +7561,24 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="clickAddContract" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="back43" min="-2" pref="70" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel37" max="32767" attributes="0"/>
+                          <Component id="jLabel37" pref="2237" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                              <Component id="getNameForContract" min="-2" pref="470" max="-2" attributes="0"/>
                               <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
-                              <Component id="getPhoneNOForContract" min="-2" pref="470" max="-2" attributes="0"/>
                               <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
-                              <Component id="getSeletedStorage" min="-2" pref="470" max="-2" attributes="0"/>
+                              <Component id="getNameForContract" alignment="0" max="32767" attributes="0"/>
+                              <Component id="getPhoneNOForContract" alignment="0" max="32767" attributes="0"/>
+                              <Component id="getSeletedStorage" alignment="1" max="32767" attributes="0"/>
+                              <Component id="clickAddContract" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -8665,7 +8545,7 @@
                               <Component id="jSeparator10" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel88" min="-2" pref="97" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="getBalanceInBillPayment" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="loaderInBillPayment" min="-2" pref="43" max="-2" attributes="0"/>
@@ -9358,22 +9238,19 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="clickAddForRechargeBarCode" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="back44" min="-2" pref="70" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel53" max="32767" attributes="0"/>
+                          <Component id="jLabel53" pref="2237" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="getNameForRechargeBarCode" alignment="0" min="-2" pref="470" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="getNameForRechargeBarCode" alignment="0" pref="470" max="32767" attributes="0"/>
                               <Component id="jLabel54" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="clickAddForRechargeBarCode" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

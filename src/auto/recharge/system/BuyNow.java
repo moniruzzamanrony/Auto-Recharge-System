@@ -28,7 +28,7 @@ public class BuyNow extends javax.swing.JFrame {
     private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private final DBMySQLConnection mySQLConnection = new DBMySQLConnection();
     private JDialog processtingLoderDialog;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JPanel bg;
     private javax.swing.JLabel clickBack;
     private javax.swing.JButton clickBuyNow;
@@ -517,7 +517,7 @@ public class BuyNow extends javax.swing.JFrame {
     private void getShopNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getShopNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getShopNameActionPerformed
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     //    ---------------------------------- Custom Methods ----------------------------------------------------
     private void genarateQRCode(String clientName, String userPhoneNo, String userEmail, String selectedPackage, String shopName, String userId) {
@@ -712,7 +712,7 @@ public class BuyNow extends javax.swing.JFrame {
 
         processtingLoderDialog = new JDialog();
         processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(900, 435);
+        processtingLoderDialog.setSize(404, 381);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 
