@@ -24,7 +24,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     private JDialog processtingLoderDialog;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -70,6 +70,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void port_searching2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_port_searching2ActionPerformed
+        port_searching2.setEnabled(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -86,7 +87,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
             @Override
             protected void done() {
                 port_searching3.setEnabled(true);
-                port_searching2.setEnabled(false);
+                
                 processtingLoderDialog.setVisible(false);
             }
 
@@ -571,7 +572,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
 
     }//GEN-LAST:event_simToFinishActionPerformed
 
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
     private void processingLoderDialog() {
 
         ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();

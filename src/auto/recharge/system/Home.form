@@ -128,7 +128,7 @@
                   <Component id="helplineTab" alignment="0" max="32767" attributes="0"/>
                   <Component id="billPaymentTab" alignment="0" max="32767" attributes="0"/>
                   <Component id="detailsTab" alignment="0" max="32767" attributes="0"/>
-                  <Component id="mobileRechargeTab" alignment="0" pref="157" max="32767" attributes="0"/>
+                  <Component id="mobileRechargeTab" alignment="0" pref="159" max="32767" attributes="0"/>
                   <Component id="settingTab" alignment="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -1610,7 +1610,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="ProductPurchasePanel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="1155" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1645,17 +1645,14 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel146" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel150" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jLabel146" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="brandInProductDetails" min="-2" pref="151" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="jLabel150" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="oderLimitInProductDetails" max="32767" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="oderLimitInProductDetails" max="32767" attributes="0"/>
+                                                  <Component id="brandInProductDetails" pref="151" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1675,15 +1672,15 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel149" min="-2" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                                      <Component id="qtyInProductDetails" min="-2" pref="204" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                           <Group type="102" attributes="0">
-                                                              <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                                                              <Component id="jButton1" min="-2" pref="194" max="-2" attributes="0"/>
+                                                              <Component id="saveInProductPurchase2" max="32767" attributes="0"/>
+                                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <Group type="102" attributes="0">
-                                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                                              <Component id="qtyInProductDetails" min="-2" pref="204" max="-2" attributes="0"/>
-                                                          </Group>
+                                                          <Component id="jButton1" min="-2" pref="194" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
@@ -1697,40 +1694,34 @@
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="saveInProductPurchase2" min="-2" pref="192" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="invoiceINProductDetails" min="-2" pref="136" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="jLabel136" min="-2" pref="94" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="searchByGroupInRatio" min="-2" pref="143" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="listOfBarCodeOrGroupComboBox" min="-2" pref="215" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="jLabel143" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="barCodeInProductDetails" min="-2" pref="147" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="jLabel144" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="groupInProductDetails" min="-2" pref="193" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                                          <Component id="jLabel145" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                          <Component id="pNameInProductDetails" min="-2" pref="208" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="saveInProductPurchase1" min="-2" pref="196" max="-2" attributes="0"/>
-                                                      </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="invoiceINProductDetails" min="-2" pref="136" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="jLabel136" min="-2" pref="94" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="searchByGroupInRatio" min="-2" pref="143" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="listOfBarCodeOrGroupComboBox" min="-2" pref="215" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="jLabel143" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="barCodeInProductDetails" min="-2" pref="153" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel144" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                                      <Component id="groupInProductDetails" min="-2" pref="197" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel145" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="pNameInProductDetails" min="-2" pref="206" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="saveInProductPurchase1" min="-2" pref="186" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -4328,6 +4319,9 @@
                                     </Property>
                                     <Property name="text" type="java.lang.String" value="New"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="jButton5">
                                   <Properties>
