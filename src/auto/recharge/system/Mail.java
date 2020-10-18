@@ -32,8 +32,8 @@ public class Mail {
 
     public void send(String fileName, String email, String userName, String selectedPackage, String paymentTrsId, String clientEmail) {
 
-        final String USERNAME = "moniruzzamanrony29@gmail.com";
-        final String PASSWORD = "ITvillage428854@#";
+        final String USERNAME = "auto.recharge20bd@gmail.com";
+        final String PASSWORD = "Afsar/.,123";
 
         System.err.println("Mail Sending to " + email);
         Properties props = new Properties();
@@ -87,8 +87,8 @@ public class Mail {
 
     public void send(String email, String userName, String selectedPackage, String paymentTrsId) {
 
-        final String USERNAME = "moniruzzamanrony29@gmail.com";
-        final String PASSWORD = "ITvillage428854@#";
+        final String USERNAME = "auto.recharge20bd@gmail.com";
+        final String PASSWORD = "Afsar/.,123";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);

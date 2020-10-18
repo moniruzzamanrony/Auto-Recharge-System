@@ -108,7 +108,7 @@ public class Home extends javax.swing.JFrame {
     private DefaultListModel defaultListModel = new DefaultListModel();
     private Set<ContractResponse> contractList;
     private JDialog processtingLoderDialog;
-    private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash"};
+    private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad","SureCash", "MyCash","uCash","P-Cash","TeleCash","IFIC","OkWallet"};
     private DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
     private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
@@ -175,9 +175,12 @@ public class Home extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         currentNetworkName = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel107 = new javax.swing.JLabel();
         pandingRequestCounter = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
         getSeletedOperatorName = new javax.swing.JComboBox<>();
@@ -528,7 +531,6 @@ public class Home extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jLabel99 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
         jLabel103 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
@@ -989,7 +991,7 @@ public class Home extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
         currentNetworkName.setBackground(new java.awt.Color(255, 255, 255));
-        currentNetworkName.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        currentNetworkName.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         currentNetworkName.setForeground(new java.awt.Color(102, 102, 255));
         currentNetworkName.setText("No SIIM Avaiable");
 
@@ -1028,8 +1030,6 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel107.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/help_bar_v_2.png"))); // NOI18N
-
         pandingRequestCounter.setBackground(new java.awt.Color(255, 255, 255));
         pandingRequestCounter.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         pandingRequestCounter.setForeground(new java.awt.Color(51, 0, 102));
@@ -1041,12 +1041,53 @@ public class Home extends javax.swing.JFrame {
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel43.setText("Pandding request");
 
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel10.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 0, 102));
+        jLabel10.setText("For Buy, ");
+
+        jLabel56.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel56.setText("Md Afsar Ali");
+
+        jLabel101.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel101.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel101.setText("01816385858,01913350462");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel101))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel56))))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel56)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel101)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout headerPanelLayout = new javax.swing.GroupLayout(headerPanel);
         headerPanel.setLayout(headerPanelLayout);
         headerPanelLayout.setHorizontalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(headerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1059,23 +1100,21 @@ public class Home extends javax.swing.JFrame {
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel107))
             .addGroup(headerPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(headerPanelLayout.createSequentialGroup()
-                                .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(headerPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel43)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pandingRequestCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                        .addComponent(jLabel43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pandingRequestCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(headerPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         basePanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -4650,12 +4689,12 @@ public class Home extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Cambria Math", 1, 60)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("01788841890");
+        jLabel11.setText("01913350462");
 
         jLabel12.setFont(new java.awt.Font("Cambria Math", 1, 60)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("01988841890");
+        jLabel12.setText("01816385858");
 
         jLabel13.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -4671,11 +4710,6 @@ public class Home extends javax.swing.JFrame {
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel99.setText("Founder of Auto Recharge Software Ltd.");
-
-        jLabel102.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jLabel102.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel102.setText("Develop By: IT Village Ltd. ");
 
         jLabel103.setFont(new java.awt.Font("Consolas", 1, 16)); // NOI18N
         jLabel103.setForeground(new java.awt.Color(255, 255, 255));
@@ -4711,9 +4745,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel105)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel106)
-                .addGap(191, 191, 191)
-                .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel106))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 1086, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4743,10 +4775,8 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel104)
                     .addComponent(jLabel105)
-                    .addComponent(jLabel106)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel106))
+                .addGap(3, 3, 3))
         );
 
         javax.swing.GroupLayout helplinePanelLayout = new javax.swing.GroupLayout(helplinePanel);
@@ -6246,7 +6276,7 @@ public class Home extends javax.swing.JFrame {
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bodyPanelLayout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(basePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 908, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -8701,13 +8731,13 @@ public class Home extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
-    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
@@ -8827,6 +8857,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -8880,6 +8911,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

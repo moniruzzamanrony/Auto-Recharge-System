@@ -366,7 +366,7 @@ public final class Login extends javax.swing.JFrame {
 
     private void loginButCllick(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButCllick
 
-        new Login().setVisible(false);
+        this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
