@@ -111,13 +111,14 @@ public class Home extends javax.swing.JFrame {
     private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
     private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
     private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
-   
+
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
         this.setTitle("Auto Recharge System");
+        this.setResizable(false);
 
         refrash();
         placeHoderSetter();
@@ -127,7 +128,7 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
 
         startUpApplicationBaseOnRole();
-        
+
         displayConfig();
 
     }
@@ -299,16 +300,12 @@ public class Home extends javax.swing.JFrame {
         jLabel176 = new javax.swing.JLabel();
         payableInProductWanrranty = new javax.swing.JLabel();
         paid4 = new javax.swing.JPanel();
-        jLabel177 = new javax.swing.JLabel();
         jLabel178 = new javax.swing.JLabel();
         paidInProductWanrranty = new javax.swing.JLabel();
-        duePaymentInProductWanrranty = new javax.swing.JLabel();
         dueInProductWanrranty = new javax.swing.JLabel();
         jLabel179 = new javax.swing.JLabel();
-        jLabel180 = new javax.swing.JLabel();
-        paymentWayInProductWanrranty = new javax.swing.JLabel();
         jScrollPane15 = new javax.swing.JScrollPane();
-        productSellTable1 = new javax.swing.JTable();
+        productWarrantyTable = new javax.swing.JTable();
         jLabel181 = new javax.swing.JLabel();
         jLabel182 = new javax.swing.JLabel();
         fullNameInProductWanrranty = new javax.swing.JTextField();
@@ -657,8 +654,8 @@ public class Home extends javax.swing.JFrame {
         payInUsingCustomerId = new javax.swing.JButton();
         resetnUsingCustomerId = new javax.swing.JButton();
         jLabel96 = new javax.swing.JLabel();
-        getMonthNo = new javax.swing.JComboBox<>();
         getPassword = new javax.swing.JPasswordField();
+        dateInProductBillPay = new com.toedter.calendar.JDateChooser();
         usingBillNoPanel = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel97 = new javax.swing.JLabel();
@@ -723,7 +720,9 @@ public class Home extends javax.swing.JFrame {
         logoPanel.setLayout(logoPanelLayout);
         logoPanelLayout.setHorizontalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(logoPanelLayout.createSequentialGroup()
+                .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         logoPanelLayout.setVerticalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -765,19 +764,15 @@ public class Home extends javax.swing.JFrame {
         mobileRechargeTab.setLayout(mobileRechargeTabLayout);
         mobileRechargeTabLayout.setHorizontalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mobileRechargeTabLayout.createSequentialGroup()
-                .addGroup(mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mobileRechargeTabLayout.setVerticalGroup(
             mobileRechargeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mobileRechargeTabLayout.createSequentialGroup()
-                .addComponent(icon)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title)
-                .addContainerGap())
+                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         billPaymentTab.setBackground(new java.awt.Color(133, 47, 209));
@@ -808,14 +803,10 @@ public class Home extends javax.swing.JFrame {
         billPaymentTabLayout.setHorizontalGroup(
             billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPaymentTabLayout.createSequentialGroup()
-                .addGroup(billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(billPaymentTabLayout.createSequentialGroup()
-                        .addComponent(icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billPaymentTabLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(title1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(icon1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         billPaymentTabLayout.setVerticalGroup(
             billPaymentTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -897,7 +888,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(helplineTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(title5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                     .addComponent(icon5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         helplineTabLayout.setVerticalGroup(
             helplineTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -934,11 +925,8 @@ public class Home extends javax.swing.JFrame {
         settingTab.setLayout(settingTabLayout);
         settingTabLayout.setHorizontalGroup(
             settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settingTabLayout.createSequentialGroup()
-                .addGroup(settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(title4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(icon4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(title4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(icon4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         settingTabLayout.setVerticalGroup(
             settingTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -956,18 +944,19 @@ public class Home extends javax.swing.JFrame {
             .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addComponent(helplineTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(settingTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(detailsTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(mobileRechargeTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                .addComponent(billPaymentTab, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(billPaymentTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(detailsTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mobileRechargeTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                .addComponent(settingTab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addComponent(logoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mobileRechargeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mobileRechargeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(billPaymentTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(detailsTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -975,7 +964,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(settingTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(helplineTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bodyPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -1537,34 +1526,35 @@ public class Home extends javax.swing.JFrame {
         billPayPanelLayout.setHorizontalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addComponent(jLabel82, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(hoverViewrocket, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jLabel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(33, 33, 33)
+                .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clickBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(hoverViewrocket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPayPanelLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addContainerGap()
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(clickMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(clickBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel82)
                     .addComponent(jLabel85))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(hoverViewbKash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hoverViewrocket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(597, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         basePanel.add(billPayPanel, "card2");
@@ -1697,7 +1687,7 @@ public class Home extends javax.swing.JFrame {
         addPerchangeSelection.setBackground(new java.awt.Color(204, 204, 255));
         addPerchangeSelection.setText("%");
 
-        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics,", "Kg,", "Litter,", "Bag,", "Bundle,", "Dozon" }));
+        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics", "Kg", "Litter", "Bag", "Bundle", "Dozon" }));
 
         jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel150.setText("Ordar LImit : ");
@@ -1733,7 +1723,7 @@ public class Home extends javax.swing.JFrame {
         jLabel151.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel151.setText("Warranty    :");
 
-        timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day,", "month,", "year" }));
+        timeTypeProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "day", "month", "year" }));
 
         jLabel135.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel135.setForeground(new java.awt.Color(255, 51, 51));
@@ -2399,10 +2389,6 @@ public class Home extends javax.swing.JFrame {
 
         paid4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel177.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel177.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel177.setText("DUE PAYMENT: ");
-
         jLabel178.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jLabel178.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel178.setText("PAID: ");
@@ -2411,10 +2397,6 @@ public class Home extends javax.swing.JFrame {
         paidInProductWanrranty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         paidInProductWanrranty.setText("0.0");
 
-        duePaymentInProductWanrranty.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
-        duePaymentInProductWanrranty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        duePaymentInProductWanrranty.setText("0.0");
-
         dueInProductWanrranty.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
         dueInProductWanrranty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dueInProductWanrranty.setText("0.0");
@@ -2422,14 +2404,6 @@ public class Home extends javax.swing.JFrame {
         jLabel179.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jLabel179.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel179.setText("DUE: ");
-
-        jLabel180.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel180.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel180.setText("PAYMENT WAY:");
-
-        paymentWayInProductWanrranty.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
-        paymentWayInProductWanrranty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        paymentWayInProductWanrranty.setText("0.0");
 
         javax.swing.GroupLayout paid4Layout = new javax.swing.GroupLayout(paid4);
         paid4.setLayout(paid4Layout);
@@ -2443,39 +2417,23 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(paidInProductWanrranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(paid4Layout.createSequentialGroup()
-                        .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel179, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel180, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dueInProductWanrranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paymentWayInProductWanrranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(paid4Layout.createSequentialGroup()
-                        .addComponent(jLabel177, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(duePaymentInProductWanrranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel179, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(dueInProductWanrranty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         paid4Layout.setVerticalGroup(
             paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paid4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(paidInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel178, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(duePaymentInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel177, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel179, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dueInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(paid4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paymentWayInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel180, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -2499,10 +2457,10 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(comission2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(paid4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
-        productSellTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productWarrantyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2521,21 +2479,21 @@ public class Home extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        productSellTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        productWarrantyTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                productSellTable1MouseClicked(evt);
+                productWarrantyTableMouseClicked(evt);
             }
         });
-        productSellTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        productWarrantyTable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                productSellTable1KeyPressed(evt);
+                productWarrantyTableKeyPressed(evt);
             }
         });
-        jScrollPane15.setViewportView(productSellTable1);
-        if (productSellTable1.getColumnModel().getColumnCount() > 0) {
-            productSellTable1.getColumnModel().getColumn(1).setResizable(false);
-            productSellTable1.getColumnModel().getColumn(2).setResizable(false);
-            productSellTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane15.setViewportView(productWarrantyTable);
+        if (productWarrantyTable.getColumnModel().getColumnCount() > 0) {
+            productWarrantyTable.getColumnModel().getColumn(1).setResizable(false);
+            productWarrantyTable.getColumnModel().getColumn(2).setResizable(false);
+            productWarrantyTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jLabel181.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
@@ -2579,7 +2537,7 @@ public class Home extends javax.swing.JFrame {
         jLabel188.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel188.setText("Bill       :");
 
-        brandInProductWanrranty.setText("0.0");
+        brandInProductWanrranty.setText("None");
         brandInProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brandInProductWanrrantyActionPerformed(evt);
@@ -2704,7 +2662,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         printClickProductWanrranty.setBackground(new java.awt.Color(0, 153, 0));
-        printClickProductWanrranty.setText("Print");
+        printClickProductWanrranty.setText("Save & Print");
         printClickProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printClickProductWanrrantyActionPerformed(evt);
@@ -2725,50 +2683,46 @@ public class Home extends javax.swing.JFrame {
         ProductPurchasePanel3Layout.setHorizontalGroup(
             ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProductPurchasePanel3Layout.createSequentialGroup()
-                            .addGap(658, 658, 658)
-                            .addComponent(updateClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(printClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProductPurchasePanel3Layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel181, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(dateInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jLabel182, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(fullNameInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                    .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel183)
-                                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel186, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel187, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGap(22, 22, 22)
-                                    .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                            .addComponent(refNameInProductWanrranty)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel185)
-                                            .addGap(23, 23, 23)
-                                            .addComponent(phoneNOInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                            .addComponent(delevaryDateDateInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(10, 10, 10)
-                                            .addComponent(jLabel184, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(addressInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane17)))
-                                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                                    .addComponent(updateClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(printClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel181, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(dateInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel182, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fullNameInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel183)
+                                            .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jLabel186, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel187, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(22, 22, 22)
+                                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                                                .addComponent(refNameInProductWanrranty)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel185)
+                                                .addGap(23, 23, 23)
+                                                .addComponent(phoneNOInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                                                .addComponent(delevaryDateDateInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel184, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(39, 39, 39)
+                                                .addComponent(addressInProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jScrollPane17)))
+                                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel50)
                                 .addGap(16, 16, 16)
@@ -2776,19 +2730,19 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel169)
                                 .addGap(2, 2, 2)
-                                .addComponent(customerIdINProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(customerIdINProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 1075, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         ProductPurchasePanel3Layout.setVerticalGroup(
             ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProductPurchasePanel3Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
                         .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel50)
                             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
@@ -2841,10 +2795,11 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(printClickProductWanrranty)
-                            .addComponent(updateClickProductWanrranty))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(updateClickProductWanrranty)))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout warrantyTabLayout = new javax.swing.GroupLayout(warrantyTab);
@@ -4065,12 +4020,12 @@ public class Home extends javax.swing.JFrame {
             .addGroup(rechargeSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(rechargeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(rechargeSettingsPanelLayout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clickAddNewManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(clickAddNewManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         rechargeSettingsPanelLayout.setVerticalGroup(
             rechargeSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5420,7 +5375,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel83.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel83.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel83.setForeground(new java.awt.Color(102, 0, 255));
         jLabel83.setText("Service:");
 
@@ -5467,18 +5422,20 @@ public class Home extends javax.swing.JFrame {
         rechargeBalencePanel1Layout.setHorizontalGroup(
             rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(processingTextInMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(processingTextInMobileBanking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
                         .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel81, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
-                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         rechargeBalencePanel1Layout.setVerticalGroup(
             rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5512,7 +5469,7 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane13.setViewportView(tableMobileBankingDetails);
 
-        jLabel84.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel84.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel84.setForeground(new java.awt.Color(102, 0, 255));
         jLabel84.setText("Operation:");
 
@@ -5545,10 +5502,11 @@ public class Home extends javax.swing.JFrame {
         addMobileBankingPanelInBillPay.setLayout(addMobileBankingPanelInBillPayLayout);
         addMobileBankingPanelInBillPayLayout.setHorizontalGroup(
             addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                 .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 1019, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                        .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel95)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel173, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5562,61 +5520,53 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane13)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                        .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                        .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel84)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(contractListClick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                .addGap(102, 102, 102)
-                                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(30, 30, 30)
-                                .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                .addGap(682, 682, 682)
-                                .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                .addGap(132, 132, 132)
-                                .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel80)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                            .addGap(102, 102, 102)
+                            .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(clickContactList1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(selectedSimOperatorIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(getAmmountInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(30, 30, 30)
+                            .addComponent(getSimOperatorName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                            .addGap(682, 682, 682)
+                            .addComponent(clickSandInMB, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                            .addGap(132, 132, 132)
+                            .addComponent(getPhoneNumberInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(jLabel80))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         addMobileBankingPanelInBillPayLayout.setVerticalGroup(
             addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(getServiceName)
-                                    .addComponent(jLabel83, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel84, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel83)
+                            .addComponent(getServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel84)
+                            .addComponent(getOperationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                                 .addGap(86, 86, 86)
@@ -5637,9 +5587,7 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel80, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMobileBankingPanelInBillPayLayout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel175, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -5864,7 +5812,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(rechargeBalencePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rechargeBalencePanel2Layout.createSequentialGroup()
                         .addComponent(jLabel90)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(clickRefrash2))
                     .addComponent(loaderInBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getBalanceInBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -5884,8 +5832,8 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(getBalanceInBillPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(loaderInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loaderInBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -6004,29 +5952,27 @@ public class Home extends javax.swing.JFrame {
         jLabel96.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel96.setText("Password");
 
-        getMonthNo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "May", "June", "July", "August", "September", "October", "November", "December" }));
-
         javax.swing.GroupLayout UsingCustomerIdLayout = new javax.swing.GroupLayout(UsingCustomerId);
         UsingCustomerId.setLayout(UsingCustomerIdLayout);
         UsingCustomerIdLayout.setHorizontalGroup(
             UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UsingCustomerIdLayout.createSequentialGroup()
-                .addGroup(UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel92, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel92, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(710, Short.MAX_VALUE))
+            .addGroup(UsingCustomerIdLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel94)
+                    .addComponent(jLabel93)
+                    .addComponent(jLabel96)
                     .addGroup(UsingCustomerIdLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel94)
-                            .addComponent(getMonthNo, 0, 496, Short.MAX_VALUE)
-                            .addComponent(jLabel93)
-                            .addComponent(jLabel96)
-                            .addComponent(getPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
-                            .addGroup(UsingCustomerIdLayout.createSequentialGroup()
-                                .addComponent(payInUsingCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(resetnUsingCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(getCustomerId))))
-                .addContainerGap(632, Short.MAX_VALUE))
+                        .addComponent(payInUsingCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(resetnUsingCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(getCustomerId)
+                    .addComponent(getPassword)
+                    .addComponent(dateInProductBillPay, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         UsingCustomerIdLayout.setVerticalGroup(
             UsingCustomerIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6039,9 +5985,9 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(getCustomerId, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel94)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(getMonthNo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dateInProductBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel96)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(getPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6093,18 +6039,21 @@ public class Home extends javax.swing.JFrame {
             usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usingBillNoPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(getBillNO)
+                    .addGroup(usingBillNoPanelLayout.createSequentialGroup()
+                        .addGroup(usingBillNoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel97)
-                            .addComponent(getBillNO, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                             .addComponent(jLabel98)
-                            .addComponent(getPasswordInBillPay))
-                        .addGroup(usingBillNoPanelLayout.createSequentialGroup()
-                            .addComponent(clickPayIUsingBill, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(26, 26, 26)
-                            .addComponent(clickResetPayInUsingBill, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(usingBillNoPanelLayout.createSequentialGroup()
+                                .addComponent(clickPayIUsingBill, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(clickResetPayInUsingBill, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 595, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usingBillNoPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(getPasswordInBillPay))
                 .addContainerGap())
         );
         usingBillNoPanelLayout.setVerticalGroup(
@@ -6136,6 +6085,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(detailsPanelInBillPayLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(detailsPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(baseBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(detailsPanelInBillPayLayout.createSequentialGroup()
                         .addGroup(detailsPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, detailsPanelInBillPayLayout.createSequentialGroup()
@@ -6149,8 +6099,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel91, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(getServiceTypeInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(clickTabUsingCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(baseBillPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 1146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(clickTabUsingCustomerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailsPanelInBillPayLayout.setVerticalGroup(
@@ -6181,10 +6130,10 @@ public class Home extends javax.swing.JFrame {
             billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
                 .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane16)
                     .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
                         .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -6192,8 +6141,8 @@ public class Home extends javax.swing.JFrame {
             billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7099,7 +7048,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickMobileBankingMouseEntered
 
     private void clickMobileBankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseClicked
-        switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
+               switchBillPaymentDetailsPaenl(addMobileBankingPanelInBillPay);
         if (UserInfo.role.equals("demo")) {
 
         } else {
@@ -7144,8 +7093,32 @@ public class Home extends javax.swing.JFrame {
                     }
                 }
             }
-            loadMobileBankingBalance();
+
+
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    if (mobileBankingBalenceHash.isEmpty()) {
+                        getMobileBankingBalance();
+                    }
+
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    loadMobileBankingBalance();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Delete Successful...@Done");
+                }
+
+            };
+            swingWorker.execute();
+
             loadMobileBankingDetailsTable();
+
         }
         addKeyListenerAndHoverInMobileBankingPanel();
     }//GEN-LAST:event_clickMobileBankingMouseClicked
@@ -7710,17 +7683,19 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_saveInProductPurchase2MouseClicked
 
     private void productDetailsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productDetailsTableMouseClicked
-        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify;
+        String productId, productGroup, productName, buyRate, sellPrice, brand, lastModify, qty, warranty;
         Point point = evt.getPoint();
         int column = productDetailsTable.columnAtPoint(point);
         int row = productDetailsTable.rowAtPoint(point);
         productId = productDetailsTable.getValueAt(row, 0).toString();
         productGroup = productDetailsTable.getValueAt(row, 1).toString();
         productName = productDetailsTable.getValueAt(row, 2).toString();
-        buyRate = productDetailsTable.getValueAt(row, 3).toString();
-        sellPrice = productDetailsTable.getValueAt(row, 4).toString();
-        brand = productDetailsTable.getValueAt(row, 5).toString();
-        lastModify = productDetailsTable.getValueAt(row, 6).toString();
+        buyRate = productDetailsTable.getValueAt(row, 4).toString();
+        sellPrice = productDetailsTable.getValueAt(row, 5).toString();
+        brand = productDetailsTable.getValueAt(row, 6).toString();
+        qty = productDetailsTable.getValueAt(row, 3).toString();
+        warranty = productDetailsTable.getValueAt(row, 7).toString();
+        lastModify = productDetailsTable.getValueAt(row, 8).toString();
         System.err.println(productId + "+" + productGroup);
 
         //SET VALUE IN EDITTEXT
@@ -7730,6 +7705,8 @@ public class Home extends javax.swing.JFrame {
         buyRateInProductDetails.setText(buyRate);
         sellRateInProductDetails.setText(sellPrice);
         brandInProductDetails.setText(sellPrice);
+        qtyInProductDetails.setText(qty);
+        warrentyInProductDetails.setText(warranty);
 
 
     }//GEN-LAST:event_productDetailsTableMouseClicked
@@ -7748,10 +7725,18 @@ public class Home extends javax.swing.JFrame {
                         updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
                     } else {//checkbox has been deselected
                         updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
-                    };
+                    }
+                    ;
                 }
             });
-
+            barCodeInProductDetails.setText("");
+            groupInProductDetails.setText("");
+            pNameInProductDetails.setText("");
+            buyRateInProductDetails.setText("");
+            sellRateInProductDetails.setText("");
+            brandInProductDetails.setText("");
+            qtyInProductDetails.setText("");
+            warrentyInProductDetails.setText("");
         }
     }//GEN-LAST:event_saveInProductPurchase1ActionPerformed
 
@@ -7893,17 +7878,87 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
 
         } else {
+            List<String> list = new ArrayList<>();
+            String to_check = null;
 
+            Connection conn = DbConnection.connect();
+            try {
+                Statement st = conn.createStatement();
+                String sql = "SELECT * FROM `warranty_table`";
+                ResultSet rs = st.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(rs.getString("invoice"));
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                DbConnection.disconnect(conn);
+            }
+
+            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
+
+            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                showDataInProductWarentyByInvoiceFromDB(invoiceInProductWarranty.getText());
+                supplierInProductPurchases.requestFocusInWindow();
+            } else {
+                to_check = invoiceInProductWarranty.getText();
+                int to_check_len = to_check.length();
+                for (String data : list) {
+                    String check_from_data = "";
+                    for (int i = 0; i < to_check_len; i++) {
+                        if (to_check_len <= data.length()) {
+                            check_from_data = check_from_data + data.charAt(i);
+                        }
+                    }
+
+                    if (check_from_data.equals(to_check)) {
+
+                        invoiceInProductWarranty.setText(data);
+                        invoiceInProductWarranty.setSelectionStart(to_check_len);
+                        invoiceInProductWarranty.setSelectionEnd(data.length());
+                        break;
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_invoiceInProductWarrantyKeyReleased
 
-    private void productSellTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productSellTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_productSellTable1MouseClicked
+    private void productWarrantyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productWarrantyTableMouseClicked
+        String customerId, fullName, phoneNo, status, paid, due, brand, total, problem,invoice;
+        Point point = evt.getPoint();
+        int column = productWarrantyTable.columnAtPoint(point);
+        int row = productWarrantyTable.rowAtPoint(point);
+        invoice = productWarrantyTable.getValueAt(row, 0).toString();
+        customerId = productWarrantyTable.getValueAt(row, 1).toString();
+        fullName = productWarrantyTable.getValueAt(row, 2).toString();
+        phoneNo = productWarrantyTable.getValueAt(row, 3).toString();
+        status = productWarrantyTable.getValueAt(row, 10).toString();
+        paid = productWarrantyTable.getValueAt(row, 8).toString();
+        due = productWarrantyTable.getValueAt(row, 9).toString();
+        brand = productWarrantyTable.getValueAt(row, 11).toString();
+        total = productWarrantyTable.getValueAt(row, 7).toString();
+        problem = productWarrantyTable.getValueAt(row, 6).toString();
 
-    private void productSellTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productSellTable1KeyPressed
+        //SET VALUE IN EDITTEXT
+        customerIdINProductWanrranty.setText(customerId);
+        fullNameInProductWanrranty.setText(fullName);
+        phoneNOInProductWanrranty.setText(phoneNo);
+        statusInProductWanrrantyComboBox.setSelectedItem(status);
+        problemInProductWanrranty.setText(problem);
+        paidInProductWanrranty.setText(paid);
+        dueInProductWanrranty.setText(due);
+        billInProductWanrranty.setText(total);
+        paidPaymentInProductWanrranty.setText(paid);
+        payableInProductWanrranty.setText(total);
+        brandInProductWanrranty.setText(brand);
+        invoiceInProductWarranty.setText(invoice);
+    }//GEN-LAST:event_productWarrantyTableMouseClicked
+
+    private void productWarrantyTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_productWarrantyTableKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_productSellTable1KeyPressed
+    }//GEN-LAST:event_productWarrantyTableKeyPressed
 
     private void fullNameInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fullNameInProductWanrrantyActionPerformed
         // TODO add your handling code here:
@@ -7967,6 +8022,7 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
+            updateWarrantyInfoByInvoice();
         }
 
     }//GEN-LAST:event_updateClickProductWanrrantyActionPerformed
@@ -8118,29 +8174,27 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
 
-        
+            switchPanelViaMenu(contractListPanel);
+            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    setContractListInJTable("mobile_recharge");
+                    System.out.println("Contract Searching...");
+                    return null;
+                }
 
-        switchPanelViaMenu(contractListPanel);
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                processtingLoderDialog.setVisible(true);
-                setContractListInJTable("mobile_recharge");
-                System.out.println("Contract Searching...");
-                return null;
-            }
+                @Override
+                protected void done() {
+                    getNameForSearch.setText("");
+                    getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
+                    getNameForSearch.requestFocusInWindow();
+                    processtingLoderDialog.setVisible(false);
+                    System.out.println("Fatching Successful...");
+                }
 
-            @Override
-            protected void done() {
-                getNameForSearch.setText("");
-                getNameForSearch.setUI(new HintTextFieldUI("Search by name"));
-                getNameForSearch.requestFocusInWindow();
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Fatching Successful...");
-            }
-
-        };
-        swingWorker.execute();
+            };
+            swingWorker.execute();
         }
     }//GEN-LAST:event_clickContactListMouseClicked
 
@@ -8156,9 +8210,9 @@ public class Home extends javax.swing.JFrame {
                 defaultListModel.removeAllElements();
                 popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
                 searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
-                .stream().forEach(number -> {
-                    defaultListModel.addElement(number);
-                });
+                        .stream().forEach(number -> {
+                            defaultListModel.addElement(number);
+                        });
 
             }
 
@@ -8197,9 +8251,9 @@ public class Home extends javax.swing.JFrame {
             String ammountRequested = getAmmountInTk.getText();
 
             if (!phoneNumberRequested.equals("")
-                && !ammountRequested.equals("")
-                && phoneNumberRequested.matches("[0-9]+")
-                && ammountRequested.matches("[0-9]+")) {
+                    && !ammountRequested.equals("")
+                    && phoneNumberRequested.matches("[0-9]+")
+                    && ammountRequested.matches("[0-9]+")) {
 
                 String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
                 String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
@@ -8218,17 +8272,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getSeletedOperatorNameActionPerformed
 
     private void searchInMobileRechargeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInMobileRechargeActionPerformed
-     // searchByPhonenumberInRechargePanel("fgh");
+        // searchByPhonenumberInRechargePanel("fgh");
     }//GEN-LAST:event_searchInMobileRechargeActionPerformed
-
 
 
     private void contractListClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contractListClickActionPerformed
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-
-
 
             switchPanelViaMenu(contractListPanel);
             SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
@@ -8263,7 +8314,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getNameForSearchActionPerformed
 
     private void getMobileNumberForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberForSearchKeyReleased
-       searchByPhoneNumberInRechargeDetails(mobileRechargeDetailsForSearchingDtos,getMobileNumberForSearch.getText());
+        searchByPhoneNumberInRechargeDetails(mobileRechargeDetailsForSearchingDtos, getMobileNumberForSearch.getText());
     }//GEN-LAST:event_getMobileNumberForSearchKeyReleased
 
     private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
@@ -8431,6 +8482,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField customerIdINProductSell;
     private javax.swing.JTextField customerIdINProductWanrranty;
     private com.toedter.calendar.demo.DateChooserPanelBeanInfo dateChooserPanelBeanInfo1;
+    private com.toedter.calendar.JDateChooser dateInProductBillPay;
     private com.toedter.calendar.JDateChooser dateInProductPurchases;
     private com.toedter.calendar.JDateChooser dateInProductSell;
     private com.toedter.calendar.JDateChooser dateInProductWanrranty;
@@ -8449,7 +8501,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel dueInProductWanrranty;
     private javax.swing.JTextField duePaymentInProductBill;
     private javax.swing.JLabel duePaymentInProductSell;
-    private javax.swing.JLabel duePaymentInProductWanrranty;
     private javax.swing.JLabel errorMgsInBalencePanel;
     private javax.swing.JLabel expiryDateInProfile;
     private com.toedter.calendar.JDateChooser fromDateInMobileRecharge;
@@ -8470,7 +8521,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getEmployeePhoneNUmberTEmployee;
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getMobileNumberForSearch;
-    private javax.swing.JComboBox<String> getMonthNo;
     private javax.swing.JTextField getNameForContract;
     private javax.swing.JTextField getNameForSearch;
     private javax.swing.JTextField getOfferNameInSeting;
@@ -8614,11 +8664,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel174;
     private javax.swing.JLabel jLabel175;
     private javax.swing.JLabel jLabel176;
-    private javax.swing.JLabel jLabel177;
     private javax.swing.JLabel jLabel178;
     private javax.swing.JLabel jLabel179;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel180;
     private javax.swing.JLabel jLabel181;
     private javax.swing.JLabel jLabel182;
     private javax.swing.JLabel jLabel183;
@@ -8796,7 +8844,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField paymentInProductBill;
     private javax.swing.JComboBox<String> paymentTypeInProductSell;
     private javax.swing.JLabel paymentWayInProductSell;
-    private javax.swing.JLabel paymentWayInProductWanrranty;
     private javax.swing.JTextField phoneNOInProductSell;
     private javax.swing.JTextField phoneNOInProductWanrranty;
     private javax.swing.JPopupMenu popupForSuggestManu;
@@ -8809,7 +8856,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel productPurchase;
     private javax.swing.JTable productPurchaseTable;
     private javax.swing.JTable productSellTable;
-    private javax.swing.JTable productSellTable1;
+    private javax.swing.JTable productWarrantyTable;
     private javax.swing.JLabel profile_pic;
     private javax.swing.JTextField qtyInProductDetails;
     private javax.swing.JTextField qtyInProductPurchases;
@@ -9004,14 +9051,14 @@ public class Home extends javax.swing.JFrame {
                     Log.mgs("Test:", "2");
                     RechargeConfirmationDialogUI ui
                             = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                            getMobileNumber.getText(),
-                            getAmmountInTk.getText() + " tk",
-                            getPrepaidOrPostpaid.getSelectedItem().toString(),
-                            getSeletedOperatorName.getSelectedItem().toString());
+                                    getMobileNumber.getText(),
+                                    getAmmountInTk.getText() + " tk",
+                                    getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                    getSeletedOperatorName.getSelectedItem().toString());
 
                     JDialog jDialog = new JDialog();
                     jDialog.add(ui);
-                    jDialog.setSize(1400, 941);
+                    jDialog.setSize(1366, 768);
                     jDialog.setLocationRelativeTo(null);
                     jDialog.setUndecorated(true);
                     jDialog.setVisible(true);
@@ -9186,14 +9233,14 @@ public class Home extends javax.swing.JFrame {
 
                                 RechargeConfirmationDialogUI ui
                                         = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                        getMobileNumber.getText(),
-                                        getAmmountInTk.getText() + " tk",
-                                        getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                        getSeletedOperatorName.getSelectedItem().toString());
+                                                getMobileNumber.getText(),
+                                                getAmmountInTk.getText() + " tk",
+                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                                getSeletedOperatorName.getSelectedItem().toString());
 
                                 JDialog jDialog = new JDialog();
                                 jDialog.add(ui);
-                                jDialog.setSize(1400, 941);
+                                jDialog.setSize(1366, 768);
                                 jDialog.setLocationRelativeTo(null);
                                 jDialog.setUndecorated(true);
                                 jDialog.setVisible(true);
@@ -9367,14 +9414,14 @@ public class Home extends javax.swing.JFrame {
 
                                 RechargeConfirmationDialogUI ui
                                         = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                        getMobileNumber.getText(),
-                                        getAmmountInTk.getText() + " tk",
-                                        getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                        getSeletedOperatorName.getSelectedItem().toString());
+                                                getMobileNumber.getText(),
+                                                getAmmountInTk.getText() + " tk",
+                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                                getSeletedOperatorName.getSelectedItem().toString());
 
                                 JDialog jDialog = new JDialog();
                                 jDialog.add(ui);
-                                jDialog.setSize(1400, 941);
+                                jDialog.setSize(1366, 768);
                                 jDialog.setLocationRelativeTo(null);
                                 jDialog.setUndecorated(true);
                                 jDialog.setVisible(true);
@@ -9858,8 +9905,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     private boolean saveToDbCommandInRechargeAdmin(String trxId, String getMobileNumberText,
-                                                   String getAmmountInTkText, String getPrepaidOrPostpaidText, String requestedSimOperator,
-                                                   String ckeckRechargeSuccessStatus, String currentBalance) {
+            String getAmmountInTkText, String getPrepaidOrPostpaidText, String requestedSimOperator,
+            String ckeckRechargeSuccessStatus, String currentBalance) {
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
             return true;
@@ -10018,14 +10065,14 @@ public class Home extends javax.swing.JFrame {
                     while (rs.next()) {
                         if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                             mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
-                                    rs.getString("trx_id"),
-                                    rs.getString("date_time"),
-                                    rs.getString("type"),
-                                    rs.getString("mobile_no"),
-                                    rs.getString("amount"),
-                                    rs.getString("from_sp"),
-                                    rs.getString("current_balance"),
-                                    rs.getString("status")});
+                                rs.getString("trx_id"),
+                                rs.getString("date_time"),
+                                rs.getString("type"),
+                                rs.getString("mobile_no"),
+                                rs.getString("amount"),
+                                rs.getString("from_sp"),
+                                rs.getString("current_balance"),
+                                rs.getString("status")});
                         }
                         MobileRechargeDetailsForSearchingDto mobileRechargeDetailsForSearchingDto = new MobileRechargeDetailsForSearchingDto();
                         mobileRechargeDetailsForSearchingDto.setTrxId(rs.getString("trx_id"));
@@ -10547,7 +10594,7 @@ public class Home extends javax.swing.JFrame {
             Connection conn = DbConnection.connect();
             try {
                 DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
-                        "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
+                    "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
 
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `group_recharge`";
@@ -10953,7 +11000,7 @@ public class Home extends javax.swing.JFrame {
                 while (rs.next()) {
                     if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
                         defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                                rs.getString("amount"), rs.getString("sim"), rs.getString("c_balance"), rs.getString("result"), rs.getString("date_time"), rs.getString("date_time")});
+                            rs.getString("amount"), rs.getString("sim"), rs.getString("c_balance"), rs.getString("result"), rs.getString("date_time"), rs.getString("date_time")});
                     }
 
                 }
@@ -11059,7 +11106,7 @@ public class Home extends javax.swing.JFrame {
                 Connection conn = DbConnection.connect();
                 try {
                     DefaultTableModel model = new DefaultTableModel(new String[]{
-                            "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
+                        "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
                     }, 0);
                     switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
                     Statement st = conn.createStatement();
@@ -11253,7 +11300,7 @@ public class Home extends javax.swing.JFrame {
             Connection conn = DbConnection.connect();
             try {
                 DefaultTableModel model = new DefaultTableModel(new String[]{"Service Id",
-                        "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
+                    "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
 
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `mobile_banking`";
@@ -11459,7 +11506,7 @@ public class Home extends javax.swing.JFrame {
                     }
                 });
 
-                tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+                tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
                 tableContractLIst.getTableHeader().setOpaque(false);
                 tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
                 tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
@@ -12235,7 +12282,7 @@ public class Home extends javax.swing.JFrame {
         String sim = getSimName.getSelectedItem().toString();
         String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
         String customerId = getCustomerId.getText();
-        String monthName = getMonthNo.getSelectedItem().toString();
+        String monthName = dateInProductBillPay.getDate().toString();
         //  String year = getyear.getSelectedItem().toString();
         String password = getPassword.getText();
         String monthNo = null;
@@ -12361,7 +12408,7 @@ public class Home extends javax.swing.JFrame {
     private void saveIntobill_payment_customer_id(String status) {
         String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
         String customerId = getCustomerId.getText();
-        String monthName = getMonthNo.getSelectedItem().toString();
+        String monthName = dateInProductBillPay.getDate().toString();
         //String year = getyear.getSelectedItem().toString();
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
@@ -12409,8 +12456,8 @@ public class Home extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                            rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
-                            rs.getString("status")});
+                        rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
+                        rs.getString("status")});
                 }
 
             } catch (SQLException ex) {
@@ -12421,7 +12468,7 @@ public class Home extends javax.swing.JFrame {
         }
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tableBillPaymentDetails.getTableHeader().setOpaque(false);
         tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
         tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
@@ -12444,8 +12491,8 @@ public class Home extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                            rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
-                            rs.getString("status")});
+                        rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
+                        rs.getString("status")});
                 }
 
             } catch (SQLException ex) {
@@ -12457,7 +12504,7 @@ public class Home extends javax.swing.JFrame {
         //For jTable contant in center
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         tableBillPaymentDetails.getTableHeader().setOpaque(false);
         tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
         tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
@@ -13197,6 +13244,9 @@ public class Home extends javax.swing.JFrame {
 
     private void setupTabsInShopManagment() {
         showDataInProductPurchaseFromDB("0000");
+        //Product warrenty Tab
+
+        loadDataInWarrentyTable();
         //Product Details Tab
         listOfBarCodeOrGroupComboBox.removeAllItems();
         if (UserInfo.role.equals("demo")) {
@@ -13457,14 +13507,14 @@ public class Home extends javax.swing.JFrame {
                     supplierInProductPurchases.setText(rs.getString("supplier"));
                     dateInProductPurchases.setDate(new Date(rs.getString("date")));
                     productPurchaseTableModel.addRow(new Object[]{
-                            rs.getString("bar_code"),
-                            rs.getString("group_products"),
-                            rs.getString("pName"),
-                            rs.getString("qty"),
-                            rs.getString("buy_rate"),
-                            rs.getString("sell_rate"),
-                            subTotal,
-                            rs.getString("type")
+                        rs.getString("bar_code"),
+                        rs.getString("group_products"),
+                        rs.getString("pName"),
+                        rs.getString("qty"),
+                        rs.getString("buy_rate"),
+                        rs.getString("sell_rate"),
+                        subTotal,
+                        rs.getString("type")
                     });
                     switch (typeOfProduct) {
                         case "PURCHASE":
@@ -13522,15 +13572,15 @@ public class Home extends javax.swing.JFrame {
                     invoiceINProductDetails.setText(rs.getString("invoice"));
                     System.err.println(rs.getString("bar_code"));
                     productPurchaseTableModel.addRow(new Object[]{
-                            rs.getString("bar_code"),
-                            rs.getString("group_products"),
-                            rs.getString("pName"),
-                            rs.getString("qty"),
-                            rs.getString("buy_rate"),
-                            rs.getString("sell_rate"),
-                            rs.getString("supplier"),
-                            rs.getString("warranty"),
-                            rs.getString("date")
+                        rs.getString("bar_code"),
+                        rs.getString("group_products"),
+                        rs.getString("pName"),
+                        rs.getString("qty"),
+                        rs.getString("buy_rate"),
+                        rs.getString("sell_rate"),
+                        rs.getString("supplier"),
+                        rs.getString("warranty"),
+                        rs.getString("date")
                     });
 
                 }
@@ -13688,14 +13738,14 @@ public class Home extends javax.swing.JFrame {
                     supplierInProductPurchases.setText(rs.getString("supplier"));
                     dateInProductPurchases.setDate(new Date(rs.getString("date")));
                     productSellTableModel.addRow(new Object[]{
-                            String.valueOf(countForSellTable),
-                            typeOfAction,
-                            rs.getString("bar_code"),
-                            rs.getString("group_products"),
-                            rs.getString("pName"),
-                            "1",
-                            rs.getString("sell_rate"),
-                            subTotal
+                        String.valueOf(countForSellTable),
+                        typeOfAction,
+                        rs.getString("bar_code"),
+                        rs.getString("group_products"),
+                        rs.getString("pName"),
+                        "1",
+                        rs.getString("sell_rate"),
+                        subTotal
                     });
                     switch (typeOfAction) {
                         case "Sell":
@@ -14147,7 +14197,6 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-
     private void detectUnreadSms() {
 
         String strCommand1 = "AT+CMGF=1";
@@ -14208,10 +14257,10 @@ public class Home extends javax.swing.JFrame {
                     while (rs.next()) {
 
                         inboxTableModel.addRow(new Object[]{
-                                rs.getString("time_date"),
-                                rs.getString("phoneNo"),
-                                rs.getString("sim_name"),
-                                rs.getString("mgs")});
+                            rs.getString("time_date"),
+                            rs.getString("phoneNo"),
+                            rs.getString("sim_name"),
+                            rs.getString("mgs")});
 
 //                        MobileRechargeDetailsForSearchingDto mobileRechargeDetailsForSearchingDto= new MobileRechargeDetailsForSearchingDto();
 //                        mobileRechargeDetailsForSearchingDto.setTrxId(rs.getString("trx_id"));
@@ -14222,9 +14271,7 @@ public class Home extends javax.swing.JFrame {
 //                        mobileRechargeDetailsForSearchingDto.setAmmount(rs.getString("from_sp"));
 //                        mobileRechargeDetailsForSearchingDto.setSelectableSim(rs.getString("current_balance"));
 //                        mobileRechargeDetailsForSearchingDto.setStatus(rs.getString("status"));
-
                         //                       mobileRechargeDetailsForSearchingDtos.add(mobileRechargeDetailsForSearchingDto);
-
                     }
 
                 } catch (SQLException ex) {
@@ -14234,7 +14281,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         }
-        inboxTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+        inboxTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         inboxTable.getTableHeader().setOpaque(false);
         inboxTable.getTableHeader().setBackground(new Color(133, 47, 209));
         inboxTable.getTableHeader().setForeground(new Color(255, 255, 255));
@@ -14263,7 +14310,6 @@ public class Home extends javax.swing.JFrame {
             preparedStatement.execute();
             preparedStatement.close();
 
-
         } catch (SQLException ex) {
             Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -14271,862 +14317,27 @@ public class Home extends javax.swing.JFrame {
             DbConnection.disconnect(conn);
         }
     }
-}
 
-
-/*  *//*
-    ------------------------ MOBILE RECHARGE PANEL--------------------------------------   
-     *//*
-    private void recharge(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
-
+    private void loadDataInWarrentyTable() {
         if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+            System.err.println("Access dny in DEMO Panel");
+
         } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DbConnection.connect();
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `recharge_offers` WHERE `recharge_amt`=\"" + ammountRequested + "\"";
-                ResultSet rs = st.executeQuery(sql);
-
-                if (!rs.next()) {
-                    Log.mgs("Test:", "2");
-                    RechargeConfirmationDialogUI ui
-                            = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                    getMobileNumber.getText(),
-                                    getAmmountInTk.getText() + " tk",
-                                    getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                    getSeletedOperatorName.getSelectedItem().toString());
-
-                    JDialog jDialog = new JDialog();
-                    jDialog.add(ui);
-                    jDialog.setSize(1400, 941);
-                    jDialog.setLocationRelativeTo(null);
-                    jDialog.setUndecorated(true);
-                    jDialog.setVisible(true);
-
-                    ui.getClickClose().addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent ae) {
-                            Icon icon = new ImageIcon(getClass()
-                                    .getResource("/resources/images/default_operator_icon_1.png"));
-
-                            selectedSimOperatorIcon.setIcon(icon);
-                            getMobileNumber.setText("");
-                            getAmmountInTk.setText("");
-                            getMobileNumber.requestFocusInWindow();
-                            jDialog.setVisible(false);
-                        }
-
-                    });
-                    ui.getClickClose().addKeyListener(new KeyAdapter() {
-                        @Override
-                        public void keyPressed(KeyEvent ke) {
-                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                Icon icon = new ImageIcon(getClass()
-                                        .getResource("/resources/images/default_operator_icon_1.png"));
-                                selectedSimOperatorIcon.setIcon(icon);
-                                getMobileNumber.setText("");
-                                getAmmountInTk.setText("");
-                                getMobileNumber.requestFocusInWindow();
-                                jDialog.setVisible(false);
-
-                            }
-                            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                ui.getClickEdit().requestFocusInWindow();
-                            } else {
-
-                            }
-                        }
-                    });
-
-                    ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
-                        refrash();
-                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                            @Override
-                            protected Void doInBackground() throws Exception {
-                                jDialog.setVisible(false);
-                                getMobileNumber.requestFocusInWindow();
-                                Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                if (UserInfo.role.equals("demo")) {
-                                    System.err.println("Access dny in DEMO Panel");
-
-                                } else {
-                                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                        if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                            MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                    = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                            addQueue(mobileRechargeDetailsDto);
-                                        }
-                                    }
-                                }
-                                // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                return null;
-                            }
-
-                            @Override
-                            protected void done() {
-                                //  refrash();
-                                // loadValueInTableRechargeDetails();
-
-                            }
-
-                        };
-                        worker.execute();
-
-                    });
-
-                    ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                        @Override
-                        public void keyPressed(KeyEvent ke) {
-                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                refrash();
-                                SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                    @Override
-                                    protected Void doInBackground() throws Exception {
-                                        jDialog.setVisible(false);
-                                        getMobileNumber.requestFocusInWindow();
-                                        Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                        if (UserInfo.role.equals("demo")) {
-                                            System.err.println("Access dny in DEMO Panel");
-
-                                        } else {
-                                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                    MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                    addQueue(mobileRechargeDetailsDto);
-                                                }
-                                            }
-                                        }
-                                        //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-
-                                        return null;
-                                    }
-
-                                    @Override
-                                    protected void done() {
-
-                                        //loadValueInTableRechargeDetails();
-                                    }
-
-                                };
-                                worker.execute();
-
-                            }
-                            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                ui.getClickEdit().requestFocusInWindow();
-                            } else {
-
-                            }
-                        }
-                    });
-
-                    ui.getClickEdit().addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent ae) {
-                            jDialog.setVisible(false);
-                        }
-
-                    });
-                    ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                        @Override
-                        public void keyPressed(KeyEvent ke) {
-                            if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                jDialog.setVisible(false);
-                            }
-                            if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                ui.getClickClose().requestFocusInWindow();
-                            }
-                            if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                ui.getClickConfirm().requestFocusInWindow();
-                            } else {
-
-                            }
-                        }
-                    });
-
-                    ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseReleased(MouseEvent me) {
-                            System.err.println("press");
-
-                        }
-
-                        @Override
-                        public void mousePressed(MouseEvent me) {
-                            System.err.println("press");
-
-                            jDialog.setVisible(false);
-                        }
-
-                    });
-                } else {
-
-                    do {
-                        Log.mgs("Test:", "1");
-                        if (rs.getString("sim_name").toUpperCase().contains(selectedPayableSIM.replaceAll(StringUtils.right(selectedPayableSIM, 5), "").replaceAll("\\(\\)", "").toUpperCase())) {
-                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
-
-                            if (res == -1) {
-                                Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                            } else {
-
-                                RechargeConfirmationDialogUI ui
-                                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                                getMobileNumber.getText(),
-                                                getAmmountInTk.getText() + " tk",
-                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                                getSeletedOperatorName.getSelectedItem().toString());
-
-                                JDialog jDialog = new JDialog();
-                                jDialog.add(ui);
-                                jDialog.setSize(1400, 941);
-                                jDialog.setLocationRelativeTo(null);
-                                jDialog.setUndecorated(true);
-                                jDialog.setVisible(true);
-
-                                ui.getClickClose().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        Icon icon = new ImageIcon(getClass()
-                                                .getResource("/resources/images/default_operator_icon_1.png"));
-
-                                        selectedSimOperatorIcon.setIcon(icon);
-                                        getMobileNumber.setText("");
-                                        getAmmountInTk.setText("");
-                                        getMobileNumber.requestFocusInWindow();
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickClose().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            Icon icon = new ImageIcon(getClass()
-                                                    .getResource("/resources/images/default_operator_icon_1.png"));
-                                            selectedSimOperatorIcon.setIcon(icon);
-                                            getMobileNumber.setText("");
-                                            getAmmountInTk.setText("");
-                                            getMobileNumber.requestFocusInWindow();
-                                            jDialog.setVisible(false);
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
-                                    refrash();
-                                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                        @Override
-                                        protected Void doInBackground() throws Exception {
-                                            jDialog.setVisible(false);
-                                            getMobileNumber.requestFocusInWindow();
-                                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                            if (UserInfo.role.equals("demo")) {
-                                                System.err.println("Access dny in DEMO Panel");
-
-                                            } else {
-                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                        addQueue(mobileRechargeDetailsDto);
-                                                    }
-                                                }
-                                            }
-                                            //rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                            jDialog.setVisible(false);
-                                            return null;
-                                        }
-
-                                        @Override
-                                        protected void done() {
-                                            refrash();
-                                            //loadValueInTableRechargeDetails();
-
-                                        }
-
-                                    };
-                                    worker.execute();
-
-                                });
-
-                                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            refrash();
-                                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                                @Override
-                                                protected Void doInBackground() throws Exception {
-                                                    jDialog.setVisible(false);
-                                                    getMobileNumber.requestFocusInWindow();
-                                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                    if (UserInfo.role.equals("demo")) {
-                                                        System.err.println("Access dny in DEMO Panel");
-
-                                                    } else {
-                                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                                addQueue(mobileRechargeDetailsDto);
-                                                            }
-                                                        }
-                                                    }
-
-                                                    return null;
-                                                }
-
-                                                @Override
-                                                protected void done() {
-                                                    refrash();
-                                                    // loadValueInTableRechargeDetails();
-
-                                                }
-
-                                            };
-                                            worker.execute();
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickEdit().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            jDialog.setVisible(false);
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickClose().requestFocusInWindow();
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickConfirm().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                                    @Override
-                                    public void mouseReleased(MouseEvent me) {
-                                        System.err.println("press");
-
-                                    }
-
-                                    @Override
-                                    public void mousePressed(MouseEvent me) {
-                                        System.err.println("press");
-
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-
-                            }
-                        } else {
-                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
-
-                            if (res == -1) {
-                                Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                            } else {
-
-                                RechargeConfirmationDialogUI ui
-                                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                                getMobileNumber.getText(),
-                                                getAmmountInTk.getText() + " tk",
-                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                                getSeletedOperatorName.getSelectedItem().toString());
-
-                                JDialog jDialog = new JDialog();
-                                jDialog.add(ui);
-                                jDialog.setSize(1400, 941);
-                                jDialog.setLocationRelativeTo(null);
-                                jDialog.setUndecorated(true);
-                                jDialog.setVisible(true);
-
-                                ui.getClickClose().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        Icon icon = new ImageIcon(getClass()
-                                                .getResource("/resources/images/default_operator_icon_1.png"));
-
-                                        selectedSimOperatorIcon.setIcon(icon);
-                                        getMobileNumber.setText("");
-                                        getAmmountInTk.setText("");
-                                        getMobileNumber.requestFocusInWindow();
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickClose().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            Icon icon = new ImageIcon(getClass()
-                                                    .getResource("/resources/images/default_operator_icon_1.png"));
-                                            selectedSimOperatorIcon.setIcon(icon);
-                                            getMobileNumber.setText("");
-                                            getAmmountInTk.setText("");
-                                            getMobileNumber.requestFocusInWindow();
-                                            jDialog.setVisible(false);
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-                                    refrash();
-                                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                        @Override
-                                        protected Void doInBackground() throws Exception {
-                                            jDialog.setVisible(false);
-                                            getMobileNumber.requestFocusInWindow();
-                                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                            if (UserInfo.role.equals("demo")) {
-                                                System.err.println("Access dny in DEMO Panel");
-
-                                            } else {
-                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                        addQueue(mobileRechargeDetailsDto);
-                                                    }
-                                                }
-                                            }
-                                            // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                            jDialog.setVisible(false);
-                                            return null;
-                                        }
-
-                                        @Override
-                                        protected void done() {
-                                            refrash();
-                                            // loadValueInTableRechargeDetails();
-
-                                        }
-
-                                    };
-                                    worker.execute();
-
-                                });
-
-                                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            refrash();
-                                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                                @Override
-                                                protected Void doInBackground() throws Exception {
-                                                    jDialog.setVisible(false);
-                                                    getMobileNumber.requestFocusInWindow();
-                                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                    if (UserInfo.role.equals("demo")) {
-                                                        System.err.println("Access dny in DEMO Panel");
-
-                                                    } else {
-                                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                                addQueue(mobileRechargeDetailsDto);
-                                                            }
-                                                        }
-                                                    }
-                                                    //(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
-                                                    jDialog.setVisible(false);
-                                                    return null;
-                                                }
-
-                                                @Override
-                                                protected void done() {
-                                                    refrash();
-
-                                                }
-
-                                            };
-                                            worker.execute();
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickEdit().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            jDialog.setVisible(false);
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickClose().requestFocusInWindow();
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickConfirm().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickConfirm().addMouseListener(new MouseAdapter() {
-                                    @Override
-                                    public void mouseReleased(MouseEvent me) {
-                                        System.err.println("press");
-
-                                    }
-
-                                    @Override
-                                    public void mousePressed(MouseEvent me) {
-                                        System.err.println("press");
-
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-
-                            }
-                        }
-
-                    } while (rs.next());
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    private void addQueue(Object object) {
-        try {
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Invoice", "Customar Id", "C Name", "Phone No", "Ref no", "Delivary Date", "Problem", "Bill", "Paid", "Due", "Status", "Brand"}, 0);
             if (UserInfo.role.equals("demo")) {
                 System.err.println("Access dny in DEMO Panel");
 
             } else {
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
-                    if (objectQueue == null) {
-                        Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
-                        createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
-                    }
-                }
-            }
-
-            Method mathod = (Method) object.getClass().getMethod("getSelectableSimPort", null);
-            String portName = (String) mathod.invoke(object, null);
-            Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
-            objectQueue.add(object);
-            ussdDailREquestCounter();
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void processRequestFromMobileRechargeQueue() {
-        // Runs outside of the Swing UI thread
-        new Thread(new Runnable() {
-            public void run() {
-                while (true) {
-                    try {
-                        for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
-
-                            while (!hashValue.getValue().isEmpty()) {
-                                System.err.println("----------------------------------" + hashValue.getKey() + "-------------------------------------");
-                                Object object = hashValue.getValue().element();
-                                Method mathodGetStatus = (Method) object.getClass().getMethod("getStatus", null);
-                                UssdRequestType getStatus = (UssdRequestType) mathodGetStatus.invoke(object, null);
-
-                                switch (getStatus) {
-                                    case MOBILE_RECHARGE:
-                                        MobileRechargeDetailsDto headRechargeDetailsDto = (MobileRechargeDetailsDto) object;
-                                        rechargeDoneProcess(headRechargeDetailsDto.getTrxId(), headRechargeDetailsDto.getPhoneNumber(), headRechargeDetailsDto.getAmmount(), headRechargeDetailsDto.getPostPaidOrPostPaid(), headRechargeDetailsDto.getSelectableSimPort(), headRechargeDetailsDto.getSelectableSim(), headRechargeDetailsDto.getStatus());
-                                        hashValue.getValue().remove();
-                                        ussdDailREquestCounter();
-                                        break;
-
-                                    case MOBILE_BANKING:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        ussdDailREquestCounter();
-                                        break;
-                                    case BILL_PAYMENT:
-                                        System.err.println(getStatus);
-                                        hashValue.getValue().remove();
-                                        ussdDailREquestCounter();
-                                        break;
-                                    default:
-                                        System.err.println("none");
-                                        break;
-                                }
-
-                            }
-
-                        }
-
-                        java.lang.Thread.sleep(100);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InvocationTargetException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (NoSuchMethodException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SecurityException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
-
-            }
-        }).start();
-
-    }
-
-    private void setOperatorIcon() {
-        boolean isFoundExpectedSIMCard = false;
-
-        if (getMobileNumber.getText().equals("") || getMobileNumber.getText().length() != 11 || !getMobileNumber.getText().matches("[0-9]+")) {
-            getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-            } else {
                 Connection conn = DbConnection.connect();
                 try {
-                    Icon icon;
-
-                    String selectedOperatorName = setPayableSIMByPhoneNumber(getMobileNumber.getText()).toUpperCase();
-                    Log.mgs("Selected SIM By Phone Number", selectedOperatorName);
                     Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
-                    ResultSet rs = st.executeQuery(sql);
-
-                    if (!rs.next()) {
-                        Popup.customError("Recharge Setting not found.");
-                    } else {
-                        do {
-
-                            if (rs.getString("operator_name").equals(selectedOperatorName)) {
-
-                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-
-                                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                        selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                                        getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-                                        icon = new ImageIcon(rs.getString("icon"));
-                                        selectedSimOperatorIcon.setIcon(icon);
-                                        getAmmountInTk.requestFocusInWindow();
-                                        Log.mgs("Setted Operator Name In getSeletedOperatorName", selectedSimOperatorName);
-                                        isFoundExpectedSIMCard = true;
-                                    }
-                                }
-                            }
-                        } while (rs.next());
-                    }
-                    if (isFoundExpectedSIMCard == false) {
-                        getAmmountInTk.requestFocusInWindow();
-                        getSeletedOperatorName.setSelectedItem(selectedSimOperatorName);
-                    }
-
-                } catch (SQLException ex) {
-                    Log.error("SQLException:", ex.getMessage());
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-            }
-        }
-
-    }
-
-    private String setPayableSIMByPhoneNumber(String phoneNumberUserInput) {
-        String phoneNumberUserInputSubString = StringUtils.left(phoneNumberUserInput, 3);
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                if (simOperatorIdentifierDto.getOwnPhoneNumber().contains(phoneNumberUserInputSubString)) {
-                    String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                    getSeletedOperatorName.setSelectedItem(selectedSimCardWithNumber);
-                    return selectedSimCardWithNumber;
-                }
-            }
-        }
-
-        return "Expected SIM not found";
-    }
-
-    void rechargeDoneProcess(String trxId, String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIMPort, String selectedPayableSIM, UssdRequestType rechargeType) {
-
-        saveToDbCommandInRechargeAdmin(trxId,
-                phoneNumberRequested,
-                ammountRequested,
-                preOrPostRequested,
-                selectedPayableSIM,
-                "Processing",
-                "Processing");
-        loadValueInTableRechargeDetails();
-        String[] responseArray;
-        String cBalance = null;
-        String statusMgs = null;
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-            } else {
-                Connection conn = DbConnection.connect();
-                try {
-
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedPayableSIM + "\"";
+                    String sql = "SELECT * FROM `warranty_table`";
                     ResultSet rs = st.executeQuery(sql);
 
                     while (rs.next()) {
-
-                        auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
-                        if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
-                            String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-
-                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
-                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
-                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
-                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
-                                        mobileRechargeBalance.setSimBalance(cBalance);
-                                    }
-                                    balanceUpdatePaseList.add(mobileRechargeBalance);
-                                }
-                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
-                                loadValueInTableRechargeDetails();
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4672--->Ussd Request Faild");
-                            }
-
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                        } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
-                            String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
-                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
-                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
-                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
-                                        mobileRechargeBalance.setSimBalance(cBalance);
-                                    }
-                                    balanceUpdatePaseList.add(mobileRechargeBalance);
-                                }
-                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
-                                loadValueInTableRechargeDetails();
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4686--->Ussd Request Faild");
-                            }
-
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
-                        } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
-                            String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
-                            Log.mgs("5347", "USSD Code:" + rechargeCode);
-                            String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
-                            Configaration.closeUssdSession();
-                            if (response.contains(",")) {
-                                responseArray = response.split(",");
-                                System.err.println();
-                                statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
-                                List<MobileRechargeBalance> balanceUpdatePaseList = new ArrayList<>();
-                                for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
-                                    if (mobileRechargeBalance.getSimName().equals(selectedPayableSIM)) {
-                                        cBalance = String.valueOf(Double.valueOf(mobileRechargeBalance.getSimBalance()) - Double.valueOf(ammountRequested));
-                                        mobileRechargeBalance.setSimBalance(cBalance);
-                                    }
-                                    balanceUpdatePaseList.add(mobileRechargeBalance);
-                                }
-                                ModemInfoList.mobileRechargeBalance = balanceUpdatePaseList;
-                                loadValueInTableRechargeDetails();
-                            } else {
-                                cBalance = "Failed";
-                                statusMgs = "Failed";
-                                System.err.println("4700--->Ussd Request Faild");
-                            }
-
-                            Configaration.setErrorLog(this.getClass().getName() + "-->1863--->" + response);
-                        } else {
-                            Popup.customError("Something is wrong.");
-                            Log.error("5398", "SIM Type Not Match.");
-                        }
-
+                        defaultTableModel.addRow(new String[]{rs.getString("invoice"), rs.getString("customar_id"),
+                            rs.getString("f_name"), rs.getString("mobole_no"), rs.getString("ref_name"), rs.getString("d_date"), rs.getString("problem"),
+                            rs.getString("bill"), rs.getString("paid"), rs.getString("due"), rs.getString("status"), rs.getString("brand")});
                     }
 
                 } catch (SQLException ex) {
@@ -15135,163 +14346,25 @@ public class Home extends javax.swing.JFrame {
                     DbConnection.disconnect(conn);
                 }
             }
+            //For jTable contant in center
+            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productWarrantyTable.getDefaultRenderer(String.class);
+            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            productWarrantyTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+            productWarrantyTable.getTableHeader().setOpaque(false);
+            productWarrantyTable.getTableHeader().setBackground(new Color(133, 47, 209));
+            productWarrantyTable.getTableHeader().setForeground(new Color(255, 255, 255));
+            productWarrantyTable.setEnabled(false);
+            productWarrantyTable.setRowHeight(30);
+            productWarrantyTable.setModel(defaultTableModel);
         }
-        auto.recharge.system.config.Modem.disconnect();
-        // UPdate Balance after recharge
-        addBalenceInBalenceShowTable();
-        updateMobileRechargeStatusByTrxId(trxId, statusMgs, cBalance);
-
-        getMobileNumber.requestFocusInWindow();
     }
 
-    private boolean saveToDbCommandInRechargeAdmin(String trxId, String getMobileNumberText,
-            String getAmmountInTkText, String getPrepaidOrPostpaidText, String requestedSimOperator,
-            String ckeckRechargeSuccessStatus, String currentBalance) {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-            return true;
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-                return true;
-            } else {
-                if (UserInfo.role.equals("demo")) {
-                    System.err.println("Access dny in DEMO Panel");
-                    return true;
-                } else {
-                    Connection conn = DbConnection.connect();
-                    String dateTime = Configaration.getCurrentDateAndTime();
-
-                    conn = DbConnection.connect();
-                    String sql = "INSERT INTO recharge_admin(mobile_no,amount,date_time,status,trx_id,type,from_sp,current_balance) VALUES(?,?,?,?,?,?,?,?)";
-
-                    try {
-                        PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                        preparedStatement.setString(1, getMobileNumberText);
-                        preparedStatement.setString(2, getAmmountInTkText);
-                        preparedStatement.setString(3, dateTime);
-                        preparedStatement.setString(4, ckeckRechargeSuccessStatus);
-                        preparedStatement.setString(5, trxId);
-                        preparedStatement.setString(6, getPrepaidOrPostpaidText);
-                        preparedStatement.setString(7, requestedSimOperator);
-                        preparedStatement.setString(8, currentBalance);
-                        preparedStatement.execute();
-                        preparedStatement.close();
-
-                        return true;
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                    } finally {
-
-                        DbConnection.disconnect(conn);
-                    }
-                }
-                return false;
-            }
-        }
-
-    }
-
-    private String getCurrentBalance(String operatorName) {
-        Log.mgs("", operatorName);
-        String balance;
-        if (operatorName.contains("BANGLALINK")) {
-            balance = sendUssdForBalance("*124#");
-        } else if (operatorName.contains("GP")) {
-            balance = sendUssdForBalance("*566#");
-        } else if (operatorName.contains("GRAMEENPHONE")) {
-            balance = sendUssdForBalance("*566#");
-        } else if (operatorName.contains("ROBI")) {
-            balance = sendUssdForBalance("*222#");
-        } else if (operatorName.contains("AIRTEL")) {
-            balance = sendUssdForBalance("*778#");
-        } else if (operatorName.contains("TELETALK")) {
-            balance = sendUssdForBalance("*152#");
-        } else {
-            balance = "Unknown operator";
-        }
-
-        return balance;
-    }
-
-    private String sendUssdForBalance(String code) {
-
-        List<String> balancePaseList = new ArrayList<>();
-        String res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
-        Configaration.closeUssdSession();
-        String[] value = res.split(",");
-        if (value.length == 1) {
-            System.err.println("Balance enquiry failed");
-
-        } else {
-
-            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(balance);
-            while (m.find()) {
-                balancePaseList.add(m.group());
-                System.out.println(m.group());
-            }
-            Log.mgs("5579", "Current Balence " + balancePaseList.get(0));
-
-            return balancePaseList.get(0);
-
-        }
-        return "Getting Error";
-    }
-
-    private void ussdDial() {
-        setResponseShowFromUssd.setText("");
-        setResponseShowFromUssd.setFocusable(false);
-        String response = null;
-        String[] responses = null;
-        String getOperator = getSelectedSim.getSelectedItem().toString();
+    private void showDataInProductWarentyByInvoiceFromDB(String invoice) {
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCode.getText() + "\",15");
-                    System.out.println(auto.recharge.system.config.Modem.disconnect());
-                    responses = value.split(",");
-                    // response = Configaration.haxToStringConvert(value[1]);
-                    System.err.println(value);
-
-                    //setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
-                }
-
-            }
-
-            System.out.println(responses.length);
-            if (responses.length == 3) {
-                for (int i = 0; i < responses.length; i++) {
-                    response = responses[1].replaceAll("\"", "");
-                }
-                setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
-            }
-        }
-
-    }
-
-    public void ussdDailREquestCounter() {
-        int total = 0;
-        for (Queue<Object> queue : createHashMapByConnectedPorts.values()) {
-            total += queue.size();
-        }
-        pandingRequestCounter.setText(String.valueOf(total));
-    }
-
-    public void loadValueInTableRechargeDetails() {
-
-        DefaultTableModel mobileRechargeDetailsInMobileRechargePanel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Invoice", "Customar Id", "C Name", "Phone No", "Ref no", "Delivary Date", "Problem", "Bill", "Paid", "Due", "Status", "Brand"}, 0);
             if (UserInfo.role.equals("demo")) {
                 System.err.println("Access dny in DEMO Panel");
 
@@ -15299,33 +14372,13 @@ public class Home extends javax.swing.JFrame {
                 Connection conn = DbConnection.connect();
                 try {
                     Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `recharge_admin`";
+                    String sql = "SELECT * FROM `warranty_table` where invoice =" + invoice;
                     ResultSet rs = st.executeQuery(sql);
 
                     while (rs.next()) {
-                        if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                            mobileRechargeDetailsInMobileRechargePanel.addRow(new Object[]{
-                                rs.getString("trx_id"),
-                                rs.getString("date_time"),
-                                rs.getString("type"),
-                                rs.getString("mobile_no"),
-                                rs.getString("amount"),
-                                rs.getString("from_sp"),
-                                rs.getString("current_balance"),
-                                rs.getString("status")});
-                        }
-                        MobileRechargeDetailsForSearchingDto mobileRechargeDetailsForSearchingDto= new MobileRechargeDetailsForSearchingDto();
-                        mobileRechargeDetailsForSearchingDto.setTrxId(rs.getString("trx_id"));
-                        mobileRechargeDetailsForSearchingDto.setDateAndTime(rs.getString("date_time"));
-                        mobileRechargeDetailsForSearchingDto.setPhoneNumber(rs.getString("type"));
-                        mobileRechargeDetailsForSearchingDto.setcBalance(rs.getString("mobile_no"));
-                        mobileRechargeDetailsForSearchingDto.setPostPaidOrPostPaid(rs.getString("amount"));
-                        mobileRechargeDetailsForSearchingDto.setAmmount(rs.getString("from_sp"));
-                        mobileRechargeDetailsForSearchingDto.setSelectableSim(rs.getString("current_balance"));
-                        mobileRechargeDetailsForSearchingDto.setStatus(rs.getString("status"));
-
-                        mobileRechargeDetailsForSearchingDtos.add(mobileRechargeDetailsForSearchingDto);
-
+                        defaultTableModel.addRow(new String[]{rs.getString("invoice"), rs.getString("customar_id"),
+                            rs.getString("f_name"), rs.getString("mobole_no"), rs.getString("ref_name"), rs.getString("d_date"), rs.getString("problem"),
+                            rs.getString("bill"), rs.getString("paid"), rs.getString("due"), rs.getString("status"), rs.getString("brand")});
                     }
 
                 } catch (SQLException ex) {
@@ -15334,676 +14387,23 @@ public class Home extends javax.swing.JFrame {
                     DbConnection.disconnect(conn);
                 }
             }
-        }
-        tableRechargeDetailsShow.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-        tableRechargeDetailsShow.getTableHeader().setOpaque(false);
-        tableRechargeDetailsShow.getTableHeader().setBackground(new Color(133, 47, 209));
-        tableRechargeDetailsShow.getTableHeader().setForeground(new Color(255, 255, 255));
-
-        //For jTable contant in center
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableRechargeDetailsShow.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-        tableRechargeDetailsShow.setEnabled(false);
-        tableRechargeDetailsShow.setRowHeight(35);
-        tableRechargeDetailsShow.setModel(mobileRechargeDetailsInMobileRechargePanel);
-
-    }
-
-    private void deleteColumeFromRechargeDetails(String userId) {
-
-        DbConnection.deleteRow("recharge_admin", "trx_id", userId);
-
-        loadValueInTableRechargeDetails();
-
-    }
-
-    public void setFocusInMobileRechargePanel() {
-
-        getMobileNumber.requestFocusInWindow();
-        getMobileNumber.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        setOperatorIcon();
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        suggList.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getAmmountInTk.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (!getAmmountInTk.getText().equals("") && getAmmountInTk.getText().matches("[0-9]+")) {
-                        String phoneNumberRequested = getMobileNumber.getText();
-                        String ammountRequested = getAmmountInTk.getText();
-                        String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-                        String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
-                        Log.mgs("=====================================================", selectedPayableSIM);
-
-                        recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-
-                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#80ff00")));
-
-                    } else {
-                        getAmmountInTk.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                    }
-                }
-
-                if (ke.getKeyCode() == KeyEvent.VK_ALT) {
-                    simSimOfferDialog();
-                }
-            }
-
-        });
-
-        suggList.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getMobileNumber.setText(suggList.getSelectedValue());
-                    popupForSuggestManu.setVisible(false);
-                    setOperatorIcon();
-                }
-            }
-
-        });
-
-    }
-
-    public Set<String> searchItemsByPhoneNumberInRechargePanel(String sreach1) {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                Connection conn = DbConnection.connect();
-                try {
-                    List<String> allPhoneNumber = new ArrayList<>();
-                    Set<String> filteredPhoneNumber = new HashSet<>();
-
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `recharge_admin`";
-                    ResultSet rs = st.executeQuery(sql);
-                    while (rs.next()) {
-                        allPhoneNumber.add(rs.getString("mobile_no"));
-
-                    }
-
-                    allPhoneNumber.stream().forEach(number -> {
-                        if (number.toLowerCase().contains(sreach1.toLowerCase())) {
-                            filteredPhoneNumber.add(number);
-                        }
-
-                    });
-
-                    return filteredPhoneNumber;
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-            }
-        }
-        return null;
-    }
-//
-//    private void loadValuesInTableForDetails(String selectedItem) {
-//        if (selectedItem.equals("Inbox")) {
-//            subItemsComboBox.setVisible(true);
-//
-//            openSIMSelectionComboBox();
-//
-//        } else if (selectedItem.equals("My Recharge")) {
-//            subItemsComboBox.setVisible(false);
-//            loadRechargeDetailsInDetailsPanelTable();
-//
-//        } else if (selectedItem.equals("Mobile Banking")) {
-//            subItemsComboBox.setVisible(false);
-//            loadMobileBankingDetailsInDetailsTable();
-//
-//        } else if (selectedItem.equals("Bill Payment")) {
-//            subItemsComboBox.setVisible(true);
-//
-//            loadBillPaymentDetailsInDetailsTable();
-//
-//        } else {
-//            System.err.println("Selected Items Not Found");
-//
-//        }
-//
-//    }
-
-//    private void loadRechargeDetailsInDetailsPanelTable() {
-//
-//        inboxIsActive = false;
-//        detailsSelectedItems = "recharge";
-//        setMgsDetails.setText("");
-//        DefaultTableModel mobileRechargeDetailsTableForDetailsPanelModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `recharge_admin`";
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                mobileRechargeDetailsTableForDetailsPanelModel.addRow(new Object[]{
-//                    rs.getString("trx_id"),
-//                    rs.getString("date_time"),
-//                    rs.getString("type"),
-//                    rs.getString("mobile_no"),
-//                    rs.getString("amount"),
-//                    rs.getString("from_sp"),
-//                    rs.getString("current_balance"),
-//                    rs.getString("status")});
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(mobileRechargeDetailsTableForDetailsPanelModel);
-//    }
-    private void setCuurentActiveNetworksFromModem() {
-        String operatorNames = "";
-        currentNetworkName.setText("Please wait");
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                String phoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13);
-                String networkInfo = simOperatorIdentifierDto.getOperatorName() + "(" + phoneNumber + ") |";
-                operatorNames = operatorNames + networkInfo;
-                System.out.println(simOperatorIdentifierDto.getOperatorName() + "  " + simOperatorIdentifierDto.getPortName() + "  " + networkInfo + "--->" + simOperatorIdentifierDto.getOwnPhoneNumber());
-            }
-            currentNetworkName.setText(operatorNames);
+            //For jTable contant in center
+            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productWarrantyTable.getDefaultRenderer(String.class);
+            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            productWarrantyTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
+            productWarrantyTable.getTableHeader().setOpaque(false);
+            productWarrantyTable.getTableHeader().setBackground(new Color(133, 47, 209));
+            productWarrantyTable.getTableHeader().setForeground(new Color(255, 255, 255));
+            productWarrantyTable.setEnabled(false);
+            productWarrantyTable.setRowHeight(30);
+            productWarrantyTable.setModel(defaultTableModel);
         }
     }
 
-//SIM Balance Update 
-    private void addBalenceInBalenceShowTable() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Operator Name", "Current Ammount"}, 0);
-
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (MobileRechargeBalance mobileRechargeBalance : ModemInfoList.mobileRechargeBalance) {
-                defaultTableModel.addRow(new String[]{mobileRechargeBalance.getSimName(), mobileRechargeBalance.getSimBalance() + " Tk"});
-            }
-
-            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
-        }
-        tableShowSimBalence.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        tableShowSimBalence.getTableHeader().setOpaque(false);
-        tableShowSimBalence.getTableHeader().setBackground(new Color(255, 0, 0));
-        tableShowSimBalence.getTableHeader().setForeground(new Color(255, 255, 255));
-
-        //For jTable contant in center
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableShowSimBalence.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-        tableShowSimBalence.setEnabled(false);
-        tableShowSimBalence.setRowHeight(35);
-        tableShowSimBalence.setModel(defaultTableModel);
-
-    }
-
-    private void closeUssdSession() {
-        setResponseShowFromUssd.setText("");
-        setResponseShowFromUssd.setFocusable(false);
-        String response = null;
-        String[] responses = null;
-        String getOperator = getSelectedSim.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
-                    auto.recharge.system.config.Modem.disconnect();
-                    responses = value.split(",");
-                }
-
-            }
-            setResponseShowFromUssd.setText("Reset Successful");
-        }
-
-    }
-
-    public void loadActiveOperatorNameInComboBox() {
-        ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
-            getSeletedOperatorName.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
-        });
-
-    }
-
-    private void placeHoderSetter() {
-        setPlaceHolder(getAmmountInTk, "Ammount");
-    }
-
-    private void simSimOfferDialog() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                JDialog offerDialog = new JDialog();
-                SimOfferViewPanelUi ui = new SimOfferViewPanelUi();
-                DefaultTableModel defaultTableModelBL, defaultTableModelGP, defaultTableModelRobi, defaultTableModelAirtel, defaultTableModelTeletalk;
-
-                ui.getCross().addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        offerDialog.setVisible(false);
-                    }
-
-                });
-
-                defaultTableModelBL = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-                defaultTableModelGP = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-                defaultTableModelRobi = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-                defaultTableModelAirtel = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-                defaultTableModelTeletalk = new DefaultTableModel(new String[]{"Offer Name", "Recharge Ammount (tk)", "Validity", "Description"}, 0);
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `recharge_offers`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    switch (rs.getString("sim_name")) {
-                        case "BANGLALINK":
-                            defaultTableModelBL.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                            break;
-                        case "GP":
-                            defaultTableModelGP.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                            break;
-                        case "ROBI":
-                            defaultTableModelRobi.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                            break;
-                        case "AIRTEL":
-                            defaultTableModelAirtel.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                            break;
-                        case "TELETALK":
-                            defaultTableModelTeletalk.addRow(new String[]{rs.getString("offer_name"), rs.getString("recharge_amt"), rs.getString("validity"), rs.getString("description")});
-                            break;
-                    }
-
-                }
-
-                addTableUIDesignForOfferDialog(ui.getTableBanglalinkOffers(), offerDialog);
-                ui.getTableBanglalinkOffers().setModel(defaultTableModelBL);
-
-                addTableUIDesignForOfferDialog(ui.getTableGpOffers(), offerDialog);
-                ui.getTableGpOffers().setModel(defaultTableModelGP);
-
-                addTableUIDesignForOfferDialog(ui.getTableRobiOffers(), offerDialog);
-                ui.getTableRobiOffers().setModel(defaultTableModelRobi);
-
-                addTableUIDesignForOfferDialog(ui.getTableAirtelOffers(), offerDialog);
-                ui.getTableAirtelOffers().setModel(defaultTableModelAirtel);
-
-                addTableUIDesignForOfferDialog(ui.getTableTeletalkOffers(), offerDialog);
-                ui.getTableTeletalkOffers().setModel(defaultTableModelTeletalk);
-
-                offerDialog.add(ui);
-                offerDialog.setSize(1000, 800);
-                offerDialog.setLocationRelativeTo(null);
-                offerDialog.setUndecorated(true);
-                offerDialog.setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    private void addTableUIDesignForOfferDialog(JTable jTable, JDialog jDialog) {
-        jTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-        jTable.getTableHeader().setOpaque(false);
-        jTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        jTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        //For jTable contant in center
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) jTable.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        jTable.setEnabled(false);
-        jTable.setRowHeight(25);
-
-        jTable.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                String ammount;
-                Point point = me.getPoint();
-                int column = jTable.columnAtPoint(point);
-                int row = jTable.rowAtPoint(point);
-                ammount = jTable.getValueAt(row, 1).toString();
-                getAmmountInTk.setText(ammount);
-                getAmmountInTk.setForeground(Color.black);
-                getAmmountInTk.requestFocusInWindow();
-                jDialog.setVisible(false);
-            }
-        });
-    }
-
-    private void addInGroupRechargeTable() {
-        String number = getPhoneNumberInGroupRecharge.getText();
-        String amountInTk = getAmountGroupRecharge.getText();
-        String requestSIMName = getSelectedSimInGroupRecharge1.getSelectedItem().toString();
-        String simType = getSelectedTypeGroupRecharge.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, number);
-                preparedStatement.setString(2, amountInTk);
-                preparedStatement.setString(3, requestSIMName);
-                preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
-                preparedStatement.setString(5, simType);
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    private void focusAndKeyboardUsedInGroupRecharge() {
-        getPhoneNumberInGroupRecharge.requestFocusInWindow();
-        getPhoneNumberInGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getAmountGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getAmountGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getSelectedTypeGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getSelectedTypeGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getSelectedSimInGroupRecharge1.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getSelectedSimInGroupRecharge1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        addButInGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        addButInGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
-                            Popup.customError("Empty field found..");
-                        } else {
-                            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                                @Override
-                                protected Void doInBackground() throws Exception {
-                                    processtingLoderDialog.setVisible(true);
-                                    addInGroupRechargeTable();
-                                    return null;
-                                }
-
-                                @Override
-                                protected void done() {
-                                    processtingLoderDialog.setVisible(false);
-                                    loadDataInGroupRechargeTable();
-                                    getPhoneNumberInGroupRecharge.setText("");
-                                    getAmountGroupRecharge.setText("");
-                                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
-                                    System.err.println("Number Add In Recharge List @Done...");
-                                }
-
-                            };
-                            swingWorker.execute();
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-    }
-
-    private void loadDataInGroupRechargeTable() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
-                    "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `group_recharge`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
-
-                }
-
-                tableGroupRecharge.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-                tableGroupRecharge.getTableHeader().setOpaque(false);
-                tableGroupRecharge.getTableHeader().setBackground(new Color(133, 47, 209));
-                tableGroupRecharge.getTableHeader().setForeground(new Color(255, 255, 255));
-
-                //For jTable contant in center
-                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableGroupRecharge.getDefaultRenderer(String.class);
-                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-                tableGroupRecharge.setEnabled(false);
-
-                tableGroupRecharge.setRowHeight(25);
-                tableGroupRecharge.setModel(groupRechargeTableModel);
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    private void sendGroupRecharge() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            List<GroupRechargeResponse> groupRechargeResponsesList = new ArrayList<>();
-            try {
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `group_recharge`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
-                    groupRechargeResponse.setPhoneNumber(rs.getString("phone_number"));
-                    groupRechargeResponse.setAmount(rs.getString("amount"));
-                    groupRechargeResponse.setSimType(rs.getString("type"));
-                    groupRechargeResponse.setPayBy(rs.getString("send_by"));
-                    groupRechargeResponsesList.add(groupRechargeResponse);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-            groupRechargeResponsesList.stream().forEach(values -> {
-                //TODO: For group rechage
-
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                        MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
-                        addQueue(mobileRechargeDetailsDto);
-                    }
-                }
-
-            });
-            DbConnection.delete("group_recharge");
-        }
-
-    }
-
-    private void sendMobileBankingRequest() {
-        String trxId = Configaration.getUUID();
-        saveInMobileBankingTable(trxId, "Processing", "Processing");
-        loadMobileBankingDetailsTable();
-        System.out.println("Mobile banking Process start...");
-        String service = getServiceName.getSelectedItem().toString();
-        String actionType = getOperationType.getSelectedItem().toString();
-        String acPhoneNo = getPhoneNumberInBillPayment.getText();
-        String amount = getAmmountInBillPayment.getText();
-        String sim = getSimOperatorName.getSelectedItem().toString();
-        List<String> ussdCodeSerialList = new ArrayList<>();
-        List<String> balanceUssdCodeList = new ArrayList<>();
-        List<String> balancePaseList = new ArrayList<>();
-        boolean isSIMFound = false;
-        String res = "Could not get response from server";
-        String balanceUssdCode = null;
-        String ussdReplace = null;
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking` WHERE `services_name`=\"" + service + "\"";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (actionType.equals(rs.getString("task_name"))) {
-
-                        ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
-                        balanceUssdCode = rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin"));
-                        isSIMFound = true;
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-
-            }
-
-            Pattern p = Pattern.compile("\\d+");
-            Matcher m = p.matcher(ussdReplace);
-            ussdCodeSerialList.clear();
-            while (m.find()) {
-
-                ussdCodeSerialList.add(m.group());
-            }
-            Matcher m1 = p.matcher(balanceUssdCode);
-            balanceUssdCodeList.clear();
-            while (m1.find()) {
-
-                balanceUssdCodeList.add(m1.group());
-            }
-            if (!isSIMFound) {
-                Popup.customError("SIM not found !!");
-            }
-
-            System.err.println("Request USSD CODE=" + ussdCodeSerialList);
-            // Sand Ussd Serial for Request
-            String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, sim);
-            Configaration.wait(2000);
-            // Sand Ussd Serial for Balance
-            String acBalanceInHax = "00420061006C0061006E00630065003A00200030002E0030003800200054006B002E0020004500780070003A002000300035002F00300033002F0032003000320032002E0020004C006F0061006E0020004400750065003A00200035003000200054006B002E000A0031003A00420065007300740020004D0069006E0075007400650020002600200049006E007400650072006E006500740020004F00660066006500720073000A0032003A0047006500740020005300700065006300690061006C002000430061006C006C00200052006100740065";
-            Pattern p3 = Pattern.compile("\\d+");
-            Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
-            while (m3.find()) {
-                balancePaseList.add(m3.group());
-                System.out.println(m3.group());
-            }
-            if (balancePaseList.get(0).equals("16247")) {
-                System.err.println("Possible duplicate request, call 16247 for details.");
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
-            } else {
-                System.err.println("----------------------------------" + balancePaseList.get(0));
-
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), balancePaseList.get(0));
-            }
-
-            loadMobileBankingDetailsTable();
-            getPhoneNumberInBillPayment.setText("");
-            getAmmountInBillPayment.setText("");
-        }
-
-    }
-
-    private void updateInMobileBankingDbById(String trxId, String status, String currentBalance) {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "UPDATE m_b_details SET c_balance = '" + currentBalance + "', result = '" + status + "' WHERE TnxId ='" + trxId + "'";
+    private void updateWarrantyInfoByInvoice() {
+        String afterPayment = String.valueOf(Double.valueOf(billInProductWanrranty.getText())-Double.valueOf(paidPaymentInProductWanrranty.getText()));
+           Connection conn = DbConnection.connect();
+            String sql = "UPDATE warranty_table SET problem = '" + problemInProductWanrranty.getText() + "', mobole_no = '" + phoneNOInProductWanrranty.getText() +"', status = '" + statusInProductWanrrantyComboBox.getSelectedItem().toString() +"', paid = '" + paidPaymentInProductWanrranty.getText() +"', due = '" + afterPayment +"', bill = '" + billInProductWanrranty.getText() + "' WHERE invoice ='" + invoiceInProductWarranty.getText() + "'";
             try {
                 Statement st = conn.createStatement();
                 st.execute(sql);
@@ -16012,3411 +14412,9 @@ public class Home extends javax.swing.JFrame {
                 Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
             }
             DbConnection.disconnect(conn);
+            showDataInProductWarentyByInvoiceFromDB(invoiceInProductWarranty.getText());
         }
-    }
-
-    private boolean mobileBankingPanelValidation() {
-        if ((getServiceName.getSelectedItem().toString().equals("------ Select Service -------")
-                || getOperationType.getSelectedItem() == null
-                || getPhoneNumberInBillPayment.getText().equals("")
-                || getAmmountInBillPayment.getText().equals(""))) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private void showMobileBankingConfirmationDialog() {
-
-        MobileBankingConfirmationUI ui = new MobileBankingConfirmationUI("Confirmation",
-                getPhoneNumberInBillPayment.getText(),
-                getAmmountInBillPayment.getText() + " tk",
-                getOperationType.getSelectedItem().toString(),
-                getServiceName.getSelectedItem().toString());
-
-        JDialog confirmDialog = new JDialog();
-        confirmDialog.add(ui);
-        confirmDialog.setSize(1400, 941);
-        confirmDialog.setLocationRelativeTo(null);
-        confirmDialog.setUndecorated(true);
-        confirmDialog.setVisible(true);
-
-        ui.getClickClose().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                getPhoneNumberInBillPayment.setText("");
-                getAmmountInBillPayment.setText("");
-                getMobileNumber.requestFocusInWindow();
-                confirmDialog.setVisible(false);
-            }
-
-        });
-        ui.getClickClose().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                    getPhoneNumberInBillPayment.setText("");
-                    getAmmountInBillPayment.setText("");
-                    getMobileNumber.requestFocusInWindow();
-                    confirmDialog.setVisible(false);
-
-                }
-                if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                    ui.getClickEdit().requestFocusInWindow();
-                } else {
-
-                }
-            }
-        });
-
-        ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
-            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    System.err.println("Confirm click");
-                    confirmDialog.setVisible(false);
-                    mobileBankingBalanceShowPanelList.setEnabled(false);
-                    sendMobileBankingRequest();
-                    getServiceName.requestFocusInWindow();
-                    refrash();
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    mobileBankingBalanceShowPanelList.setEnabled(true);
-                }
-
-            };
-            worker.execute();
-
-        });
-
-        ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            System.err.println("Confirm click");
-                            confirmDialog.setVisible(false);
-                            mobileBankingBalanceShowPanelList.setEnabled(false);
-                            sendMobileBankingRequest();
-                            getServiceName.requestFocusInWindow();
-                            refrash();
-
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            mobileBankingBalanceShowPanelList.setEnabled(true);
-                        }
-
-                    };
-                    worker.execute();
-
-                }
-                if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    ui.getClickEdit().requestFocusInWindow();
-                } else {
-
-                }
-            }
-        });
-
-        ui.getClickEdit().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                confirmDialog.setVisible(false);
-            }
-
-        });
-        ui.getClickEdit().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    confirmDialog.setVisible(false);
-                }
-                if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    ui.getClickClose().requestFocusInWindow();
-                }
-                if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                    ui.getClickConfirm().requestFocusInWindow();
-                } else {
-
-                }
-            }
-        });
-
-    }
-
-    private void saveInMobileBankingTable(String trxId, String finalResult, String c_amount) {
-        String result = finalResult;
-        String service = getServiceName.getSelectedItem().toString();
-        String actionType = getOperationType.getSelectedItem().toString();
-        String acPhoneNo = getPhoneNumberInBillPayment.getText();
-        String acAmount = getAmmountInBillPayment.getText();
-        String sim = getSimOperatorName.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO m_b_details(service_name,action_type,phone_no,amount,sim,result,date_time,request_by,TnxId,c_balance) VALUES(?,?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, service);
-                preparedStatement.setString(2, actionType);
-                preparedStatement.setString(3, acPhoneNo);
-                preparedStatement.setString(4, acAmount);
-                preparedStatement.setString(5, sim);
-                preparedStatement.setString(6, result);
-                preparedStatement.setString(7, Configaration.getCurrentDateAndTime());
-                preparedStatement.setString(8, "ADMIN");
-                preparedStatement.setString(9, trxId);
-                preparedStatement.setString(10, c_amount);
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            System.out.println("Mobile Banking request details saved.");
-        }
-
-    }
-
-    private void loadMobileBankingDetailsTable() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Status", "Date and Time","info"}, 0);
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `m_b_details`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                        defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                            rs.getString("amount"), rs.getString("sim"), rs.getString("result"), rs.getString("date_time"),rs.getString("date_time")});
-                    }
-
-                }
-
-                tableMobileBankingDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-                tableMobileBankingDetails.getTableHeader().setOpaque(false);
-                tableMobileBankingDetails.getTableHeader().setBackground(new Color(255, 0, 0));
-                tableMobileBankingDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-
-                //For jTable contant in center
-                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingDetails.getDefaultRenderer(String.class);
-                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-                tableMobileBankingDetails.setEnabled(false);
-                tableMobileBankingDetails.setRowHeight(35);
-                tableMobileBankingDetails.setModel(defaultTableModel);
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    *//*
     
-    ------------------------ SETTING PANEL--------------------------------------
-    
-     *//*
-    private String copy(String sourcePath, String operatorIconName) {
-
-        String[] pathParse = sourcePath.split("\\\\");
-        String[] newNames = {pathParse[pathParse.length - 1]};
-        Path source = Paths.get(sourcePath); //original file
-        clickChooseIcon.setText(source.toString());
-        Path targetDir = Paths.get("images/target");
-        try {
-            Files.createDirectories(targetDir);//in case target directory didn't exist
-            for (String name : newNames) {
-                Path target = targetDir.resolve(name);// create new path ending with `name` content
-                System.out.println("copying into " + target);
-                Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-
-            }
-
-            return targetDir + "\\" + newNames[0];
-        } catch (IOException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "Image not found";
-    }
-
-    private boolean saveToDbCommandInCommand() {
-
-        String rechargeUssdParternPre = getRechargeUssdParternPrePaid1.getText().toLowerCase();
-        String rechargeUssdParternPost = getRechargeUssdParternPostPaid1.getText().toLowerCase();
-        String operatorName = getOparetorNameInDropDown.getSelectedItem().toString();
-        String operatorCode = "no updated";
-        String othersCode = getRechargeUssdParternSkitto.getText();
-        String balenceUssdPartern = getprofitIn1k.getText();
-        String acPassword = accountPassword1.getText();
-        String profit = getprofitIn1k.getText();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-            return true;
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO command(operator_name,operator_code,action_for,r_ussd_code_pre,r_ussd_code_post,b_s_ussd_code,password,icon,profit) VALUES(?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, operatorName.toUpperCase());
-                preparedStatement.setString(2, operatorCode);
-                preparedStatement.setString(3, othersCode);
-                preparedStatement.setString(4, rechargeUssdParternPre);
-                preparedStatement.setString(5, rechargeUssdParternPost);
-                preparedStatement.setString(6, balenceUssdPartern);
-                preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
-                preparedStatement.setString(8, imagePath);
-                preparedStatement.setString(9, profit);
-                preparedStatement.execute();
-                switchPanelViaSettings(myProfilePanel, myProfile);
-                return true;
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        return false;
-
-    }
-
-    private void loadValuesForUssdManagementTable() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                Connection conn = DbConnection.connect();
-                try {
-                    DefaultTableModel model = new DefaultTableModel(new String[]{
-                        "Operator Name", "Profit in 1k", "Others Ussd Code", "Recharge USSD Code(Prepaind)", "Recharge USSD Code(Postpaind)", "Show Balence Ussd Code", "icon"
-                    }, 0);
-                    switchPanelViaSettings(rechargeSettingsPanel, rechargeSettings);
-                    Statement st = conn.createStatement();
-                    String sql = "SELECT * FROM `command`";
-                    ResultSet rs = st.executeQuery(sql);
-
-                    while (rs.next()) {
-
-                        String operator_name = rs.getString("operator_name");
-                        String profit = rs.getString("profit");
-                        String action_for = rs.getString("action_for");
-                        String r_ussd_code_pre = rs.getString("r_ussd_code_pre");
-                        String r_ussd_code_post = rs.getString("r_ussd_code_post");
-                        String b_s_ussd_code = rs.getString("b_s_ussd_code");
-                        String icon = rs.getString("icon");
-                        model.addRow(new Object[]{operator_name, profit, action_for, r_ussd_code_pre, r_ussd_code_post, b_s_ussd_code, icon});
-
-                    }
-                    ussdSettedTable.setModel(model);
-                    ussdSettedTable.setEnabled(false);
-                    ussdSettedTable.setRowHeight(30);
-                    ussdSettedTable.addMouseListener(new MouseAdapter() {
-
-                        @Override
-                        public void mouseClicked(MouseEvent me) {
-                            int seletedOption = 3;
-                            Point point = me.getPoint();
-                            int row = ussdSettedTable.rowAtPoint(point);
-                            Configaration.setErrorLog(me.getClickCount());
-                            if (me.getClickCount() == 2) {
-                                Object[] options = {"Delete", "Edit"};
-                                seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
-                                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-                                Configaration.setLog(seletedOption);
-                            }
-
-                            switch (seletedOption) {
-                                case 0:
-                                    DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-                                    Home.showDeshBoardPage();
-
-                                    break;
-                                case 1:
-
-                                    //  switchPanelViaMenu(updateAddedManagementPanel);
-                                    //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-                                    break;
-                                default:
-                                    Configaration.setErrorLog("JOption selection not match");
-
-                                    break;
-                            }
-                        }
-                    });
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-            }
-        }
-    }
-
-    private void loadImageIcon(String fileName) {
-        JFileChooser fc = new JFileChooser();
-        int result = fc.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
-            String sname = file.getAbsolutePath();
-            imagePath = copy(sname, fileName);
-            Configaration.setLog("Icon Load Successful");
-            clickChooseIcon1.setText(fileName);
-        }
-    }
-
-    private void saveSIMOffer() {
-
-        String offerName = getOfferNameInSeting.getText();
-        String rechargeAmount = getRechargeAmmountInSeetings.getText();
-        String validity = getValidityInSetting.getText() + " " + getSelectedValidityTimeTypeSetting.getSelectedItem();
-        String description = getDescriptionInSetting.getText();
-        String simOperator = getSIMOperatorName.getSelectedItem().toString().toUpperCase();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO recharge_offers(offer_name,recharge_amt,validity,description,sim_name) VALUES(?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, offerName);
-                preparedStatement.setString(2, rechargeAmount);
-                preparedStatement.setString(3, validity);
-                preparedStatement.setString(4, description);
-                preparedStatement.setString(5, simOperator);
-                preparedStatement.execute();
-                Popup.customSuccess();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-//    private boolean updateToDbCommandByOperator_name() {
-//        String operatorName = getOperatorName1.getText();
-//        String rechargeUssdPartern = getRechargeUssdPartern1.getText();
-//        String operatorCode = getOperatorCode1.getText();
-//        String actionFor = getSeletedAction1.getSelectedItem().toString();
-//        String balenceUssdPartern = getBalenceUssdPartern2.getText();
-//        conn = DbConnection.connect();
-//        try {
-//            String sql = "UPDATE command SET operator_code= ?,action_for = ?, r_ussd_code= ?, b_s_ussd_code= ?, icon= ? WHERE operator_name = \"" + operatorName + "\"";
-//            System.out.println(sql);
-//            String computerMacAddress = getMacAddress().replace(":", "");
-//            try {
-//                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-//                preparedStatement.setString(1, operatorCode);
-//                preparedStatement.setString(2, actionFor);
-//                preparedStatement.setString(3, rechargeUssdPartern);
-//                preparedStatement.setString(4, balenceUssdPartern);
-//                preparedStatement.setString(5, imagePath);
-//                preparedStatement.execute();
-//
-//                Home.showDeshBoardPage();
-//                return true;
-//
-//            } catch (SQLException ex) {
-//                System.err.println(ex);
-//            } finally {
-//                if (conn != null) {
-//                    try {
-//                        conn.close();
-//                    } catch (SQLException e) {
-//                    }
-//                }
-//            }
-//
-//        } catch (UnknownHostException | SocketException ex) {
-//            System.err.println(ex);
-//        }
-//        return false;
-//    }
-    private void saveInMobileBanking() {
-        String service = getSelectedServiceCombo.getSelectedItem().toString();
-        String defultSIM = getSelectedSIMNameCombo.getSelectedItem().toString();
-        String taskName = getTaskNameInMBS.getText();
-        String ussdCode = getUssdCodePattren.getText().toLowerCase();
-        String balanceShowUssdCode = getUssdCodeForBalanceShowPattren.getText().toLowerCase();
-        String pin = getPIN.getText();
-        if (taskName.equals("") || ussdCode.equals("") || balanceShowUssdCode.equals("") || pin.equals("")) {
-            Popup.customError("Empty Filed Found");
-
-        } else {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                Connection conn = DbConnection.connect();
-                String sql = "INSERT INTO mobile_banking(services_name,default_sim,task_name,ussd_code,pin,serviceId,balance_show_ussd) VALUES(?,?,?,?,?,?,?)";
-                try {
-                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                    preparedStatement.setString(1, service);
-                    preparedStatement.setString(2, defultSIM);
-                    preparedStatement.setString(3, taskName);
-                    preparedStatement.setString(4, ussdCode);
-                    preparedStatement.setString(5, pin);
-                    preparedStatement.setString(6, Configaration.getUUID());
-                    preparedStatement.setString(7, balanceShowUssdCode);
-                    preparedStatement.execute();
-                    Popup.customSuccess();
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                    Popup.customError("Saving failed");
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-            }
-        }
-    }
-
-    private void loadTableMobileBankingSettingFromDb() {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DefaultTableModel model = new DefaultTableModel(new String[]{"Service Id",
-                    "Service Name", "Default action SIM card", "Task Name", "Ussd Pattern", "Ussd Pattern For Balance"}, 0);
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    String services_id = rs.getString("serviceId");
-                    String services_name = rs.getString("services_name");
-                    String default_sim = rs.getString("default_sim");
-                    String task_name = rs.getString("task_name");
-                    String ussd_code = rs.getString("ussd_code");
-                    String balance_ussd_code = rs.getString("balance_show_ussd");
-
-                    model.addRow(new Object[]{services_id, services_name, default_sim, task_name, ussd_code, balance_ussd_code});
-
-                }
-                tableMobileBankingSetting.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-                tableMobileBankingSetting.getTableHeader().setOpaque(false);
-                tableMobileBankingSetting.getTableHeader().setBackground(new Color(133, 47, 209));
-                tableMobileBankingSetting.getTableHeader().setForeground(new Color(255, 255, 255));
-
-                //For jTable contant in center
-                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableMobileBankingSetting.getDefaultRenderer(String.class);
-                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-                tableMobileBankingSetting.setEnabled(false);
-
-                tableMobileBankingSetting.setRowHeight(25);
-                tableMobileBankingSetting.setModel(model);
-
-//            ussdSettedTable.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    int seletedOption = 3;
-//                    Point point = me.getPoint();
-//                    int row = ussdSettedTable.rowAtPoint(point);
-//                    Configaration.setErrorLog(me.getClickCount());
-//                    if (me.getClickCount() == 2) {
-//                        Object[] options = {"Delete", "Edit"};
-//                        seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
-//                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-//                        Configaration.setLog(seletedOption);
-//                    }
-//
-//                    switch (seletedOption) {
-//                        case 0:
-//                            DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-//                            Home.showDeshBoardPage();
-//
-//                            break;
-//                        case 1:
-//
-//                            //  switchPanelViaMenu(updateAddedManagementPanel);
-//                            //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-//                            break;
-//                        default:
-//                            Configaration.setErrorLog("JOption selection not match");
-//
-//                            break;
-//                    }
-//                }
-//            });
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-    }
-
-    *//*
-        ------------------------------------------  CONTRACT LIST PANEL-----------------------------------------
-     *//*
-    private void setContractListInJTable(String type) {
-      //  alartMessageText.setVisible(false);
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                int count = 1;
-
-                contractList = new HashSet<>();
-                DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
-//                ModemInfoList.simOperatorIdentifiers.stream().map((simOperatorIdentifierDto) -> {
-//                    System.out.println(simOperatorIdentifierDto.getPortName());
-//                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-//                    return simOperatorIdentifierDto;
-//                }).map((_item) -> {
-//                    rowOfContractlist = auto.recharge.system.config.Modem.sendATCommand("AT+CPBR=1,99").replaceAll("\r", "").split("\n");
-//
-//                    return _item;
-//                }).forEachOrdered((_item) -> {
-//                    auto.recharge.system.config.Modem.disconnect();
-//                    Configaration.wait(1000);
-//                });
-//
-//                for (String contract : rowOfContractlist) {
-//                    System.err.println(contract);
-//                    String[] contractPerseDetails = contract.replaceAll("\r", "").replaceAll("\n", "").replaceAll("OK", "")
-//                            .replaceAll("\"", "").split(",");
-//                    for (int i = 1; i < contractPerseDetails.length; i++) {
-//                        ContractResponse contractResponse = new ContractResponse();
-//                        contractResponse.setId(count++);
-//                        contractResponse.setName(contractPerseDetails[4]);
-//                        contractResponse.setPhoneNo(contractPerseDetails[2]);
-//                        contractResponse.setStorage("SIM");
-//                        contractList.add(contractResponse);
-//                    }
-//                }
-
-                Statement stSQLite = conn.createStatement();
-                String sqlSQLite = "SELECT * FROM `contract`";
-                ResultSet rs = stSQLite.executeQuery(sqlSQLite);
-                while (rs.next()) {
-                    ContractResponse contractResponse = new ContractResponse();
-                    contractResponse.setId(count++);
-                    contractResponse.setName(rs.getString("name"));
-                    contractResponse.setPhoneNo(rs.getString("phone_no"));
-                    contractResponse.setStorage(rs.getString("memory"));
-                    contractList.add(contractResponse);
-                    contractListTableMOdel.addRow(new Object[]{rs.getString("name"),rs.getString("phone_no"), rs.getString("memory")});
-                }
-//
-//                if (Configaration.netIsAvailable()) {
-//
-//                    DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
-//
-//                    try {
-//                        java.sql.Statement st = bMySQLConnection.connect().createStatement();
-//                        String sql = "SELECT * FROM user_contracts_list WHERE userId='" + UserInfo.userId + "';";
-//
-//                        java.sql.ResultSet resultSet = st.executeQuery(sql);
-//                        while (resultSet.next()) {
-//                            ContractResponse contractResponse = new ContractResponse();
-//                            contractResponse.setId(count++);
-//                            contractResponse.setName(resultSet.getString("name"));
-//                            contractResponse.setPhoneNo(resultSet.getString("phone_number"));
-//                            contractResponse.setStorage(resultSet.getString("storage"));
-//                            contractList.add(contractResponse);
-//
-//                        }
-//                    } catch (SQLException ex) {
-//                        Log.error("6853", ex.getMessage());
-//
-//                    } finally {
-//                        bMySQLConnection.disconnect();
-//                    }
-//
-//                } else {
-//                    //alartMessageText.setVisible(true);
-//                }
-//
-//                contractList.stream().forEach(contract -> {
-//
-//                    contractListTableMOdel.addRow(new Object[]{contract.getName(), contract.getPhoneNo(), contract.getStorage()});
-//                });
-
-                tableContractLIst.setEnabled(false);
-                tableContractLIst.addMouseListener(new MouseAdapter() {
-
-                    @Override
-                    public void mouseClicked(MouseEvent me) {
-                        String selectedNumber;
-                        Point point = me.getPoint();
-                        int column = tableContractLIst.columnAtPoint(point);
-                        int row = tableContractLIst.rowAtPoint(point);
-                        selectedNumber = tableContractLIst.getValueAt(row, 1).toString();
-                        System.out.println(selectedNumber.length());
-                        if(type.equals("mobile_recharge")) {
-                            if (selectedNumber.length() == 14) {
-                                switchPanelViaMenu(mobileRechargePanel);
-                                getMobileNumber.requestFocusInWindow();
-                                getMobileNumber.setForeground(Color.BLACK);
-                                getMobileNumber.setText(selectedNumber.substring(3, 14));
-
-                                System.err.println(selectedNumber.substring(3, 14));
-                                System.out.println(selectedNumber);
-                            } else {
-                                switchPanelViaMenu(mobileRechargePanel);
-                                getMobileNumber.requestFocusInWindow();
-                                getMobileNumber.setForeground(Color.BLACK);
-                                getMobileNumber.setText(selectedNumber);
-                            }
-                        } else if(type.equals("mobile_banking")) {
-                            if (selectedNumber.length() == 14) {
-                                switchPanelViaMenu(addMobileBankingPanelInBillPay);
-                                getPhoneNumberInBillPayment.requestFocusInWindow();
-                                getPhoneNumberInBillPayment.setForeground(Color.BLACK);
-                                getPhoneNumberInBillPayment.setText(selectedNumber.substring(3, 14));
-
-                                System.err.println(selectedNumber.substring(3, 14));
-                                System.out.println(selectedNumber);
-                            } else {
-                                switchPanelViaMenu(addMobileBankingPanelInBillPay);
-                                getPhoneNumberInBillPayment.requestFocusInWindow();
-                                getPhoneNumberInBillPayment.setForeground(Color.BLACK);
-                                getPhoneNumberInBillPayment.setText(selectedNumber);
-                            }
-                        }
-
-                    }
-                });
-
-                tableContractLIst.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-                tableContractLIst.getTableHeader().setOpaque(false);
-                tableContractLIst.getTableHeader().setBackground(new Color(133, 47, 209));
-                tableContractLIst.getTableHeader().setForeground(new Color(255, 255, 255));
-
-                //For jTable contant in center
-                DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableContractLIst.getDefaultRenderer(String.class);
-                stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-                tableContractLIst.setEnabled(false);
-
-                tableContractLIst.setRowHeight(25);
-                tableContractLIst.setModel(contractListTableMOdel);
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-
-            }
-        }
-    }
-
-    private void searchByName(Set<ContractResponse> contractList, String serchValue) {
-        System.err.println(serchValue);
-        Set<ContractResponse> contractResponsesSet = new HashSet<>();
-        DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"Name", "Phone no", "From"}, 0);
-
-        contractList.stream().forEach(contractResponseValue -> {
-            System.err.println(serchValue.toLowerCase().contains(contractResponseValue.getName().toLowerCase().toLowerCase().replaceAll("\r", "").replaceAll(" ", "")));
-            if (contractResponseValue.getName().toLowerCase().toLowerCase().contains(serchValue.toLowerCase())) {
-                ContractResponse contractResponse = new ContractResponse();
-                contractResponse.setId(contractResponseValue.getId());
-                contractResponse.setName(contractResponseValue.getName());
-                contractResponse.setPhoneNo(contractResponseValue.getPhoneNo());
-                contractResponse.setStorage(contractResponseValue.getStorage());
-                contractResponsesSet.add(contractResponse);
-
-            }
-
-        });
-
-        contractResponsesSet.stream().forEach(value -> {
-            contractListTableMOdel.addRow(new Object[]{value.getName(), value.getPhoneNo(), value.getStorage()});
-        });
-
-        tableContractLIst.setRowHeight(25);
-        tableContractLIst.setModel(contractListTableMOdel);
-    }
-
-    private void searchByPhoneNumberInRechargeDetails(Set<MobileRechargeDetailsForSearchingDto> contractList, String serchValue) {
-        System.err.println(serchValue);
-        Set<MobileRechargeDetailsForSearchingDto> contractResponsesSet = new HashSet<>();
-
-        DefaultTableModel contractListTableMOdel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status"}, 0);
-        contractList.stream().forEach(contractResponseValue -> {
-            System.err.println(serchValue.toLowerCase().contains(contractResponseValue.getDateAndTime().toLowerCase().toLowerCase().replaceAll("\r", "").replaceAll(" ", "")));
-            if (contractResponseValue.getDateAndTime().toLowerCase().toLowerCase().contains(serchValue.toLowerCase())) {
-                MobileRechargeDetailsForSearchingDto contractResponse = new MobileRechargeDetailsForSearchingDto();
-                contractResponse.setTrxId(contractResponseValue.getTrxId());
-                contractResponse.setAmmount(contractResponseValue.getAmmount());
-                contractResponse.setcBalance(contractResponseValue.getcBalance());
-                contractResponse.setDateAndTime(contractResponseValue.getDateAndTime());
-                contractResponse.setPhoneNumber(contractResponseValue.getPhoneNumber());
-                contractResponse.setPostPaidOrPostPaid(contractResponseValue.getPostPaidOrPostPaid());
-                contractResponse.setSelectableSim(contractResponseValue.getSelectableSim());
-                contractResponse.setStatus(contractResponseValue.getStatus());
-                contractResponsesSet.add(contractResponse);
-
-            }
-
-        });
-
-        contractResponsesSet.stream().forEach(value -> {
-            contractListTableMOdel.addRow(new Object[]{value.getTrxId(), value.getAmmount(), value.getcBalance(),value.getDateAndTime(), value.getPhoneNumber(), value.getPostPaidOrPostPaid(),value.getSelectableSim(),value.getStatus()});
-        });
-
-        tableRechargeDetailsShow.setRowHeight(25);
-        tableRechargeDetailsShow.setModel(contractListTableMOdel);
-    }
-    private void saveContract() {
-        String storage = getSeletedStorage.getSelectedItem().toString();
-        String name = getNameForContract.getText();
-        String phoneNo = getPhoneNOForContract.getText();
-
-        if (phoneNo.equals("") && name.equals("")) {
-            Popup.customError("Filed is empty");
-
-        } else {
-            switch (storage) {
-                case "MEMORY":
-                    saveContractInSQLite();
-                    break;
-                case "CLOUD":
-                    if (Configaration.netIsAvailable()) {
-                        saveContractInSQL();
-                    } else {
-                        Popup.customError("No Internet");
-                    }
-                    break;
-                default:
-                    saveContractInSIMCard();
-                    break;
-
-            }
-        }
-    }
-
-    private void saveContractInSQLite() {
-        String name = getNameForContract.getText();
-        String phoneNo = getPhoneNOForContract.getText();
-        String storage = getSeletedStorage.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO contract(name,phone_no,memory) VALUES(?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, phoneNo);
-                preparedStatement.setString(3, storage);
-                preparedStatement.execute();
-                int a = Popup.customSuccess();
-
-                if (a == 0) {
-                    getNameForContract.setText("");
-                    getPhoneNOForContract.setText("");
-                } else {
-                    getNameForContract.setText("");
-                    getPhoneNOForContract.setText("");
-
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-        System.out.println("New Contract Add Successful in Desktop memory");
-    }
-
-    private void saveContractInSQL() {
-        String name = getNameForContract.getText();
-        String phoneNo = getPhoneNOForContract.getText();
-        String storage = getSeletedStorage.getSelectedItem().toString();
-
-        java.sql.Connection conn1 = bMySQLConnection.connect();
-        String sql = "INSERT INTO user_contracts_list(userId,name,phone_number,storage) VALUES(?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-            preparedStatement.setString(1, UserInfo.userId);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, phoneNo);
-            preparedStatement.setString(4, storage);
-            preparedStatement.execute();
-            int a = Popup.customSuccess();
-
-            if (a == 0) {
-                getNameForContract.setText("");
-                getPhoneNOForContract.setText("");
-            } else {
-                getNameForContract.setText("");
-                getPhoneNOForContract.setText("");
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (conn1 != null) {
-                try {
-                    conn1.close();
-                } catch (SQLException e) {
-
-                }
-            }
-        }
-        System.out.println("New Contract Add Successful in Cloud");
-    }
-
-    private void saveContractInSIMCard() {
-        String name = getNameForContract.getText();
-        String phoneNo = getPhoneNOForContract.getText();
-        String storage = getSeletedStorage.getSelectedItem().toString();
-        String result = null;
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-
-                if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(storage.toUpperCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    result = auto.recharge.system.config.Modem.sendATCommand("AT+CPBW=,\"" + phoneNo + "\",129,\"" + name + "\"");
-                    auto.recharge.system.config.Modem.disconnect();
-
-                }
-
-            }
-
-            if (result != null) {
-                if (result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").toLowerCase().equals("ok")) {
-                    int a = Popup.customSuccess();
-
-                    if (a == 0) {
-                        getNameForContract.setText("");
-                        getPhoneNOForContract.setText("");
-                    } else {
-                        getNameForContract.setText("");
-                        getPhoneNOForContract.setText("");
-
-                    }
-                } else {
-                    Popup.customError(result.replaceAll("\n", "").replaceAll("\r", "").replaceAll(",", "").split(":")[1]);
-                }
-
-            }
-        }
-    }
-
-    *//*
-    *
-    *--------------------------------------- DETAILS PANEL -------------------------------------------------------
-    *
-     *//*
-//    private void loadIndoxInDetailsTable(String port) {
-//        inboxIsActive = true;
-//        detailsSelectedItems = "inbox";
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null;
-//
-//        ModemInfoList.simOperatorIdentifiers.stream().map(new Function<SimOperatorIdentifierDto, SimOperatorIdentifierDto>() {
-//            @Override
-//            public SimOperatorIdentifierDto apply(SimOperatorIdentifierDto simOperatorIdentifierDto) {
-//                auto.recharge.system.config.Modem.connect(port);
-//                return simOperatorIdentifierDto;
-//            }
-//        }).map((_item) -> {
-//            // TODO: Move those code in setup Apllication
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=1");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> {
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=?");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> {
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CPMS=\"SM\"");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> auto.recharge.system.config.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
-//            splitedByCMDValueForInbox = result.split("\\+CMGL:");
-//            return result;
-//        }).forEachOrdered((_item) -> {
-//            auto.recharge.system.config.Modem.disconnect();
-//        });
-//        for (String value : splitedByCMDValueForInbox) {
-//
-//            perseByCommaInInbox = value.replaceAll("OK", "").split(",");
-//            for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                //2--phn number
-//                //4-5 date time
-//                //6 mgs
-//
-//                from = perseByCommaInInbox[2];
-//                if (from.length() >= 13) {
-//                    from = from.substring(2, 13);
-//                }
-//                dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                    mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                } else {
-//                    mgs = perseByCommaInInbox[6];
-//                }
-//
-//            }
-//            defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//        }
-//
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//
-//    }
-//    private void searchByPhoneNumber() {
-//
-//        if (getPhoneNoForSearch.getText().equals("")) {
-//            Popup.customError("Empty Field Found..");
-//        } else {
-//            int count = 0;
-//            String from = null, dateTime = null, mgs = null, fromSearch = null;
-//            if (detailsSelectedItems.equals("inbox")) {
-//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//                for (String value : splitedByCMDValueForInbox) {
-//
-//                    perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                    for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                        //2--phn number
-//                        //4-5 date time
-//                        //6 mgs
-//                        System.out.println("---" + perseByCommaInInbox[6]);
-//                        from = perseByCommaInInbox[2];
-//                        if (from.length() >= 13) {
-//                            from = from.substring(2, 13);
-//                        }
-//                        if (from.equals(getPhoneNoForSearch.getText())) {
-//                            fromSearch = from;
-//                            dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                            if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                                mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                            } else {
-//                                mgs = perseByCommaInInbox[6];
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                    defaultTableModel.addRow(new Object[]{count++, fromSearch, dateTime, mgs});
-//
-//                }
-//                tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                    @Override
-//                    public void mouseClicked(MouseEvent me) {
-//                        if (inboxIsActive) {
-//                            Point point = me.getPoint();
-//                            int row = tableForDetails.rowAtPoint(point);
-//                            Configaration.setErrorLog(me.getClickCount());
-//                            setMgsDetails.setText("");
-//                            String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                    + "Date & Time: "
-//                                    + tableForDetails.getValueAt(row, 2).toString()
-//                                    + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                            setMgsDetails.setText(showableMgs);
-//                        }
-//                    }
-//                });
-//
-//                tableForDetails.setEnabled(false);
-//                tableForDetails.setRowHeight(30);
-//                tableForDetails.setModel(defaultTableModel);
-//            } else if (detailsSelectedItems.equals("recharge")) {
-//                String phnNo = null;
-//
-//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//                Connection conn = DbConnection.connect();
-//                try {
-//
-//                    Statement st = conn.createStatement();
-//                    String sql = "SELECT * FROM `recharge_admin`";
-//                    ResultSet rs = st.executeQuery(sql);
-//                    while (rs.next()) {
-//                        System.err.println("--" + Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                        if (rs.getString("mobile_no").equals(getPhoneNoForSearch.getText())) {
-//                            defaultTableModel.addRow(new Object[]{
-//                                rs.getString("trx_id"),
-//                                rs.getString("date_time"),
-//                                rs.getString("type"),
-//                                rs.getString("mobile_no"),
-//                                rs.getString("amount"),
-//                                rs.getString("from_sp"),
-//                                rs.getString("current_balance"),
-//                                rs.getString("status")});
-//                        }
-//
-//                    }
-//
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//                } finally {
-//                    DbConnection.disconnect(conn);
-//                }
-//                tableForDetails.setEnabled(false);
-//                tableForDetails.setRowHeight(30);
-//                tableForDetails.setModel(defaultTableModel);
-//
-//            }
-//        }
-//    }
-//    private void resetSearchItems() {
-//        getPhoneNoForSearch.setText("");
-//        fromDateChooser.setDate(null);
-//        toDateChooser.setDate(null);
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null, fromSearch = null;
-//        if (detailsSelectedItems.equals("inbox")) {
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//            for (String value : splitedByCMDValueForInbox) {
-//
-//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                    //2--phn number
-//                    //4-5 date time
-//                    //6 mgs
-//
-//                    from = perseByCommaInInbox[2];
-//                    if (from.length() >= 13) {
-//                        from = from.substring(2, 13);
-//                    }
-//
-//                    dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                    if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                        mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                    } else {
-//                        mgs = perseByCommaInInbox[6];
-//                    }
-//
-//                }
-//                defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//            }
-//            tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    if (inboxIsActive) {
-//                        Point point = me.getPoint();
-//                        int row = tableForDetails.rowAtPoint(point);
-//                        Configaration.setErrorLog(me.getClickCount());
-//                        setMgsDetails.setText("");
-//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                + "Date & Time: "
-//                                + tableForDetails.getValueAt(row, 2).toString()
-//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                        setMgsDetails.setText(showableMgs);
-//                    }
-//                }
-//            });
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        } else if (detailsSelectedItems.equals("recharge")) {
-//            inboxIsActive = false;
-//            detailsSelectedItems = "recharge";
-//            setMgsDetails.setText("");
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//            Connection conn = DbConnection.connect();
-//            try {
-//
-//                Statement st = conn.createStatement();
-//                String sql = "SELECT * FROM `recharge_admin`";
-//                ResultSet rs = st.executeQuery(sql);
-//                while (rs.next()) {
-//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                    defaultTableModel.addRow(new Object[]{
-//                        rs.getString("trx_id"),
-//                        rs.getString("date_time"),
-//                        rs.getString("type"),
-//                        rs.getString("mobile_no"),
-//                        rs.getString("amount"),
-//                        rs.getString("from_sp"),
-//                        rs.getString("current_balance"),
-//                        rs.getString("status")});
-//
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//                DbConnection.disconnect(conn);
-//            }
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//
-//        }
-//    }
-//    private void searchByDate(String stratDate, String endDate) {
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null, fromSearch = null;
-//        if (detailsSelectedItems.equals("inbox")) {
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//            for (String value : splitedByCMDValueForInbox) {
-//
-//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                    //2--phn number
-//                    //4-5 date time
-//                    //6 mgs
-//
-//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(perseByCommaInInbox[4]))
-//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(perseByCommaInInbox[4]))) {
-//                        from = perseByCommaInInbox[2];
-//                        if (from.length() >= 13) {
-//                            from = from.substring(2, 13);
-//                        }
-//                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                        } else {
-//                            mgs = perseByCommaInInbox[6];
-//                        }
-//                        defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//                    }
-//
-//                }
-//
-//            }
-//            tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    if (inboxIsActive) {
-//                        Point point = me.getPoint();
-//                        int row = tableForDetails.rowAtPoint(point);
-//                        Configaration.setErrorLog(me.getClickCount());
-//                        setMgsDetails.setText("");
-//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                + "Date & Time: "
-//                                + tableForDetails.getValueAt(row, 2).toString()
-//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                        setMgsDetails.setText(showableMgs);
-//                    }
-//                }
-//            });
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        } else if (detailsSelectedItems.equals("recharge")) {
-//
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//            Connection conn = DbConnection.connect();
-//            try {
-//
-//                Statement st = conn.createStatement();
-//                String sql = "SELECT * FROM `recharge_admin`";
-//                ResultSet rs = st.executeQuery(sql);
-//                while (rs.next()) {
-//                    System.out.println("----->" + rs.getString("date_time").substring(0, 8));
-//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))
-//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))) {
-//                        defaultTableModel.addRow(new Object[]{
-//                            rs.getString("trx_id"),
-//                            rs.getString("date_time"),
-//                            rs.getString("type"),
-//                            rs.getString("mobile_no"),
-//                            rs.getString("amount"),
-//                            rs.getString("from_sp"),
-//                            rs.getString("current_balance"),
-//                            rs.getString("status")});
-//
-//                    }
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//
-//                DbConnection.disconnect(conn);
-//            }
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        }
-//    }
-    private void setBorderInManuBar() {
-        DropShadowBorder shadow = new DropShadowBorder();
-
-        shadow.setShadowColor(Color.BLACK);
-        shadow.setShowLeftShadow(true);
-        shadow.setShowRightShadow(true);
-        shadow.setShowBottomShadow(true);
-        shadow.setShowTopShadow(true);
-
-        mobileRechargeTab.setBorder(shadow);
-        billPaymentTab.setBorder(shadow);
-        //  resellerTab.setBorder(shadow);
-        detailsTab.setBorder(shadow);
-        settingTab.setBorder(shadow);
-        helplineTab.setBorder(shadow);
-    }
-
-    private void switchBillPaymentDetailsPaenl(JPanel jPanel) {
-        switchPanelViaMenu(jPanel);
-
-    }
-
-    *//*
-    *
-    ------------------------- EXTRA METHOD-------------------------------------------
-    *
-     *//*
-    protected void switchPanelViaMenu(javax.swing.JPanel requestedPanel) {
-
-        basePanel.removeAll();
-        basePanel.repaint();
-        basePanel.revalidate();
-
-        basePanel.add(requestedPanel);
-        basePanel.repaint();
-        basePanel.revalidate();
-
-    }
-
-    protected void switchPanelInBillPayment(javax.swing.JPanel requestedPanel) {
-
-        baseBillPayment.removeAll();
-        baseBillPayment.repaint();
-        baseBillPayment.revalidate();
-
-        baseBillPayment.add(requestedPanel);
-        baseBillPayment.repaint();
-        baseBillPayment.revalidate();
-
-    }
-
-    private void refrash() {
-        selectedSimOperatorIcon.setIcon(null);
-        //getAmmountEachNumber.setText("");
-        getAmmountInTk.setText("");
-        getBalenceUssdPartern1.setText("");
-        //  getBalenceUssdPartern2.setText("");
-        getMobileNumber.setText("");
-        getNameForContract.setText("");
-        getNameForSearch.setText("");
-        // getOperatorCode1.setText("");
-        getOperatorName.setText("");
-        // getOperatorName1.setText("");
-        getPhoneNOForContract.setText("");
-        //getRechargeUssdPartern1.setText("");
-        getRechargeUssdParternPostPaid.setText("");
-        // getSearchViaPhoneNoAndTrnId.setText("");
-        getUssdCode.setText("");
-        //switchPanelViaMenu(basePanel);
-
-    }
-
-    private void removePlaceHolder(JTextField editText, String value) {
-        if (editText.getText().equals(value)) {
-            editText.setText("");
-            Color color = new Color(51, 51, 51);
-            editText.setForeground(color);
-        }
-    }
-
-    private void setPlaceHolder(JTextField editText, String value) {
-        if (editText.getText().equals("")) {
-            editText.setText(value);
-            Color color = new Color(153, 153, 153);
-            editText.setForeground(color);
-        }
-    }
-
-    private void hoverInBillPayPanel(JPanel jPanel) {
-
-        jPanel.setBackground(Color.red);
-    }
-
-    private void hoverRemoveInBillPayPanel(JPanel jPanel) {
-        jPanel.setBackground(Color.white);
-    }
-
-    public void resetComboBox(JComboBox jComboBox) {
-        jComboBox.removeAllItems();
-
-    }
-
-    private void processingLoderDialog() {
-
-        ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();
-
-        processtingLoderDialog = new JDialog();
-        processtingLoderDialog.add(processeingLoderUI);
-        processtingLoderDialog.setSize(404, 381);
-        processtingLoderDialog.setLocationRelativeTo(null);
-        processtingLoderDialog.setUndecorated(true);
-
-    }
-
-    private String sendSerialUSSDCode(List<String> ussdCodeSerialList, String sim) {
-        System.err.println("Request List: " + ussdCodeSerialList);
-
-        List<String> responseList = new ArrayList<>();
-        String res = "Could not get response from server";
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-            return "200";
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                if (selectedSimCardWithNumber.toUpperCase().equals(sim.toUpperCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    for (int i = 0; i <= ussdCodeSerialList.size(); i++) {
-                        if (i == 0) {
-                            String ussd = "*" + ussdCodeSerialList.get(i) + "#";
-                            System.out.println("Sending by " + ussd + ":if");
-                            res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                            Configaration.wait(400);
-                            responseList.add(res);
-                            System.out.println("Response " + res);
-
-                        } else {
-                            String ussd = ussdCodeSerialList.get(i);
-                            System.out.println("Sending by " + ussd + ":else");
-                            res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + ussd + "\",15");
-                            Configaration.wait(400);
-                            if (res.split(",").length == 1) {
-                                System.err.println("Tast=" + res);
-
-                                Configaration.closeUssdSession();
-                                auto.recharge.system.config.Modem.disconnect();
-                                return "53656e64696e67204661696c6564";
-
-                            }
-                            responseList.add(res);
-
-                            System.out.println("Response " + res);
-
-                        }
-                        if (i == ussdCodeSerialList.size() - 1) {
-
-                            Configaration.closeUssdSession();
-                            auto.recharge.system.config.Modem.disconnect();
-                            int size = responseList.size();
-                            String finalResponse = responseList.get(size - 1);
-                            String[] finalResponsePerse = finalResponse.split(",");
-                            String finalResultInHax = finalResponsePerse[1].replaceAll("\"", "");
-                            System.err.println("00000000000000000000000909090    " + Configaration.haxToStringConvert(finalResultInHax));
-                            return finalResultInHax;
-                        }
-                    }
-                }
-            }
-            responseList.clear();
-
-            return "USSD Dial Failed";
-        }
-    }
-
-    //-------------------------------- Bill Pay Panel------------------------------------
-    private void payBillByBillNo() {
-        String sim = getSimName.getSelectedItem().toString();
-        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
-        String billNo = getBillNO.getText();
-        String password = getPasswordInBillPay.getText();
-
-        if (billNo.equals("") || password.equals("")) {
-            Popup.customError("Empty Field Found");
-
-        } else {
-            String ussdCode = "*727*2*" + billNo + "*" + password + "#";
-            String status = billPayUssdCodeDial(sim, ussdCode);
-            saveIntobill_pay_bill_no(status);
-            loadInBillPaymentDetailsByBillNo();
-
-        }
-    }
-
-    private void resetBillByBillNo() {
-        getBillNO.setText("");
-
-    }
-
-    private void payBillByCustomerId() {
-
-        String sim = getSimName.getSelectedItem().toString();
-        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
-        String customerId = getCustomerId.getText();
-        String monthName = getMonthNo.getSelectedItem().toString();
-      //  String year = getyear.getSelectedItem().toString();
-        String password = getPassword.getText();
-        String monthNo = null;
-
-        switch (monthName.toLowerCase()) {
-            case "january":
-                monthNo = "1";
-                break;
-            case "february":
-                monthNo = "2";
-                break;
-            case "march":
-                monthNo = "3";
-                break;
-            case "april":
-                monthNo = "4";
-                break;
-            case "may":
-                monthNo = "5";
-                break;
-            case "june":
-                monthNo = "6";
-                break;
-            case "july":
-                monthNo = "7";
-                break;
-            case "august":
-                monthNo = "8";
-                break;
-            case "september":
-                monthNo = "9";
-                break;
-            case "october":
-                monthNo = "10";
-                break;
-            case "november":
-                monthNo = "11";
-                break;
-            case "december":
-                monthNo = "12";
-                break;
-            default:
-                Popup.customError("Month Not Found");
-                break;
-        }
-        if (customerId.equals("") || password.equals("")) {
-            Popup.customError("Empty Field Found");
-
-        } else {
-           String ussdCode = "*727*2*" + customerId + "*" + monthNo + "*2010 *" + password + "#";
-            String status = billPayUssdCodeDial(sim, ussdCode);
-            System.err.println(status);
-            saveIntobill_payment_customer_id(status);
-            loadInBillPaymentDetailsByCustomerId();
-
-        }
-
-    }
-
-    private void resetBillByCustomerId() {
-        getCustomerId.setText("");
-
-    }
-
-    private String billPayUssdCodeDial(String sim, String code) {
-        String res = "Sending Failed...";
-        boolean isPay = false;
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
-                    auto.recharge.system.config.Modem.disconnect();
-                    isPay = true;
-                }
-
-            }
-            if (!isPay) {
-                Popup.customError("Teletalk SIM Not Found");
-            }
-        }
-        return res;
-
-    }
-
-    private void saveIntobill_pay_bill_no(String status) {
-
-        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
-        String billNo = getBillNO.getText();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO bill_pay_bill_no(TrxId,bill_no,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, Configaration.getUUID());
-                preparedStatement.setString(2, billNo);
-                preparedStatement.setString(3, Configaration.getCurrentDateAndTime());
-                preparedStatement.setString(4, "6");
-                preparedStatement.setString(5, getServiceType);
-                preparedStatement.setString(6, status);
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-    }
-
-    private void saveIntobill_payment_customer_id(String status) {
-        String getServiceType = getServiceTypeInBillPay.getSelectedItem().toString();
-        String customerId = getCustomerId.getText();
-        String monthName = getMonthNo.getSelectedItem().toString();
-        //String year = getyear.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO bill_payment_customer_id(TrxId,customer_id,bill_month,bill_year,time_date,c_balance,bill_type,status) VALUES(?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, Configaration.getUUID());
-                preparedStatement.setString(2, customerId);
-                preparedStatement.setString(3, monthName);
-                preparedStatement.setString(4, "2010");
-                preparedStatement.setString(5, Configaration.getCurrentDateAndTime());
-                preparedStatement.setString(6, "4");
-                preparedStatement.setString(7, getServiceType);
-                preparedStatement.setString(8, status);
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-    }
-
-    private void loadInBillPaymentDetailsByBillNo() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Bill No", "Current balance", "Status"}, 0);
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `bill_pay_bill_no`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                        rs.getString("bill_type"), rs.getString("bill_no"), rs.getString("c_balance"),
-                        rs.getString("status")});
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-        tableBillPaymentDetails.getTableHeader().setOpaque(false);
-        tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
-        tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-        tableBillPaymentDetails.setEnabled(false);
-        tableBillPaymentDetails.setRowHeight(30);
-        tableBillPaymentDetails.setModel(defaultTableModel);
-    }
-
-    private void loadInBillPaymentDetailsByCustomerId() {
-        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Customer ID", "Month", "Year", "Current balance", "Status"}, 0);
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `bill_payment_customer_id`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    defaultTableModel.addRow(new String[]{rs.getString("TrxId"), rs.getString("time_date"),
-                        rs.getString("bill_type"), rs.getString("customer_id"), rs.getString("bill_month"), rs.getString("bill_year"), rs.getString("c_balance"),
-                        rs.getString("status")});
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        //For jTable contant in center
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableBillPaymentDetails.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        tableBillPaymentDetails.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 16));
-        tableBillPaymentDetails.getTableHeader().setOpaque(false);
-        tableBillPaymentDetails.getTableHeader().setBackground(new Color(133, 47, 209));
-        tableBillPaymentDetails.getTableHeader().setForeground(new Color(255, 255, 255));
-        tableBillPaymentDetails.setEnabled(false);
-        tableBillPaymentDetails.setRowHeight(30);
-        tableBillPaymentDetails.setModel(defaultTableModel);
-    }
-
-    private void setDataInProfilePanel() {
-        nameInProfilePanel1.setText(UserInfo.name);
-        designationInProfilePanel1.setText("Owner");
-        companyNameInProfilePanel.setText(UserInfo.shopName);
-        userIdInProfile.setText(UserInfo.userId);
-        activePackageNameInProfile.setText(UserInfo.activePackage);
-        activeDateInProfile.setText(UserInfo.activeDate);
-        expiryDateInProfile.setText(UserInfo.expireDate);
-        remainDaysInProfile.setText(UserInfo.name);
-
-    }
-
-    private void rechargeConfirmMessageDialog(String mgs, String phoneNumber) {
-        MessageDialogShowUI ui = new MessageDialogShowUI(mgs, phoneNumber);
-
-        JDialog mgsDialog = new JDialog();
-        mgsDialog.add(ui);
-        mgsDialog.setSize(352, 254);
-        mgsDialog.setLocationRelativeTo(null);
-        mgsDialog.setUndecorated(true);
-        mgsDialog.setVisible(true);
-
-        ui.getClickOk().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                mgsDialog.dispose();
-            }
-
-        });
-
-        ui.getClickCross().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                mgsDialog.dispose();
-            }
-
-        });
-        ui.getClickRetry().setVisible(false);
-        ui.getClickOk().addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    mgsDialog.dispose();
-                }
-            }
-        });
-    }
-
-    private void activeKeyPressWorkInNewContractSave() {
-
-        getNameForContract.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getPhoneNOForContract.requestFocusInWindow();
-                }
-            }
-        });
-        getPhoneNOForContract.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getSeletedStorage.requestFocusInWindow();
-                }
-            }
-        });
-        getSeletedStorage.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clickAddContract.requestFocusInWindow();
-                }
-            }
-        });
-        clickAddContract.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            processtingLoderDialog.setVisible(true);
-                            saveContract();
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            switchPanelViaMenu(contractListPanel);
-                            setContractListInJTable("mobile_recharge");
-                            processtingLoderDialog.setVisible(false);
-                        }
-
-                    };
-                    swingWorker.execute();
-                }
-            }
-        });
-
-    }
-
-    private void addKeyListenserInRechargeOffer() {
-        getSIMOperatorName.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getOfferNameInSeting.requestFocusInWindow();
-                }
-            }
-        });
-        getOfferNameInSeting.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getRechargeAmmountInSeetings.requestFocusInWindow();
-                }
-            }
-        });
-        getRechargeAmmountInSeetings.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getValidityInSetting.requestFocusInWindow();
-                }
-            }
-        });
-        getValidityInSetting.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getSelectedValidityTimeTypeSetting.requestFocusInWindow();
-                }
-            }
-        });
-        getSelectedValidityTimeTypeSetting.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getDescriptionInSetting.requestFocusInWindow();
-                }
-            }
-        });
-        getDescriptionInSetting.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    saveNewOfferInSettrings.requestFocusInWindow();
-                }
-            }
-        });
-        saveNewOfferInSettrings.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            processtingLoderDialog.setVisible(true);
-                            saveSIMOffer();
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            processtingLoderDialog.setVisible(false);
-                            getOfferNameInSeting.setText("");
-                            getRechargeAmmountInSeetings.setText("");
-                            getValidityInSetting.setText("");
-                            getDescriptionInSetting.setText("");
-                            System.err.println("Added @Done...");
-                        }
-
-                    };
-                    swingWorker.execute();
-                }
-            }
-        });
-    }
-
-    private void addKeyLisenerInMobileBankingSetting() {
-        getSelectedServiceCombo.requestFocusInWindow();
-        getTaskNameInMBS.setUI(new HintTextFieldUI("Cash In"));
-        getUssdCodePattren.setUI(new HintTextFieldUI("*247*2*1*number*tk*pin#"));
-        getUssdCodeForBalanceShowPattren.setUI(new HintTextFieldUI("*247*5*pin#"));
-        getPIN.setUI(new HintTextFieldUI("******"));
-
-        getSelectedServiceCombo.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getSelectedSIMNameCombo.requestFocusInWindow();
-                }
-            }
-        });
-        getSelectedSIMNameCombo.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getTaskNameInMBS.requestFocusInWindow();
-                }
-            }
-        });
-        getTaskNameInMBS.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getUssdCodePattren.requestFocusInWindow();
-                }
-            }
-        });
-        getUssdCodePattren.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getUssdCodeForBalanceShowPattren.requestFocusInWindow();
-                }
-            }
-        });
-        getUssdCodeForBalanceShowPattren.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getPIN.requestFocusInWindow();
-                }
-            }
-        });
-        getPIN.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clickSaveInMobileRechatgeSetting.requestFocusInWindow();
-                }
-            }
-        });
-        clickSaveInMobileRechatgeSetting.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            processtingLoderDialog.setVisible(true);
-                            saveInMobileBanking();
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            processtingLoderDialog.setVisible(false);
-                            getTaskNameInMBS.setText("");
-                            getUssdCodePattren.setText("");
-                            getPIN.setText("");
-                            getUssdCodeForBalanceShowPattren.setText("");
-                            getSelectedServiceCombo.requestFocusInWindow();
-                            loadTableMobileBankingSettingFromDb();
-                            System.err.println("Mobile Banking Service Added in List @Done...");
-                        }
-
-                    };
-                    swingWorker.execute();
-                }
-            }
-        });
-
-    }
-
-    private void deleteServiceDetailsFromMobileBanking(String serviceId) {
-        Log.mgs("8266", "Delete requested id " + serviceId);
-
-        DbConnection.deleteRow("mobile_banking", "serviceId", serviceId);
-
-    }
-
-    private void addKeyListenerAndHoverInMobileBankingPanel() {
-        setPlaceHolder(getPhoneNumberInBillPayment, "Mobile Number");
-        setPlaceHolder(getAmmountInBillPayment, "Amount");
-        getServiceName.requestFocusInWindow();
-        getServiceName.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getOperationType.requestFocusInWindow();
-                }
-            }
-        });
-        getOperationType.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getPhoneNumberInBillPayment.requestFocusInWindow();
-                }
-            }
-        });
-        getPhoneNumberInBillPayment.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getAmmountInBillPayment.requestFocusInWindow();
-                }
-            }
-        });
-        getAmmountInBillPayment.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if (mobileBankingPanelValidation()) {
-                        showMobileBankingConfirmationDialog();
-                    } else {
-                        Popup.customError("Any field is empty!!");
-                    }
-                }
-            }
-        });
-
-    }
-
-    private void loadMobileBankingBalance() {
-        Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                DefaultListModel Clistmodel = new DefaultListModel();//
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `mobile_banking`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    MobileBankingBalanceShowDto mobileBankingBalanceShowDto = new MobileBankingBalanceShowDto();
-                    mobileBankingBalanceShowDto.setServiceId(rs.getString("serviceId"));
-                    mobileBankingBalanceShowDto.setServiceName(rs.getString("services_name"));
-                    mobileBankingBalanceShowDto.setDefaultSIM(rs.getString("default_sim"));
-                    mobileBankingBalanceShowDto.setUssdCode(rs.getString("ussd_code"));
-                    mobileBankingBalanceShowDto.setPin(rs.getString("pin"));
-                    bankingBalanceShowDtos.add(mobileBankingBalanceShowDto);
-                }
-
-                for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
-                    System.err.println(mobileBankingBalanceShowDto.getServiceName());
-                    MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
-                    mobileBankingBalanceShowCard.getServiceNameText().setText(mobileBankingBalanceShowDto.getServiceName());
-                    mobileBankingBalanceShowCard.getAmountBalanceText().setText("XXXX" + " TK");
-                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + "XX-XX-XX");
-
-                    Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
-                }
-                mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
-
-                mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-
-    }
-
-    private void addKeyLIsenerInUssdDailPad() {
-        getUssdCode.requestFocusInWindow();
-        getUssdCode.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    getSelectedSim.requestFocusInWindow();
-                }
-            }
-        });
-        getSelectedSim.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clickUssdDailDorSend1.requestFocusInWindow();
-                }
-            }
-        });
-
-        clickUssdDailDorSend1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clickUssdDailDorSend1.setEnabled(false);
-                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-
-                            if (getUssdCode.getText().equals("")) {
-                                getUssdCode.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
-                            } else {
-                                processtingLoderDialog.setVisible(true);
-                                ussdDial();
-                                getUssdCode.setText("");
-                            }
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            getUssdCode.requestFocusInWindow();
-                            processtingLoderDialog.setVisible(false);
-                            clickUssdDailDorSend1.setEnabled(true);
-                        }
-
-                    };
-                    swingWorker.execute();
-                }
-            }
-        });
-    }
-
-    private void loadBalanceINBillPaymentPanel() {
-        String SIM_NAME = "BANGLALINK";
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-
-                if (SIM_NAME.toUpperCase().contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
-
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    getBalanceInBillPayment.setText(getCurrentBalance(SIM_NAME));
-                    Configaration.closeUssdSession();
-                    auto.recharge.system.config.Modem.disconnect();
-                }
-            }
-        }
-
-    }
-
-//    private void loadMobileBankingDetailsInDetailsTable() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Service Name", "Action Type", "Mobile No", "Ammount", "From", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `m_b_details`";
-//            ResultSet rs = st.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TnxId"),
-//                    rs.getString("date_time"),
-//                    rs.getString("service_name"),
-//                    rs.getString("action_type"),
-//                    rs.getString("phone_no"),
-//                    rs.getString("amount"),
-//                    rs.getString("sim"),
-//                    rs.getString("result")});
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//    }
-//    private void loadBillPaymentDetailsInDetailsTable() {
-//        subItemsComboBox.addItem("By Bill no");
-//        subItemsComboBox.addItem("By Customer id");
-//        System.err.println("Bill no.");
-//    }
-//    private void loadBillPaymentByBillNoDetailsInDetailsTable() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Bill No", "Current Balance", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `bill_pay_bill_no`";
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TrxId"),
-//                    rs.getString("time_date"),
-//                    rs.getString("bill_type"),
-//                    rs.getString("bill_no"),
-//                    rs.getString("c_balance"),
-//                    rs.getString("status")
-//                });
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//
-//    }
-//    private void loadInboxDetailsInDetailsTable() {
-//
-//        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-//            @Override
-//            protected Void doInBackground() throws Exception {
-//                processtingLoderDialog.setVisible(true);
-//                for (SimOperatorIdentifierDto operatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-//                    if (operatorIdentifierDto.getOperatorName().toUpperCase().contains(subItemsComboBox.getSelectedItem().toString().toUpperCase())) {
-//                        loadIndoxInDetailsTable(operatorIdentifierDto.getPortName());
-//
-//                    }
-//
-//                }
-//
-//                return null;
-//            }
-//
-//            @Override
-//            protected void done() {
-//
-//                processtingLoderDialog.setVisible(false);
-//                System.out.println("Delete Successful...@Done");
-//            }
-//
-//        };
-//        swingWorker.execute();
-//
-//    }
-//    private void loadBillPaymentByCostumerIdDetailsInDetails() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Customer Id",
-//            "Bill Month", "Bill Year", "Current Balance", "Status"}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `bill_payment_customer_id`";
-//            ResultSet rs = st.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TrxId"),
-//                    rs.getString("time_date"),
-//                    rs.getString("bill_type"),
-//                    rs.getString("customer_id"),
-//                    rs.getString("bill_month"),
-//                    rs.getString("bill_year"),
-//                    rs.getString("c_balance"),
-//                    rs.getString("status")
-//                });
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//    }
-//    private void openSIMSelectionComboBox() {
-//        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-//            subItemsComboBox.addItem(simOperatorIdentifierDto.getOperatorName());
-//        }
-//    }
-    private void exportDatabase() {
-        try {
-            JFileChooser f = new JFileChooser();
-            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            f.showSaveDialog(null);
-
-            System.out.println(f.getCurrentDirectory());
-            System.out.println(f.getSelectedFile());
-            final String inFileName = "Users.sqlite";
-            File dbFile = new File(inFileName);
-            FileInputStream fis = new FileInputStream(dbFile);
-            String path = f.getSelectedFile() + "/";
-            File dir = new File(path);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            String outFileName = path + "/Users.sqlite";
-
-            OutputStream output = new FileOutputStream(outFileName);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fis.read(buffer)) > 0) {
-                output.write(buffer, 0, length);
-            }
-
-            output.flush();
-            output.close();
-            fis.close();
-            Popup.customSuccess();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void importDatabase() {
-        try {
-            JFileChooser f = new JFileChooser();
-
-            f.showSaveDialog(null);
-
-            System.out.println(f.getCurrentDirectory());
-            System.out.println(f.getSelectedFile());
-
-            File from = f.getSelectedFile();
-            FileInputStream fis = new FileInputStream(from);
-
-            String outFileName = "Users.sqlite";
-
-            OutputStream output = new FileOutputStream(outFileName);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = fis.read(buffer)) > 0) {
-                output.write(buffer, 0, length);
-            }
-
-            output.flush();
-            output.close();
-            fis.close();
-            Popup.customSuccess();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void changeAdminPassword(String password) {
-        if (UserInfo.role.equals("admin")) {
-            if (UserInfo.role.equals("demo")) {
-                System.err.println("Access dny in DEMO Panel");
-
-            } else {
-                Connection conn = DbConnection.connect();
-                String sql = "UPDATE user_info SET password = '" + password + "' WHERE user_id = '" + UserInfo.userId + "';";
-                try {
-                    Statement st = conn.createStatement();
-                    st.execute(sql);
-                    int a = Popup.customWarning("Password changed\nLagin again please!");
-                    if (a == 0) {
-                        this.setVisible(false);
-                        Login login = new Login();
-                        login.setVisible(true);
-                    }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-                } finally {
-                    DbConnection.disconnect(conn);
-                }
-            }
-
-        } else {
-            Popup.customError("Access deny");
-
-        }
-    }
-
-    private void addKeyLisenerInPasswordChargePanel() {
-        passwordForUpdate.requestFocusInWindow();
-        passwordForUpdate.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    rePasswordForUpdate.requestFocusInWindow();
-                }
-            }
-        });
-        rePasswordForUpdate.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    clickUpdatePassword.requestFocusInWindow();
-                }
-            }
-        });
-        clickUpdatePassword.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String password = passwordForUpdate.getText();
-                    String rePassword = rePasswordForUpdate.getText();
-                    if (password.equals("") || rePassword.equals("")) {
-                        Popup.customError("Empty field found.");
-
-                    } else {
-                        if (password.equals(rePassword)) {
-                            changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
-
-                        } else {
-                            Popup.customError("Re-type password not match");
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    private void updateMobileRechargeStatusByTrxId(String trxId, String status, String currentBalance) {
-
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "UPDATE recharge_admin SET current_balance = '" + currentBalance + "', status = '" + status + "' WHERE trx_id ='" + trxId + "'";
-            try {
-                Statement st = conn.createStatement();
-                st.execute(sql);
-
-            } catch (SQLException ex) {
-                Log.error("updateMobileRechargeStatusByTrxId: ", ex.getMessage());
-            }
-            DbConnection.disconnect(conn);
-        }
-        loadValueInTableRechargeDetails();
-    }
-
-    public void showMobileRechargeBalance() {
-        errorMgsInBalencePanel.setText("Processing...");
-        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-
-                addBalenceInBalenceShowTable();
-                return null;
-            }
-
-            @Override
-            protected void done() {
-
-            }
-
-        };
-        swingWorker.execute();
-    }
-
-    private void setupTabsInShopManagment() {
-        showDataInProductPurchaseFromDB("0000");
-        //Product Details Tab
-        listOfBarCodeOrGroupComboBox.removeAllItems();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString());
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        //Handle Enter Button Task
-        supplierInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        barCodeInProductPurchases.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        barCodeInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    pNameInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-
-        pNameInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    qtyInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        qtyInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    buyRateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        buyRateInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    sellRateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        sellRateInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    saveInProductPurchase.requestFocusInWindow();
-                }
-            }
-        });
-
-        //Product SELL Tab
-        invoiceInProductSell.requestFocusInWindow();
-        invoiceInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        customerIdINProductSell.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        customerIdINProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    fullNameInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-
-        fullNameInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    addressInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-        addressInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    noteInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-        noteInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    phoneNOInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-        phoneNOInProductSell.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    paymentInProductBill.requestFocusInWindow();
-                }
-            }
-        });
-        paymentInProductBill.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    summaryShowInBillDisplay();
-                    warrantyInProductBill.requestFocusInWindow();
-                }
-            }
-        });
-        warrantyInProductBill.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    summaryShowInBillDisplay();
-                    duePaymentInProductBill.requestFocusInWindow();
-                }
-            }
-        });
-        duePaymentInProductBill.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    summaryShowInBillDisplay();
-                    discpuntInProductBill.requestFocusInWindow();
-                }
-            }
-        });
-        discpuntInProductBill.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    summaryShowInBillDisplay();
-                    actionTypeInProductSellCOmboBox.requestFocusInWindow();
-                }
-            }
-        });
-        actionTypeInProductSellCOmboBox.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    barCodeInProductSell.requestFocusInWindow();
-                }
-            }
-        });
-        invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
-        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000, 10000)));
-    }
-
-    private void saveInProductPurchaseDB() {
-        String invoice = invoiceInProductPurchases.getText();
-        String supplier = supplierInProductPurchases.getText();
-
-        java.util.Date jud = dateInProductPurchases.getDate();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMMM dd, yyyy");
-        String date = sdf.format(jud);
-
-        String barCode = barCodeInProductPurchases.getText();
-        String sellRate = sellRateInProductPurchases.getText();
-        String group = groupInProductPurchases.getText();
-        String pName = pNameInProductPurchases.getText();
-        String qtyString = qtyInProductPurchases.getText();
-        String buyRate = buyRateInProductPurchases.getText();
-        String typeOfProduct = typeInProductPurchasesComboBox.getSelectedItem().toString();
-        Double subtotal = (Double.valueOf(buyRate) * Double.valueOf(qtyString));
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO product_purchase(invoice,supplier,date,bar_code,`group`,pName,qty,buy_rate,sell_rate,type,subTotal) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, invoice);
-                preparedStatement.setString(2, supplier);
-                preparedStatement.setString(3, date);
-                preparedStatement.setString(4, barCode);
-                preparedStatement.setString(5, group);
-                preparedStatement.setString(6, pName);
-                preparedStatement.setString(7, qtyString);
-                preparedStatement.setString(8, buyRate);
-                preparedStatement.setString(9, sellRate);
-                preparedStatement.setString(10, typeOfProduct);
-                preparedStatement.setString(11, String.valueOf(subtotal));
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-    }
-
-    private void showDataInProductPurchaseFromDB(String invoice) {
-
-        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Barcode", "Group", "Purchases Name", "QTY.", "BUY RATE", "SELL RATE", "SUBTOTAL", "TYPE"}, 0);
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productPurchaseTable.getDefaultRenderer(String.class);
-
-        Double returnAC = 0.0;
-        Double comission = 0.0;
-        Double total = 0.0;
-        int count = 0;
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" + invoice;
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    count++;
-                    String typeOfProduct = rs.getString("type");
-                    String subTotal = rs.getString("subTotal");
-                    supplierInProductPurchases.setText(rs.getString("supplier"));
-                    dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                    productPurchaseTableModel.addRow(new Object[]{
-                        rs.getString("bar_code"),
-                        rs.getString("group"),
-                        rs.getString("pName"),
-                        rs.getString("qty"),
-                        rs.getString("buy_rate"),
-                        rs.getString("sell_rate"),
-                        subTotal,
-                        rs.getString("type")
-                    });
-                    switch (typeOfProduct) {
-                        case "PURCHASE":
-                            total = total + Double.valueOf(subTotal);
-                            break;
-                        case "RETURN":
-                            returnAC = returnAC + Double.valueOf(subTotal);
-                            System.err.println("returnAC");
-                            break;
-                        case "OFFER":
-                            comission = comission + Double.valueOf(subTotal);
-                            System.err.println("comission");
-                            break;
-                        default:
-                            System.err.println("Type Not Selected");
-                            break;
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        productPurchaseTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        productPurchaseTable.getTableHeader().setOpaque(false);
-        productPurchaseTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        productPurchaseTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        productPurchaseTable.setEnabled(false);
-        productPurchaseTable.setRowHeight(30);
-        productPurchaseTable.setModel(productPurchaseTableModel);
-
-        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000, 10000)));
-
-        summaryShowInDisplay(total, count, comission, total, returnAC);
-    }
-
-    private void showDataInProductDetailsPurchaseFromDB(String barCode) {
-        System.out.println(barCode);
-        DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name", "Buy Rate", "Sell Price", "Brand", "Last Modify"}, 0);
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    invoiceINProductDetails.setText(rs.getString("invoice"));
-                    System.err.println(rs.getString("bar_code"));
-                    productPurchaseTableModel.addRow(new Object[]{
-                        rs.getString("bar_code"),
-                        rs.getString("group"),
-                        rs.getString("pName"),
-                        rs.getString("buy_rate"),
-                        rs.getString("sell_rate"),
-                        rs.getString("supplier"),
-                        rs.getString("date")
-                    });
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        productDetailsTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        productDetailsTable.getTableHeader().setOpaque(false);
-        productDetailsTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        productDetailsTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        productDetailsTable.setEnabled(false);
-        productDetailsTable.setRowHeight(30);
-        productDetailsTable.setModel(productPurchaseTableModel);
-
-    }
-
-    private void summaryShowInDisplay(Double tAmountInPPurchaseInSummaryP, int tItemsInPPurchaseInSummaryStringP, Double tCommissionInPPurchaseInSummaryP, Double tPaidInPPurchaseInSummaryP, Double tReturnAmountInPPurchaseInSummaryP) {
-
-        tAmountInPPurchaseInSummary.setText(String.valueOf(tAmountInPPurchaseInSummaryP));
-        tItemsInPPurchaseInSummary.setText(String.valueOf(tItemsInPPurchaseInSummaryStringP));
-        tCommissionInPPurchaseInSummary.setText(String.valueOf(tCommissionInPPurchaseInSummaryP));
-        tPaidInPPurchase3.setText(String.valueOf(tPaidInPPurchaseInSummaryP));
-        tReturnAmountInPPurchase4.setText(String.valueOf(tReturnAmountInPPurchaseInSummaryP));
-
-    }
-
-    private void updateStoredItemByBarCode(String invoice, String barCode, String sellPrice) {
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            String sql = "UPDATE product_purchase SET date = '" + Configaration.getCurrentDateAndTime()
-                    + "', pName = '" + pNameInProductDetails.getText() + "',qty = '"
-                    + qtyInProductDetails.getText() + "',buy_rate = '" + buyRateInProductDetails.getText()
-                    + "',sell_rate = '" + sellPrice + "',order_limit = '"
-                    + oderLimitInProductDetails.getText() + "',warranty = '"
-                    + warrentyInProductDetails.getText() + "' WHERE invoice ='" + invoice + "' AND bar_code ='"
-                    + barCode + "'";
-            try {
-                Statement st = conn.createStatement();
-                st.execute(sql);
-
-            } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-            }
-            DbConnection.disconnect(conn);
-
-        }
-        showDataInProductDetailsPurchaseFromDB(barCode);
-    }
-
-    public void genarateBarCode(String pdfName) {
-        try {
-            String fileNameJrxml1 = "/resources/reports/bar_code_list.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-            URL res1 = getClass().getResource(fileNamePdf1);
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String first_language = "Java";
-                String second_language = "Structured text";
-                HashMap hm = new HashMap();
-                hm.put("bar_code_text", pdfName);
-
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
-
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
-
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void genarateBarCodeForContractNumber(String number, String name) {
-        try {
-            String fileNameJrxml1 = "/resources/reports/contract_number.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-            URL res1 = getClass().getResource(fileNamePdf1);
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String first_language = "Java";
-                String second_language = "Structured text";
-                HashMap hm = new HashMap();
-                hm.put("phone_no", number);
-                hm.put("name", name);
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
-
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
-
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void preview(JasperPrint jprint) {
-
-        JasperViewer viewer = new JasperViewer(jprint, false);
-        viewer.setLocationRelativeTo(null); //You can set location
-        viewer.setSize(new Dimension(1000, 600)); //You can set size or you set preferredSize and the pack it.
-        viewer.setVisible(true);
-    }
-
-    private void addProductFromDBInSellPanel(String barCode) {
-
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase` WHERE bar_code= " + barCode;
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    warrantyInProductBill.setText(rs.getString("warranty"));
-                    countForSellTable++;
-                    Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
-                    String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
-                    supplierInProductPurchases.setText(rs.getString("supplier"));
-                    dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                    productSellTableModel.addRow(new Object[]{
-                        String.valueOf(countForSellTable),
-                        typeOfAction,
-                        rs.getString("bar_code"),
-                        rs.getString("group"),
-                        rs.getString("pName"),
-                        "1",
-                        rs.getString("sell_rate"),
-                        subTotal
-                    });
-                    switch (typeOfAction) {
-                        case "Sell":
-                            totalPayableAmt = totalPayableAmt + Double.valueOf(subTotal);
-
-                            break;
-                        case "Return":
-                            returnForSellTable = returnForSellTable + Double.valueOf(subTotal);
-                            System.err.println("returnAC");
-                            break;
-                        default:
-                            System.err.println("Type Not Selected");
-                            break;
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        productSellTable.getTableHeader().setOpaque(false);
-        productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        productSellTable.setRowHeight(30);
-        productSellTable.setModel(productSellTableModel);
-        saveSellProductInSellTabel(countForSellTable);
-
-        summaryShowInBillDisplay();
-    }
-
-    private void summaryShowInBillDisplay() {
-        Double totalPayableAmtAfterDiscount;
-
-        discountInSellProduct = (totalPayableAmt * Double.valueOf(discpuntInProductBill.getText())) / 100;
-        totalPayableAmtAfterDiscount = totalPayableAmt - discountInSellProduct;
-
-        String totalItems, returnAmt, discountAmt, vat, payableAmt, due, payway;
-        totalItems = String.valueOf(productSellTable.getRowCount());
-        returnAmt = String.valueOf(returnForSellTable);
-        discountAmt = String.valueOf(discountInSellProduct);
-        vat = String.valueOf("0.0");
-        payableAmt = String.valueOf(totalPayableAmtAfterDiscount);
-        due = String.valueOf(Double.valueOf(payableAmt) - Double.valueOf(paymentInProductBill.getText()));
-        payway = String.valueOf(paymentTypeInProductSell.getSelectedItem().toString());
-
-        totalAmountInProductSell1.setText(String.valueOf(totalPayableAmt));
-        totalItemsInProductSell.setText(totalItems);
-        returnInProductSell.setText(returnAmt);
-        discountInProductSell.setText(discountAmt);
-        vatInProductSell.setText(vat);
-        payableInProductSell.setText(payableAmt);
-        paidInProductSell.setText(paymentInProductBill.getText());
-        duePaymentInProductSell.setText(duePaymentInProductBill.getText());
-        dueInProductSell.setText(due);
-        paymentWayInProductSell.setText(payway);
-
-    }
-
-    private void clearBillforProduct() {
-        totalItemsInProductSell.setText("");
-        returnInProductSell.setText("");
-        discountInProductSell.setText("");
-        vatInProductSell.setText("");
-        payableInProductSell.setText("");
-        paidInProductSell.setText("");
-        duePaymentInProductSell.setText("");
-        dueInProductSell.setText("");
-        paymentWayInProductSell.setText("");
-
-        invoiceInProductSell.setText("");
-        customerIdINProductSell.setText("");
-        fullNameInProductSell.setText("");
-        addressInProductSell.setText("");
-        phoneNOInProductSell.setText("");
-        paymentInProductBill.setText("0.0");
-        warrantyInProductBill.setText("0.0");
-        duePaymentInProductBill.setText("0.0");
-        discpuntInProductBill.setText("0.0");
-
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
-        productSellTableModel.addRow(new Object[]{});
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        productSellTable.getTableHeader().setOpaque(false);
-        productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
-        productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
-        productSellTable.setRowHeight(30);
-        productSellTable.setModel(productSellTableModel);
-
-        int countForSellTable = 0;
-
-    }
-
-    private void printMemo() {
-        List<Products> productses = new ArrayList<>();
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `sell_table`";
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (invoiceInProductSell.getText().equals(rs.getString("invoice"))) {
-                        Products p = new Products();
-                        p.setBar_code(rs.getString("bar_code"));
-                        p.setPrice(rs.getString("price"));
-                        p.setQty(rs.getString("qty"));
-                        p.setSub_total(rs.getString("sub_total"));
-                        p.setWarranty(warrantyInProductBill.getText());
-                        p.setP_name(rs.getString("p_name"));
-                        productses.add(p);
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        try {
-            String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-//            URL res1 = getClass().getResource(fileNamePdf1);
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String shopName = "AK STORE AND TELECOM";
-                String address = "Asulia savar,dhaka,bangladesh";
-                String phoneNumber = "+8801988841890 +8801988851789";
-                System.err.println(productses.get(0).getPrice());
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(productses);
-
-                HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("shop_name", shopName);
-                hm.put("shop_address", address);
-                hm.put("shop_phone_number", phoneNumber);
-                hm.put("customar_name", fullNameInProductSell.getText());
-                hm.put("phone_no", phoneNOInProductSell.getText());
-                hm.put("customar_address", addressInProductSell.getText());
-                hm.put("invoice", invoiceInProductSell.getText());
-                hm.put("sold_by", "Logged User Name");
-                hm.put("bar_code", invoiceInProductSell.getText());
-                hm.put("collectionOfBean", ds);
-
-                hm.put("total_amouny", totalAmountInProductSell1.getText());
-                hm.put("discountAmountInBitll", discountInProductSell.getText());
-                hm.put("tPayble", payableInProductSell.getText());
-                hm.put("paid", paidInProductSell.getText());
-                hm.put("due_payment", duePaymentInProductSell.getText());
-                hm.put("due", dueInProductSell.getText());
-
-                hm.put("vatTAxInBitll", "0.0");
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
-
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
-
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void saveSellProductInSellTabel(int rowNo) {
-
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group`,p_name,qty,price,sub_total,warranty) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, invoiceInProductSell.getText().toString());
-                preparedStatement.setString(2, customerIdINProductSell.getText().toString());
-                preparedStatement.setString(3, dateInProductSell.getDate().toString());
-                preparedStatement.setString(4, dueDateInProductSell.getDate().toString());
-                preparedStatement.setString(5, fullNameInProductSell.getText().toString());
-                preparedStatement.setString(6, addressInProductSell.getText().toString());
-                preparedStatement.setString(7, noteInProductSell.getText().toString());
-                preparedStatement.setString(8, phoneNOInProductSell.getText().toString());
-                preparedStatement.setString(9, totalItemsInProductSell.getText().toString());
-                preparedStatement.setString(10, returnInProductSell.getText().toString());
-                preparedStatement.setString(11, totalAmountInProductSell1.getText().toString());
-                preparedStatement.setString(12, discountInProductSell.getText().toString());
-                preparedStatement.setString(13, payableInProductSell.getText().toString());
-                preparedStatement.setString(14, paidInProductSell.getText().toString());
-                preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
-                preparedStatement.setString(16, dueInProductSell.getText().toString());
-                preparedStatement.setString(17, paymentWayInProductSell.getText().toString());
-                preparedStatement.setString(25, warrantyInProductBill.getText().toString());
-                for (int j = 1; j < productSellTable.getColumnCount(); j++) {
-
-                    switch (j) {
-                        case 0:
-                            preparedStatement.setString(18, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            System.err.println();
-                            break;
-                        case 1:
-                            preparedStatement.setString(19, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-                        case 2:
-                            preparedStatement.setString(20, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-                        case 3:
-                            preparedStatement.setString(21, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-                        case 4:
-                            preparedStatement.setString(22, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-                        case 5:
-                            preparedStatement.setString(23, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-                        case 6:
-                            preparedStatement.setString(24, String.valueOf(productSellTable.getModel().getValueAt(rowNo - 1, j)));
-                            break;
-
-                    }
-
-                }
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-
-//        productSellTable.getRowCount();
-//        System.err.println(productSellTable.getModel().getValueAt(0,0));
-    }
-
-    private void saveWarrantyDetailsInDb() {
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            Connection conn1 = DbConnection.connect();
-            String sql = "INSERT INTO warranty_table(invoice,customar_id,`date`,d_date,`problem`,f_name,address,mobole_no,ref_name,`brand`,status,bill,warranty,paid,discount,due) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn1.prepareStatement(sql);
-                preparedStatement.setString(1, invoiceInProductWarranty.getText().toString());
-                preparedStatement.setString(2, customerIdINProductWanrranty.getText().toString());
-                preparedStatement.setString(3, dateInProductWanrranty.getDate().toString());
-                preparedStatement.setString(4, delevaryDateDateInProductWanrranty.getDate().toString());
-                preparedStatement.setString(5, problemInProductWanrranty.getText().toString());
-                preparedStatement.setString(6, fullNameInProductWanrranty.getText().toString());
-                preparedStatement.setString(7, addressInProductWanrranty.getText().toString());
-                preparedStatement.setString(8, phoneNOInProductWanrranty.getText().toString());
-                preparedStatement.setString(9, refNameInProductWanrranty.getText().toString());
-
-                preparedStatement.setString(10, brandInProductWanrranty.getText().toString());
-                preparedStatement.setString(11, statusInProductWanrrantyComboBox.getSelectedItem().toString());
-                preparedStatement.setString(12, billInProductWanrranty.getText().toString());
-                preparedStatement.setString(13, warrantyInProductWanrranty.getText().toString());
-                preparedStatement.setString(14, paidPaymentInProductWanrranty.getText().toString());
-                preparedStatement.setString(15, discpuntInProductWanrranty.getText().toString());
-                preparedStatement.setString(16, dueInProductWanrranty.getText().toString());
-
-                preparedStatement.execute();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                if (conn1 != null) {
-                    try {
-                        conn1.close();
-                    } catch (SQLException e) {
-
-                    }
-                }
-            }
-        }
-    }
-
-    private void printPosMemo(String text) {
-        List<Warranty> warrantys = new ArrayList<>();
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `warranty_table`";
-                //TODO: HANDLE NULL
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
-                        Warranty p = new Warranty();
-                        p.setId("1");
-                        p.setService_name(rs.getString("brand"));
-                        p.setPrice(rs.getString("bill"));
-                        p.setQty("1");
-                        p.setTotal(rs.getString("bill"));
-
-                        warrantys.add(p);
-                    }
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        try {
-            String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-//            URL res1 = getClass().getResource(fileNamePdf1);
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String shopName = "AK STORE AND TELECOM";
-                String address = "Asulia savar,dhaka,bangladesh";
-                String phoneNumber = "+8801988841890 +8801988851789";
-
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
-
-                HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("shop_name", shopName);
-                hm.put("address", address);
-                hm.put("phone_no", phoneNumber);
-                hm.put("invoice", invoiceInProductWarranty.getText());
-                hm.put("c_phn_no", phoneNOInProductWanrranty.getText());
-                hm.put("c_name", fullNameInProductWanrranty.getText());
-                hm.put("paid", paidPaymentInProductWanrranty.getText());
-                hm.put("due", "Logged User Name");
-                hm.put("total", invoiceInProductSell.getText());
-                hm.put("delivary_date", delevaryDateDateInProductWanrranty.getDate().toString());
-                hm.put("collectionOfBean", ds);
-
-                hm.put("total_amouny", totalAmountInProductSell1.getText());
-                hm.put("discountAmountInBitll", discountInProductSell.getText());
-                hm.put("tPayble", payableInProductSell.getText());
-                hm.put("paid", paidInProductSell.getText());
-                hm.put("due_payment", duePaymentInProductSell.getText());
-                hm.put("due", dueInProductSell.getText());
-
-                hm.put("vatTAxInBitll", "0.0");
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
-
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
-
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void collectInitialSIMBalance() {
-        errorMgsInBalencePanel.setText("Processing...");
-        List<String> balancePaseList = new ArrayList<>();
-        List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
-        ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
-            Connection conn = DbConnection.connect();
-            try {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `command`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
-                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
-                            + ")".toUpperCase())) {
-                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
-                        Configaration.wait(200);
-                        Configaration.closeUssdSession();
-                        System.out.println(auto.recharge.system.config.Modem.disconnect());
-                        String[] value = balanceMgs.split(",");
-
-                        System.out.println(value.length);
-                        if (value.length == 1) {
-                            errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
-
-                            errorMgsInBalencePanel.setVisible(true);
-                        } else {
-                            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
-                            Pattern p = Pattern.compile("\\d+");
-                            Matcher m = p.matcher(balance);
-                            while (m.find()) {
-                                balancePaseList.add(m.group());
-                                System.out.println(m.group());
-                            }
-
-                        }
-                        MobileRechargeBalance mobileRechargeBalance = new MobileRechargeBalance();
-                        mobileRechargeBalance.setPhoneNumber(simOperatorIdentifierDto.getOwnPhoneNumber());
-                        mobileRechargeBalance.setSimName(rs.getString("operator_name"));
-                        mobileRechargeBalance.setSimBalance(balancePaseList.get(0));
-                        mobileRechargeBalanceList.add(mobileRechargeBalance);
-                    }
-                }
-                ModemInfoList.mobileRechargeBalance = mobileRechargeBalanceList;
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-        });
-    }
-
-    private void displayConfig() {
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            int screenHeight = screenSize.height;
-            int screenWidth = screenSize.width;
-            this.setSize(1366,768);
-            this.setLocationRelativeTo(null);
-        
-    }
-
 }
-*/
+
+
