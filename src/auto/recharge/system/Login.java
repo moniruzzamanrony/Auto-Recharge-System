@@ -372,16 +372,14 @@ public final class Login extends javax.swing.JFrame {
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
-                if(login())
-                {
-                    if(UserInfo.role.equals("demo"))
-                    {
+                if (login()) {
+                    if (UserInfo.role.equals("demo")) {
                         Home home = new Home();
                         home.setVisible(true);
-                    }else{
+                    } else {
                         new ConfigrarationModemStartUp().setVisible(true);
                     }
-                }else{
+                } else {
 
                 }
                 return null;

@@ -62,11 +62,13 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
         modemToSim.setEnabled(false);
         simToFinish.setEnabled(false);
         processingLoderDialog();
+        
     }
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         new Login().show();
         this.setVisible(false);
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void port_searching2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_port_searching2ActionPerformed
@@ -587,6 +589,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
         processtingLoderDialog.setSize(404, 381);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
+
 
     }
 }
