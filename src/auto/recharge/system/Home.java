@@ -90,7 +90,7 @@ public class Home extends javax.swing.JFrame {
     private DefaultListModel defaultListModel = new DefaultListModel();
     private Set<ContractResponse> contractList;
     private JDialog processtingLoderDialog;
-    private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad","SureCash", "MyCash","uCash","P-Cash","TeleCash","IFIC","OkWallet"};
+    private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash", "uCash", "P-Cash", "TeleCash", "IFIC", "OkWallet"};
     private DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
     private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
     private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
@@ -101,12 +101,13 @@ public class Home extends javax.swing.JFrame {
     private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
     private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
     private final String TAG = "Home :";
+
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/icon.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
-        this.setTitle("Auto Recharge System");      
+        this.setTitle("Auto Recharge System");
         refrash();
         placeHoderSetter();
         setBorderInManuBar();
@@ -115,6 +116,7 @@ public class Home extends javax.swing.JFrame {
         processingLoderDialog();
         startUpApplicationBaseOnRole();
         displayConfig();
+        System.err.println("sdfsdfsdf");
     }
 
     @SuppressWarnings("unchecked")
@@ -444,7 +446,6 @@ public class Home extends javax.swing.JFrame {
         MobileBankingSettingsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        getSelectedServiceCombo = new javax.swing.JComboBox<>();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         getSelectedSIMNameCombo = new javax.swing.JComboBox<>();
@@ -459,6 +460,7 @@ public class Home extends javax.swing.JFrame {
         jSeparator9 = new javax.swing.JSeparator();
         getUssdCodeForBalanceShowPattren = new javax.swing.JTextField();
         jLabel100 = new javax.swing.JLabel();
+        getSelectedServiceCombo = new javax.swing.JTextField();
         jScrollPane14 = new javax.swing.JScrollPane();
         tableMobileBankingSetting = new javax.swing.JTable();
         jLabel86 = new javax.swing.JLabel();
@@ -1278,6 +1280,9 @@ public class Home extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(153, 0, 255));
 
+        selectedSimOperatorIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedSimOperatorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/default_operator_icon_1.png"))); // NOI18N
+
         clickContactList.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clickContactList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/phone_book.png"))); // NOI18N
         clickContactList.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1473,7 +1478,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(getMobileNumberForSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel172, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deviceStartStatus))
         );
@@ -1827,7 +1832,7 @@ public class Home extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))))
+                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
                                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                         .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2137,7 +2142,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         productPurchaseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -2227,7 +2232,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(qtyInProductPurchases)
-                                    .addComponent(typeInProductPurchasesComboBox, 0, 352, Short.MAX_VALUE)))
+                                    .addComponent(typeInProductPurchasesComboBox, 0, 340, Short.MAX_VALUE)))
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel126)
@@ -2320,17 +2325,18 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(sellRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeInProductPurchasesComboBox)
+                            .addComponent(typeInProductPurchasesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel133)
-                                .addComponent(saveInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)))
+                                .addComponent(saveInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout productPurchaseLayout = new javax.swing.GroupLayout(productPurchase);
@@ -2824,7 +2830,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(updateClickProductWanrranty)))
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3390,7 +3396,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(addressInProductSell)
                                     .addComponent(phoneNOInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel138, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
@@ -3464,7 +3470,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(barCodeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(paymentTypeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)))
                 .addGap(12, 12, 12))
         );
 
@@ -3487,11 +3493,15 @@ public class Home extends javax.swing.JFrame {
         detailsPanel.setLayout(detailsPanelLayout);
         detailsPanelLayout.setHorizontalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         detailsPanelLayout.setVerticalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(detailsPanelLayout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         basePanel.add(detailsPanel, "card2");
@@ -4090,12 +4100,6 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Add new services");
 
-        getSelectedServiceCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getSelectedServiceComboActionPerformed(evt);
-            }
-        });
-
         jLabel58.setText("Select Service");
 
         jLabel59.setText("Select  Default SIM Card");
@@ -4152,7 +4156,6 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(getSelectedServiceCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(getSelectedSIMNameCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4170,6 +4173,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator9)
+            .addComponent(getSelectedServiceCombo)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4240,7 +4244,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -5294,7 +5298,7 @@ public class Home extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane8)
-                            .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))))
+                            .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         rechargeBalencePanel1Layout.setVerticalGroup(
@@ -5434,8 +5438,8 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jPanel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(32, 32, 32)
-                        .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                         .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(589, 589, 589)
@@ -6360,7 +6364,7 @@ public class Home extends javax.swing.JFrame {
         switchPanelViaSettings(myProfilePanel, myProfile);
         systemBackup.setForeground(Color.black);
         passwordChange.setForeground(Color.black);
-       // trustedEmployee.setForeground(Color.black);
+        // trustedEmployee.setForeground(Color.black);
         rechargeSettings.setForeground(Color.black);
         mobileBankingSettings.setForeground(Color.black);
         rechargeOffers.setForeground(Color.black);
@@ -6382,7 +6386,7 @@ public class Home extends javax.swing.JFrame {
         switchPanelViaSettings(passwordChangePanel, passwordChange);
         myProfile.setForeground(Color.black);
         systemBackup.setForeground(Color.black);
-      //  trustedEmployee.setForeground(Color.black);
+        //  trustedEmployee.setForeground(Color.black);
         rechargeSettings.setForeground(Color.black);
         mobileBankingSettings.setForeground(Color.black);
         rechargeOffers.setForeground(Color.black);
@@ -6395,10 +6399,10 @@ public class Home extends javax.swing.JFrame {
         myProfile.setForeground(Color.black);
         systemBackup.setForeground(Color.black);
         passwordChange.setForeground(Color.black);
-      //  trustedEmployee.setForeground(Color.black);
+        //  trustedEmployee.setForeground(Color.black);
         mobileBankingSettings.setForeground(Color.black);
         rechargeOffers.setForeground(Color.black);
-       
+
         loadValuesForUssdManagementTable();
     }//GEN-LAST:event_rechargeSettingsMouseClicked
 
@@ -6413,10 +6417,10 @@ public class Home extends javax.swing.JFrame {
         rechargeOffers.setForeground(Color.black);
         loadTableMobileBankingSettingFromDb();
         getSelectedSIMNameCombo.removeAllItems();
-        getSelectedServiceCombo.removeAllItems();
-        for (String mBank : MOBILE_BANKING_NANE) {
-            getSelectedServiceCombo.addItem(mBank);
-        }
+//        getSelectedServiceCombo.removeAllItems();
+//        for (String mBank : MOBILE_BANKING_NANE) {
+//            getSelectedServiceCombo.addItem(mBank);
+//        }
         if (UserInfo.role.equals("demo")) {
 
         } else {
@@ -6766,10 +6770,6 @@ public class Home extends javax.swing.JFrame {
     private void getOperationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getOperationTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_getOperationTypeActionPerformed
-
-    private void getSelectedServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getSelectedServiceComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_getSelectedServiceComboActionPerformed
 
     private void getUssdCodePattrenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getUssdCodePattrenActionPerformed
         // TODO add your handling code here:
@@ -7176,7 +7176,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_mobileBankingBalanceShowPanelListMouseClicked
 
     private void tableMobileBankingDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingDetailsMouseClicked
-        String mgs, userId, phoneNumberText, serviceName,amount;
+        String mgs, userId, phoneNumberText, serviceName, amount;
         Point point = evt.getPoint();
         int column = tableMobileBankingDetails.columnAtPoint(point);
         int row = tableMobileBankingDetails.rowAtPoint(point);
@@ -8204,13 +8204,13 @@ public class Home extends javax.swing.JFrame {
                     && !ammountRequested.equals("")
                     && phoneNumberRequested.matches("[0-9]+")
                     && ammountRequested.matches("[0-9]+")) {
-                if(isRechargeModemSetUpDone()){
-                String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
-                String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
+                if (isRechargeModemSetUpDone()) {
+                    String preOrPostRequested = getPrepaidOrPostpaid.getSelectedItem().toString();
+                    String selectedPayableSIM = getSeletedOperatorName.getSelectedItem().toString();
 
-                recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
-                }else{
-                     Popup.customError("Recharge Setting not found.");
+                    recharge(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM);
+                } else {
+                    Popup.customError("Recharge Setting not found.");
                 }
             } else {
                 getMobileNumber.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
@@ -8296,8 +8296,8 @@ public class Home extends javax.swing.JFrame {
             String profit = getprofitIn1k.getText();
 
             if (!rechargeUssdPartern.equals("")
-                && !operatorName.equals("")
-                && !profit.equals("")) {
+                    && !operatorName.equals("")
+                    && !profit.equals("")) {
 
                 if (saveToDbCommandInCommand()) {
                     System.out.println("Adding Successfull");
@@ -8320,17 +8320,17 @@ public class Home extends javax.swing.JFrame {
         } else {
             switch (getOparetorNameInUssdCommand.getSelectedItem().toString().toLowerCase().replaceAll(" ", "")) {
                 case "gp":
-                labelUssdPatternSkitto.setVisible(true);
-                getRechargeUssdParternSkitto.setVisible(true);
-                break;
+                    labelUssdPatternSkitto.setVisible(true);
+                    getRechargeUssdParternSkitto.setVisible(true);
+                    break;
                 case "grameenphone":
-                labelUssdPatternSkitto.setVisible(true);
-                getRechargeUssdParternSkitto.setVisible(true);
-                break;
+                    labelUssdPatternSkitto.setVisible(true);
+                    getRechargeUssdParternSkitto.setVisible(true);
+                    break;
                 default:
-                labelUssdPatternSkitto.setVisible(false);
-                getRechargeUssdParternSkitto.setVisible(false);
-                break;
+                    labelUssdPatternSkitto.setVisible(false);
+                    getRechargeUssdParternSkitto.setVisible(false);
+                    break;
             }
         }
     }//GEN-LAST:event_getOparetorNameInUssdCommandActionPerformed
@@ -8579,7 +8579,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getRechargeUssdParternSkitto;
     private javax.swing.JComboBox<String> getSIMOperatorName;
     private javax.swing.JComboBox<String> getSelectedSIMNameCombo;
-    private javax.swing.JComboBox<String> getSelectedServiceCombo;
+    private javax.swing.JTextField getSelectedServiceCombo;
     private javax.swing.JComboBox<String> getSelectedSim;
     private javax.swing.JComboBox<String> getSelectedSimInGroupRecharge1;
     private javax.swing.JComboBox<String> getSelectedTypeGroupRecharge;
@@ -8981,7 +8981,7 @@ public class Home extends javax.swing.JFrame {
                     showMobileRechargeBalance();
                     loadValueInTableRechargeDetails();
                     setFocusInMobileRechargePanel();
-                   
+
                     return null;
                 }
 
@@ -9065,7 +9065,7 @@ public class Home extends javax.swing.JFrame {
     ------------------------ MOBILE RECHARGE PANEL--------------------------------------
      */
     private void recharge(String phoneNumberRequested, String ammountRequested, String preOrPostRequested, String selectedPayableSIM) {
-
+        boolean isHaveAnyPack;
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
@@ -9126,17 +9126,14 @@ public class Home extends javax.swing.JFrame {
                     });
 
                     ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-                        
-                       
+
                         SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                             @Override
                             protected Void doInBackground() throws Exception {
-                                
-                              
+
                                 Log.mgs("Requested SIM Card: ", selectedPayableSIM);
                                 if (UserInfo.role.equals("demo")) {
                                     System.err.println("Access dny in DEMO Panel");
-
                                 } else {
                                     for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                         if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
@@ -9166,14 +9163,14 @@ public class Home extends javax.swing.JFrame {
                     ui.getClickConfirm().addKeyListener(new KeyAdapter() {
                         @Override
                         public void keyPressed(KeyEvent ke) {
-                               
+
                             if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                                 refrash();
                                 SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                                     @Override
                                     protected Void doInBackground() throws Exception {
-                                         Log.mgs(TAG,"Clickeed");
-                                     
+                                        Log.mgs(TAG, "Clickeed");
+
                                         if (UserInfo.role.equals("demo")) {
                                             System.err.println("Access dny in DEMO Panel");
 
@@ -9193,7 +9190,7 @@ public class Home extends javax.swing.JFrame {
                                     @Override
                                     protected void done() {
 
-                                      rechargeConfirmationDailog.setVisible(false);
+                                        rechargeConfirmationDailog.setVisible(false);
                                         getMobileNumber.requestFocusInWindow();
                                     }
 
@@ -9233,183 +9230,18 @@ public class Home extends javax.swing.JFrame {
                         }
                     });
 
-    
                 } else {
 
                     do {
-                       
+
                         if (rs.getString("sim_name").toUpperCase().contains(selectedPayableSIM.replaceAll(StringUtils.right(selectedPayableSIM, 5), "").replaceAll("\\(\\)", "").toUpperCase())) {
-                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
 
+                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
+                            System.err.println(res);
                             if (res == -1) {
                                 Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                            } else {
-
-                                RechargeConfirmationDialogUI ui
-                                        = new RechargeConfirmationDialogUI("Recharge Confirmation",
-                                                getMobileNumber.getText(),
-                                                getAmmountInTk.getText() + " tk",
-                                                getPrepaidOrPostpaid.getSelectedItem().toString(),
-                                                getSeletedOperatorName.getSelectedItem().toString());
-
-                                JDialog jDialog = new JDialog();
-                                jDialog.add(ui);
-                                jDialog.setSize(1366, 768);
-                                jDialog.setLocationRelativeTo(null);
-                                jDialog.setUndecorated(true);
-                                jDialog.setVisible(true);
-
-                                ui.getClickClose().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        Icon icon = new ImageIcon(getClass()
-                                                .getResource("/resources/images/default_operator_icon_1.png"));
-
-                                        selectedSimOperatorIcon.setIcon(icon);
-                                        getMobileNumber.setText("");
-                                        getAmmountInTk.setText("");
-                                        getMobileNumber.requestFocusInWindow();
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickClose().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            Icon icon = new ImageIcon(getClass()
-                                                    .getResource("/resources/images/default_operator_icon_1.png"));
-                                            selectedSimOperatorIcon.setIcon(icon);
-                                            getMobileNumber.setText("");
-                                            getAmmountInTk.setText("");
-                                            getMobileNumber.requestFocusInWindow();
-                                            jDialog.setVisible(false);
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
-
-                                    refrash();
-                                    SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                        @Override
-                                        protected Void doInBackground() throws Exception {
-                                            jDialog.setVisible(false);
-                                            getMobileNumber.requestFocusInWindow();
-                                            Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                            if (UserInfo.role.equals("demo")) {
-                                                System.err.println("Access dny in DEMO Panel");
-
-                                            } else {
-                                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                    if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                        MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                        addQueue(mobileRechargeDetailsDto);
-                                                    }
-                                                }
-                                            }
-                                            return null;
-                                        }
-
-                                        @Override
-                                        protected void done() {
-                                            refrash();
-                                            //loadValueInTableRechargeDetails();
-
-                                        }
-
-                                    };
-                                    worker.execute();
-
-                                });
-
-                                ui.getClickConfirm().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            refrash();
-                                            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                                                @Override
-                                                protected Void doInBackground() throws Exception {
-                                                    jDialog.setVisible(false);
-                                                    getMobileNumber.requestFocusInWindow();
-                                                    Log.mgs("Requested SIM Card: ", selectedPayableSIM);
-                                                    if (UserInfo.role.equals("demo")) {
-                                                        System.err.println("Access dny in DEMO Panel");
-
-                                                    } else {
-                                                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                                                            if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
-                                                                MobileRechargeDetailsDto mobileRechargeDetailsDto
-                                                                        = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
-                                                                addQueue(mobileRechargeDetailsDto);
-                                                            }
-                                                        }
-                                                    }
-
-                                                    return null;
-                                                }
-
-                                                @Override
-                                                protected void done() {
-                                                    refrash();
-                                                    // loadValueInTableRechargeDetails();
-
-                                                }
-
-                                            };
-                                            worker.execute();
-
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickEdit().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-                                ui.getClickEdit().addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent ae) {
-                                        jDialog.setVisible(false);
-                                    }
-
-                                });
-                                ui.getClickEdit().addKeyListener(new KeyAdapter() {
-                                    @Override
-                                    public void keyPressed(KeyEvent ke) {
-                                        if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            jDialog.setVisible(false);
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                            ui.getClickClose().requestFocusInWindow();
-                                        }
-                                        if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-                                            ui.getClickConfirm().requestFocusInWindow();
-                                        } else {
-
-                                        }
-                                    }
-                                });
-
-           
-
                             }
-                        } else {
-                            int res = Popup.customWarning("You will be getting " + rs.getString("description") + "/" + rs.getString("validity"));
-
-                            if (res == -1) {
-                                Log.mgs("Dialog:", "Recharge Offer dialog closed.");
-                            } else {
-
+                            if (res == 0) {
                                 RechargeConfirmationDialogUI ui
                                         = new RechargeConfirmationDialogUI("Recharge Confirmation",
                                                 getMobileNumber.getText(),
@@ -9565,9 +9397,165 @@ public class Home extends javax.swing.JFrame {
                                         }
                                     }
                                 });
-
-
                             }
+                        } else {
+
+                            RechargeConfirmationDialogUI ui
+                                    = new RechargeConfirmationDialogUI("Recharge Confirmation",
+                                            getMobileNumber.getText(),
+                                            getAmmountInTk.getText() + " tk",
+                                            getPrepaidOrPostpaid.getSelectedItem().toString(),
+                                            getSeletedOperatorName.getSelectedItem().toString());
+
+                            JDialog jDialog = new JDialog();
+                            jDialog.add(ui);
+                            jDialog.setSize(1366, 768);
+                            jDialog.setLocationRelativeTo(null);
+                            jDialog.setUndecorated(true);
+                            jDialog.setVisible(true);
+
+                            ui.getClickClose().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    Icon icon = new ImageIcon(getClass()
+                                            .getResource("/resources/images/default_operator_icon_1.png"));
+
+                                    selectedSimOperatorIcon.setIcon(icon);
+                                    getMobileNumber.setText("");
+                                    getAmmountInTk.setText("");
+                                    getMobileNumber.requestFocusInWindow();
+                                    jDialog.setVisible(false);
+                                }
+
+                            });
+                            ui.getClickClose().addKeyListener(new KeyAdapter() {
+                                @Override
+                                public void keyPressed(KeyEvent ke) {
+                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        Icon icon = new ImageIcon(getClass()
+                                                .getResource("/resources/images/default_operator_icon_1.png"));
+                                        selectedSimOperatorIcon.setIcon(icon);
+                                        getMobileNumber.setText("");
+                                        getAmmountInTk.setText("");
+                                        getMobileNumber.requestFocusInWindow();
+                                        jDialog.setVisible(false);
+
+                                    }
+                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                        ui.getClickEdit().requestFocusInWindow();
+                                    } else {
+
+                                    }
+                                }
+                            });
+
+                            ui.getClickConfirm().addActionListener((ActionEvent ae) -> {
+                                refrash();
+                                SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                    @Override
+                                    protected Void doInBackground() throws Exception {
+                                        jDialog.setVisible(false);
+                                        getMobileNumber.requestFocusInWindow();
+                                        Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                        if (UserInfo.role.equals("demo")) {
+                                            System.err.println("Access dny in DEMO Panel");
+
+                                        } else {
+                                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                    MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                            = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                    addQueue(mobileRechargeDetailsDto);
+                                                }
+                                            }
+                                        }
+                                        // rechargeDoneProcess(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                        jDialog.setVisible(false);
+                                        return null;
+                                    }
+
+                                    @Override
+                                    protected void done() {
+                                        refrash();
+                                        // loadValueInTableRechargeDetails();
+
+                                    }
+
+                                };
+                                worker.execute();
+
+                            });
+
+                            ui.getClickConfirm().addKeyListener(new KeyAdapter() {
+                                @Override
+                                public void keyPressed(KeyEvent ke) {
+                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        refrash();
+                                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                                            @Override
+                                            protected Void doInBackground() throws Exception {
+                                                jDialog.setVisible(false);
+                                                getMobileNumber.requestFocusInWindow();
+                                                Log.mgs("Requested SIM Card: ", selectedPayableSIM);
+                                                if (UserInfo.role.equals("demo")) {
+                                                    System.err.println("Access dny in DEMO Panel");
+
+                                                } else {
+                                                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                                        if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
+                                                            MobileRechargeDetailsDto mobileRechargeDetailsDto
+                                                                    = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
+                                                            addQueue(mobileRechargeDetailsDto);
+                                                        }
+                                                    }
+                                                }
+                                                //(phoneNumberRequested, ammountRequested, preOrPostRequested, selectedPayableSIM, "single");
+                                                jDialog.setVisible(false);
+                                                return null;
+                                            }
+
+                                            @Override
+                                            protected void done() {
+                                                refrash();
+
+                                            }
+
+                                        };
+                                        worker.execute();
+
+                                    }
+                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                        ui.getClickEdit().requestFocusInWindow();
+                                    } else {
+
+                                    }
+                                }
+                            });
+
+                            ui.getClickEdit().addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent ae) {
+                                    jDialog.setVisible(false);
+                                }
+
+                            });
+                            ui.getClickEdit().addKeyListener(new KeyAdapter() {
+                                @Override
+                                public void keyPressed(KeyEvent ke) {
+                                    if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        jDialog.setVisible(false);
+                                    }
+                                    if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                        ui.getClickClose().requestFocusInWindow();
+                                    }
+                                    if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                                        ui.getClickConfirm().requestFocusInWindow();
+                                    } else {
+
+                                    }
+                                }
+                            });
+
                         }
 
                     } while (rs.next());
@@ -9625,7 +9613,7 @@ public class Home extends javax.swing.JFrame {
                         for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
 
                             while (!hashValue.getValue().isEmpty()) {
-                           
+
                                 Object object = hashValue.getValue().element();
                                 Method methodGetStatus = (Method) object.getClass().getMethod("getStatus", null);
                                 UssdRequestType getStatus = (UssdRequestType) methodGetStatus.invoke(object, null);
@@ -9699,7 +9687,7 @@ public class Home extends javax.swing.JFrame {
                     ResultSet rs = st.executeQuery(sql);
 
                     if (!rs.next()) {
-                        Popup.customError("Recharge Setting not found.");
+                        //Popup.customError("Recharge Setting not found.");
                     } else {
                         do {
 
@@ -9785,7 +9773,7 @@ public class Home extends javax.swing.JFrame {
                         auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -9813,7 +9801,7 @@ public class Home extends javax.swing.JFrame {
                             Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
                         } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
                             String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -9840,7 +9828,7 @@ public class Home extends javax.swing.JFrame {
                             Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
                         } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("tk", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -10680,7 +10668,7 @@ public class Home extends javax.swing.JFrame {
                 while (rs.next()) {
                     if (actionType.equals(rs.getString("task_name"))) {
 
-                        ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("tk", amount).replaceAll("pin", rs.getString("pin"));
+                        ussdReplace = rs.getString("ussd_code").replaceAll("number", acPhoneNo).replaceAll("amount", amount).replaceAll("pin", rs.getString("pin"));
                         balanceUssdCode = rs.getString("balance_show_ussd").replaceAll("pin", rs.getString("pin"));
                         isSIMFound = true;
                     }
@@ -11046,7 +11034,7 @@ public class Home extends javax.swing.JFrame {
         String balenceUssdPartern = getBalenceUssdPartern3.getText();
         String acPassword = accountPassword1.getText();
         String profit = getprofitIn1k.getText();
-        
+
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
             return true;
@@ -11237,7 +11225,7 @@ public class Home extends javax.swing.JFrame {
 //        return false;
 //    }
     private void saveInMobileBanking() {
-        String service = getSelectedServiceCombo.getSelectedItem().toString();
+        String service = getSelectedServiceCombo.getText().toString();
         String defultSIM = getSelectedSIMNameCombo.getSelectedItem().toString();
         String taskName = getTaskNameInMBS.getText();
         String ussdCode = getUssdCodePattren.getText().toLowerCase();
@@ -11588,7 +11576,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         contractResponsesSet.stream().forEach(value -> {
-            contractListTableMOdel.addRow(new Object[]{value.getTrxId(), value.getDateAndTime(), value.getPostPaidOrPostPaid(),  value.getPhoneNumber(),value.getAmmount(),value.getSelectableSim(), value.getcBalance(),value.getStatus()});
+            contractListTableMOdel.addRow(new Object[]{value.getTrxId(), value.getDateAndTime(), value.getPostPaidOrPostPaid(), value.getPhoneNumber(), value.getAmmount(), value.getSelectableSim(), value.getcBalance(), value.getStatus()});
         });
 
         tableRechargeDetailsShow.setRowHeight(25);
@@ -12142,7 +12130,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void refrash() {
-      
+
         getAmmountInTk.setText("");
         getBalenceUssdPartern1.setText("");
         //  getBalenceUssdPartern2.setText("");
@@ -12704,9 +12692,9 @@ public class Home extends javax.swing.JFrame {
     private void addKeyLisenerInMobileBankingSetting() {
         getSelectedServiceCombo.requestFocusInWindow();
         getTaskNameInMBS.setUI(new HintTextFieldUI("Cash In"));
-        getUssdCodePattren.setUI(new HintTextFieldUI("*247*2*1*number*tk*pin#"));
+        getUssdCodePattren.setUI(new HintTextFieldUI("*247*2*1*number*amount*pin#"));
         getUssdCodeForBalanceShowPattren.setUI(new HintTextFieldUI("*247*5*pin#"));
-        getPIN.setUI(new HintTextFieldUI("******"));
+        getPIN.setUI(new HintTextFieldUI("password"));
 
         getSelectedServiceCombo.addKeyListener(new KeyAdapter() {
             @Override
@@ -14641,7 +14629,7 @@ public class Home extends javax.swing.JFrame {
             loadMobileBankingDetailsTable();
         }
     }
-    
+
     private boolean isRechargeModemSetUpDone() {
         try {
             Connection conn = DbConnection.connect();
@@ -14650,13 +14638,13 @@ public class Home extends javax.swing.JFrame {
             Statement st = conn.createStatement();
             String sql = "SELECT * FROM `command` WHERE `operator_name`=\"" + selectedOperatorName + "\"";
             ResultSet rs = st.executeQuery(sql);
-            
+
             if (!rs.next()) {
-               return false;
+                return false;
             } else {
-             return true;
+                return true;
             }
-             
+
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }

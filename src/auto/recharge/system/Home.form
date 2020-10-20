@@ -912,7 +912,7 @@
                               <Component id="jLabel172" pref="36" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="167" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="162" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="deviceStartStatus" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -1325,6 +1325,12 @@
                       </Layout>
                       <SubComponents>
                         <Component class="javax.swing.JLabel" name="selectedSimOperatorIcon">
+                          <Properties>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/resources/images/default_operator_icon_1.png"/>
+                            </Property>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="clickContactList">
                           <Properties>
@@ -1654,12 +1660,18 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1779,7 +1791,7 @@
                                                                       <EmptySpace max="-2" attributes="0"/>
                                                                       <Component id="productMasurementProductDetails" min="-2" pref="83" max="-2" attributes="0"/>
                                                                       <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="jButton1" pref="236" max="32767" attributes="0"/>
+                                                                      <Component id="jButton1" pref="224" max="32767" attributes="0"/>
                                                                   </Group>
                                                               </Group>
                                                           </Group>
@@ -2230,7 +2242,7 @@
                                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="qtyInProductPurchases" max="32767" attributes="0"/>
-                                                          <Component id="typeInProductPurchasesComboBox" pref="352" max="32767" attributes="0"/>
+                                                          <Component id="typeInProductPurchasesComboBox" pref="340" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
@@ -2359,22 +2371,24 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="typeInProductPurchasesComboBox" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="typeInProductPurchasesComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
                                                       <Component id="jLabel133" alignment="3" min="-2" max="-2" attributes="0"/>
                                                       <Component id="saveInProductPurchase" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="dateInProductPurchases" min="-2" pref="29" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="dateInProductPurchases" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane6" pref="500" max="32767" attributes="0"/>
-                                          <Component id="jPanel2" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              <Component id="jPanel2" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jScrollPane6" pref="684" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2460,7 +2474,7 @@
                                           <Component id="paid" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="paid1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="293" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -3106,7 +3120,7 @@
                                           <Component id="jPanel12" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane15" pref="243" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane15" pref="434" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3814,7 +3828,7 @@
                                                   </Group>
                                                   <Component id="jPanel11" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace pref="34" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel138" alignment="1" min="-2" pref="334" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
@@ -3910,7 +3924,7 @@
                                                   <Component id="paymentTypeInProductSell" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jScrollPane12" pref="251" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane12" pref="442" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -5874,7 +5888,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jScrollPane14" pref="539" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane14" pref="541" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -5912,7 +5926,6 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="getSelectedServiceCombo" alignment="1" max="32767" attributes="0"/>
                                   <Component id="jLabel58" max="32767" attributes="0"/>
                                   <Component id="jLabel59" max="32767" attributes="0"/>
                                   <Component id="getSelectedSIMNameCombo" alignment="0" max="32767" attributes="0"/>
@@ -5931,6 +5944,7 @@
                                   </Group>
                                   <Component id="jLabel2" max="32767" attributes="0"/>
                                   <Component id="jSeparator9" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="getSelectedServiceCombo" alignment="0" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -5986,19 +6000,6 @@
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Add new services"/>
                               </Properties>
-                            </Component>
-                            <Component class="javax.swing.JComboBox" name="getSelectedServiceCombo">
-                              <Properties>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="0"/>
-                                </Property>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="getSelectedServiceComboActionPerformed"/>
-                              </Events>
-                              <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                              </AuxValues>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel58">
                               <Properties>
@@ -6083,6 +6084,8 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Ussd Code pattern For Balance show"/>
                               </Properties>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="getSelectedServiceCombo">
                             </Component>
                           </SubComponents>
                         </Container>
@@ -7766,8 +7769,8 @@
                                           <Component id="jPanel23" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Component id="rechargeBalencePanel1" max="32767" attributes="0"/>
+                                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                                  <Component id="rechargeBalencePanel1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel95" min="-2" pref="150" max="-2" attributes="0"/>
@@ -7873,7 +7876,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jScrollPane8" max="32767" attributes="0"/>
-                                          <Component id="jLabel81" pref="252" max="32767" attributes="0"/>
+                                          <Component id="jLabel81" pref="189" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

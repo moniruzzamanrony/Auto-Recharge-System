@@ -22,7 +22,7 @@ public class DbConnection {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
-            tableCreate();
+            tableCreate();         
             System.out.println("Database Connect Succesful");
             return conn;
         } catch (Exception ex) {
@@ -85,7 +85,7 @@ public class DbConnection {
         }
     }
 
-    //    public static ResultSet retrieveAll1(String tableName) {
+//    public static ResultSet retrieveAll1(String tableName) {
 //        Connection conn = DbConnection.connect();
 //        try {
 //            Statement st = conn.createStatement();
@@ -99,6 +99,7 @@ public class DbConnection {
 //        }
 //
 //    }
+    
     public static boolean deleteRow(String tableName, String columeName, String value) {
         Connection conn = DbConnection.connect();
         String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";

@@ -303,7 +303,7 @@ public final class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-
+    
         this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
@@ -493,18 +493,7 @@ public final class Login extends javax.swing.JFrame {
         return false;
     }
 
-    public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(() -> {
-            new Login().setVisible(false);
-            Login login = new Login();
-            login.setVisible(true);
-            //new Login().setVisible(true);
-       
-          
-
-        });
-    }
 
     public void keyListener() {
 

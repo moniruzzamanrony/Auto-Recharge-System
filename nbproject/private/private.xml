@@ -5,11 +5,9 @@
         <group>
             <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/ConfigrarationModemStartUp.java</file>
             <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/Login.java</file>
-            <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/resources/config.properties</file>
             <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/DbConnection.java</file>
             <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/Home.java</file>
-            <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/Configaration.java</file>
-            <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/BuyNow.java</file>
+            <file>file:/D:/Project/Java%20GUI/Auto%20Recharge%20System/core/1/Auto-Recharge-System/src/auto/recharge/system/Modem.java</file>
         </group>
     </open-files>
 </project-private>
