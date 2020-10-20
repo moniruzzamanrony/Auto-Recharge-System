@@ -556,11 +556,12 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simToFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simToFinishActionPerformed
-        this.setVisible(false);
+       this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 processtingLoderDialog.setVisible(true);
+                
                 Home home = new Home();
                 home.setVisible(true);
 
@@ -568,10 +569,9 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
             }
 
             @Override
-            protected void done() {
-
-                processtingLoderDialog.setVisible(false);
-                System.out.println("Login Successful...@Done");
+            protected void done() {           
+               processtingLoderDialog.setVisible(false);
+                System.out.println("Close Modem Setup");
             }
 
         };

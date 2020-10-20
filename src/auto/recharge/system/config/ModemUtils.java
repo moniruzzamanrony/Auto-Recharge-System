@@ -52,7 +52,12 @@ public class ModemUtils {
                 .getPortIdentifier(portName);
         if (portIdentifier.isCurrentlyOwned()) {
             System.out.println("step 7/10: " + portName + " port is already used");
-            Popup.customError(portName + " is busy.\nPlease resreat this application");
+           int res= Popup.customError("Server busy");
+           if(res == 0)
+           {
+           System.exit(0);
+           }
+             System.out.println("-----------------------------------------------------------------------"+res);
 
             ret = "connect_port_in_use";
         } else {
