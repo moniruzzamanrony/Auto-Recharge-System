@@ -6169,7 +6169,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="getRechargeAmountInSetting" pref="848" max="32767" attributes="0"/>
+                                  <Component id="getRechargeAmountInSetting" pref="850" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -6203,7 +6203,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="getRechargeAmmountInSeetings" alignment="1" max="32767" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="getValidityInSetting" pref="618" max="32767" attributes="0"/>
+                                              <Component id="getValidityInSetting" pref="1136" max="32767" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="getSelectedValidityTimeTypeSetting" min="-2" pref="200" max="-2" attributes="0"/>
                                           </Group>
@@ -6252,7 +6252,7 @@
                                       <Component id="getDescriptionInSetting" min="-2" pref="44" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="saveNewOfferInSettrings" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <EmptySpace pref="349" max="32767" attributes="0"/>
+                                      <EmptySpace pref="267" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -6388,7 +6388,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel18" pref="869" max="32767" attributes="0"/>
+                                  <Component id="jPanel18" pref="871" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>

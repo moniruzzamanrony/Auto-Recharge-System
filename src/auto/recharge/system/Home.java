@@ -104,10 +104,11 @@ public class Home extends javax.swing.JFrame {
 
     public Home() {
         initComponents();
-        URL url = getClass().getResource("/resources/images/icon.png");
+        URL url = getClass().getResource("/resources/images/logo64.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
-        this.setTitle("Auto Recharge System");
+        this.setTitle("Auto Recharge with Managment");
+
         refrash();
         placeHoderSetter();
         setBorderInManuBar();
@@ -1403,7 +1404,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -4318,7 +4319,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(getRechargeAmmountInSeetings, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
-                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 1136, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getSelectedValidityTimeTypeSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4361,7 +4362,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(getDescriptionInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(saveNewOfferInSettrings, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rechargeOfferPanelLayout = new javax.swing.GroupLayout(rechargeOfferPanel);
@@ -4370,7 +4371,7 @@ public class Home extends javax.swing.JFrame {
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
@@ -4540,7 +4541,7 @@ public class Home extends javax.swing.JFrame {
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addNewManagementPanelSettingsLayout.setVerticalGroup(
@@ -6462,7 +6463,9 @@ public class Home extends javax.swing.JFrame {
             ModemInfoList.simOperatorIdentifiers.forEach((simOperatorIdentifierDto) -> {
                 getOparetorNameInUssdCommand.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
             });
+            initHintInEditText();
             switchPanelViaSettings(addNewManagementPanelSettings, rechargeSettings);
+
         }
     }//GEN-LAST:event_clickAddNewManagementActionPerformed
 
@@ -14509,6 +14512,12 @@ public class Home extends javax.swing.JFrame {
         activeDateInProfile.setText(UserInfo.activeDate);
         expiryDateInProfile.setText(UserInfo.expireDate);
         remainDaysInProfile.setText(trxId);
+    }
+
+    private void initHintInEditText() {
+        getRechargeUssdParternPrePaid1.setUI(new HintTextFieldUI("*333*number*amount*pin#"));
+        getRechargeUssdParternPostPaid1.setUI(new HintTextFieldUI("*333*number*amount*pin#"));
+        getBalenceUssdPartern3.setUI(new HintTextFieldUI("*333*number*amount*pin#"));
     }
 
     public class BillPrintable implements Printable {

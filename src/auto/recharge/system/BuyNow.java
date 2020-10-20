@@ -18,7 +18,8 @@ import java.sql.SQLException;
 
 import java.util.Calendar;
 import java.util.Date;
-
+import java.net.URL;
+import javax.swing.ImageIcon;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -36,6 +37,11 @@ public class BuyNow extends javax.swing.JFrame {
     public BuyNow() {
         initComponents();
         processingLoderDialog();
+             
+        URL url = getClass().getResource("/resources/images/logo64.png");
+        ImageIcon imgicon = new ImageIcon(url);
+        this.setIconImage(imgicon.getImage());
+        this.setTitle("Auto Recharge with Managment");
         // new BuyNow().setVisible(true);
     }
 

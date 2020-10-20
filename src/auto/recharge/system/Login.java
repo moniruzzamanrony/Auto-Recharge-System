@@ -27,10 +27,10 @@ public final class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         buyNowText.setText("<html>Are you Buy this Software! <u color='yellow'>Buy NOW ?</u></html>");
-        URL url = getClass().getResource("/resources/images/icon.png");
+        URL url = getClass().getResource("/resources/images/logo64.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
-        this.setTitle("Auto Recharge System");
+        this.setTitle("Auto Recharge with Managment");
         keyListener();
         setHint();
         processingLoderDialog();
@@ -58,6 +58,7 @@ public final class Login extends javax.swing.JFrame {
         buyNowText = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel7");
 
@@ -77,10 +78,8 @@ public final class Login extends javax.swing.JFrame {
         jLabel1.setText("Login");
 
         getPasswordBypt.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        getPasswordBypt.setText("01988867567");
 
         getPhoneNumber.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        getPhoneNumber.setText("01988867567");
         getPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 getPhoneNumberActionPerformed(evt);
@@ -163,9 +162,6 @@ public final class Login extends javax.swing.JFrame {
             inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(inputPanelLayout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(inputPanelLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -183,6 +179,7 @@ public final class Login extends javax.swing.JFrame {
             .addGroup(inputPanelLayout.createSequentialGroup()
                 .addGap(289, 289, 289)
                 .addComponent(jLabel4))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         inputPanelLayout.setVerticalGroup(
             inputPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,36 +235,54 @@ public final class Login extends javax.swing.JFrame {
                 .addComponent(buyNowText))
         );
 
-        jLabel5.setText("jLabel5");
+        jPanel3.setBackground(new java.awt.Color(133, 47, 209));
+
+        jLabel5.setBackground(new java.awt.Color(133, 47, 209));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo256.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 247, Short.MAX_VALUE))
         );
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("For Buy This Software: 01816385858,01913350462");
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+            .addGroup(bgLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(brandingPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(inputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(bgLayout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(bgLayout.createSequentialGroup()
@@ -366,7 +381,7 @@ public final class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JPanel brandingPanel;
-    private javax.swing.JLabel buyNowText;
+    private static javax.swing.JLabel buyNowText;
     private javax.swing.JLabel exitBut;
     private javax.swing.JPasswordField getPasswordBypt;
     private javax.swing.JTextField getPhoneNumber;
@@ -376,6 +391,7 @@ public final class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
