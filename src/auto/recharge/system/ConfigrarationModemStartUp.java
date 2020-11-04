@@ -8,8 +8,7 @@ package auto.recharge.system;
 import auto.recharge.system.config.CommTest;
 import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.SimOperatorIdentifierDto;
-import java.net.URL;
-import javax.swing.ImageIcon;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,24 +56,20 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     private javax.swing.JList<String> posts_list;
     private javax.swing.JButton simToFinish;
     private javax.swing.JList<String> sim_list;
-
     public ConfigrarationModemStartUp() {
         initComponents();
-        URL url = getClass().getResource("/resources/images/logo64.png");
-        ImageIcon imgicon = new ImageIcon(url);
-        this.setIconImage(imgicon.getImage());
-        this.setTitle("Auto Recharge with Managment");
+        this.setSize(404, 381);
         port_searching3.setEnabled(false);
         modemToSim.setEnabled(false);
         simToFinish.setEnabled(false);
         processingLoderDialog();
-
+        
     }
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         new Login().show();
         this.setVisible(false);
-
+        
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void port_searching2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_port_searching2ActionPerformed
@@ -87,7 +82,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
                 if (portsList.isEmpty()) {
                     Popup.customInfo("Modem Not Connected");
                     port_searching2.setEnabled(true);
-                    port_searching3.setEnabled(false);
+                     port_searching3.setEnabled(false);             
                 }
                 DefaultListModel defaultListModel = new DefaultListModel();
                 for (String port : portsList) {
@@ -100,7 +95,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
             @Override
             protected void done() {
                 port_searching3.setEnabled(true);
-
+                
                 processtingLoderDialog.setVisible(false);
             }
 
@@ -119,12 +114,12 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
                     auto.recharge.system.config.Modem.connect(port);
                     String modemName = auto.recharge.system.config.Modem.sendATCommand("AT+CGMM");
                     modemNameList.add(modemName.split(",")[1]);
-
+                    
                     System.err.println(modemName.split(",")[1]);
                     auto.recharge.system.config.Modem.disconnect();
                 }
-                for (String modemName : modemNameList) {
-                    defaultListModel.addElement(modemName);
+                for(String modemName: modemNameList){
+                defaultListModel.addElement(modemName);
                 }
                 modem_list.setModel(defaultListModel);
                 return null;
@@ -562,12 +557,12 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simToFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simToFinishActionPerformed
-        this.setVisible(false);
+       this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
                 processtingLoderDialog.setVisible(true);
-
+                
                 Home home = new Home();
                 home.setVisible(true);
 
@@ -575,8 +570,8 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
             }
 
             @Override
-            protected void done() {
-                processtingLoderDialog.setVisible(false);
+            protected void done() {           
+               processtingLoderDialog.setVisible(false);
                 System.out.println("Close Modem Setup");
             }
 
@@ -595,6 +590,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
         processtingLoderDialog.setSize(404, 381);
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
+
 
     }
 }

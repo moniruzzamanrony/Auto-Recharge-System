@@ -7311,7 +7311,7 @@ public class Home extends javax.swing.JFrame {
 
             } else {
                 if (password.equals(rePassword)) {
-                    changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
+                    changeAdminPassword(AES.encrypt(password, "itvillage428854"));
 
                 } else {
                     Popup.customError("Re-type password not match");
@@ -9776,7 +9776,7 @@ public class Home extends javax.swing.JFrame {
                         auto.recharge.system.config.Modem.connect(selectedPayableSIMPort);
                         if (preOrPostRequested.toLowerCase().equals("pre-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_pre").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), "itvillage428854"));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -9804,7 +9804,7 @@ public class Home extends javax.swing.JFrame {
                             Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
                         } else if (preOrPostRequested.toLowerCase().equals("skitto")) {
                             String rechargeCode = rs.getString("action_for").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), "itvillage428854"));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -9831,7 +9831,7 @@ public class Home extends javax.swing.JFrame {
                             Configaration.setErrorLog(this.getClass().getName() + "-->1856--->" + response);
                         } else if (preOrPostRequested.toLowerCase().equals("post-paid")) {
                             String rechargeCode = rs.getString("r_ussd_code_post").replaceAll("number", phoneNumberRequested)
-                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), Configaration.getPropertiesValueByKey("secretKey")));
+                                    .replaceAll("amount", ammountRequested).replaceAll("pin", AES.decrypt(rs.getString("password"), "itvillage428854"));
                             Log.mgs("5347", "USSD Code:" + rechargeCode);
                             String response = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rechargeCode + "\",15");
                             Configaration.closeUssdSession();
@@ -11052,7 +11052,7 @@ public class Home extends javax.swing.JFrame {
                 preparedStatement.setString(4, rechargeUssdParternPre);
                 preparedStatement.setString(5, rechargeUssdParternPost);
                 preparedStatement.setString(6, balenceUssdPartern);
-                preparedStatement.setString(7, AES.encrypt(acPassword, Configaration.getPropertiesValueByKey("secretKey")));
+                preparedStatement.setString(7, AES.encrypt(acPassword, "itvillage428854"));
                 preparedStatement.setString(8, imagePath);
                 preparedStatement.setString(9, profit);
                 preparedStatement.execute();
@@ -13191,7 +13191,7 @@ public class Home extends javax.swing.JFrame {
 
                     } else {
                         if (password.equals(rePassword)) {
-                            changeAdminPassword(AES.encrypt(password, Configaration.getPropertiesValueByKey("secretKey")));
+                            changeAdminPassword(AES.encrypt(password, "itvillage428854"));
 
                         } else {
                             Popup.customError("Re-type password not match");

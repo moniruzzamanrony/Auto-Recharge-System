@@ -325,16 +325,15 @@ public final class Login extends javax.swing.JFrame {
             protected Void doInBackground() throws Exception {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
-                if (login()) {
-                    if (UserInfo.role.equals("demo")) {
-                        Home home = new Home();
-                        home.setVisible(true);
-                    } else {
-                        new ConfigrarationModemStartUp().setVisible(true);
-                    }
-                } else {
-
-                }
+                login();
+//                if () {
+//                    if (UserInfo.role.equals("demo")) {
+//                        Home home = new Home();
+//                        home.setVisible(true);
+//                    } else {
+//                        new ConfigrarationModemStartUp().setVisible(true);
+//                    }
+//                } 
                 return null;
             }
 
@@ -351,7 +350,7 @@ public final class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        Popup.info("Please,\nCall us to password reset\n" + Configaration.getPropertiesValueByKey("number1") + "," + Configaration.getPropertiesValueByKey("number2"));
+        Popup.info("Please,\nCall us to password reset\n" + "01816385858" + "," + "01913350462");
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void buyingRequest(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyingRequest
@@ -423,8 +422,8 @@ public final class Login extends javax.swing.JFrame {
             UserInfo.password = "demo";
             UserInfo.macAddress = Configaration.getMacAddress().replace(":", "");
 
-            //  Home home = new Home();
-            // home.setVisible(true);
+              Home home = new Home();
+             home.setVisible(true);
         } else {
 
             try {
@@ -436,7 +435,7 @@ public final class Login extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                    System.err.println(rs.getString("user_id"));
+                   
                     userId = rs.getString("user_id");
                     phoneNo = rs.getString("phone_no");
                     password = rs.getString("password");
@@ -454,6 +453,7 @@ public final class Login extends javax.swing.JFrame {
 
                 }
                 UserInfo.userId = userId;
+                System.err.println(UserInfo.userId);
                 UserInfo.phoneNo = phoneNo;
                 UserInfo.password = password;
                 UserInfo.macAddress = macAddress;
@@ -463,16 +463,19 @@ public final class Login extends javax.swing.JFrame {
                 } else {
                     System.out.println("step 1/12: Login processing start with " + phoneNo);
                     if (getPhoneNumber.getText().trim().equals("")) {
-                        getPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+                       Popup.error("Phone Number is Empty");
+                        System.exit(0);
                     }
                     if (getPasswordBypt.getText().trim().equals("")) {
-                        getPasswordBypt.setBorder(BorderFactory.createLineBorder(Color.red, 4));
+                        Popup.error("Password is Empty");
+                        System.exit(0);
                     } else {
                         if (phoneNo.equals(getPhoneNumber.getText().trim())
-                                && AES.decrypt(password, Configaration.getPropertiesValueByKey("secretKey"))
+                                && AES.decrypt(password, "itvillage428854")
                                         .equals(getPasswordBypt.getText().trim())) {
 
                             if (isAuthrizeMacAddress(macAddress)) {
+                                new ConfigrarationModemStartUp().setVisible(true);
                                 isAuthUser = true;
                             } else {
                                 Popup.error("Unverified Device");

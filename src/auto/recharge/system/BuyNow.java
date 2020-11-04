@@ -481,7 +481,7 @@ public class BuyNow extends javax.swing.JFrame {
             @Override
             protected void done() {
                 System.out.println("Login Done..");
-
+                
                 processtingLoderDialog.setVisible(false);
             }
 
@@ -558,7 +558,7 @@ public class BuyNow extends javax.swing.JFrame {
             String qrCodeData = userPhoneNo + "," + clientName
                     + "," + computerMacAddress.toLowerCase() + "," + userId
                     + "," + selectedPackage + "," + userEmail + "," + shopName+","+shopAddress;
-           // String encryptQrCodeData = AES.encrypt(qrCodeData, Configaration.getPropertiesValueByKey("secretKey"));
+           
            String encryptQrCodeData = qrCodeData;
             String filePath = userPhoneNo + ".png";
             String charset = "UTF-8";
@@ -580,7 +580,7 @@ public class BuyNow extends javax.swing.JFrame {
     private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId, String userId) {
         Log.mgs("428", "Mail Send Method.");
         Mail mail = new Mail(userId);
-        mail.send(fileName, Configaration.getPropertiesValueByKey("companyEmail"), userName, selectedPackage, paymentTrsId, email);
+        mail.send(fileName, "auto.recharge20bd@gmail.com", userName, selectedPackage, paymentTrsId, email);
         mail.send(email, userName, selectedPackage, paymentTrsId);
     }
 

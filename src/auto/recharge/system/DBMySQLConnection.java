@@ -16,12 +16,12 @@ import java.sql.SQLException;
 public class DBMySQLConnection {
 
     //private final String url=("jdbc:mysql://localhost:3306;databaseName=auto_recharge_system");
-    private final String usrName = "root";
-    private final String pwd = "";
+    private final String usrName = "arm";
+    private final String pwd = "L2#j6^%hcyb_?ABAB";
     private Connection conn = null;
     private String query = null;
-    private String server = "localhost";
-    private final String url = "jdbc:mysql://" + server + ":3306/auto_recharge_system?useCursorFetch=true";
+    private String server = "http://167.99.76.96";
+    private final String url = "jdbc:mysql://167.99.76.96:3306/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
     private ResultSet rs;
 
     public Connection connect() {
