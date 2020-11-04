@@ -58,7 +58,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
     private javax.swing.JList<String> sim_list;
     public ConfigrarationModemStartUp() {
         initComponents();
-        this.setSize(404, 381);
+     
         port_searching3.setEnabled(false);
         modemToSim.setEnabled(false);
         simToFinish.setEnabled(false);
