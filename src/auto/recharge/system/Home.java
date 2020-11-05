@@ -663,10 +663,29 @@ public class Home extends javax.swing.JFrame {
         getRechargeName = new javax.swing.JPanel();
         back44 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel17 = new javax.swing.JPanel();
-        getNameForRechargeBarCode = new javax.swing.JTextField();
+        forBarCodePhoneNumber3 = new javax.swing.JTextField();
         clickAddForRechargeBarCode = new javax.swing.JButton();
         jLabel54 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        getNameForRechargeBarCode1 = new javax.swing.JTextField();
+        forBarCodePhoneNumber4 = new javax.swing.JTextField();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
+        forBarCodePhoneNumber2 = new javax.swing.JTextField();
+        jLabel108 = new javax.swing.JLabel();
+        forBarCodePhoneNumber5 = new javax.swing.JTextField();
+        jLabel109 = new javax.swing.JLabel();
+        forBarCodePhoneNumber6 = new javax.swing.JTextField();
+        forBarCodePhoneNumber7 = new javax.swing.JTextField();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        forBarCodePhoneNumber8 = new javax.swing.JTextField();
+        jLabel112 = new javax.swing.JLabel();
+        forBarCodePhoneNumber9 = new javax.swing.JTextField();
+        forBarCodePhoneNumber10 = new javax.swing.JTextField();
+        jLabel113 = new javax.swing.JLabel();
 
         suggestPanel.setPreferredSize(new java.awt.Dimension(670, 471));
 
@@ -708,7 +727,6 @@ public class Home extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         menuPanel.setBackground(new java.awt.Color(133, 47, 209));
         menuPanel.setPreferredSize(new java.awt.Dimension(200, 1004));
@@ -1479,7 +1497,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))
+                        .addContainerGap(43, Short.MAX_VALUE))
                     .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(283, 283, 283)
@@ -1592,7 +1610,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(hoverViewrocket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(739, Short.MAX_VALUE))
+                .addContainerGap(749, Short.MAX_VALUE))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1620,7 +1638,7 @@ public class Home extends javax.swing.JFrame {
         resellerPanel.setLayout(resellerPanelLayout);
         resellerPanelLayout.setHorizontalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1188, Short.MAX_VALUE)
+            .addGap(0, 1198, Short.MAX_VALUE)
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1742,7 +1760,7 @@ public class Home extends javax.swing.JFrame {
         addPerchangeSelection.setBackground(new java.awt.Color(204, 204, 255));
         addPerchangeSelection.setText("%");
 
-        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics", "Kg", "Litter", "Bag", "Bundle", "Dozon" }));
+        productMasurementProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pics", "Kg", "Litter", "Meter", "Feet", "Bag", "Bundle", "Dozon", " " }));
 
         jLabel150.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel150.setText("Ordar LImit ");
@@ -1855,7 +1873,7 @@ public class Home extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))))
+                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
                                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                         .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2255,7 +2273,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(48, 48, 48)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(qtyInProductPurchases)
-                                    .addComponent(typeInProductPurchasesComboBox, 0, 330, Short.MAX_VALUE)))
+                                    .addComponent(typeInProductPurchasesComboBox, 0, 340, Short.MAX_VALUE)))
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel126)
@@ -3401,7 +3419,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addComponent(panddingInProductSellCheckBOx)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 756, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 766, Short.MAX_VALUE)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel138, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
@@ -3542,7 +3560,7 @@ public class Home extends javax.swing.JFrame {
         detailsPanelLayout.setHorizontalGroup(
             detailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailsPanelLayout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         detailsPanelLayout.setVerticalGroup(
@@ -3797,7 +3815,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(clickImportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(clickExportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+            .addComponent(clickExportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3867,7 +3885,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+                    .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
                     .addComponent(passwordForUpdate)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rePasswordForUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4103,7 +4121,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clickAddNewManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE))
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -4292,7 +4310,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -4341,7 +4359,7 @@ public class Home extends javax.swing.JFrame {
 
         getDescriptionInSetting.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
 
-        getSelectedValidityTimeTypeSetting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hours", "Days", "Years" }));
+        getSelectedValidityTimeTypeSetting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hour", "Day", "Month", "Year" }));
 
         saveNewOfferInSettrings.setBackground(new java.awt.Color(51, 204, 0));
         saveNewOfferInSettrings.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -4366,7 +4384,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(getRechargeAmmountInSeetings, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
-                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE)
+                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getSelectedValidityTimeTypeSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4418,7 +4436,7 @@ public class Home extends javax.swing.JFrame {
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
@@ -4526,7 +4544,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getOparetorNameInUssdCommand, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
                     .addComponent(getRechargeUssdParternPrePaid1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getRechargeUssdParternPostPaid1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4588,7 +4606,7 @@ public class Home extends javax.swing.JFrame {
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 859, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addNewManagementPanelSettingsLayout.setVerticalGroup(
@@ -4682,7 +4700,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(mobileBankingSettings)
                                     .addComponent(rechargeOffers))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(settingBasePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE))
+                .addComponent(settingBasePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         settingsPanel1Layout.setVerticalGroup(
             settingsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4798,7 +4816,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1144, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -4923,7 +4941,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(clickUssdSessionClose, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(getUssdCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(getSelectedSim, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 628, Short.MAX_VALUE)))
+                        .addGap(0, 638, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ussdDialPanelLayout.setVerticalGroup(
@@ -5020,7 +5038,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel26)
-                        .addGap(881, 917, Short.MAX_VALUE))
+                        .addGap(881, 927, Short.MAX_VALUE))
                     .addComponent(jScrollPane5)
                     .addComponent(getNameForSearch, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(clickNewContract, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -5133,7 +5151,7 @@ public class Home extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(backToUssdManengementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
+                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE))
                     .addGroup(addNewManagementPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel29))
@@ -5239,7 +5257,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(back43, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE))
+                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE))
             .addGroup(addNewContractPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addNewContractPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5499,7 +5517,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(722, 722, 722)
                                 .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                         .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5665,7 +5683,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel66)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sendingLogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(sendAllRechargeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(groupLoadPanelLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -6135,7 +6153,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel27)
-                        .addGap(956, 1019, Short.MAX_VALUE))
+                        .addGap(956, 1029, Short.MAX_VALUE))
                     .addComponent(jScrollPane18)
                     .addComponent(searchInInbox, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -6174,10 +6192,10 @@ public class Home extends javax.swing.JFrame {
 
         jPanel17.setMaximumSize(new java.awt.Dimension(1366, 768));
 
-        getNameForRechargeBarCode.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        getNameForRechargeBarCode.addActionListener(new java.awt.event.ActionListener() {
+        forBarCodePhoneNumber3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getNameForRechargeBarCodeActionPerformed(evt);
+                forBarCodePhoneNumber3ActionPerformed(evt);
             }
         });
 
@@ -6193,7 +6211,97 @@ public class Home extends javax.swing.JFrame {
         });
 
         jLabel54.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
-        jLabel54.setText("Name");
+        jLabel54.setText("Phone Number 3");
+
+        jLabel80.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel80.setText("Name");
+
+        getNameForRechargeBarCode1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        getNameForRechargeBarCode1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getNameForRechargeBarCode1ActionPerformed(evt);
+            }
+        });
+
+        forBarCodePhoneNumber4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber4ActionPerformed(evt);
+            }
+        });
+
+        jLabel102.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel102.setText("Phone Number 4");
+
+        jLabel107.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel107.setText("Phone Number 2");
+
+        forBarCodePhoneNumber2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber2ActionPerformed(evt);
+            }
+        });
+
+        jLabel108.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel108.setText("Phone Number 5");
+
+        forBarCodePhoneNumber5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber5ActionPerformed(evt);
+            }
+        });
+
+        jLabel109.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel109.setText("Phone Number 6");
+
+        forBarCodePhoneNumber6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber6ActionPerformed(evt);
+            }
+        });
+
+        forBarCodePhoneNumber7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber7ActionPerformed(evt);
+            }
+        });
+
+        jLabel110.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel110.setText("Phone Number 7");
+
+        jLabel111.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel111.setText("Phone Number 8");
+
+        forBarCodePhoneNumber8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber8ActionPerformed(evt);
+            }
+        });
+
+        jLabel112.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel112.setText("Phone Number 9");
+
+        forBarCodePhoneNumber9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber9ActionPerformed(evt);
+            }
+        });
+
+        forBarCodePhoneNumber10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forBarCodePhoneNumber10ActionPerformed(evt);
+            }
+        });
+
+        jLabel113.setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
+        jLabel113.setText("Phone Number 10");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -6202,22 +6310,85 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clickAddForRechargeBarCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(getNameForRechargeBarCode, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE))
+                    .addComponent(jLabel54, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber3)
+                    .addComponent(clickAddForRechargeBarCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel102, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber4)
+                    .addComponent(jLabel107, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber2)
+                    .addComponent(jLabel108, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber5)
+                    .addComponent(jLabel109, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber6)
+                    .addComponent(getNameForRechargeBarCode1)
+                    .addComponent(jLabel110, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber7)
+                    .addComponent(jLabel111, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber8)
+                    .addComponent(jLabel112, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber9)
+                    .addComponent(jLabel113, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addComponent(forBarCodePhoneNumber10))
                 .addContainerGap())
+            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel80, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(73, 73, 73)
+                .addComponent(getNameForRechargeBarCode1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel107)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel54)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(getNameForRechargeBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(forBarCodePhoneNumber3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel102)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel108)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel109)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel110)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel111)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel112)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel113)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(forBarCodePhoneNumber10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(clickAddForRechargeBarCode, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel17Layout.createSequentialGroup()
+                    .addGap(36, 36, 36)
+                    .addComponent(jLabel80)
+                    .addContainerGap(797, Short.MAX_VALUE)))
         );
+
+        jScrollPane4.setViewportView(jPanel17);
 
         javax.swing.GroupLayout getRechargeNameLayout = new javax.swing.GroupLayout(getRechargeName);
         getRechargeName.setLayout(getRechargeNameLayout);
@@ -6227,10 +6398,10 @@ public class Home extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(back44, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE))
+                .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE))
             .addGroup(getRechargeNameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         getRechargeNameLayout.setVerticalGroup(
@@ -6242,9 +6413,9 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(getRechargeNameLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel53)))
-                .addGap(88, 88, 88)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(416, Short.MAX_VALUE))
         );
 
         basePanel.add(getRechargeName, "card2");
@@ -6253,7 +6424,7 @@ public class Home extends javax.swing.JFrame {
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
+            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bodyPanelLayout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -8279,7 +8450,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     processtingLoderDialog.setVisible(true);
-                    genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode.getText());
+                    genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode1.getText(),forBarCodePhoneNumber2.getText(),forBarCodePhoneNumber3.getText(),forBarCodePhoneNumber4.getText(),forBarCodePhoneNumber5.getText(),forBarCodePhoneNumber6.getText(),forBarCodePhoneNumber7.getText(),forBarCodePhoneNumber8.getText(),forBarCodePhoneNumber9.getText(),forBarCodePhoneNumber10.getText());
                     return null;
                 }
 
@@ -8355,9 +8526,9 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_oderLimitInProductDetailsActionPerformed
 
-    private void getNameForRechargeBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getNameForRechargeBarCodeActionPerformed
+    private void forBarCodePhoneNumber3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_getNameForRechargeBarCodeActionPerformed
+    }//GEN-LAST:event_forBarCodePhoneNumber3ActionPerformed
 
     private void getPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPINActionPerformed
         // TODO add your handling code here:
@@ -8485,6 +8656,42 @@ public class Home extends javax.swing.JFrame {
             Popup.customError("Any field is empty!!");
         }
     }//GEN-LAST:event_clickSandInMBActionPerformed
+
+    private void getNameForRechargeBarCode1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getNameForRechargeBarCode1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getNameForRechargeBarCode1ActionPerformed
+
+    private void forBarCodePhoneNumber4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber4ActionPerformed
+
+    private void forBarCodePhoneNumber2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber2ActionPerformed
+
+    private void forBarCodePhoneNumber5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber5ActionPerformed
+
+    private void forBarCodePhoneNumber6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber6ActionPerformed
+
+    private void forBarCodePhoneNumber7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber7ActionPerformed
+
+    private void forBarCodePhoneNumber8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber8ActionPerformed
+
+    private void forBarCodePhoneNumber9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber9ActionPerformed
+
+    private void forBarCodePhoneNumber10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forBarCodePhoneNumber10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forBarCodePhoneNumber10ActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -8659,6 +8866,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel duePaymentInProductSell;
     private javax.swing.JLabel errorMgsInBalencePanel;
     private javax.swing.JLabel expiryDateInProfile;
+    private javax.swing.JTextField forBarCodePhoneNumber10;
+    private javax.swing.JTextField forBarCodePhoneNumber2;
+    private javax.swing.JTextField forBarCodePhoneNumber3;
+    private javax.swing.JTextField forBarCodePhoneNumber4;
+    private javax.swing.JTextField forBarCodePhoneNumber5;
+    private javax.swing.JTextField forBarCodePhoneNumber6;
+    private javax.swing.JTextField forBarCodePhoneNumber7;
+    private javax.swing.JTextField forBarCodePhoneNumber8;
+    private javax.swing.JTextField forBarCodePhoneNumber9;
     private javax.swing.JTextField fullNameInProductSell;
     private javax.swing.JTextField fullNameInProductWanrranty;
     private javax.swing.JButton generateBarCode;
@@ -8677,7 +8893,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getMobileNumber;
     private javax.swing.JTextField getMobileNumberForSearch;
     private javax.swing.JTextField getNameForContract;
-    private javax.swing.JTextField getNameForRechargeBarCode;
+    private javax.swing.JTextField getNameForRechargeBarCode1;
     private javax.swing.JTextField getNameForSearch;
     private javax.swing.JTextField getOfferNameInSeting;
     private javax.swing.JComboBox<String> getOparetorNameInUssdCommand;
@@ -8748,11 +8964,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
@@ -8893,6 +9117,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
@@ -8950,6 +9175,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -14078,23 +14304,42 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    public void genarateBarCodeForContractNumber(String number, String name) {
-        try {
-
+    public void genarateBarCodeForContractNumber(String number, String name,String number1,String number2,String number3,String number4,String number5,String number6,String number7,String number8,String number9) {
+        
             String fileNameJrxml1 = "/resources/reports/contract_number.jrxml";
-            
-            URL res = this.getClass().getClassLoader().getResource(fileNameJrxml1);
+      
+            InputStream  res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
             System.out.println(res);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-            
+//            File file = Paths.get(res.toURI()).toFile();
+//            String fileNameJrxml = file.getAbsolutePath();
+          
             try {
                 System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                JasperDesign jasperDesign = JRXmlLoader.load(res);
                 System.out.println("Compiling the .JRMXML file to .JASPER file....");
                 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                 HashMap hm = new HashMap();
                 hm.put("phone_no", number);
+                hm.put("phone_no_1", number1);
+                hm.put("phone_no_2", number2);
+                hm.put("phone_no_3", number3);
+                hm.put("phone_no_4", number4);
+                hm.put("phone_no_5", number5);
+                hm.put("phone_no_6", number6);
+                hm.put("phone_no_7", number7);
+                hm.put("phone_no_8", number8);
+                hm.put("phone_no_9", number9); 
+                
+                hm.put("simNameAndNumber", number);
+                hm.put("simNameAndNumber1", number1);
+                hm.put("simNameAndNumbe2", number2);
+                hm.put("simNameAndNumber3", number3);
+                hm.put("simNameAndNumber4", number4);
+                hm.put("simNameAndNumbe5", number5);
+                hm.put("simNameAndNumber6", number6);
+                hm.put("simNameAndNumber7", number7);
+                hm.put("simNameAndNumber8", number8);
+                hm.put("simNameAndNumber9", number9); 
                 hm.put("name", name);
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
@@ -14107,9 +14352,7 @@ public class Home extends javax.swing.JFrame {
                 System.out.print("Exception:" + e.getMessage());
             }
 
-        } catch (URISyntaxException ex) {
-            System.out.print("Exception:" + ex.getMessage());
-        } 
+       
 
     }
 
@@ -14130,11 +14373,13 @@ public class Home extends javax.swing.JFrame {
         } else {
             Connection conn = DbConnection.connect();
             try {
+                String currentQty = "";
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `product_purchase` WHERE bar_code= " + barCode;
                 //TODO: HANDLE NULL
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
+                    currentQty = rs.getString("qty");
                     warrantyInProductBill.setText(rs.getString("warranty"));
                     countForSellTable++;
                     Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
@@ -14154,7 +14399,6 @@ public class Home extends javax.swing.JFrame {
                     switch (typeOfAction) {
                         case "Sell":
                             totalPayableAmt = totalPayableAmt + Double.valueOf(subTotal);
-
                             break;
                         case "Return":
                             returnForSellTable = returnForSellTable + Double.valueOf(subTotal);
@@ -14165,6 +14409,9 @@ public class Home extends javax.swing.JFrame {
                             break;
                     }
                 }
+                String updatesql = "UPDATE `product_purchase` SET qty = '" + String.valueOf(Integer.valueOf(currentQty)-1) + "' WHERE bar_code= " + barCode;
+                PreparedStatement preparedStatement = conn.prepareStatement(updatesql);
+                preparedStatement.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
@@ -14275,17 +14522,13 @@ public class Home extends javax.swing.JFrame {
                 DbConnection.disconnect(conn);
             }
         }
-        try {
+     
             String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-//            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-//            URL res1 = getClass().getResource(fileNamePdf1);
+            InputStream  res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
+            
             try {
                 System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                JasperDesign jasperDesign = JRXmlLoader.load(res);
                 System.out.println("Compiling the .JRMXML file to .JASPER file....");
                 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                 String shopName = UserInfo.shopName;
@@ -14325,9 +14568,7 @@ public class Home extends javax.swing.JFrame {
                 System.out.print("Exception:" + e);
             }
 
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }
 
     private void saveSellProductInSellTabel(int rowNo) {
