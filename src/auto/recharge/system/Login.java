@@ -537,16 +537,7 @@ public final class Login extends javax.swing.JFrame {
                             hideLoginPanel();
                             System.out.println("Login Processing..");
                             processtingLoderDialog.setVisible(true);
-                            if (login()) {
-                                if (UserInfo.role.equals("demo")) {
-                                    Home home = new Home();
-                                    home.setVisible(true);
-                                } else {
-                                    new ConfigrarationModemStartUp().setVisible(true);
-                                }
-                            } else {
-
-                            }
+                            login();
                             return null;
                         }
 

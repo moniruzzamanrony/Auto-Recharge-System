@@ -545,7 +545,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="basePanel" alignment="0" pref="1198" max="32767" attributes="0"/>
+              <Component id="basePanel" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="headerPanel" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -3472,6 +3472,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="addressInProductWanrranty">
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addressInProductWanrrantyActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel185">
                               <Properties>

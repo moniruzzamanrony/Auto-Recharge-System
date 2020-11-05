@@ -101,7 +101,14 @@ public class Home extends javax.swing.JFrame {
     private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
     private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
     private final String TAG = "Home :";
-
+//    public static void main(String args[]) {
+//Home home = new Home();
+//        
+//        home.setVisible(true);
+//        //new Login().setVisible(true);
+//
+//
+//    }
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/logo64.png");
@@ -123,6 +130,8 @@ public class Home extends javax.swing.JFrame {
         getMobileNumberForSearch.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
         searchingByName.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
         searchInInbox.setUI(new HintTextFieldUI("Search By name"));
+        
+        System.err.println("");
         
     }
 
@@ -2566,6 +2575,12 @@ public class Home extends javax.swing.JFrame {
 
         jLabel184.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel184.setText("Address");
+
+        addressInProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressInProductWanrrantyActionPerformed(evt);
+            }
+        });
 
         jLabel185.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel185.setText("Mobile No.");
@@ -6233,7 +6248,7 @@ public class Home extends javax.swing.JFrame {
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
+            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bodyPanelLayout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -8455,6 +8470,10 @@ public class Home extends javax.swing.JFrame {
     private void searchingByNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchingByNameKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchingByNameKeyPressed
+
+    private void addressInProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressInProductWanrrantyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressInProductWanrrantyActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
@@ -13276,9 +13295,323 @@ public class Home extends javax.swing.JFrame {
         dueDateInProductSell.setDate(new Date(Configaration.getCurrentDate()));
         
         showDataInProductPurchaseFromDB("0000");
-        //Product warrenty Tab
+        //Product Info
+        invoiceInProductPurchases.requestFocusInWindow();
+        invoiceInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        supplierInProductPurchases.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
 
+        supplierInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    pNameInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+
+        pNameInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    dateInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        dateInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    barCodeInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        barCodeInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    groupInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        groupInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    pNameInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        pNameInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    qtyInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        qtyInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buyRateInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+        
+        buyRateInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    sellRateInProductPurchases.requestFocusInWindow();
+                }
+            }
+        });
+
+        sellRateInProductPurchases.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    typeInProductPurchasesComboBox.requestFocusInWindow();
+                }
+            }
+        });
+        typeInProductPurchasesComboBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                   
+                }
+            }
+        });
+        //Product Info
+        barCodeInProductDetails.requestFocusInWindow();
+        barCodeInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        groupInProductDetails.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        groupInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    pNameInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+
+        pNameInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    brandInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        brandInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buyRateInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        buyRateInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    qtyInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        qtyInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    oderLimitInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        oderLimitInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    warrentyInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        warrentyInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    timeTypeProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        
+        timeTypeProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    sellRateInProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+
+        sellRateInProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    productMasurementProductDetails.requestFocusInWindow();
+                }
+            }
+        });
+        productMasurementProductDetails.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                   
+                }
+            }
+        });
+
+        //Product warrenty Tab
         loadDataInWarrentyTable();
+        invoiceInProductWarranty.requestFocusInWindow();
+        invoiceInProductWarranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                switch (ke.getKeyCode()) {
+                    case KeyEvent.VK_ENTER:
+                        customerIdINProductWanrranty.requestFocusInWindow();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        customerIdINProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                     fullNameInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+
+     
+        fullNameInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                   addressInProductWanrranty.requestFocusInWindow();
+
+                }
+            }
+        });
+    
+        addressInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    refNameInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+        refNameInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    phoneNOInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+        phoneNOInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    problemInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+        
+        problemInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    brandInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+
+        brandInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    statusInProductWanrrantyComboBox.requestFocusInWindow();
+                }
+            }
+        });
+        statusInProductWanrrantyComboBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    billInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+                billInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    warrantyInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+        
+        warrantyInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    paidPaymentInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+
+        paidPaymentInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    discpuntInProductWanrranty.requestFocusInWindow();
+                }
+            }
+        });
+        discpuntInProductWanrranty.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                   
+                }
+            }
+        });
         //Product Details Tab
         listOfBarCodeOrGroupComboBox.removeAllItems();
         if (UserInfo.role.equals("demo")) {
@@ -13409,7 +13742,7 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    paymentInProductBill.requestFocusInWindow();
+                   actionTypeInProductSellCOmboBox.requestFocusInWindow();
                 }
             }
         });
@@ -13445,7 +13778,7 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                     summaryShowInBillDisplay();
-                    actionTypeInProductSellCOmboBox.requestFocusInWindow();
+                    
                 }
             }
         });
