@@ -66,7 +66,6 @@ public class Configaration {
     public static String getPropertiesValueByKey(String key) {
         Properties prop = new Properties();
         try {
-
             prop.load(Configaration.class.getClassLoader().getResourceAsStream("resources\\config.properties"));
             return prop.getProperty(key);
         } catch (IOException ex) {

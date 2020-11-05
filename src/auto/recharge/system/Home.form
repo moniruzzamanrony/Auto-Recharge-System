@@ -7242,7 +7242,7 @@
                                   <Component id="back" min="-2" pref="70" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="881" pref="914" max="32767" attributes="0"/>
+                                  <EmptySpace min="881" pref="927" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane5" max="32767" attributes="0"/>
                               <Component id="getNameForSearch" alignment="1" max="32767" attributes="0"/>
@@ -8155,6 +8155,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="SEND"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clickSandInMBActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -8184,7 +8187,7 @@
                                   <Component id="jLabel66" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="sendingLogLabel" min="-2" pref="651" max="-2" attributes="0"/>
-                                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                                  <EmptySpace pref="29" max="32767" attributes="0"/>
                                   <Component id="sendAllRechargeBut" min="-2" pref="269" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -8464,7 +8467,7 @@
                                   <Component id="detailsPanelInBillPay" min="-2" pref="893" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rechargeBalencePanel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane16" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -9110,7 +9113,7 @@
                                   <Component id="back1" min="-2" pref="70" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="956" pref="1023" max="32767" attributes="0"/>
+                                  <EmptySpace min="956" pref="1029" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane18" max="32767" attributes="0"/>
                               <Component id="searchInInbox" alignment="1" max="32767" attributes="0"/>

@@ -21,6 +21,7 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
 
     public MobileBankingConfirmationUI(String heading, String phnNumber, String ammount, String prepaidOrPostPaid, String payBy) {
         initComponents();
+      
         setAmmount.setText(ammount);
         setPhnNumber.setText(phnNumber);
         setSimType.setText(prepaidOrPostPaid);
@@ -41,40 +42,42 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         setTitleInRCUI = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        clickClose = new javax.swing.JButton();
-        clickConfirm = new javax.swing.JButton();
-        clickEdit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        buttomPanel = new javax.swing.JPanel();
+        clickClose = new javax.swing.JButton();
+        clickEdit = new javax.swing.JButton();
+        clickConfirm = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(102, 51, 255)));
+        setMaximumSize(new java.awt.Dimension(872, 566));
+        setPreferredSize(new java.awt.Dimension(872, 566));
 
-        setPhnNumber.setFont(new java.awt.Font("Cambria", 1, 150)); // NOI18N
+        setPhnNumber.setFont(new java.awt.Font("Cambria", 1, 80)); // NOI18N
         setPhnNumber.setForeground(new java.awt.Color(102, 102, 0));
         setPhnNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        setPhnNumber.setText("585");
+        setPhnNumber.setText("01XXXXXXXX");
 
-        setAmmount.setFont(new java.awt.Font("Dialog", 1, 80)); // NOI18N
+        setAmmount.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         setAmmount.setForeground(new java.awt.Color(204, 51, 0));
         setAmmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        setAmmount.setText("534");
+        setAmmount.setText("00");
 
         jPanel1.setBackground(new java.awt.Color(133, 47, 209));
 
-        setSimType.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
+        setSimType.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         setSimType.setForeground(new java.awt.Color(255, 255, 255));
         setSimType.setText("Pre-Paid");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Operation Type: ");
 
-        setPayOpetratorName.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
+        setPayOpetratorName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         setPayOpetratorName.setForeground(new java.awt.Color(255, 255, 255));
         setPayOpetratorName.setText("Banglalink");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Pay From:");
 
@@ -86,16 +89,15 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(setSimType, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(setSimType, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap())
-                    .addComponent(setPayOpetratorName, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setPayOpetratorName, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,17 +113,29 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setTitleInRCUI.setFont(new java.awt.Font("Cambria", 1, 80)); // NOI18N
+        setTitleInRCUI.setFont(new java.awt.Font("Cambria", 1, 48)); // NOI18N
         setTitleInRCUI.setForeground(new java.awt.Color(133, 47, 209));
         setTitleInRCUI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         setTitleInRCUI.setText("Mobile Banking");
 
         jSeparator1.setForeground(new java.awt.Color(255, 51, 51));
 
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Confirmation");
+
+        buttomPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         clickClose.setBackground(new java.awt.Color(255, 51, 51));
         clickClose.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         clickClose.setForeground(new java.awt.Color(255, 255, 255));
         clickClose.setText("Close");
+
+        clickEdit.setBackground(new java.awt.Color(102, 102, 102));
+        clickEdit.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        clickEdit.setForeground(new java.awt.Color(255, 255, 255));
+        clickEdit.setText("Edit");
 
         clickConfirm.setBackground(new java.awt.Color(0, 153, 51));
         clickConfirm.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -133,58 +147,58 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
             }
         });
 
-        clickEdit.setBackground(new java.awt.Color(102, 102, 102));
-        clickEdit.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        clickEdit.setForeground(new java.awt.Color(255, 255, 255));
-        clickEdit.setText("Edit");
-
-        jLabel3.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Confirmation");
+        javax.swing.GroupLayout buttomPanelLayout = new javax.swing.GroupLayout(buttomPanel);
+        buttomPanel.setLayout(buttomPanelLayout);
+        buttomPanelLayout.setHorizontalGroup(
+            buttomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttomPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clickConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(clickEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(clickClose, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        buttomPanelLayout.setVerticalGroup(
+            buttomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttomPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(buttomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(clickClose)
+                    .addComponent(clickEdit)
+                    .addComponent(clickConfirm)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setPhnNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setAmmount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(setTitleInRCUI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(clickConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(clickEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(clickClose, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(173, 173, 173)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(buttomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(setTitleInRCUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(setAmmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(setPhnNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(setTitleInRCUI, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(setTitleInRCUI)
+                .addComponent(setAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(setAmmount, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(setPhnNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(setPhnNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clickEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clickConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(clickClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(buttomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -258,6 +272,7 @@ public class MobileBankingConfirmationUI extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buttomPanel;
     private javax.swing.JButton clickClose;
     private javax.swing.JButton clickConfirm;
     private javax.swing.JButton clickEdit;
