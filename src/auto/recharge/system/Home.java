@@ -70,6 +70,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.apache.commons.lang3.StringUtils;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Home extends javax.swing.JFrame {
@@ -97,18 +98,10 @@ public class Home extends javax.swing.JFrame {
     private Double returnForSellTable = 0.0;
     private Double totalPayableAmt = 0.0;
     private Double discountInSellProduct = 0.0;
-    private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL"}, 0);
+    private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
     private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
     private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
     private final String TAG = "Home :";
-//    public static void main(String args[]) {
-//Home home = new Home();
-//        
-//        home.setVisible(true);
-//        //new Login().setVisible(true);
-//
-//
-//    }
 
     public Home() {
         initComponents();
@@ -131,7 +124,7 @@ public class Home extends javax.swing.JFrame {
         searchingByName.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
         searchInInbox.setUI(new HintTextFieldUI("Search By name"));
 
-        System.err.println("");
+        settingPanelEnterPressWork();
 
     }
 
@@ -222,7 +215,6 @@ public class Home extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         productDetailsTable = new javax.swing.JTable();
         jLabel143 = new javax.swing.JLabel();
-        barCodeInProductDetails = new javax.swing.JTextField();
         jLabel144 = new javax.swing.JLabel();
         groupInProductDetails = new javax.swing.JTextField();
         jLabel145 = new javax.swing.JLabel();
@@ -249,6 +241,7 @@ public class Home extends javax.swing.JFrame {
         timeTypeProductDetails = new javax.swing.JComboBox<>();
         jLabel135 = new javax.swing.JLabel();
         invoiceINProductDetails = new javax.swing.JLabel();
+        barCodeInProductDetails = new javax.swing.JComboBox<>();
         productPurchase = new javax.swing.JPanel();
         ProductPurchasePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -279,7 +272,6 @@ public class Home extends javax.swing.JFrame {
         jLabel126 = new javax.swing.JLabel();
         barCodeInProductPurchases = new javax.swing.JTextField();
         jLabel127 = new javax.swing.JLabel();
-        groupInProductPurchases = new javax.swing.JTextField();
         jLabel128 = new javax.swing.JLabel();
         pNameInProductPurchases = new javax.swing.JTextField();
         jLabel129 = new javax.swing.JLabel();
@@ -290,7 +282,9 @@ public class Home extends javax.swing.JFrame {
         sellRateInProductPurchases = new javax.swing.JTextField();
         jLabel133 = new javax.swing.JLabel();
         typeInProductPurchasesComboBox = new javax.swing.JComboBox<>();
-        saveInProductPurchase = new javax.swing.JButton();
+        makeNewInProductPurchase = new javax.swing.JButton();
+        saveInProductPurchase3 = new javax.swing.JButton();
+        groupInProductPurchases = new javax.swing.JTextField();
         warrantyTab = new javax.swing.JPanel();
         ProductPurchasePanel3 = new javax.swing.JPanel();
         jLabel50 = new javax.swing.JLabel();
@@ -340,6 +334,7 @@ public class Home extends javax.swing.JFrame {
         jLabel187 = new javax.swing.JLabel();
         refNameInProductWanrranty = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
+        printClickProductWanrranty1 = new javax.swing.JButton();
         billPanel = new javax.swing.JPanel();
         ProductPurchasePanel2 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
@@ -390,8 +385,6 @@ public class Home extends javax.swing.JFrame {
         dateInProductSell = new com.toedter.calendar.JDateChooser();
         dueDateInProductSell = new com.toedter.calendar.JDateChooser();
         actionTypeInProductSellCOmboBox = new javax.swing.JComboBox<>();
-        barCodeInProductSell = new javax.swing.JTextField();
-        paymentTypeInProductSell = new javax.swing.JComboBox<>();
         panddingInProductSellCheckBOx = new javax.swing.JCheckBox();
         noteInProductSell = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
@@ -401,8 +394,10 @@ public class Home extends javax.swing.JFrame {
         warrantyInProductBill = new javax.swing.JTextField();
         jLabel166 = new javax.swing.JLabel();
         duePaymentInProductBill = new javax.swing.JTextField();
+        paymentTypeInProductSell = new javax.swing.JComboBox<>();
+        jLabel171 = new javax.swing.JLabel();
+        barCodeInProductSell = new javax.swing.JComboBox<>();
         discpuntInProductBill = new javax.swing.JTextField();
-        jLabel167 = new javax.swing.JLabel();
         settingsPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         myProfile = new javax.swing.JLabel();
@@ -1708,11 +1703,6 @@ public class Home extends javax.swing.JFrame {
                 groupInProductDetailsActionPerformed(evt);
             }
         });
-        groupInProductDetails.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                groupInProductDetailsKeyReleased(evt);
-            }
-        });
 
         jLabel145.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel145.setText("Product Name :");
@@ -1810,6 +1800,8 @@ public class Home extends javax.swing.JFrame {
 
         invoiceINProductDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        barCodeInProductDetails.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout ProductPurchasePanel1Layout = new javax.swing.GroupLayout(ProductPurchasePanel1);
         ProductPurchasePanel1.setLayout(ProductPurchasePanel1Layout);
         ProductPurchasePanel1Layout.setHorizontalGroup(
@@ -1838,9 +1830,9 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(jLabel143))
                                 .addGap(30, 30, 30)
                                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(barCodeInProductDetails)
                                     .addComponent(oderLimitInProductDetails)
-                                    .addComponent(brandInProductDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                                    .addComponent(brandInProductDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(barCodeInProductDetails, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel147)
@@ -1896,17 +1888,20 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(invoiceINProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel135)))
-                .addGap(10, 10, 10)
                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel145)
-                        .addComponent(jLabel144))
-                    .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(barCodeInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel143))
-                    .addComponent(pNameInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel145)
+                                .addComponent(jLabel144))
+                            .addComponent(jLabel143)
+                            .addComponent(pNameInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saveInProductPurchase1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(barCodeInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(ProductPurchasePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2025,13 +2020,12 @@ public class Home extends javax.swing.JFrame {
         totalAmtLayout.setVerticalGroup(
             totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalAmtLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(tAmountInPPurchaseInSummary)
-                .addContainerGap())
+                .addGap(0, 24, Short.MAX_VALUE)
+                .addComponent(tAmountInPPurchaseInSummary))
             .addGroup(totalAmtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(totalAmtLayout.createSequentialGroup()
                     .addComponent(jLabel120)
-                    .addContainerGap(36, Short.MAX_VALUE)))
+                    .addContainerGap(24, Short.MAX_VALUE)))
         );
 
         totalItems.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2060,8 +2054,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(totalItemsLayout.createSequentialGroup()
                 .addComponent(jLabel122)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tItemsInPPurchaseInSummary)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tItemsInPPurchaseInSummary))
         );
 
         paid.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2120,7 +2113,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel123)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tCommissionInPPurchaseInSummary)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         paid1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -2149,8 +2142,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(paid1Layout.createSequentialGroup()
                 .addComponent(jLabel125)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tReturnAmountInPPurchase4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tReturnAmountInPPurchase4))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -2175,15 +2167,15 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel131)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(totalAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(totalItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(comission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paid1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         productPurchaseTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -2218,17 +2210,6 @@ public class Home extends javax.swing.JFrame {
         jLabel127.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel127.setText("Group:");
 
-        groupInProductPurchases.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                groupInProductPurchasesActionPerformed(evt);
-            }
-        });
-        groupInProductPurchases.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                groupInProductPurchasesKeyReleased(evt);
-            }
-        });
-
         jLabel128.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel128.setText("Product Name:");
 
@@ -2247,12 +2228,32 @@ public class Home extends javax.swing.JFrame {
         typeInProductPurchasesComboBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         typeInProductPurchasesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PURCHASE", "RETURN", "OFFER" }));
 
-        saveInProductPurchase.setBackground(new java.awt.Color(255, 102, 102));
-        saveInProductPurchase.setForeground(new java.awt.Color(255, 255, 255));
-        saveInProductPurchase.setText("save");
-        saveInProductPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
+        makeNewInProductPurchase.setBackground(new java.awt.Color(255, 102, 102));
+        makeNewInProductPurchase.setForeground(new java.awt.Color(255, 255, 255));
+        makeNewInProductPurchase.setText("New Invoice");
+        makeNewInProductPurchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveInProductPurchaseMouseClicked(evt);
+                makeNewInProductPurchaseMouseClicked(evt);
+            }
+        });
+        makeNewInProductPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeNewInProductPurchaseActionPerformed(evt);
+            }
+        });
+
+        saveInProductPurchase3.setBackground(new java.awt.Color(255, 102, 102));
+        saveInProductPurchase3.setForeground(new java.awt.Color(255, 255, 255));
+        saveInProductPurchase3.setText("Add");
+        saveInProductPurchase3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveInProductPurchase3ActionPerformed(evt);
+            }
+        });
+
+        groupInProductPurchases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                groupInProductPurchasesActionPerformed(evt);
             }
         });
 
@@ -2260,124 +2261,126 @@ public class Home extends javax.swing.JFrame {
         ProductPurchasePanel.setLayout(ProductPurchasePanelLayout);
         ProductPurchasePanelLayout.setHorizontalGroup(
             ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanelLayout.createSequentialGroup()
+            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel119, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel129)
-                                    .addComponent(jLabel133))
-                                .addGap(48, 48, 48)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(qtyInProductPurchases)
-                                    .addComponent(typeInProductPurchasesComboBox, 0, 340, Short.MAX_VALUE)))
+                                .addComponent(jLabel129, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(qtyInProductPurchases))
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel126)
-                                    .addComponent(jLabel3))
-                                .addGap(32, 32, 32)
+                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel126, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(invoiceInProductPurchases)
                                     .addComponent(barCodeInProductPurchases))))
-                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel130, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(saveInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanelLayout.createSequentialGroup()
+                                .addComponent(buyRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel133, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(typeInProductPurchasesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(supplierInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(groupInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel130, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                        .addComponent(buyRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel128)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pNameInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                         .addComponent(jLabel132, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(sellRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(supplierInProductPurchases)
-                                            .addComponent(groupInProductPurchases, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
-                                        .addGap(12, 12, 12)
-                                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel128)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(pNameInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel119, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(45, 45, 45)
-                                                .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(sellRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(408, 408, 408)
+                        .addComponent(saveInProductPurchase3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(makeNewInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         ProductPurchasePanelLayout.setVerticalGroup(
             ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel119, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateInProductPurchases, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(invoiceInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(supplierInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel128)
+                        .addComponent(pNameInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel3))
                             .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(invoiceInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(supplierInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel119)))
+                                .addComponent(barCodeInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel127))
+                            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel126)))
+                        .addGap(6, 6, 6)
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(barCodeInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel127))
-                                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel126)))
-                                .addGap(6, 6, 6)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel129))
-                                    .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(qtyInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel130))))
+                                .addComponent(jLabel129))
+                            .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(qtyInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel130))))
+                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                        .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(groupInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel128)
-                                    .addComponent(pNameInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(buyRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel132)
-                                    .addComponent(sellRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel132)))
+                            .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(sellRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(typeInProductPurchasesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel133)
-                                .addComponent(saveInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buyRateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel133))
+                            .addComponent(typeInProductPurchasesComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE))))
+                    .addComponent(saveInProductPurchase3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(makeNewInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout productPurchaseLayout = new javax.swing.GroupLayout(productPurchase);
@@ -2743,7 +2746,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         printClickProductWanrranty.setBackground(new java.awt.Color(0, 153, 0));
-        printClickProductWanrranty.setText("Save & Print");
+        printClickProductWanrranty.setText("Save");
         printClickProductWanrranty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printClickProductWanrrantyActionPerformed(evt);
@@ -2766,23 +2769,24 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        printClickProductWanrranty1.setBackground(new java.awt.Color(0, 153, 0));
+        printClickProductWanrranty1.setText("Print");
+        printClickProductWanrranty1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printClickProductWanrranty1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ProductPurchasePanel3Layout = new javax.swing.GroupLayout(ProductPurchasePanel3);
         ProductPurchasePanel3.setLayout(ProductPurchasePanel3Layout);
         ProductPurchasePanel3Layout.setHorizontalGroup(
             ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane15)
-                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                    .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                    .addComponent(jButton7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(updateClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(printClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ProductPurchasePanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel181, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(26, 26, 26)
@@ -2821,17 +2825,23 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jLabel169)
                                 .addGap(2, 2, 2)
                                 .addComponent(customerIdINProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
+                            .addComponent(jButton7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(printClickProductWanrranty, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(printClickProductWanrranty1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         ProductPurchasePanel3Layout.setVerticalGroup(
             ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel50)
@@ -2882,17 +2892,15 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProductPurchasePanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(printClickProductWanrranty)
-                                    .addComponent(updateClickProductWanrranty)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                                .addComponent(jButton7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(ProductPurchasePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(printClickProductWanrranty)
+                            .addComponent(updateClickProductWanrranty)
+                            .addComponent(printClickProductWanrranty1)
+                            .addComponent(jButton7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -2900,13 +2908,16 @@ public class Home extends javax.swing.JFrame {
         warrantyTab.setLayout(warrantyTabLayout);
         warrantyTabLayout.setHorizontalGroup(
             warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(warrantyTabLayout.createSequentialGroup()
-                .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, warrantyTabLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         warrantyTabLayout.setVerticalGroup(
             warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(warrantyTabLayout.createSequentialGroup()
+                .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Product Warranty ", warrantyTab);
@@ -3221,7 +3232,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         productSellTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -3308,16 +3319,6 @@ public class Home extends javax.swing.JFrame {
         actionTypeInProductSellCOmboBox.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         actionTypeInProductSellCOmboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sell", "Return" }));
 
-        barCodeInProductSell.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        barCodeInProductSell.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                barCodeInProductSellKeyReleased(evt);
-            }
-        });
-
-        paymentTypeInProductSell.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        paymentTypeInProductSell.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "BKash", "Rokect", "Nagat", "Visa Card", "Master Card", "Dabit Card", "Creadit Card", " " }));
-
         panddingInProductSellCheckBOx.setText("Pandding");
 
         noteInProductSell.addActionListener(new java.awt.event.ActionListener() {
@@ -3359,15 +3360,11 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        discpuntInProductBill.setText("0.0");
-        discpuntInProductBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discpuntInProductBillActionPerformed(evt);
-            }
-        });
+        paymentTypeInProductSell.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        paymentTypeInProductSell.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "BKash", "Rokect", "Nagat", "Visa Card", "Master Card", "Dabit Card", "Creadit Card", " " }));
 
-        jLabel167.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel167.setText("Discount(%)    :");
+        jLabel171.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        jLabel171.setText("Pay by");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -3378,18 +3375,18 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel164)
                     .addComponent(jLabel166))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel165, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel167, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(warrantyInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel165, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel171, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(warrantyInProductBill, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(paymentTypeInProductSell, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -3405,10 +3402,24 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
                     .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel167))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(paymentTypeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel171))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
+
+        barCodeInProductSell.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        barCodeInProductSell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                barCodeInProductSellActionPerformed(evt);
+            }
+        });
+
+        discpuntInProductBill.setText("0.0");
+        discpuntInProductBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                discpuntInProductBillActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ProductPurchasePanel2Layout = new javax.swing.GroupLayout(ProductPurchasePanel2);
         ProductPurchasePanel2.setLayout(ProductPurchasePanel2Layout);
@@ -3429,10 +3440,10 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                                 .addComponent(actionTypeInProductSellCOmboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(barCodeInProductSell)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(paymentTypeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(barCodeInProductSell, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3471,13 +3482,11 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(jLabel159))))
                         .addGap(2, 2, 2)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(customerIdINProductSell, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                                .addComponent(fullNameInProductSell)
-                                .addComponent(addressInProductSell))
-                            .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addComponent(phoneNOInProductSell)
-                                .addGap(313, 313, 313))))))
+                            .addComponent(addressInProductSell, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(phoneNOInProductSell, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fullNameInProductSell, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(customerIdINProductSell))
+                        .addGap(313, 313, 313))))
         );
         ProductPurchasePanel2Layout.setVerticalGroup(
             ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3528,10 +3537,10 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(noteInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(actionTypeInProductSellCOmboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(actionTypeInProductSellCOmboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(barCodeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(paymentTypeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(barCodeInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4427,7 +4436,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(getDescriptionInSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(saveNewOfferInSettrings, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rechargeOfferPanelLayout = new javax.swing.GroupLayout(rechargeOfferPanel);
@@ -4436,7 +4445,7 @@ public class Home extends javax.swing.JFrame {
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
@@ -4606,7 +4615,7 @@ public class Home extends javax.swing.JFrame {
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addNewManagementPanelSettingsLayout.setVerticalGroup(
@@ -5129,8 +5138,6 @@ public class Home extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel35.setText("Account Password");
 
-        accountPassword.setText("jPasswordField1");
-
         jLabel36.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel36.setText("Recharge USSD Code Pattern(post-paid)");
 
@@ -5293,7 +5300,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(getSeletedStorage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(clickAddContract, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(575, Short.MAX_VALUE))
         );
 
         basePanel.add(addNewContractPanel, "card2");
@@ -7567,18 +7574,9 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_detailsPanelMouseClicked
 
-    private void saveInProductPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchaseMouseClicked
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            saveInProductPurchaseDB();
-            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
-        }
-    }//GEN-LAST:event_saveInProductPurchaseMouseClicked
+    private void makeNewInProductPurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_makeNewInProductPurchaseMouseClicked
 
-    private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_groupInProductPurchasesActionPerformed
+    }//GEN-LAST:event_makeNewInProductPurchaseMouseClicked
 
     private void invoiceInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_invoiceInProductPurchasesKeyReleased
         if (UserInfo.role.equals("demo")) {
@@ -7631,67 +7629,9 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_invoiceInProductPurchasesKeyReleased
 
-    private void groupInProductPurchasesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductPurchasesKeyReleased
-        List<String> list = new ArrayList<>();
-        String to_check = null;
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    list.add(rs.getString("group"));
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                showDataInProductPurchaseFromDB(groupInProductPurchases.getText());
-                pNameInProductPurchases.requestFocusInWindow();
-            } else {
-                to_check = groupInProductPurchases.getText();
-                int to_check_len = to_check.length();
-                for (String data : list) {
-                    String check_from_data = "";
-                    for (int i = 0; i < to_check_len; i++) {
-                        if (to_check_len <= data.length()) {
-                            check_from_data = check_from_data + data.charAt(i);
-                        }
-                    }
-
-                    if (check_from_data.equals(to_check)) {
-
-                        groupInProductPurchases.setText(data);
-                        groupInProductPurchases.setSelectionStart(to_check_len);
-                        groupInProductPurchases.setSelectionEnd(data.length());
-                        break;
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_groupInProductPurchasesKeyReleased
-
     private void groupInProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductDetailsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_groupInProductDetailsActionPerformed
-
-    private void groupInProductDetailsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_groupInProductDetailsKeyReleased
-        if (UserInfo.role.equals("demo")) {
-
-        } else {
-
-        }
-    }//GEN-LAST:event_groupInProductDetailsKeyReleased
 
     private void saveInProductPurchase1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveInProductPurchase1MouseClicked
         // TODO add your handling code here:
@@ -7725,7 +7665,7 @@ public class Home extends javax.swing.JFrame {
                             ResultSet rs = st.executeQuery(sql);
 
                             while (rs.next()) {
-                                listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString() + "  " + rs.getString("group_products").toString());
+                                listOfBarCodeOrGroupComboBox.addItem(rs.getString("invoice").toString() + "  " + rs.getString("group_products").toString());
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -7742,7 +7682,7 @@ public class Home extends javax.swing.JFrame {
                         ResultSet rs = st.executeQuery(sql);
 
                         while (rs.next()) {
-                            listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString());
+                            listOfBarCodeOrGroupComboBox.addItem(rs.getString("invoice").toString());
                         }
                     } catch (SQLException ex) {
                         Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -7766,7 +7706,7 @@ public class Home extends javax.swing.JFrame {
                     showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString().split(" ")[0]);
 
                 } else {
-                    System.err.println(listOfBarCodeOrGroupComboBox.getSelectedItem());
+
                     showDataInProductDetailsPurchaseFromDB(listOfBarCodeOrGroupComboBox.getSelectedItem().toString());
                 }
 
@@ -7796,7 +7736,7 @@ public class Home extends javax.swing.JFrame {
         System.err.println(productId + "+" + productGroup);
 
         //SET VALUE IN EDITTEXT
-        barCodeInProductDetails.setText(productId);
+        barCodeInProductDetails.setSelectedItem(productId);
         groupInProductDetails.setText(productGroup);
         pNameInProductDetails.setText(productName);
         buyRateInProductDetails.setText(buyRate);
@@ -7812,21 +7752,21 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-            updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
+            updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
             addPerchangeSelection.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent e) {
                     Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
                     if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
                         sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
-                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(sellRate));
                     } else {//checkbox has been deselected
-                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getText(), String.valueOf(sellRate));
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(sellRate));
                     }
                     ;
                 }
             });
-            barCodeInProductDetails.setText("");
+            barCodeInProductDetails.setSelectedItem("");
             groupInProductDetails.setText("");
             pNameInProductDetails.setText("");
             buyRateInProductDetails.setText("");
@@ -7845,7 +7785,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     processtingLoderDialog.setVisible(true);
-                    genarateBarCode(barCodeInProductDetails.getText());
+                    genarateBarCode(barCodeInProductDetails.getSelectedItem().toString());
                     return null;
                 }
 
@@ -7856,7 +7796,6 @@ public class Home extends javax.swing.JFrame {
 
             };
             worker.execute();
-
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -7903,58 +7842,6 @@ public class Home extends javax.swing.JFrame {
     private void discpuntInProductBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discpuntInProductBillActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discpuntInProductBillActionPerformed
-
-    private void barCodeInProductSellKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_barCodeInProductSellKeyReleased
-        List<String> list = new ArrayList<>();
-        String to_check = null;
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    list.add(rs.getString("bar_code"));
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getKeyCode() == KeyEvent.VK_DELETE) {
-
-            } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                addProductFromDBInSellPanel(barCodeInProductSell.getText());
-                barCodeInProductSell.requestFocusInWindow();
-            } else {
-                to_check = barCodeInProductSell.getText();
-                int to_check_len = to_check.length();
-                for (String data : list) {
-                    String check_from_data = "";
-                    for (int i = 0; i < to_check_len; i++) {
-                        if (to_check_len <= data.length()) {
-                            check_from_data = check_from_data + data.charAt(i);
-                        }
-                    }
-
-                    if (check_from_data.equals(to_check)) {
-
-                        barCodeInProductSell.setText(data);
-                        barCodeInProductSell.setSelectionStart(to_check_len);
-                        barCodeInProductSell.setSelectionEnd(data.length());
-                        break;
-                    }
-                }
-            }
-
-        }
-    }//GEN-LAST:event_barCodeInProductSellKeyReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         if (UserInfo.role.equals("demo")) {
@@ -8119,58 +8006,14 @@ public class Home extends javax.swing.JFrame {
 
     private void printClickProductWanrrantyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrrantyActionPerformed
 
-        if (UserInfo.role.equals("demo")) {
-            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-        } else {
-            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    processtingLoderDialog.setVisible(true);
-                    boolean isExist = false;
-                    Connection conn = DbConnection.connect();
-                    try {
-
-                        Statement st = conn.createStatement();
-                        String sql = "SELECT * FROM `warranty_table` WHERE invoice='" + invoiceInProductWarranty.getText() + "';";
-                        //TODO: HANDLE NULL
-                        ResultSet rs = st.executeQuery(sql);
-                        if (!rs.next()) {
-                            isExist = true;
-                        }
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                    } finally {
-                        DbConnection.disconnect(conn);
-                    }
-                    System.err.println(isExist);
-                    if (isExist) {
-                        System.err.println(isExist);
-                        saveWarrantyDetailsInDb();
-                        printPosMemo(invoiceInProductWarranty.getText());
-                    } else {
-                        System.err.println("just print");
-                        printPosMemo(invoiceInProductWarranty.getText());
-                    }
-                    return null;
-                }
-
-                @Override
-                protected void done() {
-                    processtingLoderDialog.setVisible(false);
-                }
-
-            };
-            worker.execute();
-
-        }
+        SaveInWarrenty();
     }//GEN-LAST:event_printClickProductWanrrantyActionPerformed
 
     private void saveInProductPurchase2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase2ActionPerformed
         if (UserInfo.role.equals("demo")) {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
         } else {
-
+            DbConnection.deleteRow("product_purchase", "bar_code", barCodeInProductDetails.getSelectedItem().toString());
         }
     }//GEN-LAST:event_saveInProductPurchase2ActionPerformed
 
@@ -8450,7 +8293,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     processtingLoderDialog.setVisible(true);
-                    genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode1.getText(),forBarCodePhoneNumber2.getText(),forBarCodePhoneNumber3.getText(),forBarCodePhoneNumber4.getText(),forBarCodePhoneNumber5.getText(),forBarCodePhoneNumber6.getText(),forBarCodePhoneNumber7.getText(),forBarCodePhoneNumber8.getText(),forBarCodePhoneNumber9.getText(),forBarCodePhoneNumber10.getText());
+                    genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode1.getText(), forBarCodePhoneNumber2.getText(), forBarCodePhoneNumber3.getText(), forBarCodePhoneNumber4.getText(), forBarCodePhoneNumber5.getText(), forBarCodePhoneNumber6.getText(), forBarCodePhoneNumber7.getText(), forBarCodePhoneNumber8.getText(), forBarCodePhoneNumber9.getText(), forBarCodePhoneNumber10.getText());
                     return null;
                 }
 
@@ -8693,6 +8536,41 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_forBarCodePhoneNumber10ActionPerformed
 
+    private void makeNewInProductPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeNewInProductPurchaseActionPerformed
+        invoiceInProductPurchases.requestFocusInWindow();
+        invoiceInProductPurchases.setText("");
+        supplierInProductPurchases.setText("");
+        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(5, 10)));
+        pNameInProductPurchases.setText("");
+        qtyInProductPurchases.setText("");
+        buyRateInProductPurchases.setText("");
+        sellRateInProductPurchases.setText("");
+        typeInProductPurchasesComboBox.setSelectedIndex(0);
+    }//GEN-LAST:event_makeNewInProductPurchaseActionPerformed
+
+    private void saveInProductPurchase3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveInProductPurchase3ActionPerformed
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            saveInProductPurchaseDB();
+            showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+            refrashProductPurchaseTable();
+        }
+    }//GEN-LAST:event_saveInProductPurchase3ActionPerformed
+
+    private void groupInProductPurchasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groupInProductPurchasesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_groupInProductPurchasesActionPerformed
+
+    private void barCodeInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barCodeInProductSellActionPerformed
+        System.err.println(barCodeInProductSell.getSelectedItem());
+        discpuntInProductBill.requestFocusInWindow();
+    }//GEN-LAST:event_barCodeInProductSellActionPerformed
+
+    private void printClickProductWanrranty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printClickProductWanrranty1ActionPerformed
+        printAndSaveInWarrenty();
+    }//GEN-LAST:event_printClickProductWanrranty1ActionPerformed
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -8791,9 +8669,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel backToMobileRecharge;
     private javax.swing.JLabel backToMobileRecharge1;
     private javax.swing.JLabel backToUssdManengementPanel;
-    private javax.swing.JTextField barCodeInProductDetails;
+    private javax.swing.JComboBox<String> barCodeInProductDetails;
     private javax.swing.JTextField barCodeInProductPurchases;
-    private javax.swing.JTextField barCodeInProductSell;
+    private javax.swing.JComboBox<String> barCodeInProductSell;
     private javax.swing.JPanel baseBillPayment;
     private javax.swing.JPanel basePanel;
     private javax.swing.JTextField billInProductWanrranty;
@@ -9028,11 +8906,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel164;
     private javax.swing.JLabel jLabel165;
     private javax.swing.JLabel jLabel166;
-    private javax.swing.JLabel jLabel167;
     private javax.swing.JLabel jLabel168;
     private javax.swing.JLabel jLabel169;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel170;
+    private javax.swing.JLabel jLabel171;
     private javax.swing.JLabel jLabel172;
     private javax.swing.JLabel jLabel176;
     private javax.swing.JLabel jLabel178;
@@ -9194,6 +9072,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listOfBarCodeOrGroupComboBox;
     private javax.swing.JLabel loaderInBillPayment;
     private javax.swing.JPanel logoPanel;
+    private javax.swing.JButton makeNewInProductPurchase;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JList<String> mobileBankingBalanceShowPanelList;
     private javax.swing.JLabel mobileBankingSettings;
@@ -9230,6 +9109,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField phoneNOInProductWanrranty;
     private javax.swing.JPopupMenu popupForSuggestManu;
     private javax.swing.JButton printClickProductWanrranty;
+    private javax.swing.JButton printClickProductWanrranty1;
     private javax.swing.JTextPane problemInProductWanrranty;
     private javax.swing.JTable productDetailsTable;
     private javax.swing.JPanel productInfo;
@@ -9254,9 +9134,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel resellerPanel;
     private javax.swing.JButton resetnUsingCustomerId;
     private javax.swing.JLabel returnInProductSell;
-    private javax.swing.JButton saveInProductPurchase;
     private javax.swing.JButton saveInProductPurchase1;
     private javax.swing.JButton saveInProductPurchase2;
+    private javax.swing.JButton saveInProductPurchase3;
     private javax.swing.JButton saveNewOfferInSettrings;
     private javax.swing.JRadioButton searchByGroupInRatio;
     private javax.swing.JTextField searchInInbox;
@@ -10547,69 +10427,7 @@ public class Home extends javax.swing.JFrame {
         }
         return null;
     }
-//
-//    private void loadValuesInTableForDetails(String selectedItem) {
-//        if (selectedItem.equals("Inbox")) {
-//            subItemsComboBox.setVisible(true);
-//
-//            openSIMSelectionComboBox();
-//
-//        } else if (selectedItem.equals("My Recharge")) {
-//            subItemsComboBox.setVisible(false);
-//            loadRechargeDetailsInDetailsPanelTable();
-//
-//        } else if (selectedItem.equals("Mobile Banking")) {
-//            subItemsComboBox.setVisible(false);
-//            loadMobileBankingDetailsInDetailsTable();
-//
-//        } else if (selectedItem.equals("Bill Payment")) {
-//            subItemsComboBox.setVisible(true);
-//
-//            loadBillPaymentDetailsInDetailsTable();
-//
-//        } else {
-//            System.err.println("Selected Items Not Found");
-//
-//        }
-//
-//    }
 
-    //    private void loadRechargeDetailsInDetailsPanelTable() {
-//
-//        inboxIsActive = false;
-//        detailsSelectedItems = "recharge";
-//        setMgsDetails.setText("");
-//        DefaultTableModel mobileRechargeDetailsTableForDetailsPanelModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `recharge_admin`";
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                mobileRechargeDetailsTableForDetailsPanelModel.addRow(new Object[]{
-//                    rs.getString("trx_id"),
-//                    rs.getString("date_time"),
-//                    rs.getString("type"),
-//                    rs.getString("mobile_no"),
-//                    rs.getString("amount"),
-//                    rs.getString("from_sp"),
-//                    rs.getString("current_balance"),
-//                    rs.getString("status")});
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(mobileRechargeDetailsTableForDetailsPanelModel);
-//    }
     private void setCuurentActiveNetworksFromModem() {
         String operatorNames = "";
         currentNetworkName.setText("Please wait");
@@ -11071,20 +10889,6 @@ public class Home extends javax.swing.JFrame {
             } else {
                 updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(mobileBankingBalenceHash.get(service + "(" + sim + ")")));
             }
-//            Pattern p3 = Pattern.compile("\\d+");
-//            Matcher m3 = p3.matcher(Configaration.haxToStringConvert(acBalanceInHax));
-//            while (m3.find()) {
-//                balancePaseList.add(m3.group());
-//                System.out.println(m3.group());
-//            }
-//            if (balancePaseList.get(0).equals("16247")) {
-//                System.err.println("Possible duplicate request, call 16247 for details.");
-//                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), "Unable to read");
-//            } else {
-//                System.err.println("----------------------------------" + balancePaseList.get(0));
-//
-//
-//            }
 
             loadMobileBankingDetailsTable();
             getPhoneNumberInBillPayment.setText("");
@@ -11459,38 +11263,6 @@ public class Home extends javax.swing.JFrame {
                     ussdSettedTable.setModel(model);
                     ussdSettedTable.setEnabled(false);
                     ussdSettedTable.setRowHeight(30);
-//                    ussdSettedTable.addMouseListener(new MouseAdapter() {
-//                        @Override
-//                        public void mouseClicked(MouseEvent me) {
-//                            int seletedOption = 3;
-//                            Point point = me.getPoint();
-//                            int row = ussdSettedTable.rowAtPoint(point);
-//                            Configaration.setErrorLog(me.getClickCount());
-//                            if (me.getClickCount() == 2) {
-//                                Object[] options = {"Delete", "Edit"};
-//                                seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
-//                                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-//                                Configaration.setLog(seletedOption);
-//                            }
-//
-//                            switch (seletedOption) {
-//                                case 0:
-//                                    DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-//                                    Home.showDeshBoardPage();
-//
-//                                    break;
-//                                case 1:
-//
-//                                    //  switchPanelViaMenu(updateAddedManagementPanel);
-//                                    //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-//                                    break;
-//                                default:
-//                                    Configaration.setErrorLog("JOption selection not match");
-//
-//                                    break;
-//                            }
-//                        }
-//                    });
 
                 } catch (SQLException ex) {
                     Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -11544,45 +11316,6 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    //    private boolean updateToDbCommandByOperator_name() {
-//        String operatorName = getOperatorName1.getText();
-//        String rechargeUssdPartern = getRechargeUssdPartern1.getText();
-//        String operatorCode = getOperatorCode1.getText();
-//        String actionFor = getSeletedAction1.getSelectedItem().toString();
-//        String balenceUssdPartern = getBalenceUssdPartern2.getText();
-//        conn = DbConnection.connect();
-//        try {
-//            String sql = "UPDATE command SET operator_code= ?,action_for = ?, r_ussd_code= ?, b_s_ussd_code= ?, icon= ? WHERE operator_name = \"" + operatorName + "\"";
-//            System.out.println(sql);
-//            String computerMacAddress = getMacAddress().replace(":", "");
-//            try {
-//                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-//                preparedStatement.setString(1, operatorCode);
-//                preparedStatement.setString(2, actionFor);
-//                preparedStatement.setString(3, rechargeUssdPartern);
-//                preparedStatement.setString(4, balenceUssdPartern);
-//                preparedStatement.setString(5, imagePath);
-//                preparedStatement.execute();
-//
-//                Home.showDeshBoardPage();
-//                return true;
-//
-//            } catch (SQLException ex) {
-//                System.err.println(ex);
-//            } finally {
-//                if (conn != null) {
-//                    try {
-//                        conn.close();
-//                    } catch (SQLException e) {
-//                    }
-//                }
-//            }
-//
-//        } catch (UnknownHostException | SocketException ex) {
-//            System.err.println(ex);
-//        }
-//        return false;
-//    }
     private void saveInMobileBanking() {
         String service = getSelectedServiceCombo.getText().toString();
         String defultSIM = getSelectedSIMNameCombo.getSelectedItem().toString();
@@ -11659,40 +11392,6 @@ public class Home extends javax.swing.JFrame {
 
                 tableMobileBankingSetting.setRowHeight(25);
                 tableMobileBankingSetting.setModel(model);
-
-//            ussdSettedTable.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    int seletedOption = 3;
-//                    Point point = me.getPoint();
-//                    int row = ussdSettedTable.rowAtPoint(point);
-//                    Configaration.setErrorLog(me.getClickCount());
-//                    if (me.getClickCount() == 2) {
-//                        Object[] options = {"Delete", "Edit"};
-//                        seletedOption = JOptionPane.showOptionDialog(null, "Choose now ?", "Menu",
-//                                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-//                        Configaration.setLog(seletedOption);
-//                    }
-//
-//                    switch (seletedOption) {
-//                        case 0:
-//                            DbConnection.deleteRow("command", "operator_name", ussdSettedTable.getValueAt(row, 0).toString());
-//                            Home.showDeshBoardPage();
-//
-//                            break;
-//                        case 1:
-//
-//                            //  switchPanelViaMenu(updateAddedManagementPanel);
-//                            //  getOperatorName1.setText(ussdSettedTable.getValueAt(row, 0).toString());
-//                            break;
-//                        default:
-//                            Configaration.setErrorLog("JOption selection not match");
-//
-//                            break;
-//                    }
-//                }
-//            });
             } catch (SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
@@ -12031,352 +11730,6 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    /*
-     *
-     *--------------------------------------- DETAILS PANEL -------------------------------------------------------
-     *
-     */
-//    private void loadIndoxInDetailsTable(String port) {
-//        inboxIsActive = true;
-//        detailsSelectedItems = "inbox";
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null;
-//
-//        ModemInfoList.simOperatorIdentifiers.stream().map(new Function<SimOperatorIdentifierDto, SimOperatorIdentifierDto>() {
-//            @Override
-//            public SimOperatorIdentifierDto apply(SimOperatorIdentifierDto simOperatorIdentifierDto) {
-//                auto.recharge.system.config.Modem.connect(port);
-//                return simOperatorIdentifierDto;
-//            }
-//        }).map((_item) -> {
-//            // TODO: Move those code in setup Apllication
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=1");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> {
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CMGF=?");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> {
-//            auto.recharge.system.config.Modem.sendATCommand("AT+CPMS=\"SM\"");
-//            return _item;
-//        }).map((_item) -> {
-//            Configaration.wait(1000);
-//            return _item;
-//        }).map((_item) -> auto.recharge.system.config.Modem.sendATCommand("AT+CMGL=\"ALL\"").replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "")).map((result) -> {
-//            splitedByCMDValueForInbox = result.split("\\+CMGL:");
-//            return result;
-//        }).forEachOrdered((_item) -> {
-//            auto.recharge.system.config.Modem.disconnect();
-//        });
-//        for (String value : splitedByCMDValueForInbox) {
-//
-//            perseByCommaInInbox = value.replaceAll("OK", "").split(",");
-//            for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                //2--phn number
-//                //4-5 date time
-//                //6 mgs
-//
-//                from = perseByCommaInInbox[2];
-//                if (from.length() >= 13) {
-//                    from = from.substring(2, 13);
-//                }
-//                dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                    mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                } else {
-//                    mgs = perseByCommaInInbox[6];
-//                }
-//
-//            }
-//            defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//        }
-//
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//
-//    }
-//    private void searchByPhoneNumber() {
-//
-//        if (getPhoneNoForSearch.getText().equals("")) {
-//            Popup.customError("Empty Field Found..");
-//        } else {
-//            int count = 0;
-//            String from = null, dateTime = null, mgs = null, fromSearch = null;
-//            if (detailsSelectedItems.equals("inbox")) {
-//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//                for (String value : splitedByCMDValueForInbox) {
-//
-//                    perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                    for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                        //2--phn number
-//                        //4-5 date time
-//                        //6 mgs
-//                        System.out.println("---" + perseByCommaInInbox[6]);
-//                        from = perseByCommaInInbox[2];
-//                        if (from.length() >= 13) {
-//                            from = from.substring(2, 13);
-//                        }
-//                        if (from.equals(getPhoneNoForSearch.getText())) {
-//                            fromSearch = from;
-//                            dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                            if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                                mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                            } else {
-//                                mgs = perseByCommaInInbox[6];
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                    defaultTableModel.addRow(new Object[]{count++, fromSearch, dateTime, mgs});
-//
-//                }
-//                tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                    @Override
-//                    public void mouseClicked(MouseEvent me) {
-//                        if (inboxIsActive) {
-//                            Point point = me.getPoint();
-//                            int row = tableForDetails.rowAtPoint(point);
-//                            Configaration.setErrorLog(me.getClickCount());
-//                            setMgsDetails.setText("");
-//                            String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                    + "Date & Time: "
-//                                    + tableForDetails.getValueAt(row, 2).toString()
-//                                    + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                            setMgsDetails.setText(showableMgs);
-//                        }
-//                    }
-//                });
-//
-//                tableForDetails.setEnabled(false);
-//                tableForDetails.setRowHeight(30);
-//                tableForDetails.setModel(defaultTableModel);
-//            } else if (detailsSelectedItems.equals("recharge")) {
-//                String phnNo = null;
-//
-//                DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//                Connection conn = DbConnection.connect();
-//                try {
-//
-//                    Statement st = conn.createStatement();
-//                    String sql = "SELECT * FROM `recharge_admin`";
-//                    ResultSet rs = st.executeQuery(sql);
-//                    while (rs.next()) {
-//                        System.err.println("--" + Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                        if (rs.getString("mobile_no").equals(getPhoneNoForSearch.getText())) {
-//                            defaultTableModel.addRow(new Object[]{
-//                                rs.getString("trx_id"),
-//                                rs.getString("date_time"),
-//                                rs.getString("type"),
-//                                rs.getString("mobile_no"),
-//                                rs.getString("amount"),
-//                                rs.getString("from_sp"),
-//                                rs.getString("current_balance"),
-//                                rs.getString("status")});
-//                        }
-//
-//                    }
-//
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//                } finally {
-//                    DbConnection.disconnect(conn);
-//                }
-//                tableForDetails.setEnabled(false);
-//                tableForDetails.setRowHeight(30);
-//                tableForDetails.setModel(defaultTableModel);
-//
-//            }
-//        }
-//    }
-//    private void resetSearchItems() {
-//        getPhoneNoForSearch.setText("");
-//        fromDateChooser.setDate(null);
-//        toDateChooser.setDate(null);
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null, fromSearch = null;
-//        if (detailsSelectedItems.equals("inbox")) {
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//            for (String value : splitedByCMDValueForInbox) {
-//
-//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                    //2--phn number
-//                    //4-5 date time
-//                    //6 mgs
-//
-//                    from = perseByCommaInInbox[2];
-//                    if (from.length() >= 13) {
-//                        from = from.substring(2, 13);
-//                    }
-//
-//                    dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                    if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                        mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                    } else {
-//                        mgs = perseByCommaInInbox[6];
-//                    }
-//
-//                }
-//                defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//            }
-//            tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    if (inboxIsActive) {
-//                        Point point = me.getPoint();
-//                        int row = tableForDetails.rowAtPoint(point);
-//                        Configaration.setErrorLog(me.getClickCount());
-//                        setMgsDetails.setText("");
-//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                + "Date & Time: "
-//                                + tableForDetails.getValueAt(row, 2).toString()
-//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                        setMgsDetails.setText(showableMgs);
-//                    }
-//                }
-//            });
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        } else if (detailsSelectedItems.equals("recharge")) {
-//            inboxIsActive = false;
-//            detailsSelectedItems = "recharge";
-//            setMgsDetails.setText("");
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//            Connection conn = DbConnection.connect();
-//            try {
-//
-//                Statement st = conn.createStatement();
-//                String sql = "SELECT * FROM `recharge_admin`";
-//                ResultSet rs = st.executeQuery(sql);
-//                while (rs.next()) {
-//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                    defaultTableModel.addRow(new Object[]{
-//                        rs.getString("trx_id"),
-//                        rs.getString("date_time"),
-//                        rs.getString("type"),
-//                        rs.getString("mobile_no"),
-//                        rs.getString("amount"),
-//                        rs.getString("from_sp"),
-//                        rs.getString("current_balance"),
-//                        rs.getString("status")});
-//
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//                DbConnection.disconnect(conn);
-//            }
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//
-//        }
-//    }
-//    private void searchByDate(String stratDate, String endDate) {
-//        int count = 0;
-//        String from = null, dateTime = null, mgs = null, fromSearch = null;
-//        if (detailsSelectedItems.equals("inbox")) {
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"No", "From", "Date & Time", "Message"}, 0);
-//            for (String value : splitedByCMDValueForInbox) {
-//
-//                perseByCommaInInbox = value.replaceAll("OK", "").replaceAll("\\+", "").split(",");
-//                for (int i = 1; i < perseByCommaInInbox.length; i++) {
-//                    //2--phn number
-//                    //4-5 date time
-//                    //6 mgs
-//
-//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(perseByCommaInInbox[4]))
-//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(perseByCommaInInbox[4]))) {
-//                        from = perseByCommaInInbox[2];
-//                        if (from.length() >= 13) {
-//                            from = from.substring(2, 13);
-//                        }
-//                        dateTime = perseByCommaInInbox[4] + " " + perseByCommaInInbox[5];
-//                        if (Configaration.isHexadecimal(perseByCommaInInbox[6])) {
-//                            mgs = Configaration.haxToStringConvert(perseByCommaInInbox[6]);
-//                        } else {
-//                            mgs = perseByCommaInInbox[6];
-//                        }
-//                        defaultTableModel.addRow(new Object[]{count++, from, dateTime, mgs});
-//                    }
-//
-//                }
-//
-//            }
-//            tableForDetails.addMouseListener(new MouseAdapter() {
-//
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    if (inboxIsActive) {
-//                        Point point = me.getPoint();
-//                        int row = tableForDetails.rowAtPoint(point);
-//                        Configaration.setErrorLog(me.getClickCount());
-//                        setMgsDetails.setText("");
-//                        String showableMgs = "From: " + tableForDetails.getValueAt(row, 1).toString() + "\n"
-//                                + "Date & Time: "
-//                                + tableForDetails.getValueAt(row, 2).toString()
-//                                + "\n\n" + "Message:\n" + tableForDetails.getValueAt(row, 3).toString();
-//                        setMgsDetails.setText(showableMgs);
-//                    }
-//                }
-//            });
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        } else if (detailsSelectedItems.equals("recharge")) {
-//
-//            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Type", "Mobile No", "Ammount", "From", "Current Balance", "Status",}, 0);
-//            Connection conn = DbConnection.connect();
-//            try {
-//
-//                Statement st = conn.createStatement();
-//                String sql = "SELECT * FROM `recharge_admin`";
-//                ResultSet rs = st.executeQuery(sql);
-//                while (rs.next()) {
-//                    System.out.println("----->" + rs.getString("date_time").substring(0, 8));
-//                    System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//                    if (Configaration.stringToDateType(stratDate).before(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))
-//                            && Configaration.stringToDateType(endDate).after(Configaration.stringToDateType(rs.getString("date_time").substring(0, 8)))) {
-//                        defaultTableModel.addRow(new Object[]{
-//                            rs.getString("trx_id"),
-//                            rs.getString("date_time"),
-//                            rs.getString("type"),
-//                            rs.getString("mobile_no"),
-//                            rs.getString("amount"),
-//                            rs.getString("from_sp"),
-//                            rs.getString("current_balance"),
-//                            rs.getString("status")});
-//
-//                    }
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//
-//                DbConnection.disconnect(conn);
-//            }
-//            tableForDetails.setEnabled(false);
-//            tableForDetails.setRowHeight(30);
-//            tableForDetails.setModel(defaultTableModel);
-//        }
-//    }
     private void setBorderInManuBar() {
         DropShadowBorder shadow = new DropShadowBorder();
 
@@ -13242,142 +12595,6 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    //    private void loadMobileBankingDetailsInDetailsTable() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Service Name", "Action Type", "Mobile No", "Ammount", "From", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `m_b_details`";
-//            ResultSet rs = st.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TnxId"),
-//                    rs.getString("date_time"),
-//                    rs.getString("service_name"),
-//                    rs.getString("action_type"),
-//                    rs.getString("phone_no"),
-//                    rs.getString("amount"),
-//                    rs.getString("sim"),
-//                    rs.getString("result")});
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//    }
-//    private void loadBillPaymentDetailsInDetailsTable() {
-//        subItemsComboBox.addItem("By Bill no");
-//        subItemsComboBox.addItem("By Customer id");
-//        System.err.println("Bill no.");
-//    }
-//    private void loadBillPaymentByBillNoDetailsInDetailsTable() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Bill No", "Current Balance", "Status",}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `bill_pay_bill_no`";
-//            ResultSet rs = st.executeQuery(sql);
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TrxId"),
-//                    rs.getString("time_date"),
-//                    rs.getString("bill_type"),
-//                    rs.getString("bill_no"),
-//                    rs.getString("c_balance"),
-//                    rs.getString("status")
-//                });
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//
-//    }
-//    private void loadInboxDetailsInDetailsTable() {
-//
-//        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-//            @Override
-//            protected Void doInBackground() throws Exception {
-//                processtingLoderDialog.setVisible(true);
-//                for (SimOperatorIdentifierDto operatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-//                    if (operatorIdentifierDto.getOperatorName().toUpperCase().contains(subItemsComboBox.getSelectedItem().toString().toUpperCase())) {
-//                        loadIndoxInDetailsTable(operatorIdentifierDto.getPortName());
-//
-//                    }
-//
-//                }
-//
-//                return null;
-//            }
-//
-//            @Override
-//            protected void done() {
-//
-//                processtingLoderDialog.setVisible(false);
-//                System.out.println("Delete Successful...@Done");
-//            }
-//
-//        };
-//        swingWorker.execute();
-//
-//    }
-//    private void loadBillPaymentByCostumerIdDetailsInDetails() {
-//        DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Date & Time", "Bill Type", "Customer Id",
-//            "Bill Month", "Bill Year", "Current Balance", "Status"}, 0);
-//        Connection conn = DbConnection.connect();
-//        try {
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM `bill_payment_customer_id`";
-//            ResultSet rs = st.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                System.err.println(Configaration.getCurrentDateAndTime().substring(0, 8));
-//
-//                defaultTableModel.addRow(new Object[]{
-//                    rs.getString("TrxId"),
-//                    rs.getString("time_date"),
-//                    rs.getString("bill_type"),
-//                    rs.getString("customer_id"),
-//                    rs.getString("bill_month"),
-//                    rs.getString("bill_year"),
-//                    rs.getString("c_balance"),
-//                    rs.getString("status")
-//                });
-//
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            DbConnection.disconnect(conn);
-//        }
-//        tableForDetails.setEnabled(false);
-//        tableForDetails.setRowHeight(30);
-//        tableForDetails.setModel(defaultTableModel);
-//    }
-//    private void openSIMSelectionComboBox() {
-//        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-//            subItemsComboBox.addItem(simOperatorIdentifierDto.getOperatorName());
-//        }
-//    }
     private void exportDatabase() {
         try {
             JFileChooser f = new JFileChooser();
@@ -13557,17 +12774,37 @@ public class Home extends javax.swing.JFrame {
         dueDateInProductSell.setDate(new Date(Configaration.getCurrentDate()));
 
         showDataInProductPurchaseFromDB("0000");
-        //Product Info
+
+        //Product Purchases
         invoiceInProductPurchases.requestFocusInWindow();
         invoiceInProductPurchases.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 switch (ke.getKeyCode()) {
                     case KeyEvent.VK_ENTER:
+                        setDetailsByInvoiceInProductPurchase();
                         supplierInProductPurchases.requestFocusInWindow();
                         break;
                     default:
                         break;
+                }
+            }
+
+            private void setDetailsByInvoiceInProductPurchase() {
+                Connection conn = DbConnection.connect();
+                try {
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `product_purchase` where invoice = " + invoiceInProductPurchases.getText();
+                    ResultSet rs = st.executeQuery(sql);
+
+                    while (rs.next()) {
+                        supplierInProductPurchases.setText(rs.getString("supplier").toString());
+
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
                 }
             }
         });
@@ -13576,20 +12813,12 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    pNameInProductDetails.requestFocusInWindow();
+                    pNameInProductPurchases.requestFocusInWindow();
                 }
             }
         });
 
-        pNameInProductDetails.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    dateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        dateInProductPurchases.addKeyListener(new KeyAdapter() {
+        pNameInProductPurchases.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -13609,11 +12838,12 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    pNameInProductPurchases.requestFocusInWindow();
+                    sellRateInProductPurchases.requestFocusInWindow();
                 }
             }
         });
-        pNameInProductPurchases.addKeyListener(new KeyAdapter() {
+
+        sellRateInProductPurchases.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -13634,28 +12864,54 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    sellRateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-
-        sellRateInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                     typeInProductPurchasesComboBox.requestFocusInWindow();
                 }
             }
         });
+
         typeInProductPurchasesComboBox.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-
+                    saveInProductPurchase3.requestFocusInWindow();
                 }
             }
         });
+        saveInProductPurchase3.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (UserInfo.role.equals("demo")) {
+                        JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+                    } else {
+                        saveInProductPurchaseDB();
+                        showDataInProductPurchaseFromDB(invoiceInProductPurchases.getText());
+                        refrashProductPurchaseTable();
+
+                    }
+                }
+            }
+
+        });
+
         //Product Info
+        barCodeInProductDetails.removeAllItems();
+        Connection conn = DbConnection.connect();
+        try {
+            Statement st = conn.createStatement();
+            String sql = "SELECT * FROM `product_purchase`";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                barCodeInProductDetails.addItem(rs.getString("bar_code").toString());
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn);
+        }
+        AutoCompleteDecorator.decorate(barCodeInProductDetails);
         barCodeInProductDetails.requestFocusInWindow();
         barCodeInProductDetails.addKeyListener(new KeyAdapter() {
             @Override
@@ -13749,7 +13005,40 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-
+                    saveInProductPurchase1.requestFocusInWindow();
+                }
+            }
+        });
+        saveInProductPurchase1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (UserInfo.role.equals("demo")) {
+                        JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+                    } else {
+                        updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(Double.valueOf(sellRateInProductDetails.getText())));
+                        addPerchangeSelection.addItemListener(new ItemListener() {
+                            @Override
+                            public void itemStateChanged(ItemEvent e) {
+                                Double sellRate = Double.valueOf(sellRateInProductDetails.getText());
+                                if (e.getStateChange() == ItemEvent.SELECTED) {//checkbox has been selected
+                                    sellRate = Double.valueOf(buyRateInProductDetails.getText()) + ((Double.valueOf(sellRateInProductDetails.getText()) * Double.valueOf(buyRateInProductDetails.getText())) / 100);
+                                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(sellRate));
+                                } else {//checkbox has been deselected
+                                    updateStoredItemByBarCode(invoiceINProductDetails.getText(), barCodeInProductDetails.getSelectedItem().toString(), String.valueOf(sellRate));
+                                }
+                                ;
+                            }
+                        });
+                        barCodeInProductDetails.setSelectedItem("");
+                        groupInProductDetails.setText("");
+                        pNameInProductDetails.setText("");
+                        buyRateInProductDetails.setText("");
+                        sellRateInProductDetails.setText("");
+                        brandInProductDetails.setText("");
+                        qtyInProductDetails.setText("");
+                        warrentyInProductDetails.setText("");
+                    }
                 }
             }
         });
@@ -13869,84 +13158,15 @@ public class Home extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-
+                    printClickProductWanrranty.requestFocusInWindow();
                 }
             }
         });
-        //Product Details Tab
-        listOfBarCodeOrGroupComboBox.removeAllItems();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            Connection conn = DbConnection.connect();
-            try {
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase`";
-                ResultSet rs = st.executeQuery(sql);
-
-                while (rs.next()) {
-                    listOfBarCodeOrGroupComboBox.addItem(rs.getString("bar_code").toString());
-
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                DbConnection.disconnect(conn);
-            }
-        }
-        //Handle Enter Button Task
-        supplierInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        barCodeInProductPurchases.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        barCodeInProductPurchases.addKeyListener(new KeyAdapter() {
+        printClickProductWanrranty.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    pNameInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-
-        pNameInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    qtyInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        qtyInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    buyRateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        buyRateInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    sellRateInProductPurchases.requestFocusInWindow();
-                }
-            }
-        });
-        sellRateInProductPurchases.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    saveInProductPurchase.requestFocusInWindow();
+                    printAndSaveInWarrenty();
                 }
             }
         });
@@ -14007,6 +13227,52 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         });
+
+        actionTypeInProductSellCOmboBox.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+
+                    barCodeInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+        barCodeInProductSell.removeAllItems();
+        Connection conn3 = DbConnection.connect();
+        try {
+            Statement st = conn3.createStatement();
+            String sql = "SELECT * FROM `product_purchase`";
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                barCodeInProductSell.addItem(rs.getString("bar_code").toString());
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            DbConnection.disconnect(conn3);
+        }
+        AutoCompleteDecorator.decorate(barCodeInProductSell);
+        barCodeInProductSell.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    summaryShowInBillDisplay();
+                    discpuntInProductBill.requestFocusInWindow();
+                }
+            }
+        });
+        discpuntInProductBill.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    addProductFromDBInSellPanel(barCodeInProductSell.getSelectedItem().toString());
+                    barCodeInProductSell.requestFocusInWindow();
+                }
+            }
+        });
+
         paymentInProductBill.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
@@ -14030,33 +13296,35 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                     summaryShowInBillDisplay();
-                    discpuntInProductBill.requestFocusInWindow();
+                    paymentTypeInProductSell.requestFocusInWindow();
                 }
             }
         });
-        discpuntInProductBill.addKeyListener(new KeyAdapter() {
+        paymentTypeInProductSell.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    summaryShowInBillDisplay();
 
+                    jButton6.requestFocusInWindow();
                 }
             }
         });
-        actionTypeInProductSellCOmboBox.addKeyListener(new KeyAdapter() {
+        jButton6.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    barCodeInProductSell.requestFocusInWindow();
+
+                    if (UserInfo.role.equals("demo")) {
+                        JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+                    } else {
+
+                        printMemo();
+                        clearBillforProduct();
+                        invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
+                    }
                 }
             }
         });
-        invoiceInProductSell.setText(String.valueOf(Configaration.getRandInt(1345, 100000)));
-        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(1000, 10000)));
-
-        //Set Hint
-        barCodeInProductSell.setUI(new HintTextFieldUI("Enter Product Bar Code"));
-
     }
 
     private void saveInProductPurchaseDB() {
@@ -14184,8 +13452,8 @@ public class Home extends javax.swing.JFrame {
         summaryShowInDisplay(total, count, comission, total, returnAC);
     }
 
-    private void showDataInProductDetailsPurchaseFromDB(String barCode) {
-        System.out.println(barCode);
+    private void showDataInProductDetailsPurchaseFromDB(String invoice) {
+        System.err.println(invoice);
         DefaultTableModel productPurchaseTableModel = new DefaultTableModel(new String[]{"Product ID", "Product Group", "Product Name", "QTY", "Buy Rate", "Sell Price", "Brand", "Warranty", "Last Modify"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productDetailsTable.getDefaultRenderer(String.class);
         if (UserInfo.role.equals("demo")) {
@@ -14195,7 +13463,7 @@ public class Home extends javax.swing.JFrame {
             Connection conn = DbConnection.connect();
             try {
                 Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `product_purchase` WHERE `bar_code`=" + barCode;
+                String sql = "SELECT * FROM `product_purchase` WHERE `invoice`=" + invoice;
                 //TODO: HANDLE NULL
                 ResultSet rs = st.executeQuery(sql);
 
@@ -14265,7 +13533,7 @@ public class Home extends javax.swing.JFrame {
             DbConnection.disconnect(conn);
 
         }
-        showDataInProductDetailsPurchaseFromDB(barCode);
+        showDataInProductDetailsPurchaseFromDB(invoice);
     }
 
     public void genarateBarCode(String pdfName) {
@@ -14304,55 +13572,50 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    public void genarateBarCodeForContractNumber(String number, String name,String number1,String number2,String number3,String number4,String number5,String number6,String number7,String number8,String number9) {
-        
-            String fileNameJrxml1 = "/resources/reports/contract_number.jrxml";
-      
-            InputStream  res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
-            System.out.println(res);
-//            File file = Paths.get(res.toURI()).toFile();
-//            String fileNameJrxml = file.getAbsolutePath();
-          
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(res);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                HashMap hm = new HashMap();
-                hm.put("phone_no", number);
-                hm.put("phone_no_1", number1);
-                hm.put("phone_no_2", number2);
-                hm.put("phone_no_3", number3);
-                hm.put("phone_no_4", number4);
-                hm.put("phone_no_5", number5);
-                hm.put("phone_no_6", number6);
-                hm.put("phone_no_7", number7);
-                hm.put("phone_no_8", number8);
-                hm.put("phone_no_9", number9); 
-                
-                hm.put("simNameAndNumber", number);
-                hm.put("simNameAndNumber1", number1);
-                hm.put("simNameAndNumbe2", number2);
-                hm.put("simNameAndNumber3", number3);
-                hm.put("simNameAndNumber4", number4);
-                hm.put("simNameAndNumbe5", number5);
-                hm.put("simNameAndNumber6", number6);
-                hm.put("simNameAndNumber7", number7);
-                hm.put("simNameAndNumber8", number8);
-                hm.put("simNameAndNumber9", number9); 
-                hm.put("name", name);
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
+    public void genarateBarCodeForContractNumber(String number, String name, String number1, String number2, String number3, String number4, String number5, String number6, String number7, String number8, String number9) {
 
-            } catch (Exception e) {
-                System.out.print("Exception:" + e.getMessage());
-            }
+        String fileNameJrxml1 = "/resources/reports/contract_number.jrxml";
 
-       
+        InputStream res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
+
+        try {
+            System.out.println("Loading the .JRMXML file ....");
+            JasperDesign jasperDesign = JRXmlLoader.load(res);
+            System.out.println("Compiling the .JRMXML file to .JASPER file....");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            HashMap hm = new HashMap();
+            hm.put("phone_no", number);
+            hm.put("phone_no_1", number1);
+            hm.put("phone_no_2", number2);
+            hm.put("phone_no_3", number3);
+            hm.put("phone_no_4", number4);
+            hm.put("phone_no_5", number5);
+            hm.put("phone_no_6", number6);
+            hm.put("phone_no_7", number7);
+            hm.put("phone_no_8", number8);
+            hm.put("phone_no_9", number9);
+
+            hm.put("simNameAndNumber", number);
+            hm.put("simNameAndNumber1", number1);
+            hm.put("simNameAndNumbe2", number2);
+            hm.put("simNameAndNumber3", number3);
+            hm.put("simNameAndNumber4", number4);
+            hm.put("simNameAndNumbe5", number5);
+            hm.put("simNameAndNumber6", number6);
+            hm.put("simNameAndNumber7", number7);
+            hm.put("simNameAndNumber8", number8);
+            hm.put("simNameAndNumber9", number9);
+            hm.put("name", name);
+            System.out.println("filling parameters to .JASPER file....");
+            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+            preview(jprint);
+            System.out.println("exporting the JASPER file to PDF file....");
+            // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+            System.out.println("Successfully completed the export");
+
+        } catch (Exception e) {
+            System.out.print("Exception:" + e.getMessage());
+        }
 
     }
 
@@ -14382,7 +13645,7 @@ public class Home extends javax.swing.JFrame {
                     currentQty = rs.getString("qty");
                     warrantyInProductBill.setText(rs.getString("warranty"));
                     countForSellTable++;
-                    Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0;
+                    Double subTotal = Double.valueOf(rs.getString("sell_rate")) * 1.0 - (Double.valueOf(rs.getString("sell_rate")) * Double.valueOf(discpuntInProductBill.getText().toString()) / 100);
                     String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
                     supplierInProductPurchases.setText(rs.getString("supplier"));
                     dateInProductPurchases.setDate(new Date(rs.getString("date")));
@@ -14409,7 +13672,7 @@ public class Home extends javax.swing.JFrame {
                             break;
                     }
                 }
-                String updatesql = "UPDATE `product_purchase` SET qty = '" + String.valueOf(Integer.valueOf(currentQty)-1) + "' WHERE bar_code= " + barCode;
+                String updatesql = "UPDATE `product_purchase` SET qty = '" + String.valueOf(Integer.valueOf(currentQty) - 1) + "' WHERE bar_code= " + barCode;
                 PreparedStatement preparedStatement = conn.prepareStatement(updatesql);
                 preparedStatement.execute();
             } catch (SQLException ex) {
@@ -14448,7 +13711,7 @@ public class Home extends javax.swing.JFrame {
         totalAmountInProductSell1.setText(String.valueOf(totalPayableAmt));
         totalItemsInProductSell.setText(totalItems);
         returnInProductSell.setText(returnAmt);
-        discountInProductSell.setText(discountAmt);
+
         vatInProductSell.setText(vat);
         payableInProductSell.setText(payableAmt);
         paidInProductSell.setText(paymentInProductBill.getText());
@@ -14461,7 +13724,7 @@ public class Home extends javax.swing.JFrame {
     private void clearBillforProduct() {
         totalItemsInProductSell.setText("");
         returnInProductSell.setText("");
-        discountInProductSell.setText("");
+
         vatInProductSell.setText("");
         payableInProductSell.setText("");
         paidInProductSell.setText("");
@@ -14478,9 +13741,8 @@ public class Home extends javax.swing.JFrame {
         warrantyInProductBill.setText("0.0");
         duePaymentInProductBill.setText("0.0");
         discpuntInProductBill.setText("0.0");
-
+        productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
-        productSellTableModel.addRow(new Object[]{});
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
         productSellTable.getTableHeader().setOpaque(false);
@@ -14522,53 +13784,50 @@ public class Home extends javax.swing.JFrame {
                 DbConnection.disconnect(conn);
             }
         }
-     
-            String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
-            InputStream  res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
-            
-            try {
-                System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(res);
-                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String shopName = UserInfo.shopName;
-                String address = UserInfo.address;
-                String phoneNumber = UserInfo.phoneNo;
-                System.err.println(productses.get(0).getPrice());
-                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(productses);
 
-                HashMap<String, Object> hm = new HashMap<String, Object>();
-                hm.put("shop_name", shopName);
-                hm.put("shop_address", address);
-                hm.put("shop_phone_number", phoneNumber);
-                hm.put("customar_name", fullNameInProductSell.getText());
-                hm.put("phone_no", phoneNOInProductSell.getText());
-                hm.put("customar_address", addressInProductSell.getText());
-                hm.put("invoice", invoiceInProductSell.getText());
-                hm.put("sold_by", "Logged User Name");
-                hm.put("bar_code", invoiceInProductSell.getText());
-                hm.put("collectionOfBean", ds);
+        String fileNameJrxml1 = "/resources/reports/memo_shop.jrxml";
+        InputStream res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
 
-                hm.put("total_amouny", totalAmountInProductSell1.getText());
-                hm.put("discountAmountInBitll", discountInProductSell.getText());
-                hm.put("tPayble", payableInProductSell.getText());
-                hm.put("paid", paidInProductSell.getText());
-                hm.put("due_payment", duePaymentInProductSell.getText());
-                hm.put("due", dueInProductSell.getText());
+        try {
+            System.out.println("Loading the .JRMXML file ....");
+            JasperDesign jasperDesign = JRXmlLoader.load(res);
+            System.out.println("Compiling the .JRMXML file to .JASPER file....");
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            String shopName = UserInfo.shopName;
+            String address = UserInfo.address;
+            String phoneNumber = UserInfo.phoneNo;
+            System.err.println(productses.get(0).getPrice());
+            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(productses);
 
-                hm.put("vatTAxInBitll", "0.0");
-                System.out.println("filling parameters to .JASPER file....");
-                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-                preview(jprint);
-                System.out.println("exporting the JASPER file to PDF file....");
-                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-                System.out.println("Successfully completed the export");
+            HashMap<String, Object> hm = new HashMap<String, Object>();
+            hm.put("shop_name", shopName);
+            hm.put("shop_address", address);
+            hm.put("shop_phone_number", phoneNumber);
+            hm.put("customar_name", fullNameInProductSell.getText());
+            hm.put("phone_no", phoneNOInProductSell.getText());
+            hm.put("customar_address", addressInProductSell.getText());
+            hm.put("invoice", invoiceInProductSell.getText());
+            hm.put("sold_by", "Logged User Name");
+            hm.put("bar_code", invoiceInProductSell.getText());
+            hm.put("collectionOfBean", ds);
+            hm.put("total_amouny", totalAmountInProductSell1.getText());
+            hm.put("tPayble", payableInProductSell.getText());
+            hm.put("paid", paidInProductSell.getText());
+            hm.put("due_payment", duePaymentInProductSell.getText());
+            hm.put("due", dueInProductSell.getText());
 
-            } catch (Exception e) {
-                System.out.print("Exception:" + e);
-            }
+            hm.put("vatTAxInBitll", "0.0");
+            System.out.println("filling parameters to .JASPER file....");
+            JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
+            preview(jprint);
+            System.out.println("exporting the JASPER file to PDF file....");
+            // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
+            System.out.println("Successfully completed the export");
 
-      
+        } catch (Exception e) {
+            System.out.print("Exception:" + e);
+        }
+
     }
 
     private void saveSellProductInSellTabel(int rowNo) {
@@ -14592,7 +13851,7 @@ public class Home extends javax.swing.JFrame {
                 preparedStatement.setString(9, totalItemsInProductSell.getText().toString());
                 preparedStatement.setString(10, returnInProductSell.getText().toString());
                 preparedStatement.setString(11, totalAmountInProductSell1.getText().toString());
-                preparedStatement.setString(12, discountInProductSell.getText().toString());
+                preparedStatement.setString(12, discpuntInProductBill.getText().toString());
                 preparedStatement.setString(13, payableInProductSell.getText().toString());
                 preparedStatement.setString(14, paidInProductSell.getText().toString());
                 preparedStatement.setString(15, duePaymentInProductSell.getText().toString());
@@ -14730,90 +13989,7 @@ public class Home extends javax.swing.JFrame {
         } catch (PrinterException ex) {
             ex.printStackTrace();
         }
-//        List<Warranty> warrantys = new ArrayList<>();
-//        if (UserInfo.role.equals("demo")) {
-//            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
-//
-//        } else {
-//            Connection conn = DbConnection.connect();
-//            try {
-//
-//                Statement st = conn.createStatement();
-//                String sql = "SELECT * FROM `warranty_table`";
-//                //TODO: HANDLE NULL
-//                ResultSet rs = st.executeQuery(sql);
-//                while (rs.next()) {
-//                    if (invoiceInProductWarranty.getText().equals(rs.getString("invoice"))) {
-//                        Warranty p = new Warranty();
-//                        p.setId("1");
-//                        p.setService_name(rs.getString("brand"));
-//                        p.setPrice(rs.getString("bill"));
-//                        p.setQty("1");
-//                        p.setTotal(rs.getString("bill"));
-//
-//                        warrantys.add(p);
-//                    }
-//                }
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//            } finally {
-//                DbConnection.disconnect(conn);
-//            }
-//        }
-//        try {
-//            String fileNameJrxml1 = "/resources/reports/pos_memo.jrxml";
-//
-//            URL res = getClass().getResource(fileNameJrxml1);
-//            File file = Paths.get(res.toURI()).toFile();
-//            String fileNameJrxml = file.getAbsolutePath();
-////            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-////            URL res1 = getClass().getResource(fileNamePdf1);
-//            try {
-//                System.out.println("Loading the .JRMXML file ....");
-//                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
-//                System.out.println("Compiling the .JRMXML file to .JASPER file....");
-//                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//                String shopName = "AK STORE AND TELECOM";
-//                String address = "Asulia savar,dhaka,bangladesh";
-//                String phoneNumber = "+8801988841890 +8801988851789";
-//
-//                JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(warrantys);
-//
-//                HashMap<String, Object> hm = new HashMap<String, Object>();
-//                hm.put("shop_name", shopName);
-//                hm.put("address", address);
-//                hm.put("phone_no", phoneNumber);
-//                hm.put("invoice", invoiceInProductWarranty.getText());
-//                hm.put("c_phn_no", phoneNOInProductWanrranty.getText());
-//                hm.put("c_name", fullNameInProductWanrranty.getText());
-//                hm.put("paid", paidPaymentInProductWanrranty.getText());
-//                hm.put("due", "Logged User Name");
-//                hm.put("total", invoiceInProductSell.getText());
-//                hm.put("delivary_date", delevaryDateDateInProductWanrranty.getDate().toString());
-//                hm.put("collectionOfBean", ds);
-//
-//                hm.put("total_amouny", totalAmountInProductSell1.getText());
-//                hm.put("discountAmountInBitll", discountInProductSell.getText());
-//                hm.put("tPayble", payableInProductSell.getText());
-//                hm.put("paid", paidInProductSell.getText());
-//                hm.put("due_payment", duePaymentInProductSell.getText());
-//                hm.put("due", dueInProductSell.getText());
-//
-//                hm.put("vatTAxInBitll", "0.0");
-//                System.out.println("filling parameters to .JASPER file....");
-//                JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
-//                preview(jprint);
-//                System.out.println("exporting the JASPER file to PDF file....");
-//                // JasperExportManager.exportReportToPdfFile(jprint,"D:\\Project\\Java GUI\\Auto Recharge System\\Core\\Auto-Recharge-System\\src\\resources\\pdf\\"+pdfName+".pdf");
-//                System.out.println("Successfully completed the export");
-//
-//            } catch (Exception e) {
-//                System.out.print("Exception:" + e);
-//            }
-//
-//        } catch (URISyntaxException ex) {
-//            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }
 
     public PageFormat getPageFormat(PrinterJob pj) {
@@ -15165,6 +14341,78 @@ public class Home extends javax.swing.JFrame {
         getBalenceUssdPartern3.setUI(new HintTextFieldUI("*333*number*amount*pin#"));
     }
 
+    private void printAndSaveInWarrenty() {
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    boolean isExist = false;
+                    Connection conn = DbConnection.connect();
+                    try {
+
+                        Statement st = conn.createStatement();
+                        String sql = "SELECT * FROM `warranty_table` WHERE invoice='" + invoiceInProductWarranty.getText() + "';";
+                        //TODO: HANDLE NULL
+                        ResultSet rs = st.executeQuery(sql);
+                        if (!rs.next()) {
+                            isExist = true;
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        DbConnection.disconnect(conn);
+                    }
+                    System.err.println(isExist);
+                    if (isExist) {
+                        System.err.println(isExist);
+                        saveWarrantyDetailsInDb();
+                        printPosMemo(invoiceInProductWarranty.getText());
+                    } else {
+                        System.err.println("just print");
+                        printPosMemo(invoiceInProductWarranty.getText());
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            worker.execute();
+
+        }
+    }
+
+    private void SaveInWarrenty() {
+        if (UserInfo.role.equals("demo")) {
+            JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+        } else {
+            SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    processtingLoderDialog.setVisible(true);
+                    saveWarrantyDetailsInDb();
+
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    processtingLoderDialog.setVisible(false);
+                }
+
+            };
+            worker.execute();
+
+        }
+    }
+
     public class BillPrintable implements Printable {
 
         private final List<Warranty> warrantys;
@@ -15305,4 +14553,139 @@ public class Home extends javax.swing.JFrame {
         return false;
     }
 
+    private void refrashProductPurchaseTable() {
+        barCodeInProductPurchases.requestFocusInWindow();
+        barCodeInProductPurchases.setText(String.valueOf(Configaration.getRandInt(5, 10)));
+        pNameInProductPurchases.setText("");
+        qtyInProductPurchases.setText("");
+        buyRateInProductPurchases.setText("");
+        sellRateInProductPurchases.setText("");
+        typeInProductPurchasesComboBox.setSelectedIndex(0);
+
+    }
+
+    private void settingPanelEnterPressWork() {
+        //Password Update
+        passwordForUpdate.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    rePasswordForUpdate.requestFocusInWindow();
+                }
+            }
+        });
+
+        rePasswordForUpdate.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    clickUpdatePassword.requestFocusInWindow();
+                }
+            }
+        });
+        clickUpdatePassword.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (UserInfo.role.equals("demo")) {
+                        JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+                    } else {
+                        String password = passwordForUpdate.getText();
+                        String rePassword = rePasswordForUpdate.getText();
+                        if (password.equals("") || rePassword.equals("")) {
+                            Popup.customError("Empty field found.");
+
+                        } else {
+                            if (password.equals(rePassword)) {
+                                changeAdminPassword(AES.encrypt(password, "itvillage428854"));
+
+                            } else {
+                                Popup.customError("Re-type password not match");
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+        //ADD Mobile Recharge Setting
+        getOperatorName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getRechargeUssdParternPrePaid.requestFocusInWindow();
+                }
+            }
+        });
+
+        getRechargeUssdParternPrePaid.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    System.err.println("0-------------------------------");
+                    getRechargeUssdParternPostPaid.requestFocusInWindow();
+                }
+            }
+        });
+
+        getRechargeUssdParternPostPaid.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getBalenceUssdPartern1.requestFocusInWindow();
+                }
+            }
+        });
+        getBalenceUssdPartern1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    accountPassword.requestFocusInWindow();
+                }
+            }
+        });
+        accountPassword.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    clickChooseIcon.requestFocusInWindow();
+                }
+            }
+        });
+        clickChooseIcon.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    clickAddContract1.requestFocusInWindow();
+                }
+            }
+        });
+        clickAddContract1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (UserInfo.role.equals("demo")) {
+                        JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
+                    } else {
+                        String rechargeUssdPartern = getRechargeUssdParternPrePaid.getText();
+                        String operatorName = getOparetorNameInUssdCommand.getSelectedItem().toString();
+
+                        String actionFor = "mobile";
+                        String balenceUssdPartern = getBalenceUssdPartern1.getText();
+                        if (!rechargeUssdPartern.equals("")
+                                && !operatorName.equals("")) {
+
+                            if (saveToDbCommandInCommand()) {
+                                System.out.println("Adding Successfull");
+                            }
+                        } else {
+                            Popup.error("Empty Field");
+                        }
+                    }
+                }
+            }
+        });
+
+    }
 }

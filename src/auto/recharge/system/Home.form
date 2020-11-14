@@ -1758,9 +1758,9 @@
                                                       </Group>
                                                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="barCodeInProductDetails" max="32767" attributes="0"/>
                                                           <Component id="oderLimitInProductDetails" max="32767" attributes="0"/>
                                                           <Component id="brandInProductDetails" pref="151" max="32767" attributes="0"/>
+                                                          <Component id="barCodeInProductDetails" max="32767" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1837,19 +1837,24 @@
                                               <Component id="jLabel135" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="groupInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="jLabel145" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel144" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="groupInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                      <Component id="jLabel145" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel144" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jLabel143" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="pNameInProductDetails" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="saveInProductPurchase1" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                              <Component id="barCodeInProductDetails" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="jLabel143" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="barCodeInProductDetails" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="pNameInProductDetails" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <Component id="saveInProductPurchase1" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
@@ -1969,8 +1974,6 @@
                                 <Property name="text" type="java.lang.String" value="Barcode      "/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="barCodeInProductDetails">
-                            </Component>
                             <Component class="javax.swing.JLabel" name="jLabel144">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1982,7 +1985,6 @@
                             <Component class="javax.swing.JTextField" name="groupInProductDetails">
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupInProductDetailsActionPerformed"/>
-                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="groupInProductDetailsKeyReleased"/>
                               </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel145">
@@ -2187,6 +2189,21 @@
                                 </Property>
                               </Properties>
                             </Component>
+                            <Component class="javax.swing.JComboBox" name="barCodeInProductDetails">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="4">
+                                    <StringItem index="0" value="Item 1"/>
+                                    <StringItem index="1" value="Item 2"/>
+                                    <StringItem index="2" value="Item 3"/>
+                                    <StringItem index="3" value="Item 4"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                              </AuxValues>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
@@ -2240,83 +2257,81 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="jLabel119" min="-2" pref="63" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="dateInProductPurchases" min="-2" pref="220" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jScrollPane6" pref="804" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel129" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel133" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="qtyInProductPurchases" max="32767" attributes="0"/>
-                                                          <Component id="typeInProductPurchasesComboBox" pref="340" max="32767" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="jLabel129" min="-2" pref="78" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="qtyInProductPurchases" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel126" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="jLabel3" max="32767" attributes="0"/>
+                                                          <Component id="jLabel126" pref="81" max="32767" attributes="0"/>
                                                       </Group>
-                                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Component id="invoiceInProductPurchases" max="32767" attributes="0"/>
                                                           <Component id="barCodeInProductPurchases" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jLabel127" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                                  <Component id="jLabel4" max="32767" attributes="0"/>
+                                                  <Component id="jLabel130" min="-2" pref="89" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                      <Component id="saveInProductPurchase" min="-2" pref="202" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="buyRateInProductPurchases" min="-2" pref="258" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="jLabel133" max="32767" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="typeInProductPurchasesComboBox" min="-2" pref="225" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
                                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="jLabel127" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                                          <Component id="jLabel4" max="32767" attributes="0"/>
-                                                          <Component id="jLabel130" pref="89" max="32767" attributes="0"/>
+                                                          <Component id="supplierInProductPurchases" min="-2" pref="259" max="-2" attributes="0"/>
+                                                          <Component id="groupInProductPurchases" min="-2" pref="258" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                           <Group type="102" attributes="0">
-                                                              <Component id="buyRateInProductPurchases" min="-2" pref="258" max="-2" attributes="0"/>
+                                                              <Component id="jLabel128" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="jLabel132" min="-2" pref="95" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="sellRateInProductPurchases" min="-2" pref="222" max="-2" attributes="0"/>
+                                                              <Component id="pNameInProductPurchases" min="-2" pref="220" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <Group type="102" attributes="0">
-                                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                                  <Component id="supplierInProductPurchases" max="32767" attributes="0"/>
-                                                                  <Component id="groupInProductPurchases" pref="259" max="32767" attributes="0"/>
-                                                              </Group>
-                                                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                                  <Group type="102" alignment="0" attributes="0">
-                                                                      <Component id="jLabel128" min="-2" max="-2" attributes="0"/>
-                                                                      <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="pNameInProductPurchases" min="-2" pref="220" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                                  <Group type="102" alignment="1" attributes="0">
-                                                                      <Component id="jLabel119" max="32767" attributes="0"/>
-                                                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                                                      <Component id="dateInProductPurchases" min="-2" pref="220" max="-2" attributes="0"/>
-                                                                  </Group>
-                                                              </Group>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="jLabel132" min="-2" pref="95" max="-2" attributes="0"/>
+                                                              <EmptySpace max="32767" attributes="0"/>
+                                                              <Component id="sellRateInProductPurchases" min="-2" pref="222" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jScrollPane6" max="32767" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="408" max="-2" attributes="0"/>
+                                              <Component id="saveInProductPurchase3" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                              <Component id="makeNewInProductPurchase" min="-2" pref="202" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -2327,80 +2342,81 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel119" max="32767" attributes="0"/>
+                                          <Component id="dateInProductPurchases" pref="29" max="32767" attributes="0"/>
+                                      </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="invoiceInProductPurchases" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="supplierInProductPurchases" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel128" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pNameInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
-                                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                                      <Component id="barCodeInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                      <Component id="jLabel127" alignment="3" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" groupAlignment="3" attributes="0">
-                                                      <Component id="invoiceInProductPurchases" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="supplierInProductPurchases" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel119" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                      <Component id="jLabel126" min="-2" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
+                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="3" attributes="0">
-                                                              <Component id="barCodeInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                              <Component id="jLabel127" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                              <Component id="jLabel126" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                              <Component id="jLabel129" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="103" groupAlignment="3" attributes="0">
-                                                              <Component id="qtyInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                              <Component id="jLabel130" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
+                                                      <Component id="jLabel129" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                                      <Component id="qtyInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                                                      <Component id="jLabel130" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="3" attributes="0">
                                                           <Component id="groupInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                          <Component id="jLabel128" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="pNameInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="3" attributes="0">
-                                                          <Component id="buyRateInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                           <Component id="jLabel132" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="sellRateInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                       </Group>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                      <Component id="sellRateInProductPurchases" min="-2" pref="31" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="typeInProductPurchasesComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="buyRateInProductPurchases" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                                                       <Component id="jLabel133" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="saveInProductPurchase" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Component id="typeInProductPurchasesComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="dateInProductPurchases" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                              <Component id="jPanel2" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jScrollPane6" pref="684" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="saveInProductPurchase3" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="makeNewInProductPurchase" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane6" pref="470" max="32767" attributes="0"/>
+                                          <Component id="jPanel2" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2478,15 +2494,15 @@
                                           <Component id="jLabel131" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="totalAmt" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="totalItems" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="comission" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="paid" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="paid1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="293" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -2533,14 +2549,13 @@
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace pref="24" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
                                               <Component id="tAmountInPPurchaseInSummary" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="jLabel120" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                                                  <EmptySpace pref="24" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -2595,7 +2610,6 @@
                                               <Component id="jLabel122" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="tItemsInPPurchaseInSummary" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -2702,7 +2716,7 @@
                                               <Component id="jLabel123" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="tCommissionInPPurchaseInSummary" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -2756,7 +2770,6 @@
                                               <Component id="jLabel125" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="tReturnAmountInPPurchase4" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -2850,12 +2863,6 @@
                                 <Property name="text" type="java.lang.String" value="Group:"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="groupInProductPurchases">
-                              <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupInProductPurchasesActionPerformed"/>
-                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="groupInProductPurchasesKeyReleased"/>
-                              </Events>
-                            </Component>
                             <Component class="javax.swing.JLabel" name="jLabel128">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -2921,7 +2928,7 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JButton" name="saveInProductPurchase">
+                            <Component class="javax.swing.JButton" name="makeNewInProductPurchase">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="ff" type="rgb"/>
@@ -2929,10 +2936,30 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="save"/>
+                                <Property name="text" type="java.lang.String" value="New Invoice"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveInProductPurchaseMouseClicked"/>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="makeNewInProductPurchaseMouseClicked"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="makeNewInProductPurchaseActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="saveInProductPurchase3">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="66" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Add"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveInProductPurchase3ActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="groupInProductPurchases">
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="groupInProductPurchasesActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -2956,15 +2983,19 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="ProductPurchasePanel3" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="ProductPurchasePanel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ProductPurchasePanel3" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="ProductPurchasePanel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="151" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -2983,19 +3014,11 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane15" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="jButton7" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Component id="updateClickProductWanrranty" min="-2" pref="90" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="printClickProductWanrranty" min="-2" pref="122" max="-2" attributes="0"/>
-                                                      </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="jLabel181" min="-2" pref="81" max="-2" attributes="0"/>
                                                           <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
@@ -3044,10 +3067,20 @@
                                                       <Component id="customerIdINProductWanrranty" min="-2" pref="358" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                              <EmptySpace type="separate" max="32767" attributes="0"/>
-                                              <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jButton7" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="updateClickProductWanrranty" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="printClickProductWanrranty" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="printClickProductWanrranty1" min="-2" pref="122" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
+                                          <Component id="jScrollPane15" min="-2" pref="869" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -3056,10 +3089,6 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jPanel12" max="32767" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel50" min="-2" max="-2" attributes="0"/>
@@ -3127,23 +3156,18 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="3" attributes="0">
-                                                          <Component id="printClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="updateClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace pref="7" max="32767" attributes="0"/>
-                                                      <Component id="jButton7" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                  </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="printClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="updateClickProductWanrranty" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="printClickProductWanrranty1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jScrollPane15" pref="88" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="jPanel12" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jScrollPane15" pref="434" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3728,7 +3752,7 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="0" green="99" red="0" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Save &amp; Print"/>
+                                <Property name="text" type="java.lang.String" value="Save"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printClickProductWanrrantyActionPerformed"/>
@@ -3753,6 +3777,17 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JButton" name="printClickProductWanrranty1">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="0" green="99" red="0" type="rgb"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Print"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printClickProductWanrranty1ActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -3820,10 +3855,10 @@
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" attributes="0">
                                                       <Component id="actionTypeInProductSellCOmboBox" min="-2" pref="276" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="barCodeInProductSell" max="32767" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="paymentTypeInProductSell" min="-2" pref="201" max="-2" attributes="0"/>
+                                                      <Component id="discpuntInProductBill" min="-2" pref="201" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jScrollPane12" alignment="1" max="32767" attributes="0"/>
@@ -3878,16 +3913,12 @@
                                               </Group>
                                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="customerIdINProductSell" pref="358" max="32767" attributes="0"/>
-                                                      <Component id="fullNameInProductSell" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="addressInProductSell" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="phoneNOInProductSell" max="32767" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="addressInProductSell" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="phoneNOInProductSell" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="fullNameInProductSell" alignment="1" max="32767" attributes="0"/>
+                                                  <Component id="customerIdINProductSell" max="32767" attributes="0"/>
                                               </Group>
+                                              <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -3954,11 +3985,11 @@
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="actionTypeInProductSellCOmboBox" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
                                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                                      <Component id="actionTypeInProductSellCOmboBox" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                                       <Component id="barCodeInProductSell" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                                      <Component id="discpuntInProductBill" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="paymentTypeInProductSell" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jScrollPane12" min="-2" pref="89" max="-2" attributes="0"/>
@@ -4049,7 +4080,7 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jButton6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="297" max="32767" attributes="0"/>
+                                          <EmptySpace pref="113" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -4654,39 +4685,6 @@
                                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                               </AuxValues>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="barCodeInProductSell">
-                              <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="DialogInput" size="14" style="1"/>
-                                </Property>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="barCodeInProductSellKeyReleased"/>
-                              </Events>
-                            </Component>
-                            <Component class="javax.swing.JComboBox" name="paymentTypeInProductSell">
-                              <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="DialogInput" size="14" style="1"/>
-                                </Property>
-                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="9">
-                                    <StringItem index="0" value="Cash"/>
-                                    <StringItem index="1" value="BKash"/>
-                                    <StringItem index="2" value="Rokect"/>
-                                    <StringItem index="3" value="Nagat"/>
-                                    <StringItem index="4" value="Visa Card"/>
-                                    <StringItem index="5" value="Master Card"/>
-                                    <StringItem index="6" value="Dabit Card"/>
-                                    <StringItem index="7" value="Creadit Card"/>
-                                    <StringItem index="8" value=" "/>
-                                  </StringArray>
-                                </Property>
-                              </Properties>
-                              <AuxValues>
-                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                              </AuxValues>
-                            </Component>
                             <Component class="javax.swing.JCheckBox" name="panddingInProductSellCheckBOx">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Pandding"/>
@@ -4720,20 +4718,20 @@
                                               <Component id="jLabel164" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel166" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="95" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="duePaymentInProductBill" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
                                               <Component id="paymentInProductBill" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jLabel165" max="32767" attributes="0"/>
-                                              <Component id="jLabel167" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel165" min="-2" pref="114" max="-2" attributes="0"/>
+                                              <Component id="jLabel171" min="-2" pref="114" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="discpuntInProductBill" min="-2" pref="157" max="-2" attributes="0"/>
-                                              <Component id="warrantyInProductBill" min="-2" pref="162" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="warrantyInProductBill" pref="162" max="32767" attributes="0"/>
+                                              <Component id="paymentTypeInProductSell" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
@@ -4753,10 +4751,10 @@
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel166" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="duePaymentInProductBill" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="discpuntInProductBill" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                                              <Component id="jLabel167" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="paymentTypeInProductSell" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel171" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="18" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -4810,24 +4808,65 @@
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="duePaymentInProductBillActionPerformed"/>
                                   </Events>
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="discpuntInProductBill">
+                                <Component class="javax.swing.JComboBox" name="paymentTypeInProductSell">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="0.0"/>
+                                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                      <Font name="DialogInput" size="14" style="1"/>
+                                    </Property>
+                                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                      <StringArray count="9">
+                                        <StringItem index="0" value="Cash"/>
+                                        <StringItem index="1" value="BKash"/>
+                                        <StringItem index="2" value="Rokect"/>
+                                        <StringItem index="3" value="Nagat"/>
+                                        <StringItem index="4" value="Visa Card"/>
+                                        <StringItem index="5" value="Master Card"/>
+                                        <StringItem index="6" value="Dabit Card"/>
+                                        <StringItem index="7" value="Creadit Card"/>
+                                        <StringItem index="8" value=" "/>
+                                      </StringArray>
+                                    </Property>
                                   </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discpuntInProductBillActionPerformed"/>
-                                  </Events>
+                                  <AuxValues>
+                                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                  </AuxValues>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="jLabel167">
+                                <Component class="javax.swing.JLabel" name="jLabel171">
                                   <Properties>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Trebuchet MS" size="16" style="1"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="Discount(%)    :"/>
+                                    <Property name="text" type="java.lang.String" value="Pay by"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
                             </Container>
+                            <Component class="javax.swing.JComboBox" name="barCodeInProductSell">
+                              <Properties>
+                                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                  <StringArray count="4">
+                                    <StringItem index="0" value="Item 1"/>
+                                    <StringItem index="1" value="Item 2"/>
+                                    <StringItem index="2" value="Item 3"/>
+                                    <StringItem index="3" value="Item 4"/>
+                                  </StringArray>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="barCodeInProductSellActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JTextField" name="discpuntInProductBill">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="0.0"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discpuntInProductBillActionPerformed"/>
+                              </Events>
+                            </Component>
                           </SubComponents>
                         </Container>
                       </SubComponents>
@@ -6209,7 +6248,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="getRechargeAmountInSetting" pref="848" max="32767" attributes="0"/>
+                                  <Component id="getRechargeAmountInSetting" pref="862" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -6292,7 +6331,7 @@
                                       <Component id="getDescriptionInSetting" min="-2" pref="44" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="saveNewOfferInSettrings" min="-2" pref="39" max="-2" attributes="0"/>
-                                      <EmptySpace pref="267" max="32767" attributes="0"/>
+                                      <EmptySpace pref="349" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -6429,7 +6468,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel18" pref="869" max="32767" attributes="0"/>
+                                  <Component id="jPanel18" pref="883" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -7587,9 +7626,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="accountPassword">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel36">
                   <Properties>
@@ -7672,7 +7708,7 @@
                           <Component id="getSeletedStorage" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="clickAddContract" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace pref="175" max="32767" attributes="0"/>
+                          <EmptySpace pref="575" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

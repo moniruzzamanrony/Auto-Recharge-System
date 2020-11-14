@@ -10,6 +10,8 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.itvillage.AES;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,12 +39,13 @@ public class BuyNow extends javax.swing.JFrame {
     public BuyNow() {
         initComponents();
         processingLoderDialog();
-             
+
         URL url = getClass().getResource("/resources/images/logo64.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
         this.setTitle("Auto Recharge with Managment");
         // new BuyNow().setVisible(true);
+        setKeyBoardControl();
     }
 
     @SuppressWarnings("unchecked")
@@ -384,87 +387,7 @@ public class BuyNow extends javax.swing.JFrame {
 
     private void clickBuyNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickBuyNowActionPerformed
 
-        String clientName = getName.getText();
-        String userPhoneNo = getPhoneNumber.getText();
-        String userEmail = getEmail.getText();
-        String selectedPackage = getPackageName.getSelectedItem().toString().trim();
-        String shopName = getShopName.getText();
-        String shopAddress = this.shopAddress.getText();
-        String userId = User.getUserId().toLowerCase();
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(userEmail);
-
-        if (clientName.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getName, "#FF2D00");  //#FF2D00 is Red Color
-        }
-        if (userPhoneNo.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#FF2D00");
-        }
-        if (userEmail.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
-        }
-        if (shopName.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getShopName, "#FF2D00");
-        } 
-        if (!matcher.matches()) {
-            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
-        } else {
-            if (Configaration.netIsAvailable()) {
-
-                int result = JOptionPane.showConfirmDialog(bg, "Are you sure?", "Auto Recharge System", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if (result == 1) {
-                    getName.setText("");
-                    getPhoneNumber.setText("");
-                    getEmail.setText("");
-                    getShopName.setText("");
-                    Log.mgs("272", "Reset Done.");
-                } else {
-                    Log.mgs("274", "Start Swing Worker.");
-                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            Log.mgs("269", "Clicked.");
-                            clickBuyNow.setText("Please Wait..");
-                            clickBuyNow.setEnabled(false);
-                            processtingLoderDialog.setVisible(true);
-                            genarateQRCode(clientName, userPhoneNo, userEmail, selectedPackage, shopName, userId,shopAddress);
-                            return null;
-                        }
-
-                        @Override
-                        protected void done() {
-                            clickBuyNow.setText("Buy Now");
-                            clickBuyNow.setEnabled(true);
-                            getName.setText("");
-                            getPhoneNumber.setText("");
-                            getEmail.setText("");
-                            getShopName.setText("");
-                            processtingLoderDialog.setVisible(false);
-                            Log.mgs("275", "Task Completed.");
-                        }
-
-                    };
-                    swingWorker.execute();
-
-                }
-            } else {
-                Popup.error("No INTERNET CONNECTION");
-            }
-
-        }
-
-        if (!clientName.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getName, "#DCDADA");  //#FF2D00 is deep black
-        }
-        if (!userPhoneNo.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#DCDADA");
-        }
-        if (matcher.matches()) {
-            Configaration.changeBorderColorForTextFeild(getEmail, "#DCDADA");
-        }
-        if (!shopName.equals("")) {
-            Configaration.changeBorderColorForTextFeild(getShopName, "#DCDADA");
-        }
+        buyNowClick();
 
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
@@ -481,7 +404,7 @@ public class BuyNow extends javax.swing.JFrame {
             @Override
             protected void done() {
                 System.out.println("Login Done..");
-                
+
                 processtingLoderDialog.setVisible(false);
             }
 
@@ -546,7 +469,7 @@ public class BuyNow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 //    ---------------------------------- Custom Methods ----------------------------------------------------
-    private void genarateQRCode(String clientName, String userPhoneNo, String userEmail, String selectedPackage, String shopName, String userId,String shopAddress) {
+    private void genarateQRCode(String clientName, String userPhoneNo, String userEmail, String selectedPackage, String shopName, String userId, String shopAddress) {
         Log.mgs("389", "Genarating QR COde");
 
         // String loggedUserNameOfComputer = System.getProperty("user.name").toLowerCase().trim();
@@ -557,9 +480,9 @@ public class BuyNow extends javax.swing.JFrame {
 
             String qrCodeData = userPhoneNo + "," + clientName
                     + "," + computerMacAddress.toLowerCase() + "," + userId
-                    + "," + selectedPackage + "," + userEmail + "," + shopName+","+shopAddress;
-           
-           String encryptQrCodeData = qrCodeData;
+                    + "," + selectedPackage + "," + userEmail + "," + shopName + "," + shopAddress;
+
+            String encryptQrCodeData = qrCodeData;
             String filePath = userPhoneNo + ".png";
             String charset = "UTF-8";
             Map< EncodeHintType, ErrorCorrectionLevel> hintMap = new HashMap< EncodeHintType, ErrorCorrectionLevel>();
@@ -591,9 +514,8 @@ public class BuyNow extends javax.swing.JFrame {
                 macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, expireDateFromSQL = null, packageValidity = null, role = null;
         String serialKey = getSerialKey.getText();
         String encryptedSerialKey = AES.decrypt(serialKey, "itvillage428854");
-        if(encryptedSerialKey == null)
-        {
-        Popup.error("Invalid Serial Key");
+        if (encryptedSerialKey == null) {
+            Popup.error("Invalid Serial Key");
         }
         System.err.println(encryptedSerialKey);
         String[] values = encryptedSerialKey.split(",");
@@ -748,6 +670,198 @@ public class BuyNow extends javax.swing.JFrame {
         processtingLoderDialog.setLocationRelativeTo(null);
         processtingLoderDialog.setUndecorated(true);
 
+    }
+
+    private void setKeyBoardControl() {
+        getName.requestFocusInWindow();
+
+        getName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getPhoneNumber.requestFocusInWindow();
+
+                }
+            }
+        });
+
+        getPhoneNumber.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getEmail.requestFocusInWindow();
+
+                }
+            }
+        });
+        getEmail.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getShopName.requestFocusInWindow();
+
+                }
+            }
+        });
+        getShopName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    getPackageName.requestFocusInWindow();
+
+                }
+            }
+        });
+        getPackageName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    shopAddress.requestFocusInWindow();
+
+                }
+            }
+        });
+        shopAddress.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    clickBuyNow.requestFocusInWindow();
+
+                }
+            }
+        });
+
+        clickBuyNow.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buyNowClick();
+
+                }
+            }
+        });
+
+        // For Serial Key
+        getSerialKey.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jButton1.requestFocusInWindow();
+
+                }
+            }
+        });
+
+        jButton1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            System.out.println("Verifing...");
+                            processtingLoderDialog.setVisible(true);
+                            verifySerialKey();
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                          
+                            processtingLoderDialog.setVisible(false);
+                        }
+
+                    };
+
+                    swingWorker.execute();
+
+                }
+            }
+        });
+    }
+
+    private void buyNowClick() {
+        String clientName = getName.getText();
+        String userPhoneNo = getPhoneNumber.getText();
+        String userEmail = getEmail.getText();
+        String selectedPackage = getPackageName.getSelectedItem().toString().trim();
+        String shopName = getShopName.getText();
+        String shopAddress = this.shopAddress.getText();
+        String userId = User.getUserId().toLowerCase();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(userEmail);
+
+        if (clientName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getName, "#FF2D00");  //#FF2D00 is Red Color
+        }
+        if (userPhoneNo.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#FF2D00");
+        }
+        if (userEmail.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
+        }
+        if (shopName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getShopName, "#FF2D00");
+        }
+        if (!matcher.matches()) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#FF2D00");
+        } else {
+            if (Configaration.netIsAvailable()) {
+
+                int result = JOptionPane.showConfirmDialog(bg, "Are you sure?", "Auto Recharge System", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (result == 1) {
+                    getName.setText("");
+                    getPhoneNumber.setText("");
+                    getEmail.setText("");
+                    getShopName.setText("");
+                    Log.mgs("272", "Reset Done.");
+                } else {
+                    Log.mgs("274", "Start Swing Worker.");
+                    SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            Log.mgs("269", "Clicked.");
+                            clickBuyNow.setText("Please Wait..");
+                            clickBuyNow.setEnabled(false);
+                            processtingLoderDialog.setVisible(true);
+                            genarateQRCode(clientName, userPhoneNo, userEmail, selectedPackage, shopName, userId, shopAddress);
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            clickBuyNow.setText("Buy Now");
+                            clickBuyNow.setEnabled(true);
+                            getName.setText("");
+                            getPhoneNumber.setText("");
+                            getEmail.setText("");
+                            getShopName.setText("");
+                            processtingLoderDialog.setVisible(false);
+                            Log.mgs("275", "Task Completed.");
+                        }
+
+                    };
+                    swingWorker.execute();
+
+                }
+            } else {
+                Popup.error("No INTERNET CONNECTION");
+            }
+
+        }
+
+        if (!clientName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getName, "#DCDADA");  //#FF2D00 is deep black
+        }
+        if (!userPhoneNo.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getPhoneNumber, "#DCDADA");
+        }
+        if (matcher.matches()) {
+            Configaration.changeBorderColorForTextFeild(getEmail, "#DCDADA");
+        }
+        if (!shopName.equals("")) {
+            Configaration.changeBorderColorForTextFeild(getShopName, "#DCDADA");
+        }
     }
 
 }

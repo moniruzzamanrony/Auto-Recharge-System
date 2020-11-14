@@ -318,7 +318,7 @@ public final class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
-    
+
         this.setVisible(false);
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
@@ -422,8 +422,8 @@ public final class Login extends javax.swing.JFrame {
             UserInfo.password = "demo";
             UserInfo.macAddress = Configaration.getMacAddress().replace(":", "");
 
-              Home home = new Home();
-             home.setVisible(true);
+            Home home = new Home();
+            home.setVisible(true);
         } else {
 
             try {
@@ -435,7 +435,7 @@ public final class Login extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                   
+
                     userId = rs.getString("user_id");
                     phoneNo = rs.getString("phone_no");
                     password = rs.getString("password");
@@ -458,35 +458,52 @@ public final class Login extends javax.swing.JFrame {
                 UserInfo.password = password;
                 UserInfo.macAddress = macAddress;
                 if (phoneNo == null) {
-                    Popup.customError("Licence not found.");
-                    System.exit(0);
+                    int res = Popup.customError("Licence not found.");
+                    if (res == 0) {
+                        Login login = new Login();
+                        login.setVisible(true);
+                    }
                 } else {
                     System.out.println("step 1/12: Login processing start with " + phoneNo);
                     if (getPhoneNumber.getText().trim().equals("")) {
-                       Popup.error("Phone Number is Empty");
-                        System.exit(0);
+                        Popup.error("Phone Number is Empty");
+
                     }
                     if (getPasswordBypt.getText().trim().equals("")) {
                         Popup.error("Password is Empty");
-                        System.exit(0);
+
                     } else {
                         if (phoneNo.equals(getPhoneNumber.getText().trim())
                                 && AES.decrypt(password, "itvillage428854")
                                         .equals(getPasswordBypt.getText().trim())) {
 
                             if (isAuthrizeMacAddress(macAddress)) {
-                                new ConfigrarationModemStartUp().setVisible(true);
-                                isAuthUser = true;
+                                if (Configaration.stringToDateType(UserInfo.expireDate).after(Configaration.stringToDateType(Configaration.getCurrentDate()))) {
+                                    new ConfigrarationModemStartUp().setVisible(true);
+                                    isAuthUser = true;
+                                } else {
+                                    int res = Popup.customError("Licence Expaired");
+                                    if (res == 0) {
+                                        Login login = new Login();
+                                        login.setVisible(true);
+                                    }
+                                }
                             } else {
-                                Popup.error("Unverified Device");
-                                System.exit(0);
+                                int res = Popup.customError("Unverified Device");
+                                if (res == 0) {
+                                    Login login = new Login();
+                                    login.setVisible(true);
+                                }
                             }
                             Log.mgs("Login Info", "Success");
 
                         } else {
                             Log.mgs("Login Info", "Auth Faild");
-                            Popup.error("Invalid Phone Number Or Password!!");
-                            System.exit(0);
+                            int res = Popup.customError("Invalid Phone Number Or Password!!");
+                            if (res == 0) {
+                                Login login = new Login();
+                                login.setVisible(true);
+                            }
                         }
 
                     }
@@ -511,8 +528,6 @@ public final class Login extends javax.swing.JFrame {
 
         return false;
     }
-
-
 
     public void keyListener() {
 
@@ -569,7 +584,8 @@ public final class Login extends javax.swing.JFrame {
         if (ports.isEmpty()) {
             int res = Popup.customError("Modem Not Found..");
             if (res == 0) {
-                System.exit(0);
+                Login login = new Login();
+                login.setVisible(true);
             }
         } else {
 
