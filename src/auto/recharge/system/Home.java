@@ -2899,7 +2899,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(printClickProductWanrranty1)
                             .addComponent(jButton7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2917,7 +2917,7 @@ public class Home extends javax.swing.JFrame {
             warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(warrantyTabLayout.createSequentialGroup()
                 .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGap(0, 95, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Product Warranty ", warrantyTab);
@@ -6200,6 +6200,7 @@ public class Home extends javax.swing.JFrame {
         jPanel17.setMaximumSize(new java.awt.Dimension(1366, 768));
 
         forBarCodePhoneNumber3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber3.setText("00");
         forBarCodePhoneNumber3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber3ActionPerformed(evt);
@@ -6231,6 +6232,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         forBarCodePhoneNumber4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber4.setText("00");
         forBarCodePhoneNumber4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber4ActionPerformed(evt);
@@ -6244,6 +6246,7 @@ public class Home extends javax.swing.JFrame {
         jLabel107.setText("Phone Number 2");
 
         forBarCodePhoneNumber2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber2.setText("00");
         forBarCodePhoneNumber2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber2ActionPerformed(evt);
@@ -6254,6 +6257,7 @@ public class Home extends javax.swing.JFrame {
         jLabel108.setText("Phone Number 5");
 
         forBarCodePhoneNumber5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber5.setText("00");
         forBarCodePhoneNumber5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber5ActionPerformed(evt);
@@ -6264,6 +6268,7 @@ public class Home extends javax.swing.JFrame {
         jLabel109.setText("Phone Number 6");
 
         forBarCodePhoneNumber6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber6.setText("00");
         forBarCodePhoneNumber6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber6ActionPerformed(evt);
@@ -6271,6 +6276,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         forBarCodePhoneNumber7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber7.setText("00");
         forBarCodePhoneNumber7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber7ActionPerformed(evt);
@@ -6284,6 +6290,7 @@ public class Home extends javax.swing.JFrame {
         jLabel111.setText("Phone Number 8");
 
         forBarCodePhoneNumber8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber8.setText("00");
         forBarCodePhoneNumber8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber8ActionPerformed(evt);
@@ -6294,6 +6301,7 @@ public class Home extends javax.swing.JFrame {
         jLabel112.setText("Phone Number 9");
 
         forBarCodePhoneNumber9.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber9.setText("00");
         forBarCodePhoneNumber9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber9ActionPerformed(evt);
@@ -6301,6 +6309,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         forBarCodePhoneNumber10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        forBarCodePhoneNumber10.setText("00");
         forBarCodePhoneNumber10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forBarCodePhoneNumber10ActionPerformed(evt);
@@ -6420,9 +6429,9 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(getRechargeNameLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel53)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(416, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
         basePanel.add(getRechargeName, "card2");
@@ -8156,6 +8165,7 @@ public class Home extends javax.swing.JFrame {
     private void clickUssdDailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickUssdDailActionPerformed
 
         switchPanelViaMenu(ussdDialPanel);
+        getSelectedSim.removeAllItems();
         getUssdCode.requestFocusInWindow();
         refrash();
         if (UserInfo.role.equals("demo")) {
@@ -8282,7 +8292,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getMobileNumberForSearchActionPerformed
 
     private void back44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back44MouseClicked
-        // TODO add your handling code here:
+      switchPanelViaMenu(mobileRechargePanel);
     }//GEN-LAST:event_back44MouseClicked
 
     private void clickAddForRechargeBarCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickAddForRechargeBarCodeActionPerformed
@@ -14687,5 +14697,123 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        //Get Phone Number For QR Code Ganarate
+        getNameForRechargeBarCode1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    forBarCodePhoneNumber2.selectAll();
+                    forBarCodePhoneNumber2.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber2.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                     forBarCodePhoneNumber3.selectAll();
+                    forBarCodePhoneNumber3.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber3.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber4.selectAll();
+                    forBarCodePhoneNumber4.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber4.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber5.selectAll();
+                    forBarCodePhoneNumber5.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber5.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber6.selectAll();
+                    forBarCodePhoneNumber6.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber6.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber7.selectAll();
+                    forBarCodePhoneNumber7.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber7.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber8.selectAll();
+                    forBarCodePhoneNumber8.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber8.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber9.selectAll();
+                    forBarCodePhoneNumber9.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber9.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                      forBarCodePhoneNumber10.selectAll();
+                    forBarCodePhoneNumber10.requestFocusInWindow();
+                }
+            }
+        });
+        forBarCodePhoneNumber10.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    
+                    clickAddForRechargeBarCode.requestFocusInWindow();
+                }
+            }
+        });
+        clickAddForRechargeBarCode.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (UserInfo.role.equals("demo")) {
+
+                    } else {
+                        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+                            @Override
+                            protected Void doInBackground() throws Exception {
+                                processtingLoderDialog.setVisible(true);
+                                genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode1.getText(), forBarCodePhoneNumber2.getText(), forBarCodePhoneNumber3.getText(), forBarCodePhoneNumber4.getText(), forBarCodePhoneNumber5.getText(), forBarCodePhoneNumber6.getText(), forBarCodePhoneNumber7.getText(), forBarCodePhoneNumber8.getText(), forBarCodePhoneNumber9.getText(), forBarCodePhoneNumber10.getText());
+                                return null;
+                            }
+
+                            @Override
+                            protected void done() {
+                                processtingLoderDialog.setVisible(false);
+                            }
+
+                        };
+                        worker.execute();
+
+                    }
+                }
+            }
+        });
     }
 }
