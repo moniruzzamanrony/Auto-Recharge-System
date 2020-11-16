@@ -52,14 +52,14 @@
 				<textField>
 					<reportElement x="0" y="37" width="247" height="20" uuid="6e965ae9-2807-409d-af5d-85f29d49d1d1"/>
 					<textElement textAlignment="Center">
-						<font fontName="Arial" size="12"/>
+						<font  size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement x="0" y="18" width="247" height="33" uuid="94881bf4-a6a9-4483-a01a-5ed773e66482"/>
 					<textElement textAlignment="Center">
-						<font fontName="Agency FB" size="16"/>
+						<font  size="16"/>
 					</textElement>
 					<text><![CDATA[Auto Recharge With Managment]]></text>
 				</staticText>

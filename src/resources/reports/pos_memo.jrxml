@@ -117,7 +117,7 @@
             <textField>
                 <reportElement x="0" y="0" width="186" height="28" uuid="9159bd44-f6b4-45ea-a2a7-6aeb6f746f0b"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font fontName="Dialog" size="15" isBold="true"/>
+                    <font size="15" isBold="true"/>
                 </textElement>
                 <textFieldExpression><![CDATA[$P{shop_name}]]></textFieldExpression>
             </textField>

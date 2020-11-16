@@ -140,14 +140,14 @@
 			<textField>
 				<reportElement x="6" y="2" width="542" height="48" uuid="2cfbf721-4964-418e-9b55-d761717e56b7"/>
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
-					<font fontName="Lucida Sans Unicode" size="30" isBold="true"/>
+					<font size="30" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{shop_name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="6" y="74" width="542" height="29" uuid="f1b844d6-7a43-4e4d-9f25-16ef20d0762e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font fontName="Calibri Light" size="14" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{shop_phone_number}]]></textFieldExpression>
 			</textField>
@@ -171,7 +171,7 @@
 			<staticText>
 				<reportElement x="6" y="18" width="542" height="24" forecolor="#330033" uuid="3891fe0c-25a7-45b8-a65a-4793d59f9edd"/>
 				<textElement textAlignment="Center">
-					<font fontName="Ebrima" size="16" isBold="true"/>
+					<font  size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Invoice/Bill]]></text>
 			</staticText>
@@ -185,63 +185,63 @@
 			<staticText>
 				<reportElement x="25" y="17" width="120" height="20" uuid="17e238d2-93c0-414d-af62-06b42b6f0463"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<text><![CDATA[Customar Name       :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="25" y="68" width="118" height="20" uuid="78c45dc7-6d5b-4deb-be9d-41f52f0390c3"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<text><![CDATA[ Customar Address  :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="25" y="42" width="120" height="20" uuid="4e1f32f8-76e8-4acc-a862-4c2c3571c50f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<text><![CDATA[Phone No                   :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="352" y="54" width="58" height="15" uuid="6ee625b5-856b-40d6-a5df-bdbf22b89cc6"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="10"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Sold By  ]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="161" y="17" width="146" height="20" uuid="d1eb5762-e5cc-452b-a48b-1dc484914985"/>
 				<textElement>
-					<font fontName="Cambria Math" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{customar_name}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="161" y="68" width="146" height="36" uuid="a507e325-81ef-44b5-b8b5-687bd9b3aaec"/>
 				<textElement>
-					<font fontName="Cambria Math" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{customar_address}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="161" y="41" width="146" height="20" uuid="832d065e-e9d2-4e78-9289-54bf334c678c"/>
 				<textElement>
-					<font fontName="Cambria Math" size="12"/>
+					<font  size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{phone_no}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="413" y="55" width="128" height="15" uuid="26d39483-f4b5-4ce8-a102-7c4d164f8c52"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Cambria Math" size="10"/>
+					<font  size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{sold_by}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="352" y="15" width="58" height="15" uuid="9b02f4bc-94d4-4fab-9258-3066a3adcbfd"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="10"/>
+					<font  size="10"/>
 				</textElement>
 				<text><![CDATA[INVOICE #]]></text>
 			</staticText>
@@ -253,7 +253,7 @@
 			<staticText>
 				<reportElement x="352" y="34" width="58" height="15" uuid="f0087d46-9f40-47d7-b9c7-7e410141b201"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="10"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Date & Time ]]></text>
 			</staticText>
@@ -265,7 +265,7 @@
 			<staticText>
 				<reportElement x="350" y="79" width="63" height="15" uuid="245bef8b-10e1-41b5-ac0a-224a29f69ee1"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Georgia" size="9"/>
+					<font  size="9"/>
 				</textElement>
 				<text><![CDATA[Bar Code]]></text>
 			</staticText>
@@ -295,7 +295,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="a72ced3f-5497-4a46-86c9-d6af0703705c"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[BAR CODE]]></text>
 							</staticText>
@@ -313,7 +313,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="187d3bde-5f69-46d3-9911-0217d448f686"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[PRODUCT NAME]]></text>
 							</staticText>
@@ -331,7 +331,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="f721e059-b51f-4b56-a664-f6b6a92f429a"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[WARRANTY]]></text>
 							</staticText>
@@ -349,7 +349,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="9d4ec443-f0e9-4523-8d05-b4308ef2b4d5"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font isBold="true"/>
 								</textElement>
 								<text><![CDATA[PRICE]]></text>
 							</staticText>
@@ -367,7 +367,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="90" height="30" uuid="f047c265-d65d-4195-bd68-a39a0fae9fda"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font  isBold="true"/>
 								</textElement>
 								<text><![CDATA[QTY]]></text>
 							</staticText>
@@ -385,7 +385,7 @@
 							<staticText>
 								<reportElement x="0" y="0" width="66" height="30" uuid="71ae69ad-8ab4-4782-b574-ea4184bb6a00"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Dosis" isBold="true"/>
+									<font  isBold="true"/>
 								</textElement>
 								<text><![CDATA[Suntotal With Discount]]></text>
 							</staticText>
@@ -421,7 +421,7 @@
 			<staticText>
 				<reportElement x="267" y="13" width="103" height="20" uuid="171e711f-2e21-4734-89d4-468bc80b59e3"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Amount]]></text>
 			</staticText>
@@ -442,14 +442,14 @@
 			<staticText>
 				<reportElement x="267" y="71" width="103" height="20" uuid="9373b9d0-de7a-4308-a98d-e308fca7f166"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Due Payment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="266" y="125" width="103" height="20" uuid="8cd8b2a3-c954-4605-97cd-111b41bdd118"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Due]]></text>
 			</staticText>
@@ -470,21 +470,21 @@
 			<staticText>
 				<reportElement x="267" y="40" width="103" height="20" uuid="2d469ea7-77b3-4db4-9a69-316d0a5d2dcb"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Add VAT/TAX]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="267" y="98" width="102" height="20" uuid="efdaf8a7-ccf4-4673-9247-dac77c36ace5"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Paid]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="267" y="180" width="103" height="20" uuid="aa801694-b010-440d-8741-08ac75590e4b"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Microsoft YaHei UI" size="11" isBold="true"/>
+					<font  size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Payable Amount :]]></text>
 			</staticText>
