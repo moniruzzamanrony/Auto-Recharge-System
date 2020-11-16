@@ -100,9 +100,10 @@ public class Home extends javax.swing.JFrame {
     private Double discountInSellProduct = 0.0;
     private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
     private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
+    private Set<MobileBankingDetailsForSearchingDto> mobileBankingDetailsForSearchingDto = new HashSet<>();
     private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
     private final String TAG = "Home :";
-
+    private double totalItemsInProductSellInDouble=0.0, returnAmtInProductSellInDouble=0.0, discountAmtInProductSellInDouble=0.0, vatInProductSellInDouble=0.0, payableAmtInProductSellInDouble=0.0, dueInProductSellInDouble=0.0,totalPayableAmtAfterDiscountInProductSellInDouble=0.0;
     public Home() {
         initComponents();
         URL url = getClass().getResource("/resources/images/logo64.png");
@@ -122,6 +123,7 @@ public class Home extends javax.swing.JFrame {
         //Set Hint
         getMobileNumberForSearch.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
         searchingByName.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
+        
         searchInInbox.setUI(new HintTextFieldUI("Search By name"));
 
         settingPanelEnterPressWork();
@@ -398,6 +400,8 @@ public class Home extends javax.swing.JFrame {
         jLabel171 = new javax.swing.JLabel();
         barCodeInProductSell = new javax.swing.JComboBox<>();
         discpuntInProductBill = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         settingsPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         myProfile = new javax.swing.JLabel();
@@ -595,6 +599,7 @@ public class Home extends javax.swing.JFrame {
         getAmmountInBillPayment = new javax.swing.JTextField();
         getSimOperatorName = new javax.swing.JComboBox<>();
         clickSandInMB = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         groupLoadPanel = new javax.swing.JPanel();
         backToMobileRecharge1 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
@@ -2379,7 +2384,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(makeNewInProductPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ProductPurchasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -2917,7 +2922,7 @@ public class Home extends javax.swing.JFrame {
             warrantyTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(warrantyTabLayout.createSequentialGroup()
                 .addComponent(ProductPurchasePanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 279, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Product Warranty ", warrantyTab);
@@ -3232,7 +3237,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         productSellTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -3421,6 +3426,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel31.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel31.setText("Bar Code");
+
+        jLabel41.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel41.setText("Discount Per Product");
+
         javax.swing.GroupLayout ProductPurchasePanel2Layout = new javax.swing.GroupLayout(ProductPurchasePanel2);
         ProductPurchasePanel2.setLayout(ProductPurchasePanel2Layout);
         ProductPurchasePanel2Layout.setHorizontalGroup(
@@ -3438,14 +3451,18 @@ public class Home extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                                 .addComponent(actionTypeInProductSellCOmboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(barCodeInProductSell, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(barCodeInProductSell, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel41))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -3535,7 +3552,11 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(jLabel159)
                                     .addComponent(phoneNOInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(noteInProductSell, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
+                        .addGap(1, 1, 1)
+                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel41))
+                        .addGap(2, 2, 2)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(actionTypeInProductSellCOmboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -5424,6 +5445,9 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 searchingByNameKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchingByNameKeyReleased(evt);
+            }
         });
 
         jPanel23.setBackground(new java.awt.Color(102, 0, 255));
@@ -5502,6 +5526,10 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("Search By Date or Phone Number Or Amount");
+
         javax.swing.GroupLayout addMobileBankingPanelInBillPayLayout = new javax.swing.GroupLayout(addMobileBankingPanelInBillPay);
         addMobileBankingPanelInBillPay.setLayout(addMobileBankingPanelInBillPayLayout);
         addMobileBankingPanelInBillPayLayout.setHorizontalGroup(
@@ -5528,7 +5556,9 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                         .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(589, 589, 589)
+                        .addGap(302, 302, 302)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchingByName)))
                 .addContainerGap())
         );
@@ -5548,9 +5578,10 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(addMobileBankingPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchingByName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchingByName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addContainerGap())
@@ -8581,6 +8612,10 @@ public class Home extends javax.swing.JFrame {
         printAndSaveInWarrenty();
     }//GEN-LAST:event_printClickProductWanrranty1ActionPerformed
 
+    private void searchingByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchingByNameKeyReleased
+        searchByPhoneNumberInMobileBankingDetails(mobileBankingDetailsForSearchingDto, searchingByName.getText());
+    }//GEN-LAST:event_searchingByNameKeyReleased
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -8849,6 +8884,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
@@ -8953,6 +8989,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -8963,6 +9000,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -11143,9 +11181,33 @@ public class Home extends javax.swing.JFrame {
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
                     if (Configaration.getCurrentDateAndTime().substring(0, 8).equals(rs.getString("date_time").substring(0, 8))) {
-                        defaultTableModel.addRow(new String[]{rs.getString("TnxId"), rs.getString("service_name"), rs.getString("action_type"), rs.getString("phone_no"),
-                            rs.getString("amount"), rs.getString("sim"), rs.getString("c_balance"), rs.getString("result"), rs.getString("date_time"), rs.getString("info")});
+                        defaultTableModel.addRow(new String[]{
+                            rs.getString("TnxId"), 
+                            rs.getString("service_name"), 
+                            rs.getString("action_type"), 
+                            rs.getString("phone_no"),
+                            rs.getString("amount"), 
+                            rs.getString("sim"), 
+                            rs.getString("c_balance"), 
+                            rs.getString("result"), 
+                            rs.getString("date_time"),
+                            rs.getString("info")});
                     }
+                    MobileBankingDetailsForSearchingDto bankingDetailsForSearchingDto= new MobileBankingDetailsForSearchingDto();
+                    bankingDetailsForSearchingDto.setTrxId(rs.getString("TnxId"));
+                    bankingDetailsForSearchingDto.setServiceName(rs.getString("service_name"));
+                    bankingDetailsForSearchingDto.setActionType(rs.getString("action_type"));
+                    bankingDetailsForSearchingDto.setPhoneNo(rs.getString("phone_no"));
+                    bankingDetailsForSearchingDto.setAmount(rs.getString("amount"));
+                    bankingDetailsForSearchingDto.setSim(rs.getString("sim"));
+                    bankingDetailsForSearchingDto.setcBalance(rs.getString("c_balance"));
+                    bankingDetailsForSearchingDto.setResult(rs.getString("result"));
+                    bankingDetailsForSearchingDto.setDateAndType(rs.getString("date_time"));
+                    bankingDetailsForSearchingDto.setInfo(rs.getString("info"));
+                   
+                   mobileBankingDetailsForSearchingDto.add(bankingDetailsForSearchingDto);
+                    
+                    
 
                 }
 
@@ -13061,12 +13123,15 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(KeyEvent ke) {
                 switch (ke.getKeyCode()) {
                     case KeyEvent.VK_ENTER:
+                        setWarrentyDetailsByInvoice(invoiceInProductWarranty.getText());
                         customerIdINProductWanrranty.requestFocusInWindow();
                         break;
                     default:
                         break;
                 }
             }
+
+
         });
 
         customerIdINProductWanrranty.addKeyListener(new KeyAdapter() {
@@ -13547,24 +13612,17 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void genarateBarCode(String pdfName) {
-        try {
+   
             String fileNameJrxml1 = "/resources/reports/bar_code_list.jrxml";
-
-            URL res = getClass().getResource(fileNameJrxml1);
-            File file = Paths.get(res.toURI()).toFile();
-            String fileNameJrxml = file.getAbsolutePath();
-            String fileNamePdf1 = "/resources/pdf/pdfName.pdf";
-            URL res1 = getClass().getResource(fileNamePdf1);
+            InputStream res = Home.class.getClass().getResourceAsStream(fileNameJrxml1);
+            
             try {
                 System.out.println("Loading the .JRMXML file ....");
-                JasperDesign jasperDesign = JRXmlLoader.load(fileNameJrxml);
+                JasperDesign jasperDesign = JRXmlLoader.load(res);
                 System.out.println("Compiling the .JRMXML file to .JASPER file....");
                 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                String first_language = "Java";
-                String second_language = "Structured text";
                 HashMap hm = new HashMap();
                 hm.put("bar_code_text", pdfName);
-
                 System.out.println("filling parameters to .JASPER file....");
                 JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasperReport, hm, new JREmptyDataSource());
                 preview(jprint);
@@ -13576,9 +13634,7 @@ public class Home extends javax.swing.JFrame {
                 System.out.print("Exception:" + e);
             }
 
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
 
     }
 
@@ -13698,40 +13754,41 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
-
+            
         saveSellProductInSellTabel(countForSellTable);
         summaryShowInBillDisplay();
     }
 
     private void summaryShowInBillDisplay() {
-        Double totalPayableAmtAfterDiscount;
 
         discountInSellProduct = (totalPayableAmt * Double.valueOf(discpuntInProductBill.getText())) / 100;
-        totalPayableAmtAfterDiscount = totalPayableAmt - discountInSellProduct;
+        totalPayableAmtAfterDiscountInProductSellInDouble = totalPayableAmt - discountInSellProduct;
 
-        String totalItems, returnAmt, discountAmt, vat, payableAmt, due, payway;
-        totalItems = String.valueOf(productSellTable.getRowCount());
-        returnAmt = String.valueOf(returnForSellTable);
-        discountAmt = String.valueOf(discountInSellProduct);
-        vat = String.valueOf("0.0");
-        payableAmt = String.valueOf(totalPayableAmtAfterDiscount);
-        due = String.valueOf(Double.valueOf(payableAmt) - Double.valueOf(paymentInProductBill.getText()));
-        payway = String.valueOf(paymentTypeInProductSell.getSelectedItem().toString());
+
+        totalItemsInProductSellInDouble = Double.valueOf(productSellTable.getRowCount());
+        returnAmtInProductSellInDouble = returnForSellTable;
+        discountAmtInProductSellInDouble = discountInSellProduct;
+        vatInProductSellInDouble = 0.0;
+        payableAmtInProductSellInDouble = totalPayableAmtAfterDiscountInProductSellInDouble;
+        dueInProductSellInDouble = Double.valueOf(payableAmtInProductSellInDouble) - Double.valueOf(paymentInProductBill.getText());
+        String payway = paymentTypeInProductSell.getSelectedItem().toString();
 
         totalAmountInProductSell1.setText(String.valueOf(totalPayableAmt));
-        totalItemsInProductSell.setText(totalItems);
-        returnInProductSell.setText(returnAmt);
+        totalItemsInProductSell.setText(String.valueOf(totalItems));
+        returnInProductSell.setText(String.valueOf(returnAmtInProductSellInDouble));
 
-        vatInProductSell.setText(vat);
-        payableInProductSell.setText(payableAmt);
+        vatInProductSell.setText(String.valueOf(vatInProductSellInDouble));
+        payableInProductSell.setText(String.valueOf(payableAmtInProductSellInDouble));
         paidInProductSell.setText(paymentInProductBill.getText());
         duePaymentInProductSell.setText(duePaymentInProductBill.getText());
-        dueInProductSell.setText(due);
+        dueInProductSell.setText(String.valueOf(dueInProductSellInDouble));
         paymentWayInProductSell.setText(payway);
 
     }
 
     private void clearBillforProduct() {
+        countForSellTable = 0;
+      
         totalItemsInProductSell.setText("");
         returnInProductSell.setText("");
 
@@ -13751,6 +13808,7 @@ public class Home extends javax.swing.JFrame {
         warrantyInProductBill.setText("0.0");
         duePaymentInProductBill.setText("0.0");
         discpuntInProductBill.setText("0.0");
+        
         productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -13761,7 +13819,15 @@ public class Home extends javax.swing.JFrame {
         productSellTable.setRowHeight(30);
         productSellTable.setModel(productSellTableModel);
 
-        int countForSellTable = 0;
+        totalItemsInProductSellInDouble=0.0;
+        returnAmtInProductSellInDouble=0.0;
+        discountAmtInProductSellInDouble=0.0;
+        vatInProductSellInDouble=0.0;
+        payableAmtInProductSellInDouble=0.0;
+        dueInProductSellInDouble=0.0;
+        totalPayableAmtAfterDiscountInProductSellInDouble=0.0;
+        totalPayableAmt= 0.0;
+        returnForSellTable = 0.0;
 
     }
 
@@ -13846,6 +13912,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
+            System.err.println("---------------------"+rowNo);
             Connection conn1 = DbConnection.connect();
             String sql = "INSERT INTO sell_table(invoice,customerId,date,due_date,`fName`,address,note,mobileNo,totalItems,`return`,total_amount,discount,payable,paid,due_payment,due,payment_way,sellType,bar_code,`group_products`,p_name,qty,price,sub_total,warranty,sl) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             try {
@@ -14219,6 +14286,47 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
+    private void setWarrentyDetailsByInvoice(String invoice) {
+             if (UserInfo.role.equals("demo")) {
+            System.err.println("Access dny in DEMO Panel");
+
+        } else {
+            DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"Invoice", "Customar Id", "C Name", "Phone No", "Ref no", "Delivary Date", "Problem", "Bill", "Paid", "Due", "Status", "Brand"}, 0);
+            if (UserInfo.role.equals("demo")) {
+                System.err.println("Access dny in DEMO Panel");
+
+            } else {
+                Connection conn = DbConnection.connect();
+                try {
+                    Statement st = conn.createStatement();
+                    String sql = "SELECT * FROM `warranty_table` where invoice = "+invoice;
+                    ResultSet rs = st.executeQuery(sql);
+
+                    while (rs.next()) {
+                        defaultTableModel.addRow(new String[]{rs.getString("invoice"), rs.getString("customar_id"),
+                            rs.getString("f_name"), rs.getString("mobole_no"), rs.getString("ref_name"), rs.getString("d_date"), rs.getString("problem"),
+                            rs.getString("bill"), rs.getString("paid"), rs.getString("due"), rs.getString("status"), rs.getString("brand")});
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    DbConnection.disconnect(conn);
+                }
+            }
+            //For jTable contant in center
+            DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productWarrantyTable.getDefaultRenderer(String.class);
+            stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+            productWarrantyTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+            productWarrantyTable.getTableHeader().setOpaque(false);
+            productWarrantyTable.getTableHeader().setBackground(new Color(133, 47, 209));
+            productWarrantyTable.getTableHeader().setForeground(new Color(255, 255, 255));
+            productWarrantyTable.setEnabled(false);
+            productWarrantyTable.setRowHeight(30);
+            productWarrantyTable.setModel(defaultTableModel);
+        }
+    }
+
     private void loadDataInWarrentyTable() {
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
@@ -14421,6 +14529,63 @@ public class Home extends javax.swing.JFrame {
             worker.execute();
 
         }
+    }
+
+    private void searchByPhoneNumberInMobileBankingDetails(Set<MobileBankingDetailsForSearchingDto> mobileBankingDetailsForSearchingDto, String serchValue) {
+        System.err.println(serchValue);
+        Set<MobileBankingDetailsForSearchingDto> contractResponsesSet = new HashSet<>();
+
+      DefaultTableModel defaultTableModel = new DefaultTableModel(new String[]{"TrxId", "Service", "Action", "Ac no", "Amount", "Sim Card", "Current Balance", "Status", "Date and Time", "info"}, 0);
+        mobileBankingDetailsForSearchingDto.stream().forEach(contractResponseValue -> {
+            System.err.println(serchValue.toLowerCase().contains(contractResponseValue.getDateAndType().toLowerCase().toLowerCase().replaceAll("\r", "").replaceAll(" ", "")));
+            if (contractResponseValue.getDateAndType().toLowerCase().toLowerCase().contains(serchValue.toLowerCase())) {
+                MobileBankingDetailsForSearchingDto contractResponse = new MobileBankingDetailsForSearchingDto();
+                contractResponse.setTrxId(contractResponseValue.getTrxId());
+                contractResponse.setAmount(contractResponseValue.getAmount());
+                contractResponse.setcBalance(contractResponseValue.getcBalance());
+                contractResponse.setDateAndType(contractResponseValue.getDateAndType());
+                contractResponse.setPhoneNo(contractResponseValue.getPhoneNo());
+                contractResponse.setSim(contractResponseValue.getSim());
+                contractResponse.setServiceName(contractResponseValue.getServiceName());
+                contractResponse.setResult(contractResponseValue.getResult());
+                contractResponsesSet.add(contractResponse);
+
+            }
+            if (contractResponseValue.getPhoneNo().toLowerCase().toLowerCase().contains(serchValue.toLowerCase())) {
+                MobileBankingDetailsForSearchingDto contractResponse = new MobileBankingDetailsForSearchingDto();
+                contractResponse.setTrxId(contractResponseValue.getTrxId());
+                contractResponse.setAmount(contractResponseValue.getAmount());
+                contractResponse.setcBalance(contractResponseValue.getcBalance());
+                contractResponse.setDateAndType(contractResponseValue.getDateAndType());
+                contractResponse.setPhoneNo(contractResponseValue.getPhoneNo());
+                contractResponse.setSim(contractResponseValue.getSim());
+                contractResponse.setServiceName(contractResponseValue.getServiceName());
+                contractResponse.setResult(contractResponseValue.getResult());
+                contractResponsesSet.add(contractResponse);
+
+            }
+            if (contractResponseValue.getAmount().toLowerCase().toLowerCase().contains(serchValue.toLowerCase())) {
+                MobileBankingDetailsForSearchingDto contractResponse = new MobileBankingDetailsForSearchingDto();
+                contractResponse.setTrxId(contractResponseValue.getTrxId());
+                contractResponse.setAmount(contractResponseValue.getAmount());
+                contractResponse.setcBalance(contractResponseValue.getcBalance());
+                contractResponse.setDateAndType(contractResponseValue.getDateAndType());
+                contractResponse.setPhoneNo(contractResponseValue.getPhoneNo());
+                contractResponse.setSim(contractResponseValue.getSim());
+                contractResponse.setServiceName(contractResponseValue.getServiceName());
+                contractResponse.setResult(contractResponseValue.getResult());
+                contractResponsesSet.add(contractResponse);
+
+            }
+
+        });
+        System.err.println(contractResponsesSet);
+        contractResponsesSet.stream().forEach(value -> {
+            defaultTableModel.addRow(new Object[]{value.getTrxId(), value.getServiceName(), value.getActionType(), value.getPhoneNo(), value.getAmount(), value.getSim(), value.getcBalance(), value.getResult(),value.getDateAndType(),value.getInfo()});
+        });
+
+        tableMobileBankingDetails.setRowHeight(25);
+        tableMobileBankingDetails.setModel(defaultTableModel);
     }
 
     public class BillPrintable implements Printable {
