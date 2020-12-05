@@ -854,7 +854,7 @@
                                   <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="rechargeBalencePanel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                                  <EmptySpace pref="57" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -883,7 +883,7 @@
                               <Component id="jLabel172" pref="36" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="260" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="deviceStartStatus" min="-2" max="-2" attributes="0"/>
                       </Group>

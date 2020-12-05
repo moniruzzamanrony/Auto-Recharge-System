@@ -115,7 +115,7 @@ public class BuyNow extends javax.swing.JFrame {
             }
         });
 
-        getPackageName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trial Package @ 7days", "Monthly Package @1month", "Monthly Package @6month", "Silver Package @ 1year", "Gold Package @ 2years", "Diamond Package @3years", "Premium Package @Lifetime" }));
+        getPackageName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trial Package @ 7days", "Monthly Package @30day", "Monthly Package @180days", "Silver Package @ 365days", "Gold Package @ 730days", "Diamond Package @1095days", "Premium Package @Lifetime" }));
         getPackageName.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 getSelectedPackage(evt);

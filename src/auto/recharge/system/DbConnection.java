@@ -23,7 +23,7 @@ public class DbConnection {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
             tableCreate();         
-            System.out.println("Database Connect Succesful");
+            System.err.println("------> Database Connected ");
             return conn;
         } catch (Exception ex) {
             Log.error("DbConnection:33", ex.getMessage());
@@ -47,23 +47,32 @@ public class DbConnection {
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS mobile_banking (RecNo integer PRIMARY KEY,	services_name varchar(255),default_sim varchar(255),task_name varchar(255),ussd_code varchar(255),pin varchar(255),serviceId varchar(255),balance_show_ussd varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS product_purchase (RecNo integer PRIMARY KEY,invoice varchar(255),supplier varchar(255),date varchar(255),bar_code varchar(255),group_products varchar(255),pName varchar(255),qty varchar(255),buy_rate varchar(255),sell_rate varchar(255),type varchar(255),subTotal varchar(255),stock_open varchar(255),order_limit varchar(255),warranty varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS product_sell_table (RecNo integer PRIMARY KEY,	id int(255),sell_type varchar(255),bar_code varchar(255),group_products varchar(255),p_name varchar(255),qty varchar(255),price varchar(255),sub_total varchar(255));");
-        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_admin (RecNo integer PRIMARY KEY,	mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
-        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_offers (RecNo integer PRIMARY KEY,	offer_name varchar(255),recharge_amt varchar(255),validity varchar(255),description varchar(255),sim_name varchar(255));");
+       // tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_admin (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
+        //tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_details (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_offers (RecNo integer PRIMARY KEY,offer_name varchar(255),recharge_amt varchar(255),validity varchar(255),description varchar(255),sim_name varchar(255));");
 
-        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS sell_table (RecNo integer PRIMARY KEY,	invoice varchar(255),customerId varchar(255),date varchar(255),due_date varchar(255),fName varchar(255),address varchar(255),note varchar(255),mobileNo varchar(255),totalItems varchar(255),return varchar(255),total_amount varchar(255),discount varchar(255),payable varchar(255),paid varchar(255),due_payment varchar(255),due varchar(255),payment_way varchar(255),sellType varchar(255),bar_code varchar(255),group_products varchar(255),p_name varchar(255),qty varchar(255),price varchar(255),sub_total varchar(255),warranty varchar(255),sl varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS sell_table (RecNo integer PRIMARY KEY,invoice varchar(255),customerId varchar(255),date varchar(255),due_date varchar(255),fName varchar(255),address varchar(255),note varchar(255),mobileNo varchar(255),totalItems varchar(255),return varchar(255),total_amount varchar(255),discount varchar(255),payable varchar(255),paid varchar(255),due_payment varchar(255),due varchar(255),payment_way varchar(255),sellType varchar(255),bar_code varchar(255),group_products varchar(255),p_name varchar(255),qty varchar(255),price varchar(255),sub_total varchar(255),warranty varchar(255),sl varchar(255));");
 
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS sms (RecNo integer PRIMARY KEY,	phoneNo varchar(255),time_date varchar(255),sim_name varchar(255),mgs varchar(255));");
-        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS warranty_table (RecNo integer PRIMARY KEY,	invoice varchar(255),customar_id varchar(255),date varchar(255),d_date varchar(255),problem varchar(255),f_name varchar(255),address varchar(255),mobole_no varchar(255),ref_name varchar(255),brand varchar(255),status varchar(255),bill varchar(255),warranty varchar(255),paid varchar(255),discount varchar(255),due varchar(255));");
+        tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS warranty_table (RecNo integer PRIMARY KEY,invoice varchar(255),customar_id varchar(255),date varchar(255),d_date varchar(255),problem varchar(255),f_name varchar(255),address varchar(255),mobole_no varchar(255),ref_name varchar(255),brand varchar(255),status varchar(255),bill varchar(255),warranty varchar(255),paid varchar(255),discount varchar(255),due varchar(255));");
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
 
-            for(String sql: tableCreateSqlQueryList){
+            for (String sql : tableCreateSqlQueryList) {
                 Statement stmt = conn.createStatement();
                 stmt.execute(sql);
                 stmt.close();
             }
             conn.close();
+            Class.forName("org.sqlite.JDBC");
+            Connection conn2 = DriverManager.getConnection("jdbc:sqlite:MobileRecharge.sqlite");
+
+            Statement stmt = conn2.createStatement();
+            stmt.execute("CREATE TABLE IF NOT EXISTS recharge_details (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
+            stmt.close();
+
+            conn2.close();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -85,20 +94,6 @@ public class DbConnection {
         }
     }
 
-//    public static ResultSet retrieveAll1(String tableName) {
-//        Connection conn = DbConnection.connect();
-//        try {
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM " + tableName;
-//            ResultSet rs = st.executeQuery(sql);
-//            conn.close();
-//            return rs;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//
-//    }
     
     public static boolean deleteRow(String tableName, String columeName, String value) {
         Connection conn = DbConnection.connect();
@@ -115,23 +110,10 @@ public class DbConnection {
         return false;
     }
 
-    //    public static ResultSet findByColume1(String tableName, String columeName, String value) {
-//     
-//        try {
-//           Connection conn = DbConnection.connect();
-//            Statement st = conn.createStatement();
-//            String sql = "SELECT * FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
-//            ResultSet rs= st.executeQuery(sql);
-//            conn.close();
-//            return rs;
-//        } catch (SQLException ex) {
-//            Configaration.setErrorLog("Value Not Found" + ex);
-//            return null;
-//        }
-//    }
     public static void disconnect(Connection conn) {
         if (conn != null) {
             try {
+                System.err.println("------> Database Closed ");
                 conn.close();
             } catch (SQLException e) {
 
@@ -139,5 +121,22 @@ public class DbConnection {
         }
 
     }
-
+      public static void closeStatemanet(Statement statement) {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+      public static void closeResult(ResultSet resultSet) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

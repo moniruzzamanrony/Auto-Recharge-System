@@ -4,17 +4,14 @@ import auto.recharge.system.dto.ModemInfoList;
 import auto.recharge.system.dto.UserInfo;
 import com.itvillage.AES;
 
-import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.SwingWorker;
@@ -326,14 +323,6 @@ public final class Login extends javax.swing.JFrame {
                 System.out.println("Login Processing..");
                 processtingLoderDialog.setVisible(true);
                 login();
-//                if () {
-//                    if (UserInfo.role.equals("demo")) {
-//                        Home home = new Home();
-//                        home.setVisible(true);
-//                    } else {
-//                        new ConfigrarationModemStartUp().setVisible(true);
-//                    }
-//                } 
                 return null;
             }
 
@@ -425,10 +414,10 @@ public final class Login extends javax.swing.JFrame {
             Home home = new Home();
             home.setVisible(true);
         } else {
-
+            Connection conn = DbConnection.connect();
             try {
                 Log.mgs("Login", "360");
-                Connection conn = DbConnection.connect();
+
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `user_info`";
                 Log.mgs("Login", "362");
@@ -511,6 +500,8 @@ public final class Login extends javax.swing.JFrame {
 
             } catch (SQLException ex) {
                 Log.error("414", ex.getMessage());
+            } finally{
+                DbConnection.disconnect(conn);
             }
         }
         return isAuthUser;
