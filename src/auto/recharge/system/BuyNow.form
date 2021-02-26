@@ -95,7 +95,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="280" pref="280" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="activeNowBut" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel1" alignment="1" min="-2" pref="449" max="-2" attributes="0"/>
                   </Group>
@@ -126,7 +126,7 @@
                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                   <Component id="getSerialKey" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="activeNowBut" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -423,7 +423,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="shopAddress">
+                <Component class="javax.swing.JTextArea" name="shopAddressText">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -511,12 +511,12 @@
             <Property name="text" type="java.lang.String" value="Serial Key:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="activeNowBut">
           <Properties>
             <Property name="text" type="java.lang.String" value="Active now"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="activeNowButActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="clickBack">

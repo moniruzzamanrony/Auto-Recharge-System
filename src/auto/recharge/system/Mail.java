@@ -5,6 +5,7 @@
  */
 package auto.recharge.system;
 
+import auto.recharge.system.config.Utility;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -23,7 +24,8 @@ import java.util.Properties;
 public class Mail {
 
     private String userId;
-
+    private final String USERNAME = Utility.EMAIL;
+    private final String PASSWORD = Utility.EMAIL_PASSWORD;
     public Mail(String userId) {
         this.userId = userId;
 
@@ -31,9 +33,6 @@ public class Mail {
 
 
     public void send(String fileName, String email, String userName, String selectedPackage, String paymentTrsId, String clientEmail) {
-
-        final String USERNAME = "auto.recharge20bd@gmail.com";
-        final String PASSWORD = "Afsar/.,123";
 
         System.err.println("Mail Sending to " + email);
         Properties props = new Properties();
@@ -87,8 +86,7 @@ public class Mail {
 
     public void send(String email, String userName, String selectedPackage, String paymentTrsId) {
 
-        final String USERNAME = "auto.recharge20bd@gmail.com";
-        final String PASSWORD = "Afsar/.,123";
+
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);

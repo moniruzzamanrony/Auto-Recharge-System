@@ -1,5 +1,6 @@
 package auto.recharge.system;
 
+import auto.recharge.system.config.Utility;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 public class BuyNow extends javax.swing.JFrame {
-
+    
     private static final String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
     private final DBMySQLConnection mySQLConnection = new DBMySQLConnection();
     private JDialog processtingLoderDialog;
@@ -72,7 +73,7 @@ public class BuyNow extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         getShopName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        shopAddress = new javax.swing.JTextArea();
+        shopAddressText = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -82,7 +83,7 @@ public class BuyNow extends javax.swing.JFrame {
         qrCode = new javax.swing.JLabel();
         getSerialKey = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        activeNowBut = new javax.swing.JButton();
         clickBack = new javax.swing.JLabel();
 
         jLabel9.setText("jLabel9");
@@ -166,9 +167,9 @@ public class BuyNow extends javax.swing.JFrame {
             }
         });
 
-        shopAddress.setColumns(20);
-        shopAddress.setRows(5);
-        jScrollPane1.setViewportView(shopAddress);
+        shopAddressText.setColumns(20);
+        shopAddressText.setRows(5);
+        jScrollPane1.setViewportView(shopAddressText);
 
         jLabel12.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel12.setText("Address");
@@ -294,10 +295,10 @@ public class BuyNow extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Serial Key:");
 
-        jButton1.setText("Active now");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        activeNowBut.setText("Active now");
+        activeNowBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                activeNowButActionPerformed(evt);
             }
         });
 
@@ -337,7 +338,7 @@ public class BuyNow extends javax.swing.JFrame {
                         .addComponent(getSerialKey, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(bgLayout.createSequentialGroup()
                         .addGap(280, 280, 280)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(activeNowBut, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -362,7 +363,7 @@ public class BuyNow extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(getSerialKey, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(activeNowBut, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -391,7 +392,7 @@ public class BuyNow extends javax.swing.JFrame {
 
     }//GEN-LAST:event_clickBuyNowActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void activeNowButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activeNowButActionPerformed
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -412,7 +413,7 @@ public class BuyNow extends javax.swing.JFrame {
 
         swingWorker.execute();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_activeNowButActionPerformed
 
     private void clickBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBackMouseClicked
         this.setVisible(false);
@@ -434,6 +435,7 @@ public class BuyNow extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton activeNowBut;
     private javax.swing.JPanel bg;
     private javax.swing.JLabel clickBack;
     private javax.swing.JButton clickBuyNow;
@@ -443,7 +445,6 @@ public class BuyNow extends javax.swing.JFrame {
     private javax.swing.JTextField getPhoneNumber;
     private javax.swing.JTextField getSerialKey;
     private javax.swing.JTextField getShopName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -465,7 +466,7 @@ public class BuyNow extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel qrCode;
-    private javax.swing.JTextArea shopAddress;
+    private javax.swing.JTextArea shopAddressText;
     // End of variables declaration//GEN-END:variables
 
 //    ---------------------------------- Custom Methods ----------------------------------------------------
@@ -503,7 +504,7 @@ public class BuyNow extends javax.swing.JFrame {
     private void sendMailToAuthority(String fileName, String email, String userName, String selectedPackage, String paymentTrsId, String userId) {
         Log.mgs("428", "Mail Send Method.");
         Mail mail = new Mail(userId);
-        mail.send(fileName, "auto.recharge20bd@gmail.com", userName, selectedPackage, paymentTrsId, email);
+        mail.send(fileName, Utility.EMAIL, userName, selectedPackage, paymentTrsId, email);
         mail.send(email, userName, selectedPackage, paymentTrsId);
     }
 
@@ -527,18 +528,18 @@ public class BuyNow extends javax.swing.JFrame {
             if (!serialKey.equals("")) {
                 try {
                     Connection conn = mySQLConnection.connect();
-                    String query = "SELECT * from user_info WHERE user_id=\'" + userId + "\'";
+                    String query = "SELECT * from user WHERE user_id=\'" + userId + "\'";
                     PreparedStatement stm = conn.prepareStatement(query);
                     ResultSet rs = stm.executeQuery();
                     while (rs.next()) {
                         userIdFromSQL = rs.getString("user_id");
-                        nameFromSQL = rs.getString("client_name");
+                        nameFromSQL = rs.getString("user_name");
                         phoneNoFromSQL = rs.getString("phone_no");
                         shopNameFromSQL = rs.getString("shop_name");
                         addessFromSQL = rs.getString("shop_address");
                         passwordFromSQL = rs.getString("initial_password");
                         activePackageFromSQL = rs.getString("package_name");
-                        macAddreassFromSQL = rs.getString("mac_address");
+                        macAddreassFromSQL = rs.getString("mac");
                         emailFromSQL = rs.getString("email");
                         activeDateFromSQL = rs.getString("active_date");
                         expireDateFromSQL = rs.getString("expaied_date");
@@ -571,7 +572,7 @@ public class BuyNow extends javax.swing.JFrame {
         Connection conn = DbConnection.connect();
         try {
 
-            String query = "SELECT * from user_info WHERE user_id=\'" + userId + "\'";
+            String query = "SELECT * from user WHERE user_id=\'" + userId + "\'";
             PreparedStatement stm = conn.prepareStatement(query);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -716,12 +717,12 @@ public class BuyNow extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    shopAddress.requestFocusInWindow();
+                    shopAddressText.requestFocusInWindow();
 
                 }
             }
         });
-        shopAddress.addKeyListener(new KeyAdapter() {
+        shopAddressText.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -746,13 +747,13 @@ public class BuyNow extends javax.swing.JFrame {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    jButton1.requestFocusInWindow();
+                    activeNowBut.requestFocusInWindow();
 
                 }
             }
         });
 
-        jButton1.addKeyListener(new KeyAdapter() {
+        activeNowBut.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent ke) {
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -786,7 +787,7 @@ public class BuyNow extends javax.swing.JFrame {
         String userEmail = getEmail.getText();
         String selectedPackage = getPackageName.getSelectedItem().toString().trim();
         String shopName = getShopName.getText();
-        String shopAddress = this.shopAddress.getText();
+        String shopAddress = this.shopAddressText.getText();
         String userId = User.getUserId().toLowerCase();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(userEmail);
@@ -836,6 +837,7 @@ public class BuyNow extends javax.swing.JFrame {
                             getPhoneNumber.setText("");
                             getEmail.setText("");
                             getShopName.setText("");
+                            shopAddressText.setText("");
                             processtingLoderDialog.setVisible(false);
                             Log.mgs("275", "Task Completed.");
                         }

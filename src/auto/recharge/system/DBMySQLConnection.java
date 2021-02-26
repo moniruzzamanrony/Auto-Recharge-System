@@ -16,18 +16,18 @@ import java.sql.SQLException;
 public class DBMySQLConnection {
 
     //private final String url=("jdbc:mysql://localhost:3306;databaseName=auto_recharge_system");
-    private final String usrName = "arm";
-    private final String pwd = "L2#j6^%hcyb_?ABAB";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "rootroot";
     private Connection conn = null;
-    private String query = null;
-    private String server = "http://167.99.76.96";
-    private final String url = "jdbc:mysql://167.99.76.96:3306/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
+
+    //private final String URL = "jdbc:mysql://localhost:3306/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
+    private final String URL = "jdbc:mysql://38.17.53.113:20236/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
     private ResultSet rs;
 
     public Connection connect() {
         System.err.println("Connecting...");
         try {
-            return conn = DriverManager.getConnection(url, usrName, pwd);
+            return conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
 
         } catch (SQLException e) {
