@@ -402,7 +402,6 @@ public final class Login extends javax.swing.JFrame {
             System.out.println("User Login as DEMO User");
             gotoHomePage();
 
-
         } else {
             Connection conn = DbConnection.connect();
             try {
@@ -425,7 +424,7 @@ public final class Login extends javax.swing.JFrame {
                             rs.getString("address"), rs.getString("name"),
                             rs.getString("role"), userId, phoneNo, password,
                             macAddress, rs.getString("active_date"),
-                             rs.getString("expire_date"), "false", false);
+                            rs.getString("expire_date"), "false", false);
 
                 }
 
@@ -438,7 +437,7 @@ public final class Login extends javax.swing.JFrame {
             if (phoneNo == null) {
                 int res = Popup.customError("Licence not found.");
                 if (res == 0) {
-                   gotoLoginPage();
+                    gotoLoginPage();
                 }
             } else {
                 if (getPhoneNumber.getText().trim().equals("")) {
@@ -463,15 +462,15 @@ public final class Login extends javax.swing.JFrame {
                                 System.out.println("License  verifed ");
                                 /*
                                 If Login Successful
-                                */
+                                 */
                                 gotoHomePage();
-                               
+
                             } else {
                                 System.out.println("License  invalid");
                                 int res = Popup.customError("Licence Expaired");
                                 if (res == 0) {
                                     gotoLoginPage();
-                                
+
                                 }
                             }
                         } else {
@@ -495,19 +494,6 @@ public final class Login extends javax.swing.JFrame {
             }
         }
 
-    }
-
-    /**
-     * TODO: Verify Serial key validation
-     *
-     * @param userId
-     * @param phoneNO
-     * @param macAddress
-     * @return
-     */
-    public boolean isChackSerialValidity(String userId, String phoneNO, String macAddress) {
-
-        return false;
     }
 
     public void keyListener() {
@@ -558,26 +544,25 @@ public final class Login extends javax.swing.JFrame {
 
     }
 
-    private void getModemPorts() {
-        System.out.println("step 4/12: Start Finding Modem port");
-        List<String> ports = Modem.getActivePortsList();
-
-        if (ports.isEmpty()) {
-            int res = Popup.customError("Modem Not Found..");
-            if (res == 0) {
-                Login login = new Login();
-                login.setVisible(true);
-            }
-        } else {
-
-            ModemInfoList.portsList = ports;
-            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
-            //ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
-
-        }
-
-    }
-
+//    private void getModemPorts() {
+//        System.out.println("step 4/12: Start Finding Modem port");
+//        List<String> ports = Modem.getActivePortsList();
+//
+//        if (ports.isEmpty()) {
+//            int res = Popup.customError("Modem Not Found..");
+//            if (res == 0) {
+//                Login login = new Login();
+//                login.setVisible(true);
+//            }
+//        } else {
+//
+//            ModemInfoList.portsList = ports;
+//            System.out.println("step 13/13: Successfully found ports " + ModemInfoList.portsList);
+//            //ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(ports);
+//
+//        }
+//
+//    }
     private void processingLoderDialog() {
 
         ProcesseingLoderUI processeingLoderUI = new ProcesseingLoderUI();

@@ -74,60 +74,63 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 
 public class Home extends javax.swing.JFrame {
 
+    // Final variables
     private final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
-    private final String TAG_TEST = "Home test: ";
-    int countForSellTable = 0;
+    private final String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash", "uCash", "P-Cash", "TeleCash", "IFIC", "OkWallet"};
+    private final String TAG = "Home.java";
+    private final DBMySQLConnection MYSQL_CONNECTION = new DBMySQLConnection();
+    private final Map<String, Queue<Object>> CREATE_HASH_MAP_BY_CONNECTED_PORTS = new HashMap<>();
+    private final Set<MobileRechargeDetailsForSearchingDto> MOBILE_RECHARGE_DETAILS_FOR_SEARCHING_DTOS = new HashSet<>();
+    private final Set<MobileBankingDetailsForSearchingDto> MOBILE_BANKING_DETAILS_FOR_SEARCHING_DTO = new HashSet<>();
+    private final HashMap<String, String> MOBILE_BANKING_BALENCE_HASH_MAP = new HashMap<>();
+    private final List<String> ALL_PHONE_NUMBER_LIST_FROM_MOBILE_RECHARGE_TABLE = new ArrayList<>();
+    private final DefaultListModel DEFAULT_LIST_MODEL = new DefaultListModel();
+    
+    // Genaral Variable
+    private int countForSellTable = 0;
     private String imagePath = "No Image";
     private LoadingScreen l;
     private String selectedSimOperatorName;
-    private String[] rowOfContractlist;
     private String trxId;
-    private boolean inboxIsActive;
     private String[] perseByCommaInInbox;
-    private String[] splitedByCMDValueForInbox = null;
-    private String detailsSelectedItems;
-    private String search;
-    private DefaultListModel defaultListModel = new DefaultListModel();
     private Set<ContractResponse> contractList;
     private JDialog processtingLoderDialog;
-    private String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash", "uCash", "P-Cash", "TeleCash", "IFIC", "OkWallet"};
-    private DBMySQLConnection bMySQLConnection = new DBMySQLConnection();
-    private Queue<MobileRechargeDetailsDto> mobileRechargeDetailsDtoQueue = new PriorityQueue<MobileRechargeDetailsDto>(5, new MobileRechargeDetailsComparator());
-    private Map<String, Queue<Object>> createHashMapByConnectedPorts = new HashMap<>();
     private Double returnForSellTable = 0.0;
     private Double totalPayableAmt = 0.0;
     private Double discountInSellProduct = 0.0;
-    private DefaultTableModel productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
-    private Set<MobileRechargeDetailsForSearchingDto> mobileRechargeDetailsForSearchingDtos = new HashSet<>();
-    private Set<MobileBankingDetailsForSearchingDto> mobileBankingDetailsForSearchingDto = new HashSet<>();
-    private HashMap<String, String> mobileBankingBalenceHash = new HashMap<>();
-    private final String TAG = "Home :";
-    private double totalItemsInProductSellInDouble = 0.0, returnAmtInProductSellInDouble = 0.0, discountAmtInProductSellInDouble = 0.0, vatInProductSellInDouble = 0.0, payableAmtInProductSellInDouble = 0.0, dueInProductSellInDouble = 0.0, totalPayableAmtAfterDiscountInProductSellInDouble = 0.0;
-    private List<String> allPhoneNumberListFromMobileRechargeTable = new ArrayList<>();
+    private DefaultTableModel product_sell_table_model = new DefaultTableModel(
+            new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name",
+                "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
+    private double returnAmtInProductSellInDouble = 0.0,
+            vatInProductSellInDouble = 0.0,
+            payableAmtInProductSellInDouble = 0.0,
+            totalItemsInProductSellInDouble = 0.0,
+            discountAmtInProductSellInDouble = 0.0,
+            dueInProductSellInDouble = 0.0,
+            totalPayableAmtAfterDiscountInProductSellInDouble = 0.0;
 
     public Home() {
         initComponents();
+        
+        //Load Navication icon and tilte
         URL url = getClass().getResource("/resources/images/logo64.png");
         ImageIcon imgicon = new ImageIcon(url);
         this.setIconImage(imgicon.getImage());
         this.setTitle("Auto Recharge with Managment");
 
-        refrash();
-        placeHoderSetter();
+        //Software pre configration
+        refrashForWholeSoftware();
+        loadDefaultPlaceHolderInWholeSoftware();     
         setBorderInManuBar();
-        suggList.setModel(defaultListModel);
-        popupForSuggestManu.add(suggestPanel);
         processingLoderDialog();
-        startUpApplicationBaseOnRole();
-        displayConfig();
-
-        //Set Hint
-        getMobileNumberForSearch.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
-        searchingByName.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
-
-        searchInInbox.setUI(new HintTextFieldUI("Search By name"));
-
-        settingPanelEnterPressWork();
+        stratApplicationByRoleWise();
+        displaySizeConfigaration();
+        
+        suggList.setModel(DEFAULT_LIST_MODEL);
+        popupForSuggestManu.add(suggestPanel);
+        
+        //Enter Press Method
+        //settingPanelEnterPressWork();
 
     }
 
@@ -1312,7 +1315,6 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getMobileNumber.setBackground(new java.awt.Color(255, 255, 255));
         getMobileNumber.setFont(new java.awt.Font("Arial", 1, 90)); // NOI18N
         getMobileNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getMobileNumber.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -1335,7 +1337,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        getAmmountInTk.setBackground(new java.awt.Color(255, 255, 255));
         getAmmountInTk.setFont(new java.awt.Font("Arial", 1, 90)); // NOI18N
         getAmmountInTk.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(0, 0, 102), null, null));
         getAmmountInTk.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1467,7 +1468,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -1871,7 +1872,7 @@ public class Home extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
+                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))))
                                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                         .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2276,7 +2277,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
@@ -3381,7 +3382,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel164)
                     .addComponent(jLabel166))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4474,7 +4475,7 @@ public class Home extends javax.swing.JFrame {
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -4637,14 +4638,14 @@ public class Home extends javax.swing.JFrame {
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addNewManagementPanelSettingsLayout.setVerticalGroup(
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 852, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -6116,7 +6117,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
                 .addGroup(billPaymentPanelInBillPayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(billPaymentPanelInBillPayLayout.createSequentialGroup()
-                        .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, 893, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(detailsPanelInBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(rechargeBalencePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -7226,7 +7227,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
                     processtingLoderDialog.setVisible(true);
-                    if (mobileBankingBalenceHash.isEmpty()) {
+                    if (MOBILE_BANKING_BALENCE_HASH_MAP.isEmpty()) {
                         getMobileBankingBalance();
                     }
 
@@ -8199,7 +8200,7 @@ public class Home extends javax.swing.JFrame {
         switchPanelViaMenu(ussdDialPanel);
         getSelectedSim.removeAllItems();
         getUssdCode.requestFocusInWindow();
-        refrash();
+        refrashForWholeSoftware();
         if (UserInfo.role.equals("demo")) {
 
         } else {
@@ -8219,11 +8220,11 @@ public class Home extends javax.swing.JFrame {
                 popupForSuggestManu.setVisible(false);
             } else {
                 popupForSuggestManu.setVisible(true);
-                defaultListModel.removeAllElements();
+                DEFAULT_LIST_MODEL.removeAllElements();
                 popupForSuggestManu.show(getMobileNumber, 0, getMobileNumber.getHeight());
                 searchItemsByPhoneNumberInRechargePanel(getMobileNumber.getText())
                         .stream().forEach(number -> {
-                            defaultListModel.addElement(number);
+                            DEFAULT_LIST_MODEL.addElement(number);
                         });
 
             }
@@ -8298,7 +8299,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_getNameForSearchActionPerformed
 
     private void getMobileNumberForSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_getMobileNumberForSearchKeyReleased
-        searchByPhoneNumberInRechargeDetails(mobileRechargeDetailsForSearchingDtos, getMobileNumberForSearch.getText());
+        searchByPhoneNumberInRechargeDetails(MOBILE_RECHARGE_DETAILS_FOR_SEARCHING_DTOS, getMobileNumberForSearch.getText());
     }//GEN-LAST:event_getMobileNumberForSearchKeyReleased
 
     private void back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back1MouseClicked
@@ -8614,7 +8615,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_printClickProductWanrranty1ActionPerformed
 
     private void searchingByNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchingByNameKeyReleased
-        searchByPhoneNumberInMobileBankingDetails(mobileBankingDetailsForSearchingDto, searchingByName.getText());
+        searchByPhoneNumberInMobileBankingDetails(MOBILE_BANKING_DETAILS_FOR_SEARCHING_DTO, searchingByName.getText());
     }//GEN-LAST:event_searchingByNameKeyReleased
 
     private void deleteColumeFromMobileBanking(String userId) {
@@ -8676,7 +8677,7 @@ public class Home extends javax.swing.JFrame {
                         //GET BALANNCE
                         String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, simOperatorIdentifierDto.getPortName());
                         amount = Configaration.stringToNumberList(Configaration.haxToStringConvert(feedBackMgs)).get(0);
-                        mobileBankingBalenceHash.put(mobileBankingBalanceShowDto.getServiceName() + "(" + activeSimNameWithPhoneNO + ")", amount);
+                        MOBILE_BANKING_BALENCE_HASH_MAP.put(mobileBankingBalanceShowDto.getServiceName() + "(" + activeSimNameWithPhoneNO + ")", amount);
 
                     }
                 }
@@ -8684,7 +8685,7 @@ public class Home extends javax.swing.JFrame {
             }
 
         }
-        return mobileBankingBalenceHash;
+        return MOBILE_BANKING_BALENCE_HASH_MAP;
     }
 
 
@@ -9244,7 +9245,7 @@ public class Home extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //Redirect Panel use Role
-    private void startUpApplicationBaseOnRole() {
+    private void stratApplicationByRoleWise() {
 
         if (UserInfo.role.equals("demo")) {
 
@@ -9454,7 +9455,7 @@ public class Home extends javax.swing.JFrame {
                 protected void done() {
                     rechargeConfirmationDailog.setVisible(false);
                     getMobileNumber.requestFocusInWindow();
-                    refrash();
+                    refrashForWholeSoftware();
                 }
 
             };
@@ -9467,7 +9468,7 @@ public class Home extends javax.swing.JFrame {
             public void keyPressed(KeyEvent ke) {
 
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
-                    refrash();
+                    refrashForWholeSoftware();
                     SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                         @Override
                         protected Void doInBackground() throws Exception {
@@ -9486,7 +9487,7 @@ public class Home extends javax.swing.JFrame {
                                 }
                                 rechargeConfirmationDailog.setVisible(false);
                                 getMobileNumber.requestFocusInWindow();
-                                refrash();
+                                refrashForWholeSoftware();
                             }
 
                             return null;
@@ -9496,7 +9497,7 @@ public class Home extends javax.swing.JFrame {
                         protected void done() {
                             rechargeConfirmationDailog.setVisible(false);
                             getMobileNumber.requestFocusInWindow();
-                            refrash();
+                            refrashForWholeSoftware();
                         }
 
                     };
@@ -9543,17 +9544,17 @@ public class Home extends javax.swing.JFrame {
 
             } else {
                 for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
-                    Queue<Object> objectQueue = createHashMapByConnectedPorts.get(simOperatorIdentifierDto.getPortName());
+                    Queue<Object> objectQueue = CREATE_HASH_MAP_BY_CONNECTED_PORTS.get(simOperatorIdentifierDto.getPortName());
                     if (objectQueue == null) {
                         Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
-                        createHashMapByConnectedPorts.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
+                        CREATE_HASH_MAP_BY_CONNECTED_PORTS.put(simOperatorIdentifierDto.getPortName(), emptyObjectQueue);
                     }
                 }
             }
 
             Method mathod = (Method) object.getClass().getMethod("getSelectableSimPort", null);
             String portName = (String) mathod.invoke(object, null);
-            Queue<Object> objectQueue = createHashMapByConnectedPorts.get(portName);
+            Queue<Object> objectQueue = CREATE_HASH_MAP_BY_CONNECTED_PORTS.get(portName);
             objectQueue.add(object);
             ussdDailREquestCounter();
         } catch (IllegalArgumentException ex) {
@@ -9576,7 +9577,7 @@ public class Home extends javax.swing.JFrame {
             public void run() {
                 while (true) {
                     try {
-                        for (Entry<String, Queue<Object>> hashValue : createHashMapByConnectedPorts.entrySet()) {
+                        for (Entry<String, Queue<Object>> hashValue : CREATE_HASH_MAP_BY_CONNECTED_PORTS.entrySet()) {
 
                             while (!hashValue.getValue().isEmpty()) {
 
@@ -9964,7 +9965,7 @@ public class Home extends javax.swing.JFrame {
 
     public void ussdDailREquestCounter() {
         int total = 0;
-        for (Queue<Object> queue : createHashMapByConnectedPorts.values()) {
+        for (Queue<Object> queue : CREATE_HASH_MAP_BY_CONNECTED_PORTS.values()) {
             total += queue.size();
         }
         pandingRequestCounter.setText(String.valueOf(total));
@@ -10011,7 +10012,7 @@ public class Home extends javax.swing.JFrame {
                             mobileRechargeDetailsForSearchingDto.setSelectableSim(rs.getString("from_sp"));
                             mobileRechargeDetailsForSearchingDto.setStatus(rs.getString("status"));
 
-                            mobileRechargeDetailsForSearchingDtos.add(mobileRechargeDetailsForSearchingDto);
+                            MOBILE_RECHARGE_DETAILS_FOR_SEARCHING_DTOS.add(mobileRechargeDetailsForSearchingDto);
 
                         }
 
@@ -10127,7 +10128,7 @@ public class Home extends javax.swing.JFrame {
             } else {
 
                 Set<String> filteredPhoneNumber = new HashSet<>();
-                allPhoneNumberListFromMobileRechargeTable.stream().forEach(number -> {
+                ALL_PHONE_NUMBER_LIST_FROM_MOBILE_RECHARGE_TABLE.stream().forEach(number -> {
                     if (number.toLowerCase().contains(sreach1.toLowerCase())) {
                         filteredPhoneNumber.add(number);
                     }
@@ -10147,7 +10148,7 @@ public class Home extends javax.swing.JFrame {
             String sql = "SELECT * FROM `recharge_admin`";
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                allPhoneNumberListFromMobileRechargeTable.add(rs.getString("mobile_no"));
+                ALL_PHONE_NUMBER_LIST_FROM_MOBILE_RECHARGE_TABLE.add(rs.getString("mobile_no"));
 
             }
         } catch (SQLException ex) {
@@ -10234,8 +10235,12 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void placeHoderSetter() {
+    private void loadDefaultPlaceHolderInWholeSoftware() {
+        
         setPlaceHolder(getAmmountInTk, "Ammount");
+        getMobileNumberForSearch.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
+        searchingByName.setUI(new HintTextFieldUI("Search By Date or Phone Number Or Amount"));
+        searchInInbox.setUI(new HintTextFieldUI("Search By name"));
     }
 
     private void simSimOfferDialog() {
@@ -10607,14 +10612,14 @@ public class Home extends javax.swing.JFrame {
             Configaration.wait(2000);
             // Sand Ussd Serial for Balance
             if (!feedBackMgs.equals("USSD Dial Failed") || !feedBackMgs.equals("Possible duplicate request, call 16247 for details")) {
-                Double currentBalance = Double.valueOf(mobileBankingBalenceHash.get(service + "(" + sim + ")"));
+                Double currentBalance = Double.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")"));
                 Double acBalance = currentBalance - Double.valueOf(amount);
-                mobileBankingBalenceHash.put(service + "(" + sim + ")", String.valueOf(acBalance));
+                MOBILE_BANKING_BALENCE_HASH_MAP.put(service + "(" + sim + ")", String.valueOf(acBalance));
                 loadMobileBankingBalance();
                 updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(acBalance));
                 System.out.println(currentBalance + "==============================" + service + " " + acBalance + " " + amount);
             } else {
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(mobileBankingBalenceHash.get(service + "(" + sim + ")")));
+                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")")));
             }
 
             loadMobileBankingDetailsTable();
@@ -10721,7 +10726,7 @@ public class Home extends javax.swing.JFrame {
                         }
                     }
                     getServiceName.requestFocusInWindow();
-                    refrash();
+                    refrashForWholeSoftware();
                     return null;
                 }
 
@@ -10761,7 +10766,7 @@ public class Home extends javax.swing.JFrame {
                                 }
                             }
                             getServiceName.requestFocusInWindow();
-                            refrash();
+                            refrashForWholeSoftware();
                             return null;
                         }
 
@@ -10884,7 +10889,7 @@ public class Home extends javax.swing.JFrame {
                     bankingDetailsForSearchingDto.setDateAndType(rs.getString("date_time"));
                     bankingDetailsForSearchingDto.setInfo(rs.getString("info"));
 
-                    mobileBankingDetailsForSearchingDto.add(bankingDetailsForSearchingDto);
+                    MOBILE_BANKING_DETAILS_FOR_SEARCHING_DTO.add(bankingDetailsForSearchingDto);
 
                 }
 
@@ -11409,7 +11414,7 @@ public class Home extends javax.swing.JFrame {
         String phoneNo = getPhoneNOForContract.getText();
         String storage = getSeletedStorage.getSelectedItem().toString();
 
-        java.sql.Connection conn1 = bMySQLConnection.connect();
+        java.sql.Connection conn1 = MYSQL_CONNECTION.connect();
         String sql = "INSERT INTO user_contracts_list(userId,name,phone_number,storage) VALUES(?,?,?,?)";
         try {
             PreparedStatement preparedStatement = conn1.prepareStatement(sql);
@@ -11535,24 +11540,115 @@ public class Home extends javax.swing.JFrame {
 
     }
 
-    private void refrash() {
-
-        getAmmountInTk.setText("");
-        getBalenceUssdPartern1.setText("");
-        //  getBalenceUssdPartern2.setText("");
+    private void refrashForWholeSoftware() {
+        //Mobile Recharge Panel
         getMobileNumber.setText("");
-        getNameForContract.setText("");
-        getNameForSearch.setText("");
-        // getOperatorCode1.setText("");
-        getOperatorName.setText("");
-        // getOperatorName1.setText("");
-        getPhoneNOForContract.setText("");
-        //getRechargeUssdPartern1.setText("");
-        getRechargeUssdParternPostPaid.setText("");
-        // getSearchViaPhoneNoAndTrnId.setText("");
+        getAmmountInTk.setText("");
+        getMobileNumberForSearch.setText("");
+        
+        //Bill Panel
+         //* Product Information Tab
+        brandInProductDetails.setText("");
+        groupInProductDetails.setText("");
+        pNameInProductDetails.setText("");
+        brandInProductDetails.setText("");
+        buyRateInProductDetails.setText("");
+        qtyInProductDetails.setText("");
+        oderLimitInProductDetails.setText("");
+        warrentyInProductDetails.setText("");
+        sellRateInProductDetails.setText("");
+         //* Product Purchase Tab
+        invoiceInProductPurchases.setText("");
+        supplierInProductPurchases.setText("");
+        pNameInProductPurchases.setText("");
+        barCodeInProductPurchases.setText("");
+        groupInProductPurchases.setText("");
+        sellRateInProductPurchases.setText("");
+        qtyInProductPurchases.setText("");
+        buyRateInProductPurchases.setText("");
+        tAmountInPPurchaseInSummary.setText("");    
+        tItemsInPPurchaseInSummary.setText("");
+        tCommissionInPPurchaseInSummary.setText("");
+        tPaidInPPurchase3.setText("");
+        tReturnAmountInPPurchase4.setText("");
+        
+        //* Product Warrenty
+        invoiceInProductWarranty.setText("");
+        customerIdINProductWanrranty.setText("");
+        fullNameInProductWanrranty.setText("");
+        addressInProductWanrranty.setText("");
+        phoneNOInProductWanrranty.setText("");        
+        refNameInProductWanrranty.setText("");
+        problemInProductWanrranty.setText("");
+        brandInProductWanrranty.setText("");
+        billInProductWanrranty.setText("");
+        warrantyInProductWanrranty.setText("");
+        paidPaymentInProductWanrranty.setText("");
+        discpuntInProductWanrranty.setText("");
+        payableInProductWanrranty.setText("");
+        paidInProductWanrranty.setText("");
+        dueInProductWanrranty.setText("");
+        
+        //* Product Sell
+        invoiceInProductSell.setText("");        
+        customerIdINProductSell.setText("");
+        fullNameInProductSell.setText("");
+        addressInProductSell.setText("");
+        noteInProductSell.setText("");
+        phoneNOInProductSell.setText("");
+        discpuntInProductBill.setText("0.0");
+        paymentInProductBill.setText("0.0");
+        warrantyInProductBill.setText("0.0");
+        duePaymentInProductBill.setText("0.0");
+        totalItemsInProductSell.setText("0.0");
+        returnInProductSell.setText("0.0");
+        totalAmountInProductSell1.setText("0.0");
+        discountInProductSell.setText("0.0");
+        vatInProductSell.setText("0.0");
+        payableInProductSell.setText("0.0");
+        paidInProductSell.setText("0.0");     
+        duePaymentInProductSell.setText("0.0");
+        dueInProductSell.setText("0.0");
+        
+        //USSD Dial Panle
         getUssdCode.setText("");
-        //switchPanelViaMenu(basePanel);
-
+        setResponseShowFromUssd.setText("");
+        
+        //Contact List Sell
+        getNameForSearch.setText("");   
+        
+        //Ass new USSD Commad Panel
+        getOperatorName.setText("");
+        getRechargeUssdParternPrePaid.setText("");
+        getRechargeUssdParternPostPaid.setText("");
+        getBalenceUssdPartern1.setText("");
+        accountPassword.setText("");
+        clickChooseIcon.setText("");
+    
+        //Add New Contact
+        getNameForContract.setText("");
+        getPhoneNOForContract.setText("");
+        
+        //Group Load
+        getPhoneNumberInGroupRecharge.setText("");
+        getAmountGroupRecharge.setText("");
+ 
+        
+        //Make Bar Code for mobile
+        getNameForRechargeBarCode1.setText("");
+        forBarCodePhoneNumber2.setText("");
+        forBarCodePhoneNumber3.setText("");
+        forBarCodePhoneNumber4.setText("");
+        forBarCodePhoneNumber5.setText("");
+        forBarCodePhoneNumber6.setText("");
+        forBarCodePhoneNumber7.setText("");
+        forBarCodePhoneNumber8.setText("");
+        forBarCodePhoneNumber9.setText("");
+        forBarCodePhoneNumber10.setText("");
+    
+        //Mobile Banking
+        getPhoneNumberInBillPayment.setText("");
+        getAmmountInBillPayment.setText("");        
     }
 
     private void removePlaceHolder(JTextField editText, String value) {
@@ -12258,7 +12354,7 @@ public class Home extends javax.swing.JFrame {
 
         } else {
             DefaultListModel Clistmodel = new DefaultListModel();
-            for (Map.Entry<String, String> entry : mobileBankingBalenceHash.entrySet()) {
+            for (Map.Entry<String, String> entry : MOBILE_BANKING_BALENCE_HASH_MAP.entrySet()) {
                 System.out.println("----------------------" + entry.getKey() + " : " + entry.getValue());
                 if (entry.getValue().equals("16247")) {
                     Popup.customError("Duplicate Request");
@@ -13404,7 +13500,7 @@ public class Home extends javax.swing.JFrame {
                     String typeOfAction = actionTypeInProductSellCOmboBox.getSelectedItem().toString();
                     supplierInProductPurchases.setText(rs.getString("supplier"));
                     dateInProductPurchases.setDate(new Date(rs.getString("date")));
-                    productSellTableModel.addRow(new Object[]{
+                    product_sell_table_model.addRow(new Object[]{
                         String.valueOf(countForSellTable),
                         typeOfAction,
                         rs.getString("bar_code"),
@@ -13443,7 +13539,7 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
-        productSellTable.setModel(productSellTableModel);
+        productSellTable.setModel(product_sell_table_model);
 
         saveSellProductInSellTabel(countForSellTable);
         summaryShowInBillDisplay();
@@ -13498,7 +13594,7 @@ public class Home extends javax.swing.JFrame {
         duePaymentInProductBill.setText("0.0");
         discpuntInProductBill.setText("0.0");
 
-        productSellTableModel = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
+        product_sell_table_model = new DefaultTableModel(new String[]{"SL", "Sell Type", "Bar Code", "Group", "Product Name", "QTY", "Price", "SUBTOTAL WITH DISCOUNT"}, 0);
         DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) productSellTable.getDefaultRenderer(String.class);
         stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         productSellTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -13506,7 +13602,7 @@ public class Home extends javax.swing.JFrame {
         productSellTable.getTableHeader().setBackground(new Color(133, 47, 209));
         productSellTable.getTableHeader().setForeground(new Color(255, 255, 255));
         productSellTable.setRowHeight(30);
-        productSellTable.setModel(productSellTableModel);
+        productSellTable.setModel(product_sell_table_model);
 
         totalItemsInProductSellInDouble = 0.0;
         returnAmtInProductSellInDouble = 0.0;
@@ -13846,7 +13942,7 @@ public class Home extends javax.swing.JFrame {
         });
     }
 
-    private void displayConfig() {
+    private void displaySizeConfigaration() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;

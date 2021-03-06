@@ -1314,9 +1314,6 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextField" name="getMobileNumber">
                           <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="90" style="1"/>
                             </Property>
@@ -1336,9 +1333,6 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="getAmmountInTk">
                           <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="90" style="1"/>
                             </Property>
@@ -1800,7 +1794,7 @@
                                                                       <EmptySpace max="-2" attributes="0"/>
                                                                       <Component id="productMasurementProductDetails" min="-2" pref="83" max="-2" attributes="0"/>
                                                                       <EmptySpace max="-2" attributes="0"/>
-                                                                      <Component id="jButton1" pref="224" max="32767" attributes="0"/>
+                                                                      <Component id="jButton1" pref="258" max="32767" attributes="0"/>
                                                                   </Group>
                                                               </Group>
                                                           </Group>
@@ -2267,7 +2261,7 @@
                                               <Component id="dateInProductPurchases" min="-2" pref="220" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="jScrollPane6" pref="804" max="32767" attributes="0"/>
+                                              <Component id="jScrollPane6" pref="818" max="32767" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                                           </Group>
@@ -4729,7 +4723,7 @@
                                               <Component id="jLabel164" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel166" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="95" max="32767" attributes="0"/>
+                                          <EmptySpace pref="111" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="duePaymentInProductBill" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
                                               <Component id="paymentInProductBill" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
@@ -6290,7 +6284,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="getRechargeAmountInSetting" pref="850" max="32767" attributes="0"/>
+                                  <Component id="getRechargeAmountInSetting" pref="852" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -6501,7 +6495,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel18" pref="883" max="32767" attributes="0"/>
+                                  <Component id="jPanel18" pref="885" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -6510,7 +6504,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel18" pref="850" max="32767" attributes="0"/>
+                                  <Component id="jPanel18" pref="852" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -8549,7 +8543,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="detailsPanelInBillPay" min="-2" pref="893" max="-2" attributes="0"/>
+                                  <Component id="detailsPanelInBillPay" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rechargeBalencePanel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
