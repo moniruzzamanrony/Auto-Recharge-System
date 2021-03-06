@@ -77,11 +77,6 @@ public final class Login extends javax.swing.JFrame {
         getPasswordBypt.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
 
         getPhoneNumber.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        getPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getPhoneNumberActionPerformed(evt);
-            }
-        });
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setAlignmentX(1.0F);
@@ -306,21 +301,19 @@ public final class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void getPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getPhoneNumberActionPerformed
-
-    }//GEN-LAST:event_getPhoneNumberActionPerformed
-
     private void exitLoginPanel(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitLoginPanel
         System.exit(0);
     }//GEN-LAST:event_exitLoginPanel
 
     private void loginButMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButMouseClicked
 
+        // Invisible Login Panel
         this.setVisible(false);
+
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
-                System.out.println("Login Processing..");
+                System.out.println("Start Login Process");
                 processtingLoderDialog.setVisible(true);
                 login();
                 return null;
@@ -389,122 +382,119 @@ public final class Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 //    ---------------------------------- Custom Methods ----------------------------------------------------
 
-    private boolean login() {
+    private void login() {
         String userId = null;
         String phoneNo = null;
         String password = null;
         String macAddress = null;
-        boolean isAuthUser = false;
-        Log.mgs("Login", "358");
+
+        /*
+        If Username and Password is demo then goto demo panel
+         */
         if (getPhoneNumber.getText().trim().equals("demo") && getPasswordBypt.getText().trim().equals("demo")) {
-            Log.mgs("Login Success for Demo", "");
-            isAuthUser = true;
-            UserInfo.activePackage = "No Package";
-            UserInfo.email = "demo@autorecharge.com";
+            /*
+            Push User Information After Login 
+             */
+            saveLoggedUserInfo("No Package", "demo@autorecharge.com",
+                    "AR Technology", "12/A Beshil,Mirpur-1,Dhaka,Bangladesh", "demo",
+                    "demo", "demo", "demo", "demo", Configaration.getMacAddress().replace(":", ""), "", "", "", true);
 
-            UserInfo.shopName = "AR Technology";
-            UserInfo.address = "12/A Beshil,Mirpur-1,Dhaka,Bangladesh";
-            UserInfo.name = "demo";
-            UserInfo.role = "demo";
-            UserInfo.userId = "demo";
-            UserInfo.phoneNo = "demo";
-            UserInfo.password = "demo";
-            UserInfo.macAddress = Configaration.getMacAddress().replace(":", "");
+            System.out.println("User Login as DEMO User");
+            gotoHomePage();
 
-            Home home = new Home();
-            home.setVisible(true);
+
         } else {
             Connection conn = DbConnection.connect();
             try {
-                Log.mgs("Login", "360");
 
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `user_info`";
-                Log.mgs("Login", "362");
+
                 ResultSet rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-
                     userId = rs.getString("user_id");
                     phoneNo = rs.getString("phone_no");
                     password = rs.getString("password");
                     macAddress = rs.getString("mac_address");
-                    UserInfo.activePackage = rs.getString("active_package");
-                    UserInfo.email = rs.getString("email");
-                    UserInfo.activeDate = rs.getString("active_date");
-                    UserInfo.expireDate = rs.getString("expire_date");
-                    UserInfo.activeStatus = rs.getString("active_status");
-                    UserInfo.shopName = rs.getString("shop_name");
-                    UserInfo.address = rs.getString("address");
-                    UserInfo.name = rs.getString("name");
-                    UserInfo.role = rs.getString("role");
-                    UserInfo.isDeviceReady = false;
+                    /*
+                        Push User Information After Login 
+                     */
+                    saveLoggedUserInfo(rs.getString("active_package"),
+                            rs.getString("email"), rs.getString("shop_name"),
+                            rs.getString("address"), rs.getString("name"),
+                            rs.getString("role"), userId, phoneNo, password,
+                            macAddress, rs.getString("active_date"),
+                             rs.getString("expire_date"), "false", false);
 
-                }
-                UserInfo.userId = userId;
-                System.err.println(UserInfo.userId);
-                UserInfo.phoneNo = phoneNo;
-                UserInfo.password = password;
-                UserInfo.macAddress = macAddress;
-                if (phoneNo == null) {
-                    int res = Popup.customError("Licence not found.");
-                    if (res == 0) {
-                        Login login = new Login();
-                        login.setVisible(true);
-                    }
-                } else {
-                    System.out.println("step 1/12: Login processing start with " + phoneNo);
-                    if (getPhoneNumber.getText().trim().equals("")) {
-                        Popup.error("Phone Number is Empty");
-
-                    }
-                    if (getPasswordBypt.getText().trim().equals("")) {
-                        Popup.error("Password is Empty");
-
-                    } else {
-                        if (phoneNo.equals(getPhoneNumber.getText().trim())
-                                && AES.decrypt(password, "itvillage428854")
-                                        .equals(getPasswordBypt.getText().trim())) {
-
-                            if (isAuthrizeMacAddress(macAddress)) {
-                                if (Configaration.stringToDateType(UserInfo.expireDate).after(Configaration.stringToDateType(Configaration.getCurrentDate()))) {
-                                    new ConfigrarationModemStartUp().setVisible(true);
-                                    isAuthUser = true;
-                                } else {
-                                    int res = Popup.customError("Licence Expaired");
-                                    if (res == 0) {
-                                        Login login = new Login();
-                                        login.setVisible(true);
-                                    }
-                                }
-                            } else {
-                                int res = Popup.customError("Unverified Device");
-                                if (res == 0) {
-                                    Login login = new Login();
-                                    login.setVisible(true);
-                                }
-                            }
-                            Log.mgs("Login Info", "Success");
-
-                        } else {
-                            Log.mgs("Login Info", "Auth Faild");
-                            int res = Popup.customError("Invalid Phone Number Or Password!!");
-                            if (res == 0) {
-                                Login login = new Login();
-                                login.setVisible(true);
-                            }
-                        }
-
-                    }
                 }
 
             } catch (SQLException ex) {
                 Log.error("414", ex.getMessage());
-            } finally{
+            } finally {
                 DbConnection.disconnect(conn);
             }
+
+            if (phoneNo == null) {
+                int res = Popup.customError("Licence not found.");
+                if (res == 0) {
+                   gotoLoginPage();
+                }
+            } else {
+                if (getPhoneNumber.getText().trim().equals("")) {
+                    Popup.error("Phone Number is Empty");
+
+                }
+                if (getPasswordBypt.getText().trim().equals("")) {
+                    Popup.error("Password is Empty");
+
+                } else {
+                    if (phoneNo.equals(getPhoneNumber.getText().trim())
+                            && AES.decrypt(password, "itvillage428854")
+                                    .equals(getPasswordBypt.getText().trim())) {
+
+                        if (isAuthrizeMacAddress(macAddress)) {
+                            System.err.println("Device is valid !!");
+                            System.out.println("License  verifing ...");
+                            if (Configaration.stringToDateType(UserInfo.expireDate)
+                                    .after(Configaration
+                                            .stringToDateType(Configaration
+                                                    .getCurrentDate()))) {
+                                System.out.println("License  verifed ");
+                                /*
+                                If Login Successful
+                                */
+                                gotoHomePage();
+                               
+                            } else {
+                                System.out.println("License  invalid");
+                                int res = Popup.customError("Licence Expaired");
+                                if (res == 0) {
+                                    gotoLoginPage();
+                                
+                                }
+                            }
+                        } else {
+                            System.err.println("Device is invalid !!");
+                            int res = Popup.customError("Unverified Device");
+                            if (res == 0) {
+                                gotoLoginPage();
+                            }
+                        }
+                        System.err.println("Login Successful");
+
+                    } else {
+                        System.err.println("Invalid username and password!!");
+                        int res = Popup.customError("Invalid Phone Number Or Password!!");
+                        if (res == 0) {
+                            gotoLoginPage();
+                        }
+                    }
+
+                }
+            }
         }
-        return isAuthUser;
+
     }
 
     /**
@@ -601,10 +591,9 @@ public final class Login extends javax.swing.JFrame {
     }
 
     private boolean isAuthrizeMacAddress(String macAddreassFromSQL) {
+        System.err.println("Verifing device.....");
         boolean isAuthrizeMacAddress = false;
-
         String computerMacAddress = Configaration.getMacAddress().replace(":", "");
-        System.out.println("step 13/13: Login Reguest by " + computerMacAddress);
         if (computerMacAddress.equals(macAddreassFromSQL)) {
             isAuthrizeMacAddress = true;
         }
@@ -614,6 +603,39 @@ public final class Login extends javax.swing.JFrame {
 
     private void hideLoginPanel() {
         this.setVisible(false);
+    }
+
+    private void saveLoggedUserInfo(String no_Package, String email,
+            String shop_name, String shop_address, String name, String role,
+            String userId, String phone_no, String password, String macAddress,
+            String activeDate, String expireDate, String activeStatus,
+            Boolean isDeviceReady) {
+
+        UserInfo.activePackage = no_Package;
+        UserInfo.email = email;
+        UserInfo.shopName = shop_name;
+        UserInfo.address = shop_address;
+        UserInfo.name = name;
+        UserInfo.role = role;
+        UserInfo.userId = userId;
+        UserInfo.phoneNo = phone_no;
+        UserInfo.password = password;
+        UserInfo.macAddress = macAddress;
+        UserInfo.activeDate = activeDate;
+        UserInfo.expireDate = expireDate;
+        UserInfo.activeStatus = activeStatus;
+
+        UserInfo.isDeviceReady = isDeviceReady;
+    }
+
+    private void gotoLoginPage() {
+        Login login = new Login();
+        login.setVisible(true);
+    }
+
+    private void gotoHomePage() {
+        Home home = new Home();
+        home.setVisible(true);
     }
 
 }

@@ -21,18 +21,18 @@ public class DbConnection {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
-            tableCreate();         
-            System.err.println("------> Database Connected ");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");         
+            System.err.println("Database Connected ");
             return conn;
         } catch (Exception ex) {
-            Log.error("DbConnection:33", ex.getMessage());
+            Log.error("Sqlite Connection: ", ex.getMessage());
         }
 
         return null;
     }
 
-    private static void tableCreate() {
+    public static void tableCreate() {
+        System.err.println("Checking expected database table already exist or not");
         List<String> tableCreateSqlQueryList = new ArrayList<>();
         // For user_info table
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS user_info (RecNo integer PRIMARY KEY,	user_id varchar(255),name varchar(255),phone_no varchar(255),shop_name varchar(255),address varchar(255),password varchar(255),active_package varchar(255),mac_address varchar(255),email varchar(255),active_date varchar(255),expire_date varchar(255),active_status varchar(255),role varchar(255));");
@@ -55,6 +55,7 @@ public class DbConnection {
 
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS sms (RecNo integer PRIMARY KEY,	phoneNo varchar(255),time_date varchar(255),sim_name varchar(255),mgs varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS warranty_table (RecNo integer PRIMARY KEY,invoice varchar(255),customar_id varchar(255),date varchar(255),d_date varchar(255),problem varchar(255),f_name varchar(255),address varchar(255),mobole_no varchar(255),ref_name varchar(255),brand varchar(255),status varchar(255),bill varchar(255),warranty varchar(255),paid varchar(255),discount varchar(255),due varchar(255));");
+        System.err.println("Checking....");
         try {
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
@@ -76,7 +77,7 @@ public class DbConnection {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
+        System.err.println("Checking completed");
     }
 
     public static boolean delete(String tableName) {
@@ -113,10 +114,10 @@ public class DbConnection {
     public static void disconnect(Connection conn) {
         if (conn != null) {
             try {
-                System.err.println("------> Database Closed ");
                 conn.close();
+                System.err.println("Database connection closed.");
             } catch (SQLException e) {
-
+                  System.err.println(e);
             }
         }
 
