@@ -179,11 +179,33 @@ public class Home extends javax.swing.JFrame {
         basePanel = new javax.swing.JPanel();
         mobileRechargePanel = new javax.swing.JPanel();
         rechargeBalencePanel = new javax.swing.JPanel();
-        errorMgsInBalencePanel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableShowSimBalence = new javax.swing.JTable();
+        bl = new javax.swing.JPanel();
+        blSimName = new javax.swing.JLabel();
+        blSimAmount = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        gp = new javax.swing.JPanel();
+        gpSimName = new javax.swing.JLabel();
+        gpSimAmount = new javax.swing.JLabel();
+        gpSimStart = new javax.swing.JButton();
+        gpSimClose = new javax.swing.JButton();
+        ar = new javax.swing.JPanel();
+        arSimName = new javax.swing.JLabel();
+        arSimAmount = new javax.swing.JLabel();
+        arSimStart = new javax.swing.JButton();
+        arSimClose = new javax.swing.JButton();
+        rb = new javax.swing.JPanel();
+        rbSimName = new javax.swing.JLabel();
+        rbSimAmount = new javax.swing.JLabel();
+        rbStopBut = new javax.swing.JButton();
+        rbStartBut = new javax.swing.JButton();
+        tele = new javax.swing.JPanel();
+        teleSimName = new javax.swing.JLabel();
+        teleSimAmount = new javax.swing.JLabel();
+        teleStopBut = new javax.swing.JButton();
+        teleStartBut = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableRechargeDetailsShow = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -1023,7 +1045,7 @@ public class Home extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(currentNetworkName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(currentNetworkName, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -1118,7 +1140,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pandingRequestCounter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(netBarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(netBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         headerPanelLayout.setVerticalGroup(
             headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1144,52 +1166,259 @@ public class Home extends javax.swing.JFrame {
 
         mobileRechargePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        rechargeBalencePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        errorMgsInBalencePanel.setBackground(new java.awt.Color(255, 0, 51));
-        errorMgsInBalencePanel.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        errorMgsInBalencePanel.setForeground(new java.awt.Color(255, 0, 0));
-        errorMgsInBalencePanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorMgsInBalencePanel.setText("-------  Reload Now  ---------");
+        rechargeBalencePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Amount panel");
+        jLabel6.setText("SIM Panel");
 
         jSeparator1.setForeground(new java.awt.Color(133, 47, 209));
 
-        tableShowSimBalence.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "SIM", "TK"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
+        bl.setForeground(new java.awt.Color(204, 204, 255));
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        blSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        blSimName.setText("BL");
+
+        blSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
+        blSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blSimAmount.setText("100000 tk");
+
+        jButton8.setBackground(new java.awt.Color(204, 51, 0));
+        jButton8.setText("Stop");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(tableShowSimBalence);
+
+        jButton9.setBackground(new java.awt.Color(0, 153, 0));
+        jButton9.setText("Start");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout blLayout = new javax.swing.GroupLayout(bl);
+        bl.setLayout(blLayout);
+        blLayout.setHorizontalGroup(
+            blLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(blSimName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(blSimAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton8)
+                .addGap(0, 0, 0))
+        );
+        blLayout.setVerticalGroup(
+            blLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(blSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(blSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton8)
+                .addComponent(jButton9))
+        );
+
+        gpSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        gpSimName.setText("GP");
+
+        gpSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
+        gpSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gpSimAmount.setText("100000 tk");
+
+        gpSimStart.setBackground(new java.awt.Color(204, 51, 0));
+        gpSimStart.setText("Stop");
+        gpSimStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gpSimStartActionPerformed(evt);
+            }
+        });
+
+        gpSimClose.setBackground(new java.awt.Color(0, 153, 0));
+        gpSimClose.setText("Start");
+        gpSimClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gpSimCloseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gpLayout = new javax.swing.GroupLayout(gp);
+        gp.setLayout(gpLayout);
+        gpLayout.setHorizontalGroup(
+            gpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gpLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(gpSimName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gpSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gpSimClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gpSimStart))
+        );
+        gpLayout.setVerticalGroup(
+            gpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(gpSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(gpSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(gpSimClose)
+            .addComponent(gpSimStart)
+        );
+
+        arSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        arSimName.setText("AR");
+
+        arSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
+        arSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        arSimAmount.setText("100000 tk");
+
+        arSimStart.setBackground(new java.awt.Color(204, 51, 0));
+        arSimStart.setText("Stop");
+        arSimStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arSimStartActionPerformed(evt);
+            }
+        });
+
+        arSimClose.setBackground(new java.awt.Color(0, 153, 0));
+        arSimClose.setText("Start");
+        arSimClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arSimCloseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout arLayout = new javax.swing.GroupLayout(ar);
+        ar.setLayout(arLayout);
+        arLayout.setHorizontalGroup(
+            arLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(arLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(arSimName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arSimClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arSimStart))
+        );
+        arLayout.setVerticalGroup(
+            arLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(arSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(arSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(arSimClose)
+            .addComponent(arSimStart)
+        );
+
+        rbSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        rbSimName.setText("RB");
+
+        rbSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
+        rbSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rbSimAmount.setText("100000 tk");
+
+        rbStopBut.setBackground(new java.awt.Color(204, 51, 0));
+        rbStopBut.setText("Stop");
+        rbStopBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbStopButActionPerformed(evt);
+            }
+        });
+
+        rbStartBut.setBackground(new java.awt.Color(0, 153, 0));
+        rbStartBut.setText("Start");
+        rbStartBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbStartButActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rbLayout = new javax.swing.GroupLayout(rb);
+        rb.setLayout(rbLayout);
+        rbLayout.setHorizontalGroup(
+            rbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rbLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(rbSimName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbSimAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbStartBut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbStopBut)
+                .addGap(0, 0, 0))
+        );
+        rbLayout.setVerticalGroup(
+            rbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(rbSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbStopBut)
+                .addComponent(rbStartBut))
+        );
+
+        teleSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        teleSimName.setText("TELE");
+
+        teleSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
+        teleSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        teleSimAmount.setText("100000 tk");
+
+        teleStopBut.setBackground(new java.awt.Color(204, 51, 0));
+        teleStopBut.setText("Stop");
+        teleStopBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teleStopButActionPerformed(evt);
+            }
+        });
+
+        teleStartBut.setBackground(new java.awt.Color(0, 153, 0));
+        teleStartBut.setText("Start");
+        teleStartBut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teleStartButActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout teleLayout = new javax.swing.GroupLayout(tele);
+        tele.setLayout(teleLayout);
+        teleLayout.setHorizontalGroup(
+            teleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(teleLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(teleSimName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(teleSimAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(teleStartBut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(teleStopBut)
+                .addGap(0, 0, 0))
+        );
+        teleLayout.setVerticalGroup(
+            teleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(teleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(teleSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(teleSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(teleStopBut)
+                .addComponent(teleStartBut))
+        );
 
         javax.swing.GroupLayout rechargeBalencePanelLayout = new javax.swing.GroupLayout(rechargeBalencePanel);
         rechargeBalencePanel.setLayout(rechargeBalencePanelLayout);
         rechargeBalencePanelLayout.setHorizontalGroup(
             rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addComponent(errorMgsInBalencePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-            .addGroup(rechargeBalencePanelLayout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(bl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(gp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rechargeBalencePanelLayout.setVerticalGroup(
             rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1198,11 +1427,17 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorMgsInBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tableRechargeDetailsShow.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -1468,7 +1703,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -1488,33 +1723,32 @@ public class Home extends javax.swing.JFrame {
             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mobileRechargePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mobileRechargePanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(deviceStartStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
                     .addGroup(mobileRechargePanelLayout.createSequentialGroup()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(57, Short.MAX_VALUE))
-                    .addGroup(mobileRechargePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(283, 283, 283)
-                        .addComponent(jLabel172, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(getMobileNumberForSearch)
-                        .addContainerGap())))
+                        .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mobileRechargePanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(283, 283, 283)
+                                .addComponent(jLabel172, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(getMobileNumberForSearch))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, mobileRechargePanelLayout.createSequentialGroup()
+                                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(36, Short.MAX_VALUE))))
         );
         mobileRechargePanelLayout.setVerticalGroup(
             mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mobileRechargePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rechargeBalencePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mobileRechargePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -1612,7 +1846,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(hoverViewrocket, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel85, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(749, Short.MAX_VALUE))
+                .addContainerGap(736, Short.MAX_VALUE))
         );
         billPayPanelLayout.setVerticalGroup(
             billPayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1640,7 +1874,7 @@ public class Home extends javax.swing.JFrame {
         resellerPanel.setLayout(resellerPanelLayout);
         resellerPanelLayout.setHorizontalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1198, Short.MAX_VALUE)
+            .addGap(0, 1183, Short.MAX_VALUE)
         );
         resellerPanelLayout.setVerticalGroup(
             resellerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1872,7 +2106,7 @@ public class Home extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(productMasurementProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))))
+                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))))
                                     .addGroup(ProductPurchasePanel1Layout.createSequentialGroup()
                                         .addComponent(groupInProductDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2277,7 +2511,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateInProductPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanelLayout.createSequentialGroup()
@@ -3382,7 +3616,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel164)
                     .addComponent(jLabel166))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(duePaymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paymentInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3445,7 +3679,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addComponent(panddingInProductSellCheckBOx)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 766, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 755, Short.MAX_VALUE)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel138, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
@@ -3847,7 +4081,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(clickImportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(clickExportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
+            .addComponent(clickExportDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3917,7 +4151,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, 841, Short.MAX_VALUE)
+                    .addComponent(jLabel52, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
                     .addComponent(passwordForUpdate)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rePasswordForUpdate, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4153,7 +4387,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(clickAddNewManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE))
+                    .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -4342,7 +4576,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(MobileBankingSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MobileBankingSettingsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -4416,7 +4650,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(getRechargeAmountInSettingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(getRechargeAmmountInSeetings, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, getRechargeAmountInSettingLayout.createSequentialGroup()
-                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                        .addComponent(getValidityInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getSelectedValidityTimeTypeSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -4468,7 +4702,7 @@ public class Home extends javax.swing.JFrame {
             rechargeOfferPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rechargeOfferPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
+                .addComponent(getRechargeAmountInSetting, javax.swing.GroupLayout.DEFAULT_SIZE, 843, Short.MAX_VALUE)
                 .addGap(33, 33, 33))
         );
         rechargeOfferPanelLayout.setVerticalGroup(
@@ -4576,7 +4810,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getOparetorNameInUssdCommand, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
                     .addComponent(getRechargeUssdParternPrePaid1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(getRechargeUssdParternPostPaid1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -4638,7 +4872,7 @@ public class Home extends javax.swing.JFrame {
             addNewManagementPanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewManagementPanelSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 885, Short.MAX_VALUE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addNewManagementPanelSettingsLayout.setVerticalGroup(
@@ -4848,7 +5082,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1145, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -4973,7 +5207,7 @@ public class Home extends javax.swing.JFrame {
                                 .addComponent(clickUssdSessionClose, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(getUssdCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(getSelectedSim, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 638, Short.MAX_VALUE)))
+                        .addGap(0, 625, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         ussdDialPanelLayout.setVerticalGroup(
@@ -5070,7 +5304,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel26)
-                        .addGap(881, 927, Short.MAX_VALUE))
+                        .addGap(881, 914, Short.MAX_VALUE))
                     .addComponent(jScrollPane5)
                     .addComponent(getNameForSearch, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(clickNewContract, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -5181,7 +5415,7 @@ public class Home extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(backToUssdManengementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE))
+                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 1087, Short.MAX_VALUE))
                     .addGroup(addNewManagementPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel29))
@@ -5287,7 +5521,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(back43, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE))
+                .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, 1097, Short.MAX_VALUE))
             .addGroup(addNewContractPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addNewContractPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5554,7 +5788,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(722, 722, 722)
                                 .addComponent(contractListClick, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addComponent(rechargeBalencePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMobileBankingPanelInBillPayLayout.createSequentialGroup()
                         .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5723,7 +5957,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel66)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sendingLogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(sendAllRechargeBut, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(groupLoadPanelLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -6193,7 +6427,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(back1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel27)
-                        .addGap(956, 1029, Short.MAX_VALUE))
+                        .addGap(956, 1016, Short.MAX_VALUE))
                     .addComponent(jScrollPane18)
                     .addComponent(searchInInbox, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -6447,7 +6681,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(back44, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, 1112, Short.MAX_VALUE))
+                .addComponent(jLabel53, javax.swing.GroupLayout.DEFAULT_SIZE, 1097, Short.MAX_VALUE))
             .addGroup(getRechargeNameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6473,10 +6707,10 @@ public class Home extends javax.swing.JFrame {
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
             .addGroup(bodyPanelLayout.createSequentialGroup()
-                .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6497,7 +6731,7 @@ public class Home extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
             .addComponent(bodyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -8618,6 +8852,46 @@ public class Home extends javax.swing.JFrame {
         searchByPhoneNumberInMobileBankingDetails(MOBILE_BANKING_DETAILS_FOR_SEARCHING_DTO, searchingByName.getText());
     }//GEN-LAST:event_searchingByNameKeyReleased
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void gpSimStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpSimStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gpSimStartActionPerformed
+
+    private void gpSimCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpSimCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gpSimCloseActionPerformed
+
+    private void arSimStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arSimStartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arSimStartActionPerformed
+
+    private void arSimCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arSimCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arSimCloseActionPerformed
+
+    private void rbStopButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStopButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbStopButActionPerformed
+
+    private void rbStartButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStartButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbStartButActionPerformed
+
+    private void teleStopButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teleStopButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_teleStopButActionPerformed
+
+    private void teleStartButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teleStartButActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_teleStartButActionPerformed
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -8709,6 +8983,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JCheckBox addPerchangeSelection;
     private javax.swing.JTextField addressInProductSell;
     private javax.swing.JTextField addressInProductWanrranty;
+    private javax.swing.JPanel ar;
+    private javax.swing.JLabel arSimAmount;
+    private javax.swing.JButton arSimClose;
+    private javax.swing.JLabel arSimName;
+    private javax.swing.JButton arSimStart;
     private javax.swing.JLabel back;
     private javax.swing.JLabel back1;
     private javax.swing.JLabel back43;
@@ -8726,6 +9005,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel billPayPanel;
     private javax.swing.JPanel billPaymentPanelInBillPay;
     private javax.swing.JPanel billPaymentTab;
+    private javax.swing.JPanel bl;
+    private javax.swing.JLabel blSimAmount;
+    private javax.swing.JLabel blSimName;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JTextField brandInProductDetails;
     private javax.swing.JTextField brandInProductWanrranty;
@@ -8789,7 +9071,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel dueInProductWanrranty;
     private javax.swing.JTextField duePaymentInProductBill;
     private javax.swing.JLabel duePaymentInProductSell;
-    private javax.swing.JLabel errorMgsInBalencePanel;
     private javax.swing.JLabel expiryDateInProfile;
     private javax.swing.JTextField forBarCodePhoneNumber10;
     private javax.swing.JTextField forBarCodePhoneNumber2;
@@ -8859,6 +9140,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField getUssdCodePattren;
     private javax.swing.JTextField getValidityInSetting;
     private javax.swing.JTextField getprofitIn1k;
+    private javax.swing.JPanel gp;
+    private javax.swing.JLabel gpSimAmount;
+    private javax.swing.JButton gpSimClose;
+    private javax.swing.JLabel gpSimName;
+    private javax.swing.JButton gpSimStart;
     private javax.swing.JTextField groupInProductDetails;
     private javax.swing.JTextField groupInProductPurchases;
     private javax.swing.JPanel groupLoadPanel;
@@ -8886,6 +9172,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -9090,7 +9378,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
@@ -9171,6 +9458,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel profile_pic;
     private javax.swing.JTextField qtyInProductDetails;
     private javax.swing.JTextField qtyInProductPurchases;
+    private javax.swing.JPanel rb;
+    private javax.swing.JLabel rbSimAmount;
+    private javax.swing.JLabel rbSimName;
+    private javax.swing.JButton rbStartBut;
+    private javax.swing.JButton rbStopBut;
     private javax.swing.JTextField rePasswordForUpdate;
     private javax.swing.JPanel rechargeBalencePanel;
     private javax.swing.JPanel rechargeBalencePanel1;
@@ -9217,8 +9509,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable tableMobileBankingDetails;
     private javax.swing.JTable tableMobileBankingSetting;
     private javax.swing.JTable tableRechargeDetailsShow;
-    private javax.swing.JTable tableShowSimBalence;
     private javax.swing.JTable tableTrustedEmployees;
+    private javax.swing.JPanel tele;
+    private javax.swing.JLabel teleSimAmount;
+    private javax.swing.JLabel teleSimName;
+    private javax.swing.JButton teleStartBut;
+    private javax.swing.JButton teleStopBut;
     private javax.swing.JComboBox<String> timeTypeProductDetails;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
@@ -10187,20 +10483,9 @@ public class Home extends javax.swing.JFrame {
                 defaultTableModel.addRow(new String[]{mobileRechargeBalance.getSimName().substring(mobileRechargeBalance.getSimName().length() - 4, mobileRechargeBalance.getSimName().length() - 1), mobileRechargeBalance.getSimBalance() + " Tk"});
             }
 
-            errorMgsInBalencePanel.setText("Last updated : " + Configaration.getCurrentDateAndTime());
+          
         }
-        tableShowSimBalence.getTableHeader().setFont(new Font("Agency FB", Font.BOLD, 12));
-        tableShowSimBalence.getTableHeader().setOpaque(false);
-        tableShowSimBalence.getTableHeader().setBackground(new Color(255, 0, 0));
-        tableShowSimBalence.getTableHeader().setForeground(new Color(255, 255, 255));
 
-        //For jTable contant in center
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) tableShowSimBalence.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-        tableShowSimBalence.setEnabled(false);
-        tableShowSimBalence.setFont(new Font("Agency FB", Font.BOLD, 12));
-        tableShowSimBalence.setModel(defaultTableModel);
 
     }
 
@@ -12608,7 +12893,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void showMobileRechargeBalance() {
-        errorMgsInBalencePanel.setText("Processing...");
+      
         SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
             @Override
             protected Void doInBackground() throws Exception {
@@ -13888,7 +14173,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void collectInitialSIMBalance() {
-        errorMgsInBalencePanel.setText("Processing...");
+       
         List<String> balancePaseList = new ArrayList<>();
         List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
         ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
@@ -13911,9 +14196,7 @@ public class Home extends javax.swing.JFrame {
 
                         System.out.println(value.length);
                         if (value.length == 1) {
-                            errorMgsInBalencePanel.setText("-------  Try Again !!  ---------");
-
-                            errorMgsInBalencePanel.setVisible(true);
+         
                         } else {
                             String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
                             Pattern p = Pattern.compile("\\d+");
