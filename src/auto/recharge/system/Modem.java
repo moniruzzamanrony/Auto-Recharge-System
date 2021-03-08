@@ -56,38 +56,42 @@ class SIMInfoCollector extends Thread {
     private static String getPhoneNumberFromSim(String numberGettingcode) {
 
         String phoneNumber;
+        System.err.println("Colleting SIM Number.");
         String responseFromSavedPhoneNumber = auto.recharge.system.config.Modem.sendATCommand("AT+CNUM");
 
-        // System.out.println("Getting SIM Number: "+responseFromSavedPhoneNumber);
         List<String> responseFromSavedPhoneNumbers = Configaration.stringToNumberList(responseFromSavedPhoneNumber);
         if (responseFromSavedPhoneNumbers.isEmpty()) {
+            System.err.println("Feild to getting sim number from SIM storage.");
+            System.err.println("Sending AT Command For SIM Card Number.");
             String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + numberGettingcode + "\",15");
             String[] splitResponse = value.split(",");
             String finalResponse = splitResponse[1].replaceAll("\"", "");
             String finalResponseString = Configaration.haxToStringConvert(finalResponse);
             List<String> phoneNumbers = Configaration.stringToNumberList(finalResponseString);
             phoneNumber = phoneNumbers.get(0);
-
+            System.err.println("SIM card found: "+phoneNumber);
+            System.err.println("Saving.... ");
             auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=?");
             auto.recharge.system.config.Modem.sendATCommand("AT+CPBS?");
             auto.recharge.system.config.Modem.sendATCommand("AT+CPBS=\"ON\"");
             auto.recharge.system.config.Modem.sendATCommand("at+cpbs?");
             auto.recharge.system.config.Modem.sendATCommand("at+cpbw=,\"" + phoneNumber + "\"");
+            System.err.println("Saving done in SIM Storage");
 
-            System.out.println("Saved List In SIM:" + auto.recharge.system.config.Modem.sendATCommand("at+cpbs?"));
-
-            System.out.println("step 15/15: Getting SIM Number: " + phoneNumbers.get(0));
         } else {
             phoneNumber = responseFromSavedPhoneNumbers.get(0);
-            System.out.println("step 15/15: Getting SIM Number: " + phoneNumber);
+            System.err.println("SIM card found: " + phoneNumber);
         }
-
+        /*
+        *Exmple: +8801988841890
+        */
+  
         return phoneNumber;
     }
 
     @Override
     public void run() {
-        System.out.println("step 14/14: Start Connected SIM Number Collectting ");
+       
         ArrayList<SimCardInformationDTO> operatorIdentifierDtosArray = new ArrayList<>();
         int count = 0;
         for (String port : ports) {

@@ -1421,10 +1421,10 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(teleStartBut))
         );
 
-        software_starting_text.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        software_starting_text.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         software_starting_text.setForeground(new java.awt.Color(255, 51, 0));
         software_starting_text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        software_starting_text.setText("Software Starting...");
+        software_starting_text.setText("Device Starting...");
 
         javax.swing.GroupLayout rechargeBalencePanelLayout = new javax.swing.GroupLayout(rechargeBalencePanel);
         rechargeBalencePanel.setLayout(rechargeBalencePanelLayout);
@@ -9590,7 +9590,7 @@ public class Home extends javax.swing.JFrame {
                         if (simCardInformationDTOList.isEmpty()) {
                             software_starting_text.setText("Device is not ready");
                         }
-                        System.err.println(simCardInformationDTOList);
+
                         //Set Success Status
                         software_starting_text.setText("Ready");
                         software_starting_text.setForeground(Color.GREEN);

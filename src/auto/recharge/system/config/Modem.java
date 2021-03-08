@@ -17,7 +17,7 @@ public class Modem {
     }
 
     public static String connect(String portName) {
-        System.out.println("step 17/17: Connected with " + portName);
+        System.err.println(portName + "is connected now");
         modemUtils = new ModemUtils();
         try {
             return modemUtils.connect(portName, 9600);
@@ -28,7 +28,7 @@ public class Modem {
     }
 
     public static List<String> getActiveModemsPorts() {
-        System.out.println("step 5/15: Start Port Searching");
+        System.out.println("Start Port Searching");
         modemUtils = new ModemUtils();
         return modemUtils.getActivePorts();
     }
