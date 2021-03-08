@@ -56,6 +56,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -86,6 +87,7 @@ public class Home extends javax.swing.JFrame {
     private final List<String> ALL_PHONE_NUMBER_LIST_FROM_MOBILE_RECHARGE_TABLE = new ArrayList<>();
     private final DefaultListModel DEFAULT_LIST_MODEL = new DefaultListModel();
     
+    
     // Genaral Variable
     private int countForSellTable = 0;
     private String imagePath = "No Image";
@@ -108,7 +110,11 @@ public class Home extends javax.swing.JFrame {
             discountAmtInProductSellInDouble = 0.0,
             dueInProductSellInDouble = 0.0,
             totalPayableAmtAfterDiscountInProductSellInDouble = 0.0;
-
+    private List<String> ports = new ArrayList<>();
+    private Set<SimCardInformationDTO> simCardInformationDTOList = new HashSet<>();
+    
+    private boolean isSOftwareReady = false;
+  
     public Home() {
         initComponents();
         
@@ -123,12 +129,18 @@ public class Home extends javax.swing.JFrame {
         loadDefaultPlaceHolderInWholeSoftware();     
         setBorderInManuBar();
         processingLoderDialog();
-        stratApplicationByRoleWise();
+       
         displaySizeConfigaration();
         
         suggList.setModel(DEFAULT_LIST_MODEL);
         popupForSuggestManu.add(suggestPanel);
-        
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                 stratApplicationByRoleWise();
+            }
+        });
         //Enter Press Method
         //settingPanelEnterPressWork();
 
@@ -184,8 +196,8 @@ public class Home extends javax.swing.JFrame {
         bl = new javax.swing.JPanel();
         blSimName = new javax.swing.JLabel();
         blSimAmount = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        bl_sim_stop = new javax.swing.JButton();
+        bl_sim_start = new javax.swing.JButton();
         gp = new javax.swing.JPanel();
         gpSimName = new javax.swing.JLabel();
         gpSimAmount = new javax.swing.JLabel();
@@ -206,6 +218,7 @@ public class Home extends javax.swing.JFrame {
         teleSimAmount = new javax.swing.JLabel();
         teleStopBut = new javax.swing.JButton();
         teleStartBut = new javax.swing.JButton();
+        software_starting_text = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableRechargeDetailsShow = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -1184,19 +1197,19 @@ public class Home extends javax.swing.JFrame {
         blSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         blSimAmount.setText("100000 tk");
 
-        jButton8.setBackground(new java.awt.Color(204, 51, 0));
-        jButton8.setText("Stop");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        bl_sim_stop.setBackground(new java.awt.Color(204, 51, 0));
+        bl_sim_stop.setText("Stop");
+        bl_sim_stop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                bl_sim_stopActionPerformed(evt);
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(0, 153, 0));
-        jButton9.setText("Start");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        bl_sim_start.setBackground(new java.awt.Color(0, 153, 0));
+        bl_sim_start.setText("Start");
+        bl_sim_start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                bl_sim_startActionPerformed(evt);
             }
         });
 
@@ -1210,9 +1223,9 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(blSimAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(bl_sim_start)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(bl_sim_stop)
                 .addGap(0, 0, 0))
         );
         blLayout.setVerticalGroup(
@@ -1220,8 +1233,8 @@ public class Home extends javax.swing.JFrame {
             .addGroup(blLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(blSimName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(blSimAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButton8)
-                .addComponent(jButton9))
+                .addComponent(bl_sim_stop)
+                .addComponent(bl_sim_start))
         );
 
         gpSimName.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
@@ -1408,6 +1421,11 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(teleStartBut))
         );
 
+        software_starting_text.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        software_starting_text.setForeground(new java.awt.Color(255, 51, 0));
+        software_starting_text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        software_starting_text.setText("Software Starting...");
+
         javax.swing.GroupLayout rechargeBalencePanelLayout = new javax.swing.GroupLayout(rechargeBalencePanel);
         rechargeBalencePanel.setLayout(rechargeBalencePanelLayout);
         rechargeBalencePanelLayout.setHorizontalGroup(
@@ -1419,6 +1437,7 @@ public class Home extends javax.swing.JFrame {
             .addComponent(rb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tele, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(software_starting_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         rechargeBalencePanelLayout.setVerticalGroup(
             rechargeBalencePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1437,7 +1456,9 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(ar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(software_starting_text)
+                .addContainerGap())
         );
 
         tableRechargeDetailsShow.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -6707,7 +6728,7 @@ public class Home extends javax.swing.JFrame {
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
+            .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bodyPanelLayout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -6941,7 +6962,7 @@ public class Home extends javax.swing.JFrame {
                 System.err.println("Access dny in DEMO Panel");
 
             } else {
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                     getSelectedSIMNameCombo.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
                 }
             }
@@ -7451,7 +7472,7 @@ public class Home extends javax.swing.JFrame {
                     System.err.println("Access dny in DEMO Panel");
 
                 } else {
-                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                         getSimOperatorName.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
                     }
                 }
@@ -8419,7 +8440,7 @@ public class Home extends javax.swing.JFrame {
 
         } else {
 
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 getSelectedSimInGroupRecharge1.addItem(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
             }
 
@@ -8852,13 +8873,13 @@ public class Home extends javax.swing.JFrame {
         searchByPhoneNumberInMobileBankingDetails(MOBILE_BANKING_DETAILS_FOR_SEARCHING_DTO, searchingByName.getText());
     }//GEN-LAST:event_searchingByNameKeyReleased
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void bl_sim_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bl_sim_stopActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_bl_sim_stopActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void bl_sim_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bl_sim_startActionPerformed
+       startSimCard("bl");
+    }//GEN-LAST:event_bl_sim_startActionPerformed
 
     private void gpSimStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpSimStartActionPerformed
         // TODO add your handling code here:
@@ -8935,7 +8956,7 @@ public class Home extends javax.swing.JFrame {
 
             for (MobileBankingBalanceShowDto mobileBankingBalanceShowDto : bankingBalanceShowDtos) {
 
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                     String activeSimNameWithPhoneNO = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
 
                     if (mobileBankingBalanceShowDto.getDefaultSIM().toLowerCase().equals(activeSimNameWithPhoneNO.toLowerCase())) {
@@ -9008,6 +9029,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel bl;
     private javax.swing.JLabel blSimAmount;
     private javax.swing.JLabel blSimName;
+    private javax.swing.JButton bl_sim_start;
+    private javax.swing.JButton bl_sim_stop;
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JTextField brandInProductDetails;
     private javax.swing.JTextField brandInProductWanrranty;
@@ -9172,8 +9195,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -9492,6 +9513,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel settingBasePanel;
     private javax.swing.JPanel settingTab;
     private javax.swing.JPanel settingsPanel1;
+    private javax.swing.JLabel software_starting_text;
     private javax.swing.JComboBox<String> statusInProductWanrrantyComboBox;
     private javax.swing.JList<String> suggList;
     private javax.swing.JPanel suggestPanel;
@@ -9546,6 +9568,7 @@ public class Home extends javax.swing.JFrame {
         if (UserInfo.role.equals("demo")) {
 
         } else {
+            ports= Modem.getActivePortsList();
             SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
                 @Override
                 protected Void doInBackground() throws Exception {
@@ -9556,14 +9579,23 @@ public class Home extends javax.swing.JFrame {
                     showMobileRechargeBalance();
                     loadValueInTableRechargeDetails();
                     setFocusInMobileRechargePanel();
-                    loadMobileNoFromRecharge();
-
+                    loadMobileNoFromRecharge();                 
                     return null;
                 }
 
                 @Override
                 protected void done() {
-
+                    if (!ports.isEmpty()) {
+                        simCardInformationDTOList = Modem.getSimInfo(ports);
+                        if (simCardInformationDTOList.isEmpty()) {
+                            software_starting_text.setText("Device is not ready");
+                        }
+                        System.err.println(simCardInformationDTOList);
+                        //Set Success Status
+                        software_starting_text.setText("Ready");
+                        software_starting_text.setForeground(Color.GREEN);
+                        isSOftwareReady = true;
+                    }
                 }
 
             };
@@ -9734,7 +9766,7 @@ public class Home extends javax.swing.JFrame {
                     if (UserInfo.role.equals("demo")) {
                         System.err.println("Access dny in DEMO Panel");
                     } else {
-                        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                        for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                             if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                 MobileRechargeDetailsDto mobileRechargeDetailsDto
                                         = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
@@ -9774,7 +9806,7 @@ public class Home extends javax.swing.JFrame {
                                 System.err.println("Access dny in DEMO Panel");
 
                             } else {
-                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                     if (selectedPayableSIM.equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                         MobileRechargeDetailsDto mobileRechargeDetailsDto
                                                 = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), phoneNumberRequested, ammountRequested, preOrPostRequested, simOperatorIdentifierDto.getPortName(), selectedPayableSIM, UssdRequestType.MOBILE_RECHARGE);
@@ -9839,7 +9871,7 @@ public class Home extends javax.swing.JFrame {
                 System.err.println("Access dny in DEMO Panel");
 
             } else {
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                     Queue<Object> objectQueue = CREATE_HASH_MAP_BY_CONNECTED_PORTS.get(simOperatorIdentifierDto.getPortName());
                     if (objectQueue == null) {
                         Queue<Object> emptyObjectQueue = new PriorityQueue<Object>(5, new MobileRechargeDetailsComparator());
@@ -9956,7 +9988,7 @@ public class Home extends javax.swing.JFrame {
 
                             if (rs.getString("operator_name").equals(selectedOperatorName)) {
 
-                                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
                                     if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                                         selectedSimOperatorName = rs.getString("operator_name") + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
@@ -9992,7 +10024,7 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Demo User Can't Make Oparetion.Please Subscribe A Package");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 if (simOperatorIdentifierDto.getOwnPhoneNumber().contains(phoneNumberUserInputSubString)) {
                     String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                     getSeletedOperatorName.setSelectedItem(selectedSimCardWithNumber);
@@ -10233,7 +10265,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                 if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
                     auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
@@ -10461,7 +10493,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 String phoneNumber = simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13);
                 String networkInfo = simOperatorIdentifierDto.getOperatorName() + "(" + phoneNumber + ") |";
                 operatorNames = operatorNames + networkInfo;
@@ -10499,7 +10531,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
                     auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                     String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
@@ -10821,7 +10853,7 @@ public class Home extends javax.swing.JFrame {
             groupRechargeResponsesList.stream().forEach(values -> {
                 //TODO: For group rechage
 
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                     if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                         MobileRechargeDetailsDto mobileRechargeDetailsDto
                                 = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
@@ -10996,7 +11028,7 @@ public class Home extends javax.swing.JFrame {
                     confirmDialog.setVisible(false);
                     mobileBankingBalanceShowPanelList.setEnabled(false);
                     //sendMobileBankingRequest();
-                    for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                    for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                         String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                         if (selectedSimCardWithNumber.toUpperCase().equals(getSimOperatorName.getSelectedItem().toString().toUpperCase())) {
                             MobileBankingDetailsDto mobileBankingDetailsDto = new MobileBankingDetailsDto();
@@ -11036,7 +11068,7 @@ public class Home extends javax.swing.JFrame {
                             confirmDialog.setVisible(false);
                             mobileBankingBalanceShowPanelList.setEnabled(false);
                             //sendMobileBankingRequest();
-                            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                                 String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
                                 if (selectedSimCardWithNumber.toUpperCase().equals(getSimOperatorName.getSelectedItem().toString().toUpperCase())) {
                                     MobileBankingDetailsDto mobileBankingDetailsDto = new MobileBankingDetailsDto();
@@ -11743,7 +11775,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
                 if (simOperatorIdentifierDto.getOperatorName().toUpperCase().contains(storage.toUpperCase())) {
                     auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
@@ -12137,7 +12169,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                 if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(sim.toLowerCase())) {
                     auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                     res = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + code + "\",15");
@@ -12718,7 +12750,7 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+            for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
 
                 if (SIM_NAME.toUpperCase().contains(simOperatorIdentifierDto.getOperatorName().toUpperCase())) {
 
@@ -14176,7 +14208,7 @@ public class Home extends javax.swing.JFrame {
        
         List<String> balancePaseList = new ArrayList<>();
         List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
-        ModemInfoList.simOperatorIdentifiers.forEach((SimOperatorIdentifierDto simOperatorIdentifierDto) -> {
+        ModemInfoList.simOperatorIdentifiers.forEach((SimCardInformationDTO simOperatorIdentifierDto) -> {
             Connection conn = DbConnection.connect();
             try {
                 auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
@@ -14240,7 +14272,7 @@ public class Home extends javax.swing.JFrame {
         String strCommand2 = "AT+CPMS=\"SM\"";
         String strCommand3 = "AT+CMGL=\"REC UNREAD\"";
 
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+        for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
             auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
             System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand1));
             auto.recharge.system.config.Modem.sendATCommand(strCommand2);
@@ -14655,6 +14687,11 @@ public class Home extends javax.swing.JFrame {
 
         tableMobileBankingDetails.setRowHeight(25);
         tableMobileBankingDetails.setModel(defaultTableModel);
+    }
+
+    private void startSimCard(String bl) {
+         
+         System.err.println(ports);
     }
 
     public class BillPrintable implements Printable {

@@ -7,7 +7,7 @@ package auto.recharge.system;
 
 import auto.recharge.system.config.CommTest;
 import auto.recharge.system.dto.ModemInfoList;
-import auto.recharge.system.dto.SimOperatorIdentifierDto;
+import auto.recharge.system.dto.SimCardInformationDTO;
 import auto.recharge.system.dto.UserInfo;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
@@ -568,7 +568,7 @@ public class ConfigrarationModemStartUp extends javax.swing.JFrame {
                 processtingLoderDialog.setVisible(true);
                 DefaultListModel defaultListModel = new DefaultListModel();
                 ModemInfoList.simOperatorIdentifiers = Modem.getSimInfo(portsList);
-                for (SimOperatorIdentifierDto simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
+                for (SimCardInformationDTO simOperatorIdentifierDto : ModemInfoList.simOperatorIdentifiers) {
                     simNames.add(simOperatorIdentifierDto.getOperatorName());
 
                 }

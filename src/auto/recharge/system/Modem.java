@@ -5,7 +5,7 @@
  */
 package auto.recharge.system;
 
-import auto.recharge.system.dto.SimOperatorIdentifierDto;
+import auto.recharge.system.dto.SimCardInformationDTO;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class Modem {
      * @param ports
      * @return
      */
-    public static Set<SimOperatorIdentifierDto> getSimInfo(List<String> ports) {
+    public static Set<SimCardInformationDTO> getSimInfo(List<String> ports) {
 
         try {
             SIMInfoCollector sIMInfoCollector = new SIMInfoCollector(ports);
@@ -47,7 +47,7 @@ class SIMInfoCollector extends Thread {
 
     private static final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
     private final List<String> ports;
-    private final Set<SimOperatorIdentifierDto> simOperatorIdentifierDtos = new HashSet<>();
+    private final Set<SimCardInformationDTO> simOperatorIdentifierDtos = new HashSet<>();
 
     public SIMInfoCollector(List<String> ports) {
         this.ports = ports;
@@ -88,12 +88,13 @@ class SIMInfoCollector extends Thread {
     @Override
     public void run() {
         System.out.println("step 14/14: Start Connected SIM Number Collectting ");
-        ArrayList<SimOperatorIdentifierDto> operatorIdentifierDtosArray = new ArrayList<>();
+        ArrayList<SimCardInformationDTO> operatorIdentifierDtosArray = new ArrayList<>();
         int count = 0;
         for (String port : ports) {
             auto.recharge.system.config.Modem.connect(port);
-            SimOperatorIdentifierDto simOperatorIdentifierDto = new SimOperatorIdentifierDto();
+            SimCardInformationDTO simOperatorIdentifierDto = new SimCardInformationDTO();
             simOperatorIdentifierDto.setId(count++);
+            simOperatorIdentifierDto.setSimCurrentBalance("0.0");
             String opName = auto.recharge.system.config.Modem.sendATCommand("AT+COPS?").replaceAll(",", "")
                     .replaceAll("OK", "").replaceAll("COPS:", "").replaceAll("\"", "").replaceAll("\\d", "").replaceAll("\\W", "");
 
@@ -130,7 +131,7 @@ class SIMInfoCollector extends Thread {
             operatorIdentifierDtosArray.add(simOperatorIdentifierDto);
         }
         String operatorName = "default", operatorPhoneNumber = "default";
-        for (SimOperatorIdentifierDto simOperatorIdentifierDto : operatorIdentifierDtosArray) {
+        for (SimCardInformationDTO simOperatorIdentifierDto : operatorIdentifierDtosArray) {
             if (simOperatorIdentifierDto.getOperatorName().endsWith(operatorName)
                     && simOperatorIdentifierDto.getOwnPhoneNumber().endsWith(operatorPhoneNumber)) {
                 Log.error("Duplicate Port found: ", simOperatorIdentifierDto.getPortName());
@@ -144,7 +145,7 @@ class SIMInfoCollector extends Thread {
         System.out.println("After selection: " + simOperatorIdentifierDtos.toString());
     }
 
-    public Set<SimOperatorIdentifierDto> getSimOperatorIdentifierDtos() {
+    public Set<SimCardInformationDTO> getSimOperatorIdentifierDtos() {
         return simOperatorIdentifierDtos;
     }
 }
