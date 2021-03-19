@@ -82,9 +82,7 @@ class SIMInfoCollector extends Thread {
             phoneNumber = responseFromSavedPhoneNumbers.get(0);
             System.err.println("SIM card found: " + phoneNumber);
         }
-        /*
-        *Exmple: +8801988841890
-        */
+      
   
         return phoneNumber;
     }
