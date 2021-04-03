@@ -140,4 +140,23 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
+      
+    public static void executeQuery(String sql) {
+
+        try (Connection conn = DbConnection.connect();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs != null) {
+                // loop through the result set
+                while (rs.next()) {
+                    System.err.println("Result set is found");
+                }
+            } else {
+                System.err.println("Result set is NULL");
+            }
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }

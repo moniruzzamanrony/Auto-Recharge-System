@@ -7046,7 +7046,9 @@ public class Home extends javax.swing.JFrame {
                         getUssdCodeEditText.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
                     } else {
                         processtingLoderDialog.setVisible(true);
-                        ussdDial(getUssdCodeEditText.getText().toString());
+                        String ussdRes = ussdDial(getUssdCodeEditText.getText().toString(),getSelectedSim.getSelectedItem().toString());
+                        setResponseShowFromUssd.setText(ussdRes);
+                        ;
                         getUssdCodeEditText.setText("");
                     }
                     return null;
@@ -8850,47 +8852,47 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_searchingByNameKeyReleased
 
     private void bl_sim_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bl_sim_stopActionPerformed
-        stopSimCard("019", bl_sim_start, bl_sim_stop);
-        stopSimCard("014", bl_sim_start, bl_sim_stop);
+        stopSimCard("019", bl_sim_start, bl_sim_stop,blSimAmount);
+        stopSimCard("014", bl_sim_start, bl_sim_stop,blSimAmount);
     }//GEN-LAST:event_bl_sim_stopActionPerformed
 
     private void bl_sim_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bl_sim_startActionPerformed
-        startSimCard("019", bl_sim_start, bl_sim_stop);
-        startSimCard("014", bl_sim_start, bl_sim_stop);
+        startSimCard("019", bl_sim_start, bl_sim_stop,blSimAmount);
+        startSimCard("014", bl_sim_start, bl_sim_stop,blSimAmount);
     }//GEN-LAST:event_bl_sim_startActionPerformed
 
     private void gpSimStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpSimStopActionPerformed
-        stopSimCard("017", gpSimStop, gpSimStart);
-        stopSimCard("013", gpSimStop, gpSimStart);
+        stopSimCard("017", gpSimStop, gpSimStart,gpSimAmount);
+        stopSimCard("013", gpSimStop, gpSimStart,gpSimAmount);
     }//GEN-LAST:event_gpSimStopActionPerformed
 
     private void gpSimStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpSimStartActionPerformed
-        startSimCard("017", gpSimStop, gpSimStart);
-        startSimCard("013", gpSimStop, gpSimStart);
+        startSimCard("017", gpSimStop, gpSimStart,gpSimAmount);
+        startSimCard("013", gpSimStop, gpSimStart,gpSimAmount);
     }//GEN-LAST:event_gpSimStartActionPerformed
 
     private void arSimStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arSimStartActionPerformed
-        stopSimCard("016", arSimStart, arSimClose);
+        stopSimCard("016", arSimStart, arSimClose,arSimAmount);
     }//GEN-LAST:event_arSimStartActionPerformed
 
     private void arSimCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arSimCloseActionPerformed
-        startSimCard("016", arSimStart, arSimClose);
+        startSimCard("016", arSimStart, arSimClose,arSimAmount);
     }//GEN-LAST:event_arSimCloseActionPerformed
 
     private void rbStopButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStopButActionPerformed
-        stopSimCard("018", rbStartBut, rbStopBut);
+        stopSimCard("018", rbStartBut, rbStopBut,rbSimAmount);
     }//GEN-LAST:event_rbStopButActionPerformed
 
     private void rbStartButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbStartButActionPerformed
-        startSimCard("018", rbStartBut, rbStopBut);
+        startSimCard("018", rbStartBut, rbStopBut,rbSimAmount);
     }//GEN-LAST:event_rbStartButActionPerformed
 
     private void teleStopButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teleStopButActionPerformed
-        stopSimCard("015", teleStartBut, teleStopBut);
+        stopSimCard("015", teleStartBut, teleStopBut,teleSimAmount);
     }//GEN-LAST:event_teleStopButActionPerformed
 
     private void teleStartButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teleStartButActionPerformed
-        startSimCard("015", teleStartBut, teleStopBut);
+        startSimCard("015", teleStartBut, teleStopBut,teleSimAmount);
     }//GEN-LAST:event_teleStartButActionPerformed
 
     private void deleteColumeFromMobileBanking(String userId) {
@@ -10226,19 +10228,24 @@ public class Home extends javax.swing.JFrame {
         return "Getting Error";
     }
 
-    private void ussdDial(String code) {
+    /*
+    ***
+    Ussd Dial Method
+    ***
+     */
+    private String ussdDial(String code,String simOperatorName) {
         setResponseShowFromUssd.setText("");
         setResponseShowFromUssd.setFocusable(false);
         String response = null;
         String[] responses = null;
-        String getOperator = getSelectedSim.getSelectedItem().toString();
+       
         if (UserInfo.role.equals("demo")) {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
             for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
                 selectedSimOperatorName = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
-                if (selectedSimOperatorName.toUpperCase().contains(getOperator.toUpperCase())) {
+                if (selectedSimOperatorName.toUpperCase().contains(simOperatorName.toUpperCase())) {
                     auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
                     String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + getUssdCodeEditText.getText() + "\",15");
                     System.out.println(auto.recharge.system.config.Modem.disconnect());
@@ -10256,10 +10263,13 @@ public class Home extends javax.swing.JFrame {
                 for (int i = 0; i < responses.length; i++) {
                     response = responses[1].replaceAll("\"", "");
                 }
-                setResponseShowFromUssd.setText(Configaration.haxToStringConvert(response));
+                return Configaration.haxToStringConvert(response);
+                
+            }else{
+                return "Response not parsing";
             }
         }
-
+        return "Invalid response.";
     }
 
     public void ussdDailREquestCounter() {
@@ -10509,6 +10519,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public void loadActiveOperatorNameInComboBox() {
+        getSeletedOperatorName.removeAllItems();
         activeSimCardList.forEach((simOperatorIdentifierDto) -> {
             getSeletedOperatorName.addItem(simOperatorIdentifierDto.getOperatorName().toUpperCase() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")");
         });
@@ -12685,7 +12696,8 @@ public class Home extends javax.swing.JFrame {
                                 getUssdCodeEditText.setBorder(BorderFactory.createLineBorder(Color.decode("#FF2D00")));
                             } else {
                                 processtingLoderDialog.setVisible(true);
-                                ussdDial(getUssdCodeEditText.getText().toString());
+                                String ussdRes = ussdDial(getUssdCodeEditText.getText().toString(), getSelectedSim.getSelectedItem().toString());
+                                setResponseShowFromUssd.setText(ussdRes);
                                 getUssdCodeEditText.setText("");
                             }
                             return null;
@@ -14649,16 +14661,25 @@ public class Home extends javax.swing.JFrame {
         tableMobileBankingDetails.setModel(defaultTableModel);
     }
 
-    private void startSimCard(String simCardBaseNo, JButton start, JButton stop) {
-
+    private void startSimCard(String simCardBaseNo, JButton start, JButton stop, JLabel simAmount) {
+        boolean isSimFound = true;
         for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
             if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
+                 String sql = "DELETE FROM command WHERE operator_name ='rr'";
+                DbConnection.executeQuery(sql);
                 activeSimCardList.add(cardInformationDTO);
+                double myCurrentBalance = setCurrentBalance("*222#", cardInformationDTO.getOperatorName(), simAmount);
+                simAmount.setText(String.valueOf(myCurrentBalance));
                 start.setEnabled(false);
                 stop.setEnabled(true);
+                isSimFound = false;
             }
         }
-
+        if (isSimFound) {
+            Popup.customInfo("Sim Not Found.");
+        }
+        
+      
         //Set Sim Name On Network Bar
         setCuurentActiveNetworksFromModem();
 
@@ -14666,18 +14687,32 @@ public class Home extends javax.swing.JFrame {
         loadActiveOperatorNameInComboBox();
     }
 
-    private void stopSimCard(String simCardBaseNo, JButton start, JButton stop) {
-
+    private void stopSimCard(String simCardBaseNo, JButton start, JButton stop,JLabel simBalance) {
+      
         for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
             if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
                 activeSimCardList.remove(cardInformationDTO);
                 start.setEnabled(true);
                 stop.setEnabled(false);
+                simBalance.setText("0.0");
+                
             }
         }
+      
 
         //Set Sim Name On Network Bar
         setCuurentActiveNetworksFromModem();
+
+        //Set Sim Name In Mobile Recharge
+        loadActiveOperatorNameInComboBox();
+
+        // Close Ussd Session
+        closeUssdSession();
+    }
+
+    private double setCurrentBalance(String ussdCode, String simName, JLabel balanceLabel) {
+        System.err.println(ussdDial(ussdCode, simName));
+       return 0.122;
     }
 
     public class BillPrintable implements Printable {
@@ -15056,7 +15091,9 @@ public class Home extends javax.swing.JFrame {
                             @Override
                             protected Void doInBackground() throws Exception {
                                 processtingLoderDialog.setVisible(true);
-                                genarateBarCodeForContractNumber(getMobileNumber.getText(), getNameForRechargeBarCode1.getText(), forBarCodePhoneNumber2.getText(), forBarCodePhoneNumber3.getText(), forBarCodePhoneNumber4.getText(), forBarCodePhoneNumber5.getText(), forBarCodePhoneNumber6.getText(), forBarCodePhoneNumber7.getText(), forBarCodePhoneNumber8.getText(), forBarCodePhoneNumber9.getText(), forBarCodePhoneNumber10.getText());
+                                genarateBarCodeForContractNumber(getMobileNumber.getText(),
+                                        getNameForRechargeBarCode1.getText(), forBarCodePhoneNumber2.getText(), 
+                                        forBarCodePhoneNumber3.getText(), forBarCodePhoneNumber4.getText(), forBarCodePhoneNumber5.getText(), forBarCodePhoneNumber6.getText(), forBarCodePhoneNumber7.getText(), forBarCodePhoneNumber8.getText(), forBarCodePhoneNumber9.getText(), forBarCodePhoneNumber10.getText());
                                 return null;
                             }
 
