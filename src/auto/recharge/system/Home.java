@@ -6,9 +6,11 @@
 package auto.recharge.system;
 
 import auto.recharge.system.config.MobileRechargeDetailsComparator;
+import auto.recharge.system.config.Utility;
 import auto.recharge.system.dto.*;
 import auto.recharge.system.enumClasses.UssdRequestType;
 import com.itvillage.AES;
+import com.sun.rowset.CachedRowSetImpl;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.TextAttribute;
@@ -1194,7 +1196,7 @@ public class Home extends javax.swing.JFrame {
 
         blSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
         blSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blSimAmount.setText("100000 tk");
+        blSimAmount.setText("0.0 tk");
 
         bl_sim_stop.setBackground(new java.awt.Color(204, 51, 0));
         bl_sim_stop.setText("Stop");
@@ -1241,7 +1243,7 @@ public class Home extends javax.swing.JFrame {
 
         gpSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
         gpSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gpSimAmount.setText("100000 tk");
+        gpSimAmount.setText("0.0 tk");
 
         gpSimStop.setBackground(new java.awt.Color(204, 51, 0));
         gpSimStop.setText("Stop");
@@ -1286,7 +1288,7 @@ public class Home extends javax.swing.JFrame {
 
         arSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
         arSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        arSimAmount.setText("100000 tk");
+        arSimAmount.setText("0.0 tk");
 
         arSimStart.setBackground(new java.awt.Color(204, 51, 0));
         arSimStart.setText("Stop");
@@ -1331,7 +1333,7 @@ public class Home extends javax.swing.JFrame {
 
         rbSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
         rbSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rbSimAmount.setText("100000 tk");
+        rbSimAmount.setText("0.0 tk");
 
         rbStopBut.setBackground(new java.awt.Color(204, 51, 0));
         rbStopBut.setText("Stop");
@@ -1378,7 +1380,7 @@ public class Home extends javax.swing.JFrame {
 
         teleSimAmount.setFont(new java.awt.Font("Source Sans Pro", 1, 10)); // NOI18N
         teleSimAmount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        teleSimAmount.setText("100000 tk");
+        teleSimAmount.setText("0.0 tk");
 
         teleStopBut.setBackground(new java.awt.Color(204, 51, 0));
         teleStopBut.setText("Stop");
@@ -6992,7 +6994,7 @@ public class Home extends javax.swing.JFrame {
             @Override
             protected Void doInBackground() throws Exception {
 
-                closeUssdSession();
+                Configaration.closeUssdSession();
                 return null;
             }
 
@@ -7017,7 +7019,7 @@ public class Home extends javax.swing.JFrame {
                 @Override
                 protected Void doInBackground() throws Exception {
 
-                    closeUssdSession();
+                     Configaration.closeUssdSession();
                     return null;
                 }
 
@@ -10494,29 +10496,29 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    private void closeUssdSession() {
-        setResponseShowFromUssd.setText("");
-        setResponseShowFromUssd.setFocusable(false);
-        String response = null;
-        String[] responses = null;
-        String getOperator = getSelectedSim.getSelectedItem().toString();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
-                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
-                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
-                    auto.recharge.system.config.Modem.disconnect();
-                    responses = value.split(",");
-                }
-
-            }
-            setResponseShowFromUssd.setText("Reset Successful");
-        }
-
-    }
+//    private void closeUssdSession() {
+//        setResponseShowFromUssd.setText("");
+//        setResponseShowFromUssd.setFocusable(false);
+//        String response = null;
+//        String[] responses = null;
+//        String getOperator = getSelectedSim.getSelectedItem().toString();
+//        if (UserInfo.role.equals("demo")) {
+//            System.err.println("Access dny in DEMO Panel");
+//
+//        } else {
+//            for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
+//                if (simOperatorIdentifierDto.getOperatorName().toLowerCase().contains(getOperator.toLowerCase())) {
+//                    auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+//                    String value = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=2");
+//                    auto.recharge.system.config.Modem.disconnect();
+//                    responses = value.split(",");
+//                }
+//
+//            }
+//            setResponseShowFromUssd.setText("Reset Successful");
+//        }
+//
+//    }
 
     public void loadActiveOperatorNameInComboBox() {
         getSeletedOperatorName.removeAllItems();
@@ -14662,57 +14664,98 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void startSimCard(String simCardBaseNo, JButton start, JButton stop, JLabel simAmount) {
-        boolean isSimFound = true;
-        for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
-            if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
-                 String sql = "DELETE FROM command WHERE operator_name ='rr'";
-                DbConnection.executeQuery(sql);
-                activeSimCardList.add(cardInformationDTO);
-                double myCurrentBalance = setCurrentBalance("*222#", cardInformationDTO.getOperatorName(), simAmount);
-                simAmount.setText(String.valueOf(myCurrentBalance));
-                start.setEnabled(false);
-                stop.setEnabled(true);
-                isSimFound = false;
-            }
-        }
-        if (isSimFound) {
-            Popup.customInfo("Sim Not Found.");
-        }
-        
-      
-        //Set Sim Name On Network Bar
-        setCuurentActiveNetworksFromModem();
+        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                processtingLoderDialog.setVisible(true);
+                boolean isSimFound = true;
+                for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
+                    if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
+                        try {
+                            String simBanaceCode = "";
+                            //TODO: Change ROBI(545)
+                            String sql = "SELECT * FROM command WHERE operator_name= 'ROBI(545)'";
+                            CachedRowSetImpl cachedRowSetImpl = DbConnection.executeQuery(sql);
+                            while (cachedRowSetImpl.next()) {
+                                simBanaceCode = cachedRowSetImpl.getString("r_ussd_code_pre");
+                            }
+                            activeSimCardList.add(cardInformationDTO);
 
-        //Set Sim Name In Mobile Recharge
-        loadActiveOperatorNameInComboBox();
+                            double myCurrentBalance = setCurrentBalance(simBanaceCode, cardInformationDTO.getOperatorName(), simAmount);
+                            cardInformationDTO.setSimCurrentBalance(String.valueOf(myCurrentBalance));
+                            simAmount.setText(cardInformationDTO.getSimCurrentBalance());
+
+                            start.setEnabled(false);
+                            stop.setEnabled(true);
+                            isSimFound = false;
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+                if (isSimFound) {
+                    Popup.customInfo("Sim Not Found.");
+                }
+
+                //Set Sim Name On Network Bar
+                setCuurentActiveNetworksFromModem();
+
+                //Set Sim Name In Mobile Recharge
+                loadActiveOperatorNameInComboBox();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+            }
+
+        };
+        worker.execute();
+
     }
 
-    private void stopSimCard(String simCardBaseNo, JButton start, JButton stop,JLabel simBalance) {
-      
-        for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
-            if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
-                activeSimCardList.remove(cardInformationDTO);
-                start.setEnabled(true);
-                stop.setEnabled(false);
-                simBalance.setText("0.0");
-                
+    private void stopSimCard(String simCardBaseNo, JButton start, JButton stop, JLabel simBalance) {
+        SwingWorker<Void, String> worker = new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                processtingLoderDialog.setVisible(true);
+                for (SimCardInformationDTO cardInformationDTO : simCardInformationDTOList) {
+                    if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
+                        activeSimCardList.remove(cardInformationDTO);
+                        start.setEnabled(true);
+                        stop.setEnabled(false);
+                        simBalance.setText("0.0");
+
+                    }
+                }
+
+                //Set Sim Name On Network Bar
+                setCuurentActiveNetworksFromModem();
+
+                //Set Sim Name In Mobile Recharge
+                loadActiveOperatorNameInComboBox();
+
+                // Close Ussd Session
+                Configaration.closeUssdSession();
+                return null;
             }
-        }
-      
 
-        //Set Sim Name On Network Bar
-        setCuurentActiveNetworksFromModem();
+            @Override
+            protected void done() {
+                processtingLoderDialog.setVisible(false);
+            }
 
-        //Set Sim Name In Mobile Recharge
-        loadActiveOperatorNameInComboBox();
+        };
+        worker.execute();
 
-        // Close Ussd Session
-        closeUssdSession();
     }
 
     private double setCurrentBalance(String ussdCode, String simName, JLabel balanceLabel) {
-        System.err.println(ussdDial(ussdCode, simName));
-       return 0.122;
+        String balance = ussdDial(ussdCode, simName);
+        ArrayList<String> parts = Utility.numberParseFromString(balance);
+        Double acBalance = Double.valueOf(parts.get(1)+"."+parts.get(2));
+        return acBalance;
     }
 
     public class BillPrintable implements Printable {

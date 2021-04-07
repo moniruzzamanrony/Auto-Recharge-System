@@ -5,6 +5,7 @@
  */
 package auto.recharge.system;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class DbConnection {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");         
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:Users.sqlite");
             System.err.println("Database Connected ");
             return conn;
         } catch (Exception ex) {
@@ -47,7 +48,7 @@ public class DbConnection {
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS mobile_banking (RecNo integer PRIMARY KEY,	services_name varchar(255),default_sim varchar(255),task_name varchar(255),ussd_code varchar(255),pin varchar(255),serviceId varchar(255),balance_show_ussd varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS product_purchase (RecNo integer PRIMARY KEY,invoice varchar(255),supplier varchar(255),date varchar(255),bar_code varchar(255),group_products varchar(255),pName varchar(255),qty varchar(255),buy_rate varchar(255),sell_rate varchar(255),type varchar(255),subTotal varchar(255),stock_open varchar(255),order_limit varchar(255),warranty varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS product_sell_table (RecNo integer PRIMARY KEY,	id int(255),sell_type varchar(255),bar_code varchar(255),group_products varchar(255),p_name varchar(255),qty varchar(255),price varchar(255),sub_total varchar(255));");
-       // tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_admin (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
+        // tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_admin (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
         //tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_details (RecNo integer PRIMARY KEY,mobile_no varchar(255),amount varchar(255),date_time varchar(255),status varchar(255),trx_id varchar(255),type varchar(255),from_sp varchar(255),current_balance varchar(255));");
         tableCreateSqlQueryList.add("CREATE TABLE IF NOT EXISTS recharge_offers (RecNo integer PRIMARY KEY,offer_name varchar(255),recharge_amt varchar(255),validity varchar(255),description varchar(255),sim_name varchar(255));");
 
@@ -95,7 +96,6 @@ public class DbConnection {
         }
     }
 
-    
     public static boolean deleteRow(String tableName, String columeName, String value) {
         Connection conn = DbConnection.connect();
         String sql = "DELETE FROM " + tableName + " WHERE " + columeName + "=\"" + value + "\"";
@@ -117,12 +117,13 @@ public class DbConnection {
                 conn.close();
                 System.err.println("Database connection closed.");
             } catch (SQLException e) {
-                  System.err.println(e);
+                System.err.println(e);
             }
         }
 
     }
-      public static void closeStatemanet(Statement statement) {
+
+    public static void closeStatemanet(Statement statement) {
         try {
             if (statement != null) {
                 statement.close();
@@ -131,7 +132,8 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
-      public static void closeResult(ResultSet resultSet) {
+
+    public static void closeResult(ResultSet resultSet) {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -140,23 +142,34 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
-      
-    public static void executeQuery(String sql) {
 
-        try (Connection conn = DbConnection.connect();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)) {
+    public static CachedRowSetImpl executeQuery(String sql) {
+
+        Connection conn = DbConnection.connect();
+        CachedRowSetImpl crs = null;
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             if (rs != null) {
+                crs = new CachedRowSetImpl();
+                crs.populate(rs);
                 // loop through the result set
                 while (rs.next()) {
                     System.err.println("Result set is found");
+
                 }
+                return crs;
             } else {
                 System.err.println("Result set is NULL");
             }
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+         return crs;
     }
 }

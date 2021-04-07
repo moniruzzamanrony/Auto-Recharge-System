@@ -1006,7 +1006,7 @@
                               <Font name="Source Sans Pro" size="10" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="100000 tk"/>
+                            <Property name="text" type="java.lang.String" value="0.0 tk"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="bl_sim_stop">
@@ -1074,7 +1074,7 @@
                               <Font name="Source Sans Pro" size="10" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="100000 tk"/>
+                            <Property name="text" type="java.lang.String" value="0.0 tk"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="gpSimStop">
@@ -1142,7 +1142,7 @@
                               <Font name="Source Sans Pro" size="10" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="100000 tk"/>
+                            <Property name="text" type="java.lang.String" value="0.0 tk"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="arSimStart">
@@ -1213,7 +1213,7 @@
                               <Font name="Source Sans Pro" size="10" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="100000 tk"/>
+                            <Property name="text" type="java.lang.String" value="0.0 tk"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="rbStopBut">
@@ -1284,7 +1284,7 @@
                               <Font name="Source Sans Pro" size="10" style="1"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="100000 tk"/>
+                            <Property name="text" type="java.lang.String" value="0.0 tk"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="teleStopBut">
