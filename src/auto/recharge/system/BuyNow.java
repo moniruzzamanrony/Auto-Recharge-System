@@ -512,13 +512,14 @@ public class BuyNow extends javax.swing.JFrame {
 
         String userIdFromSQL = null, nameFromSQL = null, phoneNoFromSQL = null, shopNameFromSQL = null,
                 addessFromSQL = null, passwordFromSQL = null, activePackageFromSQL = null,
-                macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, expireDateFromSQL = null, packageValidity = null, role = null;
+                macAddreassFromSQL = null, emailFromSQL = null, activeDateFromSQL = null, 
+                expireDateFromSQL = null, packageValidity = null, role = null;
+        
         String serialKey = getSerialKey.getText();
         String encryptedSerialKey = AES.decrypt(serialKey, "itvillage428854");
         if (encryptedSerialKey == null) {
             Popup.error("Invalid Serial Key");
-        }
-        System.err.println(encryptedSerialKey);
+        }      
         String[] values = encryptedSerialKey.split(",");
         String userId = values[1];
         if (isUserIdIsExist(userId)) {
@@ -528,6 +529,7 @@ public class BuyNow extends javax.swing.JFrame {
             if (!serialKey.equals("")) {
                 try {
                     Connection conn = mySQLConnection.connect();
+                    System.err.println(conn);
                     String query = "SELECT * from user WHERE user_id=\'" + userId + "\'";
                     PreparedStatement stm = conn.prepareStatement(query);
                     ResultSet rs = stm.executeQuery();

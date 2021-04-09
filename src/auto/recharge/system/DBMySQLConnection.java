@@ -16,12 +16,12 @@ import java.sql.SQLException;
 public class DBMySQLConnection {
 
     //private final String url=("jdbc:mysql://localhost:3306;databaseName=auto_recharge_system");
-    private final String USERNAME = "root";
-    private final String PASSWORD = "rootroot";
+    private final String USERNAME = "global";
+    private final String PASSWORD = "globalGlobal/.,123";
     private Connection conn = null;
 
     //private final String URL = "jdbc:mysql://localhost:3306/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
-    private final String URL = "jdbc:mysql://38.17.53.113:20236/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
+    private final String URL = "jdbc:mysql://143.198.196.23:3306/auto_recharge_system?characterEncoding=utf8&useConfigs=maxPerformance";
     private ResultSet rs;
 
     public Connection connect() {
