@@ -10,11 +10,21 @@ package auto.recharge.system.dto;
  */
 public class GroupRechargeResponse {
 
+    private String id;
     private String phoneNumber;
     private String amount;
     private String simType;
     private String payBy;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    
     public String getPhoneNumber() {
         return phoneNumber;
     }

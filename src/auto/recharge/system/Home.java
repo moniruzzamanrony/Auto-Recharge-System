@@ -5,6 +5,7 @@
  */
 package auto.recharge.system;
 
+import auto.recharge.system.enumClasses.SimCardNameEunm;
 import auto.recharge.system.config.MobileRechargeDetailsComparator;
 import auto.recharge.system.config.Utility;
 import auto.recharge.system.dto.*;
@@ -79,7 +80,7 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 public class Home extends javax.swing.JFrame {
 
     // Final variables
-    private final String[] SIM_OPERATORS_NAME = new String[]{"BANGLALINK", "GP", "ROBI", "AIRTEL", "TELETALK"};
+
     private final String[] MOBILE_BANKING_NANE = {"bKash", "Rocket", "mCash", "tCash", "Nagad", "SureCash", "MyCash", "uCash", "P-Cash", "TeleCash", "IFIC", "OkWallet"};
     private final String TAG = "Home.java";
     private final DBMySQLConnection MYSQL_CONNECTION = new DBMySQLConnection();
@@ -424,12 +425,10 @@ public class Home extends javax.swing.JFrame {
         jLabel159 = new javax.swing.JLabel();
         phoneNOInProductSell = new javax.swing.JTextField();
         jLabel160 = new javax.swing.JLabel();
-        panddingListnProductSellComboBox = new javax.swing.JComboBox<>();
         jLabel138 = new javax.swing.JLabel();
         dateInProductSell = new com.toedter.calendar.JDateChooser();
         dueDateInProductSell = new com.toedter.calendar.JDateChooser();
         actionTypeInProductSellCOmboBox = new javax.swing.JComboBox<>();
-        panddingInProductSellCheckBOx = new javax.swing.JCheckBox();
         noteInProductSell = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel164 = new javax.swing.JLabel();
@@ -626,8 +625,16 @@ public class Home extends javax.swing.JFrame {
         rechargeBalencePanel1 = new javax.swing.JPanel();
         jLabel81 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        mobileBankingBalanceShowPanelList = new javax.swing.JList<>();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         tableMobileBankingDetails = new javax.swing.JTable();
         jLabel84 = new javax.swing.JLabel();
@@ -1725,7 +1732,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -3495,7 +3502,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         productSellTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -3569,20 +3576,12 @@ public class Home extends javax.swing.JFrame {
         jLabel160.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jLabel160.setText("Ref Name");
 
-        panddingListnProductSellComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                panddingListnProductSellComboBoxActionPerformed(evt);
-            }
-        });
-
         jLabel138.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jLabel138.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel138.setText("Pandding List");
+        jLabel138.setText("Product Details");
 
         actionTypeInProductSellCOmboBox.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         actionTypeInProductSellCOmboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sell", "Return" }));
-
-        panddingInProductSellCheckBOx.setText("Pandding");
 
         noteInProductSell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3700,14 +3699,6 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addComponent(panddingInProductSellCheckBOx)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 755, Short.MAX_VALUE)
-                        .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel138, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ProductPurchasePanel2Layout.createSequentialGroup()
-                                .addComponent(panddingListnProductSellComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -3722,8 +3713,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(discpuntInProductBill, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel41))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
@@ -3761,23 +3751,21 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(phoneNOInProductSell, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(fullNameInProductSell, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(customerIdINProductSell))
-                        .addGap(313, 313, 313))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         ProductPurchasePanel2Layout.setVerticalGroup(
             ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
                 .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(58, 58, 58)
                         .addComponent(jLabel138)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panddingListnProductSellComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(panddingInProductSellCheckBOx)
-                        .addGap(18, 18, 18)
+                        .addGap(57, 57, 57)
                         .addGroup(ProductPurchasePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
                             .addGroup(ProductPurchasePanel2Layout.createSequentialGroup()
@@ -5611,18 +5599,30 @@ public class Home extends javax.swing.JFrame {
 
         jSeparator8.setForeground(new java.awt.Color(133, 47, 209));
 
-        mobileBankingBalanceShowPanelList.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        mobileBankingBalanceShowPanelList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        mobileBankingBalanceShowPanelList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mobileBankingBalanceShowPanelListMouseClicked(evt);
-            }
-        });
-        jScrollPane8.setViewportView(mobileBankingBalanceShowPanelList);
+        jLabel62.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel62.setText("bKash");
+
+        jLabel114.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel114.setText("Rocket");
+
+        jLabel115.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel115.setText("Nogot");
+
+        jLabel116.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel116.setText("uCash");
+
+        jLabel117.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel117.setText("sureCash");
+
+        jButton8.setText("Show");
+
+        jButton9.setText("Show");
+
+        jButton10.setText("Show");
+
+        jButton11.setText("Show");
+
+        jButton12.setText("Show");
 
         javax.swing.GroupLayout rechargeBalencePanel1Layout = new javax.swing.GroupLayout(rechargeBalencePanel1);
         rechargeBalencePanel1.setLayout(rechargeBalencePanel1Layout);
@@ -5634,8 +5634,27 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8)
-                            .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))))
+                            .addComponent(jLabel81, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel116)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton11))
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel62)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton8))
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel114)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton9))
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel115)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton10))
+                            .addGroup(rechargeBalencePanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel117)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton12)))))
                 .addContainerGap())
         );
         rechargeBalencePanel1Layout.setVerticalGroup(
@@ -5645,9 +5664,27 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel81)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel62)
+                    .addComponent(jButton8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel114)
+                    .addComponent(jButton9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel115)
+                    .addComponent(jButton10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel116)
+                    .addComponent(jButton11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(rechargeBalencePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel117)
+                    .addComponent(jButton12))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         tableMobileBankingDetails.setModel(new javax.swing.table.DefaultTableModel(
@@ -5825,7 +5862,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(searchingByName, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -5857,6 +5894,11 @@ public class Home extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableGroupRecharge.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableGroupRechargeMouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(tableGroupRecharge);
 
         sendAllRechargeBut.setText("Send All Recharge");
@@ -6966,10 +7008,13 @@ public class Home extends javax.swing.JFrame {
         mobileBankingSettings.setForeground(Color.black);
 
         getSIMOperatorName.removeAllItems();
-        for (String string : SIM_OPERATORS_NAME) {
-            getSIMOperatorName.addItem(string);
 
-        }
+        getSIMOperatorName.addItem(String.valueOf(SimCardNameEunm.BANKLALIK));
+        getSIMOperatorName.addItem(String.valueOf(SimCardNameEunm.AIRTEL));
+        getSIMOperatorName.addItem(String.valueOf(SimCardNameEunm.GP));
+        getSIMOperatorName.addItem(String.valueOf(SimCardNameEunm.ROBI));
+        getSIMOperatorName.addItem(String.valueOf(SimCardNameEunm.TELETALK));
+
         addKeyListenserInRechargeOffer();
     }//GEN-LAST:event_rechargeOffersMouseClicked
 
@@ -7406,8 +7451,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_clickBillPaymentMouseEntered
 
     private void clickBillPaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickBillPaymentMouseClicked
-        switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);
-        loadInBillPaymentDetailsByBillNo();
+//        switchBillPaymentDetailsPaenl(billPaymentPanelInBillPay);
+//        loadInBillPaymentDetailsByBillNo();
     }//GEN-LAST:event_clickBillPaymentMouseClicked
 
     private void clickMobileBankingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickMobileBankingMouseExited
@@ -7666,37 +7711,6 @@ public class Home extends javax.swing.JFrame {
     private void getAmmountInBillPaymentFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_getAmmountInBillPaymentFocusGained
         removePlaceHolder(getAmmountInBillPayment, "Amount");
     }//GEN-LAST:event_getAmmountInBillPaymentFocusGained
-
-    private void mobileBankingBalanceShowPanelListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mobileBankingBalanceShowPanelListMouseClicked
-//        JList list = (JList) evt.getSource();
-//        MobileBankingBalanceShowCard mobileBankingBalanceShowCard = (MobileBankingBalanceShowCard) list.getModel().getElementAt(list.locationToIndex(evt.getPoint()));
-//
-//        SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-//            @Override
-//            protected Void doInBackground() throws Exception {
-//                processtingLoderDialog.setVisible(true);
-//                String amount = getMobileBankingBalance(evt, mobileBankingBalanceShowCard.getServiceNameText().getText());
-//
-//                if (amount.equals("16247")) {
-//                    Popup.customError("Duplicate Request");
-//                } else {
-//                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(amount + " Tk");
-//                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update :" + Configaration.getCurrentDateAndTime());
-//                }
-//                return null;
-//            }
-//
-//            @Override
-//            protected void done() {
-//                processtingLoderDialog.setVisible(false);
-//                System.out.println("Delete Successful...@Done");
-//            }
-//
-//        };
-//        swingWorker.execute();
-
-        // System.out.println("index: " + );
-    }//GEN-LAST:event_mobileBankingBalanceShowPanelListMouseClicked
 
     private void tableMobileBankingDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMobileBankingDetailsMouseClicked
         String mgs, userId, phoneNumberText, serviceName, amount;
@@ -8102,10 +8116,6 @@ public class Home extends javax.swing.JFrame {
     private void phoneNOInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNOInProductSellActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_phoneNOInProductSellActionPerformed
-
-    private void panddingListnProductSellComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panddingListnProductSellComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panddingListnProductSellComboBoxActionPerformed
 
     private void noteInProductSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noteInProductSellActionPerformed
         // TODO add your handling code here:
@@ -8897,6 +8907,21 @@ public class Home extends javax.swing.JFrame {
         startSimCard("015", teleStartBut, teleStopBut,teleSimAmount);
     }//GEN-LAST:event_teleStartButActionPerformed
 
+    private void tableGroupRechargeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableGroupRechargeMouseClicked
+        String recNo;
+        Point point = evt.getPoint();
+        int column = tableGroupRecharge.columnAtPoint(point);
+        int row = tableGroupRecharge.rowAtPoint(point);
+        
+        recNo = tableGroupRecharge.getValueAt(row, 0).toString();
+        System.out.print(recNo);
+        String query = "DELETE FROM `group_recharge` WHERE `rowid` = '"+recNo+"'";
+        DbConnection.executeQuery(query);
+        
+        loadDataInGroupRechargeTable();
+       
+    }//GEN-LAST:event_tableGroupRechargeMouseClicked
+
     private void deleteColumeFromMobileBanking(String userId) {
         if (UserInfo.role.equals("admin")) {
             DbConnection.deleteRow("m_b_details", "TnxId", userId);
@@ -9172,12 +9197,17 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField invoiceInProductSell;
     private javax.swing.JTextField invoiceInProductWarranty;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -9195,6 +9225,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel120;
@@ -9317,6 +9351,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
@@ -9397,7 +9432,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -9414,7 +9448,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel logoPanel;
     private javax.swing.JButton makeNewInProductPurchase;
     private javax.swing.JPanel menuPanel;
-    private javax.swing.JList<String> mobileBankingBalanceShowPanelList;
     private javax.swing.JLabel mobileBankingSettings;
     private javax.swing.JPanel mobileRechargePanel;
     private javax.swing.JPanel mobileRechargeTab;
@@ -9433,8 +9466,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel paidInProductSell;
     private javax.swing.JLabel paidInProductWanrranty;
     private javax.swing.JTextField paidPaymentInProductWanrranty;
-    private javax.swing.JCheckBox panddingInProductSellCheckBOx;
-    private javax.swing.JComboBox<String> panddingListnProductSellComboBox;
     private javax.swing.JLabel pandingRequestCounter;
     private javax.swing.JLabel passwordChange;
     private javax.swing.JPanel passwordChangePanel;
@@ -9557,7 +9588,7 @@ public class Home extends javax.swing.JFrame {
                     //Set Sim Name In Mobile Recharge
                     loadActiveOperatorNameInComboBox();
                     processRequestFromMobileRechargeQueue();
-                    collectInitialSIMBalance();
+                    //collectInitialSIMBalance();
                     showMobileRechargeBalance();
                     loadValueInTableRechargeDetails();
                     setFocusInMobileRechargePanel();
@@ -10072,7 +10103,9 @@ public class Home extends javax.swing.JFrame {
                             System.err.println();
                             statusMgs = Configaration.haxToStringConvert(responseArray[1].replaceAll("\"", ""));
                             //Update Balance
+                    
                             cBalance = updateCurrentBalance(selectedPayableSIM, Double.valueOf(ammountRequested));
+                            
 
                         } else {
                             cBalance = "Failed";
@@ -10487,13 +10520,39 @@ public class Home extends javax.swing.JFrame {
     }
 
     //SIM Balance Update
-    private void refreashCurrentBalanceForMobileRecharge(String simName) {
+    private void refreashCurrentBalanceForMobileRecharge(String simNameWithLast3Digits) {
 
-        for (SimCardInformationDTO cardInformationDTO : activeSimCardList) {
-            if ((cardInformationDTO.getOperatorName() + "(" + cardInformationDTO.getOwnPhoneNumber().substring(10, 13) + ")").equals(simName)) {
-                System.err.println("------------------" + cardInformationDTO.getSimCurrentBalance());
+        for (SimCardInformationDTO simCardInformationDTO : activeSimCardList) {
+            if ((simCardInformationDTO.getOperatorName() + "(" + simCardInformationDTO.getOwnPhoneNumber().substring(10, 13) + ")").equals(simNameWithLast3Digits)) {
+                simCardInformationDTO.setSimCurrentBalance(simCardInformationDTO.getSimCurrentBalance());         
             }
         }
+        String simName = Utility.removeNumberAndSpecialCharacters(simNameWithLast3Digits);
+        //Refrash Balance Panel
+          for (SimCardInformationDTO simCardInformationDTO : activeSimCardList) {
+              if(simName.equals(String.valueOf(SimCardNameEunm.AIRTEL)))
+              {
+                  arSimAmount.setText(simCardInformationDTO.getSimCurrentBalance());
+              }else if(simName.equals(String.valueOf(SimCardNameEunm.BANKLALIK)))
+              {
+                  blSimAmount.setText(simCardInformationDTO.getSimCurrentBalance());
+              }else if(simName.equals(String.valueOf(SimCardNameEunm.GP)))
+              {
+                  gpSimAmount.setText(simCardInformationDTO.getSimCurrentBalance());
+              }else if(simName.equals(String.valueOf(SimCardNameEunm.ROBI)))
+              {
+                  rbSimAmount.setText(simCardInformationDTO.getSimCurrentBalance());
+              }else if(simName.equals(String.valueOf(SimCardNameEunm.TELETALK)))
+              {
+                  teleSimAmount.setText(simCardInformationDTO.getSimCurrentBalance());
+              }else 
+              {
+                   System.err.println("Balance not updating.");
+              }
+             
+            
+        }
+     
     }
 
 //    private void closeUssdSession() {
@@ -10654,108 +10713,98 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
-            Connection conn = DbConnection.connect();
-            String sql = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) VALUES(?,?,?,?,?)";
-            try {
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setString(1, number);
-                preparedStatement.setString(2, amountInTk);
-                preparedStatement.setString(3, requestSIMName);
-                preparedStatement.setString(4, Configaration.getCurrentDateAndTime());
-                preparedStatement.setString(5, simType);
-                preparedStatement.execute();
-                DbConnection.closeStatemanet(preparedStatement);
-            } catch (SQLException ex) {
-                Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            String query = "INSERT INTO group_recharge(phone_number,amount,send_by,date_time,type) "
+                    + "VALUES('" + number + "','" + amountInTk + "','" + requestSIMName + "','" + Utility.gettingCurrentDate() + "','" + simType + "')";
+            DbConnection.executeQuery(query);
+
         }
     }
 
     private void focusAndKeyboardUsedInGroupRecharge() {
-        getPhoneNumberInGroupRecharge.requestFocusInWindow();
-        getPhoneNumberInGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getAmountGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getAmountGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getSelectedTypeGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getSelectedTypeGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        getSelectedSimInGroupRecharge1.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        getSelectedSimInGroupRecharge1.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        addButInGroupRecharge.requestFocusInWindow();
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-        addButInGroupRecharge.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                switch (ke.getKeyCode()) {
-                    case KeyEvent.VK_ENTER:
-                        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
-                            Popup.customError("Empty field found..");
-                        } else {
-                            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
-                                @Override
-                                protected Void doInBackground() throws Exception {
-                                    processtingLoderDialog.setVisible(true);
-                                    addInGroupRechargeTable();
-                                    return null;
-                                }
-
-                                @Override
-                                protected void done() {
-                                    processtingLoderDialog.setVisible(false);
-                                    loadDataInGroupRechargeTable();
-                                    getPhoneNumberInGroupRecharge.setText("");
-                                    getAmountGroupRecharge.setText("");
-                                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
-                                    System.err.println("Number Add In Recharge List @Done...");
-                                }
-
-                            };
-                            swingWorker.execute();
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
+//        getPhoneNumberInGroupRecharge.requestFocusInWindow();
+//        getPhoneNumberInGroupRecharge.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                switch (ke.getKeyCode()) {
+//                    case KeyEvent.VK_ENTER:
+//                        getAmountGroupRecharge.requestFocusInWindow();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+//        getAmountGroupRecharge.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                switch (ke.getKeyCode()) {
+//                    case KeyEvent.VK_ENTER:
+//                        getSelectedTypeGroupRecharge.requestFocusInWindow();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+//        getSelectedTypeGroupRecharge.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                switch (ke.getKeyCode()) {
+//                    case KeyEvent.VK_ENTER:
+//                        getSelectedSimInGroupRecharge1.requestFocusInWindow();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+//        getSelectedSimInGroupRecharge1.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                switch (ke.getKeyCode()) {
+//                    case KeyEvent.VK_ENTER:
+//                        addButInGroupRecharge.requestFocusInWindow();
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+//        addButInGroupRecharge.addKeyListener(new KeyAdapter() {
+//            @Override
+//            public void keyPressed(KeyEvent ke) {
+//                switch (ke.getKeyCode()) {
+//                    case KeyEvent.VK_ENTER:
+//                        if (getPhoneNumberInGroupRecharge.getText().equals("") && getAmountGroupRecharge.getText().equals("")) {
+//                            Popup.customError("Empty field found..");
+//                        } else {
+//                            SwingWorker<Void, String> swingWorker = new SwingWorker<Void, String>() {
+//                                @Override
+//                                protected Void doInBackground() throws Exception {
+//                                    processtingLoderDialog.setVisible(true);
+//                                    addInGroupRechargeTable();
+//                                    return null;
+//                                }
+//
+//                                @Override
+//                                protected void done() {
+//                                    processtingLoderDialog.setVisible(false);
+//                                    loadDataInGroupRechargeTable();
+//                                    getPhoneNumberInGroupRecharge.setText("");
+//                                    getAmountGroupRecharge.setText("");
+//                                    getPhoneNumberInGroupRecharge.requestFocusInWindow();
+//                                    System.err.println("Number Add In Recharge List @Done...");
+//                                }
+//
+//                            };
+//                            swingWorker.execute();
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
 
     }
 
@@ -10764,16 +10813,23 @@ public class Home extends javax.swing.JFrame {
             System.err.println("Access dny in DEMO Panel");
 
         } else {
+            int i=0;
             Connection conn = DbConnection.connect();
             try {
                 DefaultTableModel groupRechargeTableModel = new DefaultTableModel(new String[]{
-                    "Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
+                    "No","Phone no.", "Type", "Ammount", "Send By", "Date And Time"}, 0);
 
                 Statement st = conn.createStatement();
                 String sql = "SELECT * FROM `group_recharge`";
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
-                    groupRechargeTableModel.addRow(new String[]{rs.getString("phone_number"), rs.getString("type"), rs.getString("amount"), rs.getString("send_by"), rs.getString("date_time")});
+                    groupRechargeTableModel.addRow(new String[]{
+                        rs.getString("RecNo"),
+                        rs.getString("phone_number"),
+                        rs.getString("type"), 
+                        rs.getString("amount"), 
+                        rs.getString("send_by"),
+                        rs.getString("date_time")});
 
                 }
 
@@ -10814,6 +10870,7 @@ public class Home extends javax.swing.JFrame {
 
                 while (rs.next()) {
                     GroupRechargeResponse groupRechargeResponse = new GroupRechargeResponse();
+                    groupRechargeResponse.setId(rs.getString("RecNo"));
                     groupRechargeResponse.setPhoneNumber(rs.getString("phone_number"));
                     groupRechargeResponse.setAmount(rs.getString("amount"));
                     groupRechargeResponse.setSimType(rs.getString("type"));
@@ -10830,15 +10887,21 @@ public class Home extends javax.swing.JFrame {
                 //TODO: For group rechage
 
                 for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
+                    System.err.println(values.getPayBy() + "-- 1" + simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
                     if (values.getPayBy().equals(simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase())) {
                         MobileRechargeDetailsDto mobileRechargeDetailsDto
                                 = new MobileRechargeDetailsDto(UUID.randomUUID().toString(), Configaration.getCurrentDateAndTime(), values.getPhoneNumber(), values.getAmount(), values.getSimType(), simOperatorIdentifierDto.getPortName(), values.getPayBy(), UssdRequestType.MOBILE_RECHARGE);
                         addQueue(mobileRechargeDetailsDto);
+
+                        String query = "DELETE FROM `group_recharge` WHERE `rowid` = '" + values.getId() + "'";
+                        DbConnection.executeQuery(query);
+
+                        loadDataInGroupRechargeTable();
                     }
                 }
 
             });
-            DbConnection.delete("group_recharge");
+     
         }
 
     }
@@ -10854,6 +10917,7 @@ public class Home extends javax.swing.JFrame {
         List<String> balanceUssdCodeList = new ArrayList<>();
         List<String> balancePaseList = new ArrayList<>();
         boolean isSIMFound = false;
+        
         String res = "Could not get response from server";
         String balanceUssdCode = null;
         String ussdReplace = null;
@@ -10904,16 +10968,16 @@ public class Home extends javax.swing.JFrame {
             String feedBackMgs = sendSerialUSSDCode(ussdCodeSerialList, simPort);
             Configaration.wait(2000);
             // Sand Ussd Serial for Balance
-            if (!feedBackMgs.equals("USSD Dial Failed") || !feedBackMgs.equals("Possible duplicate request, call 16247 for details")) {
-                Double currentBalance = Double.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")"));
-                Double acBalance = currentBalance - Double.valueOf(amount);
-                MOBILE_BANKING_BALENCE_HASH_MAP.put(service + "(" + sim + ")", String.valueOf(acBalance));
-                loadMobileBankingBalance();
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(acBalance));
-                System.out.println(currentBalance + "==============================" + service + " " + acBalance + " " + amount);
-            } else {
-                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")")));
-            }
+//            if (!feedBackMgs.equals("USSD Dial Failed") || !feedBackMgs.equals("Possible duplicate request, call 16247 for details")) {
+//                Double currentBalance = Double.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")"));
+//                Double acBalance = currentBalance - Double.valueOf(amount);
+//                MOBILE_BANKING_BALENCE_HASH_MAP.put(service + "(" + sim + ")", String.valueOf(acBalance));
+//                loadMobileBankingBalance();
+//                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(acBalance));
+//                System.out.println(currentBalance + "==============================" + service + " " + acBalance + " " + amount);
+//            } else {
+//                updateInMobileBankingDbById(trxId, Configaration.haxToStringConvert(feedBackMgs), String.valueOf(MOBILE_BANKING_BALENCE_HASH_MAP.get(service + "(" + sim + ")")));
+//            }
 
             loadMobileBankingDetailsTable();
             getPhoneNumberInBillPayment.setText("");
@@ -11002,7 +11066,7 @@ public class Home extends javax.swing.JFrame {
                 protected Void doInBackground() throws Exception {
                     System.err.println("Confirm click");
                     confirmDialog.setVisible(false);
-                    mobileBankingBalanceShowPanelList.setEnabled(false);
+                   // mobileBankingBalanceShowPanelList.setEnabled(false);
                     //sendMobileBankingRequest();
                     for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
                         String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
@@ -11025,7 +11089,7 @@ public class Home extends javax.swing.JFrame {
 
                 @Override
                 protected void done() {
-                    mobileBankingBalanceShowPanelList.setEnabled(true);
+                   // mobileBankingBalanceShowPanelList.setEnabled(true);
                 }
 
             };
@@ -11042,7 +11106,7 @@ public class Home extends javax.swing.JFrame {
                         protected Void doInBackground() throws Exception {
                             System.err.println("Confirm click");
                             confirmDialog.setVisible(false);
-                            mobileBankingBalanceShowPanelList.setEnabled(false);
+                          //  mobileBankingBalanceShowPanelList.setEnabled(false);
                             //sendMobileBankingRequest();
                             for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
                                 String selectedSimCardWithNumber = simOperatorIdentifierDto.getOperatorName() + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13) + ")";
@@ -11065,7 +11129,7 @@ public class Home extends javax.swing.JFrame {
 
                         @Override
                         protected void done() {
-                            mobileBankingBalanceShowPanelList.setEnabled(true);
+                           // mobileBankingBalanceShowPanelList.setEnabled(true);
                         }
 
                     };
@@ -12639,30 +12703,30 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void loadMobileBankingBalance() {
-        Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
-        if (UserInfo.role.equals("demo")) {
-            System.err.println("Access dny in DEMO Panel");
-
-        } else {
-            DefaultListModel Clistmodel = new DefaultListModel();
-            for (Map.Entry<String, String> entry : MOBILE_BANKING_BALENCE_HASH_MAP.entrySet()) {
-                System.out.println("----------------------" + entry.getKey() + " : " + entry.getValue());
-                if (entry.getValue().equals("16247")) {
-                    Popup.customError("Duplicate Request");
-                } else {
-                    MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
-                    mobileBankingBalanceShowCard.getServiceNameText().setText(entry.getKey());
-                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(entry.getValue() + " TK");
-                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + Configaration.getCurrentDateAndTime());
-
-                    Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
-                }
-            }
-            mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
-
-            mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
-
-        }
+//        Set<MobileBankingBalanceShowDto> bankingBalanceShowDtos = new HashSet<>();
+//        if (UserInfo.role.equals("demo")) {
+//            System.err.println("Access dny in DEMO Panel");
+//
+//        } else {
+//            DefaultListModel Clistmodel = new DefaultListModel();
+//            for (Map.Entry<String, String> entry : MOBILE_BANKING_BALENCE_HASH_MAP.entrySet()) {
+//                System.out.println("----------------------" + entry.getKey() + " : " + entry.getValue());
+//                if (entry.getValue().equals("16247")) {
+//                    Popup.customError("Duplicate Request");
+//                } else {
+//                    MobileBankingBalanceShowCard mobileBankingBalanceShowCard = new MobileBankingBalanceShowCard();
+//                    mobileBankingBalanceShowCard.getServiceNameText().setText(entry.getKey());
+//                    mobileBankingBalanceShowCard.getAmountBalanceText().setText(entry.getValue() + " TK");
+//                    mobileBankingBalanceShowCard.getLastUpdateTimeText().setText("Last update: " + Configaration.getCurrentDateAndTime());
+//
+//                    Clistmodel.addElement(mobileBankingBalanceShowCard);//Contact is an JPanel object
+//                }
+//            }
+//            mobileBankingBalanceShowPanelList.setModel(Clistmodel);//GroupList is the List object
+//
+//            mobileBankingBalanceShowPanelList.setCellRenderer(new JListPanelRenderer());
+//
+//        }
 
     }
 
@@ -14178,58 +14242,58 @@ public class Home extends javax.swing.JFrame {
         return inch * 72d;
     }
 
-    private void collectInitialSIMBalance() {
-
-        List<String> balancePaseList = new ArrayList<>();
-        List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
-        activeSimCardList.forEach((SimCardInformationDTO simOperatorIdentifierDto) -> {
-            Connection conn = DbConnection.connect();
-            try {
-                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-
-                Statement st = conn.createStatement();
-                String sql = "SELECT * FROM `command`";
-                ResultSet rs = st.executeQuery(sql);
-                while (rs.next()) {
-                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
-                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
-                            + ")".toUpperCase())) {
-                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
-                        Configaration.wait(200);
-                        Configaration.closeUssdSession();
-                        System.out.println(auto.recharge.system.config.Modem.disconnect());
-                        String[] value = balanceMgs.split(",");
-
-                        System.out.println(value.length);
-                        if (value.length == 1) {
-
-                        } else {
-                            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
-                            Pattern p = Pattern.compile("\\d+");
-                            Matcher m = p.matcher(balance);
-                            while (m.find()) {
-                                balancePaseList.add(m.group());
-                                System.out.println(m.group());
-                            }
-
-                        }
-                        MobileRechargeBalance mobileRechargeBalance = new MobileRechargeBalance();
-                        mobileRechargeBalance.setPhoneNumber(simOperatorIdentifierDto.getOwnPhoneNumber());
-                        mobileRechargeBalance.setSimName(rs.getString("operator_name"));
-                        mobileRechargeBalance.setSimBalance(balancePaseList.get(0));
-                        mobileRechargeBalanceList.add(mobileRechargeBalance);
-                    }
-                }
-                ModemInfoList.mobileRechargeBalance = mobileRechargeBalanceList;
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-
-                DbConnection.disconnect(conn);
-            }
-        });
-    }
+//    private void collectInitialSIMBalance() {
+//
+//        List<String> balancePaseList = new ArrayList<>();
+//        List<MobileRechargeBalance> mobileRechargeBalanceList = new ArrayList<MobileRechargeBalance>();
+//        activeSimCardList.forEach((SimCardInformationDTO simOperatorIdentifierDto) -> {
+//            Connection conn = DbConnection.connect();
+//            try {
+//                auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
+//
+//                Statement st = conn.createStatement();
+//                String sql = "SELECT * FROM `command`";
+//                ResultSet rs = st.executeQuery(sql);
+//                while (rs.next()) {
+//                    if (rs.getString("operator_name").equals(simOperatorIdentifierDto.getOperatorName()
+//                            + "(" + simOperatorIdentifierDto.getOwnPhoneNumber().substring(10, 13)
+//                            + ")".toUpperCase())) {
+//                        String balanceMgs = auto.recharge.system.config.Modem.dialUSSDCode("AT+CUSD=1,\"" + rs.getString("b_s_ussd_code") + "\",15");
+//                        Configaration.wait(200);
+//                        Configaration.closeUssdSession();
+//                        System.out.println(auto.recharge.system.config.Modem.disconnect());
+//                        String[] value = balanceMgs.split(",");
+//
+//                        System.out.println(value.length);
+//                        if (value.length == 1) {
+//
+//                        } else {
+//                            String balance = (String) Configaration.haxToStringConvert(value[1].replaceAll("\"", ""));
+//                            Pattern p = Pattern.compile("\\d+");
+//                            Matcher m = p.matcher(balance);
+//                            while (m.find()) {
+//                                balancePaseList.add(m.group());
+//                                System.out.println(m.group());
+//                            }
+//
+//                        }
+//                        MobileRechargeBalance mobileRechargeBalance = new MobileRechargeBalance();
+//                        mobileRechargeBalance.setPhoneNumber(simOperatorIdentifierDto.getOwnPhoneNumber());
+//                        mobileRechargeBalance.setSimName(rs.getString("operator_name"));
+//                        mobileRechargeBalance.setSimBalance(balancePaseList.get(0));
+//                        mobileRechargeBalanceList.add(mobileRechargeBalance);
+//                    }
+//                }
+//                ModemInfoList.mobileRechargeBalance = mobileRechargeBalanceList;
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+//            } finally {
+//
+//                DbConnection.disconnect(conn);
+//            }
+//        });
+//    }
 
     private void displaySizeConfigaration() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -14247,10 +14311,10 @@ public class Home extends javax.swing.JFrame {
         String strCommand3 = "AT+CMGL=\"REC UNREAD\"";
 
         for (SimCardInformationDTO simOperatorIdentifierDto : activeSimCardList) {
-            auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());
-            System.out.println(auto.recharge.system.config.Modem.sendATCommand(strCommand1));
+            auto.recharge.system.config.Modem.connect(simOperatorIdentifierDto.getPortName());        
             auto.recharge.system.config.Modem.sendATCommand(strCommand2);
             String result = auto.recharge.system.config.Modem.sendATCommand(strCommand3).replaceAll("\r", "").replaceAll("\"", "").replaceAll("\n", "");
+          
             for (String value : result.split("\\+CMGL:")) {
 
                 perseByCommaInInbox = value.replaceAll("OK", "").split(",");
@@ -14258,6 +14322,7 @@ public class Home extends javax.swing.JFrame {
                     //2--phn number
                     //4-5 date time
                     //6 mgs
+                    System.out.println(Configaration.haxToStringConvert(perseByCommaInInbox[6]));
                     if (perseByCommaInInbox.length == 7) {
                         String from, dateTime, mgs;
                         from = perseByCommaInInbox[2];
@@ -14673,8 +14738,8 @@ public class Home extends javax.swing.JFrame {
                     if (cardInformationDTO.getOwnPhoneNumber().subSequence(2, 5).equals(simCardBaseNo)) {
                         try {
                             String simBanaceCode = "";
-                            //TODO: Change ROBI(545)
-                            String sql = "SELECT * FROM command WHERE operator_name= 'ROBI(545)'";
+                            System.out.println("Trying to connect with "+cardInformationDTO.getOperatorName() + "(" + cardInformationDTO.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase());
+                            String sql = "SELECT * FROM command WHERE operator_name= '"+cardInformationDTO.getOperatorName() + "(" + cardInformationDTO.getOwnPhoneNumber().substring(10, 13) + ")".toUpperCase()+"'";
                             CachedRowSetImpl cachedRowSetImpl = DbConnection.executeQuery(sql);
                             while (cachedRowSetImpl.next()) {
                                 simBanaceCode = cachedRowSetImpl.getString("r_ussd_code_pre");

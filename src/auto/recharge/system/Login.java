@@ -316,13 +316,14 @@ public final class Login extends javax.swing.JFrame {
                 System.out.println("Start Login Process");
                 processtingLoderDialog.setVisible(true);
                 login();
+                processtingLoderDialog.setVisible(false);
                 return null;
             }
 
             @Override
             protected void done() {
                 System.out.println("Login Done..");
-                processtingLoderDialog.setVisible(false);
+          
             }
 
         };
@@ -520,13 +521,14 @@ public final class Login extends javax.swing.JFrame {
                             System.out.println("Login Processing..");
                             processtingLoderDialog.setVisible(true);
                             login();
+                             processtingLoderDialog.setVisible(false);
                             return null;
                         }
 
                         @Override
                         protected void done() {
                             System.out.println("Login Done..");
-                            processtingLoderDialog.setVisible(false);
+                           
                         }
 
                     };
